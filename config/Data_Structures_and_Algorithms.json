@@ -1,0 +1,711 @@
+{
+  "title": "Data Structures and Algorithms",
+  "desc": "Course in data structures and algorithms, given at Chalmers University and University of Gothenburg",
+  "build_dir": "Books",
+  "code_dir": "SourceCode/",
+  "lang": "en",
+  "code_lang": {
+    "Java_Generic": {
+      "ext": [
+        "java"
+      ],
+      "label": "Java (Generic)",
+      "lang": "java"
+    },
+    "Java": {
+      "ext": [
+        "java"
+      ],
+      "label": "Java",
+      "lang": "java"
+    },
+    "C++": {
+      "ext": [
+        "cpp",
+        "h"
+      ],
+      "label": "C++",
+      "lang": "C++"
+    }
+  },
+  "build_JSAV": false,
+  "build_cmap": true,
+  "suppress_todo": false,
+  "dispModComp": true,
+  "zeropt_assignments": true,
+  "tabbed_codeinc": true,
+  "narration_enabled": true,
+  "glob_exer_options": {
+    "JXOP-debug": "true"
+  },
+  "glob_ss_options": {
+    "required": false,
+    "points": 0,
+    "threshold": 1
+  },
+  "glob_ka_options": {
+    "required": false,
+    "points": 1,
+    "threshold": 5
+  },
+  "glob_pe_options": {
+    "required": false,
+    "points": 2,
+    "threshold": 0.9
+  },
+  "glob_ff_options": {
+    "required": false,
+    "points": 0,
+    "threshold": 1
+  },
+  "glob_extr_options": {
+    "points": 1,
+    "code-workout": {
+      "points": 2
+    },
+    "code-workout-jhavepop": {
+      "points": 1
+    },
+    "mastery-grid-java-animations": {
+      "points": 1
+    },
+    "mastery-grid-jsparsons-python": {
+      "points": 1
+    },
+    "mastery-grid-python-animations": {
+      "points": 1
+    }
+  },
+  "chapters": {
+    "Introduction": {
+      "Background/IntroDSA": {
+        "Some Software Engineering Topics": {
+          "showsection": false
+        }
+      },
+      "Design/ADT": {
+        "IntroADTSumm": {
+          "threshold": 4
+        }
+      }
+    },
+    "Java Programming, repetition": {
+      "Tutorials/cmdline": {},
+      "Tutorials/parameters": {},
+      "Tutorials/eclipseparameters": {},
+      "Tutorials/debugmethods": {},
+      "Tutorials/debug": {},
+      "Tutorials/scanning": {},
+      "Tutorials/junitstart": {},
+      "Tutorials/junitbasic": {},
+      "Tutorials/junitcoverage": {},
+      "Testing/TestIntro": {},
+      "Testing/TestCoverage": {
+        "TriangleApplet": {
+          "exer_options": {
+            "code": "true"
+          }
+        }
+      },
+      "Testing/Example2": {},
+      "Testing/Bowling": {
+        "BowlingApplet": {
+          "exer_options": {
+            "code": "true"
+          }
+        }
+      }
+    },
+    "Pointers/References, repetition": {
+      "PointersJava/PointerIntro": {},
+      "PointersJava/BasicPointers1": {},
+      "PointersJava/BasicPointers2": {
+        "PointerEX2PRO": {
+          "threshold": 1
+        },
+        "PointerEX1PRO": {
+          "threshold": 1
+        }
+      },
+      "PointersJava/Syntax": {},
+      "PointersJava/LocalMem": {},
+      "PointersJava/HeapMem": {},
+      "PointersJava/Links1": {
+        "PointerEX3PRO": {
+          "threshold": 1
+        }
+      },
+      "PointersJava/Links2": {},
+      "PointersJava/Exercises": {}
+    },
+    "Mathematical Background": {
+      "Background/MathpreIntro": {},
+      "Background/SetDef": {
+        "SetTFequivrel": {
+          "threshold": 3
+        },
+        "SetTFpartialorder": {
+          "threshold": 3
+        },
+        "SetTFrelation": {
+          "points": 2
+        }
+      },
+      "Background/MiscMath": {},
+      "Background/Logarithms": {
+        "MathLogSumm": {
+          "points": 2,
+          "threshold": 10
+        }
+      },
+      "Background/Summations": {},
+      "Background/RecurrenceIntro": {},
+      "Background/Proofs": {},
+      "Background/Estimation": {},
+      "Background/MathpreSumm": {},
+      "SeniorAlgAnal/RandomNums": {}
+    },
+    "Recursion": {
+      "RecurTutor/RecIntro": {},
+      "RecurTutor/Write": {},
+      "RecurTutor/CodeCompletionEx": {
+        "Recursion Programming Exercise: Add odd values": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Count Characters": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Cummulative Sum": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: GCD": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Largest": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Multiply": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Sum Of the Digits": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: log": {
+          "points": 1
+        }
+      },
+      "RecurTutor/HarderWrite": {},
+      "RecurTutor/HarderCodeCompletionEx": {
+        "Recursion Programming Exercise: Decimal to Binary": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Is Reverse": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Minimum of array": {
+          "points": 1
+        }
+      },
+      "RecurTutor/WritingEx": {
+        "Recursion Programming Exercise: Cannonballs": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Check Palindrome": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Pascal Triangle": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Subset Sum": {
+          "points": 1
+        }
+      },
+      "RecurTutor/Trace": {},
+      "RecurTutor/TracingEx": {
+        "RecTraceSummbckwrdFlow": {
+          "threshold": 1
+        },
+        "RecTraceSummFuncErr": {
+          "threshold": 1
+        },
+        "RecTraceSummFwdFlow": {
+          "threshold": 1
+        },
+        "RecTraceSummHard": {
+          "threshold": 1
+        },
+        "RecTraceSummHowmany": {
+          "threshold": 1
+        },
+        "RecTraceSummTwoRC": {
+          "threshold": 1
+        }
+      },
+      "RecurTutor/RecSummaryEx": {},
+      "SeniorAlgAnal/DynamicProgramming": {}
+    },
+    "Searching, Dynamic arrays": {
+      "Searching/BinarySearch": {
+        "binarySearchPRO": {
+          "points": 1,
+          "threshold": 1
+        }
+      }
+    },
+    "Sorting": {
+      "Sorting/InSort": {},
+      "Sorting/SortNotation": {
+        "SortIntroSumm": {
+          "threshold": 3
+        }
+      },
+      "Sorting/InsertionSort": {},
+      "Sorting/SelectionSort": {
+        "SelsortPRO": {
+          "points": 2
+        }
+      },
+      "Sorting/ExchangeSort": {
+        "FindInversionsPRO": {
+          "points": 2
+        }
+      },
+      "Sorting/SortOpt": {
+        "insertionSortWithoutSwapPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 0
+        }
+      },
+      "Sorting/Mergesort": {
+        "mergesortPRO": {
+          "exer_options": {
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "fix"
+          }
+        }
+      },
+      "Sorting/MergesortImpl": {},
+      "Sorting/Quicksort": {
+        "quicksortPRO": {
+          "exer_options": {
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "fix"
+          }
+        }
+      },
+      "Sorting/Heapsort": {
+        "HeapsortStepPRO": {
+          "points": 2
+        },
+        "heapsortPRO": {
+          "exer_options": {
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "fix"
+          }
+        }
+      },
+      "Sorting/SortingEmpirical": {},
+      "Sorting/SortingLowerBound": {
+        "SortBoundSumm": {
+          "threshold": 4
+        }
+      },
+      "Sorting/SortSumm": {
+        "SortChapterSumm": {
+          "points": 2,
+          "threshold": 10
+        }
+      }
+    },
+    "Algorithm Analysis": {
+      "AlgAnal/AnalChap": {},
+      "AlgAnal/AnalPrelim": {
+        "AnalPrelimSumm": {
+          "threshold": 4
+        }
+      },
+      "AlgAnal/AnalIntro": {
+        "CompareGrowth": {
+          "points": 2,
+          "threshold": 3
+        },
+        "GrowthRatesPRO": {
+          "threshold": 3
+        }
+      },
+      "AlgAnal/AnalCases": {},
+      "AlgAnal/AnalCompvsAlg": {
+        "FasterCorASumm": {
+          "threshold": 2
+        }
+      },
+      "AlgAnal/AnalAsymptotic": {
+        "UpperBoundsSumm": {
+          "threshold": 4
+        }
+      },
+      "AlgAnal/AnalLower": {
+        "LowerThetaSumm": {
+          "points": 2
+        }
+      },
+      "AlgAnal/AnalProgram": {
+        "binarySearchPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 1,
+          "threshold": 1
+        }
+      },
+      "AlgAnal/AnalProblem": {},
+      "AlgAnal/AnalMisunderstanding": {
+        "MisSumm": {
+          "threshold": 4
+        }
+      },
+      "AlgAnal/AnalMultiple": {},
+      "AlgAnal/AnalSpace": {},
+      "AlgAnal/AnalTuning": {},
+      "AlgAnal/AlgAnalSummCS2": {},
+      "AlgAnal/AlgAnalSummCS3": {},
+      "SeniorAlgAnal/GrowthRate": {},
+      "SeniorAlgAnal/AdvSumm": {},
+      "SeniorAlgAnal/Recurrence": {},
+      "SeniorAlgAnal/AmortAnal": {}
+    },
+    "Linear Structures": {
+      "List/ListIntro": {},
+      "List/ListADT": {
+        "List ADT Programming Exercise": {
+          "points": 1
+        }
+      },
+      "List/ListArray": {
+        "AlistRemovePRO": {
+          "threshold": 4
+        },
+        "AlistInsertPRO": {
+          "threshold": 3
+        },
+        "ALSumm": {
+          "threshold": 3
+        }
+      },
+      "List/ListLinked": {
+        "LlistRemovePRO": {
+          "points": 2
+        }
+      },
+      "List/ListAnalysis": {
+        "ListOverhead": {
+          "threshold": 3
+        },
+        "LLSumm": {
+          "points": 2,
+          "threshold": 6
+        }
+      },
+      "List/ListDouble": {},
+      "List/ListElement": {
+        "ListSumm": {
+          "threshold": 3
+        }
+      },
+      "List/StackArray": {},
+      "List/StackLinked": {},
+      "List/StackRecur": {},
+      "List/Queue": {},
+      "List/QueueLinked": {},
+      "List/ListSumm": {
+        "ListChapterSumm": {
+          "points": 2,
+          "threshold": 10
+        },
+        "ListdsSumm": {
+          "points": 2
+        }
+      }
+    },
+    "Iterators, Comparators, Dictionaries": {
+      "Design/DesignAltList": {},
+      "Design/Comparison": {},
+      "Design/Dictionary": {
+        "DesignDictionarySumm": {
+          "threshold": 3
+        }
+      }
+    },
+    "Binary Trees": {
+      "Binary/BinaryTreeIntro": {},
+      "Binary/BinaryTree": {
+        "DefSumm": {
+          "points": 2,
+          "threshold": 8
+        },
+        "Treeprobs": {
+          "threshold": 4
+        }
+      },
+      "Binary/RecursiveDS": {},
+      "Binary/BinaryTreeFullThm": {},
+      "Binary/BinaryTreeTraversal": {
+        "btTravPreorderPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 1
+        },
+        "btTravInorderPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 1
+        },
+        "btTravPostorderPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 1
+        },
+        "TravSumm": {
+          "threshold": 3
+        }
+      },
+      "Binary/WritingTraversals": {
+        "Binary Tree Increment By One Exercise": {
+          "points": 1
+        }
+      },
+      "BTRecurTutor/BinaryTreeInfFlw": {
+        "BinaryTreeMistakesCON": {
+          "points": 1,
+          "threshold": 0.9
+        }
+      },
+      "Binary/BinaryTreeImpl": {},
+      "Binary/BinaryTreeNodeSpace": {
+        "TreeOverheadFIB": {
+          "points": 2
+        }
+      },
+      "Binary/BST": {
+        "BSTSumm": {
+          "threshold": 2
+        },
+        "BSTinsertPRO": {
+          "exer_options": {
+            "JXOP-code": "none",
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "undo"
+          },
+          "points": 1
+        },
+        "BSTremovePRO": {
+          "exer_options": {
+            "JXOP-code": "none",
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "undo"
+          }
+        },
+        "BSTsearchPRO": {
+          "exer_options": {
+            "JXOP-code": "none",
+            "JXOP-feedback": "continuous",
+            "JXOP-fixmode": "undo"
+          },
+          "points": 1
+        }
+      },
+      "Binary/BSTDict": {},
+      "BTRecurTutor/BinaryTreeGuidedInfFlw": {
+        "IneffBinaryTreeRangeCON": {
+          "points": 1,
+          "threshold": 0.9
+        }
+      },
+      "BTRecurTutor/MultipleBinaryTrees": {},
+      "BTRecurTutor/BSTCheck": {},
+      "Binary/BinaryChapSumm": {
+        "BinaryChapSumm": {
+          "points": 2,
+          "threshold": 10
+        }
+      }
+    },
+    "General Trees (misc stuff)": {
+      "General/GenTreeIntro": {},
+      "General/UnionFind": {},
+      "General/SequentialRep": {},
+      "Development/GenTreeImplement": {}
+    },
+    "Balanced Binary Trees": {
+      "SearchStruct/BalancedTree": {},
+      "SearchStruct/AVL": {},
+      "SearchStruct/Splay": {},
+      "Indexing/TwoThreeTree": {},
+      "SearchStruct/RedBlack": {
+        "redBlackTreeColoring": {
+          "points": 1
+        },
+        "redBlackTreePRO": {
+          "points": 1
+        }
+      },
+      "SearchStruct/SkipList": {}
+    },
+    "Priority Queues": {
+      "Binary/CompleteTree": {},
+      "Binary/Heaps": {
+        "heapbuildPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          },
+          "points": 1
+        },
+        "heapinsertPRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          }
+        },
+        "HeapSumm": {
+          "points": 2
+        },
+        "heapremovePRO": {
+          "exer_options": {
+            "JXOP-code": "none"
+          }
+        }
+      },
+      "Binary/Huffman": {},
+      "Binary/TreeTrie": {},
+      "Binary/HuffProof": {}
+    },
+    "Hash Tables": {
+      "Hashing/HashIntro": {},
+      "Hashing/HashFunc": {
+        "BirthdayFIB": {
+          "threshold": 3
+        }
+      },
+      "Hashing/HashFuncExamp": {
+        "StringSimple": {
+          "points": 0.5,
+          "threshold": 1
+        },
+        "MidSquare": {
+          "points": 0.5,
+          "threshold": 1
+        },
+        "StringSfold": {
+          "points": 0.5,
+          "threshold": 1
+        }
+      },
+      "Hashing/OpenHash": {
+        "OpenHashPRO": {
+          "points": 2
+        }
+      },
+      "Hashing/BucketHash": {},
+      "Hashing/HashCSimple": {},
+      "Hashing/HashCImproved": {
+        "HashDoublePPRO": {
+          "points": 2
+        },
+        "HashLinearStepPPRO": {
+          "points": 2
+        },
+        "HashPseudoRandomPPRO": {
+          "points": 2
+        },
+        "HashQuadraticPPRO": {
+          "points": 2
+        }
+      },
+      "Hashing/HashAnal": {},
+      "Hashing/HashDel": {
+        "HashDelSumm": {
+          "threshold": 3
+        }
+      },
+      "Hashing/HashSumm": {
+        "HashChapterSumm": {
+          "points": 2,
+          "threshold": 10
+        }
+      }
+    },
+    "Graphs": {
+      "Graph/GraphIntro": {
+        "GraphIntroSumm": {
+          "points": 3,
+          "threshold": 10
+        },
+        "GspaceCalcSumm": {
+          "points": 2
+        }
+      },
+      "Graph/GraphImpl": {},
+      "Graph/GraphTraversal": {},
+      "Graph/GraphTopsort": {},
+      "Graph/GraphShortest": {},
+      "Graph/MCST": {},
+      "Graph/Kruskal": {},
+      "Graph/Floyd": {}
+    },
+    "Limits to Computing": {
+      "NP/LimComp": {},
+      "NP/Reduction": {},
+      "NP/NPComplete": {},
+      "NP/circuitSAT": {},
+      "NP/SAT": {},
+      "NP/threeSAT": {
+        "threeSATPRO": {
+          "threshold": 1
+        }
+      },
+      "NP/clique": {
+        "cliquePRO": {
+          "threshold": 1
+        }
+      },
+      "NP/independentSet": {
+        "independentSetPRO": {
+          "threshold": 1
+        }
+      },
+      "NP/vertexCover": {
+        "vertexCoverPRO": {
+          "threshold": 1
+        }
+      },
+      "NP/hamiltonianCycle": {
+        "hamiltonianCycPRO": {
+          "threshold": 1
+        }
+      },
+      "NP/TSP": {
+        "TSPPRO": {
+          "threshold": 1
+        }
+      },
+      "NP/provingNPC": {},
+      "NP/circuitSAT_to_SAT": {},
+      "NP/SAT_to_threeSAT": {},
+      "NP/threeSAT_to_clique": {},
+      "NP/clique_to_independentSet": {},
+      "NP/independentSet_to_vertexCover": {},
+      "NP/threeSAT_to_hamiltonianCycle": {},
+      "NP/hamiltonianCycle_to_TSP": {},
+      "NP/NPCoping": {},
+      "SeniorAlgAnal/Impossible": {},
+      "SeniorAlgAnal/Turing": {}
+    },
+    "Appendix": {
+      "Glossary": {}
+    }
+  }
+}
