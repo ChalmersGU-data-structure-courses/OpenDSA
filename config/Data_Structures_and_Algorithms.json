@@ -19,13 +19,12 @@
       "label": "Java",
       "lang": "java"
     },
-    "C++": {
+    "Python": {
       "ext": [
-        "cpp",
-        "h"
+        "py"
       ],
-      "label": "C++",
-      "lang": "C++"
+      "label": "Python",
+      "lang": "python"
     }
   },
   "build_JSAV": false,
