@@ -67,7 +67,7 @@ SPHINXOPTS    = %(sphinx_options)s
 # -vv and -vvv are options for verbose build output
 # -P is for starting pdb exactly when and where exception occurs
 HTMLDIR       = %(rel_book_output_path)s
-MINIMIZE      = uglifyjs
+MINIMIZE      = cat
 TAGS = %(tag)s
 .PHONY: clean html
 
