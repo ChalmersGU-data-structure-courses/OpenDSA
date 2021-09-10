@@ -1,0 +1,239 @@
+{
+  "title": "Programming Basics: Background and Repetition",
+  "desc": "Background and Repetition Material for Data Structures and Algorithms",
+  "build_dir": "Books",
+  "code_dir": "SourceCode/",
+  "lang": "en",
+  "code_lang": {
+    "Java_Generic": {
+      "ext": [
+        "java"
+      ],
+      "label": "Java (Generic)",
+      "lang": "java"
+    },
+    "Java": {
+      "ext": [
+        "java"
+      ],
+      "label": "Java",
+      "lang": "java"
+    },
+    "Python": {
+      "ext": [
+        "py"
+      ],
+      "label": "Python",
+      "lang": "python"
+    }
+  },
+  "build_JSAV": false,
+  "build_cmap": true,
+  "suppress_todo": false,
+  "dispModComp": true,
+  "zeropt_assignments": true,
+  "tabbed_codeinc": true,
+  "narration_enabled": true,
+  "glob_exer_options": {
+    "JXOP-debug": "true"
+  },
+  "glob_ss_options": {
+    "required": false,
+    "points": 0,
+    "threshold": 1
+  },
+  "glob_ka_options": {
+    "required": false,
+    "points": 1,
+    "threshold": 5
+  },
+  "glob_pe_options": {
+    "required": false,
+    "points": 2,
+    "threshold": 0.9
+  },
+  "glob_ff_options": {
+    "required": false,
+    "points": 0,
+    "threshold": 1
+  },
+  "glob_extr_options": {
+    "points": 1,
+    "code-workout": {
+      "points": 2
+    },
+    "code-workout-jhavepop": {
+      "points": 1
+    },
+    "mastery-grid-java-animations": {
+      "points": 1
+    },
+    "mastery-grid-jsparsons-python": {
+      "points": 1
+    },
+    "mastery-grid-python-animations": {
+      "points": 1
+    }
+  },
+  "start_chap_num": 1,
+  "chapters": {
+    "Java Programming, repetition": {
+      "Tutorials/cmdline": {},
+      "Tutorials/parameters": {},
+      "Tutorials/eclipseparameters": {},
+      "Tutorials/debugmethods": {},
+      "Tutorials/debug": {},
+      "Tutorials/scanning": {},
+      "Tutorials/junitstart": {},
+      "Tutorials/junitbasic": {},
+      "Tutorials/junitcoverage": {},
+      "Testing/TestIntro": {},
+      "Testing/TestCoverage": {
+        "TriangleApplet": {
+          "exer_options": {
+            "code": "true"
+          }
+        }
+      },
+      "Testing/Example2": {},
+      "Testing/Bowling": {
+        "BowlingApplet": {
+          "exer_options": {
+            "code": "true"
+          }
+        }
+      }
+    },
+    "Pointers/References, repetition": {
+      "PointersJava/PointerIntro": {},
+      "PointersJava/BasicPointers1": {},
+      "PointersJava/BasicPointers2": {
+        "PointerEX2PRO": {
+          "threshold": 1
+        },
+        "PointerEX1PRO": {
+          "threshold": 1
+        }
+      },
+      "PointersJava/Syntax": {},
+      "PointersJava/LocalMem": {},
+      "PointersJava/HeapMem": {},
+      "PointersJava/Links1": {
+        "PointerEX3PRO": {
+          "threshold": 1
+        }
+      },
+      "PointersJava/Links2": {},
+      "PointersJava/Exercises": {}
+    },
+    "Mathematical Background": {
+      "Background/MathpreIntro": {},
+      "Background/SetDef": {
+        "SetTFequivrel": {
+          "threshold": 3
+        },
+        "SetTFpartialorder": {
+          "threshold": 3
+        },
+        "SetTFrelation": {
+          "points": 2
+        }
+      },
+      "Background/MiscMath": {},
+      "Background/Logarithms": {
+        "MathLogSumm": {
+          "points": 2,
+          "threshold": 10
+        }
+      },
+      "Background/Summations": {},
+      "Background/RecurrenceIntro": {},
+      "Background/Proofs": {},
+      "Background/Estimation": {},
+      "Background/MathpreSumm": {},
+      "SeniorAlgAnal/RandomNums": {}
+    },
+    "Recursion": {
+      "RecurTutor/RecIntro": {},
+      "RecurTutor/Write": {},
+      "RecurTutor/CodeCompletionEx": {
+        "Recursion Programming Exercise: Add odd values": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Count Characters": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Cummulative Sum": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: GCD": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Largest": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Multiply": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Sum Of the Digits": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: log": {
+          "points": 1
+        }
+      },
+      "RecurTutor/HarderWrite": {},
+      "RecurTutor/HarderCodeCompletionEx": {
+        "Recursion Programming Exercise: Decimal to Binary": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Is Reverse": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Minimum of array": {
+          "points": 1
+        }
+      },
+      "RecurTutor/WritingEx": {
+        "Recursion Programming Exercise: Cannonballs": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Check Palindrome": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Pascal Triangle": {
+          "points": 1
+        },
+        "Recursion Programming Exercise: Subset Sum": {
+          "points": 1
+        }
+      },
+      "RecurTutor/Trace": {},
+      "RecurTutor/TracingEx": {
+        "RecTraceSummbckwrdFlow": {
+          "threshold": 1
+        },
+        "RecTraceSummFuncErr": {
+          "threshold": 1
+        },
+        "RecTraceSummFwdFlow": {
+          "threshold": 1
+        },
+        "RecTraceSummHard": {
+          "threshold": 1
+        },
+        "RecTraceSummHowmany": {
+          "threshold": 1
+        },
+        "RecTraceSummTwoRC": {
+          "threshold": 1
+        }
+      },
+      "RecurTutor/RecSummaryEx": {},
+      "SeniorAlgAnal/DynamicProgramming": {}
+    },
+    "Appendix": {
+      "Glossary": {}
+    }
+  }
+}
