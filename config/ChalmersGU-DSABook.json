@@ -404,6 +404,7 @@
       "SearchStruct/SkipList": {}
     },
     "Priority Queues": {
+      "Binary/PriorityQueue": {},
       "Binary/CompleteTree": {},
       "Binary/Heaps": {
         "heapbuildPRO": {
