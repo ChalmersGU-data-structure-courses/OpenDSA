@@ -245,12 +245,14 @@
       "SeniorAlgAnal/DynamicProgramming": {}
     },
     "Searching, Dynamic arrays": {
+      "Searching/SearchIntro": {},
       "Searching/BinarySearch": {
         "binarySearchPRO": {
           "points": 1,
           "threshold": 1
         }
-      }
+      },
+      "Searching/DynamicArrays": {}
     },
     "Sorting": {
       "Sorting/InSort": {},
