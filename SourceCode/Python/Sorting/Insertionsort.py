@@ -71,7 +71,7 @@ def sorttime(B):
   print "Python'y Insertion Sort with shift: Size ", testsize, ", Time: ", totaltime
 
 # Instead of swapping, "shift" the values down the array
-# /* *** ODSATag: Insertionsort shift *** */
+# /* *** ODSATag: InsertionOpt *** */
 def inssortshift(A):
   for i in range(1, len(A)): # Insert i'th record
     temp = A[i]
@@ -80,7 +80,7 @@ def inssortshift(A):
       A[j] = A[j-1]
       j -= 1
     A[j] = temp
-# /* *** ODSAendTag: Insertionsort shift *** */
+# /* *** ODSAendTag: InsertionOpt *** */
 
 
 # Same as inssortshift, but try != instead of < for the zero test
