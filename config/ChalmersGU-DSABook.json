@@ -76,6 +76,7 @@
     }
   },
   "start_chap_num": 1,
+  "max_toc_depth": 1,
   "chapters": {
     "Introduction": {
       "Background/IntroDSA": {
