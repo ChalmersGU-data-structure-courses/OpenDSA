@@ -40,6 +40,9 @@ performance.
 It is also interesting to see the relative performance of the three
 algorithms, as well as how various programming languages compare.
 
+Insertion Sort
+--------------
+
 We start by trying to speed up Insertion Sort.
 Recall that Insertion Sort repeatedly moves an element toward the
 beginning of the sorted part of the list until it encounters a key
@@ -123,6 +126,9 @@ Some languages have peculiarities that it pays to be aware of.
 It turns out that there is a big difference in JavaScript between
 using ``i < n`` or ``i != n`` to test termination of a loop.
 
+Bubble Sort
+-----------
+
 Turning to Bubble Sort, the first thing we should notice from this
 table is that it is far slower on random input than Insertion Sort.
 Let's consider a possible improvement that is sometimes suggested
@@ -177,6 +183,9 @@ the number of iterations avoided by swap checking in Bubble Sort
 is sensitive to the detailed placements of the out-of-order records.
 In fact, if we took a sorted list and moved the smallest value to the
 end, then there would be no benefit from swap checking whatsoever.
+
+Selection Sort
+--------------
 
 Finally, let's consider Selection Sort.
 The table shows foremost that Selection Sort can be viewed as a far
