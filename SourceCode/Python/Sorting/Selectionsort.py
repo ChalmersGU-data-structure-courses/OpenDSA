@@ -42,10 +42,10 @@ def sorttest(A):
 
 # /* *** ODSATag: Selectionsort *** */
 def selsort(A):
-  for i in range(len(A)):              # Select i'th biggest record
-    bigindex = 0;                      # Current biggest index
-    for j in range (1, len(A) - i):    # Find the max value
-      if (A[j] > A[bigindex]):         # Found something bigger  
-        bigindex = j;                  # Remember bigger index
-    swap(A, bigindex, len(A) - i - 1); # Put it into place
+  for i in range(len(A)-1):            # Select i'th biggest record
+    bigindex = 0                       # Current biggest index
+    for j in range (1, len(A)-i):      # Find the max value
+      if A[j] > A[bigindex]:           # Found something bigger  
+        bigindex = j                   # Remember bigger index
+    swap(A, bigindex, len(A)-i-1)      # Put it into place
 # /* *** ODSAendTag: Selectionsort *** */

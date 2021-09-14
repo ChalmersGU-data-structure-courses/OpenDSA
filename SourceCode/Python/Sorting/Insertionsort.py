@@ -75,8 +75,8 @@ def sorttime(B):
 def inssortshift(A):
   for i in range(1, len(A)): # Insert i'th record
     temp = A[i]
-    j=i
-    while (j > 0) and (temp < A[j-1]):
+    j = i
+    while j > 0 and temp < A[j-1]:
       A[j] = A[j-1]
       j -= 1
     A[j] = temp
@@ -113,16 +113,16 @@ def sorttest(A):
 
 # /* *** ODSATag: Insertionsort *** */
 def inssort(A):
-  for i  in range(len(A)):  # Insert i'th record
-    j = i;
-    while (j != 0) and (A[j] < A[j-1]):
-      swap(A, j, j - 1)
+  for i in range(len(A)):  # Insert i'th record
+    j = i
+    while j > 0 and A[j] < A[j-1]:
+      swap(A, j, j-1)
       j -= 1
 # /* *** ODSAendTag: Insertionsort *** */
 
 # Chris Dusold's attempt to "pythonize" the sort
 def myinssort(A):
-  for i  in range(len(A)):  # Insert i'th record
+  for i in range(len(A)):  # Insert i'th record
     for j in range(i,0,-1):
       if (A[j] >= A[j-1]):
         break

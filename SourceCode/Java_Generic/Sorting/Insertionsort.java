@@ -70,11 +70,11 @@ static void inssortshift2(int[] A) {
 
 /* *** ODSATag: InsertionOpt *** */
 // Instead of swapping, "shift" the values down the array
-static void inssortshift(int[] A) {
-  for (int i=1; i<A.length; i++) { // Insert i'th record
+static <T extends Comparable<T>> void inssortshift(T[] A) {
+  for (int i=1; i < A.length; i++) { // Insert i'th record
     int j;
     int temp = A[i];
-    for (j=i; (j>0) && (temp < A[j-1]); j--) {
+    for (j=i; j > 0 && temp.compareTo(A[j-1]) < 0; j--) {
       A[j] = A[j-1];
     }
     A[j] = temp;
@@ -113,8 +113,8 @@ static Boolean sorttest(int[] B) {
 
 /* *** ODSATag: Insertionsort *** */
 static <T extends Comparable<T>> void inssort(T[] A) {
-  for (int i=1; i<A.length; i++) { // Insert i'th record
-    for (int j=i; (j>0) && (A[j].compareTo(A[j-1]) < 0); j--) {
+  for (int i=1; i < A.length; i++) { // Insert i'th record
+    for (int j=i; j > 0 && A[j].compareTo(A[j-1]) < 0; j--) {
       swap(A, j, j-1);
     }
   }

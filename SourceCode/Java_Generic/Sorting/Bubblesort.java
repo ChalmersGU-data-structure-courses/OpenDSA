@@ -96,7 +96,7 @@ static void bubblesortcheck2(int[] A) {
 // Wikipedia article "optimization" to only swap up to the last swap seen
 /* *** ODSATag: BubblesortCheck *** */
 static <T extends Comparable<T>> void bubblecheckswap(T[] A) {
-  int n = A.length - 1;
+  int n = A.length-1;
   while (n > 0) {
     int newn = 0;
     for (int i = 0; i < n; i++) {
@@ -162,8 +162,8 @@ static Boolean sorttest(int[] B) {
 
 /* *** ODSATag: Bubblesort *** */
 static <T extends Comparable<T>> void bubblesort(T[] A) {
-  for (int i=0; i<A.length-1; i++) { // Insert i'th record
-    for (int j=1; j<A.length-i; j++) {
+  for (int i=0; i < A.length-1; i++) { // Insert i'th record
+    for (int j=1; j < A.length-i; j++) {
       if (A[j-1].compareTo(A[j]) > 0) {
         swap(A, j-1, j);
       }

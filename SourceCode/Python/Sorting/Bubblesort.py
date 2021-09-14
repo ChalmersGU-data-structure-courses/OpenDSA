@@ -78,13 +78,13 @@ def bubblesortcheck2(A):
 # Wikipedia article "optimization" to only swap up to the last swap seen
 #/* *** ODSATag: BubblesortCheck *** */
 def bubblecheckswap(A):
-  n = len(A) - 1;
-  while (n > 0):
+  n = len(A)-1;
+  while n > 0:
     newn = 0
     for i in range(n):
       # if this pair is out of order
-      if (A[i] > A[i + 1]):
-        swap(A, i, i + 1)
+      if A[i] > A[i+1]:
+        swap(A, i, i+1)
         newn = i
     n = newn
 #/* *** ODSAendTag: BubblesortCheck *** */
@@ -119,8 +119,8 @@ def sorttest(A):
 
 #/* *** ODSATag: Bubblesort *** */
 def bubblesort(A):
-  for i in range (len(A)): # Insert i'th record
-    for j in range(1, len(A) - i):
-      if (A[j - 1] > A[j]):
-        swap(A, j - 1, j)
+  for i in range (len(A)-1): # Insert i'th record
+    for j in range(1, len(A)-i):
+      if A[j-1] > A[j]:
+        swap(A, j-1, j)
 #/* *** ODSAendTag: Bubblesort *** */

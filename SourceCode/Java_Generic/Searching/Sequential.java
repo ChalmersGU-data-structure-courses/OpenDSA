@@ -11,10 +11,10 @@ static boolean SUCCESS = true;
 static int sequential(int[] A, int K) {
   for (int i=0; i<A.length; i++) { // For each element
     if (A[i] == K) {               // if we found it
-       return i;                 //   return this position
+      return i;                    // return this position
     }
   }
-  return A.length;               // Otherwise, return the array length
+  return A.length;                 // Otherwise, return the array length
 }
 /* *** ODSAendTag: Sequential *** */
 
