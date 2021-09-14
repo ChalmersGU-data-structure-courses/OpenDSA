@@ -53,6 +53,7 @@
       "Sorting/InSort": {},
       "Sorting/SortNotation": {},
       "Sorting/InsertionSort": {},
+      "Sorting/BubbleSort": {},
       "Sorting/SelectionSort": {},
       "Sorting/ExchangeSort": {},
       "Sorting/SortOpt": {
