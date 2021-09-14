@@ -7,11 +7,6 @@
   "code_lang": {
     "Java_Generic": {
       "ext": ["java"],
-      "label": "Java (Generic)",
-      "lang": "java"
-    },
-    "Java": {
-      "ext": ["java"],
       "label": "Java",
       "lang": "java"
     },
@@ -19,6 +14,11 @@
       "ext": ["py"],
       "label": "Python",
       "lang": "python"
+    },
+    "Java": {
+      "ext": ["java"],
+      "label": "Java (obsolete)",
+      "lang": "java"
     }
   },
   "build_JSAV": false,
