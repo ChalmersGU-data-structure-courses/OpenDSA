@@ -88,6 +88,11 @@ Here is an illustration of the binary search method.
    :scripts: AV/Searching/binarySearchCON.js
    :output: show
 
+And here is the method in different languages:
+
+.. codeinclude:: Searching/Bsearch
+      :tag: BinarySearch
+
 With the right math techniques, it is not too hard to show that the
 cost of binary search on an array of :math:`n` values is at most
 :math:`\log n`.
