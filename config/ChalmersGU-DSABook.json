@@ -99,8 +99,7 @@
       "List/ListIntro": {},
       "List/ListADT": {},
       "List/ListArray": {},
-      "List/ListLinked": {
-        "LlistRemovePRO": {},
+      "List/ListLinked": {},
       "List/ListAnalysis": {},
       "List/ListDouble": {},
       "List/ListElement": {},
