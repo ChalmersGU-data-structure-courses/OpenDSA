@@ -17,21 +17,24 @@ Heapsort
 Heapsort
 --------
 
-Our discussion of Quicksort began by considering the practicality of
-using a BST for sorting.
-The BST requires more space than the other sorting methods and will
-be slower than Quicksort or Mergesort due to the relative expense of
-inserting values into the tree.
-There is also the possibility that the BST might be unbalanced,
-leading to a :math:`\Theta(n^2)` worst-case running time.
-Subtree balance in the BST is closely related to Quicksort's partition
-step.
-Quicksort's pivot serves roughly the same purpose as the BST root
-value in that the left partition (subtree) stores values less than
-the pivot (root) value, while the right partition (subtree) stores
-values greater than or equal to the pivot (root).
+Before we get to Heapsort, consider for a moment the practicality
+of using a Binary Search Tree for sorting.
+You could insert all of the values to be sorted into the BST
+one by one, then traverse the completed tree using an inorder traversal.
+The output would form a sorted list.
+This approach is conceptually very similar to 
+:ref:`Quicksort <Quicksort> <Quicksort>`, where an internal node corresponds to the pivot,
+and the left (right) subtree consists of the partition of values smaller (larger) than the pivot.
 
-A good sorting algorithm can be devised based on a tree structure more
+However, the approach has a number of drawbacks, including the extra space
+required by BST pointers and the amount of time required to insert nodes into the tree.
+Quicksort implements this same concept in a much more efficient way.
+But there is also the possibility that the BST might be unbalanced,
+leading to a :math:`\Theta(n^2)` worst-case running time.
+And this is the same problem as Quicksort has with chosing a good pivot
+(see the section "Quicksort Analysis" in the :ref:`Quicksort <Quicksort>` module).
+
+Instead, a good sorting algorithm can be devised based on a tree structure more
 suited to the purpose.
 In particular, we would like the tree to be balanced, space efficient,
 and fast.

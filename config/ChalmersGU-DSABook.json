@@ -66,9 +66,6 @@
       "Sorting/Quicksort": {
         "quicksortPRO": {"exer_options": {"JXOP-feedback": "continuous", "JXOP-fixmode": "fix"}}
       },
-      "Sorting/Heapsort": {
-        "heapsortPRO": {"exer_options": {"JXOP-feedback": "continuous", "JXOP-fixmode": "fix"}}
-      },
       "Sorting/SortingEmpirical": {},
       "Sorting/SortingLowerBound": {},
       "Sorting/SortSumm": {}
@@ -162,6 +159,9 @@
         "heapbuildPRO": {"exer_options": {"JXOP-code": "none"}},
         "heapinsertPRO": {"exer_options": {"JXOP-code": "none"}},
         "heapremovePRO": {"exer_options": {"JXOP-code": "none"}}
+      },
+      "Sorting/Heapsort": {
+        "heapsortPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "fix"}}
       },
       "Binary/Huffman": {},
       "Binary/TreeTrie": {},
