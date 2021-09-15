@@ -36,28 +36,9 @@ function.
 Interestingly, Quicksort is hampered by exceedingly poor worst-case
 performance, thus making it inappropriate for certain applications.
 
-Before we get to Quicksort, consider for a moment the practicality
-of using a Binary Search Tree for sorting.
-You could insert all of the values to be sorted into the BST
-one by one, then traverse the completed tree using an inorder traversal.
-The output would form a sorted list.
-This approach has a number of drawbacks, including the extra space
-required by BST pointers and the amount of time required to insert
-nodes into the tree.
-However, this method introduces some interesting ideas.
-First, the root of the BST (i.e., the first node inserted) splits the
-list into two sublists:
-The left subtree contains those values in the
-list less than the root value while the right subtree contains those
-values in the list greater than or equal to the root value.
-Thus, the BST implicitly implements a "divide and conquer" approach
-to sorting the left and right subtrees.
-Quicksort implements this same concept in a much more efficient way.
-
 .. index:: ! pivot
 
 Quicksort first selects a value called the :term:`pivot`.
-(This is conceptually like the root node's value in the BST.)
 Assume that the input array contains :math:`k` records with key values
 less than the pivot.
 The records are then rearranged in such a way that the :math:`k`
