@@ -28,6 +28,24 @@ for (L.moveToStart(); !L.isAtEnd(); L.next()) {
 /* *** ODSAendTag: listiter *** */
   }
 
+  static void listIterNew1(List L) {
+/* *** ODSATag: listiterNew1 *** */
+Iterator it = L.iterator();
+while (it.hasNext()) {
+    Object e = it.next();
+    doSomething(e);
+}
+/* *** ODSAendTag: listiterNew1 *** */
+  }
+
+  static void listIterNew2(List L) {
+/* *** ODSATag: listiterNew2 *** */
+for (Object e : L) {
+    doSomething(e);
+}
+/* *** ODSAendTag: listiterNew2 *** */
+  }
+
   static void doSomething(Object it) {
     doSomethingResult += it;
   }

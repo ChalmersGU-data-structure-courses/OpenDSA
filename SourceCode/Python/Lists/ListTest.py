@@ -8,13 +8,28 @@ while not L.isAtEnd():
 #/* *** ODSAendTag: listiter *** */
 
 
+#/* *** ODSATag: listiterNew1 *** */
+it = L.__iter__()
+while True:
+    try:
+        e = it.__next__()
+        doSomething(e)
+    except StopIteration:
+        break
+#/* *** ODSAendTag: listiterNew1 *** */
+
+
+#/* *** ODSATag: listiterNew2 *** */
+for e in L:
+    doSomething(e)
+#/* *** ODSAendTag: listiterNew2 *** */
+
+
 #/* *** ODSATag: listfind *** */
 # Return true if k is in list L, false otherwise
 def find(L, k):
-  L.moveToStart()
-  while not L.isAtEnd():
-    if k == L.getValue():
-      return true    # Found k
-    L.next()
-  return false       # k not found
+    for n in L:
+        if k == n:
+            return true  # Found k
+    return false         # k not found
 #/* *** ODSAendTag: listfind *** */

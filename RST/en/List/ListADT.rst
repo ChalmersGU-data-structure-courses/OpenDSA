@@ -93,6 +93,9 @@ both of which use the same list ADT to define their operations.
 But they are  considerably different in approaches and in their
 space/time tradeoffs.
 
+.. TODO::
+   Update the text to reflect "our" languages: Java generic, and Python
+
 The code below presents our list ADT.
 Any implementation for a :term:`container class` such as a list should
 be able to support different data types for the elements.
@@ -100,6 +103,9 @@ One way to do this in Java is to store data values of type
 ``Object``.
 Languages that support generics (Java) or templates (C++) give more
 control over the element types.
+
+.. TODO::
+   Update the text to reflect the new API
 
 The comments given with each member function describe what it is
 intended to do.
@@ -121,10 +127,13 @@ will take place.
 An alternative design is to factor out position as a separate position
 object, sometimes referred to as an :term:`iterator`.
 
-.. codeinclude:: Lists/List
-   :tag: ListADT
+.. codeinclude:: Design/API
+   :tag: CollectionADT, Emptyline, ListADT
 
 |
+
+.. TODO::
+   Update or remove the slideshow because the API has changed
 
 .. inlineav:: listADTposCON ss
    :long_name: List ADT Positions Slideshow
@@ -141,7 +150,13 @@ member functions in the same asymptotic time.
 A list can be iterated through as follows:
 
 .. codeinclude:: Lists/ListTest
-   :tag: listiter
+   :tag: listiterNew1
+
+But both Java and Python has syntactic sugar for iterators,
+so the same iteration can be written like this:
+
+.. codeinclude:: Lists/ListTest
+   :tag: listiterNew2
 
 In this example, each element of the list in turn is stored
 in ``it``, and passed to the ``doSomething`` function.
@@ -187,6 +202,9 @@ There are two standard approaches to implementing lists, the
 
 List ADT Programming Exercise
 -----------------------------
+
+.. TODO::
+   Change or remove this exercise, because the API has changed.
 
 .. extrtoolembed:: 'List ADT Programming Exercise'
    :workout_id: 62

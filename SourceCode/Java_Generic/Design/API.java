@@ -1,6 +1,12 @@
 
 // All ADTs used in the ChalmersGU course book
 
+/* *** ODSATag: Emptyline *** */
+
+/* *** ODSAendTag: Emptyline *** */
+
+
+
 /* *** ODSATag: ComparatorADT *** */
 interface Comparator<E> {
     int compare(E one, E other);

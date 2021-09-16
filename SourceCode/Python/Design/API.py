@@ -1,6 +1,11 @@
 
 # All ADTs used in the ChalmersGU course book
 
+#/* *** ODSATag: Emptyline *** */
+
+#/* *** ODSAendTag: Emptyline *** */
+
+
 #/* *** ODSATag: ComparatorADT *** */
 # Note: this is just an informal protocol,
 # there is no Python abstract class Comparable.
