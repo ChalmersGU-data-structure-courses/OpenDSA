@@ -14,11 +14,6 @@
       "ext": ["py"],
       "label": "Python",
       "lang": "python"
-    },
-    "Java": {
-      "ext": ["java"],
-      "label": "Java (obsolete)",
-      "lang": "java"
     }
   },
   "build_JSAV": false,
