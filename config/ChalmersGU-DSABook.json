@@ -42,7 +42,8 @@
       "Background/IntroDSA": {
         "Some Software Engineering Topics": {"showsection": false}
       },
-      "Design/ADT": {}
+      "Design/ADT": {},
+      "Design/CourseAPI": {}
     },
     "Searching, Dynamic arrays": {
       "Searching/SearchIntro": {},
