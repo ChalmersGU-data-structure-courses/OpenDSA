@@ -52,3 +52,20 @@ while k <= n:         # Do log n times
     sum2 += 1
   k *= 2
 #/* *** ODSAendTag: c3p6 *** */
+
+#/* *** ODSATag: c3p16 *** */
+for i in range(C):        # Initialize count
+  count[i] = 0
+  for i in range(P):      # Look at all of the pixels
+    count[value(i)] += 1  # Increment a pixel value count
+  sort(count)             # Sort pixel value counts
+#/* *** ODSAendTag: c3p16 *** */
+
+#def collatz(int n):
+#/* *** ODSATag: Collatz *** */
+while n > 1:
+  if ODD(n):
+    n = 3 * n + 1
+  else:
+    n = n / 2
+#/* *** ODSAendTag: Collatz *** */
