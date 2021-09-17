@@ -75,16 +75,14 @@ class HuffTree implements Comparable {
 /* *** ODSAendTag: HuffmanTree *** */
 
 /* *** ODSATag: HuffmanTreeBuild *** */
-static HuffTree buildTree() {
-  HuffTree tmp1, tmp2, tmp3 = null;
-
-  while (Hheap.heapsize() > 1) { // While two items left
-    tmp1 = Hheap.removemin();
-    tmp2 = Hheap.removemin();
-    tmp3 = new HuffTree(tmp1.root(), tmp2.root(),
-                             tmp1.weight() + tmp2.weight());
-    Hheap.insert(tmp3);   // Return new tree to heap
+static HuffTree buildTree(Heap<HuffTree> huffHeap) {
+  while (huffHeap.heapsize() > 1) { // While two items left
+    HuffTree tmp1 = huffHeap.removemin();
+    HuffTree tmp2 = huffHeap.removemin();
+    HuffTree tmp3 = new HuffTree(tmp1.root(), tmp2.root(),
+                                 tmp1.weight() + tmp2.weight());
+    huffHeap.insert(tmp3);   // Return new tree to heap
   }
-  return tmp3;            // Return the tree
+  return huffHeap.getmin();  // Return the tree
 }
 /* *** ODSAendTag: HuffmanTreeBuild *** */
