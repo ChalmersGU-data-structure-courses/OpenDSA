@@ -121,12 +121,12 @@ interface OrderedMap<K, V> extends Map<K, V> {
 
 /* *** ODSATag: GraphADT *** */
 interface Graph<V> {
-    void add(Edge<V> e);
-    void remove(Edge<V> e);
-    boolean contains(Edge<V> e);
-    Collection<Edge<V>> outgoingEdges(V from);
+    void addVertex(V v);
+    void addEdge(Edge<V> e);
     Collection<V> vertices();
-    Collection<Edge<V>> edges();
+    Collection<Edge<V>> outgoingEdges(V from);
+    int vertexCount();
+    int edgeCount();
 }
 
 class Edge<V> {

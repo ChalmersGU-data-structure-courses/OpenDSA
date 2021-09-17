@@ -152,18 +152,18 @@ interface OrderedMap(Map):
 
 #/* *** ODSATag: GraphADT *** */
 class Graph:
-    def add(self, e):
+    def addVertex(self, v):
+        """Adds the vertex v to the graph."""
+    def addEdge(self, e):
         """Adds the edge e to the graph."""
-    def remove(self, e):
-        """Removes the edge e from the graph."""
-    def contains(self, e):
-        """Checks if e is an edge in the graph."""
-    def outgoingEdges(self, v):
-        """Returns a Collection of the edges that originates in vertex v."""
     def vertices(self):
         """Returns a Collection of all vertices in the graph."""
-    def edges(self):
-        """Returns a Collection of all edges in the graph."""
+    def outgoingEdges(self, v):
+        """Returns a Collection of the edges that originates in vertex v."""
+    def vertexCount(self):
+        """Returns the number of vertices in the graph."""
+    def edgeCount(self):
+        """Returns the number of edges in the graph."""
 
 Edge = namedtuple('Edge', ['start', 'end', 'weight'], defaults=[1.0])
 #/* *** ODSAendTag: GraphADT *** */
