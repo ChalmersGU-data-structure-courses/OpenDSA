@@ -18,7 +18,7 @@ Sequential Search
 ~~~~~~~~~~~~~~~~~
 
 If you want to find the position in an unsorted array of :math:`n`
-integers that stores a particular value, you cannot really do better
+objects that stores a particular value, you cannot really do better
 than simply looking through the array from the beginning and move
 toward the end until you find what you are looking for.
 This algorithm is called :term:`sequential search`.
@@ -88,7 +88,7 @@ Here is an illustration of the binary search method.
    :scripts: AV/Searching/binarySearchCON.js
    :output: show
 
-And here is the method in different languages:
+And here is the method in more programming languages:
 
 .. codeinclude:: Searching/Bsearch
       :tag: BinarySearch
