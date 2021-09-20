@@ -13,9 +13,9 @@ public static <E extends Comparable<E>> binarySearch(E[] elements, E e) {
     int high = elements.length - 1;
     while (low <= high) {               // Stop when low and high meet
         int mid = (low + high) / 2;     // Check middle of subarray
-        if (elements[mid] < e) {
+        if (elements[mid].compareTo(e) < 0) {
             low = mid + 1;              // In right half
-        } else if (elements[mid] > e) {
+        } else if (elements[mid].compareTo(e) > 0) {
             high = mid - 1;             // In left half
         } else {
             return mid;                 // Found it
