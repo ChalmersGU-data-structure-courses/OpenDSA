@@ -12,16 +12,16 @@ while not L.isAtEnd():
 it = L.__iter__()
 while True:
     try:
-        e = it.__next__()
-        doSomething(e)
+        elem = it.__next__()
+        doSomething(elem)
     except StopIteration:
         break
 #/* *** ODSAendTag: listiterNew1 *** */
 
 
 #/* *** ODSATag: listiterNew2 *** */
-for e in L:
-    doSomething(e)
+for elem in L:
+    doSomething(elem)
 #/* *** ODSAendTag: listiterNew2 *** */
 
 

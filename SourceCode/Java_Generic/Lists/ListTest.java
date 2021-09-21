@@ -33,16 +33,16 @@ for (L.moveToStart(); !L.isAtEnd(); L.next()) {
 /* *** ODSATag: listiterNew1 *** */
 Iterator<E> it = L.iterator();
 while (it.hasNext()) {
-    E e = it.next();
-    doSomething(e);
+    E elem = it.next();
+    doSomething(elem);
 }
 /* *** ODSAendTag: listiterNew1 *** */
   }
 
   static void listIterNew2(List<E> L) {
 /* *** ODSATag: listiterNew2 *** */
-for (E e : L) {
-    doSomething(e);
+for (E elem : L) {
+    doSomething(elem);
 }
 /* *** ODSAendTag: listiterNew2 *** */
   }
@@ -53,9 +53,9 @@ for (E e : L) {
 
 /* *** ODSATag: listfind *** */
 // Return true if k is in list L, false otherwise
-static boolean find(List<Integer> L, int k) {
-    for (int n : L) {
-        if (k == n) {
+static boolean find(List<E> L, E k) {
+    for (E n : L) {
+        if (k.equals(n)) {
             return true;  // Found k
         }
     }
