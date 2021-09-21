@@ -1,29 +1,8 @@
 
-#/* *** ODSATag: ComparatorADT *** */
-# Note: by implementing these methods,
-# one can use the standard Python comparison operators (==, !=, <, <=, >, >=).
-class Comparable:
-    def __eq__(self, other): """Test if self == other."""
-    def __ne__(self, other): """Test if self != other."""
-    def __lt__(self, other): """Test if self < other."""
-    def __le__(self, other): """Test if self <= other."""
-    def __gt__(self, other): """Test if self > other."""
-    def __ge__(self, other): """Test if self >= other."""
-#/* *** ODSAendTag: ComparatorADT *** */
-
-
-#/* *** ODSATag: IteratorADT *** */
-# Note: by implementing these methods,
-# one can loop over the elements in a standard Python for-loop.
-class Iterator:
-    def __iter__(self): """Returns the iterator itself."""
-    def __next__(self): """Returns the next item. Raises StopIteration if there are no more elements."""
-#/* *** ODSAendTag: IteratorADT *** */
-
+from BaseAPI import Comparable, Iterable, Iterator
 
 #/* *** ODSATag: CollectionADT *** */
-class Collection:
-    def iterator(self): """Returns a new iterator."""
+class Collection(Iterable):
     def isEmpty(self):  """Returns true if the collection is empty."""
     def size(self):     """Returns the number of elements in this collection."""
 #/* *** ODSAendTag: CollectionADT *** */

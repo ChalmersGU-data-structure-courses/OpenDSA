@@ -1,42 +1,20 @@
 
-/* *** ODSATag: ComparatorADT *** */
-// Note: This is a simplified version of java.util.Comparator
-interface Comparator<E> {
-    int compare(E one, E other);  // Returns <0 if one<other, 0 if one==other, >0 if one>other
-}
-
-// Note: This is the same as java.lang.Comparable
-interface Comparable<E> {
-    int compareTo(E other);  // Returns <0 if this<other, 0 if this==other, >0 if this>other
-}
-/* *** ODSAendTag: ComparatorADT *** */
-
-
-/* *** ODSATag: IteratorADT *** */
-// Note: This is a simplified version of java.util.Iterator
-interface Iterator<E> {
-    boolean hasNext();  // Returns true if the iterator is not empty.
-    E next();           // Yields the next element in the iterator.
-}
-/* *** ODSAendTag: IteratorADT *** */
-
+// To be able to use Java's syntactic sugar for for-loops,
+// we have to use the "real" interfaces Iterator and Iterable,
+// and not the ones in BaseAPI.java
+import java.util.Iterator;
+import java.lang.Iterable;
 
 /* *** ODSATag: CollectionADT *** */
-// Note: This is a simplified version of java.lang.Iterable
-interface Iterable<E> {
-    Iterator<E> iterator();  // Returns a new iterator.
-}
-
-// Note: This is a simplified version of java.util.Collection
+// Note: This is a subset of java.util.Collection
 interface Collection<E> extends Iterable<E> {
     boolean isEmpty();  // Returns true if the collection is empty.
     int size();         // Returns the number of elements in this collection.
 }
 /* *** ODSAendTag: CollectionADT *** */
 
-
 /* *** ODSATag: ListADT *** */
-// Note: This is a simplified version of java.util.List
+// Note: This is a subset of java.util.List
 interface List<E> extends Collection<E> {
     void add(int i, E x);  // Adds x at position i.
     E get(int i);          // Returns the element at position i.
@@ -57,7 +35,7 @@ interface Stack<E> extends Collection<E> {
 
 
 /* *** ODSATag: QueueADT *** */
-// Note: This has different method names than java.util.Queue!
+// Note: This is a subset of java.util.Queue; and it uses different method names.
 interface Queue<E> extends Collection<E> {
     void enqueue(E x);  // Enqueues x at the end of the queue.
     E dequeue();        // Dequeues the frontmost element.
@@ -78,7 +56,7 @@ interface PriorityQueue<E> extends Collection<E> {
 
 
 /* *** ODSATag: SetADT *** */
-// Note: This is a simplified version of java.util.Set
+// Note: This is a subset of java.util.Set
 interface Set<E> extends Collection<E> {
     void add(E x);          // Adds x to the set.
     void remove(E x);       // Removes x from the set, and returns it.
@@ -88,7 +66,7 @@ interface Set<E> extends Collection<E> {
 
 
 /* *** ODSATag: SortedSetADT *** */
-// Note: This is a simplified version of java.util.SortedSet, where
+// Note: This is a subset of java.util.SortedSet, where
 // `floor` and `ceiling` are borrowed from java.util.NavigableSet.
 interface SortedSet<E> extends Set<E> {
     E first();       // Returns the first (smallest) element.
@@ -101,8 +79,8 @@ interface SortedSet<E> extends Set<E> {
 
 
 /* *** ODSATag: MapADT *** */
-// Note: This is a simplified version of java.util.Map, where
-// the `keySet` method is replaced by the simpler `keyIterator`.
+// Note: This is a subset of java.util.Map, where
+// `keyIterator` replaces the more complicated `keySet`.
 interface Map<K, V> {
     void put(K key, V value);    // Sets the value of the given key."""                              
     V get(K key);                // Returns the value associated with the given key."""              
@@ -116,7 +94,7 @@ interface Map<K, V> {
 
 
 /* *** ODSATag: SortedMapADT *** */
-// Note: This is a simplified version of java.util.SortedMap, where
+// Note: This is a subset of java.util.SortedMap, where
 // `floorKey` and `ceilingKey` are borrowed from java.util.NavigableMap.
 interface SortedMap<K, V> extends Map<K, V> {
     K firstKey();          // Returns the first (smallest) key.
@@ -143,7 +121,13 @@ class Edge<V> {
     public final V start;        // The start vertex.
     public final V end;          // The end vertex.
     public final double weight;  // The weight.
-    Edge(V start, V end, double weight=1.0);  // The constructor; note that the weight is optional.
+
+    Edge(V start, V end) {
+        this(start, end, 1.0);
+    }
+    Edge(V start, V end, double weight) {
+        this.start = start; this.end = end; this.weight = weight;
+    }
 }
 /* *** ODSAendTag: GraphADT *** */
 
