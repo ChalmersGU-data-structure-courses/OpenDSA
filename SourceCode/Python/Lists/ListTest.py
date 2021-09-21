@@ -9,7 +9,7 @@ while not L.isAtEnd():
 
 
 #/* *** ODSATag: listiterNew1 *** */
-it = L.__iter__()
+it = L.iterator()
 while True:
     try:
         elem = it.__next__()
@@ -20,7 +20,7 @@ while True:
 
 
 #/* *** ODSATag: listiterNew2 *** */
-for elem in L:
+for elem in L.iterator():
     doSomething(elem)
 #/* *** ODSAendTag: listiterNew2 *** */
 
@@ -28,7 +28,7 @@ for elem in L:
 #/* *** ODSATag: listfind *** */
 # Return true if k is in list L, false otherwise
 def find(L, k):
-    for n in L:
+    for n in L.iterator():
         if k == n:
             return true  # Found k
     return false         # k not found
