@@ -127,8 +127,8 @@ will take place.
 An alternative design is to factor out position as a separate position
 object, sometimes referred to as an :term:`iterator`.
 
-.. codeinclude:: Design/API
-   :tag: CollectionADT, Emptyline, ListADT
+.. codeinclude:: ChalmersGU/API
+   :tag: ListADT
 
 |
 
