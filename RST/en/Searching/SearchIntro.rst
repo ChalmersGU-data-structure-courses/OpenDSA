@@ -12,7 +12,7 @@
 Chapter Introduction: Search
 ============================
 
-.. TODO:
+.. TODO::
    Generalise this introduction to also include arrays (since the chapter is called Arrays now)
 
 Organizing and retrieving information is at the heart of most computer
