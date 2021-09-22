@@ -14,11 +14,6 @@
       "ext": ["py"],
       "label": "Python",
       "lang": "python"
-    },
-    "Java": {
-      "ext": ["java"],
-      "label": "Java (obsolete)",
-      "lang": "java"
     }
   },
   "build_JSAV": false,
@@ -42,9 +37,10 @@
       "Background/IntroDSA": {
         "Some Software Engineering Topics": {"showsection": false}
       },
-      "Design/ADT": {}
+      "Design/ADT": {},
+      "Design/CourseAPI": {}
     },
-    "Searching, Dynamic arrays": {
+    "Arrays": {
       "Searching/SearchIntro": {},
       "Searching/BinarySearch": {},
       "Searching/DynamicArrays": {}

@@ -6,15 +6,15 @@ public class Sequential {
 static boolean SUCCESS = true;
 
 /* *** ODSATag: Sequential *** */
-// Return the position of an element in array A with value K.
-// If K is not in A, return A.length.
-static int sequential(int[] A, int K) {
-  for (int i=0; i<A.length; i++) { // For each element
-    if (A[i] == K) {               // if we found it
-      return i;                    // return this position
+// Return the position of the element `e` in array `elements`.
+// If `e` is not found, return -1.
+static E sequentialSearch(E[] elements, E e) {
+    for (int i = 0; i < elements.length; i++) { // For each element
+        if (elements[i].equals(e)) {            // if we found it
+            return i;                           // return this position
+        }
     }
-  }
-  return A.length;                 // Otherwise, return the array length
+    return -1;                                  // Otherwise, return -1
 }
 /* *** ODSAendTag: Sequential *** */
 

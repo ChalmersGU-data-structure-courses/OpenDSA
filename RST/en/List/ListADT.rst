@@ -12,8 +12,8 @@
 The List ADT
 ============
 
-The List ADT
-------------
+What is a List?
+---------------
 
 We all have an intuitive understanding of what we mean by a "list".
 We want to turn this intuitive understanding into a concrete data
@@ -40,7 +40,7 @@ In the simple list implementations discussed in this chapter, all
 elements of the list are usually assumed to have the same data type,
 although there is no conceptual objection to lists whose elements have
 differing data types if the application requires it.
-The operations defined as part of the list :term:`ADT` do not
+The operations defined as part of the list :term:`ADT` 
 depend on the elemental :term:`data type`.
 For example, the list ADT can be used for lists of integers, lists of
 characters, lists of payroll records, even lists of lists.
@@ -64,8 +64,30 @@ Using this notation, the empty list would appear as
 :math:`\langle\ \rangle`.
 
 
-Defining the ADT
-~~~~~~~~~~~~~~~~
+Collections
+------------------------
+
+There are some properties that lists share with many other data structures
+(some of them will be introduced later in this course).
+Then it's good habit to extract the most important common properties into
+a more general kind of ADT, which we will call collections.
+
+A collection contains a number of elements, and it supports only two things:
+we can inquire how many elements it contains, and
+we can iterate through all elements, one at the time (i.e., it is Iterable).
+
+.. codeinclude:: ChalmersGU/API
+   :tag: CollectionADT
+
+Note that this very interface will not be implemented as it is, but instead
+we will use this as a base interface that we extend in different ways,
+e.g., for lists or sets or priority queues.
+
+
+Defining the List ADT
+-----------------------
+
+Now, back to the lists that we started talking about. 
 
 What basic operations do we want our lists to support?
 Our common intuition about lists tells us that a list should be able
@@ -74,10 +96,8 @@ We should be able to insert and remove elements from anywhere in
 the list.
 We should be able to gain access to any element's value,
 either to read it or to change it.
-We must be able to create and clear (or reinitialize)
-lists.
-It is also convenient to access the next or previous
-element from the "current" one.
+Finally, we should be able to know the size of the list, and
+to iterate through the elements in the list – i.e., the list should be a Collection.
 
 Now we can define the ADT for a list object in terms of a set
 of operations on that object.
@@ -88,43 +108,34 @@ parameters and return types.
 
 True to the notion of an ADT, an interface
 does not specify how operations are implemented.
-Two complete implementations are presented later in later modules,
+Two complete implementations are presented later
+(array-based lists and linked lists),
 both of which use the same list ADT to define their operations.
 But they are  considerably different in approaches and in their
 space/time tradeoffs.
 
 The code below presents our list ADT.
-Any implementation for a :term:`container class` such as a list should
-be able to support different data types for the elements.
-One way to do this in Java is to store data values of type
-``Object``.
-Languages that support generics (Java) or templates (C++) give more
-control over the element types.
-
 The comments given with each member function describe what it is
 intended to do.
 However, an explanation of the basic design should help make this
 clearer.
-Given that we wish to support the concept of a sequence, with access
-to any position in the list, the need for many of the member
-functions such as ``insert`` and ``moveToPos`` is clear.
-The key design decision embodied in this ADT is support for the
-concept of a :term:`current position`.
-For example, member ``moveToStart`` sets
-the current position to be the first element on the list, while
-methods ``next`` and ``prev`` move the current position
-to the next and previous elements, respectively.
-The intention is that any implementation for this ADT support the
-concept of a current position.
-The current position is where any action such as insertion or deletion
-will take place.
-An alternative design is to factor out position as a separate position
-object, sometimes referred to as an :term:`iterator`.
+There are four main operations we want to support:
 
-.. codeinclude:: Lists/List
+- ``get(i)`` to read the value of an element at the given position ``i``
+- ``set(i,x)`` to set the value at position ``i`` to value ``x``
+- ``add(i,x)`` to add (insert) an element ``x``, at position ``i``, thus increasing the size of the list
+- ``remove(i)`` to remove the element at position ``i``, thus decreasing the size of the list
+
+Apart from these four, we also want to be able to loop through the list elements in order
+(i.e., an ``iterator`` over the elements).
+
+.. codeinclude:: ChalmersGU/API
    :tag: ListADT
 
 |
+
+.. TODO::
+   Update or remove the slideshow because the API has changed
 
 .. inlineav:: listADTposCON ss
    :long_name: List ADT Positions Slideshow
@@ -134,14 +145,17 @@ object, sometimes referred to as an :term:`iterator`.
 
 The ``List`` member functions allow you to build a list with elements
 in any desired order, and to access any desired position in the list.
-You might notice that the ``clear`` method is a "convenience" method,
-since it could be implemented by means of the other
-member functions in the same asymptotic time.
 
 A list can be iterated through as follows:
 
 .. codeinclude:: Lists/ListTest
-   :tag: listiter
+   :tag: listiterNew1
+
+But both Java and Python has syntactic sugar for iterators,
+so the same iteration can be written like this:
+
+.. codeinclude:: Lists/ListTest
+   :tag: listiterNew2
 
 In this example, each element of the list in turn is stored
 in ``it``, and passed to the ``doSomething`` function.
@@ -154,31 +168,13 @@ Our list interface provides most of the operations that one
 naturally expects to perform on lists and serves to illustrate the
 issues relevant to implementing the list data structure.
 As an example of using the list ADT, here is a function to
-return ``true`` if there is an occurrence of a given integer in the
+return ``true`` if there is an occurrence of a given element in the
 list, and ``false`` otherwise.
 The ``find`` method needs no knowledge about the specific list
 implementation, just the list ADT.
 
 .. codeinclude:: Lists/ListTest
    :tag: listfind
-
-In languages that support it, this implementation for ``find`` could
-be rewritten as a generic or template with respect to the element
-type.
-While making it more flexible, even generic types still
-are limited in their ability to handle different data types stored on
-the list.
-In particular, for the ``find`` function generic types would only work
-when the description for the object being searched for (``k`` in the
-function) is of the same type as the objects themselves.
-They also have to be comparable when using the ``==`` operator.
-A more realistic situation is that we are searching for a record that
-contains a :term:`key` field whose value matches ``k``.
-Similar functions to find and return a :term:`composite type` based
-on a key value can be created using the list implementation, but to do
-so requires some agreement between the list ADT and the ``find``
-function on the concept of a key, and on
-:ref:`how keys may be compared <comparable> <Comparison>`.
 
 There are two standard approaches to implementing lists, the
 :ref:`array-based list <ListArray>`, and the
@@ -187,6 +183,9 @@ There are two standard approaches to implementing lists, the
 
 List ADT Programming Exercise
 -----------------------------
+
+.. TODO::
+   Change or remove this exercise, because the API has changed.
 
 .. extrtoolembed:: 'List ADT Programming Exercise'
    :workout_id: 62

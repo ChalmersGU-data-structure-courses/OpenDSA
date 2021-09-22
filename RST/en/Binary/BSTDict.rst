@@ -48,4 +48,8 @@ as :math:`\Theta(n)`.
 Here is an implementation for the Dictionary interface, using a BST to
 store the records.
 
+.. TODO::
+   This code is seriously buggy! The BST stores (k,v) pairs,
+   but find and remove searches for keys only!
+
 .. codeinclude:: Binary/BSTDict

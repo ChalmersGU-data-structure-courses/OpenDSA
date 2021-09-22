@@ -18,7 +18,7 @@ Introduction
 
 We now tackle the problem of devising an implementation for general
 trees that allows efficient processing for all member functions of the
-ADTs of Module :numref:`<GenTreeIntro>`.
+ADTs of :ref:`the general tree introduction <GenTreeIntro>`.
 This section presents several approaches to implementing general
 trees.
 Each implementation yields  advantages and disadvantages in the amount
@@ -185,8 +185,8 @@ free store.
 As an alternative to relying on the system's garbage collector,
 a memory manager for variable size storage units can be implemented,
 as described in Chapter :chap:`Memory Management`.
-Another possibility is to use a collection of free lists, one for each
-array size, as described in Module :numref:`<Freelist>`.
+Another possibility is to use a collection of
+:ref:`free lists <freelist> <Freelist>`, one for each array size.
 Note in Figure :num:`Figure #GenLinkedFixed` that the current number
 of children for each node is stored explicitly in a ``size`` field.
 The child pointers are stored in an array with ``size`` elements.

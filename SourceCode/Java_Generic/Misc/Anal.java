@@ -86,13 +86,13 @@ for (k=1; k<=n; k*=2) {    // Do log n times
 /* *** ODSAendTag: c3p6 *** */
 
 /* *** ODSATag: c3p16 *** */
-  for (i=0; i<C; i++) {   // Initialize count
-     count[i] = 0;
-  }
-  for (i=0; i<P; i++) {   // Look at all of the pixels
-     count[value(i)]++; // Increment a pixel value count
-  }
-  sort(count);          // Sort pixel value counts
+for (i=0; i<C; i++) {   // Initialize count
+  count[i] = 0;
+}
+for (i=0; i<P; i++) {   // Look at all of the pixels
+  count[value(i)]++; // Increment a pixel value count
+}
+sort(count);          // Sort pixel value counts
 /* *** ODSAendTag: c3p16 *** */
 }
 
@@ -106,10 +106,9 @@ static void collatz(int n) {
 while (n > 1) {
   if (ODD(n)) {
     n = 3 * n + 1;
-  }
-   else{
+  } else {
      n = n / 2;
-   }
+  }
 }
 /* *** ODSAendTag: Collatz *** */
 }
