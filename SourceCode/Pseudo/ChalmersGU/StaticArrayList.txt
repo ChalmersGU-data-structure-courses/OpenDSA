@@ -1,0 +1,48 @@
+
+/* *** ODSATag: StaticArrayList *** */
+/* *** ODSATag: StaticArrayListInit *** */
+class StaticArrayList(E) extends List(E)
+    private internalArray :: E[]
+    private arraySize     :: int
+
+    DynamicArray(capacity::int)
+        internalArray = new array of size capacity
+        arraySize = 0
+/* *** ODSAendTag: StaticArrayListInit *** */
+
+    get(i::int) :: E
+        return internalArray[i]
+
+    set(i::int, x::E) :: E
+        E old = internalArray[i]
+        internalArray[i] = x
+        return old
+
+/* *** ODSATag: StaticArrayListAdd *** */
+    add(i::int, x::E) :: void
+        for k in arraySize...i+1 (downwards)
+            internalArray[k] = internalArray[k-1]
+        internalArray[i] = x
+        arraySize += 1
+/* *** ODSAendTag: StaticArrayListAdd *** */
+
+/* *** ODSATag: StaticArrayListRemove *** */
+    remove(i::int) :: E
+        E removed = internalArray[i]
+        arraySize -= 1
+        for k in i...arraySize-1
+            internalArray[k] = internalArray[k+1]
+        // This is to be able to garbage collect the last element
+        internalArray[arraySize] = null
+        return removed
+/* *** ODSAendTag: StaticArrayListRemove *** */
+
+    isEmpty() :: boolean
+        return arraySize == 0
+
+    size() :: int
+        return arraySize
+
+    iterator() :: Iterator(E)
+        return an iterator over the elements in internalArray
+/* *** ODSAendTag: StaticArrayList *** */

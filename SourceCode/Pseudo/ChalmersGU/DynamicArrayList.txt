@@ -1,0 +1,62 @@
+
+/* *** ODSATag: DynamicArrayList *** */
+/* *** ODSATag: DynamicArrayListInit *** */
+class DynamicArrayList(E) extends List(E)
+    private internalArray :: E[]
+    private arraySize     :: int
+
+    DynamicArray()
+        internalArray = new array of size 1
+        arraySize = 0
+/* *** ODSAendTag: DynamicArrayListInit *** */
+
+    get(i::int) :: E
+        return internalArray[i]
+
+    set(i::int, x::E) :: E
+        E old = internalArray[i]
+        internalArray[i] = x
+        return old
+
+/* *** ODSATag: DynamicArrayListAdd *** */
+    add(i::int, x::E) :: void
+        if arraySize >= size of internalArray
+            resizeArray(2 * size of internalArray)
+        for k in arraySize...i+1 (downwards)
+            internalArray[k] = internalArray[k-1]
+        internalArray[i] = x
+        arraySize += 1
+/* *** ODSAendTag: DynamicArrayListAdd *** */
+
+/* *** ODSATag: DynamicArrayListRemove *** */
+    remove(i::int) :: E
+        E removed = internalArray[i]
+        arraySize -= 1
+        for k in i...arraySize-1
+            internalArray[k] = internalArray[k+1]
+        // This is to be able to garbage collect the last element
+        internalArray[arraySize] = null
+        if arraySize < size of internalArray / 3
+            resizeArray(size of internalArray / 2)
+        return removed
+/* *** ODSAendTag: DynamicArrayListRemove *** */
+
+/* *** ODSATag: DynamicArrayResize *** */
+    private resizeArray(newCapacity::int) :: void
+        E[] newArray = new array of size newCapacity
+        for i in 0...arraySize-1
+            newArray[i] = internalArray[i]
+        internalArray = newArray
+/* *** ODSAendTag: DynamicArrayResize *** */
+
+    isEmpty() :: boolean
+        return arraySize == 0
+
+    size() :: int
+        return arraySize
+
+/* *** ODSATag: DynamicArrayListIterator *** */
+    iterator() :: Iterator(E)
+        return an iterator over the elements in internalArray
+/* *** ODSAendTag: DynamicArrayListIterator *** */
+/* *** ODSAendTag: DynamicArrayList *** */

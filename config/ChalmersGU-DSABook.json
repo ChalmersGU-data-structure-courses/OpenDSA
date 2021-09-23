@@ -5,6 +5,11 @@
   "code_dir": "SourceCode/",
   "lang": "en",
   "code_lang": {
+    "Pseudo": {
+      "ext": ["txt"],
+      "label": "Pseudo-code",
+      "lang": "java"
+    },
     "Java_Generic": {
       "ext": ["java"],
       "label": "Java",
