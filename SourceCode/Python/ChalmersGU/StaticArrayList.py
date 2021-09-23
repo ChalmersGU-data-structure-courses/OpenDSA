@@ -37,6 +37,8 @@ class StaticArrayList(List):
     def remove(self, i):
         if self._arraySize == 0:
             raise IndexError("remove from empty array")
+        if not (0 <= i < self._arraySize):
+            raise IndexError("array index out of range")
         removed = self._internalArray[i]
         self._arraySize -= 1
         for k in range(i, self._arraySize):

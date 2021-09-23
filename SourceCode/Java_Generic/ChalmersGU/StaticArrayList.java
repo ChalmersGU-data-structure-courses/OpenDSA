@@ -50,6 +50,9 @@ class StaticArrayList<E> implements List<E> {
         if (arraySize == 0) {
             throw new IndexOutOfBoundsException("remove from empty array");
         }
+        if (i < 0 || i >= arraySize) {
+            throw new IndexOutOfBoundsException("array index out of range");
+        }
         E removed = internalArray[i];
         arraySize--;
         for (int k = i; k < arraySize; k++) {
