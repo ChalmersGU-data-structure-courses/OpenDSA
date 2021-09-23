@@ -17,7 +17,7 @@ class StaticArrayList(E) implements List(E)
 
     set(i::int, x::E) :: E
         assert 0 <= i < size of internalArray
-        E old = internalArray[i]
+        old :: E = internalArray[i]
         internalArray[i] = x
         return old
 /* *** ODSAendTag: StaticArrayListGetSet *** */
@@ -36,7 +36,7 @@ class StaticArrayList(E) implements List(E)
     remove(i::int) :: E
         assert size of internalArray > 0
         assert 0 <= i < size of internalArray
-        E removed = internalArray[i]
+        removed :: E = internalArray[i]
         arraySize -= 1
         for k in i...arraySize-1
             internalArray[k] = internalArray[k+1]
