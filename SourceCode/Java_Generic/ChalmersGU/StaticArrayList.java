@@ -38,8 +38,8 @@ class StaticArrayList<E> implements List<E> {
         for (int k = arraySize; k > i; k--) {
             internalArray[k] = internalArray[k-1];
         }
-        arraySize++;
         internalArray[i] = x;
+        arraySize++;
     }
 /* *** ODSAendTag: StaticArrayListAdd *** */
 

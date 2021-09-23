@@ -29,8 +29,8 @@ class DynamicArrayList(List):
             self._resizeArray(2 * len(self._internalArray))
         for k in range(self._arraySize, i, -1):
             self._internalArray[k] = self._internalArray[k-1]
-        self._arraySize += 1
         self._internalArray[i] = x
+        self._arraySize += 1
 #/* *** ODSAendTag: DynamicArrayListAdd *** */
 
 #/* *** ODSATag: DynamicArrayListRemove *** */

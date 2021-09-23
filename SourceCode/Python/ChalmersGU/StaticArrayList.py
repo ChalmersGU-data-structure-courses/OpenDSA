@@ -2,10 +2,12 @@
 from API import List
 
 #/* *** ODSATag: StaticArrayList *** */
+#/* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList(List):
     def __init__(self, capacity):
         self._internalArray = [None] * capacity
         self._arraySize = 0
+#/* *** ODSAendTag: StaticArrayListInit *** */
 
     def get(self, i):
         if not (0 <= i < self._arraySize):
@@ -25,8 +27,8 @@ class StaticArrayList(List):
             raise IndexError("array index out of range")
         for k in range(self._arraySize, i, -1):
             self._internalArray[k] = self._internalArray[k-1]
-        self._arraySize += 1
         self._internalArray[i] = x
+        self._arraySize += 1
 #/* *** ODSAendTag: StaticArrayListAdd *** */
 
 #/* *** ODSATag: StaticArrayListRemove *** */
