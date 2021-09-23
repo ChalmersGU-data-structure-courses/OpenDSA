@@ -139,3 +139,13 @@ Static Array-based List Practice Questions
 
 .. avembed:: Exercises/List/ALSumm.html ka
    :long_name: Array-based List Summary
+
+
+Static Array-based List: Full code
+------------------------------------------------
+
+Finally, here is the full source code for the class ``StaticArrayList``.
+
+.. codeinclude:: ChalmersGU/StaticArrayList
+   :tag: StaticArrayList
+
