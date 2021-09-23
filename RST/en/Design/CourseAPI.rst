@@ -34,10 +34,10 @@ So, we will define classes which act as interfaces, and call them abstract class
 Basic Abstract Data Types
 -------------------------
 
-These include comparators and comparables.
+These include comparables.
 
 .. codeinclude:: ChalmersGU/BaseAPI
-   :tag: ComparatorADT
+   :tag: ComparableADT
 
 And iterators and iterables:
 

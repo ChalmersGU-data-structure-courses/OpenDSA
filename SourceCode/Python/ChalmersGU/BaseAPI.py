@@ -1,5 +1,5 @@
 
-#/* *** ODSATag: ComparatorADT *** */
+#/* *** ODSATag: ComparableADT *** */
 # Note: by implementing these methods,
 # one can use the standard Python comparison operators (==, !=, <, <=, >, >=).
 class Comparable:
@@ -9,7 +9,7 @@ class Comparable:
     def __le__(self, other): """Test if self <= other."""
     def __gt__(self, other): """Test if self > other."""
     def __ge__(self, other): """Test if self >= other."""
-#/* *** ODSAendTag: ComparatorADT *** */
+#/* *** ODSAendTag: ComparableADT *** */
 
 
 #/* *** ODSATag: IteratorADT *** */

@@ -2,17 +2,20 @@
 // The following interfaces are not used in the implementations.
 // Instead we use the corresponding standard Java API interfaces.
 
-/* *** ODSATag: ComparatorADT *** */
+
+// Probably we won't use this in the course, so let's keep it outside of the API.
 // Note: This is a subset of the java.util.Comparator interface
 interface Comparator<E> {
-    int compare(E one, E other);  // Returns <0 if one<other, 0 if one==other, >0 if one>other
+    int compare(E one, E other);  // Returns <0 if one<other, 0 if one==other, >0 if one>other.
 }
 
+
+/* *** ODSATag: ComparableADT *** */
 // Note: This is the same as the java.lang.Comparable interface
 interface Comparable<E> {
-    int compareTo(E other);  // Returns <0 if this<other, 0 if this==other, >0 if this>other
+    int compareTo(E other);  // Returns <0 if this<other, 0 if this==other, >0 if this>other.
 }
-/* *** ODSAendTag: ComparatorADT *** */
+/* *** ODSAendTag: ComparableADT *** */
 
 
 /* *** ODSATag: IteratorADT *** */
