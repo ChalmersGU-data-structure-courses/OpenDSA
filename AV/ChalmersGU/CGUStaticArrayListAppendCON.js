@@ -36,7 +36,7 @@ $(document).ready(function() {
   var labelListSize = av.label("arraySize", {before: arrLS, left: 60, top: 124});
   labelListSize.hide();
 
-  pseudo.addClass([3,4], "greyedout");
+  pseudo.addClass([4,5], "greyedout");
 
   // Slide 1
   av.umsg("Adding elements to the tail of an array-based list is easy.");
@@ -60,7 +60,7 @@ We will append the value ${addValue} to the end of the list.
   // Slide 3
   av.umsg("We simply add the value into the empty position after the current last element.");
   pseudo.unhighlight(1);
-  pseudo.highlight(5);
+  pseudo.highlight(6);
   arrMS.unhighlight(0);
   arr.value(arraySize, addValue);
   arr.highlight(arraySize);
@@ -68,8 +68,8 @@ We will append the value ${addValue} to the end of the list.
 
   // Slide 4
   av.umsg("We increase <code>arraySize</code> by 1.");
-  pseudo.unhighlight(5);
-  pseudo.highlight(6);
+  pseudo.unhighlight(6);
+  pseudo.highlight(7);
   arr.unhighlight(arraySize);
   arr.removeClass(arraySize, "unused");
   arrLS.value(0, 6);
@@ -78,7 +78,7 @@ We will append the value ${addValue} to the end of the list.
   // Slide 5
   av.umsg("Appending to the end of the list therefore requires constant time.");
   arrLS.unhighlight(0);
-  pseudo.unhighlight(6);
+  pseudo.unhighlight(7);
   av.recorded();
 });
 

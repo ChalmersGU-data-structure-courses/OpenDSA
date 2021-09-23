@@ -34,6 +34,9 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListAdd *** */
     public void add(int i, E x) {
+        if (arraySize >= internalArray.length) {
+            throw new IndexOutOfBoundsException("array capacity exceeded");
+        }
         if (i < 0 || i > arraySize) {
             throw new IndexOutOfBoundsException("array index out of range");
         }

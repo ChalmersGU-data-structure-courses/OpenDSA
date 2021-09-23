@@ -24,6 +24,7 @@ class StaticArrayList(E) extends List(E)
 
 /* *** ODSATag: StaticArrayListAdd *** */
     add(i::int, x::E) :: void
+        assert arraySize < size of internalArray
         assert 0 <= i <= size of internalArray
         for k in arraySize...i+1 (downwards)
             internalArray[k] = internalArray[k-1]

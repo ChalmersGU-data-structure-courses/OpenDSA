@@ -25,6 +25,8 @@ class StaticArrayList(List):
 
 #/* *** ODSATag: StaticArrayListAdd *** */
     def add(self, i, x):
+        if self._arraySize >= len(self._internalArray):
+            raise IndexError("array capacity exceeded");
         if not (0 <= i <= self._arraySize):
             raise IndexError("array index out of range")
         for k in range(self._arraySize, i, -1):
