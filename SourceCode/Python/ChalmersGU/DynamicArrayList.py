@@ -4,9 +4,9 @@ from API import List, Iterator
 #/* *** ODSATag: DynamicArrayList *** */
 #/* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList(List):
-    def __init__(self, size=0):
-        self._internalArray = [None] * (size + 1)
-        self._arraySize = size
+    def __init__(self):
+        self._internalArray = [None]
+        self._arraySize = 0
 #/* *** ODSAendTag: DynamicArrayListInit *** */
 
     def get(self, i):

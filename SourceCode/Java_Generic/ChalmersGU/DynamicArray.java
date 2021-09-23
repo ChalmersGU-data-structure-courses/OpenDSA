@@ -7,13 +7,10 @@ class DynamicArray<E> implements Collection<E> {
     private E[] internalArray;
     private int arraySize;
 
-    public DynamicArray() {
-        this(0);
-    }
     @SuppressWarnings("unchecked")
-    public DynamicArray(int size) {
-        internalArray = (E[]) new Object[size + 1];
-        arraySize = size;
+    public DynamicArray() {
+        internalArray = (E[]) new Object[1];
+        arraySize = 0;
     }
 /* *** ODSAendTag: DynamicArrayInit *** */
 

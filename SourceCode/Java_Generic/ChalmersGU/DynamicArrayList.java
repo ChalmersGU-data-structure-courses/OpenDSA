@@ -7,13 +7,10 @@ class DynamicArrayList<E> implements List<E> {
     private E[] internalArray;
     private int arraySize;
 
-    public DynamicArrayList() {
-        this(0);
-    }
     @SuppressWarnings("unchecked")
-    public DynamicArrayList(int size) {
-        internalArray = (E[]) new Object[size + 1];
-        arraySize = size;
+    public DynamicArrayList() {
+        internalArray = (E[]) new Object[1];
+        arraySize = 0;
     }
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
