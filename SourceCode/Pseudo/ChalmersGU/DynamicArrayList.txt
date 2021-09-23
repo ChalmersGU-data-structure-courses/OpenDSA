@@ -1,7 +1,7 @@
 
 /* *** ODSATag: DynamicArrayList *** */
 /* *** ODSATag: DynamicArrayListInit *** */
-class DynamicArrayList(E) extends List(E)
+class DynamicArrayList(E) implements List(E)
     private internalArray :: E[]
     private arraySize     :: int
 

@@ -1,7 +1,7 @@
 
 /* *** ODSATag: StaticArrayList *** */
 /* *** ODSATag: StaticArrayListInit *** */
-class StaticArrayList(E) extends List(E)
+class StaticArrayList(E) implements List(E)
     private internalArray :: E[]
     private arraySize     :: int
 
