@@ -10,6 +10,7 @@ class StaticArrayList(E) extends List(E)
         arraySize = 0
 /* *** ODSAendTag: StaticArrayListInit *** */
 
+/* *** ODSATag: StaticArrayListGetSet *** */
     get(i::int) :: E
         return internalArray[i]
 
@@ -17,6 +18,7 @@ class StaticArrayList(E) extends List(E)
         E old = internalArray[i]
         internalArray[i] = x
         return old
+/* *** ODSAendTag: StaticArrayListGetSet *** */
 
 /* *** ODSATag: StaticArrayListAdd *** */
     add(i::int, x::E) :: void

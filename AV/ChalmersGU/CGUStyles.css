@@ -1,0 +1,63 @@
+
+.greyedout {
+    color: #AAA;
+}
+
+#CGUStaticArrayListVarsCON {
+  height: 280px;
+}
+
+#CGUStaticArrayListVarsCON .jsavoutput.jsavline {
+  height: 50px;
+}
+
+#CGUStaticArrayListIntroCON {
+  height: 190px;
+}
+
+#CGUStaticArrayListIntroCON .jsavoutput.jsavline {
+  height: 40px;
+}
+
+#CGUStaticArrayListAddCON {
+  height: 310px;
+}
+
+#CGUStaticArrayListAddCON .jsavcode {
+  margin-left: 300px;
+  width: 460px;
+}
+
+#CGUStaticArrayListAddCON .jsavlabel {
+  margin-bottom: 0;
+}
+
+#CGUStaticArrayListAddCON .jsavoutput.jsavline {
+  height: 30px;
+}
+
+#CGUStaticArrayListAppendCON {
+  height: 270px;
+}
+
+#CGUStaticArrayListAppendCON .jsavcode {
+  margin-left: 300px;
+  width: 460px;
+}
+
+#CGUStaticArrayListAppendCON .jsavoutput.jsavline {
+  height: 20px;
+}
+
+#CGUStaticArrayListRemoveCON {
+  height: 310px;
+}
+
+#CGUStaticArrayListRemoveCON .jsavcode {
+  margin-left: 280px;
+  width: 560px;
+}
+
+#CGUStaticArrayListRemoveCON .jsavoutput.jsavline {
+  height: 30px;
+}

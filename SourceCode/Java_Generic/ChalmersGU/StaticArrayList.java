@@ -14,6 +14,7 @@ class StaticArrayList<E> implements List<E> {
     }
 /* *** ODSAendTag: StaticArrayListInit *** */
 
+/* *** ODSATag: StaticArrayListGetSet *** */
     public E get(int i) {
         if (i < 0 || i >= arraySize) {
             throw new IndexOutOfBoundsException("array index out of range");
@@ -29,6 +30,7 @@ class StaticArrayList<E> implements List<E> {
         internalArray[i] = x;
         return old;
     }
+/* *** ODSAendTag: StaticArrayListGetSet *** */
 
 /* *** ODSATag: StaticArrayListAdd *** */
     public void add(int i, E x) {

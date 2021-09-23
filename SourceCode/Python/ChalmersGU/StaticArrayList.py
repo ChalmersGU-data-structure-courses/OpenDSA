@@ -9,6 +9,7 @@ class StaticArrayList(List):
         self._arraySize = 0
 #/* *** ODSAendTag: StaticArrayListInit *** */
 
+#/* *** ODSATag: StaticArrayListGetSet *** */
     def get(self, i):
         if not (0 <= i < self._arraySize):
             raise IndexError("array index out of range")
@@ -20,6 +21,7 @@ class StaticArrayList(List):
         old = self._internalArray[i]
         self._internalArray[i] = x
         return old
+#/* *** ODSAendTag: StaticArrayListGetSet *** */
 
 #/* *** ODSATag: StaticArrayListAdd *** */
     def add(self, i, x):

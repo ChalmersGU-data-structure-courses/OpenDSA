@@ -4,102 +4,138 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: list ADT
    :satisfies: array-based list
    :topic: Lists
 
-Array-Based List Implementation
+Static Array-Based Lists
 ===============================
 
-Array-Based List Implementation
--------------------------------
-
-Here is an implementation for the array-based list, named ``AList``.
-``AList`` inherits from the :ref:`List ADT <ListADT>`,
+First we give a static implementation for array-based lists,
+named ``StaticArrayList``.
+This inherits from the :ref:`List ADT <CourseAPI>`,
 and so must implement all of the member functions of ``List``.
 
-.. codeinclude:: Lists/AList
-   :tag: AList
+Unlike normal arrays, lists can change size: we can add elements to and remove from them.
+How can this be implemented?
+Well, what we *don't* want to do is to create a completely new array every time elements
+are added or removed. So instead we will use an underlying array which is larger than we need.
+
+Internal variables
+--------------------
+
+Therefore we will need two internal variables:
+the underlying array, and a counter telling how much of the array that is actually used.
+When we create a new array-list we have to tell what the largest possible capacity is.
+Then the underlying array is initialised, and the counter is set to 0 because there are
+no elements yet.
+
+.. inlineav:: CGUStaticArrayListVarsCON ss
+   :long_name: Static Array-based List Variables Slideshow
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUStaticArrayListVarsCON.js
+   :output: show
 
 |
 
-.. inlineav:: alistVarsCON ss
-   :long_name: Array-based List Variables Slideshow
-   :links: AV/List/alistCON.css
-   :scripts: AV/List/alistVarsCON.js
+.. codeinclude:: ChalmersGU/StaticArrayList
+   :tag: StaticArrayListInit
+
+
+Getting and setting values
+-----------------------------
+
+Random access to any element in the list is quick and easy.
+
+.. inlineav:: CGUStaticArrayListIntroCON ss
+   :long_name: Static Array-based List Intro Slideshow
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUStaticArrayListIntroCON.js
    :output: show
 
-.. inlineav:: alistIntroCON ss
-   :long_name: Array-based List Intro Slideshow
-   :links: AV/List/alistCON.css
-   :scripts: AV/List/alistIntroCON.js
-   :output: show
+As you can see below, there are no loops in the methods
+``get`` and ``set``, which means that both 
+require :math:`\Theta(1)` time.
+
+.. codeinclude:: ChalmersGU/StaticArrayList
+   :tag: StaticArrayListGetSet
 
 
-Insert
-~~~~~~
+Adding elements
+-------------------
 
 Because the array-based list implementation is defined to store list
-elements in contiguous cells of the array, the ``insert``, ``append``,
+elements in contiguous cells of the array, the ``add``
 and ``remove`` methods must maintain this property.
 
-.. inlineav:: alistInsertCON ss
-   :long_name: Array-based List Insertion Slideshow
-   :links: AV/List/alistCON.css
-   :scripts: AV/List/alistInsertCON.js
+Appending elements at the tail of an array-based list is super-fast.
+
+.. inlineav:: CGUStaticArrayListAppendCON ss
+   :long_name: Static Array-based List Append Slideshow
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUStaticArrayListAppendCON.js
    :output: show
 
 
-Insert Practice Exericse
+However, adding an element at the head of the list requires shifting
+all existing elements in the array by one position toward the tail.
+
+.. inlineav:: CGUStaticArrayListAddCON ss
+   :long_name: Static Array-based List Insertion Slideshow
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUStaticArrayListAddCON.js
+   :output: show
+
+Therefore, if we want to add an element at position :math:`i`, then
+:math:`n - i - 1` elements must shift toward the tail to leave room for the new element.
+In the worst case, adding elements requres moving all :math:`n` elements,
+which is :math:`\Theta(n)`.
+
+.. codeinclude:: ChalmersGU/StaticArrayList
+   :tag: StaticArrayListAdd
+
+
+Add Practice Exericse
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. avembed:: Exercises/List/AlistInsertPRO.html ka
-   :long_name: Array-based List Insert Exercise
+.. avembed:: Exercises/ChalmersGU/StaticArrayListAddPRO.html ka
+   :long_name: Array-based List Add Exercise
 
 
-Append and Remove
------------------
-
-.. inlineav:: alistAppendCON ss
-   :long_name: Array-based List Append Slideshow
-   :links: AV/List/alistCON.css
-   :scripts: AV/List/alistAppendCON.js
-   :output: show
+Removing elements
+----------------------------
 
 Removing an element from the head of the list is
-similar to insert in that all remaining elements  must shift toward
-the head by one position to fill in the gap.
+similar to adding in that all remaining elements must shift.
+But now we have to shift toward the head to fill in the gap,
+instead of toward the tail.
 If we want to remove the element at position :math:`i`, then
 :math:`n - i - 1` elements must shift toward the head, as shown in the
 following slideshow. 
 
-.. inlineav:: alistRemoveCON ss
-   :long_name: Array-based List Remove
-   :links: AV/List/alistCON.css
-   :scripts: AV/List/alistRemoveCON.js
+.. inlineav:: CGUStaticArrayListRemoveCON ss
+   :long_name: Static Array-based List Remove
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUStaticArrayListRemoveCON.js
    :output: show
 
 In the average case, insertion or removal each requires moving half
 of the elements, which is :math:`\Theta(n)`.
 
+.. codeinclude:: ChalmersGU/StaticArrayList
+   :tag: StaticArrayListRemove
+
 
 Remove Practice Exericise
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. avembed:: Exercises/List/AlistRemovePRO.html ka
+.. avembed:: Exercises/ChalmersGU/StaticArrayListRemovePRO.html ka
    :long_name: Array-based List Remove Exercise
 
-Aside from ``insert`` and ``remove``, the only other operations that
-might require more than constant time are the constructor and
-``clear``.
-The other methods for Class ``AList`` simply
-access the current list element or move the current position.
-They all require :math:`\Theta(1)` time.
 
-
-Array-based List Practice Questions
------------------------------------
+Static Array-based List Practice Questions
+------------------------------------------------
 
 .. avembed:: Exercises/List/ALSumm.html ka
    :long_name: Array-based List Summary
