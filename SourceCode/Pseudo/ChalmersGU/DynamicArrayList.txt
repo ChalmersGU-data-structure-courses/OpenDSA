@@ -11,15 +11,18 @@ class DynamicArrayList(E) extends List(E)
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
     get(i::int) :: E
+        assert 0 <= i < size of internalArray
         return internalArray[i]
 
     set(i::int, x::E) :: E
+        assert 0 <= i < size of internalArray
         E old = internalArray[i]
         internalArray[i] = x
         return old
 
 /* *** ODSATag: DynamicArrayListAdd *** */
     add(i::int, x::E) :: void
+        assert 0 <= i <= size of internalArray
         if arraySize >= size of internalArray
             resizeArray(2 * size of internalArray)
         for k in arraySize...i+1 (downwards)
@@ -30,6 +33,8 @@ class DynamicArrayList(E) extends List(E)
 
 /* *** ODSATag: DynamicArrayListRemove *** */
     remove(i::int) :: E
+        assert size of internalArray > 0
+        assert 0 <= i < size of internalArray
         E removed = internalArray[i]
         arraySize -= 1
         for k in i...arraySize-1

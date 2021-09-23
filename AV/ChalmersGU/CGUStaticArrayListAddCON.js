@@ -76,7 +76,7 @@ Shift the later elements elements one position to the right to make room.
   // shift all existing elements one position to the right
   arrow2.show();
   pseudo.unhighlight(1);
-  pseudo.highlight([2,3]);
+  pseudo.highlight([3,4]);
   av.step();
 
   for (let i = arraySize; i > addIndex; i--) {
@@ -91,16 +91,16 @@ Insert ${addValue} into array position ${addIndex}.
   arr.value(addIndex, addValue);
   arr.highlight([addIndex]);
   arrow2.hide();
-  pseudo.unhighlight([2,3]);
-  pseudo.highlight(4);
+  pseudo.unhighlight([3,4]);
+  pseudo.highlight(5);
   av.step();
 
   // Slide 5
   av.umsg(`
 Increase the list size by 1.
 `);
-  pseudo.unhighlight(4);
-  pseudo.highlight(5);
+  pseudo.unhighlight(5);
+  pseudo.highlight(6);
   arr.removeClass([arraySize], "unused");
   arr.unhighlight([addIndex]);
   arrLS.highlight(0);
@@ -112,6 +112,6 @@ Increase the list size by 1.
 Thus, the cost to insert into an array-based list in the worst case is $\\Theta(n)$ when there are $n$ items in the list.
 `);
   arrLS.unhighlight(0);
-  pseudo.unhighlight(5);
+  pseudo.unhighlight(6);
   av.recorded();
 });
