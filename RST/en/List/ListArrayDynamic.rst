@@ -28,7 +28,7 @@ and copy over all elements to the new one.
 
 So, how large should the new internal array be?
 As discussed in the module about
-ref:`string building <StringReading>`,
+:ref:`string building <StringReading>`,
 it's not a good idea to increase the size by a constant.
 Instead we should **grow the array by a factor**, i.e. multiply not add!
 For simplicity, let's double the size of the internal array when we need to resize,
@@ -93,6 +93,8 @@ Dynamic Array-based List: Full code
 ------------------------------------------------
 
 Finally, here is the full source code for the class ``DynamicArrayList``.
+Note that now the constructor doesn't take any capacity argument,
+since the internal array will automatically grow when needed.
 
 .. codeinclude:: ChalmersGU/DynamicArrayList
    :tag: DynamicArrayList
