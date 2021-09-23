@@ -73,7 +73,7 @@ interface SortedSet<E> extends Set<E> {
     E last();        // Returns the last (largest) element.
     E floor(E x);    // Returns the closest element <= x.
     E ceiling(E x);  // Returns the closest element >= x.
-    // Note: iterator() should return the elements in order
+    // Note: iterator() should return the elements in order.
 }
 /* *** ODSAendTag: SortedSetADT *** */
 
@@ -82,11 +82,11 @@ interface SortedSet<E> extends Set<E> {
 // Note: This is a subset of java.util.Map, where
 // `keyIterator` replaces the more complicated `keySet`.
 interface Map<K, V> {
-    void put(K key, V value);    // Sets the value of the given key."""                              
-    V get(K key);                // Returns the value associated with the given key."""              
-    V remove(K key);             // Removes and returns the value associated with the given key."""              
-    boolean containsKey(K key);  // Checks if the key has an associated value."""                    
-    Iterator<K> keyIterator();   // Returns an iterator over the keys."""                            
+    void put(K key, V value);    // Sets the value of the given key.
+    V get(K key);                // Returns the value associated with the given key.
+    V remove(K key);             // Removes and returns the value associated with the given key.
+    boolean containsKey(K key);  // Checks if the key has an associated value.
+    Iterator<K> keyIterator();   // Returns an iterator over the keys.
     boolean isEmpty();           // Returns true if there are no keys.
     int size();                  // Returns the number of keys (i.e., the number of key/value pairs).
 }
@@ -101,7 +101,7 @@ interface SortedMap<K, V> extends Map<K, V> {
     K lastKey();           // Returns the last (largest) key.
     K floorKey(K key);     // Returns the closest key <= k.
     K ceilingKey(K key);   // Returns the closest key >= k.
-    // Note: keyIterator() should return the keys in order
+    // Note: keyIterator() should return the keys in order.
 }
 /* *** ODSAendTag: SortedMapADT *** */
 
