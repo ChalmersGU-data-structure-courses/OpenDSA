@@ -71,7 +71,7 @@ class DynamicArrayList<E> implements List<E> {
     }
 /* *** ODSAendTag: DynamicArrayListRemove *** */
 
-/* *** ODSATag: DynamicArrayResize *** */
+/* *** ODSATag: DynamicArrayListResize *** */
     private void resizeArray(int newCapacity) {
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[newCapacity];
@@ -80,7 +80,7 @@ class DynamicArrayList<E> implements List<E> {
         }
         internalArray = newArray;
     }
-/* *** ODSAendTag: DynamicArrayResize *** */
+/* *** ODSAendTag: DynamicArrayListResize *** */
 
     public boolean isEmpty() {
         return arraySize == 0;

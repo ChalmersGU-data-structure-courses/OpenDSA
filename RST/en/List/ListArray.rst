@@ -6,7 +6,7 @@
 .. avmetadata::
    :author: Cliff Shaffer, Peter Ljunglöf
    :requires: list ADT
-   :satisfies: array-based list
+   :satisfies: static array-based list
    :topic: Lists
 
 Static Array-Based Lists

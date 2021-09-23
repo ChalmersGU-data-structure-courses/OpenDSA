@@ -50,13 +50,13 @@ class DynamicArrayList(List):
         return removed
 #/* *** ODSAendTag: DynamicArrayListRemove *** */
 
-#/* *** ODSATag: DynamicArrayResize *** */
+#/* *** ODSATag: DynamicArrayListResize *** */
     def _resizeArray(self, newCapacity):
         newArray = [None] * newCapacity
         for i in range(self._arraySize):
             newArray[i] = self._internalArray[i]
         self._internalArray = newArray
-#/* *** ODSAendTag: DynamicArrayResize *** */
+#/* *** ODSAendTag: DynamicArrayListResize *** */
 
     def isEmpty(self):
         return self._arraySize == 0

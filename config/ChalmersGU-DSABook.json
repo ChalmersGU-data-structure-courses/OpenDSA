@@ -98,6 +98,7 @@
       "List/ListIntro": {},
       "List/ListADT": {},
       "List/ListArray": {},
+      "List/ListArrayDynamic": {},
       "List/ListLinked": {},
       "List/ListAnalysis": {},
       "List/ListDouble": {},
