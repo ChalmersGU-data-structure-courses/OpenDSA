@@ -5,7 +5,7 @@ class StaticArrayList(E) extends List(E)
     private internalArray :: E[]
     private arraySize     :: int
 
-    DynamicArray(capacity::int)
+    StaticArrayList(capacity::int)
         internalArray = new array of size capacity
         arraySize = 0
 /* *** ODSAendTag: StaticArrayListInit *** */

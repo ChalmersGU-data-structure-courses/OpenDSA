@@ -5,7 +5,7 @@ class DynamicArrayList(E) extends List(E)
     private internalArray :: E[]
     private arraySize     :: int
 
-    DynamicArray()
+    DynamicArrayList()
         internalArray = new array of size 1
         arraySize = 0
 /* *** ODSAendTag: DynamicArrayListInit *** */
