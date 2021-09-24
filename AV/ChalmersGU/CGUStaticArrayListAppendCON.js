@@ -17,26 +17,15 @@ $(document).ready(function() {
     "endBefore": "/* *** ODSAendTag: StaticArrayListAdd *** */"
   });
 
-  var arr = av.ds.array(arrValues, {indexed: true, top: 27, left: 10});
-  arr.hide();
+  var arr = av.ds.array(arrValues, {indexed: true, top: 27, left: 10}).hide();
 
-  var arrow1 = av.g.line(176, 18, 176, 43,
-                         {"arrow-end": "classic-wide-long",
-                          opacity: 100, "stroke-width": 2});
-  arrow1.hide();
   var label = av.label("add(5, 23)", {before: arr, left: 80, top: -10}).hide();
 
-  var arrMS = av.ds.array([8], {indexed: false, left: 150, top: 85});
-  arrMS.hide();
-  var labelMaxSize = av.label("size of internalArray", {before: arrMS, left: 10, top: 89});
-  labelMaxSize.hide();
+  var arrMS = av.ds.array([8], {indexed: false, left: 150, top: 85}).hide();
+  var labelMS = av.label("size of internalArray", {before: arrMS, left: 10, top: 89}).hide();
 
-  var arrLS = av.ds.array([5], {indexed: false, left: 150, top: 120});
-  arrLS.hide();
-  var labelListSize = av.label("arraySize", {before: arrLS, left: 60, top: 124});
-  labelListSize.hide();
-
-  pseudo.addClass([4,5], "greyedout");
+  var arrLS = av.ds.array([5], {indexed: false, left: 150, top: 120}).hide();
+  var labelLS = av.label("arraySize", {before: arrLS, left: 60, top: 124}).hide();
 
   // Slide 1
   av.umsg("Adding elements to the tail of an array-based list is easy.");
@@ -50,16 +39,22 @@ We will append the value ${addValue} to the end of the list.
 `);
   label.show();
   pseudo.highlight(1);
-  labelMaxSize.show();
+  labelMS.show();
   arr.show();
   arrMS.show();
   arrLS.show();
-  labelListSize.show();
+  labelLS.show();
+  av.step();
+
+  // Slide 3
+  av.umsg("We don't have to move any elements, since we're appending to the end of the list.");
+  pseudo.unhighlight(1);
+  pseudo.highlight(4);
   av.step();
 
   // Slide 3
   av.umsg("We simply add the value into the empty position after the current last element.");
-  pseudo.unhighlight(1);
+  pseudo.unhighlight(4);
   pseudo.highlight(6);
   arrMS.unhighlight(0);
   arr.value(arraySize, addValue);
@@ -73,6 +68,7 @@ We will append the value ${addValue} to the end of the list.
   arr.unhighlight(arraySize);
   arr.removeClass(arraySize, "unused");
   arrLS.value(0, 6);
+  arrLS.highlight(0);
   av.step();
 
   // Slide 5
