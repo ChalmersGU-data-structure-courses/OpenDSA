@@ -81,3 +81,29 @@
 #CGUStaticArrayListRemoveCON .jsavoutput.jsavline {
   height: 30px;
 }
+
+#CGUDynamicArrayListAppendCON {
+  height: 320px;
+}
+
+#CGUDynamicArrayListAppendCON .jsavcode {
+  margin-left: 300px;
+  width: 460px;
+}
+
+#CGUDynamicArrayListRemoveCON .jsavoutput.jsavline {
+  height: 30px;
+}
+
+#CGUDynamicArrayListRemoveCON {
+  height: 380px;
+}
+
+#CGUDynamicArrayListRemoveCON .jsavcode {
+  margin-left: 280px;
+  width: 560px;
+}
+
+#CGUDynamicArrayListRemoveCON .jsavoutput.jsavline {
+  height: 30px;
+}
