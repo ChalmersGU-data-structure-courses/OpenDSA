@@ -54,7 +54,7 @@ class StaticArrayList(List):
     def size(self):
         return self._arraySize
 
-    def iterator(self):
+    def __iter__(self):
         raise NotImplementedException("Left as an exercise.")
 #/* *** ODSAendTag: StaticArrayList *** */
 

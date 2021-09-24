@@ -20,6 +20,6 @@ class Iterator:
     def __next__(self): """Returns the next item. Raises StopIteration if there are no more elements."""
 
 class Iterable:
-    def iterator(self): """Returns a new iterator."""
+    def __iter__(self): """Returns a new iterator."""
 #/* *** ODSAendTag: IteratorADT *** */
 

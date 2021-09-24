@@ -55,7 +55,7 @@ class SortedSet(Set):
     def last(self):       """Returns the last (largest) element."""
     def floor(self, x):   """Returns the closest element <= x."""
     def ceiling(self, x): """Returns the closest element >= x."""
-    # Note: iterator() should yield the elements in order
+    # Note: __iter__() should yield the elements in order
 #/* *** ODSAendTag: SortedSetADT *** */
 
 

@@ -56,7 +56,7 @@ class DynamicArray(Collection):
         return self._arraySize
 
 #/* *** ODSATag: DynamicArrayIterator *** */
-    def iterator(self):
+    def __iter__(self):
         return DynamicArrayIterator(self._internalArray, self._arraySize)
 
 # Python does not have internal classes, so we have to make the iterator standalone.
@@ -81,9 +81,9 @@ class DynamicArrayIterator(Iterator):
 if __name__ == '__main__':
     a = DynamicArray()
     for i in range(25): a.append(chr(i+65))
-    print(" ".join(a.iterator()))
+    print(" ".join(a))
     for i in range(0, a.size(), 2): a.set(i, a.get(i) + a.get(i))
-    print(" ".join(a.iterator()))
+    print(" ".join(iter(a)))
     i = 0
     while i < a.size():
         a.removeLast()
