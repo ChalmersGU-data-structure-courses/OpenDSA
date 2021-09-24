@@ -134,13 +134,10 @@ Apart from these four, we also want to be able to loop through the list elements
 
 |
 
-.. TODO::
-   Update or remove the slideshow because the API has changed
-
-.. inlineav:: listADTposCON ss
+.. inlineav:: CGUListADTpositionsCON ss
    :long_name: List ADT Positions Slideshow
-   :links: AV/List/listADTCON.css
-   :scripts: AV/List/listADTposCON.js
+   :links: AV/ChalmersGU/CGUStyles.css
+   :scripts: AV/ChalmersGU/CGUListADTpositionsCON.js
    :output: show
 
 The ``List`` member functions allow you to build a list with elements
@@ -180,18 +177,3 @@ There are two standard approaches to implementing lists, the
 :ref:`array-based list <ListArray>`, and the
 :ref:`linked list <linked list> <ListLinked>`.
 
-
-List ADT Programming Exercise
------------------------------
-
-.. TODO::
-   Change or remove this exercise, because the API has changed.
-
-.. extrtoolembed:: 'List ADT Programming Exercise'
-   :workout_id: 62
-
-.. TODO::
-   :type: Exercise
-
-   This exercise ought to get expanded to a much richer set of
-   variations on the question.
