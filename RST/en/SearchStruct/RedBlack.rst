@@ -125,4 +125,3 @@ example black, partial nodes, etc
 
 We consider null to be black. XXX it correponds to a whole node in the
 2-3 tree
-    denom <- chooseInt (1, max 1 n)
