@@ -53,7 +53,7 @@ class DynamicArrayList<E> implements List<E> {
         if (arraySize < internalArray.length / 3) {
             resizeArray(internalArray.length / 2);
         }
-        return removed;
+        return x;
     }
 /* *** ODSAendTag: DynamicArrayListRemove *** */
 
