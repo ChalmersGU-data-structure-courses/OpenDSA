@@ -11,8 +11,8 @@ $(document).ready(function() {
 
   // Slide 1
   av.umsg(`
-Class <code>StaticArrayList</code> stores the list elements in the first <code>arraySize</code> contiguous array positions. 
-In this example, <code>arraySize</code> is 5.
+Class <code>StaticArrayList</code> stores the list elements in the first <code>listSize</code> contiguous array positions. 
+In this example, <code>listSize</code> is 5.
 `);
   arr.addClass([5, 6, 7], "unused");
   arr.highlight([0, 1, 2, 3, 4]);

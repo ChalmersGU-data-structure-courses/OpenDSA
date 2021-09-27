@@ -4,7 +4,7 @@ $(document).ready(function() {
   "use strict";
   var arrValues = [13, 12, 20, 8, "", "", "", ""];
   var maxSize = arrValues.length;
-  var arraySize = 4;
+  var listSize = 4;
 
   var av_name = "CGUDynamicArrayListRemoveCON";
   var av = new JSAV(av_name);
@@ -27,24 +27,24 @@ $(document).ready(function() {
   var arr2 = av.ds.array(arrValues2, {indexed: true, top: 70, left: 10});
   arr2.hide();
 
-  var label1 = av.label(`remove(${arraySize-1})`,
+  var label1 = av.label(`remove(${listSize-1})`,
                         {before: arr, left: 100, top: -10}).hide();
 
-  var label2 = av.label(`remove(${arraySize-2})`,
+  var label2 = av.label(`remove(${listSize-2})`,
                         {before: arr, left: 60, top: -10}).hide();
 
   var arrMS = av.ds.array([maxSize], {indexed: false, left: 150, top: 130}).hide();
   var labelMS = av.label("size of internalArray", {before: arrMS, left: 10, top: 134}).hide();
 
-  var arrLS = av.ds.array([arraySize], {indexed: false, left: 150, top: 165}).hide();
-  var labelLS = av.label("arraySize", {before: arrLS, left: 80, top: 169}).hide();
+  var arrLS = av.ds.array([listSize], {indexed: false, left: 150, top: 165}).hide();
+  var labelLS = av.label("listSize", {before: arrLS, left: 95, top: 169}).hide();
 
   var arrRem = av.ds.array([""], {indexed: false, left: 150, top: 200}).hide();
   var labelRem = av.label("x", {before: arrRem, left: 135, top: 204}).hide();
 
   // Slide
-  av.umsg(`Here is an array-based list with ${arraySize} elements.`);
-  for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
+  av.umsg(`Here is an array-based list with ${listSize} elements.`);
+  for (let i = listSize; i < maxSize; i++) arr.addClass(i, "unused");
   arr.show();
   arrMS.show();
   arrLS.show();
@@ -54,7 +54,7 @@ $(document).ready(function() {
 
   // Slide
   av.umsg(`
-Here is an array-based list with ${arraySize} elements. 
+Here is an array-based list with ${listSize} elements. 
 We will remove the last element in the list.
 `);
   label1.show();
@@ -63,18 +63,18 @@ We will remove the last element in the list.
 
   // Slide
   av.umsg(`
-We copy the the value to be removed, and decrease <code>arraySize</code>.
+We copy the the value to be removed, and decrease <code>listSize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
   pseudo.highlight([4,5,6,7,8]);
   labelRem.show();
   arrRem.show();
-  av.effects.copyValue(arr, arraySize-1, arrRem, 0);
+  av.effects.copyValue(arr, listSize-1, arrRem, 0);
   arrRem.highlight(0);
-  arr.value(arraySize-1, "");
-  arr.addClass(arraySize-1, "unused");
-  arrLS.value(0, arraySize-1);
+  arr.value(listSize-1, "");
+  arr.addClass(listSize-1, "unused");
+  arrLS.value(0, listSize-1);
   arrLS.highlight(0);
   av.step();
 
@@ -100,7 +100,7 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrRem.value(0, "");
   arrRem.unhighlight(0);
   pseudo.unhighlight(11);
-  av.umsg("This was easy...");
+  av.umsg("This was easy... but what if we remove another element?");
   av.step();
 
   // Slide
@@ -111,18 +111,18 @@ We don't have to move any elements, since we're deleting from the end of the lis
 
   // Slide
   av.umsg(`
-We copy the the value to be removed, and decrease <code>arraySize</code>.
+We copy the the value to be removed, and decrease <code>listSize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
   pseudo.highlight([4,5,6,7,8]);
   labelRem.show();
   arrRem.show();
-  av.effects.copyValue(arr, arraySize-2, arrRem, 0);
+  av.effects.copyValue(arr, listSize-2, arrRem, 0);
   arrRem.highlight(0);
-  arr.value(arraySize-2, "");
-  arr.addClass(arraySize-2, "unused");
-  arrLS.value(0, arraySize-2);
+  arr.value(listSize-2, "");
+  arr.addClass(listSize-2, "unused");
+  arrLS.value(0, listSize-2);
   arrLS.highlight(0);
   av.step();
 
@@ -148,7 +148,7 @@ We don't have to move any elements, since we're deleting from the end of the lis
 
   // Slide
   av.umsg("Then we copy all elements from the older internal array.");  
-  for (let i = 0; i < arraySize-2; i++) {
+  for (let i = 0; i < listSize-2; i++) {
     arr2.removeClass(i, "unused");
     av.effects.copyValue(arr, i, arr2, i);
     av.step();

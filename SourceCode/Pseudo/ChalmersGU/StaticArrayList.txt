@@ -3,11 +3,11 @@
 /* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList(E) implements List(E)
     private internalArray : E[]
-    private arraySize     : int
+    private listSize      : int
 
     StaticArrayList(capacity:int)
         internalArray = new array of size capacity
-        arraySize = 0
+        listSize = 0
 /* *** ODSAendTag: StaticArrayListInit *** */
 
 /* *** ODSATag: StaticArrayListGetSet *** */
@@ -24,10 +24,10 @@ class StaticArrayList(E) implements List(E)
 
 /* *** ODSATag: StaticArrayListAdd *** */
     add(i:int, x:E)
-        make sure that arraySize < size of internalArray
+        make sure that listSize < size of internalArray
         make sure that 0 <= i <= size of internalArray
-        arraySize += 1
-        for k in arraySize-1, arraySize-2, ..., i+1
+        listSize += 1
+        for k in listSize-1, listSize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
         internalArray[i] = x
 /* *** ODSAendTag: StaticArrayListAdd *** */
@@ -37,18 +37,18 @@ class StaticArrayList(E) implements List(E)
         make sure that size of internalArray > 0
         make sure that 0 <= i < size of internalArray
         x : E = internalArray[i]
-        for k in i+1, i+2, ..., arraySize-1
+        for k in i+1, i+2, ..., listSize-1
             internalArray[k] = internalArray[k+1]
-        arraySize -= 1
-        internalArray[arraySize] = null   // For garbage collection
+        listSize -= 1
+        internalArray[listSize] = null   // For garbage collection
         return x
 /* *** ODSAendTag: StaticArrayListRemove *** */
 
     isEmpty() : boolean
-        return arraySize == 0
+        return listSize == 0
 
     size() : int
-        return arraySize
+        return listSize
 
     iterator() : Iterator(E)
         return an iterator over the elements in internalArray

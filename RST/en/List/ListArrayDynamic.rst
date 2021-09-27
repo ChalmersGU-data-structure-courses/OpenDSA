@@ -36,7 +36,7 @@ which means that we add the following if-clause to the ``add`` method:
 
 ::
 
-        if arraySize >= size of internalArray
+        if listSize >= size of internalArray
             resizeArray(2 * size of internalArray)
 
 
@@ -105,7 +105,7 @@ So we can add the following lines to the end of the ``remove`` method:
 
 ::
 
-        if arraySize < size of internalArray / 3
+        if listSize < size of internalArray / 3
             resizeArray(size of internalArray / 2)
 
 

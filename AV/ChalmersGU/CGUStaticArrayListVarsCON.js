@@ -39,7 +39,7 @@ the size of the array must be known when the list object is created.
   ////////////////////////////////////////////////////////////////////////////////
   av.umsg(`
 At any given time the list actually holds some number of elements that can be less than 
-the maximum allowed by the array. This value is stored in <code>arraySize</code>.
+the maximum allowed by the array. This value is stored in <code>listSize</code>.
 `);
   pseudo.unhighlight(2);
   pseudo.highlight(3);

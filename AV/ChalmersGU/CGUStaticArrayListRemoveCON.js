@@ -4,7 +4,7 @@ $(document).ready(function() {
   "use strict";
   var arrValues = [13, 12, 20, 8, 3, "", "", ""];
   var maxSize = arrValues.length;
-  var arraySize = 5;
+  var listSize = 5;
   var removeIndex = 1;
 
   var av_name = "CGUStaticArrayListRemoveCON";
@@ -38,14 +38,13 @@ $(document).ready(function() {
                           opacity: 0, "stroke-width": 2});
 
   //arrays "it" and "listSize" for holding data fields
-  var xpos = leftMargin + (nodeWidth + 2) * 3;
-  var arrIt = av.ds.array([""], {indexed: false, left: xpos, top: theTop + 70});
-  var labelIt = av.label("x", {before: arrIt, left: xpos-15, top: theTop + 75});
+  var arrIt = av.ds.array([""], {indexed: false, left: 150, top: theTop + 70});
+  var labelIt = av.label("x", {before: arrIt, left: 135, top: theTop + 75});
   arrIt.hide();
   labelIt.hide();
 
-  var arrSize = av.ds.array([5], {indexed: false, left: xpos, top: theTop + 105});
-  var arrLabel = av.label("arraySize", {before: arrSize, left: xpos-70, top: theTop + 110});
+  var arrSize = av.ds.array([5], {indexed: false, left: 150, top: theTop + 105});
+  var arrLabel = av.label("listSize", {before: arrSize, left: 95, top: theTop + 110});
   arrSize.hide();
   arrLabel.hide();
 
@@ -53,15 +52,15 @@ $(document).ready(function() {
   av.umsg(`
 Removing an element at a certain position requires shifting all later elements in the array by one position toward the head.
 `);
-  for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
+  for (let i = listSize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
   // Slide
   av.umsg(`
-Here is a list containing ${arraySize} elements. 
+Here is a list containing ${listSize} elements. 
 We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of the array.
 `);
-  for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
+  for (let i = listSize; i < maxSize; i++) arr.addClass(i, "unused");
   arr.highlight(removeIndex);
   arr.show();
   label.show();
@@ -89,31 +88,31 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   arrIt.unhighlight(0);
   pseudo.unhighlight(4);
   pseudo.highlight([5,6]);
-  // for (let i = removeIndex+1; i < arraySize; i++) arr.highlight(i);
+  // for (let i = removeIndex+1; i < listSize; i++) arr.highlight(i);
   av.step();
 
-  for (let i = removeIndex+1; i < arraySize; i++) {
+  for (let i = removeIndex+1; i < listSize; i++) {
     av.effects.copyValue(arr, i, arr, i-1);
     // arr.value(i-1, "");
     av.step();
   }
 
   // Slide
-  // for (let i = removeIndex+1; i < arraySize; i++) arr.unhighlight(i);
+  // for (let i = removeIndex+1; i < listSize; i++) arr.unhighlight(i);
   av.umsg(`
-Decrease the list size by 1, from ${arraySize} to ${arraySize-1}.
+Decrease the list size by 1, from ${listSize} to ${listSize-1}.
 `);
   pseudo.unhighlight([5,6]);
   pseudo.highlight(7);
-  arr.addClass(arraySize-1, "unused");
-  arrSize.value(0, arraySize-1);
+  arr.addClass(listSize-1, "unused");
+  arrSize.value(0, listSize-1);
   arrSize.highlight(0);
   av.step();
 
   // Slide
   av.umsg("To allow the interpreter to garbage collect, we have to set the previously final element to null.");
   arrow2.hide();
-  arr.value(arraySize-1, "");
+  arr.value(listSize-1, "");
   pseudo.unhighlight(7);
   pseudo.highlight(8);
   arrSize.unhighlight(0);

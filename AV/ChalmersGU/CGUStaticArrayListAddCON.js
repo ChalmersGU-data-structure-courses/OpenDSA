@@ -5,7 +5,7 @@ $(document).ready(function() {
 
   var arrValues = [13, 12, 20, 8, 3, "", "", ""];
   var maxSize = arrValues.length;
-  var arraySize = 5;
+  var listSize = 5;
   var addIndex = 1;
   var addValue = 23;
 
@@ -33,7 +33,7 @@ $(document).ready(function() {
   var label = av.label(`add(${addIndex}, ${addValue})`, {left: arrow1_x - 16, top: -20}).hide();
 
   //horizontal arrow in step 2
-  var arrow2 = av.g.line(arrow1_x + 30, 25, arrow1_x - 5 + 30 * (arraySize - addIndex), 25,
+  var arrow2 = av.g.line(arrow1_x + 30, 25, arrow1_x - 5 + 30 * (listSize - addIndex), 25,
                          {"arrow-end": "classic-wide-long", opacity: 0,
                           "stroke-width": 2});
   arrow2.hide();
@@ -43,21 +43,21 @@ $(document).ready(function() {
   arrMS.hide();
   var labelMaxSize = av.label("size of internalArray", {left: 10, top: 94});
   labelMaxSize.hide();
-  var arrLS = av.ds.array([arraySize], {indexed: false, left: 150, top: 125});
+  var arrLS = av.ds.array([listSize], {indexed: false, left: 150, top: 125});
   arrLS.hide();
-  var labelListSize = av.label("arraySize", {left: 82, top: 129});
+  var labelListSize = av.label("listSize", {left: 95, top: 129});
   labelListSize.hide();
 
   // Slide
   av.umsg(`
 Adding an element at a certain position requires shifting all later elements in the array by one position toward the tail.
 `);
-  for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
+  for (let i = listSize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
   // Slide
   av.umsg(`
-Here is an array-based list with ${arraySize} elements. We will add an element with value ${addValue} at position ${addIndex}.
+Here is an array-based list with ${listSize} elements. We will add an element with value ${addValue} at position ${addIndex}.
 `);
   arr.show();
   arrow1.show();
@@ -75,9 +75,9 @@ Increase the list size by 1.
 `);
   pseudo.unhighlight(1);
   pseudo.highlight(4);
-  arr.removeClass([arraySize], "unused");
+  arr.removeClass([listSize], "unused");
   arrLS.highlight(0);
-  arrLS.value(0, arraySize+1);
+  arrLS.value(0, listSize+1);
   av.step();
 
   // Slide
@@ -91,7 +91,7 @@ Shift the later elements elements one position to the right to make room.
   pseudo.highlight([5,6]);
   av.step();
 
-  for (let i = arraySize; i > addIndex; i--) {
+  for (let i = listSize; i > addIndex; i--) {
     av.effects.copyValue(arr, i-1, arr, i);
     av.step();
   }

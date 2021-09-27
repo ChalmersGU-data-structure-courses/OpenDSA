@@ -5,7 +5,7 @@ $(document).ready(function() {
 
   var arrValues = [13, 12, 20, 8, 3, "", "", ""];
   var maxSize = arrValues.length;
-  var arraySize = 5;
+  var listSize = 5;
   var addValue = 23;
 
   var av_name = "CGUStaticArrayListAppendCON";
@@ -25,16 +25,16 @@ $(document).ready(function() {
   var labelMS = av.label("size of internalArray", {before: arrMS, left: 10, top: 89}).hide();
 
   var arrLS = av.ds.array([5], {indexed: false, left: 150, top: 120}).hide();
-  var labelLS = av.label("arraySize", {before: arrLS, left: 60, top: 124}).hide();
+  var labelLS = av.label("listSize", {before: arrLS, left: 95, top: 124}).hide();
 
   // Slide
   av.umsg("Adding elements to the tail of an array-based list is easy.");
-  for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
+  for (let i = listSize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
   // Slide
   av.umsg(`
-Here is an array-based list with ${arraySize} elements. 
+Here is an array-based list with ${listSize} elements. 
 We will append the value ${addValue} to the end of the list.
 `);
   label.show();
@@ -47,10 +47,10 @@ We will append the value ${addValue} to the end of the list.
   av.step();
 
   // Slide
-  av.umsg("We increase <code>arraySize</code> by 1.");
+  av.umsg("We increase <code>listSize</code> by 1.");
   pseudo.unhighlight(1);
   pseudo.highlight(4);
-  arr.removeClass(arraySize, "unused");
+  arr.removeClass(listSize, "unused");
   arrLS.value(0, 6);
   arrLS.highlight(0);
   av.step();
@@ -67,13 +67,13 @@ We will append the value ${addValue} to the end of the list.
   pseudo.unhighlight(5);
   pseudo.highlight(7);
   arrMS.unhighlight(0);
-  arr.value(arraySize, addValue);
-  arr.highlight(arraySize);
+  arr.value(listSize, addValue);
+  arr.highlight(listSize);
   av.step();
 
   // Slide
   av.umsg("Appending to the end of the list therefore requires constant time.");
-  arr.unhighlight(arraySize);
+  arr.unhighlight(listSize);
   pseudo.unhighlight(7);
   av.recorded();
 });

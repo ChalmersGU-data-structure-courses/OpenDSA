@@ -5,23 +5,23 @@ import java.util.Iterator;
 /* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList<E> implements List<E> {
     private E[] internalArray;
-    private int arraySize;
+    private int listSize;
 
     @SuppressWarnings("unchecked")
     public StaticArrayList(int capacity) {
         internalArray = (E[]) new Object[capacity];
-        arraySize = 0;
+        listSize = 0;
     }
 /* *** ODSAendTag: StaticArrayListInit *** */
 
 /* *** ODSATag: StaticArrayListGetSet *** */
     public E get(int i) {
-        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
         return internalArray[i];
     }
 
     public E set(int i, E x) {
-        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
         E old = internalArray[i];
         internalArray[i] = x;
         return old;
@@ -30,10 +30,10 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListAdd *** */
     public void add(int i, E x) {
-        if (!(arraySize < internalArray.length)) throw new IndexOutOfBoundsException("array capacity exceeded");
-        if (!(0 <= i && i <= arraySize))         throw new IndexOutOfBoundsException("array index out of range");
-        arraySize++;
-        for (int k = arraySize-1; k > i; k--) {
+        if (!(listSize < internalArray.length)) throw new IndexOutOfBoundsException("array capacity exceeded");
+        if (!(0 <= i && i <= listSize))         throw new IndexOutOfBoundsException("array index out of range");
+        listSize++;
+        for (int k = listSize-1; k > i; k--) {
             internalArray[k] = internalArray[k-1];
         }
         internalArray[i] = x;
@@ -42,24 +42,24 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListRemove *** */
     public E remove(int i) {
-        if (!(arraySize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
-        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(listSize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
         E x = internalArray[i];
-        for (int k = i+1; k < arraySize; k++) {
+        for (int k = i+1; k < listSize; k++) {
             internalArray[k-1] = internalArray[k];
         }
-        arraySize--;
-        internalArray[arraySize] = null;   // For garbage collection
+        listSize--;
+        internalArray[listSize] = null;   // For garbage collection
         return x;
     }
 /* *** ODSAendTag: StaticArrayListRemove *** */
 
     public boolean isEmpty() {
-        return arraySize == 0;
+        return listSize == 0;
     }
 
     public int size() {
-        return arraySize;
+        return listSize;
     }
 
     public Iterator<E> iterator() {
