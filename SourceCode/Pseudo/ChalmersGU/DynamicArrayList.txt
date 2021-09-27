@@ -2,66 +2,65 @@
 /* *** ODSATag: DynamicArrayList *** */
 /* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList(E) implements List(E)
-    private internalArray :: E[]
-    private arraySize     :: int
+    private internalArray : E[]
+    private arraySize     : int
 
     DynamicArrayList()
         internalArray = new array of size 1
         arraySize = 0
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
-    get(i::int) :: E
-        assert 0 <= i < size of internalArray
+    get(i:int) : E
+        make sure that 0 <= i < size of internalArray
         return internalArray[i]
 
-    set(i::int, x::E) :: E
-        assert 0 <= i < size of internalArray
-        old :: E = internalArray[i]
+    set(i:int, x:E) : E
+        make sure that 0 <= i < size of internalArray
+        old : E = internalArray[i]
         internalArray[i] = x
         return old
 
 /* *** ODSATag: DynamicArrayListAdd *** */
-    add(i::int, x::E) :: void
-        assert 0 <= i <= size of internalArray
+    add(i:int, x:E)
+        make sure that 0 <= i <= size of internalArray
         if arraySize >= size of internalArray
             resizeArray(2 * size of internalArray)
-        for k in arraySize...i+1 (downwards)
+        arraySize += 1
+        for k in arraySize-1, arraySize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
         internalArray[i] = x
-        arraySize += 1
 /* *** ODSAendTag: DynamicArrayListAdd *** */
 
 /* *** ODSATag: DynamicArrayListRemove *** */
-    remove(i::int) :: E
-        assert size of internalArray > 0
-        assert 0 <= i < size of internalArray
-        removed :: E = internalArray[i]
-        arraySize -= 1
-        for k in i...arraySize-1
+    remove(i:int) : E
+        make sure that the size of internalArray > 0
+        make sure that 0 <= i < size of internalArray
+        x : E = internalArray[i]
+        for k in i+1, i+2, ..., arraySize-1
             internalArray[k] = internalArray[k+1]
-        // This is to be able to garbage collect the last element
-        internalArray[arraySize] = null
+        arraySize -= 1
+        internalArray[arraySize] = null   // For garbage collection
         if arraySize < size of internalArray / 3
             resizeArray(size of internalArray / 2)
-        return removed
+        return x
 /* *** ODSAendTag: DynamicArrayListRemove *** */
 
 /* *** ODSATag: DynamicArrayListResize *** */
-    private resizeArray(newCapacity::int) :: void
-        newArray :: E[] = new array of size newCapacity
+    private resizeArray(newCapacity:int)
+        newArray : E[] = new array of size newCapacity
         for i in 0...arraySize-1
             newArray[i] = internalArray[i]
         internalArray = newArray
 /* *** ODSAendTag: DynamicArrayListResize *** */
 
-    isEmpty() :: boolean
+    isEmpty() : boolean
         return arraySize == 0
 
-    size() :: int
+    size() : int
         return arraySize
 
 /* *** ODSATag: DynamicArrayListIterator *** */
-    iterator() :: Iterator(E)
+    iterator() : Iterator(E)
         return an iterator over the elements in internalArray
 /* *** ODSAendTag: DynamicArrayListIterator *** */
 /* *** ODSAendTag: DynamicArrayList *** */

@@ -2,55 +2,54 @@
 /* *** ODSATag: StaticArrayList *** */
 /* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList(E) implements List(E)
-    private internalArray :: E[]
-    private arraySize     :: int
+    private internalArray : E[]
+    private arraySize     : int
 
-    StaticArrayList(capacity::int)
+    StaticArrayList(capacity:int)
         internalArray = new array of size capacity
         arraySize = 0
 /* *** ODSAendTag: StaticArrayListInit *** */
 
 /* *** ODSATag: StaticArrayListGetSet *** */
-    get(i::int) :: E
-        assert 0 <= i < size of internalArray
+    get(i:int) : E
+        make sure that 0 <= i < size of internalArray
         return internalArray[i]
 
-    set(i::int, x::E) :: E
-        assert 0 <= i < size of internalArray
-        old :: E = internalArray[i]
+    set(i:int, x:E) : E
+        make sure that 0 <= i < size of internalArray
+        old : E = internalArray[i]
         internalArray[i] = x
         return old
 /* *** ODSAendTag: StaticArrayListGetSet *** */
 
 /* *** ODSATag: StaticArrayListAdd *** */
-    add(i::int, x::E) :: void
-        assert arraySize < size of internalArray
-        assert 0 <= i <= size of internalArray
-        for k in arraySize...i+1 (downwards)
+    add(i:int, x:E)
+        make sure that arraySize < size of internalArray
+        make sure that 0 <= i <= size of internalArray
+        arraySize += 1
+        for k in arraySize-1, arraySize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
         internalArray[i] = x
-        arraySize += 1
 /* *** ODSAendTag: StaticArrayListAdd *** */
 
 /* *** ODSATag: StaticArrayListRemove *** */
-    remove(i::int) :: E
-        assert size of internalArray > 0
-        assert 0 <= i < size of internalArray
-        removed :: E = internalArray[i]
-        arraySize -= 1
-        for k in i...arraySize-1
+    remove(i:int) : E
+        make sure that size of internalArray > 0
+        make sure that 0 <= i < size of internalArray
+        x : E = internalArray[i]
+        for k in i+1, i+2, ..., arraySize-1
             internalArray[k] = internalArray[k+1]
-        // This is to be able to garbage collect the last element
-        internalArray[arraySize] = null
-        return removed
+        arraySize -= 1
+        internalArray[arraySize] = null   // For garbage collection
+        return x
 /* *** ODSAendTag: StaticArrayListRemove *** */
 
-    isEmpty() :: boolean
+    isEmpty() : boolean
         return arraySize == 0
 
-    size() :: int
+    size() : int
         return arraySize
 
-    iterator() :: Iterator(E)
+    iterator() : Iterator(E)
         return an iterator over the elements in internalArray
 /* *** ODSAendTag: StaticArrayList *** */

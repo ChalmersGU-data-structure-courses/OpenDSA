@@ -15,16 +15,12 @@ class DynamicArrayList<E> implements List<E> {
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
     public E get(int i) {
-        if (i < 0 || i >= arraySize) {
-            throw new IndexOutOfBoundsException("array index out of range");
-        }
+        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
         return internalArray[i];
     }
 
     public E set(int i, E x) {
-        if (i < 0 || i >= arraySize) {
-            throw new IndexOutOfBoundsException("array index out of range");
-        }
+        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
         E old = internalArray[i];
         internalArray[i] = x;
         return old;
@@ -32,35 +28,28 @@ class DynamicArrayList<E> implements List<E> {
 
 /* *** ODSATag: DynamicArrayListAdd *** */
     public void add(int i, E x) {
-        if (i < 0 || i > arraySize) {
-            throw new IndexOutOfBoundsException("array index out of range");
-        }
+        if (!(0 <= i && i <= arraySize)) throw new IndexOutOfBoundsException("array index out of range");
         if (arraySize >= internalArray.length) {
             resizeArray(2 * internalArray.length);
         }
-        for (int k = arraySize; k > i; k--) {
+        arraySize++;
+        for (int k = arraySize-1; k > i; k--) {
             internalArray[k] = internalArray[k-1];
         }
         internalArray[i] = x;
-        arraySize++;
     }
 /* *** ODSAendTag: DynamicArrayListAdd *** */
 
 /* *** ODSATag: DynamicArrayListRemove *** */
     public E remove(int i) {
-        if (arraySize == 0) {
-            throw new IndexOutOfBoundsException("remove from empty array");
+        if (!(arraySize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
+        if (!(0 <= i && i < arraySize)) throw new IndexOutOfBoundsException("array index out of range");
+        E x = internalArray[i];
+        for (int k = i+1; k < arraySize; k++) {
+            internalArray[k-1] = internalArray[k];
         }
-        if (i < 0 || i >= arraySize) {
-            throw new IndexOutOfBoundsException("array index out of range");
-        }
-        E removed = internalArray[i];
         arraySize--;
-        for (int k = i; k < arraySize; k++) {
-            internalArray[k] = internalArray[k+1];
-        }
-        // This is to be able to garbage collect the last element:
-        internalArray[arraySize] = null;
+        internalArray[arraySize] = null;   // For garbage collection
         if (arraySize < internalArray.length / 3) {
             resizeArray(internalArray.length / 2);
         }
