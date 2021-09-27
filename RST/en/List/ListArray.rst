@@ -89,7 +89,7 @@ all existing elements in the array by one position toward the tail.
 
 Therefore, if we want to add an element at position :math:`i`, then
 :math:`n - i - 1` elements must shift toward the tail to leave room for the new element.
-In the worst case, adding elements requres moving all :math:`n` elements,
+In the worst case, adding elements requires moving all :math:`n` elements,
 which is :math:`\Theta(n)`.
 
 .. codeinclude:: ChalmersGU/StaticArrayList
@@ -120,8 +120,8 @@ following slideshow.
    :scripts: AV/ChalmersGU/CGUStaticArrayListRemoveCON.js
    :output: show
 
-In the average case, insertion or removal each requires moving half
-of the elements, which is :math:`\Theta(n)`.
+In the worst case, insertion or removal each requires moving all
+:math:`n` elements, which is :math:`\Theta(n)`.
 
 .. codeinclude:: ChalmersGU/StaticArrayList
    :tag: StaticArrayListRemove
