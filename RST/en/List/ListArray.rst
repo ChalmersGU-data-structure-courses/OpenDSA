@@ -140,6 +140,14 @@ Static Array-based List Practice Questions
 .. avembed:: Exercises/List/ALSumm.html ka
    :long_name: Array-based List Summary
 
+|
+
+.. TODO::
+   Figure out why this doesn't work...
+
+.. avembed:: Exercises/ChalmersGU/StaticArrayListSummaryQUIZ.html ka
+   :long_name: Array-based List Summary
+
 
 Static Array-based List: Full code
 ------------------------------------------------
