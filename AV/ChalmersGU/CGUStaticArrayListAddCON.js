@@ -48,14 +48,14 @@ $(document).ready(function() {
   var labelListSize = av.label("arraySize", {left: 82, top: 129});
   labelListSize.hide();
 
-  // Slide 1
+  // Slide
   av.umsg(`
 Adding an element at a certain position requires shifting all later elements in the array by one position toward the tail.
 `);
   for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
-  // Slide 2
+  // Slide
   av.umsg(`
 Here is an array-based list with ${arraySize} elements. We will add an element with value ${addValue} at position ${addIndex}.
 `);
@@ -69,14 +69,26 @@ Here is an array-based list with ${arraySize} elements. We will add an element w
   labelListSize.show();
   av.step();
 
-  // Slide 3
+  // Slide
+  av.umsg(`
+Increase the list size by 1.
+`);
+  pseudo.unhighlight(1);
+  pseudo.highlight(4);
+  arr.removeClass([arraySize], "unused");
+  arrLS.highlight(0);
+  arrLS.value(0, arraySize+1);
+  av.step();
+
+  // Slide
+  arrLS.unhighlight(0);
   av.umsg(`
 Shift the later elements elements one position to the right to make room.
 `);
   // shift all existing elements one position to the right
   arrow2.show();
-  pseudo.unhighlight(1);
-  pseudo.highlight([4,5]);
+  pseudo.unhighlight(4);
+  pseudo.highlight([5,6]);
   av.step();
 
   for (let i = arraySize; i > addIndex; i--) {
@@ -84,34 +96,22 @@ Shift the later elements elements one position to the right to make room.
     av.step();
   }
 
-  // Slide 4
+  // Slide
   av.umsg(`
 Insert ${addValue} into array position ${addIndex}.
 `);
   arr.value(addIndex, addValue);
   arr.highlight([addIndex]);
   arrow2.hide();
-  pseudo.unhighlight([4,5]);
-  pseudo.highlight(6);
-  av.step();
-
-  // Slide 5
-  av.umsg(`
-Increase the list size by 1.
-`);
-  pseudo.unhighlight(6);
+  pseudo.unhighlight([5,6]);
   pseudo.highlight(7);
-  arr.removeClass([arraySize], "unused");
-  arr.unhighlight([addIndex]);
-  arrLS.highlight(0);
-  arrLS.value(0, arraySize+1);
   av.step();
 
-  // Slide 6
+  // Slide
+  arr.unhighlight([addIndex]);
   av.umsg(`
 Thus, the cost to insert into an array-based list in the worst case is $\\Theta(n)$ when there are $n$ items in the list.
 `);
-  arrLS.unhighlight(0);
   pseudo.unhighlight(7);
   av.recorded();
 });

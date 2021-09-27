@@ -37,12 +37,12 @@ $(document).ready(function() {
   var labelMS = av.label("size of internalArray", {before: arrMS, left: 10, top: 134}).hide();
 
   var arrLS = av.ds.array([arraySize], {indexed: false, left: 150, top: 165}).hide();
-  var labelLS = av.label("arraySize", {before: arrLS, left: 70, top: 169}).hide();
+  var labelLS = av.label("arraySize", {before: arrLS, left: 80, top: 169}).hide();
 
   var arrRem = av.ds.array([""], {indexed: false, left: 150, top: 200}).hide();
-  var labelRem = av.label("removed", {before: arrRem, left: 70, top: 204}).hide();
+  var labelRem = av.label("x", {before: arrRem, left: 135, top: 204}).hide();
 
-  // Slide 1
+  // Slide
   av.umsg(`Here is an array-based list with ${arraySize} elements.`);
   for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
   arr.show();
@@ -52,7 +52,7 @@ $(document).ready(function() {
   labelLS.show();
   av.displayInit();
 
-  // Slide 2
+  // Slide
   av.umsg(`
 Here is an array-based list with ${arraySize} elements. 
 We will remove the last element in the list.
@@ -61,13 +61,13 @@ We will remove the last element in the list.
   pseudo.highlight(1);
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg(`
 We copy the the value to be removed, and decrease <code>arraySize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
-  pseudo.highlight([4,5,6,7,8,9]);
+  pseudo.highlight([4,5,6,7,8]);
   labelRem.show();
   arrRem.show();
   av.effects.copyValue(arr, arraySize-1, arrRem, 0);
@@ -78,44 +78,44 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrLS.highlight(0);
   av.step();
 
-  // Slide 3
+  // Slide
   arrRem.unhighlight(0);
   arrLS.unhighlight(0);
   av.umsg("The internal array now contains 3 elements, which is larger than 8/3, so we don't have to shrink it.");
-  pseudo.unhighlight([4,5,6,7,8,9]);
-  pseudo.highlight(10);
+  pseudo.unhighlight([4,5,6,7,8]);
+  pseudo.highlight(9);
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg("Now we can return the removed value.");
-  pseudo.unhighlight(10);
-  pseudo.highlight(12);
+  pseudo.unhighlight(9);
+  pseudo.highlight(11);
   arrRem.highlight(0);
   av.step();
 
-  // Slide 2
+  // Slide
   label1.hide();
   labelRem.hide();
   arrRem.hide();
   arrRem.value(0, "");
   arrRem.unhighlight(0);
-  pseudo.unhighlight(12);
-  av.umsg("");
+  pseudo.unhighlight(11);
+  av.umsg("This was easy...");
   av.step();
 
-  // Slide 2
+  // Slide
   av.umsg(`Now we want to remove the last value once again.`);
   label2.show();
   pseudo.highlight(1);
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg(`
 We copy the the value to be removed, and decrease <code>arraySize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
-  pseudo.highlight([4,5,6,7,8,9]);
+  pseudo.highlight([4,5,6,7,8]);
   labelRem.show();
   arrRem.show();
   av.effects.copyValue(arr, arraySize-2, arrRem, 0);
@@ -126,27 +126,27 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrLS.highlight(0);
   av.step();
 
-  // Slide 3
+  // Slide
   arrRem.unhighlight(0);
   arrLS.unhighlight(0);
   av.umsg("But now the internal array contains only 2 elements, which is fewer than 8/3, so we have to shrink it.");
-  pseudo.unhighlight([4,5,6,7,8,9]);
+  pseudo.unhighlight([4,5,6,7,8]);
+  pseudo.highlight(9);
+  av.step();
+
+  // Slide
+  av.umsg("Let's make it half the size.");
+  pseudo.unhighlight(9);
   pseudo.highlight(10);
   av.step();
 
-  // Slide 3
-  av.umsg("Let's make it half the size.");
-  pseudo.unhighlight(10);
-  pseudo.highlight(11);
-  av.step();
-
-  // Slide 3
+  // Slide
   av.umsg("First we create a new temporary array.");
   for (let i = 0; i < arrValues2.length; i++) arr2.addClass(i, "unused");
   arr2.show();
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg("Then we copy all elements from the older internal array.");  
   for (let i = 0; i < arraySize-2; i++) {
     arr2.removeClass(i, "unused");
@@ -154,27 +154,28 @@ We don't have to move any elements, since we're deleting from the end of the lis
     av.step();
   }
 
-  // Slide 3
+  // Slide
   av.umsg("Now we can make the temporary array the internal array, and continue with the <code>remove</code> method.");
   arr.hide();
   arr2.translateY(-50);
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg("Finally we can return the removed value.");
-  pseudo.unhighlight(11);
-  pseudo.highlight(12);
+  pseudo.unhighlight(10);
+  pseudo.highlight(11);
   arrRem.highlight(0);
   av.step();
 
-  // Slide 5
+  // Slide
   av.umsg(`
 Removing from the end of the list is constant, most of the time. 
 But now and then we have to resize the array, and then it is linear in the number of elements.
 `);
   label2.hide();
   labelRem.hide();
+  arrRem.hide();
   arrRem.unhighlight(0);
-  pseudo.unhighlight(12);
+  pseudo.unhighlight(11);
   av.recorded();
 });

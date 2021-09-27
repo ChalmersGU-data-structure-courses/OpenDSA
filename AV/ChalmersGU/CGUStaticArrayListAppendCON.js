@@ -27,12 +27,12 @@ $(document).ready(function() {
   var arrLS = av.ds.array([5], {indexed: false, left: 150, top: 120}).hide();
   var labelLS = av.label("arraySize", {before: arrLS, left: 60, top: 124}).hide();
 
-  // Slide 1
+  // Slide
   av.umsg("Adding elements to the tail of an array-based list is easy.");
   for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
-  // Slide 2
+  // Slide
   av.umsg(`
 Here is an array-based list with ${arraySize} elements. 
 We will append the value ${addValue} to the end of the list.
@@ -46,34 +46,34 @@ We will append the value ${addValue} to the end of the list.
   labelLS.show();
   av.step();
 
-  // Slide 3
-  av.umsg("We don't have to move any elements, since we're appending to the end of the list.");
+  // Slide
+  av.umsg("We increase <code>arraySize</code> by 1.");
   pseudo.unhighlight(1);
   pseudo.highlight(4);
-  av.step();
-
-  // Slide 3
-  av.umsg("We simply add the value into the empty position after the current last element.");
-  pseudo.unhighlight(4);
-  pseudo.highlight(6);
-  arrMS.unhighlight(0);
-  arr.value(arraySize, addValue);
-  arr.highlight(arraySize);
-  av.step();
-
-  // Slide 4
-  av.umsg("We increase <code>arraySize</code> by 1.");
-  pseudo.unhighlight(6);
-  pseudo.highlight(7);
-  arr.unhighlight(arraySize);
   arr.removeClass(arraySize, "unused");
   arrLS.value(0, 6);
   arrLS.highlight(0);
   av.step();
 
-  // Slide 5
-  av.umsg("Appending to the end of the list therefore requires constant time.");
+  // Slide
+  av.umsg("We don't have to move any elements, since we're appending to the end of the list.");
   arrLS.unhighlight(0);
+  pseudo.unhighlight(4);
+  pseudo.highlight(5);
+  av.step();
+
+  // Slide
+  av.umsg("We simply add the value into the empty position after the current last element.");
+  pseudo.unhighlight(5);
+  pseudo.highlight(7);
+  arrMS.unhighlight(0);
+  arr.value(arraySize, addValue);
+  arr.highlight(arraySize);
+  av.step();
+
+  // Slide
+  av.umsg("Appending to the end of the list therefore requires constant time.");
+  arr.unhighlight(arraySize);
   pseudo.unhighlight(7);
   av.recorded();
 });

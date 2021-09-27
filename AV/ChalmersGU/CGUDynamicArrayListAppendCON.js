@@ -37,7 +37,7 @@ $(document).ready(function() {
   var arrLS = av.ds.array([arraySize], {indexed: false, left: 150, top: 165}).hide();
   var labelLS = av.label("arraySize", {before: arrLS, left: 70, top: 169}).hide();
 
-  // Slide 1
+  // Slide
   av.umsg(`Here is an array-based list with ${arraySize} elements.`);
   for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
   arr.show();
@@ -47,7 +47,7 @@ $(document).ready(function() {
   labelLS.show();
   av.displayInit();
 
-  // Slide 2
+  // Slide
   av.umsg(`
 Here is an array-based list with ${arraySize} elements. 
 We will append the value ${addValue1} to the end of the list.
@@ -56,35 +56,41 @@ We will append the value ${addValue1} to the end of the list.
   pseudo.highlight(1);
   av.step();
 
-  // Slide 3
+  // Slide
   av.umsg("There is still space left in the internal array, so we don't have to resize it.");
   pseudo.unhighlight(1);
   pseudo.highlight(3);
   av.step();
 
-  // Slide 3
-  av.umsg("We don't have to move any elements, since we're appending to the end of the list.");
+  // Slide
+  av.umsg("We increase the list size.");
   pseudo.unhighlight(3);
   pseudo.highlight(5);
+  arrLS.value(0, arraySize+1);
+  arrLS.highlight(0);
+  arr.removeClass(arraySize, "unused");
+  av.step();
+
+  // Slide
+  av.umsg("We don't have to move any elements, since we're appending to the end of the list.");
+  pseudo.unhighlight(5);
+  pseudo.highlight(6);
   av.step();
 
   // Slide 3
-  av.umsg(`So we assign the next empty slot the value ${addValue1}, and increase <code>arraySize</code>.`);
-  pseudo.unhighlight(5);
-  pseudo.highlight([7,8]);
+  av.umsg(`So we assign the next empty slot the value ${addValue1}.`);
+  pseudo.unhighlight(6);
+  pseudo.highlight(8);
   arr.value(arraySize, addValue1);
-  arr.removeClass(arraySize, "unused");
   arr.highlight(arraySize);
-  arrLS.value(0, arraySize+1);
-  arrLS.highlight(0);
   av.step();
 
   // Slide 2
   label1.hide();
   arr.unhighlight(arraySize);
   arrLS.unhighlight(0);
-  pseudo.unhighlight([7,8]);
-  av.umsg("");
+  pseudo.unhighlight(8);
+  av.umsg("That was easy...");
   av.step();
 
   // Slide 2
@@ -125,21 +131,28 @@ We will append the value ${addValue1} to the end of the list.
   arr2.translateY(-50);
   av.step();
 
-  // Slide 3
-  av.umsg("Again, we don't have to move any elements, since we're appending to the end of the list.");
+  // Slide
+  av.umsg("We increase the list size.");
   pseudo.unhighlight(4);
   pseudo.highlight(5);
+  arrLS.value(0, arraySize+2);
+  arrLS.highlight(0);
+  arr2.removeClass(arraySize+1, "unused");
   av.step();
 
   // Slide 3
-  av.umsg(`Finally we can assign the next empty slot the value ${addValue2}, and increase <code>arraySize</code>.`);
+  av.umsg("Again, we don't have to move any elements, since we're appending to the end of the list.");
+  arrLS.unhighlight(0);
   pseudo.unhighlight(5);
-  pseudo.highlight([7,8]);
+  pseudo.highlight(6);
+  av.step();
+
+  // Slide 3
+  av.umsg(`Finally we can assign the next empty slot the value ${addValue2}.`);
+  pseudo.unhighlight(6);
+  pseudo.highlight(8);
   arr2.value(arraySize+1, addValue2);
-  arr2.removeClass(arraySize+1, "unused");
   arr2.highlight(arraySize+1);
-  arrLS.value(0, arraySize+2);
-  arrLS.highlight(0);
   av.step();
 
   // Slide 5
@@ -149,8 +162,7 @@ But now and then we have to resize the array, and then it is linear in the numbe
 `);
   label2.hide();
   arr2.unhighlight(arraySize+1);
-  arrLS.unhighlight(0);
-  pseudo.unhighlight([7,8]);
+  pseudo.unhighlight(8);
   av.recorded();
 });
 

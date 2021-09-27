@@ -45,7 +45,7 @@
 
 #CGUStaticArrayListAddCON .jsavcode {
   margin-left: 300px;
-  width: 460px;
+  width: 500px;
 }
 
 #CGUStaticArrayListAddCON .jsavlabel {
@@ -62,7 +62,7 @@
 
 #CGUStaticArrayListAppendCON .jsavcode {
   margin-left: 300px;
-  width: 460px;
+  width: 500px;
 }
 
 #CGUStaticArrayListAppendCON .jsavoutput.jsavline {
@@ -88,10 +88,10 @@
 
 #CGUDynamicArrayListAppendCON .jsavcode {
   margin-left: 300px;
-  width: 460px;
+  width: 500px;
 }
 
-#CGUDynamicArrayListRemoveCON .jsavoutput.jsavline {
+#CGUDynamicArrayListAppendCON .jsavoutput.jsavline {
   height: 30px;
 }
 

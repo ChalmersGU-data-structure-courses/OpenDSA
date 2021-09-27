@@ -33,30 +33,30 @@ $(document).ready(function() {
                           opacity: 0, "stroke-width": 2});
 
   //horizontal arrow in step 4
-  var arrow2 = av.g.line(arrow1_x + 100, theTop+10, arrow1_x + 20, theTop+10,
+  var arrow2 = av.g.line(arrow1_x + 90, theTop+10, arrow1_x + 10, theTop+10,
                          {"arrow-end": "classic-wide-long",
                           opacity: 0, "stroke-width": 2});
 
   //arrays "it" and "listSize" for holding data fields
-  var arrIt = av.ds.array([""], {indexed: false, left: leftMargin + (nodeWidth + 2) * 3,
-                                 top: theTop + 70});
-  var labelIt = av.label("removed", {before: arrIt, left: 37, top: theTop + 75});
+  var xpos = leftMargin + (nodeWidth + 2) * 3;
+  var arrIt = av.ds.array([""], {indexed: false, left: xpos, top: theTop + 70});
+  var labelIt = av.label("x", {before: arrIt, left: xpos-15, top: theTop + 75});
   arrIt.hide();
   labelIt.hide();
 
-  var arrSize = av.ds.array([5], {indexed: false, left: leftMargin + (nodeWidth + 2) * 3, top: theTop + 105});
-  var arrLabel = av.label("arraySize", {before: arrSize, left: 30, top: theTop + 110});
+  var arrSize = av.ds.array([5], {indexed: false, left: xpos, top: theTop + 105});
+  var arrLabel = av.label("arraySize", {before: arrSize, left: xpos-70, top: theTop + 110});
   arrSize.hide();
   arrLabel.hide();
 
-  // Slide 0
+  // Slide
   av.umsg(`
 Removing an element at a certain position requires shifting all later elements in the array by one position toward the head.
 `);
   for (let i = arraySize; i < maxSize; i++) arr.addClass(i, "unused");
   av.displayInit();
 
-  // Slide 1
+  // Slide
   av.umsg(`
 Here is a list containing ${arraySize} elements. 
 We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of the array.
@@ -71,7 +71,7 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   pseudo.highlight(1);
   av.step();
 
-  // Slide 2
+  // Slide
   av.umsg("Copy the element to be deleted.");
   arrIt.show();
   arrIt.highlight(0);
@@ -81,26 +81,15 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   pseudo.highlight(4);
   av.step();
 
-  // Slide 3
-  av.umsg(`
-Decrease the list size by 1, from ${arraySize} to ${arraySize-1}.
-`);
-  pseudo.unhighlight(4);
-  pseudo.highlight(5);
-  arr.unhighlight(removeIndex);
-  arr.addClass(arraySize-1, "unused");
-  arrSize.value(0, arraySize-1);
-  arrSize.highlight(0);
-  av.step();
-
-  // Slide 4
+  // Slide
   // shift elements after current position one position to the left
+  arr.unhighlight(removeIndex);
   av.umsg("Shift all elements after current element one position to the left.");
   arrow2.show();
   arrIt.unhighlight(0);
-  pseudo.unhighlight(5);
-  pseudo.highlight([6,7]);
-  for (let i = removeIndex+1; i < arraySize; i++) arr.highlight(i);
+  pseudo.unhighlight(4);
+  pseudo.highlight([5,6]);
+  // for (let i = removeIndex+1; i < arraySize; i++) arr.highlight(i);
   av.step();
 
   for (let i = removeIndex+1; i < arraySize; i++) {
@@ -109,28 +98,38 @@ Decrease the list size by 1, from ${arraySize} to ${arraySize-1}.
     av.step();
   }
 
-  // Slide 4b
+  // Slide
+  // for (let i = removeIndex+1; i < arraySize; i++) arr.unhighlight(i);
+  av.umsg(`
+Decrease the list size by 1, from ${arraySize} to ${arraySize-1}.
+`);
+  pseudo.unhighlight([5,6]);
+  pseudo.highlight(7);
+  arr.addClass(arraySize-1, "unused");
+  arrSize.value(0, arraySize-1);
+  arrSize.highlight(0);
+  av.step();
+
+  // Slide
   av.umsg("To allow the interpreter to garbage collect, we have to set the previously final element to null.");
-  arrIt.highlight(0);
   arrow2.hide();
-  for (let i = removeIndex+1; i < arraySize; i++) arr.unhighlight(i);
   arr.value(arraySize-1, "");
-  pseudo.unhighlight([6,7]);
-  pseudo.highlight([8,9]);
+  pseudo.unhighlight(7);
+  pseudo.highlight(8);
   arrSize.unhighlight(0);
   av.step();
 
   // Slide 5
   av.umsg("Return the deleted element.");
-  arrIt.highlight(0);
-  pseudo.unhighlight([8,9]);
-  pseudo.highlight(10);
   arrSize.unhighlight(0);
+  arrIt.highlight(0);
+  pseudo.unhighlight(8);
+  pseudo.highlight(9);
   av.step();
 
   // Slide 6
   av.umsg("Since we might have to shift all of the remaining elements, deletion from an array-based list is $\\Theta(n)$ in the worst case if there are $n$ elements in the list.");
   arrIt.unhighlight(0);
-  pseudo.unhighlight(10);
+  pseudo.unhighlight(9);
   av.recorded();
 });
