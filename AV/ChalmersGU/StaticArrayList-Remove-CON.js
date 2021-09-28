@@ -7,7 +7,7 @@ $(document).ready(function() {
   var listSize = 5;
   var removeIndex = 1;
 
-  var av_name = "CGUStaticArrayListRemoveCON";
+  var av_name = "StaticArrayList-Remove-CON";
   var av = new JSAV(av_name);
   var leftMargin = 5,
       nodeWidth = 30,

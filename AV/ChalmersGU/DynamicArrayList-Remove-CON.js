@@ -6,7 +6,7 @@ $(document).ready(function() {
   var maxSize = arrValues.length;
   var listSize = 4;
 
-  var av_name = "CGUDynamicArrayListRemoveCON";
+  var av_name = "DynamicArrayList-Remove-CON";
   var av = new JSAV(av_name);
   var leftMargin = 5,
       nodeWidth = 30,

@@ -48,10 +48,10 @@ So the dynamic ``add`` method will look like this.
 
 |
 
-.. inlineav:: CGUDynamicArrayListAppendCON ss
+.. inlineav:: DynamicArrayList-Append-CON ss
    :long_name: Dynamic Array-based List Addition Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUDynamicArrayListAppendCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/DynamicArrayList-Append-CON.js
    :output: show
 
 
@@ -117,10 +117,10 @@ So the dynamic ``remove`` method will look like this.
 
 |
 
-.. inlineav:: CGUDynamicArrayListRemoveCON ss
+.. inlineav:: DynamicArrayList-Remove-CON ss
    :long_name: Dynamic Array-based List Deletion Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUDynamicArrayListRemoveCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/DynamicArrayList-Remove-CON.js
    :output: show
 
 

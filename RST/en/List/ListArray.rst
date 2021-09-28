@@ -31,10 +31,10 @@ When we create a new array-list we have to tell what the largest possible capaci
 Then the underlying array is initialised, and the counter is set to 0 because there are
 no elements yet.
 
-.. inlineav:: CGUStaticArrayListVarsCON ss
+.. inlineav:: StaticArrayList-Vars-CON ss
    :long_name: Static Array-based List Variables Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUStaticArrayListVarsCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/StaticArrayList-Vars-CON.js
    :output: show
 
 |
@@ -48,10 +48,10 @@ Getting and setting values
 
 Random access to any element in the list is quick and easy.
 
-.. inlineav:: CGUStaticArrayListIntroCON ss
+.. inlineav:: StaticArrayList-Intro-CON ss
    :long_name: Static Array-based List Intro Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUStaticArrayListIntroCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/StaticArrayList-Intro-CON.js
    :output: show
 
 As you can see below, there are no loops in the methods
@@ -71,20 +71,20 @@ and ``remove`` methods must maintain this property.
 
 Appending elements at the tail of an array-based list is super-fast.
 
-.. inlineav:: CGUStaticArrayListAppendCON ss
+.. inlineav:: StaticArrayList-Append-CON ss
    :long_name: Static Array-based List Append Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUStaticArrayListAppendCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/StaticArrayList-Append-CON.js
    :output: show
 
 
 However, adding an element at the head of the list requires shifting
 all existing elements in the array by one position toward the tail.
 
-.. inlineav:: CGUStaticArrayListAddCON ss
+.. inlineav:: StaticArrayList-Add-CON ss
    :long_name: Static Array-based List Insertion Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUStaticArrayListAddCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/StaticArrayList-Add-CON.js
    :output: show
 
 Therefore, if we want to add an element at position :math:`i`, then
@@ -114,10 +114,10 @@ If we want to remove the element at position :math:`i`, then
 :math:`n - i - 1` elements must shift toward the head, as shown in the
 following slideshow. 
 
-.. inlineav:: CGUStaticArrayListRemoveCON ss
+.. inlineav:: StaticArrayList-Remove-CON ss
    :long_name: Static Array-based List Remove
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUStaticArrayListRemoveCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/StaticArrayList-Remove-CON.js
    :output: show
 
 In the worst case, insertion or removal each requires moving all

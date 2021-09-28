@@ -8,7 +8,7 @@ $(document).ready(function() {
   var listSize = 5;
   var addValue = 23;
 
-  var av_name = "CGUStaticArrayListAppendCON";
+  var av_name = "StaticArrayList-Append-CON";
   var av = new JSAV(av_name);
   var pseudo = av.code({
     "url": "../../../SourceCode/Pseudo/ChalmersGU/StaticArrayList.txt",

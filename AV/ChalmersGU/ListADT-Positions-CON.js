@@ -3,7 +3,7 @@
 // Positions and notation for lists
 $(document).ready(function() {
   "use strict";
-  var av_name = "CGUListADTpositionsCON";
+  var av_name = "ListADT-Positions-CON";
   var av = new JSAV(av_name);
   var arrPositions = ["[&nbsp;", 20, ",", 23, ",", 12, ",", 15, "&nbsp;]", "", "", "", ""];
   var arrLength = 4;

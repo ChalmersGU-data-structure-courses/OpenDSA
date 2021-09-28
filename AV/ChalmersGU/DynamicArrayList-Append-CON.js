@@ -9,7 +9,7 @@ $(document).ready(function() {
   var addValue1 = 8;
   var addValue2 = 23;
 
-  var av_name = "CGUDynamicArrayListAppendCON";
+  var av_name = "DynamicArrayList-Append-CON";
   var av = new JSAV(av_name);
   var pseudo = av.code({
     "url": "../../../SourceCode/Pseudo/ChalmersGU/DynamicArrayList.txt",

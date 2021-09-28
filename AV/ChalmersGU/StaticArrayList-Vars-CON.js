@@ -2,7 +2,7 @@
 // Written by Jun Yang and Cliff Shaffer, modified by Peter Ljunglöf
 $(document).ready(function() {
   "use strict";
-  var av_name = "CGUStaticArrayListVarsCON";
+  var av_name = "StaticArrayList-Vars-CON";
   var av = new JSAV(av_name);
   var pseudo = av.code({
     "url": "../../../SourceCode/Pseudo/ChalmersGU/StaticArrayList.txt",

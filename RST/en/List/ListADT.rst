@@ -134,10 +134,10 @@ Apart from these four, we also want to be able to loop through the list elements
 
 |
 
-.. inlineav:: CGUListADTpositionsCON ss
+.. inlineav:: ListADT-Positions-CON ss
    :long_name: List ADT Positions Slideshow
-   :links: AV/ChalmersGU/CGUStyles.css
-   :scripts: AV/ChalmersGU/CGUListADTpositionsCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/ListADT-Positions-CON.js
    :output: show
 
 The ``List`` member functions allow you to build a list with elements
