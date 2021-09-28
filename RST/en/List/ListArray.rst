@@ -134,19 +134,11 @@ Remove Practice Exericise
    :long_name: Array-based List Remove Exercise
 
 
-Static Array-based List Practice Questions
+Static Array-based List Summary Questions
 ------------------------------------------------
 
-.. avembed:: Exercises/List/ALSumm.html ka
-   :long_name: Array-based List Summary
-
-|
-
-.. TODO::
-   Figure out why this doesn't work...
-
-.. avembed:: Exercises/ChalmersGU/StaticArrayListSummaryQUIZ.html ka
-   :long_name: Array-based List Summary
+.. avembed:: Exercises/ChalmersGU/StaticArrayList-Summary-QUIZ.html ka
+   :long_name: Static Array-based List Summary
 
 
 Static Array-based List: Full code
