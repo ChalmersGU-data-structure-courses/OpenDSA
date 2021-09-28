@@ -11,21 +11,20 @@ class StaticArrayList(E) implements List(E)
 /* *** ODSAendTag: StaticArrayListInit *** */
 
 /* *** ODSATag: StaticArrayListGetSet *** */
+    // Precondition: 0 <= i < listSize
     get(i:int) : E
-        make sure that 0 <= i < size of internalArray
         return internalArray[i]
 
+    // Precondition: 0 <= i < listSize
     set(i:int, x:E) : E
-        make sure that 0 <= i < size of internalArray
         old : E = internalArray[i]
         internalArray[i] = x
         return old
 /* *** ODSAendTag: StaticArrayListGetSet *** */
 
 /* *** ODSATag: StaticArrayListAdd *** */
+    // Precondition: 0 <= i <= listSize, and listSize < size of internalArray
     add(i:int, x:E)
-        make sure that listSize < size of internalArray
-        make sure that 0 <= i <= size of internalArray
         listSize += 1
         for k in listSize-1, listSize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
@@ -33,9 +32,8 @@ class StaticArrayList(E) implements List(E)
 /* *** ODSAendTag: StaticArrayListAdd *** */
 
 /* *** ODSATag: StaticArrayListRemove *** */
+    // Precondition: 0 <= i < listSize, and listSize > 0
     remove(i:int) : E
-        make sure that size of internalArray > 0
-        make sure that 0 <= i < size of internalArray
         x : E = internalArray[i]
         for k in i+1, i+2, ..., listSize-1
             internalArray[k] = internalArray[k+1]

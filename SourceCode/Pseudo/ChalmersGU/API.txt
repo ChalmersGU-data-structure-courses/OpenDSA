@@ -8,10 +8,10 @@ interface Collection(E) extends Iterable(E)
 
 /* *** ODSATag: ListADT *** */
 interface List(E) extends Collection(E)
-    add(i:int, x:E)       // Adds x at position i.
-    get(i:int)      : E   // Returns the element at position i.
-    set(i:int, x:E) : E   // Replaces the value at position i with x.
-    remove(i:int)   : E   // Removes the element at position i.
+    add(i:int, x:E)       // Adds x at position i; where 0 <= i <= size.
+    get(i:int)      : E   // Returns the element at position i; where 0 <= i < size.
+    set(i:int, x:E) : E   // Replaces the value at position i with x; where 0 <= i < size.
+    remove(i:int)   : E   // Removes the element at position i; where 0 <= i < size.
 /* *** ODSAendTag: ListADT *** */
 
 
