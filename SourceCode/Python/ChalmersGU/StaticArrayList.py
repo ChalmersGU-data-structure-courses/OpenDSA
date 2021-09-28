@@ -54,14 +54,19 @@ class StaticArrayList(List):
 #/* *** ODSAendTag: StaticArrayList *** */
 
 
+def _pprint(l):
+    print(l.size(), "[", " ".join(l.get(i) for i in range(l.size())), "|",
+              "- " * (len(l._internalArray) - l.size()) + "]", len(l._internalArray))
+
 if __name__ == '__main__':
     a = StaticArrayList(25)
-    for i in range(25): a.add(a.size(), chr(i+65))
-    print(" ".join(a.get(i) for i in range(a.size())))
-    for i in range(0, a.size(), 2): a.set(i, a.get(i) + a.get(i))
-    print(" ".join(a.get(i) for i in range(a.size())))
-    i = 0
-    while i < a.size():
-        a.remove(i)
-        i += 3
-    print(" ".join(a.get(i) for i in range(a.size())))
+    for i in range(20):
+        a.add(a.size(), chr(i+65))
+        if i % 5 == 0:
+            _pprint(a)
+    _pprint(a)
+    for i in range(0, a.size(), 2): a.set(i, a.get(i).lower())
+    _pprint(a)
+    for _ in range(4):
+        for i in range(a.size()-1, -1, -3): a.remove(i)
+        _pprint(a)

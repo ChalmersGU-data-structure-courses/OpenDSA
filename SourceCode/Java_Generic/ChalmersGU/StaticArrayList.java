@@ -67,17 +67,27 @@ class StaticArrayList<E> implements List<E> {
     }
 /* *** ODSAendTag: StaticArrayList *** */
 
+    public void pPrint() {
+        System.out.print(size() + " [ ");
+        for (int i=0; i<size(); i++) System.out.print(get(i) + " ");
+        System.out.print("| ");
+        for (int i=size(); i<internalArray.length; i++) System.out.print("- ");
+        System.out.println("] " + internalArray.length);
+    }
+
     public static void main(String[] args) {
         StaticArrayList<String> list = new StaticArrayList<>(25);
-        for (int i=0; i<25; i++) list.add(list.size(), String.valueOf((char)(i+65)));
-        for (int i=0; i<list.size(); i++) System.out.print(list.get(i) + " ");
-        System.out.println();
-        for (int i=0; i<list.size(); i+=2) list.set(i, list.get(i) + list.get(i));
-        for (int i=0; i<list.size(); i++) System.out.print(list.get(i) + " ");
-        System.out.println();
-        for (int i=0; i<list.size(); i+=3) list.remove(i);
-        for (int i=0; i<list.size(); i++) System.out.print(list.get(i) + " ");
-        System.out.println();
+        for (int i=0; i<20; i++) {
+            list.add(list.size(), String.valueOf((char)(i+65)));
+            if (i % 5 == 0) list.pPrint();
+        }
+        list.pPrint();
+        for (int i=0; i<list.size(); i+=2) list.set(i, list.get(i).toLowerCase());
+        list.pPrint();
+        for (int k=0; k<4; k++) {
+            for (int i=list.size()-1; i>=0; i-=3) list.remove(i);
+            list.pPrint();
+        }
     }
 /* *** ODSATag: StaticArrayList *** */
 }
