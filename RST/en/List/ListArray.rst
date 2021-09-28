@@ -99,7 +99,7 @@ which is :math:`\Theta(n)`.
 Add Practice Exericse
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. avembed:: Exercises/ChalmersGU/StaticArrayListAddPRO.html ka
+.. avembed:: Exercises/ChalmersGU/StaticArrayList-Add-PRO.html ka
    :long_name: Array-based List Add Exercise
 
 
@@ -130,7 +130,7 @@ In the worst case, insertion or removal each requires moving all
 Remove Practice Exericise
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. avembed:: Exercises/ChalmersGU/StaticArrayListRemovePRO.html ka
+.. avembed:: Exercises/ChalmersGU/StaticArrayList-Remove-PRO.html ka
    :long_name: Array-based List Remove Exercise
 
 
