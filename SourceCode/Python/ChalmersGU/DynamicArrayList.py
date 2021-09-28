@@ -39,7 +39,7 @@ class DynamicArrayList(List):
             self._internalArray[k-1] = self._internalArray[k]
         self._listSize -= 1
         self._internalArray[self._listSize] = None   # For garbage collection
-        if self._listSize < len(self._internalArray) // 3:
+        if self._listSize <= len(self._internalArray) // 3:
             self._resizeArray(len(self._internalArray) // 2)
         return x
 #/* *** ODSAendTag: DynamicArrayListRemove *** */

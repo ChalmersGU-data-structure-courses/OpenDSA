@@ -50,7 +50,7 @@ class DynamicArrayList<E> implements List<E> {
         }
         listSize--;
         internalArray[listSize] = null;   // For garbage collection
-        if (listSize < internalArray.length / 3) {
+        if (listSize <= internalArray.length / 3) {
             resizeArray(internalArray.length / 2);
         }
         return x;
