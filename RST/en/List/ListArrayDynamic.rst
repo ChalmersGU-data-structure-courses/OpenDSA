@@ -105,7 +105,7 @@ So we can add the following lines to the end of the ``remove`` method:
 
 ::
 
-        if listSize < size of internalArray / 3
+        if listSize <= size of internalArray / 3
             resizeArray(size of internalArray / 2)
 
 
