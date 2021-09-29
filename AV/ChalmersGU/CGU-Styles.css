@@ -121,3 +121,73 @@
 }
 
 /*********************************************************/
+
+#LinkedList-Overview-CON {
+  height: 60px;
+}
+
+/*********************************************************/
+
+#LinkedList-Iteration-CON {
+  height: 240px;
+}
+
+/*********************************************************/
+
+#LinkedList-Problems-CON {
+  height: 240px;
+}
+
+#LinkedList-Problems-CON .jsavoutput.jsavline {
+  height: 70px;
+}
+
+/*********************************************************/
+
+#LinkedList-Add-CON .jsavcanvas {
+  height: 340px;
+}
+
+#LinkedList-Add-CON .jsavoutput.jsavline {
+  height: 30px;
+}
+
+#LinkedList-Add-CON .jsavcode {
+  top: 145px;
+  width: 600px;
+  position: relative;
+}
+
+/*********************************************************/
+
+#LinkedList-AddSpecial-CON .jsavcanvas {
+  height: 340px;
+}
+
+#LinkedList-AddSpecial-CON .jsavoutput.jsavline {
+  height: 30px;
+}
+
+#LinkedList-AddSpecial-CON .jsavcode {
+  top: 145px;
+  width: 600px;
+  position: relative;
+}
+
+/*********************************************************/
+
+#LinkedList-Remove-CON {
+  height: 580px;
+}
+
+#LinkedList-Remove-CON .jsavoutput.jsavline {
+  height: 30px;
+}
+
+#LinkedList-Remove-CON .jsavcode {
+  position: relative;
+  top: 150px;
+  width: 540px;
+}
+
+/*********************************************************/
