@@ -1,7 +1,5 @@
 
-.greyedout {
-    color: #AAA;
-}
+/*********************************************************/
 
 #ListADT-Positions-CON { 
   height: 175px;
@@ -23,6 +21,8 @@
   max-width: 40px !important;
 }
 
+/*********************************************************/
+
 #StaticArrayList-Vars-CON {
   height: 280px;
 }
@@ -31,6 +31,8 @@
   height: 50px;
 }
 
+/*********************************************************/
+
 #StaticArrayList-Intro-CON {
   height: 190px;
 }
@@ -38,6 +40,8 @@
 #StaticArrayList-Intro-CON .jsavoutput.jsavline {
   height: 40px;
 }
+
+/*********************************************************/
 
 #StaticArrayList-Add-CON {
   height: 310px;
@@ -56,6 +60,8 @@
   height: 30px;
 }
 
+/*********************************************************/
+
 #StaticArrayList-Append-CON {
   height: 270px;
 }
@@ -68,6 +74,8 @@
 #StaticArrayList-Append-CON .jsavoutput.jsavline {
   height: 20px;
 }
+
+/*********************************************************/
 
 #StaticArrayList-Remove-CON {
   height: 340px;
@@ -82,6 +90,8 @@
   height: 30px;
 }
 
+/*********************************************************/
+
 #DynamicArrayList-Append-CON {
   height: 320px;
 }
@@ -95,6 +105,8 @@
   height: 30px;
 }
 
+/*********************************************************/
+
 #DynamicArrayList-Remove-CON {
   height: 380px;
 }
@@ -107,3 +119,5 @@
 #DynamicArrayList-Remove-CON .jsavoutput.jsavline {
   height: 30px;
 }
+
+/*********************************************************/
