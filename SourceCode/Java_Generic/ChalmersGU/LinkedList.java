@@ -15,7 +15,7 @@ class LinkedList<E> implements List<E> {
 
 /* *** ODSATag: LinkedListNode *** */
     private class Node {
-        E elem;          // Value for this node
+        E elem;       // Value for this node
         Node next;    // Pointer to next node in list
 
         Node(E elem, Node next) {
