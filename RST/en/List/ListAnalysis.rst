@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: array-based list; linked list
    :satisfies: list implementation analysis; overhead
    :topic: Lists
@@ -182,14 +182,14 @@ Here are how they are implemented in Java and Python:
   meaning that the internal array grows automatically when necessary.
   The growth factor is 50%, so that if the array has size 1024,
   it will grow with another 512 elements.
-  [`Source: GitHub <https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/ArrayList.java#L236>`_]
+  [`Source: ArrayList.java <https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/ArrayList.java#L236>`_]
   However, the ArrayList will never shrink automatically, but instead it's up to the programmer
   to decide when to shrink it.
 
 - Java's
   `java.util.LinkedList <https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html>`_
   implements doubly-linked lists, so that the iterator can move forward and backward through the list.
-  [`Source: GitHub <https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/LinkedList.java#L974-L984>`_]
+  [`Source: LinkedList.java <https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/LinkedList.java#L974-L984>`_]
 
 - Python's standard lists are dynamic.
   In fact, Python doesn't even support fixed-length lists, so our code in this module is a bit of a hack.
@@ -197,7 +197,7 @@ Here are how they are implemented in Java and Python:
   and the growth factor is 1/8 (12.5%), meaning that if the array has size 1024,
   it will grow with another 128 elements.
   It shrinks the array by 1/8 whenever less than half of the array is occupied.
-  [`Source: GitHub <https://github.com/python/cpython/blob/e649e0658ff2af87b07d994c05ae048e16e31aae/Objects/listobject.c#L71>`_]
+  [`Source: listobject.c <https://github.com/python/cpython/blob/e649e0658ff2af87b07d994c05ae048e16e31aae/Objects/listobject.c#L71>`_]
 
 
 
