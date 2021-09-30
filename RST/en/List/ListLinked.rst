@@ -125,13 +125,12 @@ Here's the code for addition.
 .. codeinclude:: ChalmersGU/LinkedList
    :tag: LinkedListAdd
 
-Exercises
 
-.. TODO::
-   Update this!
+Here's an exercise for adding a value to a linked list.
 
-.. avembed:: Exercises/List/LlistInsertPRO.html ka
-   :long_name: Linked List Insert Exercise
+.. avembed:: Exercises/ChalmersGU/LinkedList-Add-PRO.html ka
+   :long_name: Linked List Add Exercise
+
 
 
 Removing a Node
