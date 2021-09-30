@@ -30,7 +30,7 @@ box, signifying that there is no link coming out of this box.
 .. inlineav:: LinkedList-Overview-CON dgm
    :long_name: Linked List Overview
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-Overview-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-Overview-CON.js
    :align: center
 
 Because a list node is a distinct object (as opposed to simply a cell
@@ -45,7 +45,7 @@ has a single pointer to the next node on the list.
 .. inlineav:: LinkedList-Iteration-CON ss
    :long_name: Linked List Slideshow 1
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-Iteration-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-Iteration-CON.js
    :output: show
 
 Our class for linked lists contains two private variables,
@@ -86,7 +86,7 @@ there is a problem using a pointer to the ``current`` node.
 .. inlineav:: LinkedList-Problems-CON ss
    :long_name: Linked List Add/Remove Problems
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-Problems-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-Problems-CON.js
    :output: show
 
 So, using a ``current`` pointer, it is possible to add and remove nodes, using some complicated coding.
@@ -106,7 +106,7 @@ Adding a Node
 .. inlineav:: LinkedList-Add-CON ss
    :long_name: Linked List Add Slideshow
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-Add-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-Add-CON.js
    :output: show
    
 
@@ -116,11 +116,11 @@ Inserting at the beginning of a list, and appending at the end.
 .. inlineav:: LinkedList-AddSpecial-CON ss
    :long_name: Linked List Add Special Cases Slideshow
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-AddSpecial-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-AddSpecial-CON.js
    :output: show
 
 
-Here's the code for addition:
+Here's the code for addition.
 
 .. codeinclude:: ChalmersGU/LinkedList
    :tag: LinkedListAdd
@@ -140,7 +140,7 @@ Removing a Node
 .. inlineav:: LinkedList-Remove-CON ss
    :long_name: Linked List Remove Slideshow
    :links: AV/ChalmersGU/CGU-Styles.css
-   :scripts: AV/ChalmersGU/LinkedList-Helpers.js AV/ChalmersGU/LinkedList-Remove-CON.js
+   :scripts: AV/ChalmersGU/LinkedList-Remove-CON.js
    :output: show
 
 Here's the code for deletion:
