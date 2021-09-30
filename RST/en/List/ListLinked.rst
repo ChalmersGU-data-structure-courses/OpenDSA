@@ -148,12 +148,9 @@ Here's the code for deletion:
    :tag: LinkedListRemove
 
 
-Exercises
+And here's an exercise.
 
-.. TODO::
-   Update this!
-
-.. avembed:: Exercises/List/LlistRemovePRO.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedList-Remove-PRO.html ka
    :long_name: Linked List Remove Exercise
 
    
