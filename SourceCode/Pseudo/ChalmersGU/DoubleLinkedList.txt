@@ -1,0 +1,97 @@
+
+/* *** ODSATag: DoubleLinkedList *** */
+/* *** ODSATag: DoubleLinkedListHeader *** */
+/* *** ODSATag: DoubleLinkedListVars *** */
+class DoubleLinkedList(E) implements List(E)
+    private head     : DNode   // Pointer to list header
+    private tail     : DNode   // Pointer to list tail
+    private listSize : int     // Size of list
+
+    DoubleLinkedList()
+        head = null
+        tail = null
+        listSize = 0
+/* *** ODSAendTag: DoubleLinkedListVars *** */
+
+/* *** ODSATag: DoubleLinkedListNode *** */
+    private class DNode
+        elem : E      // Value for this node
+        prev : Node   // Pointer to previous node in list
+        next : Node   // Pointer to next node in list
+/* *** ODSAendTag: DoubleLinkedListNode *** */
+/* *** ODSAendTag: DoubleLinkedListHeader *** */
+
+/* *** ODSATag: DoubleLinkedListGetSet *** */
+    // Precondition: 0 <= i < listSize
+    get(i:int) : E
+        current : E = head
+        repeat i times
+            current = current.next
+        return current.elem
+
+    // Precondition: 0 <= i < listSize
+    set(i:int, x:E) : E
+        current : DNode = head
+        repeat i times
+            current = current.next
+        old : E = current.elem
+        current.elem = x
+        return old
+/* *** ODSAendTag: DoubleLinkedListGetSet *** */
+
+/* *** ODSATag: DoubleLinkedListAdd *** */
+    // Precondition: 0 <= i <= listSize
+    add(i:int, x:E)
+        if i == 0
+            newhead = new DNode(x, null, head)
+            head.prev = newhead
+            head = newhead
+        if i == listSize
+            newtail = new DNone(x, tail, null)
+            tail.next = newtail
+            tail = newtail
+        else
+            prev : DNode = head
+            repeat i-1 times
+                prev = prev.next
+            next : DNode  = prev.next
+            newnode = new DNode(x, prev, next)
+            prev.next = newnode
+            next.prev = newnode
+        listSize += 1
+/* *** ODSAendTag: DoubleLinkedListAdd *** */
+
+/* *** ODSATag: DoubleLinkedListRemove *** */
+    // Precondition: 0 <= i < listSize, and listSize > 0
+    remove(i:int) : E
+        if i == 0
+            removed : Node = head
+            head = removed.next
+            removed.prev = null
+        else if i == listSize-1
+            removed : Node = tail
+            tail = removed.prev
+            tail.next = null
+        else
+            prev : Node = head
+            repeat i-1 times
+                prev = prev.next
+            removed : Node = prev.next
+            prev.next = removed.next
+        removed.prev = removed.next = null   // For garbage collection
+        listSize -= 1
+        return removed.elem
+/* *** ODSAendTag: DoubleLinkedListRemove *** */
+
+    isEmpty() : boolean
+        return listSize == 0
+
+    size() : int
+        return listSize
+
+/* *** ODSATag: DoubleLinkedListIterator *** */
+    iterator() : Iterator(E)
+        return an iterator over the elements in internalArray
+/* *** ODSAendTag: DoubleLinkedListIterator *** */
+/* *** ODSAendTag: DoubleLinkedList *** */
+
