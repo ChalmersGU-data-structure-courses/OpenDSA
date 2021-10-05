@@ -13,9 +13,6 @@ Comparison of List Implementations
 ==================================
 
 
-.. TODO::
-   Update!
-
 Space Comparison
 ----------------
 
@@ -34,137 +31,97 @@ This additional space is called :term:`overhead`.
 :term:`Array-based lists <array-based list>` have the disadvantage
 that their size must be predetermined before the array can be
 allocated.
-Array-based lists cannot grow beyond their predetermined size.
-Whenever the list contains only a few elements, a
+Static array-based lists cannot grow beyond their predetermined size,
+but dynamic lists will automatically reallocate the array when needed.
+However, when the list has recently been reallocated, a
 substantial amount of space might be tied up in a largely empty array.
 This empty space is the overhead required by the array-based list.
 :term:`Linked lists <linked list>` have the advantage that they only
 need space for the objects actually on the list.
-There is no limit to the number of elements on a linked list,
+There is no limit to the number of elements in either a linked list
+or a dynamic array-based list,
 as long as there is :term:`free store` memory available.
-The amount of space required by a linked list is :math:`\Theta(n)`,
-while the space required by the array-based list implementation is
-:math:`\Omega(n)`, but can be greater.
 
+The amount of space required by a linked list is directly proportional
+to the number of elements :math:`n`.
+Assuming that each list node takes up :math:`K` bytes of memory, the full list
+will use :math:`Kn` bytes.
+The amount of space required by an array-based list is in the worst case
+three times as much as :math:`n` times the size of an array cell.
+(This worst case will arise when we remove a lot of elements from the list,
+because we wait until it is 1/3 full until we shrink the array).
+So assuming that one array cell takes up :math:`C` bytes, the full array-based list
+will use at least :math:`Cn` bytes, and at most :math:`3Cn` bytes.
+
+So, which one is the best? It depends on the size of the list nodes :math:`K`,
+compared to the size of the array cells :math:`C`.
 Array-based lists have the advantage that there is no wasted
 space for an individual element.
 Linked lists require that an extra pointer for the ``next`` field be
 added to every list node.
 So the linked list has these ``next`` pointers as overhead.
-If the element size is small, then the overhead for
-links can be a significant fraction of the total storage.
-When the array for the array-based list is completely filled, there
-is no wasted space, and so no overhead.
-The array-based list will then be more space efficient, by a
-constant factor, than the linked implementation.
+In many cases, :math:`K` is 2–3 times as large as :math:`C`, so they will be
+quite similar in size on average. But this depends on the programming language,
+the operating system, and perhaps other factors.
 
-A simple formula can be used to determine whether the array-based list
-or the linked list implementation will be more space efficient in a
-particular situation.
-Call :math:`n` the number of elements currently in the list,
-:math:`P` the size of a pointer in storage units
-(typically four bytes), :math:`E` the size of a data element in
-storage units (this could be anything, from one bit for a Boolean
-variable on up to thousands of bytes or more for complex records),
-and :math:`D` the maximum number of list elements that can be stored
-in the array.
-The amount of space required for the array-based list is :math:`DE`,
-regardless of the number of elements actually stored in the list at
-any given time.
-The amount of space required for the linked list is :math:`n(P + E)`.
-The smaller of these expressions for a given value :math:`n`
-determines the more space-efficient implementation for :math:`n`
-elements.
-In general, the linked implementation requires less space than the
-array-based implementation when relatively few elements are in the
-list.
-Conversely, the array-based implementation becomes more space
-efficient when the array is close to full.
-Using the equation, we can solve for :math:`n` to determine the
-:term:`break-even point` beyond which the array-based implementation
-is more space efficient in any particular situation.
-This occurs when
+Note that these calculations exclude the memory used by the actual list elements,
+since the lists themselves only contain pointers to the elements!
+And in many cases, the objects themselves are much larger than the list nodes
+(or array cells).
 
-.. math::
-
-   n > DE/(P + E).
-
-If :math:`P = E`, then the break-even point is at :math:`D/2`.
-This would happen if the element field is either a four-byte
-``int`` value or a pointer, and the ``next`` field is a typical
-four-byte pointer.
-That is, the array-based implementation would be more efficient (if
-the link field and the element field are the same size) whenever the
-array is more than half full.
-
-As a rule of thumb, linked lists are more space efficient when
-implementing lists whose number of elements varies widely or is
-unknown.
-Array-based lists are generally more space efficient when
-the user knows in advance approximately how large the list will
-become, and can be confident that the list will never grow beyond a
-certain limit.
-
-.. avembed:: Exercises/List/ListOverhead.html ka
-   :long_name: Breakeven Point Exercise
 
 
 Time Comparison
 ---------------
 
 Array-based lists are faster for access by position.
-Positions can easily be adjusted forwards or backwards by
-the ``next`` and ``prev`` methods.
-These operations always take :math:`\Theta(1)` time.
-In contrast, singly linked lists have no explicit access to the
-previous element, and access by position requires that we march
-down the list from the front (or the current position) to the
-specified position.
-Both of these operations require :math:`\Theta(n)` time in the average
-and worst cases, if we assume that each position on the list is
-equally likely to be accessed on any call to ``prev`` or
-``moveToPos``. 
+To locate an element anywhere in the list is constant time,
+i.e., they take :math:`\Theta(1)` time.
+In contrast, for singly linked lists,
+access by position requires that we march
+down the list from the front to the specified position.
+This requires :math:`\Theta(n)` time in the worst case,
+which is when if we want to locate the very last element.
 
-Given a pointer to a suitable location in the list,
-the ``insert`` and ``remove`` methods for linked lists
-require only :math:`\Theta(1)` time.
+Assuming that we already have located a suitable location in the list,
+insertion and removal are constant time, :math:`\Theta(1)`.
+However, as already mentioned, finding that location takes :math:`\Theta(n)`,
+so the ``add`` and ``remove`` methods are linear time,  :math:`\Theta(n)`.
 Array-based lists must shift the remainder of the list up or down
 within the array.
-This requires :math:`\Theta(n)` time in the average and worst cases.
-For many applications, the time to insert and delete elements
-dominates all other operations.
-For this reason, linked lists are often preferred to array-based
-lists.
+This requires :math:`\Theta(n)` time in the worst case.
 
-When implementing the array-based list, an implementor could
-allow the size of the array to grow and shrink depending on the number 
-of elements that are actually stored.
-This data structure is known as a :term:`dynamic array`.
-For example, both the Java and C++/STL ``Vector`` classes implement a
-dynamic array,
-and JavaScript arrays are always dynamic.
-Dynamic arrays allow the programmer to get around the limitation on
-the traditional array that its size cannot be changed once the array
-has been created.
-This also means that space need not be allocated to the dynamic array
-until it is to be used.
-The disadvantage of this approach is that it takes time to deal
-with space adjustments on the array.
-Each time the array grows in size, its contents must be copied.
-A good implementation of the dynamic array will grow and shrink
-the array in such a way as to keep the overall cost for a series of
-insert/delete operations relatively inexpensive, even though an
-occasional insert/delete operation might be expensive.
-A simple rule of thumb is to double the size of the array when it
-becomes full, and to cut the array size in half when it becomes one
-quarter full.
-To analyze the overall cost of dynamic array operations over time,
-we need to use a technique known as
-:ref:`amortized analysis <amortized analysis> <AmortAnal>`.
+Note that linked lists and array-based lists have different worst-case
+isntances! For a linked list, inserting/removing at the end takes the longest time,
+while for an array-base list, the problem is to insert/remove from the beginning.
+
+When to use linked lists?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+According to the calculations above, linked lists are worse than array-based lists,
+because all operations are slow (linear time). So why even bother using linked lists?
+
+First there are limited versions of lists that can be implemented efficiently using linked lists,
+we will look at :ref:`stacks <stack> <StackLinked>` and :ref:`queues <queue> <QueueLinked>` later.
+
+Second, our list API is not the best for linked lists.
+If we instead could have a pointer to the "current" list node, and have methods for
+moving forward and backward in the list, several of the operations can be constant time.
+In the Java standard API this is called a ListIterator_,
+which is part of Java's standard LinkedList_.
+
+.. _ListIterator: https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html
+.. _LinkedList: https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
+
+But these advanced list iterators are not part of this course, and in fact there are not very
+algorithms where list iterators are particularly useful.
 
 
 Practice Questions
 ~~~~~~~~~~~~~~~~~~
+
+.. TODO::
+   Update this exercise
 
 .. avembed:: Exercises/List/LLSumm.html ka
    :long_name: Linked List Summary Exercise
