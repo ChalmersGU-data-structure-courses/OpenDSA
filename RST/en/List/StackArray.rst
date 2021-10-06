@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: list ADT
    :satisfies: stack ADT; array-based stack; stack
    :topic: Lists
@@ -24,8 +24,6 @@ Many applications require only the limited form of
 insert and remove operations that stacks provide.
 In such cases, it is more efficient to use the simpler stack data
 structure rather than the generic list.
-For example, the :ref:`freelist <freelist> <Freelist>` is really a
-stack.
 
 Despite their restrictions, stacks have many uses.
 Thus, a special vocabulary for stacks has developed.
@@ -40,27 +38,19 @@ Elements are not said to be inserted, they are :term:`pushed <push>`
 onto the stack.
 When removed, an element is said to be :term:`popped <pop>` from the
 stack.
-Here is a simple stack :term:`ADT`.
+Here is our :term:`ADT` for stacks:
 
-.. codeinclude:: Lists/Stack
-   :tag: Stack
+.. codeinclude:: ChalmersGU/API
+   :tag: StackADT
 
 As with lists, there are many variations on stack implementation.
-The two approaches presented here are the :term:`array-based stack`
+The two main approaches are the :term:`array-based stack`
 and the :ref:`linked stack <linked stack> <StackLinked>`, 
 which are analogous to array-based and linked lists, respectively.
 
 
-Array-Based Stacks
-~~~~~~~~~~~~~~~~~~
-
-Here is a complete implementation for
-the array-based stack class.
-
-.. codeinclude:: Lists/AStack
-   :tag: AStack1,AStack2
-
-|
+Dynamic Array-Based Stacks
+------------------------------
 
 .. inlineav:: astackVarCON ss
    :long_name: Array stack variables slideshow
@@ -68,6 +58,8 @@ the array-based stack class.
    :scripts: AV/List/astackVarCON.js
    :output: show
    
+.. codeinclude:: ChalmersGU/DynamicArrayStack
+   :tag: DynamicArrayStackInit
 
 The array-based stack implementation is essentially
 a simplified version of the array-based list.
@@ -79,8 +71,9 @@ array should represent the top of the stack.
    :links: AV/List/astackCON.css
    :scripts: AV/List/astackTopCON.js
    :output: show
-   
-|
+
+Pushing to the Stack
+----------------------
 
 .. inlineav:: astackPushCON ss
    :long_name: Array stack push slideshow
@@ -88,18 +81,38 @@ array should represent the top of the stack.
    :scripts: AV/List/astackPushCON.js
    :output: show
 
+.. codeinclude:: ChalmersGU/DynamicArrayStack
+   :tag: DynamicArrayStackPush
+
 .. avembed:: Exercises/List/AstackPushPRO.html ka
    :long_name: Array-based Stack Push Exercise
 
 
-Pop
----
+Popping from the Stack
+--------------------------
 
 .. inlineav:: astackPopCON ss
    :long_name: Array stack pop slideshow
    :links: AV/List/astackCON.css
    :scripts: AV/List/astackPopCON.js
    :output: show
-   
+
+.. codeinclude:: ChalmersGU/DynamicArrayStack
+   :tag: DynamicArrayStackPop
+
 .. avembed:: Exercises/List/AstackPopPRO.html ka
    :long_name: Array-based Stack Pop Exercise
+
+
+Array-based stacks: Full implementation
+--------------------------------------------
+
+As you hopefully have noticed, the code for stacks is very similar to the code for lists.
+E.g., the internal variables are exactly the same, and the resizing method doesn't change at all.
+The main difference is that stacks are even simpler to implement than their list counterparts.
+
+Here is a complete implementation for
+the (dynamic) array-based stack class.
+
+.. codeinclude:: ChalmersGU/DynamicArrayStack
+   :tag: DynamicArrayStack
