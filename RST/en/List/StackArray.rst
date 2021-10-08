@@ -81,7 +81,7 @@ Pushing to the Stack
 .. codeinclude:: ChalmersGU/DynamicArrayStack
    :tag: DynamicArrayStackPush
 
-.. avembed:: Exercises/List/AstackPushPRO.html ka
+.. avembed:: Exercises/ChalmersGU/DynamicArrayStack-Push-PRO.html ka
    :long_name: Array-based Stack Push Exercise
 
 
@@ -97,7 +97,7 @@ Popping from the Stack
 .. codeinclude:: ChalmersGU/DynamicArrayStack
    :tag: DynamicArrayStackPop
 
-.. avembed:: Exercises/List/AstackPopPRO.html ka
+.. avembed:: Exercises/ChalmersGU/DynamicArrayStack-Pop-PRO.html ka
    :long_name: Array-based Stack Pop Exercise
 
 
