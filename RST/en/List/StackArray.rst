@@ -52,11 +52,8 @@ which are analogous to array-based and linked lists, respectively.
 Dynamic Array-Based Stacks
 ------------------------------
 
-.. inlineav:: astackVarCON ss
-   :long_name: Array stack variables slideshow
-   :links: AV/List/astackCON.css
-   :scripts: AV/List/astackVarCON.js
-   :output: show
+The dynamic array-based stack contains an internal array (which will grow and shrink dynamically),
+and a pointer ot the **top** of the stack (i.e., the next free slot in the array). 
    
 .. codeinclude:: ChalmersGU/DynamicArrayStack
    :tag: DynamicArrayStackInit
@@ -66,19 +63,19 @@ a simplified version of the array-based list.
 The only important design decision to be made is which end of the
 array should represent the top of the stack.
 
-.. inlineav:: astackTopCON ss
+.. inlineav:: DynamicArrayStack-Top-CON ss
    :long_name: Array stack top position slideshow
-   :links: AV/List/astackCON.css
-   :scripts: AV/List/astackTopCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/DynamicArrayStack-Top-CON.js
    :output: show
 
 Pushing to the Stack
 ----------------------
 
-.. inlineav:: astackPushCON ss
+.. inlineav:: DynamicArrayStack-Push-CON ss
    :long_name: Array stack push slideshow
-   :links: AV/List/astackCON.css
-   :scripts: AV/List/astackPushCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/DynamicArrayStack-Push-CON.js
    :output: show
 
 .. codeinclude:: ChalmersGU/DynamicArrayStack
@@ -91,10 +88,10 @@ Pushing to the Stack
 Popping from the Stack
 --------------------------
 
-.. inlineav:: astackPopCON ss
+.. inlineav:: DynamicArrayStack-Pop-CON ss
    :long_name: Array stack pop slideshow
-   :links: AV/List/astackCON.css
-   :scripts: AV/List/astackPopCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/DynamicArrayStack-Pop-CON.js
    :output: show
 
 .. codeinclude:: ChalmersGU/DynamicArrayStack
