@@ -3,34 +3,34 @@
 /* *** ODSATag: DynamicArrayStackInit *** */
 class DynamicArrayStack(E) implements Stack(E)
     private internalArray : E[]
-    private listSize      : int
+    private top           : int
 
     DynamicArrayStack()
         internalArray = new array of size 1
-        listSize = 0
+        top = 0
 /* *** ODSAendTag: DynamicArrayStackInit *** */
 
 /* *** ODSATag: DynamicArrayStackPush *** */
     push(x:E)
-        if listSize >= size of internalArray
+        if top >= size of internalArray
             resizeArray(2 * size of internalArray)
-        listSize += 1
-        internalArray[i] = x
+        internalArray[top] = x
+        top += 1
 /* *** ODSAendTag: DynamicArrayStackPush *** */
 
 /* *** ODSATag: DynamicArrayStackPeek *** */
-    // Precondition: listSize > 0
+    // Precondition: top > 0
     peek() : E
-        return internalArray[listSize-1]
+        return internalArray[top-1]
 /* *** ODSAendTag: DynamicArrayStackPeek *** */
 
 /* *** ODSATag: DynamicArrayStackPop *** */
-    // Precondition: listSize > 0
+    // Precondition: top > 0
     pop() : E
-        x : E = internalArray[i]
-        listSize -= 1
-        internalArray[listSize] = null   // For garbage collection
-        if listSize < size of internalArray / 3
+        top -= 1
+        x : E = internalArray[top]
+        internalArray[top] = null   // For garbage collection
+        if top < size of internalArray / 3
             resizeArray(size of internalArray / 2)
         return x
 /* *** ODSAendTag: DynamicArrayStackPop *** */
@@ -38,16 +38,16 @@ class DynamicArrayStack(E) implements Stack(E)
 /* *** ODSATag: DynamicArrayStackResize *** */
     private resizeArray(newCapacity:int)
         newArray : E[] = new array of size newCapacity
-        for i in 0, 1, ..., listSize-1
+        for i in 0, 1, ..., top-1
             newArray[i] = internalArray[i]
         internalArray = newArray
 /* *** ODSAendTag: DynamicArrayStackResize *** */
 
     isEmpty() : boolean
-        return listSize == 0
+        return top == 0
 
     size() : int
-        return listSize
+        return top
 
 /* *** ODSATag: DynamicArrayStackIterator *** */
     iterator() : Iterator(E)
