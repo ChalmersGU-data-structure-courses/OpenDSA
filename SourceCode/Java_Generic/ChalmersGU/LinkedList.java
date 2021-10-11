@@ -113,9 +113,9 @@ class LinkedList<E> implements List<E> {
 /* *** ODSAendTag: LinkedList *** */
 
     public void pPrint() {
-        System.out.print(size() + " [ ");
+        System.out.print("[ ");
         for (E e : this) System.out.print(e + " ");
-        System.out.println("]");
+        System.out.println("] " + size());
     }
 
     public static void main(String[] args) {

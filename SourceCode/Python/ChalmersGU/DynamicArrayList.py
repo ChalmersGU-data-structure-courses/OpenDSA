@@ -82,8 +82,8 @@ class DynamicArrayListIterator(Iterator):
 
 
 def _pprint(l):
-    print(l.size(), "[", " ".join(str(e) for e in l), "|",
-              "- " * (len(l._internalArray) - l.size()) + "]", len(l._internalArray))
+    print(len(l._internalArray), "[", " ".join(str(e) for e in l), "|",
+              "- " * (len(l._internalArray) - l.size()) + "]", l.size())
 
 if __name__ == '__main__':
     a = DynamicArrayList()

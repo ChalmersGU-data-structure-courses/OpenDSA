@@ -96,7 +96,7 @@ class LinkedListNode:
 
 
 def _pprint(l):
-    print(l.size(), "[", " ".join(str(e) for e in l), "]")
+    print("[", " ".join(str(e) for e in l), "]", l.size())
 
 if __name__ == '__main__':
     a = LinkedList()

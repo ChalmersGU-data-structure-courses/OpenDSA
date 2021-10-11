@@ -85,18 +85,18 @@ class DynamicArrayStack<E> implements Stack<E> {
 /* *** ODSAendTag: DynamicArrayStack *** */
 
     public void pPrint() {
-        System.out.print(size() + " [ ");
-        for (E e : this) System.out.print(e + " ");
-        System.out.print("| ");
+        System.out.print(internalArray.length + " [ ");
         for (int i=size(); i<internalArray.length; i++) System.out.print("- ");
-        System.out.println("] " + internalArray.length);
+        System.out.print("| ");
+        for (E e : this) System.out.print(e + " ");
+        System.out.println("] " + size());
     }
 
     public static void main(String[] args) {
         DynamicArrayStack<String> list = new DynamicArrayStack<>();
         for (int i=0; i<23; i++) {
             list.push(String.valueOf((char)(i+65)));
-            if (i % 5 == 0) list.pPrint();
+            if (list.size() % 5 == 0) list.pPrint();
         }
         list.pPrint();
         while (!list.isEmpty()) {

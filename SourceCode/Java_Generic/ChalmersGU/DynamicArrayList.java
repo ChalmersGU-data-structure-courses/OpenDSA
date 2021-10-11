@@ -98,11 +98,11 @@ class DynamicArrayList<E> implements List<E> {
 /* *** ODSAendTag: DynamicArrayList *** */
 
     public void pPrint() {
-        System.out.print(size() + " [ ");
+        System.out.print(internalArray.length + " [ ");
         for (E e : this) System.out.print(e + " ");
         System.out.print("| ");
         for (int i=size(); i<internalArray.length; i++) System.out.print("- ");
-        System.out.println("] " + internalArray.length);
+        System.out.println("] " + size());
     }
 
     public static void main(String[] args) {
