@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: stack ADT
    :satisfies: linked stack
    :topic: Lists
@@ -19,19 +19,18 @@ The linked stack implementation is quite simple.
 Elements are inserted and removed only from the head of the list.
 A header node is not used because no special-case code is required
 for lists of zero or one elements.
-Here is the complete linked stack implementation.
-
-.. codeinclude:: Lists/LStack
-   :tag: LStack1,LStack2
 
 Here is a visual representation for the linked stack.
-
-.. _LStackDiagram:
 
 .. inlineav:: lstackDiagramCON dgm
    :links: AV/List/lstackCON.css
    :scripts: AV/List/llist.js AV/List/lstackDiagramCON.js
    :align: center   
+
+   
+.. codeinclude:: ChalmersGU/LinkedStack
+   :tag: LinkedStackInit
+
 
 
 Linked Stack Push
@@ -42,7 +41,10 @@ Linked Stack Push
    :links: AV/List/lstackCON.css
    :scripts: AV/List/llist.js AV/List/lstackPushCON.js
    :output: show
-   
+
+.. codeinclude:: ChalmersGU/LinkedStack
+   :tag: LinkedStackPush
+
 .. avembed:: Exercises/List/LstackPushPRO.html ka
    :long_name: Linked Stack Push Exercise
 
@@ -56,9 +58,20 @@ Linked Stack Pop
    :scripts: AV/List/llist.js AV/List/lstackPopCON.js
    :output: show
    
+.. codeinclude:: ChalmersGU/LinkedStack
+   :tag: LinkedStackPop
 
 .. avembed:: Exercises/List/LstackPopPRO.html ka
    :long_name: Linked Stack Pop Exercise
+
+
+Linked stacks: Full implementation
+--------------------------------------------
+
+Here is the complete linked stack implementation.
+
+.. codeinclude:: ChalmersGU/LinkedStack
+   :tag: LinkedStack
 
    
 Comparison of Array-Based and Linked Stacks
