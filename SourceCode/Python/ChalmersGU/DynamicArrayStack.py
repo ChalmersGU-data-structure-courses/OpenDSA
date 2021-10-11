@@ -57,14 +57,14 @@ class DynamicArrayStackIterator(Iterator):
     def __init__(self, array, size):
         self._array = array
         self._size = size
-        self._index = -1
+        self._index = size
 
     def __iter__(self):
         return self
 
     def __next__(self):
-        self._index += 1
-        if self._index >= self._size:
+        self._index -= 1
+        if self._index < 0:
             raise StopIteration
         return self._array[self._index]
 #/* *** ODSAendTag: DynamicArrayStackIterator *** */

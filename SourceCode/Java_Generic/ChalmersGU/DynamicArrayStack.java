@@ -71,13 +71,13 @@ class DynamicArrayStack<E> implements Stack<E> {
     private class DynamicArrayStackIterator implements Iterator<E> {
         private int index;
         DynamicArrayStackIterator() {
-            index = -1;
+            index = top;
         }
         public boolean hasNext() {
-            return index + 1 < top;
+            return index > 0;
         }
         public E next() {
-            index++;
+            index--;
             return internalArray[index];
         }
     }
