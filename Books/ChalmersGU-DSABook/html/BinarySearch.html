@@ -1,0 +1,445 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.2. Searching in an Array &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. Building a string" href="StringReading.html" />
+    <link rel="prev" title="1. Chapter Introduction: Search" href="SearchIntro.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 2 Arrays</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BinarySearch.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="SearchIntro.html">2.<span class="section-number">1. </span>Chapter Introduction: Search</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="StringReading.html">2.<span class="section-number">3. </span>Building a string</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sequential-search', 'binary-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinarySearch";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching in an Array";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="searching-in-an-array">
+<h1>2.<span class="section-number">2. </span>Searching in an Array<a class="headerlink" href="#searching-in-an-array" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.<span class="section-number">2.1. </span>Searching in an Array<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="sequential-search">
+<h3>2.<span class="section-number">2.1.1. </span>Sequential Search<a class="headerlink" href="#sequential-search" title="Permalink to this headline">¶</a></h3>
+<p>If you want to find the position in an unsorted array of <span class="math notranslate nohighlight">\(n\)</span>
+objects that stores a particular value, you cannot really do better
+than simply looking through the array from the beginning and move
+toward the end until you find what you are looking for.
+This algorithm is called <a class="reference internal" href="Glossary.html#term-sequential-search"><span class="xref std std-term">sequential search</span></a>.
+If you do find it, we call this a <a class="reference internal" href="Glossary.html#term-successful-search"><span class="xref std std-term">successful search</span></a>.
+If the value is not in the array, eventually you will reach the end.
+We will call this an <a class="reference internal" href="Glossary.html#term-unsuccessful-search"><span class="xref std std-term">unsuccessful search</span></a>.
+Here is a simple implementation for sequential search.</p>
+<div id="Sequential_Sequential_code"><ul><li><a href="#Sequential_Sequential_code_Pseudo">Pseudo-Code</a></li><li><a href="#Sequential_Sequential_code_Java_Generic">Java</a></li><li><a href="#Sequential_Sequential_code_Python">Python</a></li></ul><div id="Sequential_Sequential_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Sequential</span><span class="p">(</span><span class="n">A</span><span class="p">:</span> <span class="n">array</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">integer</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span> <span class="n">to</span> <span class="nf">arraySize</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">k</span>
+      <span class="k">return</span> <span class="n">i</span>
+  <span class="k">return</span> <span class="nf">arraySize</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div id="Sequential_Sequential_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of the element `e` in array `elements`.</span>
+<span class="c1">// If `e` is not found, return -1.</span>
+<span class="kd">static</span> <span class="n">E</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">elements</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">elements</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For each element</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elements</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">e</span><span class="p">))</span> <span class="p">{</span>            <span class="c1">// if we found it</span>
+            <span class="k">return</span> <span class="n">i</span><span class="p">;</span>                           <span class="c1">// return this position</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>                                  <span class="c1">// Otherwise, return -1</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Sequential_Sequential_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of the element `e` in the array `elements`.</span>
+<span class="c1"># If `e` is not found, return -1.</span>
+<span class="k">def</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)):</span>  <span class="c1"># For each element</span>
+        <span class="k">if</span> <span class="n">elements</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">e</span><span class="p">:</span>        <span class="c1"># if we found it</span>
+            <span class="k">return</span> <span class="n">i</span>                <span class="c1"># return this position</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                       <span class="c1"># Otherwise, return -1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Sequential_Sequential_code" ).tabs();});</script><p>It is natural to ask how long a program or algorithm will take to
+run.
+But we do not really care exactly how long a particular program will
+run on a particular computer.
+We just want some sort of estimate that will let us compare one
+approach to solving a problem with another.
+This is the basic idea of <a class="reference internal" href="Glossary.html#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>.
+In the case of sequential search, it is easy to see that if the value
+is in position <span class="math notranslate nohighlight">\(i\)</span> of the array, then sequential search will
+look at <span class="math notranslate nohighlight">\(i\)</span> values to find it.
+If the value is not in the array at all, then we must look at
+<span class="math notranslate nohighlight">\(n\)</span> values if the array holds <span class="math notranslate nohighlight">\(n\)</span> values.
+This would be called the <a class="reference internal" href="Glossary.html#term-worst-case"><span class="xref std std-term">worst case</span></a> for sequential search.
+Since the amount of work is proportional to <span class="math notranslate nohighlight">\(n\)</span>,
+we say that the worst case for sequential search has
+<a class="reference internal" href="Glossary.html#term-linear-growth-rate"><span class="xref std std-term">linear cost</span></a>.
+For this reason, the sequential search algorithm is sometimes
+called <a class="reference internal" href="Glossary.html#term-linear-search"><span class="xref std std-term">linear search</span></a>.</p>
+</div>
+<div class="section" id="binary-search">
+<h3>2.<span class="section-number">2.1.2. </span>Binary Search<a class="headerlink" href="#binary-search" title="Permalink to this headline">¶</a></h3>
+<p>Sequential search is the best that we can do when trying to find a
+value in an unsorted array. <a class="footnote-reference brackets" href="#id4" id="id2">1</a>
+But if the array is sorted in increasing order by value, then we can
+do much better.
+We use a process called <a class="reference internal" href="Glossary.html#term-binary-search"><span class="xref std std-term">binary search</span></a>.</p>
+<p>Binary search begins by examining the value in the middle
+position of the array; call this position <span class="math notranslate nohighlight">\(mid\)</span> and the
+corresponding value <span class="math notranslate nohighlight">\(k_{mid}\)</span>.
+If <span class="math notranslate nohighlight">\(k_{mid} = K\)</span>, then processing can stop immediately.
+This is unlikely to be the case, however.
+Fortunately, knowing the middle value provides useful information
+that can help guide the search process.
+In particular, if <span class="math notranslate nohighlight">\(k_{mid} &gt; K\)</span>, then you know that the value
+<span class="math notranslate nohighlight">\(K\)</span> cannot appear in the array at any position greater
+than <span class="math notranslate nohighlight">\(mid\)</span>.
+Thus, you can eliminate future search in the upper half of the array.
+Conversely, if <span class="math notranslate nohighlight">\(k_{mid} &lt; K\)</span>, then you know that you can
+ignore all positions in the array less than <span class="math notranslate nohighlight">\(mid\)</span>.
+Either way, half of the positions are eliminated from further
+consideration.
+Binary search next looks at the middle position in that part of the
+array where value <span class="math notranslate nohighlight">\(K\)</span> may exist.
+The value at this position again allows us to eliminate half
+of the remaining positions from consideration.
+This process repeats until either the desired value is found, or
+there are no positions remaining in the array that might contain the
+value <span class="math notranslate nohighlight">\(K\)</span>.
+Here is an illustration of the binary search method.</p>
+<div id="binarySearchCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="binarySearchCON" data-long-name="Binary Search Algorithm Slideshow" data-exer-id="" alt="Binary Search Algorithm Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="binarySearchCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="binarySearchCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="binarySearchCON_cm_error_msg" class="cm_error_msg">
+   <img id="binarySearchCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>And here is the method in more programming languages:</p>
+<div id="Bsearch_BinarySearch_code"><ul><li><a href="#Bsearch_BinarySearch_code_Java_Generic">Java</a></li><li><a href="#Bsearch_BinarySearch_code_Python">Python</a></li></ul><div id="Bsearch_BinarySearch_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of the element `e` in the sorted array `elements`.</span>
+<span class="c1">// If `e` is not found, return -1.</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">elements</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">high</span> <span class="o">=</span> <span class="n">elements</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>               <span class="c1">// Stop when low and high meet</span>
+        <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>     <span class="c1">// Check middle of subarray</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elements</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>              <span class="c1">// In right half</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">elements</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>             <span class="c1">// In left half</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">mid</span><span class="p">;</span>                 <span class="c1">// Found it</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>                          <span class="c1">// Search value not in array</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Bsearch_BinarySearch_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of the element `e` in the sorted array `elements`.</span>
+<span class="c1"># If `e` is not found, return -1.</span>
+<span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+    <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">high</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>             <span class="c1"># Stop when low and high meet</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>    <span class="c1"># Check middle of subarray</span>
+        <span class="k">if</span> <span class="n">elements</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>          <span class="c1"># In right half</span>
+        <span class="k">elif</span> <span class="n">elements</span><span class="p">[</span><span class="n">mid</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>         <span class="c1"># In left half</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">mid</span>             <span class="c1"># Found it</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                      <span class="c1"># Search value not in array</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Bsearch_BinarySearch_code" ).tabs();});</script><p>With the right math techniques, it is not too hard to show that the
+cost of binary search on an array of <span class="math notranslate nohighlight">\(n\)</span> values is at most
+<span class="math notranslate nohighlight">\(\log n\)</span>.
+This is because we are repeatedly splitting the size of the subarray
+that we must look at in half.
+We stop (in the worst case) when we reach a subarray of size 1.
+And we can only cut the value of <span class="math notranslate nohighlight">\(n\)</span> in half <span class="math notranslate nohighlight">\(\log n\)</span>
+times before we reach 1. <a class="footnote-reference brackets" href="#id5" id="id3">2</a></p>
+<div
+    id="binarySearchPRO"
+    class="embedContainer"
+    data-exer-name="binarySearchPRO"
+    data-long-name="Binary Search Proficiency Exercise"
+    data-short-name="binarySearchPRO"
+    data-frame-src="../../../AV/Searching/binarySearchPRO.html?localMode=true&amp;module=BinarySearch&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="binarySearchPRO_iframe"></div>
+  </div>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>It seems to be really “obvious” that sequential search is the
+best that you can do on an unsorted array.
+But writing a convincing proof that no algorithm could ever be
+discovered that is better is surprisingly difficult.
+This is an example of a
+<a class="reference internal" href="Glossary.html#term-lower-bounds-proof"><span class="xref std std-term">lower bounds proof</span></a> to find the cost for the best
+possible <a class="reference internal" href="Glossary.html#term-algorithm"><span class="xref std std-term">algorithm</span></a> to solve the <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a> of
+search in an unsorted array.</p>
+</dd>
+<dt class="label" id="id5"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>It is possible to
+<a class="reference internal" href="Glossary.html#term-search-lower-bound"><span class="xref std std-term">prove</span></a>
+that binary search is the most efficient algorithm possible in
+the worst case when searching in a sorted array.
+This is even more difficult than proving that sequential search
+is the most efficient algorithm possible on an unsorted array.</p>
+</dd>
+</dl>
+<script type="text/javascript" src="../../../AV/Searching/binarySearchCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="SearchIntro.html">2.<span class="section-number">1. </span>Chapter Introduction: Search</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="StringReading.html">2.<span class="section-number">3. </span>Building a string</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

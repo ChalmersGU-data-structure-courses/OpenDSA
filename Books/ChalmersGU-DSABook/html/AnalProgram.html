@@ -1,0 +1,638 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.8. Calculating Program Running Time &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="9. Analyzing Problems" href="AnalProblem.html" />
+    <link rel="prev" title="7. Lower Bounds and \(\Theta\) Notation" href="AnalLower.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/AnalProgram.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="AnalProblem.html">4.<span class="section-number">9. </span>Analyzing Problems</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['case-study:-two-search-algorithms', 'binary-search-practice-exercise', 'analyzing-binary-search', 'summary-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/AlgAnal/BsearchDandCRecurCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="calculating-program-running-time">
+<h1>4.<span class="section-number">8. </span>Calculating Program Running Time<a class="headerlink" href="#calculating-program-running-time" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>4.<span class="section-number">8.1. </span>Calculating Program Running Time<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This modules discusses the analysis for several simple code
+fragments.
+We will make use of the algorithm analysis simplifying rules:</p>
+<ol class="arabic simple">
+<li><p>If <span class="math notranslate nohighlight">\(f(n)\)</span> is in <span class="math notranslate nohighlight">\(O(g(n))\)</span> and <span class="math notranslate nohighlight">\(g(n)\)</span> is in
+<span class="math notranslate nohighlight">\(O(h(n))\)</span>, then <span class="math notranslate nohighlight">\(f(n)\)</span> is in <span class="math notranslate nohighlight">\(O(h(n))\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f(n)\)</span> is in <span class="math notranslate nohighlight">\(O(k g(n))\)</span> for any constant
+<span class="math notranslate nohighlight">\(k &gt; 0\)</span>, then <span class="math notranslate nohighlight">\(f(n)\)</span> is in <span class="math notranslate nohighlight">\(O(g(n))\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f_1(n)\)</span> is in <span class="math notranslate nohighlight">\(O(g_1(n))\)</span> and <span class="math notranslate nohighlight">\(f_2(n)\)</span> is in
+<span class="math notranslate nohighlight">\(O(g_2(n))\)</span>, then <span class="math notranslate nohighlight">\(f_1(n) + f_2(n)\)</span> is in
+<span class="math notranslate nohighlight">\(O(\max(g_1(n), g_2(n)))\)</span>.</p></li>
+<li><p>If <span class="math notranslate nohighlight">\(f_1(n)\)</span> is in <span class="math notranslate nohighlight">\(O(g_1(n))\)</span> and <span class="math notranslate nohighlight">\(f_2(n)\)</span> is in
+<span class="math notranslate nohighlight">\(O(g_2(n))\)</span>, then <span class="math notranslate nohighlight">\(f_1(n) f_2(n)\)</span> is in
+<span class="math notranslate nohighlight">\(O(g_1(n) g_2(n))\)</span>.</p></li>
+</ol>
+<div class="topic" id="assignanal">
+<p class="topic-title">Example 4.9.1 </p>
+<p>We begin with an analysis of a simple assignment to an integer
+variable.</p>
+<div id="Anal_c3p2_code"><ul><li><a href="#Anal_c3p2_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p2_code_Python">Python</a></li></ul><div id="Anal_c3p2_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p2_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p2_code" ).tabs();});</script><p>Because the assignment statement takes constant time, it is
+<span class="math notranslate nohighlight">\(\Theta(1)\)</span>.</p>
+</div>
+<div class="topic" id="flanal">
+<p class="topic-title">Example 4.9.2 </p>
+<p>Consider a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
+<div id="Anal_c3p3_code"><ul><li><a href="#Anal_c3p3_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p3_code_Python">Python</a></li></ul><div id="Anal_c3p3_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+   <span class="n">sum</span> <span class="o">+=</span> <span class="n">n</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p3_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+   <span class="nb">sum</span> <span class="o">+=</span> <span class="n">n</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p3_code" ).tabs();});</script><p>The first line is <span class="math notranslate nohighlight">\(\Theta(1)\)</span>.
+The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is repeated <span class="math notranslate nohighlight">\(n\)</span> times.
+The third line takes constant time so, by simplifying rule (4),
+the total cost for executing
+the two lines making up the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.
+By rule (3), the cost of the entire code fragment is also
+<span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 4.9.3 </p>
+<p>We now analyze a code fragment with several <code class="docutils literal notranslate"><span class="pre">for</span></code>
+loops, some of which are nested.</p>
+<div id="Anal_c3p4_code"><ul><li><a href="#Anal_c3p4_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p4_code_Python">Python</a></li></ul><div id="Anal_c3p4_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">// First for loop</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">j</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//   is a double loop</span>
+    <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>      <span class="c1">// Second for loop</span>
+  <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p4_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>     <span class="c1"># First for loop</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">j</span><span class="p">):</span>   <span class="c1">#   is a double loop</span>
+    <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>     <span class="c1"># Second for loop</span>
+  <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">k</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p4_code" ).tabs();});</script><p>This code fragment has three separate statements: the
+first assignment statement and the two <code class="docutils literal notranslate"><span class="pre">for</span></code> loops.
+Again the assignment statement takes constant time;
+call it <span class="math notranslate nohighlight">\(c_1\)</span>.
+The second <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is just like the one in
+Example <a href="AnalProgram.html#flanal">4.9.2</a> and takes <span class="math notranslate nohighlight">\(c_2 n = \Theta(n)\)</span> time.</p>
+<p>The first <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is a double loop and requires a special
+technique.
+We work from the inside of the loop outward.
+The expression <code class="docutils literal notranslate"><span class="pre">sum++</span></code> requires constant time; call it
+<span class="math notranslate nohighlight">\(c_3\)</span>.
+Because the inner <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is executed <span class="math notranslate nohighlight">\(j\)</span> times,
+by simplifying rule (4) it has cost <span class="math notranslate nohighlight">\(c_3j\)</span>.
+The outer <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is executed <span class="math notranslate nohighlight">\(n\)</span> times, but each time
+the cost of the inner loop is different because it costs
+<span class="math notranslate nohighlight">\(c_3j\)</span> with <span class="math notranslate nohighlight">\(j\)</span> changing each time.
+You should see that for the first execution of the outer loop,
+<span class="math notranslate nohighlight">\(j\)</span> is 1.
+For the second execution of the outer loop, <span class="math notranslate nohighlight">\(j\)</span> is 2.
+Each time through the outer loop, <span class="math notranslate nohighlight">\(j\)</span> becomes one greater,
+until the last time through the loop when <span class="math notranslate nohighlight">\(j = n\)</span>.
+Thus, the total cost of the loop is <span class="math notranslate nohighlight">\(c_3\)</span> times the sum of
+the integers 1 through <span class="math notranslate nohighlight">\(n\)</span>.
+We know that</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i = 1}^{n} i = \frac{n (n+1)}{2},\]</div>
+<p>which is <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.
+By simplifying rule (3), <span class="math notranslate nohighlight">\(\Theta(c_1 + c_2 n + c_3 n^2)\)</span> is
+simply <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 4.9.4 </p>
+<p>Compare the asymptotic analysis for the following two code
+fragments.</p>
+<div id="Anal_c3p5_code"><ul><li><a href="#Anal_c3p5_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p5_code_Python">Python</a></li></ul><div id="Anal_c3p5_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">// First double loop</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//   do n times</span>
+    <span class="n">sum1</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">sum2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>     <span class="c1">// Second double loop</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//   do i times</span>
+    <span class="n">sum2</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p5_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>    <span class="c1"># First double loop</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1">#   do n times</span>
+    <span class="n">sum1</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">sum2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>     <span class="c1"># Second double loop</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>  <span class="c1">#   do i times</span>
+    <span class="n">sum2</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p5_code" ).tabs();});</script><p>In the first double loop, the inner <code class="docutils literal notranslate"><span class="pre">for</span></code> loop always executes
+<span class="math notranslate nohighlight">\(n\)</span> times.
+Because the outer loop executes <span class="math notranslate nohighlight">\(n\)</span> times, it should be
+obvious that the statement <code class="docutils literal notranslate"><span class="pre">sum1++</span></code> is executed precisely
+<span class="math notranslate nohighlight">\(n^2\)</span> times.
+The second loop is similar to the one analyzed in the previous
+example, with cost <span class="math notranslate nohighlight">\(\sum_{j = 1}^{n} j\)</span>.
+This is approximately <span class="math notranslate nohighlight">\({1 \over 2} n^2\)</span>.
+Thus, both double loops cost <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>, though the second
+requires about half the time of the first.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 4.9.5 </p>
+<p>Not all doubly nested <code class="docutils literal notranslate"><span class="pre">for</span></code> loops are <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.
+The following pair of nested loops illustrates this fact.</p>
+<div id="Anal_c3p6_code"><ul><li><a href="#Anal_c3p6_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p6_code_Python">Python</a></li></ul><div id="Anal_c3p6_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">*=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Do log n times</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//    do n times</span>
+    <span class="n">sum1</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">sum2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">k</span><span class="o">*=</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Do log n times</span>
+  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">k</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">//    do k times</span>
+    <span class="n">sum2</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p6_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>         <span class="c1"># Do log n times</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>  <span class="c1">#   do n times</span>
+    <span class="n">sum1</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">k</span> <span class="o">*=</span> <span class="mi">2</span>
+
+<span class="n">sum2</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">while</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">n</span><span class="p">:</span>         <span class="c1"># Do log n times</span>
+  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>  <span class="c1">#   do k times</span>
+    <span class="n">sum2</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="n">k</span> <span class="o">*=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p6_code" ).tabs();});</script><p>When analyzing these two code fragments, we will assume that
+<span class="math notranslate nohighlight">\(n\)</span> is a power of two.
+The first code fragment has its outer <code class="docutils literal notranslate"><span class="pre">for</span></code> loop executed
+<span class="math notranslate nohighlight">\(\log n+1\)</span> times because on each iteration <span class="math notranslate nohighlight">\(k\)</span> is
+multiplied by two until it reaches <span class="math notranslate nohighlight">\(n\)</span>.
+Because the inner loop always executes <span class="math notranslate nohighlight">\(n\)</span> times,
+the total cost for the first code fragment can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=0}^{\log n} n = n \log n.\]</div>
+<p>So the cost of this first double loop is <span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span>.
+Note that a variable substitution takes place here to create the
+summation, with <span class="math notranslate nohighlight">\(k = 2^i\)</span>.</p>
+<p>In the second code fragment, the outer loop is also executed
+<span class="math notranslate nohighlight">\(\log n+1\)</span> times.
+The inner loop has cost <span class="math notranslate nohighlight">\(k\)</span>, which doubles each time.
+The summation can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=0}^{\log n} 2^i = \Theta(n)\]</div>
+<p>where <span class="math notranslate nohighlight">\(n\)</span> is assumed to be a power of two and again
+<span class="math notranslate nohighlight">\(k = 2^i\)</span>.</p>
+</div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>We need to think about a technique for visualizing the running time
+of some loop constructs. This can be very similar to how we
+visualize reaching the closed form solution of summations.</p>
+</dd>
+</dl>
+</div>
+<p>What about other control statements?
+<code class="docutils literal notranslate"><span class="pre">While</span></code> loops are analyzed in a manner similar to <code class="docutils literal notranslate"><span class="pre">for</span></code>
+loops.
+The cost of an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement in the worst case is the greater of
+the costs for the <code class="docutils literal notranslate"><span class="pre">then</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> clauses.
+This is also true for the average case, assuming that
+the size of <span class="math notranslate nohighlight">\(n\)</span> does not affect the probability of executing one
+of the clauses (which is usually, but not necessarily, true).
+For <code class="docutils literal notranslate"><span class="pre">switch</span></code> statements, the worst-case cost is that of the most
+expensive branch.
+For subroutine calls, simply add the cost of executing the subroutine.</p>
+<p>There are rare situations in which the probability for executing the
+various branches of an <code class="docutils literal notranslate"><span class="pre">if</span></code> or <code class="docutils literal notranslate"><span class="pre">switch</span></code> statement are
+functions of the input size.
+For example, for input of size <span class="math notranslate nohighlight">\(n\)</span>, the <code class="docutils literal notranslate"><span class="pre">then</span></code> clause of an
+<code class="docutils literal notranslate"><span class="pre">if</span></code> statement might be executed with probability <span class="math notranslate nohighlight">\(1/n\)</span>.
+An example would be an <code class="docutils literal notranslate"><span class="pre">if</span></code> statement that executes the
+<code class="docutils literal notranslate"><span class="pre">then</span></code> clause only for the smallest of <span class="math notranslate nohighlight">\(n\)</span> values.
+To perform an average-case analysis for such programs,
+we cannot simply count the cost of the <code class="docutils literal notranslate"><span class="pre">if</span></code>
+statement as being the cost of the more expensive branch.
+In such situations, the technique of
+<a class="reference internal" href="AmortAnal.html#amortanal"><span class="std std-ref">amortized analysis</span></a> can come to
+the rescue.</p>
+<p>Determining the execution time of a recursive
+subroutine can be difficult.
+The running time for a recursive subroutine is
+typically best expressed by a recurrence relation.
+For example, the recursive factorial function
+calls itself with a value one less than its input value.
+The result of this recursive call is then multiplied by the input
+value, which takes constant time.
+Thus, the cost of the factorial function, if we wish to measure cost
+in terms of the number of multiplication operations,
+is one more than the number of multiplications made by the recursive
+call on the smaller input.
+Because the base case does no multiplications, its cost is zero.
+Thus, the running time for this function can be expressed as</p>
+<div class="math notranslate nohighlight">
+\[T(n) = T(n-1) + 1 \ \mbox{for}\ n&gt;1;\ \ T(1) = 0.\]</div>
+<p>The closed-form solution for this
+recurrence relation is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
+<div class="section" id="case-study-two-search-algorithms">
+<h3>4.<span class="section-number">8.1.1. </span>Case Study: Two Search Algorithms<a class="headerlink" href="#case-study-two-search-algorithms" title="Permalink to this headline">¶</a></h3>
+<p>The final example of algorithm analysis for this section will compare
+two algorithms for performing search in an array.
+Earlier, we determined that the running time for sequential search on
+an array where the search value <span class="math notranslate nohighlight">\(K\)</span> is equally likely to appear
+in any location is <span class="math notranslate nohighlight">\(\Theta(n)\)</span> in both the average and worst
+cases.
+We would like to compare this running time to that required to perform
+a <a class="reference internal" href="Glossary.html#term-binary-search"><span class="xref std std-term">binary search</span></a> on an array whose values are stored in order
+from lowest to highest.
+Here is a visualization of the binary search method.</p>
+<div id="binarySearchCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="binarySearchCON" data-long-name="Binary Search Algorithm Slideshow" data-exer-id="" alt="Binary Search Algorithm Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="binarySearchCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="binarySearchCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="binarySearchCON_cm_error_msg" class="cm_error_msg">
+   <img id="binarySearchCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="binary-search-practice-exercise">
+<h3>4.<span class="section-number">8.1.2. </span>Binary Search Practice Exercise<a class="headerlink" href="#binary-search-practice-exercise" title="Permalink to this headline">¶</a></h3>
+<div
+    id="binarySearchPRO"
+    class="embedContainer"
+    data-exer-name="binarySearchPRO"
+    data-long-name="Binary Search Proficiency Exercise"
+    data-short-name="binarySearchPRO"
+    data-frame-src="../../../AV/Searching/binarySearchPRO.html?localMode=true&amp;module=AnalProgram&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=none"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="binarySearchPRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="analyzing-binary-search">
+<h3>4.<span class="section-number">8.1.3. </span>Analyzing Binary Search<a class="headerlink" href="#analyzing-binary-search" title="Permalink to this headline">¶</a></h3>
+<div id="BsearchDandCRecurCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BsearchDandCRecurCON" data-long-name="Binary Search recurrence slideshow" data-exer-id="" alt="Binary Search recurrence slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="BsearchDandCRecurCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="BsearchDandCRecurCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="BsearchDandCRecurCON_cm_error_msg" class="cm_error_msg">
+   <img id="BsearchDandCRecurCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Function <code class="docutils literal notranslate"><span class="pre">binarySearch</span></code> is designed to find the (single) occurrence of
+<span class="math notranslate nohighlight">\(K\)</span> and return its position.
+A special value is returned if <span class="math notranslate nohighlight">\(K\)</span> does not appear in the array.
+This algorithm can be modified to implement variations
+such as returning the position of the first
+occurrence of <span class="math notranslate nohighlight">\(K\)</span> in the array if multiple occurrences are
+allowed, and returning the position of the greatest value less than
+<span class="math notranslate nohighlight">\(K\)</span> when <span class="math notranslate nohighlight">\(K\)</span> is not in the array.</p>
+<p>Comparing sequential search to binary search, we see that as <span class="math notranslate nohighlight">\(n\)</span>
+grows, the <span class="math notranslate nohighlight">\(\Theta(n)\)</span> running time for sequential search in the
+average and worst cases quickly becomes much greater than the
+<span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> running time for binary search.
+Taken in isolation, binary search appears to be much more
+efficient than sequential search.
+This is despite the fact that the constant factor for binary search is
+greater than that for sequential search, because the calculation for
+the next search position in binary search is more expensive than just
+incrementing the current position, as sequential search does.</p>
+<p>Note however that the running time for sequential search will be
+roughly the same regardless of whether or not the array values are
+stored in order.
+In contrast, binary search requires that the array values be ordered
+from lowest to highest.
+Depending on the context in which binary search is to be used, this
+requirement for a sorted array could be detrimental to the running
+time of a complete program, because  maintaining the values in sorted
+order requires a greater cost when inserting new elements into the
+array.
+This is an example of a tradeoff between the
+advantage of binary search during search and the disadvantage related
+to maintaining a sorted array.
+Only in the context of the complete problem to be solved can we know
+whether the advantage outweighs the disadvantage.</p>
+</div>
+</div>
+<div class="section" id="summary-exercise">
+<h2>4.<span class="section-number">8.2. </span>Summary Exercise<a class="headerlink" href="#summary-exercise" title="Permalink to this headline">¶</a></h2>
+<div
+    id="AnalProgramSumm"
+    class="embedContainer"
+    data-exer-name="AnalProgramSumm"
+    data-long-name="Program Code Analysis Exercise"
+    data-short-name="AnalProgramSumm"
+    data-frame-src="../../../Exercises/AlgAnal/AnalProgramSumm.html?localMode=true&amp;module=AnalProgram&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="880"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="AnalProgramSumm_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Searching/binarySearchCON.js"></script>
+<script type="text/javascript" src="../../../AV/AlgAnal/BsearchDandCRecurCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="AnalProblem.html">4.<span class="section-number">9. </span>Analyzing Problems</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

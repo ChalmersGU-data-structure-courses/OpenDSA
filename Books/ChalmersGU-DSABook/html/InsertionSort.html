@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.3. Insertion Sort &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="4. Bubble Sort" href="BubbleSort.html" />
+    <link rel="prev" title="2. Sorting Terminology and Notation" href="SortNotation.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Sorting</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/InsertionSort.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="SortNotation.html">3.<span class="section-number">2. </span>Sorting Terminology and Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BubbleSort.html">3.<span class="section-number">4. </span>Bubble Sort</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['insertion-sort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "InsertionSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Insertion Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/InsertionSortWorstCaseCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Sorting/InsertionSortBestCaseCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Sorting/InsertionSortAverageCaseCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="insertion-sort">
+<span id="index-0"></span><h1>3.<span class="section-number">3. </span>Insertion Sort<a class="headerlink" href="#insertion-sort" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.<span class="section-number">3.1. </span>Insertion Sort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>What would you do if you have a stack of phone bills from the past
+two years and you want to order by date?
+A fairly natural way to handle this is to look at the first two
+bills and put them in order.
+Then take the third bill and put it into the right position with
+respect to the first two, and so on.
+As you take each bill, you would add it to the sorted pile that you
+have already made.
+This simple approach is the inspiration for
+our first sorting algorithm, called <a class="reference internal" href="Glossary.html#term-insertion-sort"><span class="xref std std-term">Insertion Sort</span></a>.</p>
+<p>Insertion Sort iterates through a list of records.
+For each iteration, the current record is inserted in turn at the
+correct position within a sorted list composed of those records
+already processed.
+Here is an implementation.
+The input is an array named <code class="docutils literal notranslate"><span class="pre">A</span></code> that stores <span class="math notranslate nohighlight">\(n\)</span> records.</p>
+<div id="Insertionsort_Insertionsort_code"><ul><li><a href="#Insertionsort_Insertionsort_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_Insertionsort_code_Python">Python</a></li></ul><div id="Insertionsort_Insertionsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">inssort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert i&#39;th record</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Insertionsort_Insertionsort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>  <span class="c1"># Insert i&#39;th record</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+      <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+      <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Insertionsort_Insertionsort_code" ).tabs();});</script><p id="practice">(Note that to make the explanation for these sorting algorithms as
+simple as possible, our visualizations will show the array as though
+it stored simple integers rather than more complex records.
+But you should realize that in practice, there is rarely any point
+to sorting an array of simple integers.
+Nearly always we want to sort more complex records that each have a
+<a class="reference internal" href="Glossary.html#term-key"><span class="xref std std-term">key</span></a> value.
+In such cases we must <a class="reference internal" href="Comparison.html#comparison"><span class="std std-ref">have a way</span></a> to
+associate a key value with a record.
+The sorting algorithms will simply assume that the records are
+<a class="reference internal" href="Glossary.html#term-comparable"><span class="xref std std-term">comparable</span></a>.)</p>
+<p>Here we see the first few iterations of Insertion Sort.</p>
+<div id="insertionsortCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="insertionsortCON" data-long-name="Insertion Sort Slideshow" data-exer-id="" alt="Insertion Sort Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="insertionsortCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="insertionsortCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="insertionsortCON_cm_error_msg" class="cm_error_msg">
+   <img id="insertionsortCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>This continues on with each record in turn.
+Call the current record <span class="math notranslate nohighlight">\(x\)</span>.
+Insertion Sort will move it to the left so
+long as its value is less than that of the record immediately
+preceding it.
+As soon as a key value less than or equal to <span class="math notranslate nohighlight">\(x\)</span> is
+encountered, <code class="docutils literal notranslate"><span class="pre">inssort</span></code> is done with that record because all
+records to its left in the array must have smaller keys.</p>
+<div
+    id="insertionsortAV"
+    class="embedContainer"
+    data-exer-name="insertionsortAV"
+    data-long-name="Insertion Sort Visualization"
+    data-short-name="insertionsortAV"
+    data-frame-src="../../../AV/Sorting/insertionsortAV.html?localMode=true&amp;module=InsertionSort&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="0.0"
+    data-required="False"
+    data-showhide="show"
+    data-threshold="1"
+    data-type="ss"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="insertionsortAV_iframe"></div>
+  </div>
+</div>
+<div
+    id="InssortPRO"
+    class="embedContainer"
+    data-exer-name="InssortPRO"
+    data-long-name="Insertion Sort Proficiency Exercise"
+    data-short-name="InssortPRO"
+    data-frame-src="../../../Exercises/Sorting/InssortPRO.html?localMode=true&amp;module=InsertionSort&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="InssortPRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="insertion-sort-analysis">
+<h2>3.<span class="section-number">3.2. </span>Insertion Sort Analysis<a class="headerlink" href="#insertion-sort-analysis" title="Permalink to this headline">¶</a></h2>
+<div id="InsertionSortWorstCaseCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="InsertionSortWorstCaseCON" data-long-name="Insertion Sort Worst Case Slideshow" data-exer-id="" alt="Insertion Sort Worst Case Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="InsertionSortWorstCaseCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="InsertionSortWorstCaseCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="InsertionSortWorstCaseCON_cm_error_msg" class="cm_error_msg">
+   <img id="InsertionSortWorstCaseCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="InsertionSortBestCaseCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="InsertionSortBestCaseCON" data-long-name="Insertion Sort Best Case Slideshow" data-exer-id="" alt="Insertion Sort Best Case Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="InsertionSortBestCaseCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="InsertionSortBestCaseCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="InsertionSortBestCaseCON_cm_error_msg" class="cm_error_msg">
+   <img id="InsertionSortBestCaseCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="InsertionSortAverageCaseCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="InsertionSortAverageCaseCON" data-long-name="Insertion Sort Average Case Slideshow" data-exer-id="" alt="Insertion Sort Average Case Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="InsertionSortAverageCaseCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="InsertionSortAverageCaseCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="InsertionSortAverageCaseCON_cm_error_msg" class="cm_error_msg">
+   <img id="InsertionSortAverageCaseCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>While the best case is significantly faster than the average and worst
+cases, the average and worst cases are usually more reliable
+indicators of the “typical” running time.
+However, there are situations where we can expect the input to be in
+sorted or nearly sorted order.
+One example is when an already sorted list is slightly disordered by a
+small number of additions to the list;
+restoring sorted order using Insertion Sort might be a good idea if we
+know that the disordering is slight.
+And even when the input is not perfectly sorted, Insertion Sort’s cost
+goes up in proportion to the number of inversions.
+So a “nearly sorted” list will always be cheap to sort with Insertion
+Sort.
+Examples of algorithms that take advantage of Insertion Sort’s
+near-best-case running time are
+<a class="reference internal" href="Glossary.html#term-shellsort"><span class="xref std std-term">Shellsort</span></a>
+and <a class="reference internal" href="Quicksort.html#quicksort"><span class="std std-ref">Quicksort</span></a>.</p>
+<p>Counting comparisons or swaps yields similar results.
+Each time through the inner <code class="docutils literal notranslate"><span class="pre">for</span></code> loop yields both a
+comparison and a swap, except the last (i.e., the comparison that
+fails the inner <code class="docutils literal notranslate"><span class="pre">for</span></code> loop’s test), which has no swap.
+Thus, the number of swaps for the entire sort operation is
+<span class="math notranslate nohighlight">\(n-1\)</span> less than the number of comparisons.
+This is 0 in the best case, and <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> in the
+average and worst cases.</p>
+<p>Later we will see algorithms whose growth rate is much
+better than <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.
+Thus for larger arrays, Insertion Sort will not be so good a
+performer as other algorithms.
+So Insertion Sort is not the best sorting algorithm to use in most
+situations.
+But there are special situations where it is ideal.
+We already know that Insertion Sort works great when the input is
+sorted or nearly so.
+Another good time to use Insertion Sort is when the array is very
+small, since Insertion Sort is so simple.
+The algorithms that have better asymptotic growth rates tend to be
+more complicated, which leads to larger constant factors in their
+running time.
+That means they typically need fewer comparisons for larger arrays,
+but they cost more per comparison.
+This observation might not seem that helpful, since even an algorithm
+with high cost per comparison will be fast on small input sizes.
+But there are times when we might need to do many, many sorts on very
+small arrays.
+You should spend some time right now trying to think of a situation
+where you will need to sort many small arrays.
+Actually, it happens a lot.</p>
+<div
+    id="InssortSumm"
+    class="embedContainer"
+    data-exer-name="InssortSumm"
+    data-long-name="Insertion Sort Summary Exercise"
+    data-short-name="InssortSumm"
+    data-frame-src="../../../Exercises/Sorting/InssortSumm.html?localMode=true&amp;module=InsertionSort&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="InssortSumm_iframe"></div>
+  </div>
+</div>
+<p>See <a href="http://computationaltales.blogspot.com/2011/04/why-tailors-use-insertion-sort.html" target="_blank">Computational Fairy Tales: Why Tailors Use Insertion Sort</a> for a discussion on how the relative costs of
+search and insert can affect what is the best sort algorithm to use.</p>
+<script type="text/javascript" src="../../../AV/Sorting/insertionsortCON.js"></script>
+<script type="text/javascript" src="../../../AV/Sorting/InsertionSortWorstCaseCON.js"></script>
+<script type="text/javascript" src="../../../AV/Sorting/InsertionSortBestCaseCON.js"></script>
+<script type="text/javascript" src="../../../AV/Sorting/InsertionSortAverageCaseCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="SortNotation.html">3.<span class="section-number">2. </span>Sorting Terminology and Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BubbleSort.html">3.<span class="section-number">4. </span>Bubble Sort</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

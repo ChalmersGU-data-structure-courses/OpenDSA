@@ -1,0 +1,466 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.2. Problems, Algorithms, and Programs &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. Comparing Algorithms" href="AnalIntro.html" />
+    <link rel="prev" title="1. Chapter Introduction" href="AnalChap.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/AnalPrelim.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="AnalChap.html">4.<span class="section-number">1. </span>Chapter Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="AnalIntro.html">4.<span class="section-number">3. </span>Comparing Algorithms</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['problems', 'algorithms', 'programs', 'summary', 'summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalPrelim";ODSA.SETTINGS.MODULE_LONG_NAME = "Problems, Algorithms, and Programs";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/ProblemAlgorithmCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="problems-algorithms-and-programs">
+<h1>4.<span class="section-number">2. </span>Problems, Algorithms, and Programs<a class="headerlink" href="#problems-algorithms-and-programs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>4.<span class="section-number">2.1. </span>Problems, Algorithms, and Programs<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="problems">
+<h3>4.<span class="section-number">2.1.1. </span>Problems<a class="headerlink" href="#problems" title="Permalink to this headline">¶</a></h3>
+<p>Programmers commonly deal with problems, algorithms, and
+computer programs.
+These are three distinct concepts.</p>
+<p>As your intuition would suggest, a <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a> is
+a task to be performed.
+It is best thought of in terms of inputs and matching outputs.
+A problem definition should not include any constraints on
+<em>how</em> the problem is to be solved.
+The solution method should be developed only after the problem is
+precisely defined and thoroughly understood.
+However, a problem definition should include constraints on the
+resources that may be consumed by any acceptable
+solution.
+For any problem to be solved by a computer, there are always such
+constraints, whether stated or implied.
+For example, any computer program may use only the main memory
+and disk space available, and it must run in a “reasonable” amount
+of time.</p>
+<p>Problems can be viewed as functions in the mathematical sense.
+A <a class="reference internal" href="Glossary.html#term-function"><span class="xref std std-term">function</span></a> is a matching
+between inputs (the <a class="reference internal" href="Glossary.html#term-domain"><span class="xref std std-term">domain</span></a>) and outputs (the <a class="reference internal" href="Glossary.html#term-range"><span class="xref std std-term">range</span></a>).
+An input to a function might be a single value or a
+collection of information.
+The values making up an input are called the
+<a class="reference internal" href="Glossary.html#term-parameter"><span class="xref std std-term">parameters</span></a> of the function.
+A specific selection of values for the parameters is called an
+<a class="reference internal" href="Glossary.html#term-problem-instance"><span class="xref std std-term">instance</span></a> of the problem.
+For example, the input parameter to a sorting function might be an
+array of integers.
+A particular array of integers, with a given size and specific values
+for each position in the array, would be an instance of the sorting
+problem.
+Different instances might generate the same output.
+However, any problem instance must always result in the same output
+every time the function is computed using that particular input.</p>
+<p>This concept of all problems behaving like mathematical functions
+might not match your intuition for the behavior of computer programs.
+You might know of programs to which you can give the same input value
+on two separate occasions, and two different outputs will result.
+For example, if you type <code class="docutils literal notranslate"><span class="pre">date</span></code> to a typical Linux command
+line prompt, you will get the current date.
+Naturally the date will be different on different days, even though
+the same command is given.
+However, there is obviously more to the input for the date program
+than the command that you type to run the program.
+The date program computes a function.
+In other words, on any particular day there can only be a single
+answer returned by a properly running date program on a completely
+specified input.
+For all computer programs, the output is completely determined by the
+program’s full set of inputs.
+Even a “random number generator” is completely determined by its
+inputs (although some random number generating systems appear to get
+around this by accepting a random input from a physical
+process beyond the user’s control).
+The limits to what functions can be implemented by programs is part of
+the domain of <a class="reference internal" href="Glossary.html#term-computability"><span class="xref std std-term">Computability</span></a>.</p>
+</div>
+<div class="section" id="algorithms">
+<h3>4.<span class="section-number">2.1.2. </span>Algorithms<a class="headerlink" href="#algorithms" title="Permalink to this headline">¶</a></h3>
+<p>An <a class="reference internal" href="Glossary.html#term-algorithm"><span class="xref std std-term">algorithm</span></a> is a method or a process followed to
+solve a problem.
+If the problem is viewed as a function, then an algorithm is an
+implementation for the function
+that transforms an input to the corresponding output.
+A problem can be solved by many different algorithms.
+A given algorithm solves only one
+problem (i.e., computes a particular function).
+OpenDSA modules cover many problems, and for several of these
+problems we will see more than one algorithm.
+For the important problem of sorting there are over a dozen commonly
+known algorithms!</p>
+<p>The advantage of knowing several solutions to a problem is that
+solution <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> might be more efficient than solution
+<span class="math notranslate nohighlight">\(\mathbf{B}\)</span> for a specific variation of the problem, or for a
+specific class of inputs to the problem, while solution
+<span class="math notranslate nohighlight">\(\mathbf{B}\)</span> might be more efficient than
+<span class="math notranslate nohighlight">\(\mathbf{A}\)</span> for another variation or class of inputs.
+For example, one sorting algorithm might be the best
+for sorting a small collection of integers (which is important if you
+need to do this many times).
+Another might be the best for sorting a large collection of integers.
+A third might be the best for sorting a collection of variable-length
+strings.</p>
+<p>By definition, something can only be called an algorithm if it has all
+of the following properties.</p>
+<ol class="arabic simple">
+<li><p>It must be <em>correct</em>.
+In other words, it must compute the desired function, converting
+each input to the correct output.
+Note that every algorithm implements some function,
+because every algorithm maps every input to some output (even if
+that output is a program crash).
+At issue here is whether a given algorithm implements the
+<em>intended</em> function.</p></li>
+<li><p>It is composed of a series of <em>concrete steps</em>.
+Concrete means that the action described by that step is
+completely understood — and doable — by the person or machine
+that must perform the algorithm.
+Each step must also be doable in a finite amount of time.
+Thus, the algorithm gives us a “recipe” for solving the problem by
+performing a series of steps, where each such step is within our
+capacity to perform.
+The ability to perform a step can depend on who or what is intended
+to execute the recipe.
+For example, the steps of a cookie recipe in a cookbook might be
+considered sufficiently concrete for instructing a human cook,
+but not for programming an automated cookie-making factory.</p></li>
+<li><p>There can be <em>no ambiguity</em> as to which step will be performed
+next.
+Often it is the next step of the algorithm description.
+Selection (e.g., the <code class="docutils literal notranslate"><span class="pre">if</span></code> statement)
+is normally a part of any language for describing algorithms.
+Selection allows a choice for which step will be
+performed next, but the selection process is unambiguous at the
+time when the choice is made.</p></li>
+<li><p>It must be composed of a <em>finite</em> number of steps.
+If the description for the algorithm were made up of an infinite
+number of steps, we could never hope to write it down, nor
+implement it as a computer program.
+Most languages for describing algorithms (including English
+and “pseudocode”) provide some way to perform
+repeated actions, known as iteration.
+Examples of iteration in programming languages include the
+<code class="docutils literal notranslate"><span class="pre">while</span></code> and <code class="docutils literal notranslate"><span class="pre">for</span></code> loop constructs.
+Iteration allows for short descriptions, with the number of
+steps actually performed controlled by the input.</p></li>
+<li><p>It must <em>terminate</em>.
+In other words, it may not go into an infinite loop.</p></li>
+</ol>
+</div>
+<div class="section" id="programs">
+<h3>4.<span class="section-number">2.1.3. </span>Programs<a class="headerlink" href="#programs" title="Permalink to this headline">¶</a></h3>
+<p>We often think of a computer <a class="reference internal" href="Glossary.html#term-program"><span class="xref std std-term">program</span></a> as an
+instance, or concrete representation, of an algorithm in some
+programming language.
+Algorithms are usually presented in terms of programs,
+or parts of programs.
+Naturally, there are many programs that are instances of the same
+algorithm, because any modern computer programming language can be
+used to implement the same collection of algorithms (although some
+programming languages can make life easier for the programmer).
+To simplify presentation,
+people often use the terms “algorithm” and “program” interchangeably,
+despite the fact that they are really separate concepts.
+By definition, an algorithm must provide sufficient
+detail that it can be converted into a program when needed.</p>
+<p>The requirement that an algorithm must terminate means that not all
+computer programs meet the technical definition of an algorithm.
+Your operating system is one such program.
+However, you can think of the various tasks for an operating system
+(each with associated inputs and outputs) as individual problems,
+each solved by specific algorithms implemented by a part of the
+operating system program, and each one of which terminates once its
+output is produced.</p>
+</div>
+<div class="section" id="summary">
+<h3>4.<span class="section-number">2.1.4. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>To summarize:
+A <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a> is a function or a mapping of
+inputs to outputs.
+An <a class="reference internal" href="Glossary.html#term-algorithm"><span class="xref std std-term">algorithm</span></a> is a recipe for
+solving a problem whose steps are concrete and unambiguous.
+Algorithms must be correct, of finite length, and must terminate
+for all inputs.
+A <a class="reference internal" href="Glossary.html#term-program"><span class="xref std std-term">program</span></a> is an instantiation of an algorithm
+in a programming language.
+The following slideshow should help you to visualize the differences.</p>
+<div id="ProblemAlgorithmCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="ProblemAlgorithmCON" data-long-name="Problem, Algorithm, and Program definitions Slideshow" data-exer-id="" alt="Problem, Algorithm, and Program definitions Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="ProblemAlgorithmCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="ProblemAlgorithmCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="ProblemAlgorithmCON_cm_error_msg" class="cm_error_msg">
+   <img id="ProblemAlgorithmCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="summary-questions">
+<h3>4.<span class="section-number">2.1.5. </span>Summary Questions<a class="headerlink" href="#summary-questions" title="Permalink to this headline">¶</a></h3>
+<div
+    id="AnalPrelimSumm"
+    class="embedContainer"
+    data-exer-name="AnalPrelimSumm"
+    data-long-name="Problems, Algorithms, Programs Exercise"
+    data-short-name="AnalPrelimSumm"
+    data-frame-src="../../../Exercises/AlgAnal/AnalPrelimSumm.html?localMode=true&amp;module=AnalPrelim&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="AnalPrelimSumm_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/AlgAnal/ProblemAlgorithmCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="AnalChap.html">4.<span class="section-number">1. </span>Chapter Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="AnalIntro.html">4.<span class="section-number">3. </span>Comparing Algorithms</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

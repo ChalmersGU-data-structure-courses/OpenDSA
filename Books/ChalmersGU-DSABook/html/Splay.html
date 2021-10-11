@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9.3. The Splay Tree &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="4. 2-3 Trees" href="TwoThreeTree.html" />
+    <link rel="prev" title="2. The AVL Tree" href="AVL.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 9 Balanced Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Splay.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="AVL.html">9.<span class="section-number">2. </span>The AVL Tree</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="TwoThreeTree.html">9.<span class="section-number">4. </span>2-3 Trees</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Splay";ODSA.SETTINGS.MODULE_LONG_NAME = "The Splay Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-splay-tree">
+<h1>9.<span class="section-number">3. </span>The Splay Tree<a class="headerlink" href="#the-splay-tree" title="Permalink to this headline">¶</a></h1>
+<p>Like the AVL tree, the splay tree is not actually a distinct data
+structure, but rather reimplements the BST insert, delete, and search
+methods to improve the performance of a BST.
+The goal of these revised methods is to provide guarantees on the time
+required by a series of operations, thereby avoiding the worst-case
+linear time behavior of standard BST operations.
+No single operation in the splay tree is guaranteed to be efficient.
+Instead, the splay tree access rules guarantee that a series of
+<span class="math notranslate nohighlight">\(m\)</span> operations will take <span class="math notranslate nohighlight">\(O(m log n)\)</span> time for a tree of
+<span class="math notranslate nohighlight">\(n\)</span> nodes whenever <span class="math notranslate nohighlight">\(m \geq n\)</span>.
+Thus, a single insert or search operation could take <span class="math notranslate nohighlight">\(O(n)\)</span>
+time.
+However, <span class="math notranslate nohighlight">\(m\)</span> such operations are guaranteed to require a total
+of <span class="math notranslate nohighlight">\(O(m \log n)\)</span> time, for an average cost of
+<span class="math notranslate nohighlight">\(O(\log n)\)</span> per access operation.
+This is a desirable performance guarantee for any search-tree
+structure.</p>
+<p>Unlike the AVL tree, the splay
+tree is not guaranteed to be height balanced.
+What is guaranteed is that the total cost of the entire series of
+accesses will be cheap.
+Ultimately, it is the cost of the series of operations that matters,
+not whether the tree is balanced.
+Maintaining balance is really done only for the sake of reaching this
+time efficiency goal.</p>
+<p>The splay tree access functions operate in a manner reminiscent of
+the <a class="reference internal" href="Glossary.html#term-move-to-front"><span class="xref std std-term">move-to-front</span></a> rule for
+<a class="reference internal" href="Glossary.html#term-self-organizing-list"><span class="xref std std-term">self-organizing lists</span></a>,
+and of the path compression technique for managing
+a series of
+<a class="reference internal" href="UnionFind.html#unionfind"><span class="std std-ref">Union/Find</span></a> operations.
+These access functions tend to make the tree more balanced, but an
+individual access will not necessarily result in a more balanced
+tree.</p>
+<p>Whenever a node <span class="math notranslate nohighlight">\(S\)</span> is accessed (e.g., when <span class="math notranslate nohighlight">\(S\)</span> is
+inserted, deleted, or is the goal of a search), the splay tree
+performs a process called <a class="reference internal" href="Glossary.html#term-splaying"><span class="xref std std-term">splaying</span></a>.
+Splaying moves <span class="math notranslate nohighlight">\(S\)</span> to the root of the BST.
+When <span class="math notranslate nohighlight">\(S\)</span> is being deleted, splaying
+moves the parent of <span class="math notranslate nohighlight">\(S\)</span> to the root.
+As in the AVL tree, a splay of node <span class="math notranslate nohighlight">\(S\)</span>
+consists of a series of <a class="reference internal" href="Glossary.html#term-rotation"><span class="xref std std-term">rotations</span></a>.
+A rotation moves <span class="math notranslate nohighlight">\(S\)</span> higher in the tree by adjusting its
+position with respect to its parent and grandparent.
+A side effect of the rotations is a tendency to balance the tree.
+There are three types of rotation.</p>
+<p>A <a class="reference internal" href="Glossary.html#term-single-rotation"><span class="xref std std-term">single rotation</span></a> is performed only if <span class="math notranslate nohighlight">\(S\)</span>
+is a child of the root node.
+The single rotation is illustrated by Figure <a href="Splay.html#singprom">9.4.1</a>.
+It basically switches <span class="math notranslate nohighlight">\(S\)</span> with its parent in a way that
+retains the BST property.
+While Figure <a href="Splay.html#singprom">9.4.1</a> is slightly different from
+Figure <a href="AVL.html#avlsingle">9.3.2</a>, in fact the splay tree single
+rotation is identical to the AVL tree single rotation.</p>
+<div class="figure align-center" id="id1" style="width: 90%">
+<span id="singprom"></span><a class="reference internal image-reference" href="_images/SingRot.png"><img alt="Splay tree single rotation" src="_images/SingRot.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 9.4.1: Splay tree single rotation.
+This rotation takes place only when the node being splayed is a
+child of the root.
+Here, node <span class="math notranslate nohighlight">\(S\)</span> is promoted to the root, rotating with
+node <span class="math notranslate nohighlight">\(P\)</span>.
+Because the value of <span class="math notranslate nohighlight">\(S\)</span> is less than the value of <span class="math notranslate nohighlight">\(P\)</span>,
+<span class="math notranslate nohighlight">\(P\)</span> must become <span class="math notranslate nohighlight">\(S\)</span> ‘s right child.
+The positions of subtrees <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and ;math:<cite>C</cite> are
+altered as appropriate to maintain the BST property, but the
+contents of these subtrees remains unchanged.
+(a) The original tree with <span class="math notranslate nohighlight">\(P\)</span> as the parent.
+(b) The tree after a rotation takes place.
+Performing a single rotation a second time will return the tree to
+its original shape.
+Equivalently, if (b) is the initial configuration of the tree
+(i.e., <span class="math notranslate nohighlight">\(S\)</span> is at the root and <span class="math notranslate nohighlight">\(P\)</span> is its right child),
+then (a) shows the result of a single rotation to splay <span class="math notranslate nohighlight">\(P\)</span> to
+the root.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Unlike the AVL tree, the splay tree requires two types of
+double rotation.
+Double rotations involve <span class="math notranslate nohighlight">\(S\)</span>, its parent (call it <span class="math notranslate nohighlight">\(P\)</span>),
+and <span class="math notranslate nohighlight">\(S\)</span> ‘s grandparent (call it <span class="math notranslate nohighlight">\(G\)</span>).
+The effect of a double rotation is to move <span class="math notranslate nohighlight">\(S\)</span> up two levels in
+the tree.</p>
+<p>The first double rotation is called a <span class="math notranslate nohighlight">\(zigzag rotation\)</span>.
+It takes place when either of the following two conditions are met:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the left child of <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(P\)</span> is the
+right child of <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the right child of <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(P\)</span> is the
+left child of <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+</ol>
+<p>In other words, a zigzag rotation is used when <span class="math notranslate nohighlight">\(G\)</span>,
+<span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(S\)</span> form a zigzag.
+The zigzag rotation is illustrated by Figure <a href="Splay.html#zigzag">9.4.2</a>.</p>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="zigzag"></span><a class="reference internal image-reference" href="_images/ZigZag.png"><img alt="Splay tree zigzag rotation" src="_images/ZigZag.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 9.4.2: Splay tree zigzag rotation.
+(a) The original tree with <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(G\)</span> in
+zigzag formation.
+(b) The tree after the rotation takes place.
+The positions of subtrees <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, and
+<span class="math notranslate nohighlight">\(D\)</span> are altered as appropriate to maintain the BST
+property.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The other double rotation is known as a <a class="reference internal" href="Glossary.html#term-zigzig"><span class="xref std std-term">zigzig</span></a> rotation.
+A zigzig rotation takes place when either of the following two
+conditions are met:</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the left child of <span class="math notranslate nohighlight">\(P\)</span>, which is in turn the
+left child of <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(S\)</span> is the right child of <span class="math notranslate nohighlight">\(P\)</span>, which is in turn the
+right child of <span class="math notranslate nohighlight">\(G\)</span>.</p></li>
+</ol>
+<p>Thus, a zigzig rotation takes place in those
+situations where a zigzag rotation is not appropriate.
+The zigzig rotation is illustrated by Figure <a href="Splay.html#zigzig">9.4.3</a>.
+While Figure <a href="Splay.html#zigzig">9.4.3</a> appears somewhat different from
+Figure <a href="AVL.html#avldouble">9.3.3</a>, in fact the zigzig rotation is
+identical to the AVL tree double rotation.</p>
+<div class="figure align-center" id="id3" style="width: 90%">
+<span id="zigzig"></span><a class="reference internal image-reference" href="_images/ZigZig.png"><img alt="Splay tree zigzig rotation" src="_images/ZigZig.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 9.4.3: Splay tree zigzig rotation.
+(a) The original tree with <span class="math notranslate nohighlight">\(S\)</span>, <span class="math notranslate nohighlight">\(P\)</span>, and <span class="math notranslate nohighlight">\(G\)</span> in
+zigzig formation.
+(b) The tree after the rotation takes place.
+The positions of subtrees <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, and
+<span class="math notranslate nohighlight">\(D\)</span> are altered as appropriate to maintain the BST
+property.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Note that zigzag rotations tend to make the tree more balanced,
+because they bring subtrees <span class="math notranslate nohighlight">\(B\)</span>  and <span class="math notranslate nohighlight">\(C\)</span> up one level
+while moving subtree <span class="math notranslate nohighlight">\(D\)</span> down one level.
+The result is often a reduction of the tree’s height by one.
+Zigzig promotions and single rotations do not typically reduce the
+height of the tree; they merely bring the newly accessed record toward
+the root.</p>
+<p>Splaying node <span class="math notranslate nohighlight">\(S\)</span> involves a series of double rotations until
+<span class="math notranslate nohighlight">\(S\)</span> reaches either the root or the child of the root.
+Then, if necessary, a single rotation makes <span class="math notranslate nohighlight">\(S\)</span> the root.
+This process tends to re-balance the tree.
+Regardless of balance, splaying will make frequently accessed nodes
+stay near the top of the tree, resulting in reduced access cost.
+Proof that the splay tree meets the guarantee of
+<span class="math notranslate nohighlight">\(O(m \log n)\)</span> is beyond the scope of our study.</p>
+<div class="topic">
+<p class="topic-title">Example 9.4.1 </p>
+<p>Consider a search for value 89 in the splay tree of
+Figure <a href="Splay.html#splayex">9.4.4</a> (a).
+The splay tree’s search operation is identical to searching in
+a BST.
+However, once the value has been found, it is splayed to the root.
+Three rotations are required in this example.
+The first is a zigzig rotation, whose result is shown in
+Figure <a href="Splay.html#splayex">9.4.4</a> (b).
+The second is a zigzag rotation, whose result is shown in
+Figure <a href="Splay.html#splayex">9.4.4</a> (c).
+The final step is a single rotation resulting in the tree of
+Figure <a href="Splay.html#splayex">9.4.4</a> (d).
+Notice that the splaying process has made the tree shallower.</p>
+</div>
+<div class="figure align-center" id="id4" style="width: 90%">
+<span id="splayex"></span><a class="reference internal image-reference" href="_images/SplayEx.png"><img alt="Example of search in a splay tree" src="_images/SplayEx.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 9.4.4: Example of splaying after performing a search in a splay tree.
+After finding the node with key value 89, that node is splayed to
+the root by performing three rotations.
+(a) The original splay tree.
+(b) The result of performing a zigzig rotation on the node with
+key value 89 in the tree of (a).
+(c) The result of performing a zigzag rotation on the node with
+key value 89 in the tree of (b).
+(d) The result of performing a single rotation on the node with
+key value 89 in the tree of (c).
+If the search had been for 91, the search would have been
+unsuccessful with the node storing key value 89 being that last one
+visited.
+In that case, the same splay operations would take place.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="AVL.html">9.<span class="section-number">2. </span>The AVL Tree</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="TwoThreeTree.html">9.<span class="section-number">4. </span>2-3 Trees</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

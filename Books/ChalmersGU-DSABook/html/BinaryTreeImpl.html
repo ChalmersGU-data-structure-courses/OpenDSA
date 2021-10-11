@@ -1,0 +1,498 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.8. Binary Tree Node Implementations &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="9. Binary Tree Space Requirements" href="BinaryTreeNodeSpace.html" />
+    <link rel="prev" title="7. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 7 Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BinaryTreeImpl.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeInfFlw.html">7.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BinaryTreeNodeSpace.html">7.<span class="section-number">9. </span>Binary Tree Space Requirements</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/BTnullpointerCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/expressionTreeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="binary-tree-node-implementations">
+<h1>7.<span class="section-number">8. </span>Binary Tree Node Implementations<a class="headerlink" href="#binary-tree-node-implementations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>7.<span class="section-number">8.1. </span>Binary Tree Node Implementations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>In this module we examine various ways to implement binary tree
+nodes.
+By definition, all binary tree nodes have two children,
+though one or both children can be empty.
+Binary tree nodes typically contain a value field,
+with the type of the field depending on the application.
+The most common node implementation includes a value field and
+pointers to the two children.</p>
+<p>Here is a simple implementation for the
+<code class="docutils literal notranslate"><span class="pre">BinNode</span></code> interface, which we will name <code class="docutils literal notranslate"><span class="pre">BSTNode</span></code>.
+Its element type is an Object.
+When we need to support search structures such as the
+<a class="reference internal" href="BST.html#bst"><span class="std std-ref">Binary Search Tree</span></a>,
+the node will typically store a
+<a class="reference internal" href="Dictionary.html#dictionary"><span class="std std-ref">key-value pair</span></a>.
+Every <code class="docutils literal notranslate"><span class="pre">BSTNode</span></code> object also has two pointers,
+one to its left child and another to its right child.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary tree node implementation: supports comparable objects</span>
+<span class="kd">class</span> <span class="nc">BSTNode</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kd">implements</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">E</span> <span class="n">element</span><span class="p">;</span>           <span class="c1">// Element for this node</span>
+  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>     <span class="c1">// Pointer to left child</span>
+  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span>    <span class="c1">// Pointer to right child</span>
+
+  <span class="c1">// Constructors</span>
+  <span class="n">BSTNode</span><span class="p">()</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">BSTNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">BSTNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">,</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Get and set the element value</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">element</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="n">element</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Get and set the left child</span>
+  <span class="kd">public</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeft</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Get and set the right child</span>
+  <span class="kd">public</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRight</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">right</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="divdgm" id="binlink">
+<div id="BTnullpointerCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 7.9.1: Illustration of a typical pointer-based binary tree implementation,
+where each node stores two child pointers and a value.</span></p>
+</div>
+<p>Some programmers find it convenient to add a pointer to the
+node’s parent, allowing easy upward movement in the
+tree.
+Using a parent pointer is somewhat analogous to adding a link to the
+previous node in a doubly linked list.
+In practice, the parent pointer is almost always unnecessary
+and adds to the space overhead for the tree implementation.
+It is not just a problem that parent pointers take space.
+More importantly, many uses of the parent pointer are driven by
+improper understanding of recursion and so indicate poor programming.
+If you are inclined toward using a parent pointer, consider if there
+is a more efficient implementation possible.</p>
+<p>An important decision in the design of a pointer-based node
+implementation is whether the same class definition will be used for
+<a class="reference internal" href="Glossary.html#term-leaf-node"><span class="xref std std-term">leaves</span></a> and
+<a class="reference internal" href="Glossary.html#term-internal-node"><span class="xref std std-term">internal nodes</span></a>.
+Using the same class for both will simplify the implementation, but
+might be an inefficient use of space.
+Some applications require data values only for the leaves.
+Other applications require one type of value for the leaves and
+another for the internal nodes.
+Examples include the <a class="reference internal" href="Glossary.html#term-binary-trie"><span class="xref std std-term">binary trie</span></a>, the <a class="reference internal" href="Glossary.html#term-pr-quadtree"><span class="xref std std-term">PR Quadtree</span></a>,
+the <a class="reference internal" href="Glossary.html#term-huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, and the <a class="reference internal" href="Glossary.html#term-expression-tree"><span class="xref std std-term">expression tree</span></a>
+illustrated by Figure <a href="BinaryTreeImpl.html#diffnodes">7.9.2</a>.
+By definition, only internal nodes have non-empty children.
+If we use the same node implementation for both internal and leaf
+nodes, then both must store the child pointers.
+But it seems wasteful to store child pointers in the leaf nodes.
+Thus, there are many reasons why it can save space to have separate
+implementations for internal and leaf nodes.</p>
+<div class="divdgm" id="diffnodes">
+<div id="expressionTreeCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 7.9.2: An expression tree for <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.</span></p>
+</div>
+<p>As an example of a tree that stores different information at the leaf
+and internal nodes, consider the expression tree illustrated by
+Figure <a href="BinaryTreeImpl.html#diffnodes">7.9.2</a>.
+The expression tree represents an algebraic expression
+composed of binary operators such as addition, subtraction,
+multiplication, and division.
+Internal nodes store operators, while the leaves store operands.
+The tree of Figure <a href="BinaryTreeImpl.html#diffnodes">7.9.2</a> represents the expression
+<span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.
+The storage requirements for a leaf in an expression tree are quite
+different from those of an internal node.
+Internal nodes store one of a small set of operators,
+so internal nodes could store a small code identifying the
+operator such as a single byte for the operator’s character symbol.
+In contrast, leaves store variable names or numbers,
+which is considerably larger in order
+to handle the wider range of possible values.
+At the same time, leaf nodes need not store child pointers.</p>
+<p><a class="reference internal" href="Glossary.html#term-object-oriented-programming-paradigm"><span class="xref std std-term">Object-oriented languages</span></a>
+allow us to differentiate leaf from
+internal nodes through the use of a <a class="reference internal" href="Glossary.html#term-class-hierarchy"><span class="xref std std-term">class hierarchy</span></a>.
+A <a class="reference internal" href="Glossary.html#term-base-class"><span class="xref std std-term">base class</span></a> provides a general definition for an
+object,
+and a <a class="reference internal" href="Glossary.html#term-subclass"><span class="xref std std-term">subclass</span></a> modifies a base class to add more detail.
+A base class can be declared for binary tree nodes in general,
+with subclasses defined for the internal and leaf nodes.
+The base class in the following code is named
+<code class="docutils literal notranslate"><span class="pre">VarBinNode</span></code>.
+It includes a virtual member function named
+<code class="docutils literal notranslate"><span class="pre">isLeaf</span></code>, which indicates the node type.
+Subclasses for the internal and leaf node types each implement
+<code class="docutils literal notranslate"><span class="pre">isLeaf</span></code>.
+Internal nodes store child pointers of the base class type;
+they do not distinguish their children’s actual subclass.
+Whenever a node is examined, its version of <code class="docutils literal notranslate"><span class="pre">isLeaf</span></code> indicates
+the node’s subclass.</p>
+<div id="ExpressionTree_ExpressionTree_code"><ul><li><a href="#ExpressionTree_ExpressionTree_code_Java_Generic">Java</a></li><li><a href="#ExpressionTree_ExpressionTree_code_Python">Python</a></li></ul><div id="ExpressionTree_ExpressionTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Base class for expression tree nodes</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">VarBinNode</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span> <span class="c1">// All subclasses must implement</span>
+<span class="p">}</span>
+
+<span class="cm">/** Leaf node */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">VarLeafNode</span> <span class="kd">implements</span> <span class="n">VarBinNode</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">operand</span><span class="p">;</span>                 <span class="c1">// Operand value</span>
+
+  <span class="n">VarLeafNode</span><span class="p">(</span><span class="n">String</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">operand</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">operand</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Internal node</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">VarIntlNode</span> <span class="kd">implements</span> <span class="n">VarBinNode</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">left</span><span class="p">;</span>                <span class="c1">// Left child</span>
+  <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">right</span><span class="p">;</span>               <span class="c1">// Right child</span>
+  <span class="kd">private</span> <span class="n">Character</span> <span class="n">operator</span><span class="p">;</span>             <span class="c1">// Operator value</span>
+
+  <span class="n">VarIntlNode</span><span class="p">(</span><span class="n">Character</span> <span class="n">op</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">r</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">operator</span> <span class="o">=</span> <span class="n">op</span><span class="p">;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">leftchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">rightchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">Character</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">operator</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Preorder traversal</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">VarBinNode</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>         <span class="c1">// Nothing to visit</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span> <span class="p">{</span>                 <span class="c1">// Process leaf node</span>
+    <span class="n">Visit</span><span class="p">.</span><span class="na">VisitLeafNode</span><span class="p">(((</span><span class="n">VarLeafNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>                           <span class="c1">// Process internal node</span>
+    <span class="n">Visit</span><span class="p">.</span><span class="na">VisitInternalNode</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
+    <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">leftchild</span><span class="p">());</span>
+    <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">rightchild</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="ExpressionTree_ExpressionTree_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Base class for expression tree nodes</span>
+<span class="k">class</span> <span class="nc">VarBinNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>  <span class="c1"># All subclasses must implement</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="c1"># Leaf node</span>
+<span class="k">class</span> <span class="nc">VarLeafNode</span><span class="p">(</span><span class="n">VarBinNode</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operand</span> <span class="o">=</span> <span class="n">val</span>
+    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operand</span>
+
+<span class="c1"># Internal node</span>
+<span class="k">class</span> <span class="nc">VarIntlNode</span><span class="p">(</span><span class="n">VarBinNode</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">operator</span> <span class="o">=</span> <span class="n">op</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">l</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">r</span>
+    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">def</span> <span class="nf">leftchild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span>
+    <span class="k">def</span> <span class="nf">rightchild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">operator</span>
+
+<span class="c1"># Preorder traversal</span>
+<span class="k">def</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">rt</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">rt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span>       <span class="c1"># Nothing to visit</span>
+    <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span>  <span class="c1"># Process leaf node</span>
+        <span class="n">VisitLeafNode</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+    <span class="k">else</span><span class="p">:</span>            <span class="c1"># Process internal node</span>
+        <span class="n">VisitInternalNode</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">value</span><span class="p">())</span>
+        <span class="n">traverse</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">leftchild</span><span class="p">())</span>
+        <span class="n">traverse</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">rightchild</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#ExpressionTree_ExpressionTree_code" ).tabs();});</script><div id="expressionTraversalCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="expressionTraversalCON" data-long-name="Expression Tree Traversal Slideshow" data-exer-id="" alt="Expression Tree Traversal Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="expressionTraversalCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="expressionTraversalCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="expressionTraversalCON_cm_error_msg" class="cm_error_msg">
+   <img id="expressionTraversalCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>The Expression Tree implementation includes two subclasses derived
+from class <code class="docutils literal notranslate"><span class="pre">VarBinNode</span></code>, named <code class="docutils literal notranslate"><span class="pre">LeafNode</span></code> and
+<code class="docutils literal notranslate"><span class="pre">IntlNode</span></code>.
+Class <code class="docutils literal notranslate"><span class="pre">IntlNode</span></code> can access its children through
+pointers of type <code class="docutils literal notranslate"><span class="pre">VarBinNode</span></code>.
+Function <code class="docutils literal notranslate"><span class="pre">traverse</span></code> illustrates the use of these classes.
+When <code class="docutils literal notranslate"><span class="pre">traverse</span></code> calls method <code class="docutils literal notranslate"><span class="pre">isLeaf</span></code>,
+the language’s runtime environment
+determines which subclass this particular instance of <code class="docutils literal notranslate"><span class="pre">rt</span></code>
+happens to be and calls that subclass’s version of <code class="docutils literal notranslate"><span class="pre">isLeaf</span></code>.
+Method <code class="docutils literal notranslate"><span class="pre">isLeaf</span></code> then provides the actual node type to its
+caller.
+The other member functions for the derived subclasses are accessed by
+type-casting the base class pointer as appropriate, as shown in
+function <code class="docutils literal notranslate"><span class="pre">traverse</span></code>.</p>
+<script type="text/javascript" src="../../../AV/Binary/BTnullpointerCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/expressionTreeCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/expressionTraversalCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeInfFlw.html">7.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BinaryTreeNodeSpace.html">7.<span class="section-number">9. </span>Binary Tree Space Requirements</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

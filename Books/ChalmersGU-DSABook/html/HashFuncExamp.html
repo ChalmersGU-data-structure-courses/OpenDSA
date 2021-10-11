@@ -1,0 +1,651 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11.3. Sample Hash Functions &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="4. Open Hashing" href="OpenHash.html" />
+    <link rel="prev" title="2. Hash Function Principles" href="HashFunc.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 11 Hash Tables</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/HashFuncExamp.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="HashFunc.html">11.<span class="section-number">2. </span>Hash Function Principles</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="OpenHash.html">11.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions">
+<h1>11.<span class="section-number">3. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>11.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="simple-mod-function">
+<h3>11.<span class="section-number">3.1.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h3>
+<p>Consider the following hash function used to hash integers to a table
+of sixteen slots.</p>
+<div id="Hash_Mod_code"><ul><li><a href="#Hash_Mod_code_Java_Generic">Java</a></li><li><a href="#Hash_Mod_code_Python">Python</a></li></ul><div id="Hash_Mod_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kt">int</span> <span class="nf">h</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+     <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span><span class="p">;</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Hash_Mod_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Hash_Mod_code" ).tabs();});</script><p>Here “%” is the symbol for the mod function.</p>
+<div id="hashFuncExCON1" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="hashFuncExCON1" data-long-name="Hash Function Slideshow 1" data-exer-id="" alt="Hash Function Slideshow 1" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="hashFuncExCON1_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="hashFuncExCON1_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="hashFuncExCON1_cm_error_msg" class="cm_error_msg">
+   <img id="hashFuncExCON1_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Recall that the values 0 to 15 can be represented with four bits
+(i.e., 0000 to 1111).
+The value returned by this hash function depends solely on
+the least significant four bits of the key.
+Because these bits are likely to be poorly distributed
+(as an example, a high percentage of the keys might be even numbers,
+which means that the low order bit is zero),
+the result will also be poorly distributed.
+This example shows that the size of the table <span class="math notranslate nohighlight">\(M\)</span>
+can have a big effect on the performance of a hash system because the table size
+is typically used as the modulus to ensure that the hash
+function produces a number in the range 0 to <span class="math notranslate nohighlight">\(M-1\)</span>.</p>
+</div>
+<div class="section" id="binning">
+<h3>11.<span class="section-number">3.1.2. </span>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
+<p>Say we are given keys in the range 0 to 999, and have a hash table of
+size 10.
+In this case, a possible hash function might simply divide the key
+value by 100.
+Thus, all keys in the range 0 to 99 would hash to slot 0, keys 100 to
+199 would hash to slot 1, and so on.
+In other words, this hash function “bins” the first 100 keys to the
+first slot, the next 100 keys to the second slot, and so on.</p>
+<p><a class="reference internal" href="Glossary.html#term-binning"><span class="xref std std-term">Binning</span></a> in this way has the problem that it will cluster
+together keys if the distribution does not divide evenly on the
+high-order bits.
+In the above example, if more records have keys in the range 900-999
+(first digit 9) than have keys in the range 100-199
+(first digit 1),  more records will hash to slot 9 than to slot 1.
+Likewise, if we pick too big a value for the key range and the actual
+key values are all relatively small, then most records will hash to
+slot 0.
+A similar, analogous problem arises if we were instead hashing strings based
+on the first letter in the string.</p>
+<div id="hashFuncExCON2" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="hashFuncExCON2" data-long-name="Hash Function Slideshow 2" data-exer-id="" alt="Hash Function Slideshow 2" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="hashFuncExCON2_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="hashFuncExCON2_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="hashFuncExCON2_cm_error_msg" class="cm_error_msg">
+   <img id="hashFuncExCON2_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>In general with binning we store the record with key value <span class="math notranslate nohighlight">\(i\)</span>
+at array position <span class="math notranslate nohighlight">\(i/X\)</span> for some value <span class="math notranslate nohighlight">\(X\)</span>
+(using integer division).
+A problem with Binning is that we have to know the key range so that
+we can figure out what value to use for <span class="math notranslate nohighlight">\(X\)</span>.
+Let’s assume that the keys are all in the range 0 to 999.
+Then we want to divide key values by 100 so that the result is in the
+range 0 to 9.
+There is no particular limit on the key range that binning could
+handle, so long as we know the maximum possible value in advance so
+that we can figure out what to divide the key value by.
+Alternatively, we could also take the result of any binning
+computation and then mod by the table size to be safe.
+So if we have keys that are bigger than 999 when dividing by 100, we
+can still make sure that the result is in the range 0 to 9 with a mod
+by 10 step at the end.</p>
+<p>Binning looks at the opposite part of the key value from the mod
+function.
+The mod function, for a power of two, looks at the low-order bits,
+while binning looks at the high-order bits.
+Or if you want to think in base 10 instead of base 2, modding by 10 or
+100 looks at the low-order digits, while binning into an array of size
+10 or 100 looks at the high-order digits.</p>
+<p>As another example, consider hashing a collection of keys whose values
+follow a normal distribution, as illustrated by
+Figure <a href="HashFuncExamp.html#hashnormal">11.4.1</a>.
+Keys near the mean of the normal distribution are far more likely
+to occur than keys near the tails of the distribution.
+For a given slot, think of where the keys come from within the distribution.
+Binning would be taking thick slices out of the distribution and assign
+those slices to hash table slots.
+If we use a hash table of size 8, we would divide the key range into 8
+equal-width slices and assign each slice to a slot in the table.
+Since a normal distribution is more likely to generate keys from
+the middle slice, the middle slot of the table is most likely to be used.
+In contrast, if we use the mod function, then we are assigning to any given
+slot in the table a series of thin slices in steps of 8.
+In the normal distribution, some of these slices associated with any given
+slot are near the tails, and some are near the center.
+Thus, each table slot is equally likely (roughly) to get a key value.</p>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="hashnormal"></span><a class="reference internal image-reference" href="_images/HashNormal.png"><img alt="Binning vs. Mod Function" src="_images/HashNormal.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 11.4.1: A comparison of binning vs. modulus as a hash function.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="the-mid-square-method">
+<h3>11.<span class="section-number">3.1.3. </span>The Mid-Square Method<a class="headerlink" href="#the-mid-square-method" title="Permalink to this headline">¶</a></h3>
+<p>A good hash function to use with integer key values is the
+<a class="reference internal" href="Glossary.html#term-mid-square-method"><span class="xref std std-term">mid-square method</span></a>.
+The mid-square method squares the key value, and then takes out the middle
+<span class="math notranslate nohighlight">\(r\)</span> bits of the result, giving a value in the range
+0 to <span class="math notranslate nohighlight">\(2^{r}-1\)</span>.
+This works well because most or all bits of the key value contribute to
+the result.
+For example, consider records whose keys are 4-digit numbers in base
+10, as shown in Figure <a href="HashFuncExamp.html#midsquarefig">11.4.2</a>.
+The goal is to hash these key values to a table of size 100
+(i.e., a range of 0 to 99).
+This range is equivalent to two digits in base 10.
+That is, <span class="math notranslate nohighlight">\(r = 2\)</span>.
+If the input is the number 4567, squaring yields an 8-digit number,
+20857489.
+The middle two digits of this result are 57.
+All digits of the original key value
+(equivalently, all bits when the number is viewed in binary)
+contribute to the middle two digits of the squared value.
+Thus, the result is not dominated by the distribution of the bottom
+digit or the top digit of the original key value.
+Of course, if the key values all tend to be small numbers,
+then their squares will only affect the low-order digits of the hash value.</p>
+<div class="figure align-center" id="id3" style="width: 90%">
+<span id="midsquarefig"></span><a class="reference internal image-reference" href="_images/MidSquare.png"><img alt="Mid-square method example" src="_images/MidSquare.png" style="width: 70px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 11.4.2: An example of the mid-square method. This image shows the
+traditional gradeschool long multiplication process. The value
+being squared is 4567. The result of squaring is 20857489.
+At the bottom, of the image, the value 4567 is show again, with
+each digit at the bottom of a “V”. The associated “V” is showing
+the digits from the result that are being affected by each digit of
+the input. That is, “4” affects the output digits 2, 0, 8, 5,
+an 7. But it has no affect on the last 3 digits. The key point is
+that the middle two digits of the result (5 and 7) are affected by
+every digit of the input.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<p>Here is a little calculator for you to see how this works.
+Start with ‘4567’ as an example.</p>
+<div
+    id="MidSquare"
+    class="embedContainer"
+    data-exer-name="MidSquare"
+    data-long-name="Mid-Square Calculator"
+    data-short-name="MidSquare"
+    data-frame-src="../../../AV/Hashing/MidSquare.html?localMode=true&amp;module=HashFuncExamp&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="MidSquare_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="section" id="a-simple-hash-function-for-strings">
+<h2>11.<span class="section-number">3.2. </span>A Simple Hash Function for Strings<a class="headerlink" href="#a-simple-hash-function-for-strings" title="Permalink to this headline">¶</a></h2>
+<p>Now we will examine some hash functions suitable for storing strings
+of characters.
+We start with a simple summation function.</p>
+<div id="Hash_sascii_code"><ul><li><a href="#Hash_sascii_code_Java_Generic">Java</a></li><li><a href="#Hash_sascii_code_Python">Python</a></li></ul><div id="Hash_sascii_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kt">int</span> <span class="nf">sascii</span><span class="p">(</span><span class="n">String</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+     <span class="kt">char</span> <span class="n">ch</span><span class="o">[]</span><span class="p">;</span>
+     <span class="n">ch</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
+     <span class="kt">int</span> <span class="n">xlength</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+
+     <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span><span class="p">;</span>
+     <span class="k">for</span> <span class="p">(</span><span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+       <span class="n">sum</span> <span class="o">+=</span> <span class="n">ch</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+     <span class="p">}</span>
+     <span class="k">return</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span>
+   <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Hash_sascii_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sascii</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sum</span> <span class="o">%</span> <span class="n">M</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Hash_sascii_code" ).tabs();});</script><p>This function sums the ASCII values of the letters in a string.
+If the hash table size <span class="math notranslate nohighlight">\(M\)</span> is small compared to the
+resulting summations, then this hash function should do a
+good job of distributing strings evenly among the hash table slots,
+because it gives equal weight to all characters in the string.
+This is an example of the <a class="reference internal" href="Glossary.html#term-folding-method"><span class="xref std std-term">folding method</span></a> to designing a hash
+function.
+Note that the order of the characters in the string has no effect on
+the result.
+A similar method for integers would add the digits of the key
+value, assuming that there are enough digits to</p>
+<ol class="arabic simple">
+<li><p>keep any one or two digits with bad distribution from skewing the
+results of the process and</p></li>
+<li><p>generate a sum much larger than <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
+</ol>
+<p>As with many other hash functions, the final step is to apply the
+modulus operator to the result, using table size <span class="math notranslate nohighlight">\(M\)</span> to generate
+a value within the table range.
+If the sum is not sufficiently large, then the modulus operator will
+yield a poor distribution.
+For example, because the ASCII value for ‘A’ is 65 and ‘Z’ is 90,
+<code class="docutils literal notranslate"><span class="pre">sum</span></code> will always be in the range 650 to 900 for a string of ten
+upper case letters.
+For a hash table of size 100 or less, a reasonable  distribution
+results.
+For a hash table of size 1000, the distribution is terrible because
+only slots 650 to 900 can possibly be the home slot for some key
+value, and the values are not evenly distributed even within those
+slots.</p>
+<p>Now you can try it out with this calculator.</p>
+<div
+    id="StringSimple"
+    class="embedContainer"
+    data-exer-name="StringSimple"
+    data-long-name="Simple String Folding Calculator"
+    data-short-name="StringSimple"
+    data-frame-src="../../../AV/Hashing/StringSimple.html?localMode=true&amp;module=HashFuncExamp&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="StringSimple_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="string-folding">
+<h2>11.<span class="section-number">3.3. </span>String Folding<a class="headerlink" href="#string-folding" title="Permalink to this headline">¶</a></h2>
+<p>Here is a much better hash function for strings.</p>
+<div id="Hash_sfold_code"><ul><li><a href="#Hash_sfold_code_Java_Generic">Java</a></li><li><a href="#Hash_sfold_code_Python">Python</a></li></ul><div id="Hash_sfold_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use folding on a string, summed 4 bytes at a time</span>
+<span class="kt">int</span> <span class="nf">sfold</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">mul</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">mul</span> <span class="o">*</span> <span class="mi">256</span><span class="p">;</span>
+    <span class="n">sum</span> <span class="o">+=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">mul</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Hash_sfold_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use folding on a string, summed 4 bytes at a time</span>
+<span class="k">def</span> <span class="nf">sfold</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="p">()):</span>
+        <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">mul</span> <span class="o">*</span> <span class="mi">256</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">mul</span>
+    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Hash_sfold_code" ).tabs();});</script><p>This function takes a string as input.
+It processes the string four bytes at a time, and interprets each of
+the four-byte chunks as a single long integer value.
+The integer values for the four-byte chunks are added together.
+In the end, the resulting sum is converted to the range 0 to
+<span class="math notranslate nohighlight">\(M-1\)</span> using the modulus operator.</p>
+<p>For example, if the string “aaaabbbb” is passed to <code class="docutils literal notranslate"><span class="pre">sfold</span></code>,
+then the first four bytes (“aaaa”) will be interpreted as the
+integer value 1,633,771,873,
+and the next four bytes (“bbbb”) will be
+interpreted as the integer value 1,650,614,882.
+Their sum is 3,284,386,755 (when treated as an unsigned integer).
+If the table size is 101 then the modulus function will cause this key
+to hash to slot 75 in the table.</p>
+<p>Now you can try it out with this calculator.</p>
+<div
+    id="StringSfold"
+    class="embedContainer"
+    data-exer-name="StringSfold"
+    data-long-name="Improved String Folding Calculator"
+    data-short-name="StringSfold"
+    data-frame-src="../../../AV/Hashing/StringSfold.html?localMode=true&amp;module=HashFuncExamp&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="StringSfold_iframe"></div>
+  </div>
+</div>
+<p>For any sufficiently long string, the sum for the integer
+quantities will typically cause a 32-bit integer to overflow
+(thus losing some of the high-order bits) because the resulting
+values are so large.
+But this causes no problems when the goal is to compute a hash function.</p>
+<p>The reason that hashing by summing the integer representation of four
+letters at a time is superior to summing one letter at a time is because
+the resulting values being summed have a bigger range.
+This still only works well for strings long enough
+(say at least 7-12 letters), but the original method would not work
+well for short strings either.
+There is nothing special about using four characters at a time.
+Other choices could be made.
+Another alternative would be to fold two characters at a time.</p>
+</div>
+<div class="section" id="hash-function-practice">
+<h2>11.<span class="section-number">3.4. </span>Hash Function Practice<a class="headerlink" href="#hash-function-practice" title="Permalink to this headline">¶</a></h2>
+<p>Now here is an exercise to let you practice these various hash
+functions.
+You should use the calculators above for the more complicated hash
+functions.</p>
+<div
+    id="HashFuncFIBSumm"
+    class="embedContainer"
+    data-exer-name="HashFuncFIBSumm"
+    data-long-name="Hash Function Pick Slot Summary"
+    data-short-name="HashFuncFIBSumm"
+    data-frame-src="../../../Exercises/Hashing/HashFuncFIBSumm.html?localMode=true&amp;module=HashFuncExamp&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashFuncFIBSumm_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="hash-function-review-questions">
+<h2>11.<span class="section-number">3.5. </span>Hash Function Review Questions<a class="headerlink" href="#hash-function-review-questions" title="Permalink to this headline">¶</a></h2>
+<p>Here are some review questions.</p>
+<div
+    id="HashFuncSumm"
+    class="embedContainer"
+    data-exer-name="HashFuncSumm"
+    data-long-name="Hash Function Summary Exercise"
+    data-short-name="HashFuncSumm"
+    data-frame-src="../../../Exercises/Hashing/HashFuncSumm.html?localMode=true&amp;module=HashFuncExamp&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashFuncSumm_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Hashing/hashFuncExCON1.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/hashFuncExCON2.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">11.<span class="section-number">2. </span>Hash Function Principles</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="OpenHash.html">11.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,561 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.11. Queues &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="12. Linked Queues" href="QueueLinked.html" />
+    <link rel="prev" title="10. Implementing Recursion" href="StackRecur.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Queue.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="StackRecur.html">5.<span class="section-number">10. </span>Implementing Recursion</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="QueueLinked.html">5.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="queues">
+<h1>5.<span class="section-number">11. </span>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="queue-terminology-and-implementation">
+<h2>5.<span class="section-number">11.1. </span>Queue Terminology and Implementation<a class="headerlink" href="#queue-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Like the stack, the <a class="reference internal" href="Glossary.html#term-queue"><span class="xref std std-term">queue</span></a> is a list-like structure that
+provides restricted access to its elements.
+Queue elements may only be inserted at the back (called an
+<a class="reference internal" href="Glossary.html#term-enqueue"><span class="xref std std-term">enqueue</span></a> operation) and removed from the
+front (called a <a class="reference internal" href="Glossary.html#term-dequeue"><span class="xref std std-term">dequeue</span></a> operation).
+Queues operate like standing in line at a movie theater ticket
+counter.
+If nobody cheats, then newcomers go to the back of the line.
+The person at the front of the line is the next to be served.
+Thus, queues release their elements in order of arrival.
+In Britain, a line of people is called a “queue”,
+and getting into line to wait for service is called “queuing up”.
+Accountants have used queues since long before the
+existence of computers.
+They call a queue a “FIFO” list, which stands for
+“First-In, First-Out”.
+Here is a sample queue ADT.
+This section presents two implementations for queues:
+the array-based queue and the linked queue.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// Queue class ADT</span>
+  <span class="c1">// Reinitialize queue</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+
+  <span class="c1">// Put element on rear</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">it</span><span class="p">);</span>
+
+  <span class="c1">// Remove and return element from front</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">();</span>
+
+  <span class="c1">// Return front element</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">frontValue</span><span class="p">();</span>
+
+  <span class="c1">// Return queue size</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">length</span><span class="p">();</span>
+  
+  <span class="c1">//Tell if the queue is empty or not</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="array-based-queues">
+<h3>5.<span class="section-number">11.1.1. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h3>
+<p>The array-based queue is somewhat tricky to implement effectively.
+A simple conversion of the array-based list implementation is not
+efficient.</p>
+<div id="aqueueFirstCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueFirstCON" data-long-name="Array-based Queue Positions Slideshow" data-exer-id="" alt="Array-based Queue Positions Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueFirstCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueFirstCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueFirstCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueFirstCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="aqueueDriftCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueDriftCON" data-long-name="Array-based Queue Drift Slideshow" data-exer-id="" alt="Array-based Queue Drift Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueDriftCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueDriftCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueDriftCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueDriftCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="aqueueBadCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueBadCON" data-long-name="Array-based Queue Bad Representation Slideshow" data-exer-id="" alt="Array-based Queue Bad Representation Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueBadCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueBadCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueBadCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueBadCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="the-circular-queue">
+<h3>5.<span class="section-number">11.1.2. </span>The Circular Queue<a class="headerlink" href="#the-circular-queue" title="Permalink to this headline">¶</a></h3>
+<div id="aqueueCircularCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueCircularCON" data-long-name="Circular Array-based Queue Slideshow" data-exer-id="" alt="Circular Array-based Queue Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueCircularCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueCircularCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueCircularCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueCircularCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="aqueueEmptyCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueEmptyCON" data-long-name="Empty Circular Array-based Queue Slideshow" data-exer-id="" alt="Empty Circular Array-based Queue Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueEmptyCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueEmptyCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueEmptyCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueEmptyCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>If the value of <code class="docutils literal notranslate"><span class="pre">front</span></code> is fixed, then <span class="math notranslate nohighlight">\(n+1\)</span> different
+values for <code class="docutils literal notranslate"><span class="pre">rear</span></code> are needed to distinguish among the <span class="math notranslate nohighlight">\(n+1\)</span>
+states.
+However, there are only <span class="math notranslate nohighlight">\(n\)</span> possible values for <code class="docutils literal notranslate"><span class="pre">rear</span></code> unless
+we invent a special case for, say, empty queues.
+This is an example of the <a class="reference internal" href="Glossary.html#term-pigeonhole-principle"><span class="xref std std-term">Pigeonhole Principle</span></a>.
+The Pigeonhole Principle states that, given <span class="math notranslate nohighlight">\(n\)</span> pigeonholes
+and <span class="math notranslate nohighlight">\(n+1\)</span> pigeons, when all of the pigeons go into the holes we
+can be sure that at least one hole contains more than one pigeon.
+In similar manner, we can be sure that two of the <span class="math notranslate nohighlight">\(n+1\)</span> states
+are indistinguishable by the <span class="math notranslate nohighlight">\(n\)</span> relative values of <code class="docutils literal notranslate"><span class="pre">front</span></code>
+and <code class="docutils literal notranslate"><span class="pre">rear</span></code>.
+We must seek some other way to distinguish full from empty queues.</p>
+<p>One obvious solution is to keep an explicit count of the number of
+elements in the queue, or at least a Boolean variable that indicates
+whether the queue is empty or not.
+Another solution is to make the array be of size <span class="math notranslate nohighlight">\(n+1\)</span>,
+and only allow <span class="math notranslate nohighlight">\(n\)</span> elements to be stored.
+Which of these solutions to adopt is purely a matter of the
+implementor’s taste in such affairs.
+Our choice here is to use an array of size <span class="math notranslate nohighlight">\(n+1\)</span>.</p>
+<p>Here is an array-based queue implementation.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">AQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">E</span> <span class="n">queueArray</span><span class="o">[]</span><span class="p">;</span>      <span class="c1">// Array holding queue elements</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">DEFAULT_SIZE</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">maxSize</span><span class="p">;</span>         <span class="c1">// Maximum size of queue</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">front</span><span class="p">;</span>           <span class="c1">// Index of front element</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">rear</span><span class="p">;</span>            <span class="c1">// Index of rear element</span>
+
+  <span class="c1">// Constructors</span>
+  <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span> <span class="c1">// Generic array allocation</span>
+  <span class="n">AQueue</span><span class="p">(</span><span class="kt">int</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">maxSize</span> <span class="o">=</span> <span class="n">size</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>          <span class="c1">// One extra space is allocated</span>
+    <span class="n">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">front</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">queueArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span><span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">maxSize</span><span class="o">]</span><span class="p">;</span>  <span class="c1">// Create queueArray</span>
+  <span class="p">}</span>
+  <span class="n">AQueue</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">this</span><span class="p">(</span><span class="n">DEFAULT_SIZE</span><span class="p">);</span> 
+  <span class="p">}</span>
+
+  <span class="c1">// Reinitialize</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">rear</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">front</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> 
+  <span class="p">}</span>
+
+  <span class="c1">// Put &quot;it&quot; in queue</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">it</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(((</span><span class="n">rear</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">)</span> <span class="o">==</span> <span class="n">front</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>  <span class="c1">// Full</span>
+    <span class="p">}</span>
+    <span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">rear</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span> <span class="c1">// Circular increment</span>
+    <span class="n">queueArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">it</span><span class="p">;</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Remove and return front value</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">E</span> <span class="n">it</span> <span class="o">=</span> <span class="n">queueArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="n">front</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span> <span class="c1">// Circular increment</span>
+    <span class="k">return</span> <span class="n">it</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return front value</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">frontValue</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">length</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">queueArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return queue size</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">length</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">((</span><span class="n">rear</span><span class="o">+</span><span class="n">maxSize</span><span class="p">)</span> <span class="o">-</span> <span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">maxSize</span><span class="p">;</span> 
+  <span class="p">}</span>
+  
+  <span class="c1">//Tell if the queue is empty or not</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span> 
+    <span class="k">return</span> <span class="n">front</span> <span class="o">-</span> <span class="n">rear</span> <span class="o">==</span> <span class="mi">1</span><span class="p">;</span> 
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="array-based-queue-implementation">
+<h3>5.<span class="section-number">11.1.3. </span>Array-based Queue Implementation<a class="headerlink" href="#array-based-queue-implementation" title="Permalink to this headline">¶</a></h3>
+<div id="aqueueVarCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueVarCON" data-long-name="Array-based Queue Variables Slideshow" data-exer-id="" alt="Array-based Queue Variables Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueVarCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueVarCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueVarCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueVarCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>In this implementation, the front of the queue is defined to be toward
+the lower numbered positions in the array (in the counter-clockwise
+direction in the circular array), and the rear is
+defined to be toward the higher-numbered positions.
+Thus, <code class="docutils literal notranslate"><span class="pre">enqueue</span></code> increments the rear pointer (modulus <code class="docutils literal notranslate"><span class="pre">maxSize</span></code>),
+and <code class="docutils literal notranslate"><span class="pre">dequeue</span></code> increments the front pointer.
+Implementation of all member functions is straightforward.</p>
+<div
+    id="AqueueEnqueuePRO"
+    class="embedContainer"
+    data-exer-name="AqueueEnqueuePRO"
+    data-long-name="Array-based Queue Enqueue Exercise"
+    data-short-name="AqueueEnqueuePRO"
+    data-frame-src="../../../Exercises/List/AqueueEnqueuePRO.html?localMode=true&amp;module=Queue&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="830"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="AqueueEnqueuePRO_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="section" id="array-based-dequeue-practice">
+<h2>5.<span class="section-number">11.2. </span>Array-based Dequeue Practice<a class="headerlink" href="#array-based-dequeue-practice" title="Permalink to this headline">¶</a></h2>
+<div
+    id="AqueueDequeuePRO"
+    class="embedContainer"
+    data-exer-name="AqueueDequeuePRO"
+    data-long-name="Array-based Queue Dequeue Exercise"
+    data-short-name="AqueueDequeuePRO"
+    data-frame-src="../../../Exercises/List/AqueueDequeuePRO.html?localMode=true&amp;module=Queue&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="820"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="AqueueDequeuePRO_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/List/aqueueFirstCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueDriftCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueBadCON.js"></script>
+<script type="text/javascript" src="../../../DataStructures/CircularQueue.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueCircularCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueEmptyCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueVarCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="StackRecur.html">5.<span class="section-number">10. </span>Implementing Recursion</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="QueueLinked.html">5.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

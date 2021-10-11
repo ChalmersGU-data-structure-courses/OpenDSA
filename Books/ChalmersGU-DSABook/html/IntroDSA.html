@@ -1,0 +1,570 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.1. Data Structures and Algorithms &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="2. Abstract Data Types" href="ADT.html" />
+    <link rel="prev" title="Chapter 1 Introduction" href="index.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 1 Introduction</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/IntroDSA.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="index.html"><span class="sectnum">Chapter 1</span> Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="ADT.html">1.<span class="section-number">2. </span>Abstract Data Types</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'a-philosophy-of-data-structures', 'selecting-a-data-structure', 'introduction-summary-questions', 'some-software-engineering-topics'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "IntroDSA";ODSA.SETTINGS.MODULE_LONG_NAME = "Data Structures and Algorithms";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="data-structures-and-algorithms">
+<h1>1.<span class="section-number">1. </span>Data Structures and Algorithms<a class="headerlink" href="#data-structures-and-algorithms" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.<span class="section-number">1.1. </span>Data Structures and Algorithms<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>1.<span class="section-number">1.1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>How many cities with more than 250,000 people lie within 500 miles of
+Dallas, Texas?
+How many people in my company make over $100,000 per year?
+Can we connect all of our telephone customers with less than 1,000
+miles of cable?
+To answer questions like these, it is not enough to have the
+necessary information.
+We must organize that information in a way that allows us to find the
+answers in time to satisfy our needs.</p>
+<p>Representing information is fundamental to computer science.
+The primary purpose of most computer programs is not to
+perform calculations, but to store and retrieve information—usually as fast as possible.
+For this reason, the study of data structures and the algorithms that
+manipulate them is at the heart of computer science.
+And that is what this book is about—helping you to understand
+how to structure information to support efficient processing.</p>
+<p>Any course on Data Structures and Algorithms will try to teach you
+about three things:</p>
+<ol class="arabic simple">
+<li><p>It will present a collection of commonly used data structures and
+algorithms.
+These form a programmer’s basic “toolkit”.
+For many problems, some data structure or algorithm in the toolkit
+will provide a good solution.
+We focus on data structures and algorithms that have proven over
+time to be most useful.</p></li>
+<li><p>It will introduce the idea of tradeoffs, and reinforce the concept
+that there are costs and benefits associated with every data
+structure or algorithm.
+This is done by describing, for each data structure,
+the amount of space and time required for typical operations.
+For each algorithm, we examine the time required for key input
+types.</p></li>
+<li><p>It will teach you how to measure the effectiveness of a data
+structure or algorithm.
+Only through such measurement can you determine which data
+structure in your toolkit is most appropriate for a new problem.
+The techniques presented also allow you to judge the merits of
+new data structures that you or others might invent.</p></li>
+</ol>
+<p>There are often many approaches to solving a problem.
+How do we choose between them?
+At the heart of computer program design are two (sometimes conflicting)
+goals:</p>
+<ol class="arabic simple">
+<li><p>To design an algorithm that is easy to understand, code, and debug.</p></li>
+<li><p>To design an algorithm that makes efficient use of the computer’s
+resources.</p></li>
+</ol>
+<p>Ideally, the resulting program is true to both of these goals.
+We might say that such a program is “elegant.”
+While the algorithms and program code examples presented here
+attempt to be elegant in this sense, it is not the purpose of this
+book to explicitly treat issues related to goal (1).
+These are primarily concerns for the discipline of
+Software Engineering.
+Rather, we mostly focus on issues relating to goal (2).</p>
+<p>How do we measure efficiency?
+Our method for evaluating the efficiency of an algorithm or computer
+program is called <a class="reference internal" href="Glossary.html#term-asymptotic-analysis"><span class="xref std std-term">asymptotic analysis</span></a>.
+Asymptotic analysis also gives a way to define the inherent difficulty
+of a problem.
+Throughout the book we use asymptotic analysis techniques to
+estimate the time cost for every algorithm presented.
+This allows you to see how each algorithm compares to other
+algorithms for solving the same problem in terms of its
+efficiency.</p>
+</div>
+<div class="section" id="a-philosophy-of-data-structures">
+<h3>1.<span class="section-number">1.1.2. </span>A Philosophy of Data Structures<a class="headerlink" href="#a-philosophy-of-data-structures" title="Permalink to this headline">¶</a></h3>
+<p>You might think that with ever more powerful computers,
+program efficiency is becoming less important.
+After all, processor speed and memory size still continue to improve.
+Won’t today’s efficiency problem be solved by tomorrow’s hardware?</p>
+<p>As we develop more powerful computers,
+our history so far has always been to use that additional computing
+power to tackle more complex problems, be it in the form of more
+sophisticated user interfaces, bigger problem sizes, or new problems
+previously deemed computationally infeasible.
+More complex problems demand more computation, making the need for
+efficient programs even greater.
+Unfortunately, as tasks become more complex, they become less like
+our everyday experience.
+So today’s computer scientists must be trained to have a thorough
+understanding of the principles behind efficient program design,
+because their ordinary life experiences often do not apply when
+designing computer programs.</p>
+<p>In the most general sense, a <a class="reference internal" href="Glossary.html#term-data-structure"><span class="xref std std-term">data structure</span></a> is any data
+representation and its associated operations.
+Even an integer or floating point number stored on the computer can be
+viewed as a simple data structure.
+More commonly, people use the term “data structure” to mean
+an organization or structuring for a collection of data items.
+A sorted list of integers stored in an array is an
+example of such a structuring.
+These ideas are explored further in a discussion of
+<a class="reference internal" href="ADT.html#adt"><span class="std std-ref">Abstract Data Types</span></a>.</p>
+<p>Given sufficient space to store a collection of
+<a class="reference internal" href="Glossary.html#term-data-item"><span class="xref std std-term">data items</span></a>,
+it is always possible to search for specified items within the
+collection, print or otherwise process the data items in any desired
+order, or modify the value of any particular data item.
+The most obvious example is an unsorted array containing all of the
+data items.
+It is possible to perform all necessary operations on an unsorted
+array.
+However, using the proper data structure can make the difference
+between a program running in a few seconds and one requiring many
+days.
+For example, searching for a given record in a <a class="reference internal" href="Glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a> is
+much faster than searching for it in an unsorted array.</p>
+<p>A solution is said to be <a class="reference internal" href="Glossary.html#term-efficient"><span class="xref std std-term">efficient</span></a>
+if it solves the problem within the required
+<a class="reference internal" href="Glossary.html#term-resource-constraints"><span class="xref std std-term">resource constraints</span></a>.
+Examples of resource constraints include the total space available to
+store the data—possibly divided into separate main memory and disk
+space constraints—and the time allowed to perform each subtask.
+A solution is sometimes said to be
+efficient if it requires fewer resources than known alternatives,
+regardless of whether it meets any particular requirements.
+The <a class="reference internal" href="Glossary.html#term-cost"><span class="xref std std-term">cost</span></a> of a solution is the
+amount of resources that the solution consumes.
+Most often, cost is measured in terms of one key resource such as
+time, with the implied assumption that the solution meets the other
+resource constraints.</p>
+</div>
+<div class="section" id="selecting-a-data-structure">
+<h3>1.<span class="section-number">1.1.3. </span>Selecting a Data Structure<a class="headerlink" href="#selecting-a-data-structure" title="Permalink to this headline">¶</a></h3>
+<p id="index-0">It should go without saying that people write programs to
+solve problems.
+However, sometimes programmers forget this.
+So it is crucial to keep this truism in mind when selecting a
+<a class="reference internal" href="Glossary.html#term-data-structure"><span class="xref std std-term">data structure</span></a> to solve a particular <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a>.
+Only by first analyzing the problem to determine the performance
+goals that must be achieved can there be any hope of selecting the
+right data structure for the job.
+Poor program designers ignore this analysis step
+and apply a data structure that they are familiar with but which is
+inappropriate to the problem.
+The result is typically a slow program.
+Conversely, there is no sense in adopting a complex representation to
+“improve” a program that can meet its performance goals when
+implemented using a simpler design.</p>
+<p>When selecting a data structure to solve a problem, you should follow
+these steps.</p>
+<ol class="arabic simple">
+<li><p>Analyze your problem to determine the
+<a class="reference internal" href="Glossary.html#term-basic-operation"><span class="xref std std-term">basic operations</span></a> that
+must be supported.
+Examples of basic operations include inserting a data
+item into the data structure, deleting a data item from the
+data structure, and finding a specified data item.</p></li>
+<li><p>Quantify the resource constraints for each operation.</p></li>
+<li><p>Select the data structure that best meets these requirements.</p></li>
+</ol>
+<p>This three-step approach to selecting a data structure operationalizes
+a data-centered view of the design process.
+The first concern is for the data and the operations to be performed
+on them, the next concern is the representation for those data, and
+the final concern is the implementation of that representation.</p>
+<p>Resource constraints on certain key operations, such as search,
+inserting data records, and deleting data records, normally drive
+the data structure selection process.
+Many issues relating to the relative importance of these operations
+are addressed by the following three questions, which you should ask
+yourself whenever you must choose a data structure.</p>
+<ol class="arabic simple">
+<li><p>Are all data items inserted into the data structure at
+the beginning, or are insertions interspersed with other operations?
+Static applications (where the data are loaded at the beginning and
+never change) typically get by with simpler data structures to get an
+efficient implementation, while dynamic applications often require
+something more complicated.</p></li>
+<li><p>Can data items be deleted?
+If so, this will probably make the implementation more complicated.</p></li>
+<li><p>Are all data items processed in some well-defined order,
+or is search for specific data items allowed?
+“Random access” search generally requires more complex data
+structures.</p></li>
+</ol>
+<p>Each data structure has associated costs and benefits.
+In practice, it is hardly ever true that one data structure is
+better than another for use in all situations.
+If one data structure or algorithm is superior to another in all
+respects, the inferior one will usually have long been forgotten.
+For nearly every data structure and algorithm presented in this
+book, you will see examples of where it is the best choice.
+Some of the examples might surprise you.</p>
+<p>A data structure requires a certain amount of
+space for each data item it stores,
+a certain amount of time to perform a single basic
+operation, and a certain amount of programming effort.
+Each problem has constraints on available space and time.
+Each solution to a problem makes use of the basic operations in some
+relative proportion, and the data structure selection process
+must account for this.
+Only after a careful analysis of your problem’s characteristics can
+you determine the best data structure for the task.</p>
+<div class="topic">
+<p class="topic-title">Example 1.2.1 </p>
+<p>A bank must support many types of transactions with its customers, but
+we will examine a simple model where customers wish to open accounts,
+close accounts, and add money or withdraw money from accounts.
+We can consider this problem at two distinct levels:
+(1) the requirements for the physical infrastructure and workflow
+process that the bank uses in its interactions with its customers,
+and (2) the requirements for the database system that manages the
+accounts.</p>
+<p>The typical customer opens and closes accounts far less often than
+accessing the account.
+Customers are willing to spend many minutes during the process of
+opening or closing the account, but are typically not willing to
+wait more than a brief time for individual account transactions
+such as a deposit or withdrawal.
+These observations can be considered as informal specifications for
+the time constraints on the problem.</p>
+<p>It is common practice for banks to provide two tiers of service.
+Human tellers or automated teller machines (ATMs) support customer
+access to account balances and updates such as deposits and
+withdrawals.
+Special service representatives are typically provided (during
+restricted hours) to handle opening and closing accounts.
+Teller and ATM transactions are expected to take little time.
+Opening or closing an account can take much longer (perhaps up to an
+hour from the customer’s perspective).</p>
+<p>From a database perspective, we see that
+ATM transactions do not modify the database significantly.
+For simplicity, assume that if money is added or removed, this
+transaction simply changes the value stored in an account record.
+Adding a new account to the database is allowed to take several
+minutes.
+Deleting an account need have no time constraint, because from the
+customer’s point of view all that matters is that all the money be
+returned (equivalent to a withdrawal).
+From the bank’s point of view, the account record might be removed
+from the database system after business hours, or at the end of the
+monthly account cycle.</p>
+<p>When considering the choice of data structure to use in the database
+system that manages customer accounts, we see that
+a data structure that has little concern for the cost of deletion,
+but is highly efficient for search and moderately efficient for
+insertion, should meet the resource constraints imposed by this
+problem.
+Records are accessible by unique account number (sometimes called
+an <a class="reference internal" href="Glossary.html#term-exact-match-query"><span class="xref std std-term">exact-match query</span></a>).
+One data structure that meets these requirements is the
+<a class="reference internal" href="HashIntro.html#hashintro"><span class="std std-ref">hash table</span></a>.
+Hash tables allow for extremely fast exact-match search.
+A record can be modified quickly when the modification does not
+affect its space requirements.
+Hash tables also support efficient insertion of new records.
+While deletions can also be supported efficiently, too many deletions
+lead to some degradation in performance for the remaining operations.
+However, the hash table can be reorganized periodically to restore
+the system to peak efficiency.
+Such reorganization can occur offline so as not to affect ATM
+transactions.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 1.2.2 </p>
+<p>A company is developing a database system containing information
+about cities and towns in the United States.
+There are many thousands of cities and towns, and the database
+program should allow users to find information about a particular
+place by name (another example of an exact-match query).
+Users should also be able to find all places that match a
+particular value or range of values for attributes such as location
+or population size.
+This is known as a <a class="reference internal" href="Glossary.html#term-range-query"><span class="xref std std-term">range query</span></a>.</p>
+<p>A reasonable database system must answer queries quickly enough to
+satisfy the patience of a typical user.
+For an exact-match query, a few seconds is satisfactory.
+If the database is meant to support range queries that can return many
+cities that match the query specification,
+the user might tolerate the entire operation to take longer,
+perhaps on the order of a minute.
+To meet this requirement, it will be necessary to support operations
+that process range queries efficiently by processing all cities in the
+range as a batch, rather than as a series of operations on individual
+cities.</p>
+<p>The hash table suggested in the previous example is inappropriate
+for implementing our city database, because it cannot perform
+efficient range queries.
+The <a class="reference internal" href="Glossary.html#term-b-tree"><span class="xref std std-term">B$^+$-tree</span></a> supports large databases,
+insertion and deletion of data records, and range queries.
+However, a simple
+<a class="reference internal" href="Glossary.html#term-linear-index"><span class="xref std std-term">linear index</span></a> would be
+more appropriate if the database is created once, and then never
+changed, such as an atlas distributed on a CD or accessed from a
+website.</p>
+</div>
+</div>
+<div class="section" id="introduction-summary-questions">
+<h3>1.<span class="section-number">1.1.4. </span>Introduction Summary Questions<a class="headerlink" href="#introduction-summary-questions" title="Permalink to this headline">¶</a></h3>
+<div
+    id="IntroSumm"
+    class="embedContainer"
+    data-exer-name="IntroSumm"
+    data-long-name="Introduction Summary Questions"
+    data-short-name="IntroSumm"
+    data-frame-src="../../../Exercises/Background/IntroSumm.html?localMode=true&amp;module=IntroDSA&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="775"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="IntroSumm_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="index.html"><span class="sectnum">Chapter 1</span> Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="ADT.html">1.<span class="section-number">2. </span>Abstract Data Types</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

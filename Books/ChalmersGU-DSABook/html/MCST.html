@@ -1,0 +1,567 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>12.6. Minimal Cost Spanning Trees &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="7. Kruskal’s Algorithm" href="Kruskal.html" />
+    <link rel="prev" title="5. Shortest-Paths Problems" href="GraphShortest.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/MCST.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Kruskal.html">12.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="minimal-cost-spanning-trees">
+<h1>12.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>12.<span class="section-number">6.1. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="Glossary.html#term-minimal-cost-spanning-tree"><span class="xref std std-term">minimal-cost spanning tree</span></a> (MCST)
+problem takes as input a connected, undirected graph
+<span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, where each edge has a distance or weight measure
+attached.
+The MCST is the graph containing the vertices of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>
+along with the subset of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> ‘s edges that
+(1) has minimum total cost as measured by summing the values for all
+of the edges in the subset, and
+(2) keeps the vertices connected.
+Applications where a solution to this problem is
+useful include soldering the shortest set of wires needed to connect a
+set of terminals on a circuit board, and connecting a set of cities by
+telephone lines in such a way as to require the least amount of cable.</p>
+<p>The MCST contains no cycles.
+If a proposed MCST did have a cycle, a cheaper MCST could be
+had by removing any one of the edges in the cycle.
+Thus, the MCST is a free tree with <span class="math notranslate nohighlight">\(|\mathbf{V}| - 1\)</span> edges.
+The name “minimum-cost spanning tree” comes from the fact that the
+required set of edges forms a tree, it spans the vertices (i.e., it
+connects them together), and it has minimum cost.
+Figure <a href="MCST.html#mcstdgm">12.7.1</a> shows the MCST for an example graph.</p>
+<div class="divdgm" id="mcstdgm">
+<div id="MCSTCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 12.7.1: A graph and its MCST.
+All edges appear in the original graph.
+Those edges drawn with heavy lines indicate
+the subset making up the MCST.
+Note that edge <span class="math notranslate nohighlight">\((C, F)\)</span> could be replaced with edge
+<span class="math notranslate nohighlight">\((D, F)\)</span> to form a different MCST with equal cost.</span></p>
+</div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Replace the previous diagram with a slideshow illustrating the
+concept of MCST.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="prim-s-algorithm">
+<h3>12.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
+<p>The first of our two algorithms for finding MCSTs is commonly
+referred to as <a class="reference internal" href="Glossary.html#term-prim-s-algorithm"><span class="xref std std-term">Prim’s algorithm</span></a>.
+Prim’s algorithm is very simple.
+Start with any Vertex <span class="math notranslate nohighlight">\(N\)</span> in the graph, setting the MCST
+to be <span class="math notranslate nohighlight">\(N\)</span> initially.
+Pick the least-cost edge connected to <span class="math notranslate nohighlight">\(N\)</span>.
+This edge connects <span class="math notranslate nohighlight">\(N\)</span> to another vertex; call this <span class="math notranslate nohighlight">\(M\)</span>.
+Add Vertex <span class="math notranslate nohighlight">\(M\)</span> and Edge <span class="math notranslate nohighlight">\((N, M)\)</span> to the MCST.
+Next, pick the least-cost edge coming from either <span class="math notranslate nohighlight">\(N\)</span> or
+<span class="math notranslate nohighlight">\(M\)</span> to any other vertex in the graph.
+Add this edge and the new vertex it reaches to the MCST.
+This process continues, at each step expanding the MCST by selecting
+the least-cost edge from a vertex currently in the MCST to a vertex
+not currently in the MCST.</p>
+<p>Prim’s algorithm is quite similar to Dijkstra’s algorithm for finding
+the single-source shortest
+paths.
+The primary difference is that we are seeking not the next closest
+vertex to the start vertex, but rather the next closest vertex to any
+vertex currently in the MCST.
+Thus we replace the lines:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D[w] &gt; (D[v] + G.weight(v, w)))
+  D[w] = D[v] + G.weight(v, w);
+</pre></div>
+</div>
+<p>in Djikstra’s algorithm with the lines:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D[w] &gt; G.weight(v, w))
+  D[w] = G.weight(v, w);
+</pre></div>
+</div>
+<p>in Prim’s algorithm.</p>
+<p>The following code shows an implementation for Prim’s algorithm
+that searches the distance matrix for the next closest vertex.</p>
+<div id="Prim_Prims_code"><ul><li><a href="#Prim_Prims_code_Java_Generic">Java</a></li><li><a href="#Prim_Prims_code_Python">Python</a></li></ul><div id="Prim_Prims_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute shortest distances to the MCST, store them in D.</span>
+<span class="c1">// V[i] will hold the index for the vertex that is i&#39;s parent in the MCST</span>
+<span class="kt">void</span> <span class="nf">Prim</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">D</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">V</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Initialize</span>
+    <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">INFINITY</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">D</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Process the vertices</span>
+    <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">minVertex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">);</span>     <span class="c1">// Find next-closest vertex</span>
+    <span class="n">G</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Unreachable</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">!=</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">V</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span> <span class="p">}</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">nList</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+        <span class="n">V</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Prim_Prims_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute shortest distances to the MCST, store them in D.</span>
+<span class="c1"># V[i] will hold the index for the vertex that is i&#39;s parent in the MCST</span>
+<span class="k">def</span> <span class="nf">Prim</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">V</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>  <span class="c1"># Initialize</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">D</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>  <span class="c1"># Process the vertices</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">minVertex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>         <span class="c1"># Find next-closest vertex</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">:</span>
+            <span class="k">return</span>                  <span class="c1"># Unreachable</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+                <span class="n">V</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Prim_Prims_code" ).tabs();});</script><p>For each vertex <span class="math notranslate nohighlight">\(I\)</span>, when <span class="math notranslate nohighlight">\(I\)</span> is processed by Prim’s
+algorithm, an edge going to <span class="math notranslate nohighlight">\(I\)</span> is added to the MCST that we are
+building.
+Array <code class="docutils literal notranslate"><span class="pre">V[I]</span></code> stores the previously visited vertex that is
+closest to Vertex <cite>I</cite>.
+This information lets us know which edge goes into the MCST when
+Vertex <span class="math notranslate nohighlight">\(I\)</span> is processed.
+The implementation above also contains calls to
+<code class="docutils literal notranslate"><span class="pre">AddEdgetoMST</span></code> to indicate which edges are actually added to the
+MCST.</p>
+<div id="primCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="primCON" data-long-name="Prim's Minimum Cost Spanning Tree Algorithm Slideshow" data-exer-id="" alt="Prim's Minimum Cost Spanning Tree Algorithm Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="primCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="primCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="primCON_cm_error_msg" class="cm_error_msg">
+   <img id="primCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="prim-s-algorithm-alternative-implementation">
+<h3>12.<span class="section-number">6.1.2. </span>Prim’s Algorithm Alternative Implementation<a class="headerlink" href="#prim-s-algorithm-alternative-implementation" title="Permalink to this headline">¶</a></h3>
+<p>Alternatively, we can implement Prim’s algorithm using a
+<a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queue</span></a> to find the next closest vertex, as
+shown next.
+As with the priority queue version of Dijkstra’s algorithm,
+the <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> stores <code class="docutils literal notranslate"><span class="pre">DijkElem</span></code> objects.</p>
+<div id="PrimPQ_PrimsPQ_code"><ul><li><a href="#PrimPQ_PrimsPQ_code_Java_Generic">Java</a></li><li><a href="#PrimPQ_PrimsPQ_code_Python">Python</a></li></ul><div id="PrimPQ_PrimsPQ_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Prims MCST algorithm: priority queue version</span>
+<span class="kt">void</span> <span class="nf">PrimPQ</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">D</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">V</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>                                 <span class="c1">// The current vertex</span>
+  <span class="n">KVPair</span><span class="o">[]</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">[</span><span class="n">G</span><span class="p">.</span><span class="na">edgeCount</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>        <span class="c1">// Heap for edges</span>
+  <span class="n">E</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>               <span class="c1">// Initial vertex</span>
+  <span class="n">MinHeap</span> <span class="n">H</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">G</span><span class="p">.</span><span class="na">edgeCount</span><span class="p">());</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>            <span class="c1">// Initialize distance</span>
+    <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">INFINITY</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">D</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>          <span class="c1">// For each vertex</span>
+    <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="p">.</span><span class="na">removemin</span><span class="p">();</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>      <span class="c1">// Unreachable nodes exist</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+      <span class="k">while</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">VISITED</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="p">.</span><span class="na">removemin</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>      <span class="c1">// Unreachable nodes exist</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="n">G</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Unreachable</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">v</span> <span class="o">!=</span> <span class="n">s</span><span class="p">)</span> <span class="p">{</span> <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">V</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// Add edge to MST</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">nList</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// Update D</span>
+        <span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+        <span class="n">V</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>                  <span class="c1">// Where it came from</span>
+        <span class="n">H</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="PrimPQ_PrimsPQ_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prim&#39;s MCST algorithm: priority queue version</span>
+<span class="k">def</span> <span class="nf">PrimPQ</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">V</span><span class="p">):</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="o">.</span><span class="n">edgeCount</span><span class="p">()</span>        <span class="c1"># Heap for edges</span>
+    <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>                     <span class="c1"># Initial vertex</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">edgeCount</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>    <span class="c1"># Initialize distance</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+    <span class="n">D</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>    <span class="c1"># For each vertex</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">removemin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>                    <span class="c1"># Unreachable nodes exist</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">G</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">VISITED</span><span class="p">:</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">removemin</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>                <span class="c1"># Unreachable nodes exist</span>
+                <span class="n">v</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span>
+            <span class="k">return</span>                    <span class="c1"># Unreachable</span>
+        <span class="k">if</span> <span class="n">v</span> <span class="o">!=</span> <span class="n">s</span><span class="p">:</span>
+            <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">V</span><span class="p">[</span><span class="n">v</span><span class="p">],</span> <span class="n">v</span><span class="p">)</span>     <span class="c1"># Add edge to MST</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+                <span class="n">V</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>              <span class="c1"># Where it came from</span>
+                <span class="n">H</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#PrimPQ_PrimsPQ_code" ).tabs();});</script><a id="todo1"></a><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Implement a slideshow demonstrating the Priority Queue version of
+Prim’s algorithm</p>
+</dd>
+</dl>
+</div>
+<p>Prim’s algorithm is an example of a greedy
+algorithm.
+At each step in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we select the least-cost edge that
+connects some marked vertex to some unmarked vertex.
+The algorithm does not otherwise check that the MCST really should
+include this least-cost edge.
+This leads to an important question:
+Does Prim’s algorithm work correctly?
+Clearly it generates a spanning tree (because each pass through the
+<code class="docutils literal notranslate"><span class="pre">for</span></code> loop adds one edge and one unmarked vertex to the spanning tree
+until all vertices have been added), but does this tree have minimum
+cost?</p>
+<blockquote>
+<div><p><strong>Theorem:</strong> Prim’s algorithm produces a minimum-cost spanning tree.</p>
+<p><strong>Proof:</strong> We will use a proof by contradiction.
+Let <span class="math notranslate nohighlight">\(\mathbf{G} = (\mathbf{V}, \mathbf{E})\)</span> be a graph for which
+Prim’s algorithm does <em>not</em> generate an MCST.
+Define an ordering on the vertices according to the order in which
+they were added by Prim’s algorithm to the MCST:
+<span class="math notranslate nohighlight">\(v_0, v_1, ..., v_{n-1}\)</span>.
+Let edge <span class="math notranslate nohighlight">\(e_i\)</span> connect <span class="math notranslate nohighlight">\((v_x, v_i)\)</span> for
+some <span class="math notranslate nohighlight">\(x &lt; i\)</span> and <span class="math notranslate nohighlight">\(i \leq 1\)</span>.
+Let <span class="math notranslate nohighlight">\(e_j\)</span> be the lowest numbered (first) edge added
+by Prim’s algorithm such that the set of edges selected so
+far <em>cannot</em> be extended to form an MCST for <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>.
+In other words, <span class="math notranslate nohighlight">\(e_j\)</span> is the first edge where Prim’s algorithm
+“went wrong.”
+Let <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> be the “true” MCST.
+Call <span class="math notranslate nohighlight">\(v_p (p&lt;j)\)</span> the vertex connected by edge
+<span class="math notranslate nohighlight">\(e_j\)</span>, that is, <span class="math notranslate nohighlight">\(e_j = (v_p, v_j)\)</span>.</p>
+<p>Because <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is a tree, there exists some path in
+<span class="math notranslate nohighlight">\(\mathbf{T}\)</span> connecting <span class="math notranslate nohighlight">\(v_p\)</span> and <span class="math notranslate nohighlight">\(v_j\)</span>.
+There must be some edge <span class="math notranslate nohighlight">\(e'\)</span> in this path connecting vertices
+<span class="math notranslate nohighlight">\(v_u\)</span> and <span class="math notranslate nohighlight">\(v_w\)</span>, with <span class="math notranslate nohighlight">\(u &lt; j\)</span> and <span class="math notranslate nohighlight">\(w \geq j\)</span>.
+Because <span class="math notranslate nohighlight">\(e_j\)</span> is not part of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, adding edge
+<span class="math notranslate nohighlight">\(e_j\)</span> to <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> forms a cycle.
+Edge <span class="math notranslate nohighlight">\(e'\)</span> must be of lower cost than
+edge <span class="math notranslate nohighlight">\(e_j\)</span>, because Prim’s algorithm did not generate an MCST.
+This situation is illustrated in Figure <a href="MCST.html#primproof">12.7.2</a>.
+However, Prim’s algorithm would have selected the least-cost edge
+available.
+It would have selected <span class="math notranslate nohighlight">\(e'\)</span>, not <span class="math notranslate nohighlight">\(e_j\)</span>.
+Thus, it is a contradiction that Prim’s algorithm would have selected
+the wrong edge, and thus, Prim’s algorithm must be correct. BOX HERE</p>
+</div></blockquote>
+<div class="figure align-center" id="id5" style="width: 90%">
+<span id="primproof"></span><a class="reference internal image-reference" href="_images/PrimMST.png"><img alt="Prim's MCST algorithm proof" src="_images/PrimMST.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 12.7.2: Prim’s MCST algorithm proof.
+The left oval contains that portion of the graph where Prim’s MCST
+and the “true” MCST <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> agree.
+The right oval contains the rest of the graph.
+The two portions of the graph are connected by (at least) edges
+<span class="math notranslate nohighlight">\(e_j\)</span> (selected by Prim’s algorithm to be in the MCST) and
+<span class="math notranslate nohighlight">\(e'\)</span> (the “correct” edge to be placed in the MCST).
+Note that the path from <span class="math notranslate nohighlight">\(v_w\)</span> to <span class="math notranslate nohighlight">\(v_j\)</span> cannot
+include any marked vertex <span class="math notranslate nohighlight">\(v_i, i \leq j\)</span>, because to do so
+would form a cycle.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<div
+    id="PrimPE"
+    class="embedContainer"
+    data-exer-name="PrimPE"
+    data-long-name="Prim's Algorithm Proficiency Exercise"
+    data-short-name="PrimPE"
+    data-frame-src="../../../AV/Graph/PrimPE.html?localMode=true&amp;module=MCST&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="PrimPE_iframe"></div>
+  </div>
+</div>
+<a id="todo2"></a><div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Exercise</dt><dd><p>Proficiency exercise for Prim’s algorithm.</p>
+</dd>
+</dl>
+</div>
+<script type="text/javascript" src="../../../AV/Graph/MCSTCON.js"></script>
+<script type="text/javascript" src="../../../AV/Graph/primCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Kruskal.html">12.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11.7. Improved Collision Resolution &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="8. Analysis of Closed Hashing" href="HashAnal.html" />
+    <link rel="prev" title="6. Collision Resolution" href="HashCSimple.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 11 Hash Tables</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/HashCImproved.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="HashCSimple.html">11.<span class="section-number">6. </span>Collision Resolution</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="HashAnal.html">11.<span class="section-number">8. </span>Analysis of Closed Hashing</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linear-probing-by-steps', 'pseudo-random-probing', 'quadratic-probing', 'double-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/collisionCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="improved-collision-resolution">
+<h1>11.<span class="section-number">7. </span>Improved Collision Resolution<a class="headerlink" href="#improved-collision-resolution" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="linear-probing-by-steps">
+<h2>11.<span class="section-number">7.1. </span>Linear Probing by Steps<a class="headerlink" href="#linear-probing-by-steps" title="Permalink to this headline">¶</a></h2>
+<p>How can we avoid primary clustering?
+One possible improvement might be to use linear probing,
+but to skip slots by some constant <span class="math notranslate nohighlight">\(c\)</span> other than 1.
+This would make the probe function
+<span class="math notranslate nohighlight">\(\textbf{p}(K, i) = ci\)</span>,
+and so the <span class="math notranslate nohighlight">\(i\)</span> th slot in the probe sequence will be
+<span class="math notranslate nohighlight">\((\textbf{h}(K) + ic) \mod M\)</span>.
+In this way, records with adjacent home positions will not follow the
+same probe sequence.</p>
+<div id="collisionCON1" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON1" data-long-name="Linear Probing By Steps Slideshow 1" data-exer-id="" alt="Linear Probing By Steps Slideshow 1" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON1_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON1_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON1_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON1_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>One quality of a good probe sequence is that it will cycle through
+all slots in the hash table before returning to the home position.
+Clearly linear probing (which “skips” slots by one each time) does this.
+Unfortunately, not all values for <span class="math notranslate nohighlight">\(c\)</span> will make this happen.
+For example, if <span class="math notranslate nohighlight">\(c = 2\)</span> and the table contains an even number of
+slots, then any key whose home position is in an even slot will have
+a probe sequence that cycles through only the even slots.
+Likewise, the probe sequence for a key whose home position is in an
+odd slot will cycle through the odd slots.
+Thus, this combination of table size and linear probing constant
+effectively divides the records into two sets stored in two
+disjoint sections of the hash table.
+So long as both sections of the table contain the same number of records,
+this is not really important.
+However, just from chance it is likely that one section will become
+fuller than the other, leading to more collisions and poorer
+performance for those records.
+The other section would have fewer records, and thus better
+performance.
+But the overall system performance will be degraded,
+as the additional cost to the side that is more full outweighs the
+improved performance of the less-full side.</p>
+<p>Constant <span class="math notranslate nohighlight">\(c\)</span> must be relatively prime to <span class="math notranslate nohighlight">\(M\)</span> to generate a
+linear probing sequence that visits all slots in the table
+(that is, <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(M\)</span> must share no factors).
+For a hash table of size <span class="math notranslate nohighlight">\(M = 10\)</span>, if <span class="math notranslate nohighlight">\(c\)</span>
+is any one of 1, 3, 7, or 9,
+then the probe sequence will visit all slots for any key.
+When <span class="math notranslate nohighlight">\(M = 11\)</span>, any value for <span class="math notranslate nohighlight">\(c\)</span> between 1 and 10 generates a
+probe sequence that visits all slots for every key.</p>
+<div id="collisionCON2" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON2" data-long-name="Linear Probing By Steps Slideshow 2" data-exer-id="" alt="Linear Probing By Steps Slideshow 2" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON2_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON2_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON2_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON2_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Now you can practice linear probing by different step sizes.</p>
+<div
+    id="HashLinearStepPPRO"
+    class="embedContainer"
+    data-exer-name="HashLinearStepPPRO"
+    data-long-name="Linear Probing By Steps Proficiency Exercise"
+    data-short-name="HashLinearStepPPRO"
+    data-frame-src="../../../Exercises/Hashing/HashLinearStepPPRO.html?localMode=true&amp;module=HashCImproved&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="700"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashLinearStepPPRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="pseudo-random-probing">
+<h2>11.<span class="section-number">7.2. </span>Pseudo-Random Probing<a class="headerlink" href="#pseudo-random-probing" title="Permalink to this headline">¶</a></h2>
+<p>Consider the situation where <span class="math notranslate nohighlight">\(c = 2\)</span> and we wish to insert a record
+with key <span class="math notranslate nohighlight">\(k_1\)</span> such that
+<span class="math notranslate nohighlight">\(\textbf{h}(k_1) = 3\)</span>.
+The probe sequence for  <span class="math notranslate nohighlight">\(k_1\)</span> is 3, 5, 7, 9, and so on.
+If another key <span class="math notranslate nohighlight">\(k_2\)</span> has home position at slot 5,
+then its probe sequence will be 5, 7, 9, and so on.
+The probe sequences of <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>
+are linked together in a manner that contributes to clustering.
+In other words, linear probing with a value of <span class="math notranslate nohighlight">\(c &gt; 1\)</span> does not
+solve the problem of primary clustering.
+We would like to find a probe function that does not link
+keys together in this way.
+We would prefer that the probe sequence for <span class="math notranslate nohighlight">\(k_1\)</span>
+after the first step on the sequence should not be identical to the
+probe sequence of <span class="math notranslate nohighlight">\(k_2\)</span>.
+Instead, their probe sequences should diverge.</p>
+<p>The ideal probe function would select the next position on the probe
+sequence at random from among the unvisited slots; that is, the probe
+sequence should be a random permutation of the hash table positions.
+Unfortunately, we cannot actually select the next position in the
+probe sequence at random, because we would not be able to duplicate
+this same probe sequence when searching for the key.
+However, we can do something similar called
+<a class="reference internal" href="Glossary.html#term-pseudo-random-probing"><span class="xref std std-term">pseudo-random probing</span></a>.
+In pseudo-random probing, the <span class="math notranslate nohighlight">\(i\)</span> th slot in the probe sequence is
+<span class="math notranslate nohighlight">\((\textbf{h}(K) + r_i) \mod M\)</span>
+where <span class="math notranslate nohighlight">\(r_i\)</span> is the <span class="math notranslate nohighlight">\(i\)</span> th value in a random permutation
+of the numbers from 1 to <span class="math notranslate nohighlight">\(M-1\)</span>.
+All inserts and searches must use the same sequence of random numbers.
+The probe function would be
+<span class="math notranslate nohighlight">\(\textbf{p}(K, i) = \textbf{Permutation}[i]\)</span>
+where <strong>Permutation</strong> is an array of length <span class="math notranslate nohighlight">\(M\)</span> that stores a value of
+0 in position <strong>Permutation[0]</strong>, and stores a
+random permutation of the values from 1 to <span class="math notranslate nohighlight">\(M - 1\)</span> in slots 1 to
+<span class="math notranslate nohighlight">\(M - 1\)</span>.</p>
+<div id="collisionCON3" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON3" data-long-name="Pseudo-Random Probing Slideshow" data-exer-id="" alt="Pseudo-Random Probing Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON3_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON3_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON3_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON3_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Here is a practice exercise for pseudo-random probing.</p>
+<div
+    id="HashPseudoRandomPPRO"
+    class="embedContainer"
+    data-exer-name="HashPseudoRandomPPRO"
+    data-long-name="Pseudo-Random Probing Proficiency Exercise"
+    data-short-name="HashPseudoRandomPPRO"
+    data-frame-src="../../../Exercises/Hashing/HashPseudoRandomPPRO.html?localMode=true&amp;module=HashCImproved&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="700"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashPseudoRandomPPRO_iframe"></div>
+  </div>
+</div>
+<p>Pseudo-random probing exhibits another desirable feature in a hash
+function.</p>
+<div id="collisionCON4" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON4" data-long-name="Avoiding the Train" data-exer-id="" alt="Avoiding the Train" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON4_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON4_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON4_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON4_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="quadratic-probing">
+<h2>11.<span class="section-number">7.3. </span>Quadratic Probing<a class="headerlink" href="#quadratic-probing" title="Permalink to this headline">¶</a></h2>
+<p>Another probe function that eliminates
+primary clustering is called
+<a class="reference internal" href="Glossary.html#term-quadratic-probing"><span class="xref std std-term">quadratic probing</span></a>.
+Here the probe function is some quadratic function
+<span class="math notranslate nohighlight">\(\textbf{p}(K, i) = c_1 i^2 + c_{2}i + c_3\)</span>
+for some choice of constants <span class="math notranslate nohighlight">\(c_1\)</span>, <span class="math notranslate nohighlight">\(c_2\)</span>,
+and  <span class="math notranslate nohighlight">\(c_3\)</span>.</p>
+<p>The simplest variation is <span class="math notranslate nohighlight">\(\textbf{p}(K, i) = i^2\)</span>
+(i.e., <span class="math notranslate nohighlight">\(c_1 = 1\)</span>, <span class="math notranslate nohighlight">\(c_2 = 0\)</span>, and
+<span class="math notranslate nohighlight">\(c_3 = 0\)</span>).
+Then the <span class="math notranslate nohighlight">\(i\)</span> th value in the probe sequence would be
+<span class="math notranslate nohighlight">\((\textbf{h}(K) + i^2) \mod M\)</span>.</p>
+<div id="collisionCON5" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON5" data-long-name="Quadratic Probing Slideshow" data-exer-id="" alt="Quadratic Probing Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON5_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON5_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON5_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON5_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Now you can practice quadratic probing.</p>
+<div
+    id="HashQuadraticPPRO"
+    class="embedContainer"
+    data-exer-name="HashQuadraticPPRO"
+    data-long-name="Quadratic Probing Proficiency Exercise"
+    data-short-name="HashQuadraticPPRO"
+    data-frame-src="../../../Exercises/Hashing/HashQuadraticPPRO.html?localMode=true&amp;module=HashCImproved&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="700"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashQuadraticPPRO_iframe"></div>
+  </div>
+</div>
+<p>There is one problem with quadratic probing: Its probe sequence
+typically will not visit all slots in the hash table.</p>
+<div id="collisionCON6" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON6" data-long-name="Quadratic Probing Problem" data-exer-id="" alt="Quadratic Probing Problem" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON6_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON6_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON6_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON6_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>For many hash table sizes, this probe function will cycle through a
+relatively small number of slots.
+If all slots on that cycle happen to be full, this means that the
+record cannot be inserted at all!
+A more realistic example is a table with 105 slots.
+The probe sequence starting from any given slot will only visit 23
+other slots in the table.
+If all 24 of these slots should happen to be full, even if other slots
+in the table are empty, then the record cannot be inserted because the
+probe sequence will continually hit only those same 24 slots.</p>
+<p>Fortunately, it is possible to get good results from quadratic probing
+at low cost.
+The right combination of probe function and table size will visit many
+slots in the table.
+In particular, if the hash table size is a prime number and the probe
+function is <span class="math notranslate nohighlight">\(\textbf{p}(K, i) = i^2\)</span>,
+then at least half the slots in the table will be visited.
+Thus, if the table is less than half full, we can be certain that a
+free slot will be found.
+Alternatively, if the hash table size is a power of two and the probe
+function is <span class="math notranslate nohighlight">\(\textbf{p}(K, i) = (i^2 + i)/2\)</span>,
+then every slot in the table will be visited by the probe function.</p>
+</div>
+<div class="section" id="double-hashing">
+<h2>11.<span class="section-number">7.4. </span>Double Hashing<a class="headerlink" href="#double-hashing" title="Permalink to this headline">¶</a></h2>
+<p>Both pseudo-random probing and quadratic probing eliminate
+primary clustering, which is the name given to the the situation when
+keys share substantial segments of a probe sequence.
+If two keys hash to the same home position, however, then they will always
+follow the same probe sequence for every collision resolution method that
+we have seen so far.
+The probe sequences generated by pseudo-random and
+quadratic probing (for example) are entirely a function of the home
+position, not the original key value.
+This is because function <strong>p</strong> ignores its input parameter
+<span class="math notranslate nohighlight">\(K\)</span> for these collision resolution methods.
+If the hash function generates a cluster at a particular home
+position, then the cluster remains under pseudo-random and quadratic
+probing.
+This problem is called <a class="reference internal" href="Glossary.html#term-secondary-clustering"><span class="xref std std-term">secondary clustering</span></a>.</p>
+<p>To avoid secondary clustering, we need to have the probe sequence make
+use of the original key value in its decision-making process.
+A simple technique for doing this is to return to
+linear probing by a constant step size
+for the probe function, but to
+have that constant be determined by a second hash function,
+<span class="math notranslate nohighlight">\(\textbf{h}_2\)</span>.
+Thus, the probe sequence would be of the form
+<span class="math notranslate nohighlight">\(\textbf{p}(K, i) = i * \textbf{h}_2(K)\)</span>.
+This method is called <a class="reference internal" href="Glossary.html#term-double-hashing"><span class="xref std std-term">double hashing</span></a>.</p>
+<p>There are important restrictions on <span class="math notranslate nohighlight">\(h_2\)</span>.
+Most importantly, the value returned by <span class="math notranslate nohighlight">\(h_2\)</span> must never be zero
+(or <span class="math notranslate nohighlight">\(M\)</span>) because that will immediately lead to an infinite loop
+as the probe sequence makes no progress.
+However, a good implementation of double hashing should also ensure
+that all of the probe sequence constants are relatively
+prime to the table size <span class="math notranslate nohighlight">\(M\)</span>.
+For example, if the hash table size were 100 and the step size for
+linear probing (as generated by function <span class="math notranslate nohighlight">\(h_2\)</span>) were 50, then
+there would be only one slot on the probe sequence.
+If instead the hash table size is 101 (a prime number), than any step
+size less than 101 will visit every slot in the table.</p>
+<p>This can be achieved easily.
+One way is to select <span class="math notranslate nohighlight">\(M\)</span> to be a prime number, and have
+<span class="math notranslate nohighlight">\(\textbf{h}_2\)</span> return a value in the range
+<span class="math notranslate nohighlight">\(1 &lt;= \textbf{h}_2(k) &lt;= M - 1\)</span>.
+We can do this by using this secondary hash function:
+<span class="math notranslate nohighlight">\(\textbf{h}_2(k) = 1 + (k \mod (M-1))\)</span>.
+An alternative is to set <span class="math notranslate nohighlight">\(M = 2^m\)</span>
+for some value <span class="math notranslate nohighlight">\(m\)</span> and have
+<span class="math notranslate nohighlight">\(\textbf{h}_2\)</span> return an odd value
+between 1 and <span class="math notranslate nohighlight">\(2^m\)</span>.
+We can get that result with this secondary hash function:
+<span class="math notranslate nohighlight">\(\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1\)</span>. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
+<div id="collisionCON7" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON7" data-long-name="Double Hashing Slideshow 2" data-exer-id="" alt="Double Hashing Slideshow 2" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON7_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON7_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON7_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON7_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="collisionCON8" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON8" data-long-name="Double Hashing Slideshow 3" data-exer-id="" alt="Double Hashing Slideshow 3" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="collisionCON8_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="collisionCON8_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="collisionCON8_cm_error_msg" class="cm_error_msg">
+   <img id="collisionCON8_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Now you can try it.</p>
+<div
+    id="HashDoublePPRO"
+    class="embedContainer"
+    data-exer-name="HashDoublePPRO"
+    data-long-name="Double Hashing Proficiency Exercise"
+    data-short-name="HashDoublePPRO"
+    data-frame-src="../../../Exercises/Hashing/HashDoublePPRO.html?localMode=true&amp;module=HashCImproved&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="750"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashDoublePPRO_iframe"></div>
+  </div>
+</div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl>
+<dt>type: AV</dt><dd><p>Fix and return hashAV.html to here.</p>
+<p>The following visualization lets you test out different combinations
+of hash function and collision resolution, on your own input data.</p>
+</dd>
+</dl>
+</div>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The secondary hash function
+<span class="math notranslate nohighlight">\(\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1\)</span> might
+seem rather mysterious, so let’s break this down.
+This is being used in the context of two facts: (1) We want the
+function to return an odd value that is less than <span class="math notranslate nohighlight">\(M\)</span> the
+hash table size, and (2) we are using a hash table of size
+<span class="math notranslate nohighlight">\(M = 2^m\)</span>, which means that taking the mod of size
+<span class="math notranslate nohighlight">\(M\)</span> is using the bottom <span class="math notranslate nohighlight">\(m\)</span> bits of the key value.
+OK, since <span class="math notranslate nohighlight">\(\textbf{h}_2\)</span> is multiplying something by 2 and
+adding 1, we guarentee that it is an odd number.
+Now, <span class="math notranslate nohighlight">\(((X \mod (M/2)) * 2) + 1\)</span> must be in the range 1
+and <span class="math notranslate nohighlight">\(M-1\)</span> (if you need to, play around with this on paper
+to convince yourself that this is true).
+This is exactly what we want.
+The last piece of the puzzle is the first part <span class="math notranslate nohighlight">\(k/M\)</span>.
+That is not strictly necessary.
+But remember that since the table size is <span class="math notranslate nohighlight">\(M = 2^m\)</span>, this
+is the same as shifting the key value right by <span class="math notranslate nohighlight">\(m\)</span> bits.
+In other words, we are not using the bottom <span class="math notranslate nohighlight">\(m\)</span> bits to
+decide on the second hash function value, which is especially a
+good thing if we used the bottom <span class="math notranslate nohighlight">\(m\)</span> bits to decide on
+the first hash function value!
+In other words, we really do not want the value of the step
+sized used by the linear probing to be fixed to the slot in the
+hash table that we chose.
+So we are using the next <span class="math notranslate nohighlight">\(m\)</span> bits of the key value
+instead.
+Note that this would only be a good idea if we have keys in a
+large enough key range, that is, we want plenty of use of those
+second <span class="math notranslate nohighlight">\(m\)</span> bits in the key range.
+This will be true if the max key value uses at least <span class="math notranslate nohighlight">\(2m\)</span>
+bits, meaning that the max key value should be at least the
+square of the hash table size.
+This is not a problem for typical hashing applications.</p>
+</dd>
+</dl>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON1.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON2.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON3.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON4.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON5.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON6.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON7.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/collisionCON8.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="HashCSimple.html">11.<span class="section-number">6. </span>Collision Resolution</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="HashAnal.html">11.<span class="section-number">8. </span>Analysis of Closed Hashing</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

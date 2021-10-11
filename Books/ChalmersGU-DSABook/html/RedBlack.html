@@ -1,0 +1,385 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9.5. The Red-Black Tree &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="6. Skip Lists" href="SkipList.html" />
+    <link rel="prev" title="4. 2-3 Trees" href="TwoThreeTree.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 9 Balanced Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/RedBlack.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="TwoThreeTree.html">9.<span class="section-number">4. </span>2-3 Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="SkipList.html">9.<span class="section-number">6. </span>Skip Lists</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['exercise-1', 'exercise-2'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlack";ODSA.SETTINGS.MODULE_LONG_NAME = "The Red-Black Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-red-black-tree">
+<h1>9.<span class="section-number">5. </span>The Red-Black Tree<a class="headerlink" href="#the-red-black-tree" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="exercise-1">
+<h2>9.<span class="section-number">5.1. </span>Exercise 1<a class="headerlink" href="#exercise-1" title="Permalink to this headline">¶</a></h2>
+<div
+    id="redBlackTreeColoring"
+    class="embedContainer"
+    data-exer-name="redBlackTreeColoring"
+    data-long-name="Red-Black Tree Coloring Exercise"
+    data-short-name="redBlackTreeColoring"
+    data-frame-src="../../../AV/Development/redBlackTreeColoring.html?localMode=true&amp;module=RedBlack&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="redBlackTreeColoring_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="exercise-2">
+<h2>9.<span class="section-number">5.2. </span>Exercise 2<a class="headerlink" href="#exercise-2" title="Permalink to this headline">¶</a></h2>
+<div
+    id="redBlackTreePRO"
+    class="embedContainer"
+    data-exer-name="redBlackTreePRO"
+    data-long-name="Red-Black Tree Proficiency Exercise"
+    data-short-name="redBlackTreePRO"
+    data-frame-src="../../../AV/Development/redBlackTreePRO.html?localMode=true&amp;module=RedBlack&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="redBlackTreePRO_iframe"></div>
+  </div>
+</div>
+<p>Red-black trees</p>
+<p>A 2-3 tree is a conceptually elegant way to maintain a balanced search
+tree. By extending the binary search tree with 3-nodes, we can keep
+the tree perfectly balanced at all times. By alternating _splitting_
+and _merging_, we can add new elements to the tree without breaking
+the invariant.</p>
+<p>2-3 trees are, however, rarely used in practice. There are two major
+problems with them:</p>
+<ul class="simple">
+<li><p>The code to implement them is quite complicated, even though the
+algorithms are conceptually simple. This is because there are many
+different cases - for example, inserting into the left child, the
+middle child, or the right child of a node all require different
+code, even though the algorithm is conceptually the same. This only
+gets worse when we consider that some of the code also needs to
+handle 4-nodes, which are created temporarily during insertion.</p></li>
+<li><p>Most programming languages do not allow an object to change in size.
+However, in a 2-3 tree, we sometimes need to change a 2-node into a
+3-node. Therefore, all node objects must be big enough to store a
+3-node. This wastes a lot of memory.</p></li>
+</ul>
+<p>In short, 2-3 trees are excellent on paper, but annoying to implement
+in code - better as slideware than software. In this section, we shall
+learn about red-black trees, which take the idea of 2-3 trees and
+adapt it to be easier to code. Red-black trees are very efficient, and
+widely used in practice. For example, TreeMap in Java and std::map in
+C++ are both based on red-black trees.</p>
+<p>Think back to binary heaps. A binary heap is conceptually a binary
+tree, but it is represented as an array. The algorithms for modifying
+binary heaps are conceptually tree algorithms, but we translated them
+to work on the array representation of binary heaps.</p>
+<p>Red-black trees are based on a similar idea. A red-black tree is
+conceptually a 2-3 tree, but we represent it using a binary search
+tree. The nodes of the 2-3 tree become nodes in the binary search
+tree.</p>
+<p>A red-black tree is a binary search tree, but every node in the tree
+also has a colour, either red or black. The colour of a node is stored
+as a field in the node.</p>
+<p>Given a 2-3 tree, here is how we represent it as a red-black tree. A
+2-node is just going to become a single node in the tree, coloured
+black:</p>
+<p>A 3-node is going to turn into two nodes: a parent and its left child.
+The parent is coloured black and the child is coloured red.</p>
+<p>Here is an example of a 2-3 tree, and how it looks as a red-black
+tree.</p>
+<p>Notice that, starting from the red-black tree, we can reconstruct the
+2-3 tree. A black node with a red left child corresponds to a 3-node,
+and any other black node corresponds to a 2-node.</p>
+<p>Quiz: Which of the following red-black trees correspond to valid 2-3
+trees? That is, is there a 2-3 tree which, when translated, gives the
+red-black tree? Don’t forget that a valid 2-3 tree must also be
+perfectly balanced.</p>
+<p>We are now ready to see the invariant for red-black trees. One way to
+state the invariant is: <em>a red-black tree is valid if it corresponds
+to a valid 2-3 tree</em>. However, we are going to state the invariant
+more directly, in terms of the colours of the nodes in the red-black
+tree. A red-black tree must obey the following rules:</p>
+<p>1. The root of the tree must be black. (Because it must correspond to
+either a 2-node or a 3-node.)
+2. If a node is red, it must be the left child of a black node.
+(This is how 3-nodes are represented.)
+3. On every path from the root to a null, there must be the
+same number of black nodes.</p>
+<p>… OR …</p>
+<p>Recall that in a 2-3 tree we have the following properties:</p>
+<ol class="arabic simple">
+<li><p>The tree is ordered (similar to a BST).  2. Every node is either a
+2-node or a 3-node.  3. On any path from the root to a null, there
+are the same number of nodes.  (This is the perfect balance
+property.)</p></li>
+</ol>
+<p>Since a red-black tree is supposed to be the translation of a valid
+2-3 tree, we are going to take the 2-3 tree invariants and translate
+them to talk about BSTs. By doing so, we get the following invariants
+for a red-black tree:</p>
+<ol class="arabic">
+<li><p>It must be a valid BST.  2.  A red node can only occur as the left
+child of a black node.  (In particular, the root must not be red.)
+3.  On any path from the root to a null, there are the same number</p>
+<blockquote>
+<div><p>of _black_ n odes.</p>
+</div></blockquote>
+</li>
+</ol>
+<p>example black, partial nodes, etc</p>
+<p>We consider null to be black. XXX it correponds to a whole node in the
+2-3 tree</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="TwoThreeTree.html">9.<span class="section-number">4. </span>2-3 Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="SkipList.html">9.<span class="section-number">6. </span>Skip Lists</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

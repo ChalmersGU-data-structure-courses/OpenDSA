@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>13.3. NP-Completeness &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="4. Circuit Satisfiability" href="circuitSAT.html" />
+    <link rel="prev" title="2. Reductions" href="Reduction.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 13 Limits to Computing</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/NPComplete.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="Reduction.html">13.<span class="section-number">2. </span>Reductions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="circuitSAT.html">13.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hard-problems', 'the-theory-of-np-completeness'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "NPComplete";ODSA.SETTINGS.MODULE_LONG_NAME = "NP-Completeness";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SalesCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/NP/cliqueCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/NP/ComplexCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="np-completeness">
+<h1>13.<span class="section-number">3. </span>NP-Completeness<a class="headerlink" href="#np-completeness" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>13.<span class="section-number">3.1. </span>NP-Completeness<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hard-problems">
+<h3>13.<span class="section-number">3.1.1. </span>Hard Problems<a class="headerlink" href="#hard-problems" title="Permalink to this headline">¶</a></h3>
+<p>There are several ways that a problem could be considered hard.
+For example, we might have trouble understanding the definition of the
+problem itself.
+At the beginning of a large data collection and analysis project,
+developers and their clients might have only a hazy notion of what
+their goals actually are, and need to work that out over time.
+For other types of problems, we might have trouble finding or
+understanding an algorithm to solve the problem.
+Understanding spoken English and translating it to written text is an
+example of a problem whose goals are easy to define, but whose
+solution is not easy to discover.
+But even though a natural language processing algorithm might be
+difficult to write, the program’s running time might be fairly fast.
+There are many practical systems today that solve aspects of this
+problem in reasonable time.</p>
+<p>None of these is what is commonly meant when a computer
+theoretician uses the word “hard”.
+Throughout this section, “hard” means that the best-known algorithm
+for the problem is expensive in its running time.
+One example of a hard problem is
+<a class="reference internal" href="Glossary.html#term-towers-of-hanoi-problem"><span class="xref std std-term">Towers of Hanoi</span></a>.
+It is easy to understand this problem and its solution.
+It is also easy to write a program to solve this problem.
+But, it takes an extremely long time to run for any “reasonably”
+large value of <span class="math notranslate nohighlight">\(n\)</span>.
+Try running a program to solve Towers of Hanoi for only 30 disks!</p>
+<p>The Towers of Hanoi problem takes exponential time, that is, its
+running time is <span class="math notranslate nohighlight">\(\Theta(2^n)\)</span>.
+This is radically different from an algorithm that takes
+<span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span> time or <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> time.
+It is even radically different from a problem that takes
+<span class="math notranslate nohighlight">\(\Theta(n^4)\)</span> time.
+These are all examples of polynomial running time, because the
+exponents for all terms of these equations are constants.
+If we buy a new computer that runs twice as fast,
+the size of problem with complexity <span class="math notranslate nohighlight">\(\Theta(n^4)\)</span> that we can
+solve in a certain amount of time is increased by the fourth root of
+two.
+In other words, there is a multiplicative factor increase, even if it
+is a rather small one.
+This is true for any algorithm whose running time can be represented
+by a polynomial.</p>
+<p>Consider what happens if you buy a computer that is twice as fast and
+try to solve a bigger Towers of Hanoi problem in a given amount of
+time.
+Because its complexity is <span class="math notranslate nohighlight">\(\Theta(2^n)\)</span>, we can solve a problem
+only one disk bigger!
+There is no multiplicative factor, and this is true for any
+exponential algorithm:
+A constant factor increase in processing
+power results in only a fixed addition in problem-solving power.</p>
+<p>There are a number of other fundamental differences between
+polynomial running times and exponential running times that argues for
+treating them as qualitatively different.
+Polynomials are closed under composition and addition.
+Thus, running polynomial-time programs in sequence, or having one
+program with polynomial running time call another a polynomial number
+of times yields polynomial time.
+Also, all computers known are polynomially related.
+That is, any program that runs in polynomial time on any computer
+today, when transferred to any other computer, will still run in
+polynomial time.</p>
+<p>There is a practical reason for recognizing a distinction.
+In practice, most polynomial time algorithms are “feasible” in that
+they can run reasonably large inputs in reasonable time.
+In contrast, most algorithms requiring exponential time are not
+practical to run even for fairly modest sizes of input.
+One could argue that a program with high polynomial degree
+(such as <span class="math notranslate nohighlight">\(n^{100}\)</span>) is not practical, while an exponential-time
+program with cost <span class="math notranslate nohighlight">\(1.001^n\)</span> is practical.
+But the reality is that we know of almost no problems where the best
+polynomial-time algorithm has high degree (they nearly all have
+degree four or less), while almost no exponential-time algorithms
+(whose cost is <span class="math notranslate nohighlight">\((O(c^n))\)</span> have their constant <span class="math notranslate nohighlight">\(c\)</span> close to
+one.
+So there is not much gray area between polynomial and
+exponential time algorithms in practice.</p>
+<p>For the purposes of this Module, we define a <a class="reference internal" href="Glossary.html#term-hard-algorithm"><span class="xref std std-term">hard algorithm</span></a>
+to be one that runs in exponential time, that is, in
+<span class="math notranslate nohighlight">\(\Omega(c^n)\)</span> for some constant <span class="math notranslate nohighlight">\(c &gt; 1\)</span>.
+A definition for a hard <em>problem</em> will be presented soon.</p>
+</div>
+<div class="section" id="the-theory-of-np-completeness">
+<h3>13.<span class="section-number">3.1.2. </span>The Theory of NP-Completeness<a class="headerlink" href="#the-theory-of-np-completeness" title="Permalink to this headline">¶</a></h3>
+<p>Imagine a magical computer that works by guessing the correct
+solution from among all of the possible solutions to a problem.
+Another way to look at this is to imagine a super parallel computer
+that could test all possible solutions simultaneously.
+Certainly this magical (or highly parallel) computer can do anything a
+normal computer can do.
+It might also solve some problems more quickly than a normal computer
+can.
+Consider some problem where, given a guess for a solution, checking
+the solution to see if it is correct can be done in polynomial time.
+Even if the number of possible solutions is exponential,
+any given guess can be checked in polynomial time (equivalently, all
+possible solutions are checked simultaneously in polynomial time),
+and thus the problem can be solved in polynomial time by our
+hypothetical magical computer.
+Another view of this concept is this: If you cannot get the answer
+to a problem in polynomial time by guessing the right answer and then
+checking it, then you cannot do it in polynomial time in any other way.</p>
+<p>The idea of “guessing” the right answer to a problem—or checking
+all possible solutions in parallel to determine which is correct—is a called a <a class="reference internal" href="Glossary.html#term-non-deterministic-choice"><span class="xref std std-term">non-deterministic choice</span></a>.
+An algorithm that works in this manner is called a
+<a class="reference internal" href="Glossary.html#term-non-deterministic-algorithm"><span class="xref std std-term">non-deterministic algorithm</span></a>,
+and any problem with an algorithm that runs on a non-deterministic
+machine in polynomial time is given a special name:
+It is said to be a problem in NP.
+Thus, problems in NP are those problems that can be solved
+in polynomial time on a non-deterministic machine.</p>
+<p>Not all problems requiring exponential time on a regular
+computer are in NP.
+For example, Towers of Hanoi is <em>not</em> in NP, because it must
+print out <span class="math notranslate nohighlight">\(O(2^n)\)</span> moves for <span class="math notranslate nohighlight">\(n\)</span> disks.
+A non-deterministic machine cannot “guess” and print the correct
+answer in less time.</p>
+<p>On the other hand, consider the TRAVELING SALESMAN problem.</p>
+<div class="topic">
+<p class="topic-title">Problem</p>
+<p>TRAVELING SALESMAN (1)</p>
+<p><strong>Input:</strong> A complete, directed graph <span class="math notranslate nohighlight">\(G\)</span> with
+positive distances assigned to each edge in the graph.</p>
+<p><strong>Output:</strong> The shortest simple cycle that includes every vertex.</p>
+</div>
+<p>Figure <a href="NPComplete.html#sales">13.4.1</a> illustrates this problem.
+Five vertices are shown, with edges and associated costs between each
+pair of edges.
+(For simplicity Figure <a href="NPComplete.html#sales">13.4.1</a> shows an undirected graph,
+assuming that the cost is the same in both
+directions, though this need not be the case.)
+If the salesman visits the cities in the order ABCDEA, they will travel
+a total distance of 13.
+A better route would be ABDCEA, with cost 11.
+The best route for this particular graph would be ABEDCA, with cost 9.</p>
+<div class="divdgm" id="sales">
+<div id="SalesCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 13.4.1: An illustration of the TRAVELING SALESMAN problem.
+Five vertices are shown, with edges between each pair of cities.
+The problem is to visit all of the cities exactly once,
+returning to the start city, with the least total cost.</span></p>
+</div>
+<p>We cannot solve this problem in polynomial time with a guess-and-test
+non-deterministic computer.
+The problem is that, given a candidate cycle, while we can quickly
+check that the answer is indeed a cycle of the appropriate form,
+and while we can quickly calculate the length of the cycle,
+we have no easy way of knowing if it is in fact the <strong>shortest</strong>
+such cycle.
+However, we can solve a variant of this problem cast in the form
+of a <a class="reference internal" href="Glossary.html#term-decision-problem"><span class="xref std std-term">decision problem</span></a>.
+A decision problem is simply one whose answer is either YES or NO.
+The decision problem form of TRAVELING SALESMAN is as follows.</p>
+<div class="topic">
+<p class="topic-title">Problem</p>
+<p>TRAVELING SALESMAN (2)</p>
+<p><strong>Input:</strong> A complete, directed graph <span class="math notranslate nohighlight">\(G\)</span> with
+positive distances assigned to each edge in the graph, and an
+integer <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><strong>Output:</strong> YES if there is a simple cycle with total
+distance <span class="math notranslate nohighlight">\(\leq k\)</span> containing every vertex in <span class="math notranslate nohighlight">\(G\)</span>,
+and NO otherwise.</p>
+</div>
+<p>We can solve this version of the problem in polynomial time with a
+non-deterministic computer.
+The non-deterministic algorithm simply checks all of the possible
+subsets of edges in the graph, in parallel.
+If any subset of the edges is an appropriate cycle of total length
+less than or equal to <span class="math notranslate nohighlight">\(k\)</span>, the answer is YES; otherwise the
+answer is NO.
+Note that it is only necessary that <em>some</em> subset meet the
+requirement; it does not matter how many subsets fail.
+Checking a particular subset is done in polynomial time by adding the
+distances of the edges and verifying that the edges form a cycle that
+visits each vertex exactly once.
+Thus, the checking algorithm runs in polynomial time.
+Unfortunately, there are <span class="math notranslate nohighlight">\(2^{|{\mathrm E}|}\)</span> subsets to check,
+so this algorithm cannot be converted to a polynomial time algorithm
+on a regular computer.
+Nor does anybody in the world know of any other polynomial time
+algorithm to solve TRAVELING SALESMAN on a regular computer, despite
+the fact that the problem has been studied extensively by many
+computer scientists for many years.</p>
+<p>It turns out that there is a large collection of
+problems with this property:
+We know efficient non-deterministic algorithms, but we do not know if
+there are efficient deterministic algorithms.
+At the same time, we have not been able to prove that any of these
+problems do <em>not</em> have efficient deterministic algorithms.
+This class of problems is called <a class="reference internal" href="Glossary.html#term-np-complete"><span class="xref std std-term">NP-complete</span></a>.
+What is truly strange and fascinating about NP-complete problems is
+that if anybody ever finds the solution to any one of them that runs
+in polynomial time on a regular computer, then by a series of
+reductions, every other problem that is in NP can also be
+solved in polynomial time on a regular computer!</p>
+<p>Define a problem to be <a class="reference internal" href="Glossary.html#term-np-hard"><span class="xref std std-term">NP-hard</span></a> if <em>any</em> problem in NP
+can be reduced to <span class="math notranslate nohighlight">\(X\)</span> in polynomial time.
+Thus, <span class="math notranslate nohighlight">\(X\)</span> is <em>as hard as</em> any problem in NP.
+A problem <span class="math notranslate nohighlight">\(X\)</span> is defined to be NP-complete if</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(X\)</span> is in NP, and</p></li>
+<li><p><span class="math notranslate nohighlight">\(X\)</span> is NP-hard.</p></li>
+</ol>
+<p>The requirement that a problem be NP-hard might seem to be impossible,
+but in fact there are hundreds of such problems,
+including TRAVELING SALESMAN.
+Another such problem is called K-CLIQUE.</p>
+<div class="topic">
+<p class="topic-title">Problem</p>
+<p>K-CLIQUE</p>
+<p><strong>Input:</strong> An arbitrary undirected graph <span class="math notranslate nohighlight">\(G\)</span> and an
+integer <span class="math notranslate nohighlight">\(k\)</span>.</p>
+<p><strong>Output:</strong> YES if there is a complete subgraph of at
+least <span class="math notranslate nohighlight">\(k\)</span> vertices, and NO otherwise.</p>
+</div>
+<div id="cliqueCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="cliqueCON" data-long-name="Clique Problem" data-exer-id="" alt="Clique Problem" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="cliqueCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="cliqueCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="cliqueCON_cm_error_msg" class="cm_error_msg">
+   <img id="cliqueCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Nobody knows whether there is a polynomial time solution for
+K-CLIQUE, but if such an algorithm is found for K-CLIQUE <em>or</em>
+for TRAVELING SALESMAN, then that solution can be modified to solve
+the other, or any other problem in NP, in polynomial time.</p>
+<p>The primary theoretical advantage of knowing that a problem P1 is
+NP-complete is that it can be used to show that another problem
+P2 is NP-complete.
+This is done by finding a polynomial time reduction of
+P1 to P2.
+Because we already know that all problems in NP can be reduced to P1
+in polynomial time (by the definition of NP-complete), we now know
+that all problems can be reduced to P2 as well by the simple algorithm
+of reducing to P1 and then from there reducing to P2.</p>
+<p>There is a practical advantage to knowing that a problem is
+NP-complete.
+It relates to knowing that if a polynomial time solution can be found
+for <em>any</em> problem that is NP-complete, then a polynomial
+solution can be found for <em>all</em> such problems.
+The implication is that,</p>
+<ol class="arabic simple">
+<li><p>Because no one has yet found such a solution,
+it must be difficult or impossible to do; and</p></li>
+<li><p>Effort to find a polynomial time solution for one
+NP-complete problem can be considered to have been expended for all
+NP-complete problems.</p></li>
+</ol>
+<p>How is NP-completeness of practical significance for typical
+programmers?
+Well, if your boss demands that you provide a fast algorithm to solve
+a problem, they will not be happy if you come back saying that the
+best you could do was an exponential time algorithm.
+But, if you can prove that the problem is NP-complete, while they
+still won’t be happy, at least they should not be mad at you!
+By showing that their problem is NP-complete, you are in effect saying
+that the most brilliant computer scientists for the last 50 years
+have been trying and failing to find a polynomial time algorithm for
+their problem.</p>
+<p>Problems that are solvable in polynomial time on a regular computer
+are said to be in class P.
+Clearly, all problems in P are solvable in polynomial time on a
+non-deterministic computer simply by neglecting to use the
+non-deterministic capability.
+Some problems in NP are NP-complete.
+We can consider all problems solvable in exponential time or better as
+an even bigger class of problems because all problems solvable in
+polynomial time are solvable in exponential time.
+Thus, we can view the world of exponential-time-or-better problems in
+terms of Figure <a href="NPComplete.html#complex">13.4.2</a>.</p>
+<div class="divdgm" id="complex">
+<div id="ComplexCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 13.4.2: Our knowledge regarding the world of problems requiring exponential
+time or less.
+Some of these problems are solvable in polynomial time by a
+non-deterministic computer.
+Of these, some are known to be NP-complete, and some are known to be
+solvable in polynomial time on a regular computer.</span></p>
+</div>
+<p>The most important unanswered question in theoretical computer
+science is whether <span class="math notranslate nohighlight">\(P = NP\)</span>.
+If they are equal, then there is a polynomial time
+algorithm for TRAVELING SALESMAN and all related problems.
+Because TRAVELING SALESMAN is known to be NP-complete, if a
+polynomial time algorithm were to be found for this problem, then
+<em>all</em> problems in NP would also be solvable in polynomial
+time.
+Conversely, if we were able to prove that TRAVELING SALESMAN has an
+exponential time lower bound, then we would know that
+<span class="math notranslate nohighlight">\(P \neq NP\)</span>.</p>
+<script type="text/javascript" src="../../../AV/NP/SalesCON.js"></script>
+<script type="text/javascript" src="../../../AV/NP/cliqueCON.js"></script>
+<script type="text/javascript" src="../../../AV/NP/ComplexCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="Reduction.html">13.<span class="section-number">2. </span>Reductions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="circuitSAT.html">13.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>12.2. Graph Implementations &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. Graph Traversals" href="GraphTraversal.html" />
+    <link rel="prev" title="1. Graphs Chapter Introduction" href="GraphIntro.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/GraphImpl.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="GraphIntro.html">12.<span class="section-number">1. </span>Graphs Chapter Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="GraphTraversal.html">12.<span class="section-number">3. </span>Graph Traversals</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="graph-implementations">
+<h1>12.<span class="section-number">2. </span>Graph Implementations<a class="headerlink" href="#graph-implementations" title="Permalink to this headline">¶</a></h1>
+<p>We next turn to the problem of implementing a general-purpose
+<a class="reference internal" href="Glossary.html#term-graph"><span class="xref std std-term">graph</span></a> class.
+There are two traditional approaches to representing graphs:
+The <a class="reference internal" href="Glossary.html#term-adjacency-matrix"><span class="xref std std-term">adjacency matrix</span></a> and the <a class="reference internal" href="Glossary.html#term-adjacency-list"><span class="xref std std-term">adjacency list</span></a>.
+In this module we will show actual implementations for each approach.
+We will begin with an interface defining an ADT for graphs that a
+given implementation must meet.</p>
+<div id="Graph_GraphADT_code"><ul><li><a href="#Graph_GraphADT_code_Java_Generic">Java</a></li><li><a href="#Graph_GraphADT_code_Python">Python</a></li></ul><div id="Graph_GraphADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">Graph</span> <span class="p">{</span> <span class="c1">// Graph class ADT</span>
+  <span class="c1">// Initialize the graph with some number of vertices</span>
+  <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">);</span>
+
+  <span class="c1">// Return the number of vertices</span>
+  <span class="kt">int</span> <span class="nf">nodeCount</span><span class="p">();</span>
+
+  <span class="c1">// Return the current number of edges</span>
+  <span class="kt">int</span> <span class="nf">edgeCount</span><span class="p">();</span>
+
+  <span class="c1">// Get the value of node with index v</span>
+  <span class="n">Object</span> <span class="nf">getValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">);</span>
+
+  <span class="c1">// Set the value of node with index v</span>
+  <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">Object</span> <span class="n">val</span><span class="p">);</span>
+  
+  <span class="c1">// Adds a new edge from node v to node w with weight wgt</span>
+  <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wgt</span><span class="p">);</span>
+
+  <span class="c1">// Get the weight value for an edge</span>
+  <span class="kt">int</span> <span class="nf">weight</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">);</span>
+
+  <span class="c1">// Removes the edge from the graph.</span>
+  <span class="kt">void</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">);</span>
+
+  <span class="c1">// Returns true iff the graph has the edge</span>
+  <span class="kt">boolean</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">);</span>
+
+  <span class="c1">// Returns an array containing the indicies of the neighbors of v</span>
+  <span class="kt">int</span><span class="o">[]</span> <span class="nf">neighbors</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Graph_GraphADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Graph</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">nodeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">edgeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">getValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">addEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">wgt</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Graph_GraphADT_code" ).tabs();});</script><p>This ADT assumes that the number of vertices is fixed
+when the graph is created, but that edges can be added and removed.
+The <code class="docutils literal notranslate"><span class="pre">init</span></code> method sets (or resets) the number of nodes in the graph,
+and creates necessary space for the adjacency matrix or adjacency list.</p>
+<p>Vertices are defined by an integer index value.
+In other words, there is a Vertex 0, Vertex 1, and so on through
+Vertex <span class="math notranslate nohighlight">\(n-1\)</span>.
+We can assume that the graph’s client application stores any additional
+information of interest about a given vertex elsewhere, such as a name
+or application-dependent value.
+Note that in a language like Java or C++, this ADT would not be
+implemented using a language feature like a generic or template,
+because it is the <code class="docutils literal notranslate"><span class="pre">Graph</span></code> class users’ responsibility to maintain
+information related to the vertices themselves.
+The <code class="docutils literal notranslate"><span class="pre">Graph</span></code> class need have no knowledge of the type or content
+of the information associated with a vertex, only the index number for
+that vertex.</p>
+<p>Interface <code class="docutils literal notranslate"><span class="pre">Graph</span></code> has methods to return the number of vertices and
+edges (methods <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">e</span></code>, respectively).
+Function <code class="docutils literal notranslate"><span class="pre">weight</span></code> returns the weight of a given edge, with that
+edge identified by its two incident vertices.
+For example, calling <code class="docutils literal notranslate"><span class="pre">weight(0,</span> <span class="pre">4)</span></code> on the graph of
+Figure <a href="GraphIntro.html#graphterms">12.2.1</a> (c) would return 4.
+If no such edge exists, the weight is defined to be 0.
+So calling <code class="docutils literal notranslate"><span class="pre">weight(0,</span> <span class="pre">2)</span></code> on the graph of
+Figure <a href="GraphIntro.html#graphterms">12.2.1</a> (c) would return 0.</p>
+<p>Functions <code class="docutils literal notranslate"><span class="pre">addEdge</span></code> and <code class="docutils literal notranslate"><span class="pre">removeEdge</span></code> add an edge (setting its
+weight) and removes an edge from the graph, respectively.
+Again, an edge is identified by its two incident vertices.
+<code class="docutils literal notranslate"><span class="pre">addEdge</span></code> does not permit the user to set the weight to be 0,
+because this value is used to indicate a non-existent edge, nor are
+negative edge weights permitted.
+Functions <code class="docutils literal notranslate"><span class="pre">getValue</span></code> and <code class="docutils literal notranslate"><span class="pre">setValue</span></code> get and set, respectively,
+a requested value for Vertex <span class="math notranslate nohighlight">\(v\)</span>.
+In our example applications the most frequent use of these methods
+will be to indicate whether a given node has previously been visited
+in the process of the algorithm</p>
+<p>Nearly every graph algorithm presented in this chapter will require
+visits to all neighbors of a given vertex.
+The <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> method returns an array containing the indices for
+the neighboring vertices, in ascending order.
+The following lines appear in many graph algorithms.</p>
+<div id="GraphDummy_GraphNeighbor_code"><ul><li><a href="#GraphDummy_GraphNeighbor_code_Java_Generic">Java</a></li><li><a href="#GraphDummy_GraphNeighbor_code_Python">Python</a></li></ul><div id="GraphDummy_GraphNeighbor_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="n">nList</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">DoSomething</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="GraphDummy_GraphNeighbor_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span><span class="p">:</span>
+        <span class="n">DoSomething</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#GraphDummy_GraphNeighbor_code" ).tabs();});</script><p>First, an array is generated that contains the indices of the nodes
+that can be directly reached from node <code class="docutils literal notranslate"><span class="pre">v</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">for</span></code> loop then iterates through this neighbor array to execute
+some function on each.</p>
+<p>It is reasonably straightforward to implement our graph ADT
+using either the adjacency list or adjacency matrix.
+The sample implementations presented here do not address the issue of
+how the graph is actually created.
+The user of these implementations must add functionality for
+this purpose, perhaps reading the graph description from a file.
+The graph can be built up by using the <code class="docutils literal notranslate"><span class="pre">addEdge</span></code> function
+provided by the ADT.</p>
+<p>Here is an implementation for the adjacency matrix.</p>
+<div id="GraphM_GraphM_code"><ul><li><a href="#GraphM_GraphM_code_Java_Generic">Java</a></li><li><a href="#GraphM_GraphM_code_Python">Python</a></li></ul><div id="GraphM_GraphM_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">GraphM</span> <span class="kd">implements</span> <span class="n">Graph</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">matrix</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">nodeValues</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">numEdge</span><span class="p">;</span>
+
+  <span class="c1">// No real constructor needed</span>
+  <span class="n">GraphM</span><span class="p">()</span> <span class="p">{</span> <span class="p">}</span>
+
+  <span class="c1">// Initialize the graph with n vertices</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">matrix</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">][</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">nodeValues</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">numEdge</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return the number of vertices</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">nodeCount</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodeValues</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Return the current number of edges</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">edgeCount</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">numEdge</span><span class="p">;</span> <span class="p">}</span>
+  
+  <span class="c1">// Get the value of node with index v</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodeValues</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span> <span class="p">}</span>
+  
+  <span class="c1">// Set the value of node with index v</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">Object</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">nodeValues</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Adds a new edge from node v to node w</span>
+  <span class="c1">// Returns the new edge</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wgt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">wgt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Can&#39;t store weight of 0</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">numEdge</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">wgt</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Get the weight value for an edge</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">weight</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Removes the edge from the graph.</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+      <span class="n">numEdge</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  
+  <span class="c1">// Returns true iff the graph has the edge</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">w</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Returns an array containing the indicies of the neighbors of v</span>
+  <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">neighbors</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span><span class="p">;</span>
+    
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nodeValues</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">count</span><span class="o">++</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">count</span><span class="o">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">nodeValues</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">matrix</span><span class="o">[</span><span class="n">v</span><span class="o">][</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">temp</span><span class="o">[</span><span class="n">count</span><span class="o">++]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="GraphM_GraphM_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GraphM</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">nodeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="o">.</span><span class="n">length</span>
+
+    <span class="k">def</span> <span class="nf">edgeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span>
+    
+    <span class="k">def</span> <span class="nf">getValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">addEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">wgt</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">wgt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t store weight of 0&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">numEdge</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">wgt</span>
+
+    <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">numEdge</span> <span class="o">-=</span> <span class="mi">1</span>
+    
+    <span class="k">def</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">w</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">count</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">v</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">temp</span><span class="p">[</span><span class="n">count</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">temp</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#GraphM_GraphM_code" ).tabs();});</script><p>Array <code class="docutils literal notranslate"><span class="pre">nodeValues</span></code> stores the information manipulated by the
+<code class="docutils literal notranslate"><span class="pre">setValue</span></code> and <code class="docutils literal notranslate"><span class="pre">getValue</span></code> functions.
+The edge matrix is implemented as an integer array of size
+<span class="math notranslate nohighlight">\(n \times n\)</span> for a graph of <span class="math notranslate nohighlight">\(n\)</span> vertices.
+Position <span class="math notranslate nohighlight">\((i, j)\)</span> in the matrix stores the weight for edge
+<span class="math notranslate nohighlight">\((i, j)\)</span> if it exists.
+A weight of zero for edge <span class="math notranslate nohighlight">\((i, j)\)</span> is used to indicate that no
+edge connects Vertices <span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.</p>
+<p>Given a vertex <span class="math notranslate nohighlight">\(v\)</span>, the <code class="docutils literal notranslate"><span class="pre">neighbors</span></code> method scans through row
+<code class="docutils literal notranslate"><span class="pre">v</span></code> of the matix to locate the positions of the various neighbors.
+If no edge is incident on <span class="math notranslate nohighlight">\(v\)</span>, then returned neighbor array will
+have length 0.
+Functions <code class="docutils literal notranslate"><span class="pre">addEdge</span></code> and <code class="docutils literal notranslate"><span class="pre">removeEdge</span></code> adjust the
+appropriate value in the array.
+Function <code class="docutils literal notranslate"><span class="pre">weight</span></code> returns the value stored in the
+appropriate position in the array.</p>
+<p>Here is an implementation of the adjacency list representation for
+graphs.
+Its main data structure is an array of linked lists, one linked list
+for each vertex.
+These linked lists store objects of type <code class="docutils literal notranslate"><span class="pre">Edge</span></code>, which merely
+stores the index for the vertex pointed to by the edge, along with the
+weight of the edge.</p>
+<div id="GraphL_GraphL_code"><ul><li><a href="#GraphL_GraphL_code_Java_Generic">Java</a></li><li><a href="#GraphL_GraphL_code_Python">Python</a></li></ul><div id="GraphL_GraphL_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">GraphL</span> <span class="kd">implements</span> <span class="n">Graph</span> <span class="p">{</span>
+
+  <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Edge</span> <span class="p">{</span> <span class="c1">// Doubly linked list node</span>
+    <span class="kt">int</span> <span class="n">vertex</span><span class="p">,</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="n">Edge</span> <span class="n">prev</span><span class="p">,</span> <span class="n">next</span><span class="p">;</span>
+
+    <span class="n">Edge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="n">Edge</span> <span class="n">p</span><span class="p">,</span> <span class="n">Edge</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">vertex</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span>
+      <span class="n">weight</span> <span class="o">=</span> <span class="n">w</span><span class="p">;</span>
+      <span class="n">prev</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span>
+      <span class="n">next</span> <span class="o">=</span> <span class="n">n</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="n">Edge</span><span class="o">[]</span> <span class="n">nodeArray</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="n">Object</span><span class="o">[]</span> <span class="n">nodeValues</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">numEdge</span><span class="p">;</span>
+
+  <span class="c1">// No real constructor needed</span>
+  <span class="n">GraphL</span><span class="p">()</span> <span class="p">{}</span>
+
+  <span class="c1">// Initialize the graph with n vertices</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">init</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">nodeArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+    <span class="c1">// List headers;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">nodeArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span> <span class="p">}</span>
+    <span class="n">nodeValues</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">numEdge</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return the number of vertices</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">nodeCount</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodeArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Return the current number of edges</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">edgeCount</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">numEdge</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Get the value of node with index v</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">getValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodeValues</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Set the value of node with index v</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">Object</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">nodeValues</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+  
+  <span class="c1">// Return the link in v&#39;s neighbor list that preceeds the</span>
+  <span class="c1">// one with w (or where it would be)</span>
+  <span class="kd">private</span> <span class="n">Edge</span> <span class="nf">find</span> <span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Edge</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">nodeArray</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">((</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">vertex</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">curr</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Adds a new edge from node v to node w with weight wgt</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">addEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wgt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">wgt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Can&#39;t store weight of 0</span>
+    <span class="n">Edge</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">vertex</span> <span class="o">==</span> <span class="n">w</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">weight</span> <span class="o">=</span> <span class="n">wgt</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">wgt</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">numEdge</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Get the weight value for an edge</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">weight</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Edge</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">vertex</span> <span class="o">!=</span> <span class="n">w</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">weight</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Removes the edge from the graph.</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Edge</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">||</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">vertex</span> <span class="o">!=</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span>
+      <span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">curr</span><span class="p">.</span><span class="na">next</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="p">;</span> <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="n">numEdge</span><span class="o">--</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Returns true iff the graph has the edge</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="kt">int</span> <span class="n">w</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Returns an array containing the indicies of the neighbors of v</span>
+  <span class="kd">public</span> <span class="kt">int</span><span class="o">[]</span> <span class="nf">neighbors</span><span class="p">(</span><span class="kt">int</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">Edge</span> <span class="n">curr</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">curr</span> <span class="o">=</span> <span class="n">nodeArray</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">.</span><span class="na">next</span><span class="p">;</span> <span class="n">curr</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">cnt</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">cnt</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">curr</span> <span class="o">=</span> <span class="n">nodeArray</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">.</span><span class="na">next</span><span class="p">;</span> <span class="n">curr</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">next</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">temp</span><span class="o">[</span><span class="n">cnt</span><span class="o">++]</span> <span class="o">=</span> <span class="n">curr</span><span class="p">.</span><span class="na">vertex</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="GraphL_GraphL_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Edge</span><span class="p">:</span>
+    <span class="c1"># Doubly linked list node</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">vertex</span> <span class="o">=</span> <span class="n">v</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">w</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">p</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">n</span>
+
+
+<span class="k">class</span> <span class="nc">GraphL</span><span class="p">(</span><span class="n">Graph</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeArray</span> <span class="o">=</span> <span class="p">[</span><span class="n">Edge</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">nodeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeArray</span><span class="o">.</span><span class="n">length</span>
+
+    <span class="k">def</span> <span class="nf">edgeCount</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span>
+
+    <span class="k">def</span> <span class="nf">getValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nodeValues</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+    
+    <span class="k">def</span> <span class="nf">find</span> <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeArray</span><span class="p">[</span><span class="n">v</span><span class="p">]</span>
+        <span class="k">while</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">vertex</span> <span class="o">&lt;</span> <span class="n">w</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">curr</span>
+
+    <span class="k">def</span> <span class="nf">addEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">wgt</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">wgt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Can&#39;t store weight of 0&quot;</span><span class="p">)</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">vertex</span> <span class="o">==</span> <span class="n">w</span><span class="p">:</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">wgt</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">Edge</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">wgt</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">vertex</span> <span class="o">!=</span> <span class="n">w</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">weight</span>
+
+    <span class="k">def</span> <span class="nf">removeEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">vertex</span> <span class="o">!=</span> <span class="n">w</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">curr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">numEdge</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">hasEdge</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">neighbors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeArray</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">while</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">cnt</span>
+        <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">nodeArray</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">while</span> <span class="n">curr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">temp</span><span class="p">[</span><span class="n">cnt</span><span class="p">]</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">vertex</span>
+            <span class="n">cnt</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">temp</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#GraphL_GraphL_code" ).tabs();});</script><p>Implementation for <code class="docutils literal notranslate"><span class="pre">GraphL</span></code> member functions is straightforward
+in principle, with the key functions being <code class="docutils literal notranslate"><span class="pre">addEdge</span></code>,
+<code class="docutils literal notranslate"><span class="pre">removeEdge</span></code>, and <code class="docutils literal notranslate"><span class="pre">weight</span></code>.
+They simply start at the beginning of the adjacency list and move
+along it until the desired vertex has been found.
+Private method find is a utility for finding the last edge preceding
+the one that holds vertex <span class="math notranslate nohighlight">\(v\)</span> if that exists.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Exercise</dt><dd><p>Add a battery of questions to test knowledge of the
+implementations.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="GraphIntro.html">12.<span class="section-number">1. </span>Graphs Chapter Introduction</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="GraphTraversal.html">12.<span class="section-number">3. </span>Graph Traversals</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

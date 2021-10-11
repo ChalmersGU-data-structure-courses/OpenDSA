@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.11. Multiple Parameters &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="12. Space Bounds" href="AnalSpace.html" />
+    <link rel="prev" title="10. Common Misunderstandings" href="AnalMisunderstanding.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/AnalMultiple.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="AnalMisunderstanding.html">4.<span class="section-number">10. </span>Common Misunderstandings</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="AnalSpace.html">4.<span class="section-number">12. </span>Space Bounds</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMultiple";ODSA.SETTINGS.MODULE_LONG_NAME = "Multiple Parameters";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="multiple-parameters">
+<h1>4.<span class="section-number">11. </span>Multiple Parameters<a class="headerlink" href="#multiple-parameters" title="Permalink to this headline">¶</a></h1>
+<p>Sometimes the proper analysis for an algorithm requires
+multiple parameters to describe the cost.
+To illustrate the concept, consider an algorithm to compute
+the rank ordering for counts of all pixel values in a picture.
+Pictures are often represented by a two-dimensional array, and a
+pixel is one cell in the array.
+The value of a pixel is either the code value for the color, or a
+value for the intensity of the picture at that pixel.
+Assume that each pixel can take any integer value in the range 0
+to <span class="math notranslate nohighlight">\(C - 1\)</span>.
+The problem is to find the number of pixels of each color
+value and then sort the color values with respect to the number
+of times each value appears in the picture.
+Assume that the picture is a rectangle with <span class="math notranslate nohighlight">\(P\)</span> pixels.
+A pseudocode algorithm to solve the problem follows.</p>
+<blockquote>
+<div><div id="Anal_c3p16_code"><ul><li><a href="#Anal_c3p16_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p16_code_Python">Python</a></li></ul><div id="Anal_c3p16_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">C</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// Initialize count</span>
+  <span class="n">count</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">P</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// Look at all of the pixels</span>
+  <span class="n">count</span><span class="o">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">]++</span><span class="p">;</span> <span class="c1">// Increment a pixel value count</span>
+<span class="p">}</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>          <span class="c1">// Sort pixel value counts</span>
+</pre></div>
+</div>
+</div><div id="Anal_c3p16_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>        <span class="c1"># Initialize count</span>
+  <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>      <span class="c1"># Look at all of the pixels</span>
+    <span class="n">count</span><span class="p">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Increment a pixel value count</span>
+  <span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>             <span class="c1"># Sort pixel value counts</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Anal_c3p16_code" ).tabs();});</script></div></blockquote>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">count</span></code> is an array of size <code class="docutils literal notranslate"><span class="pre">C</span></code> that
+stores the number of pixels for each color value.
+Function <code class="docutils literal notranslate"><span class="pre">value(i)</span></code> returns the color value for pixel <span class="math notranslate nohighlight">\(i\)</span>.</p>
+<p>The time for the first <code class="docutils literal notranslate"><span class="pre">for</span></code> loop (which initializes
+<code class="docutils literal notranslate"><span class="pre">count</span></code>) is based on the number of colors, <span class="math notranslate nohighlight">\(C\)</span>.
+The time for the second loop (which determines the number of pixels
+with each color) is <span class="math notranslate nohighlight">\(\Theta(P)\)</span>.
+The time for the final line, the call to <code class="docutils literal notranslate"><span class="pre">sort</span></code>, depends on the
+cost of the sorting algorithm used.
+We will assume that the sorting algorithm has cost
+<span class="math notranslate nohighlight">\(\Theta(P \log P)\)</span> if <span class="math notranslate nohighlight">\(P\)</span> items are sorted,
+thus yielding <span class="math notranslate nohighlight">\(\Theta(P \log P)\)</span> as the total algorithm cost.</p>
+<p>Is this a good representation for the cost of this algorithm?
+What is actually being sorted?
+It is not the pixels, but rather the colors.
+What if <span class="math notranslate nohighlight">\(C\)</span> is much smaller than <span class="math notranslate nohighlight">\(P\)</span>?
+Then the estimate of <span class="math notranslate nohighlight">\(\Theta(P \log P)\)</span> is pessimistic,
+because much fewer than <span class="math notranslate nohighlight">\(P\)</span> items are being sorted.
+Instead, we should use <span class="math notranslate nohighlight">\(P\)</span> as our analysis variable for steps
+that look at each pixel, and <span class="math notranslate nohighlight">\(C\)</span> as our analysis variable for
+steps that look at colors.
+Then we get <span class="math notranslate nohighlight">\(\Theta(C)\)</span> for the initialization loop,
+<span class="math notranslate nohighlight">\(\Theta(P)\)</span> for the pixel count loop,
+and <span class="math notranslate nohighlight">\(\Theta(C \log C)\)</span> for the sorting operation.
+This yields a total cost of <span class="math notranslate nohighlight">\(\Theta(P + C \log C)\)</span>.</p>
+<p>Why can we not simply use the value of <span class="math notranslate nohighlight">\(C\)</span> for input size and
+say that the cost of the algorithm is <span class="math notranslate nohighlight">\(\Theta(C \log C)\)</span>?
+Because, <span class="math notranslate nohighlight">\(C\)</span> is typically much less than <span class="math notranslate nohighlight">\(P\)</span>.
+For example, a picture might have 1000 <span class="math notranslate nohighlight">\(\times\)</span> 1000 pixels and
+a range of 256 possible colors.
+So, <span class="math notranslate nohighlight">\(P\)</span> is one million, which is much larger than <span class="math notranslate nohighlight">\(C \log C\)</span>.
+But, if <span class="math notranslate nohighlight">\(P\)</span> is smaller, or <span class="math notranslate nohighlight">\(C\)</span> larger (even if it is still
+less than <span class="math notranslate nohighlight">\(P\)</span>), then <span class="math notranslate nohighlight">\(C \log C\)</span> can become the larger
+quantity.
+Thus, neither variable should be ignored.</p>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="AnalMisunderstanding.html">4.<span class="section-number">10. </span>Common Misunderstandings</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="AnalSpace.html">4.<span class="section-number">12. </span>Space Bounds</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

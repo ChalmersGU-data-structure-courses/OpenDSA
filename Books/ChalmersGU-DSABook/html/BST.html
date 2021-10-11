@@ -1,0 +1,662 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.10. Binary Search Trees &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="11. Dictionary Implementation Using a BST" href="BSTDict.html" />
+    <link rel="prev" title="9. Binary Tree Space Requirements" href="BinaryTreeNodeSpace.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 7 Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BST.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeNodeSpace.html">7.<span class="section-number">9. </span>Binary Tree Space Requirements</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BSTDict.html">7.<span class="section-number">11. </span>Dictionary Implementation Using a BST</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="binary-search-trees">
+<h1>7.<span class="section-number">10. </span>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="binary-search-tree-definition">
+<h2>7.<span class="section-number">10.1. </span>Binary Search Tree Definition<a class="headerlink" href="#binary-search-tree-definition" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="Glossary.html#term-binary-search-tree"><span class="xref std std-term">binary search tree</span></a> (<a class="reference internal" href="Glossary.html#term-bst"><span class="xref std std-term">BST</span></a>)
+is a <a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">binary tree</span></a> that conforms to the
+following condition, known
+as the <a class="reference internal" href="Glossary.html#term-binary-search-tree-property"><span class="xref std std-term">binary search tree property</span></a>.
+All <a class="reference internal" href="Glossary.html#term-node"><span class="xref std std-term">nodes</span></a> stored in the left subtree of a node whose
+<a class="reference internal" href="Glossary.html#term-key"><span class="xref std std-term">key</span></a> value is <span class="math notranslate nohighlight">\(K\)</span> have key values
+less than or equal to <span class="math notranslate nohighlight">\(K\)</span>.
+All nodes stored in the right subtree of a node whose key value
+is <span class="math notranslate nohighlight">\(K\)</span> have key values greater than <span class="math notranslate nohighlight">\(K\)</span>.
+Figure <a href="BST.html#bstshape">7.11.1</a> shows two BSTs for a collection of
+values.
+One consequence of the binary search tree property is that if the BST
+nodes are printed using an
+<a class="reference internal" href="BinaryTreeTraversal.html#binarytreetraversal"><span class="std std-ref">inorder traversal</span></a>,
+then the resulting enumeration will be in
+sorted order from lowest to highest.</p>
+<div class="divdgm" id="bstshape">
+<div id="BSTShapeCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 7.11.1: Two Binary Search Trees for a collection of values.
+Tree (a) results if values are inserted
+in the order 37, 24, 42, 7, 2, 40, 42, 32, 120.
+Tree (b) results if the same values are inserted in the
+order 120, 42, 42, 7, 2, 32, 37, 24, 40.</span></p>
+</div>
+<p>Here is a class declaration for the BST.
+Recall that there are various ways to deal with
+<a class="reference internal" href="Glossary.html#term-key"><span class="xref std std-term">keys</span></a> and
+<a class="reference internal" href="Comparison.html#comparison"><span class="std std-ref">comparing records</span></a>
+Three typical approaches are <a class="reference internal" href="Glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a>,
+a special comparison method such as using the <code class="docutils literal notranslate"><span class="pre">Comparator</span></code> class,
+and passing in a <a class="reference internal" href="Glossary.html#term-comparator"><span class="xref std std-term">comparator function</span></a>.
+Our BST implementation will require that records implement the
+<code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary Search Tree implementation</span>
+<span class="kd">class</span> <span class="nc">BST</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">root</span><span class="p">;</span> <span class="c1">// Root of the BST</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">nodecount</span><span class="p">;</span> <span class="c1">// Number of nodes in the BST</span>
+
+  <span class="c1">// constructor</span>
+  <span class="n">BST</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Reinitialize tree</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+  <span class="c1">// Insert a record into the tree.</span>
+  <span class="c1">// Records can be anything, but they must be Comparable</span>
+  <span class="c1">// e: The record to insert.</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">root</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+    <span class="n">nodecount</span><span class="o">++</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Remove a record from the tree</span>
+  <span class="c1">// key: The key value of record to remove</span>
+  <span class="c1">// Returns the record removed, null if there is none.</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">E</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// First find it</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">root</span> <span class="o">=</span> <span class="n">removehelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// Now remove it</span>
+      <span class="n">nodecount</span><span class="o">--</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return the record with key value k, null if none exists</span>
+  <span class="c1">// key: The key value to find</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="c1">// Return the number of records in the dictionary</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodecount</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+</div>
+<div class="section" id="bst-search">
+<h3>7.<span class="section-number">10.1.1. </span>BST Search<a class="headerlink" href="#bst-search" title="Permalink to this headline">¶</a></h3>
+<p>The first operation that we will look at in detail will find the
+record that matches a given key.
+Notice that in the BST class, public member function
+<code class="docutils literal notranslate"><span class="pre">find</span></code> calls private member function <code class="docutils literal notranslate"><span class="pre">findhelp</span></code>.
+Method <code class="docutils literal notranslate"><span class="pre">find</span></code> takes the search key as an explicit parameter
+and its BST as an implicit parameter, and returns the record that
+matches the key.
+However, the find operation is most easily implemented as a
+recursive function whose parameters are the root of a
+subtree and the search key.
+Member <code class="docutils literal notranslate"><span class="pre">findhelp</span></code> has the desired form for this recursive
+subroutine and is implemented as follows.</p>
+<div id="BSTsearchCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTsearchCON" data-long-name="BST Search Slideshow" data-exer-id="" alt="BST Search Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="BSTsearchCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="BSTsearchCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="BSTsearchCON_cm_error_msg" class="cm_error_msg">
+   <img id="BSTsearchCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div
+    id="BSTsearchPRO"
+    class="embedContainer"
+    data-exer-name="BSTsearchPRO"
+    data-long-name="BST Search Proficiency Exercise"
+    data-short-name="BSTsearchPRO"
+    data-frame-src="../../../AV/Binary/BSTsearchPRO.html?localMode=true&amp;module=BST&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=none&amp;JXOP-feedback=continuous&amp;JXOP-fixmode=undo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="BSTsearchPRO_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="section" id="bst-insert">
+<h2>7.<span class="section-number">10.2. </span>BST Insert<a class="headerlink" href="#bst-insert" title="Permalink to this headline">¶</a></h2>
+<p>Now we look at how to insert a new node into the BST.</p>
+<div id="BSTinsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTinsertCON" data-long-name="BST Insert Slideshow" data-exer-id="" alt="BST Insert Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="BSTinsertCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="BSTinsertCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="BSTinsertCON_cm_error_msg" class="cm_error_msg">
+   <img id="BSTinsertCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Note that, except for the last node in the path, <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code>
+will not actually change the child pointer for any of the nodes that
+are visited.
+In that sense, many of the assignments seem redundant.
+However, the cost of these additional assignments is worth paying to
+keep the insertion process simple.
+The alternative is to check if a given assignment is necessary, which
+is probably more expensive than the assignment!</p>
+<p>We have to decide what to do when the node that we want to
+insert has a key value equal to the key of some node already in
+the tree.
+If during insert we find a node that duplicates the key value to be
+inserted, then we have two options.
+If the application does not allow nodes with equal keys, then this
+insertion should be treated as an error (or ignored).
+If duplicate keys are allowed, our convention will be to insert the
+duplicate in the left subtree.</p>
+<p>The shape of a BST depends on the order in which elements are inserted.
+A new element is added to the BST as a new leaf node,
+potentially increasing the depth of the tree.
+Figure <a href="BST.html#bstshape">7.11.1</a> illustrates two BSTs for a collection
+of values.
+It is possible for the BST containing <span class="math notranslate nohighlight">\(n\)</span> nodes to be a chain of
+nodes with height <span class="math notranslate nohighlight">\(n\)</span>.
+This would happen if, for example, all elements were inserted in
+sorted order.
+In general, it is preferable for a BST to be as shallow as
+possible.
+This keeps the average cost of a BST operation low.</p>
+<div
+    id="BSTinsertPRO"
+    class="embedContainer"
+    data-exer-name="BSTinsertPRO"
+    data-long-name="BST Insert Proficiency Exercise"
+    data-short-name="BSTinsertPRO"
+    data-frame-src="../../../AV/Binary/BSTinsertPRO.html?localMode=true&amp;module=BST&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=none&amp;JXOP-feedback=continuous&amp;JXOP-fixmode=undo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="BSTinsertPRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="bst-remove">
+<h2>7.<span class="section-number">10.3. </span>BST Remove<a class="headerlink" href="#bst-remove" title="Permalink to this headline">¶</a></h2>
+<p>Removing a node from a BST is a bit trickier than inserting a node,
+but it is not complicated if all of the possible cases are considered
+individually.
+Before tackling the general node removal process, we will first see
+how to remove from a given subtree the node with the largest key
+value.
+This routine will be used later by the general node removal function.</p>
+<div id="BSTdeletemaxCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTdeletemaxCON" data-long-name="BST deletemax Slideshow" data-exer-id="" alt="BST deletemax Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="BSTdeletemaxCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="BSTdeletemaxCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="BSTdeletemaxCON_cm_error_msg" class="cm_error_msg">
+   <img id="BSTdeletemaxCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>The return value of the <code class="docutils literal notranslate"><span class="pre">deletemax</span></code> method is the subtree of
+the current node with the maximum-valued node in the subtree removed.
+Similar to the <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code> method, each node on the path back to
+the root has its right child pointer reassigned to the subtree
+resulting from its call to the <code class="docutils literal notranslate"><span class="pre">deletemax</span></code> method.</p>
+<p>A useful companion method is <code class="docutils literal notranslate"><span class="pre">getmax</span></code> which returns a
+pointer to the node containing the maximum value in the subtree.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Get the maximum valued element in a subtree</span>
+  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">getmax</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="n">getmax</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Now we are ready for the <code class="docutils literal notranslate"><span class="pre">removehelp</span></code> method.
+Removing a node with given key value <span class="math notranslate nohighlight">\(R\)</span> from the BST
+requires that we first find <span class="math notranslate nohighlight">\(R\)</span> and then remove it from the
+tree.
+So, the first part of the remove operation is a search to find
+<span class="math notranslate nohighlight">\(R\)</span>.
+Once <span class="math notranslate nohighlight">\(R\)</span> is found, there are several possibilities.
+If <span class="math notranslate nohighlight">\(R\)</span> has no children, then <span class="math notranslate nohighlight">\(R\)</span>’s parent has its
+pointer set to NULL.
+If <span class="math notranslate nohighlight">\(R\)</span> has one child, then <span class="math notranslate nohighlight">\(R\)</span>’s parent has
+its pointer set to <span class="math notranslate nohighlight">\(R\)</span>’s child (similar to <code class="docutils literal notranslate"><span class="pre">deletemax</span></code>).
+The problem comes if <span class="math notranslate nohighlight">\(R\)</span> has two children.
+One simple approach, though expensive, is to set <span class="math notranslate nohighlight">\(R\)</span>’s parent to
+point to one of <span class="math notranslate nohighlight">\(R\)</span>’s subtrees, and then reinsert the remaining
+subtree’s nodes one at a time.
+A better alternative is to find a value in one of the
+subtrees that can replace the value in <span class="math notranslate nohighlight">\(R\)</span>.</p>
+<p>Thus, the question becomes:
+Which value can substitute for the one being removed?
+It cannot be any arbitrary value, because we must preserve the BST
+property without making major changes to the structure of the tree.
+Which value is most like the one being removed?
+The answer is the least key value greater than the one
+being removed, or else the greatest key value less than (or equal to)
+the one being removed.
+If either of these values replace the one being removed,
+then the BST property is maintained.</p>
+<div id="BSTremoveCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTremoveCON" data-long-name="BST remove Slideshow" data-exer-id="" alt="BST remove Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="BSTremoveCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="BSTremoveCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="BSTremoveCON_cm_error_msg" class="cm_error_msg">
+   <img id="BSTremoveCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>When duplicate node values do not appear in the tree, it makes no
+difference whether the replacement is the greatest value from the
+left subtree or the least value from the right subtree.
+If duplicates are stored in the left subtree, then we must select
+the replacement from the <em>left</em> subtree. <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
+To see why, call the least value in the right subtree <span class="math notranslate nohighlight">\(L\)</span>.
+If multiple nodes in the right subtree have value <span class="math notranslate nohighlight">\(L\)</span>,
+selecting <span class="math notranslate nohighlight">\(L\)</span> as the replacement value for the root of the
+subtree will result in a tree with equal values to the right of the
+node now containing <span class="math notranslate nohighlight">\(L\)</span>.
+Selecting the greatest value from the left subtree does not
+have a similar problem, because it does not violate the Binary Search
+Tree Property if equal values appear in the left subtree.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Alternatively, if we prefer to store duplicate values in the
+right subtree, then we must replace a deleted node with the
+least value from its right subtree.</p>
+</dd>
+</dl>
+<div
+    id="BSTremovePRO"
+    class="embedContainer"
+    data-exer-name="BSTremovePRO"
+    data-long-name="BST Remove Proficiency Exercise"
+    data-short-name="BSTremovePRO"
+    data-frame-src="../../../AV/Binary/BSTremovePRO.html?localMode=true&amp;module=BST&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=none&amp;JXOP-feedback=continuous&amp;JXOP-fixmode=undo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="BSTremovePRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="bst-analysis">
+<h2>7.<span class="section-number">10.4. </span>BST Analysis<a class="headerlink" href="#bst-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The cost for <code class="docutils literal notranslate"><span class="pre">findhelp</span></code> and <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code> is the depth of
+the node found or inserted.
+The cost for <code class="docutils literal notranslate"><span class="pre">removehelp</span></code> is the depth of the node being
+removed, or in the case when this node has two children,
+the depth of the node with smallest value in its right subtree.
+Thus, in the worst case, the cost for any one of these operations is
+the depth of the deepest node in the tree.
+This is why it is desirable to keep BSTs
+<a class="reference internal" href="Glossary.html#term-balanced-tree"><span class="xref std std-term">balanced</span></a>, that is, with least possible
+height.
+If a binary tree is balanced, then the height for a tree of <span class="math notranslate nohighlight">\(n\)</span>
+nodes is approximately <span class="math notranslate nohighlight">\(\log n\)</span>.
+However, if the tree is completely unbalanced, for example in the
+shape of a linked list, then the height for a tree with <span class="math notranslate nohighlight">\(n\)</span>
+nodes can be as great as <span class="math notranslate nohighlight">\(n\)</span>.
+Thus, a balanced BST will in the average case have operations costing
+<span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>, while a badly unbalanced BST can have
+operations in the worst case costing <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.
+Consider the situation where we construct a BST of <span class="math notranslate nohighlight">\(n\)</span> nodes
+by inserting records one at a time.
+If we are fortunate to have them arrive in an order that results in a
+balanced tree (a “random” order is likely to be good
+enough for this purpose), then each insertion will cost on average
+<span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>, for a total cost of
+<span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span>.
+However, if the records are inserted in order of increasing value,
+then the resulting tree will be a chain of height <span class="math notranslate nohighlight">\(n\)</span>.
+The cost of insertion in this case will be
+<span class="math notranslate nohighlight">\(\sum_{i=1}^{n} i = \Theta(n^2)\)</span>.</p>
+<p>Traversing a BST costs <span class="math notranslate nohighlight">\(\Theta(n)\)</span> regardless of the shape of
+the tree.
+Each node is visited exactly once, and each child pointer
+is followed exactly once.</p>
+<p>Below is an example traversal, named <code class="docutils literal notranslate"><span class="pre">printhelp</span></code>.
+It performs an inorder traversal on the BST to print the node values
+in ascending order.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printhelp</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">printhelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>
+    <span class="n">printVisit</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">value</span><span class="p">());</span>
+    <span class="n">printhelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>While the BST is simple to implement and efficient when the tree is
+balanced, the possibility of its being unbalanced is a serious
+liability.
+There are techniques for organizing a BST to guarantee good performance.
+Two examples are the
+<a class="reference internal" href="AVL.html#avl"><span class="std std-ref">AVL tree</span></a> and the
+<a class="reference internal" href="Splay.html#splay"><span class="std std-ref">splay tree</span></a>.
+There also exist other types of search trees that are guaranteed to
+remain balanced, such as the <a class="reference internal" href="TwoThreeTree.html#twothreetree"><span class="std std-ref">2-3 Tree</span></a>.</p>
+<div
+    id="BSTSumm"
+    class="embedContainer"
+    data-exer-name="BSTSumm"
+    data-long-name="BST Question Summary"
+    data-short-name="BSTSumm"
+    data-frame-src="../../../Exercises/Binary/BSTSumm.html?localMode=true&amp;module=BST&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="BSTSumm_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Binary/BSTShapeCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/BSTsearchCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/BSTinsertCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/BSTdeletemaxCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/BSTremoveCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeNodeSpace.html">7.<span class="section-number">9. </span>Binary Tree Space Requirements</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BSTDict.html">7.<span class="section-number">11. </span>Dictionary Implementation Using a BST</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

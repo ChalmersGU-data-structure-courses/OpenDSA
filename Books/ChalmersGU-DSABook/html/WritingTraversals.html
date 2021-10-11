@@ -1,0 +1,404 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.6. Implementing Tree Traversals &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="7. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
+    <link rel="prev" title="5. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 7 Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/WritingTraversals.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeTraversal.html">7.<span class="section-number">5. </span>Binary Tree Traversals</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BinaryTreeInfFlw.html">7.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
+<h1>7.<span class="section-number">6. </span>Implementing Tree Traversals<a class="headerlink" href="#implementing-tree-traversals" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>7.<span class="section-number">6.1. </span>Implementing Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Recall that any recursive function requires the following:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>The base case and its action.</p></li>
+<li><p>The recursive case and its action.</p></li>
+</ol>
+</div></blockquote>
+<p>In this module, we will talk about some details related to correctly
+and clearly implementing recursive tree traversals.</p>
+<div class="section" id="base-case">
+<h3>7.<span class="section-number">6.1.1. </span>Base Case<a class="headerlink" href="#base-case" title="Permalink to this headline">¶</a></h3>
+<p>In binary tree traversals, most often the base case is to check if we
+have an empty tree.
+A common mistake is to check the child pointers of the current node,
+and only make the recursive call for a non-null child.</p>
+<p>Recall the basic preorder traversal function.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree - do nothing</span>
+  <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>              <span class="c1">// Process root node</span>
+  <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>    <span class="c1">// Process all nodes in left</span>
+  <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>   <span class="c1">// Process all nodes in right</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here is an alternate design for the preorder traversal, in which the
+left and right pointers of the current node are checked so that the
+recursive call is made only on non-empty children.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a bad idea</span>
+<span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder2</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span> <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>At first it might appear that <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is more efficient
+than <code class="docutils literal notranslate"><span class="pre">preorder</span></code>, because it makes only half as many recursive
+calls (since it won’t try to call on a null pointer).
+On the other hand, <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> must access the left and right
+child pointers twice as often.
+The net result is that there is no performance improvement.</p>
+<p>Perhaps the writer of <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> wants to protect against the case
+where the root is <code class="docutils literal notranslate"><span class="pre">null</span></code>.
+But <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> has an error.
+While <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> insures that no recursive
+calls will be made on empty subtrees, it will fail if the orignal call
+from outside passes in a null pointer.
+This would occur if the original tree is empty.
+Since an empty tree is a legitimate input to the initial call on the
+function, there is no safe way to avoid this case.
+So it is necessary that the first thing you do on a binary tree
+traversal is to check that the root is not <code class="docutils literal notranslate"><span class="pre">null</span></code>.
+If we try to fix <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> by adding this test, then making the
+tests on the children is completely redundant because the pointer will
+be checked again in the recursive call.</p>
+<p>The design of <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is inferior to
+that of <code class="docutils literal notranslate"><span class="pre">preorder</span></code> for a deeper reason as well.
+Looking at the children to see if they are <code class="docutils literal notranslate"><span class="pre">null</span></code> means that we are
+worrying too much about something that can be dealt with just as well
+by the children.
+This makes the function more complex, which can become a real problem
+for more complex tree structures.
+Even in the relatively simple <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> function, we had to write
+two tests for <code class="docutils literal notranslate"><span class="pre">null</span></code> rather than the one needed by <code class="docutils literal notranslate"><span class="pre">preorder</span></code>.
+This makes it more complicated than the original version.
+The key issue is that it is much easier to write a recursive function
+on a tree when we only think about the needs of the current node.
+Whenever we can, we want to let the children take care of themselves.
+In this case, we care that the current node is not <code class="docutils literal notranslate"><span class="pre">null</span></code>, and we care
+about how to invoke the recursion on the children, but we do <strong>not</strong>
+have to care about how or when that is done.</p>
+</div>
+<div class="section" id="the-recursive-call">
+<h3>7.<span class="section-number">6.1.2. </span>The Recursive Call<a class="headerlink" href="#the-recursive-call" title="Permalink to this headline">¶</a></h3>
+<p>The secret to success when writing a recursive function is to not
+worry about how the recursive call works.
+Just accept that it will work correctly.
+One aspect of this principle is not to worry about checking your
+children when you don’t need to.
+You should only look at the values of your children if you need to
+know those values in order to compute some property of the current
+node.
+Child values should not be used to decide whether to call them
+recursviely.
+Make the call, and let their own base case handle it.</p>
+<div class="topic">
+<p class="topic-title">Example 7.7.1 </p>
+<p>Consider the problem of incrementing the value for each node in a
+binary tree.
+The following solution has an error, since it does redundant
+manipulation to left and the right children of each node.</p>
+<div id="RecTutor_IneffbtInc_code"><ul><li><a href="#RecTutor_IneffbtInc_code_Java_Generic">Java</a></li><li><a href="#RecTutor_IneffbtInc_code_Python">Python</a></li></ul><div id="RecTutor_IneffbtInc_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">ineff_BTinc</span><span class="p">(</span><span class="n">BinNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">root</span><span class="p">.</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">left</span><span class="p">());</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">right</span><span class="p">());</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="RecTutor_IneffbtInc_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">root</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">()</span><span class="o">.</span><span class="n">left</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">value</span><span class="p">()</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">right</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#RecTutor_IneffbtInc_code" ).tabs();});</script><p>The efficient solution should not explicitly set the children
+values that way.
+Changing the value of a node does not depend on the child values.
+So the function should simply increment the root value, and make
+recursive calls on the children.</p>
+</div>
+<p>In rare problems, you might need to explicitly check if the children
+are null or access the children values for each node.
+For example, you might need to check if all nodes in a tree satisfy
+the property that each node stores the sum of its left and right
+children.
+In this situation you must look at the values of the children to
+decide something about the current node.
+You do <strong>not</strong> look at the children to decide whether to make a recursive
+call.</p>
+</div>
+</div>
+<div class="section" id="binary-tree-increment-by-one-exercise">
+<h2>7.<span class="section-number">6.2. </span>Binary Tree Increment By One Exercise<a class="headerlink" href="#binary-tree-increment-by-one-exercise" title="Permalink to this headline">¶</a></h2>
+<div
+    id="Binary_Tree_Increment_By_One_Exercise"
+    class="embedContainer"
+    data-exer-name="Binary_Tree_Increment_By_One_Exercise"
+    data-long-name="Binary Tree Increment By One Exercise"
+    data-short-name="Binary Tree Increment By One Exercise"
+    data-frame-src="https://codeworkout.cs.vt.edu/gym/workouts/embed?resource_name=Binary+Tree+Increment+By+One+Exercise"
+    data-frame-width="1000"
+    data-frame-height="900"
+    data-type="external_tool"
+    data-workout-id="80"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="Binary_Tree_Increment_By_One_Exercise_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeTraversal.html">7.<span class="section-number">5. </span>Binary Tree Traversals</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BinaryTreeInfFlw.html">7.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

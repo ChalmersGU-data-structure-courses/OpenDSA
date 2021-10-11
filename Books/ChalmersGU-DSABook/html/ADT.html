@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.2. Abstract Data Types &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. All ADTs Used in This Book" href="CourseAPI.html" />
+    <link rel="prev" title="1. Data Structures and Algorithms" href="IntroDSA.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 1 Introduction</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/ADT.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="IntroDSA.html">1.<span class="section-number">1. </span>Data Structures and Algorithms</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ADT";ODSA.SETTINGS.MODULE_LONG_NAME = "Abstract Data Types";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Design/ADTCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="abstract-data-types">
+<h1>1.<span class="section-number">2. </span>Abstract Data Types<a class="headerlink" href="#abstract-data-types" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.<span class="section-number">2.1. </span>Abstract Data Types<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This module presents terminology and definitions related to techniques
+for managing the tremendous complexity of computer programs.
+It also presents working definitions for the fundamental but somewhat
+slippery terms “<a class="reference internal" href="Glossary.html#term-data-item"><span class="xref std std-term">data item</span></a>” and “<a class="reference internal" href="Glossary.html#term-data-structure"><span class="xref std std-term">data structure</span></a>”.
+We begin with the basic elements on which data structures are built.</p>
+<p>A <a class="reference internal" href="Glossary.html#term-type"><span class="xref std std-term">type</span></a> is a collection of values.
+For example, the Boolean type consists of the values <code class="docutils literal notranslate"><span class="pre">true</span></code> and
+<code class="docutils literal notranslate"><span class="pre">false</span></code>.
+The integers also form a type.
+An integer is a <a class="reference internal" href="Glossary.html#term-simple-type"><span class="xref std std-term">simple type</span></a>
+because its values contain no subparts.
+A bank account record will typically contain several pieces of
+information such as name, address, account number, and account
+balance.
+Such a record is an example of an <a class="reference internal" href="Glossary.html#term-aggregate-type"><span class="xref std std-term">aggregate type</span></a> or
+<a class="reference internal" href="Glossary.html#term-composite-type"><span class="xref std std-term">composite type</span></a>.
+A <a class="reference internal" href="Glossary.html#term-data-item"><span class="xref std std-term">data item</span></a> is a piece of information
+or a record whose value is drawn from a type.
+A data item is said to be a <a class="reference internal" href="Glossary.html#term-member"><span class="xref std std-term">member</span></a> of a type.</p>
+<p>A <a class="reference internal" href="Glossary.html#term-data-type"><span class="xref std std-term">data type</span></a> is a type together with a collection of operations
+to manipulate the type.
+For example, an integer variable is a member of the integer data
+type.
+Addition is an example of an operation on the integer data type.</p>
+<p>A distinction should be made between the
+logical concept of a data type and its physical implementation in a
+computer program.
+For example, there are two traditional implementations
+for the list data type:
+the linked list and the array-based list.
+The list data type can therefore be implemented using a linked list or
+an array.
+But we don’t need to know how the list is implemented when we wish to
+use a list to help in a more complex design.
+For example, a list might be used to help implement a
+<a class="reference internal" href="GraphImpl.html#graphimpl"><span class="std std-ref">graph data structure</span></a>.</p>
+<p>As another example, the term “array” could refer either
+to a data type or an implementation.
+“Array” is commonly used in computer programming to mean a
+contiguous block of memory locations,
+where each memory location stores one fixed-length data item.
+By this meaning, an array is a physical data structure.
+However, array can also mean a logical data type composed of a
+(typically homogeneous) collection of data items, with each data item
+identified by an index number.
+It is possible to implement arrays in many different ways besides as a
+block of contiguous memory locations.
+The <a class="reference internal" href="Glossary.html#term-sparse-matrix"><span class="xref std std-term">sparse matrix</span></a>
+refers to a large, two-dimensional array
+that stores only a relatively few non-zero values.
+This is often implemented with a linked structure, or possibly using a
+<a class="reference internal" href="HashIntro.html#hashintro"><span class="std std-ref">hash table</span></a>.
+But it could be implemented with an interface that uses traditional
+row and column indices, thus appearing to the user in the same way
+that it would if it had been implemented as a block of contiguous
+memory locations.</p>
+<p>An <a class="reference internal" href="Glossary.html#term-abstract-data-type"><span class="xref std std-term">abstract data type</span></a> (ADT) is the specification of a data type
+within some language, independent of an implementation.
+The interface for the ADT is defined in terms of a type and a set of
+operations on that type.
+The behavior of each operation is determined by its inputs and outputs.
+An ADT does not specify <em>how</em> the data type is implemented.
+These implementation details are hidden from the user of the ADT and
+protected from outside access, a concept referred to as
+<a class="reference internal" href="Glossary.html#term-encapsulation"><span class="xref std std-term">encapsulation</span></a>.</p>
+<p>A <a class="reference internal" href="Glossary.html#term-data-structure"><span class="xref std std-term">data structure</span></a> is the implementation for an ADT.
+In an object-oriented language,
+an ADT and its implementation together make up a <a class="reference internal" href="Glossary.html#term-class"><span class="xref std std-term">class</span></a>.
+Each operation associated with the ADT is implemented by a
+<a class="reference internal" href="Glossary.html#term-member-function"><span class="xref std std-term">member function</span></a> or <a class="reference internal" href="Glossary.html#term-method"><span class="xref std std-term">method</span></a>.
+The variables that define the space required by a data item are
+referred to as <a class="reference internal" href="Glossary.html#term-data-member"><span class="xref std std-term">data members</span></a>.
+An <a class="reference internal" href="Glossary.html#term-object"><span class="xref std std-term">object</span></a> is an instance of a class, that is, something that
+is created and takes up storage during the execution of a
+computer program.</p>
+<p>The term <a class="reference internal" href="Glossary.html#term-data-structure"><span class="xref std std-term">data structure</span></a> often refers to data
+stored in a computer’s main memory.
+The related term  <a class="reference internal" href="Glossary.html#term-file-structure"><span class="xref std std-term">file structure</span></a>
+often refers to the organization of data on peripheral storage, such
+as a disk drive or CD.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.1 </p>
+<p>The mathematical concept of an integer, along with operations
+that manipulate integers, form a data type.
+The <code class="docutils literal notranslate"><span class="pre">int</span></code> variable type is a physical representation of
+the abstract integer.
+The <code class="docutils literal notranslate"><span class="pre">int</span></code> variable type, along with the operations that act on an
+<code class="docutils literal notranslate"><span class="pre">int</span></code> variable, form an ADT.
+Unfortunately, the <code class="docutils literal notranslate"><span class="pre">int</span></code> implementation is not
+completely true to the abstract integer, as there are limitations on
+the range of values an <code class="docutils literal notranslate"><span class="pre">int</span></code> variable can store.
+If these limitations prove unacceptable, then some other
+representation for the ADT “integer” must be devised, and a new
+implementation must be used for the associated operations.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 1.3.2 </p>
+<p>An ADT for a list of integers might specify the following operations:</p>
+<ol class="arabic simple">
+<li><p>Insert a new integer at a particular position in the list.</p></li>
+<li><p>Return <code class="docutils literal notranslate"><span class="pre">True</span></code> if the list is empty.</p></li>
+<li><p>Reinitialize the list.</p></li>
+<li><p>Return the number of integers currently in the list.</p></li>
+<li><p>Retrieve the integer at a particular position in the list.</p></li>
+<li><p>Delete the integer at a particular position in the list.</p></li>
+</ol>
+<p>From this description, the input and output of each operation should
+be clear, but the implementation for lists has not been
+specified.</p>
+</div>
+<p>One application that makes use of some ADT might use particular
+member functions of that ADT more than a second application, or the
+two applications might have different time requirements for the
+various operations.
+These differences in the requirements of applications are the reason
+why a given ADT might be supported by more than one implementation.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.3 </p>
+<p>Two popular implementations for large disk-based
+database applications are <a class="reference internal" href="HashIntro.html#hashintro"><span class="std std-ref">hashing</span></a>
+and the <a class="reference internal" href="Glossary.html#term-1"><span class="xref std std-term">B-tree</span></a>.
+Both support efficient insertion and deletion of records, and both
+support exact-match queries.
+However, hashing is more efficient than the B-tree for
+exact-match queries.
+On the other hand, the B-tree can perform range queries
+efficiently, while hashing is hopelessly inefficient for
+range queries.
+Thus, if the database application limits searches to exact-match
+queries, hashing is preferred.
+On the other hand, if the application requires support for range
+queries, the B-tree is preferred.
+Despite these performance issues, both implementations solve
+versions of the same problem: updating and searching a large
+collection of records.</p>
+</div>
+<p>The concept of an ADT can help us to focus on key issues even in
+non-computing applications.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.4 </p>
+<p>When operating a car, the primary activities are steering,
+accelerating, and braking.
+On nearly all passenger cars, you steer by turning the steering
+wheel, accelerate by pushing the gas pedal, and brake by pushing
+the brake pedal.
+This design for cars can be viewed as an ADT with operations
+“steer”, “accelerate”, and “brake”.
+Two cars might implement these operations in radically different
+ways, say with different types of engine, or front- versus
+rear-wheel drive.
+Yet, most drivers can operate many different cars because the ADT
+presents a uniform method of operation that does not require the
+driver to understand the specifics of any particular engine or
+drive design.
+These differences are deliberately hidden.</p>
+</div>
+<p>The concept of an ADT is one instance of an
+important principle that must be understood by any successful
+computer scientist: managing complexity through
+abstraction.
+A central theme of computer science is complexity and
+techniques for handling it.
+Humans deal with complexity by assigning a label to an assembly of
+objects or concepts and then manipulating the label in place of the
+assembly.
+Cognitive psychologists call such a label a
+<a class="reference internal" href="Glossary.html#term-metaphor"><span class="xref std std-term">metaphor</span></a>.
+A particular label might be related to other pieces of information or
+other labels.
+This collection can in turn be given a label,
+forming a hierarchy of concepts and labels.
+This hierarchy of labels allows us to focus on
+important issues while ignoring unnecessary details.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.5 </p>
+<p>We apply the label “hard drive” to a collection of
+hardware that manipulates data on a particular type of
+storage device, and we apply the label “CPU” to the hardware that
+controls execution of computer instructions.
+These and other labels are gathered together under the label
+“computer”.
+Because even the smallest home computers today have millions of
+components, some form of abstraction is necessary to comprehend how
+a computer operates.</p>
+</div>
+<p>Consider how you might go about the process of designing a complex
+computer program that implements and manipulates an ADT.
+The ADT is implemented in one part
+of the program by a particular data structure.
+While designing those parts of the program that use the ADT,
+you can think in terms of operations on the data type without
+concern for the data structure’s implementation.
+Without this ability to simplify your thinking about a complex
+program, you would have no hope of understanding or implementing it.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.6 </p>
+<p>Consider the design for a relatively simple database system stored
+on disk.
+Typically, records on disk in such a program are accessed through a
+<a class="reference internal" href="Glossary.html#term-buffer-pool"><span class="xref std std-term">buffer pool</span></a> rather than directly.
+Variable length records might use a
+<a class="reference internal" href="Glossary.html#term-memory-manager"><span class="xref std std-term">memory manager</span></a> to find an
+appropriate location within the disk file to place the record.
+Multiple <a class="reference internal" href="Glossary.html#term-indexing"><span class="xref std std-term">index structures</span></a>
+will typically be used to support access to a collection of records
+using multiple <a class="reference internal" href="Glossary.html#term-search-key"><span class="xref std std-term">search keys</span></a>.
+Thus, we have a chain of classes, each with its own responsibilities
+and access privileges.
+A database query from a user is implemented by searching an index
+structure.
+This index requests access to the record by means of a request to
+the buffer pool.
+If a record is being inserted or deleted, such a request goes
+through the memory manager, which in turn interacts with the buffer
+pool to gain access to the disk file.
+A program such as this is far too complex for nearly any human
+programmer to keep all of the details in their head at once.
+The only way to design and implement such a program is through
+proper use of abstraction and metaphors.
+In object-oriented programming,
+such abstraction is handled using classes.</p>
+</div>
+<p>Data types have both a <a class="reference internal" href="Glossary.html#term-logical-form"><span class="xref std std-term">logical form</span></a> and a <a class="reference internal" href="Glossary.html#term-physical-form"><span class="xref std std-term">physical form</span></a>.
+The definition of the data type in terms of an ADT is its logical
+form.
+The implementation of the data type as a data structure
+is its physical form.
+Sometimes you might see the term <em>concrete implementation</em>,
+but the word concrete is redundant.
+The figure below illustrates this relationship between logical
+and physical forms for data types.
+When you implement an ADT, you are dealing with the physical form of
+the associated data type.
+When you use an ADT elsewhere in your program, you are concerned with
+the associated data type’s logical form.
+Some sections of this book focus on physical
+implementations for a given data structure.
+Other sections use the logical ADT for the data structure in the
+context of a higher-level task.</p>
+<div class="divdgm" id="datatype">
+<div id="ADTCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 1.3.1: The relationship between data items, abstract data types, and data
+structures.</span></p>
+</div>
+<p>The ADT defines the logical form of the data type.
+The data structure implements the physical form of the data type.
+Users of an ADT are typically programmers working in the same language
+as the implementer of the ADT.
+Typically, these programmers want to use the ADT as a component
+in another application.
+The interface to an ADT is also commonly referred to as the
+Application Programmer Interface, or API, for the ADT.
+The interface becomes a form of communication between the two programmers.</p>
+<div class="topic">
+<p class="topic-title">Example 1.3.7 </p>
+<p>A particular programming environment might provide a library that
+includes a <a class="reference internal" href="Glossary.html#term-list"><span class="xref std std-term">list</span></a> class.
+The logical form of the list is defined by the public
+functions, their inputs, and their outputs that define the class.
+This might be all that you know about the list class implementation,
+and this should be all you need to know.
+Within the class, a variety of physical implementations for lists
+is possible.</p>
+</div>
+<div
+    id="CMdatatypeSumm"
+    class="embedContainer"
+    data-exer-name="CMdatatypeSumm"
+    data-long-name="Concept map data types exercises"
+    data-short-name="CMdatatypeSumm"
+    data-frame-src="../../../Exercises/CMP/CMdatatypeSumm.html?localMode=true&amp;module=ADT&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="900"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="CMdatatypeSumm_iframe"></div>
+  </div>
+</div>
+<div
+    id="IntroADTSumm"
+    class="embedContainer"
+    data-exer-name="IntroADTSumm"
+    data-long-name="ADT Summary Questions"
+    data-short-name="IntroADTSumm"
+    data-frame-src="../../../Exercises/Design/IntroADTSumm.html?localMode=true&amp;module=ADT&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="IntroADTSumm_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Design/ADTCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="IntroDSA.html">1.<span class="section-number">1. </span>Data Structures and Algorithms</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 11, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>
