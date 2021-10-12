@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ExchangeSort";ODSA.SETTINGS.MODULE_LONG_NAME = "The Cost of Exchange Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ExchangeSort";ODSA.SETTINGS.MODULE_LONG_NAME = "The Cost of Exchange Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -36,18 +36,6 @@ The Cost of Exchange Sorting
 
 The Cost of Exchange Sorting
 ----------------------------
-
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Revision
-   Rewrite along these lines: Here are two measures of "out of order":
-   inversions and min-swaps. Selection sort (especially w/
-   optimization) meets min-swaps, but that's not a useful measure in
-   general. Insertion sort tracks inversions, it is I + n. Now, if we
-   had an exchange sort, what would cost be? Go on to the proof.
 
 Here is a summary for the cost of Insertion Sort,
 Bubble Sort, and Selection Sort in terms of their required number of

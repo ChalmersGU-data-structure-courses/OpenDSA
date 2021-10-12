@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Algorithms";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Algorithms";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -369,19 +369,6 @@ Growth Rates Ordering Exercise
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Growth Rates Ordering Exercise
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. todo::
-  type: AV
-   To make students more engaged in the GrowthRates exercise, we may
-   need a tool that allows students to input two growth rate functions.
-   Then the tool should plot the graph of both functions and mark
-   their crossing point. The student also should be allowed to play
-   with the constant values for both functions and see that this only
-   changes the crossing point but doesn't change which function grows
-   faster than the other.
 
 .. odsascript:: DataStructures/Plot.js
 .. odsascript:: AV/AlgAnal/GrowthRatesCON.js

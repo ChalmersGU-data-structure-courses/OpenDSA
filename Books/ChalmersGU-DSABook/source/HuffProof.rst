@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HuffProof";ODSA.SETTINGS.MODULE_LONG_NAME = "Proof of Optimality for Huffman Coding";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HuffProof";ODSA.SETTINGS.MODULE_LONG_NAME = "Proof of Optimality for Huffman Coding";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -125,12 +125,5 @@ Here is the proof.
    Thus by mathematical induction, function ``buildHuff`` creates
    the Huffman tree with minimum external path length.
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Exercise
-   Battery of MCQs for content.
 
 .. odsascript:: AV/Binary/HuffProofCON.js

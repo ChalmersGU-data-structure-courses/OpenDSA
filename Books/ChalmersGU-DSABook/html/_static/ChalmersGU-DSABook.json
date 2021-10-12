@@ -23,7 +23,7 @@
   },
   "build_JSAV": false,
   "build_cmap": true,
-  "suppress_todo": false,
+  "suppress_todo": true,
   "dispModComp": true,
   "tabbed_codeinc": true,
   "narration_enabled": true,

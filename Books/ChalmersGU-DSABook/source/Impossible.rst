@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -81,14 +81,6 @@ Note that for this code fragment, because we do not know if it halts,
 we also do not know an upper bound for its running time.
 As for the lower bound, we can easily show
 :math:`\Omega(\log n)`.
-
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Exercise
-   Need an exercise to study lower bound on Colletz function
 
 Personally, I have faith that someday some smart person will
 completely analyze the Collatz function, proving once and for all

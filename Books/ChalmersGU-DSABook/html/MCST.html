@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="minimal-cost-spanning-trees">
 <h1>12.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -197,14 +197,6 @@ Those edges drawn with heavy lines indicate
 the subset making up the MCST.
 Note that edge <span class="math notranslate nohighlight">\((C, F)\)</span> could be replaced with edge
 <span class="math notranslate nohighlight">\((D, F)\)</span> to form a different MCST with equal cost.</span></p>
-</div>
-<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Slideshow</dt><dd><p>Replace the previous diagram with a slideshow illustrating the
-concept of MCST.</p>
-</dd>
-</dl>
 </div>
 <div class="section" id="prim-s-algorithm">
 <h3>12.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
@@ -384,15 +376,7 @@ the <a class="reference internal" href="Glossary.html#term-heap"><span class="xr
                 <span class="n">H</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#PrimPQ_PrimsPQ_code" ).tabs();});</script><a id="todo1"></a><div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Slideshow</dt><dd><p>Implement a slideshow demonstrating the Priority Queue version of
-Prim’s algorithm</p>
-</dd>
-</dl>
-</div>
-<p>Prim’s algorithm is an example of a greedy
+</div></div><script>$(function() {$( "#PrimPQ_PrimsPQ_code" ).tabs();});</script><p>Prim’s algorithm is an example of a greedy
 algorithm.
 At each step in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we select the least-cost edge that
 connects some marked vertex to some unmarked vertex.
@@ -437,7 +421,7 @@ It would have selected <span class="math notranslate nohighlight">\(e'\)</span>,
 Thus, it is a contradiction that Prim’s algorithm would have selected
 the wrong edge, and thus, Prim’s algorithm must be correct. BOX HERE</p>
 </div></blockquote>
-<div class="figure align-center" id="id5" style="width: 90%">
+<div class="figure align-center" id="id2" style="width: 90%">
 <span id="primproof"></span><a class="reference internal image-reference" href="_images/PrimMST.png"><img alt="Prim's MCST algorithm proof" src="_images/PrimMST.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text"> Figure 12.7.2: Prim’s MCST algorithm proof.
 The left oval contains that portion of the graph where Prim’s MCST
@@ -448,7 +432,7 @@ The two portions of the graph are connected by (at least) edges
 <span class="math notranslate nohighlight">\(e'\)</span> (the “correct” edge to be placed in the MCST).
 Note that the path from <span class="math notranslate nohighlight">\(v_w\)</span> to <span class="math notranslate nohighlight">\(v_j\)</span> cannot
 include any marked vertex <span class="math notranslate nohighlight">\(v_i, i \leq j\)</span>, because to do so
-would form a cycle.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div
     id="PrimPE"
@@ -471,13 +455,6 @@ would form a cycle.</span><a class="headerlink" href="#id5" title="Permalink to 
   <div class="center">
     <div id="PrimPE_iframe"></div>
   </div>
-</div>
-<a id="todo2"></a><div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Exercise</dt><dd><p>Proficiency exercise for Prim’s algorithm.</p>
-</dd>
-</dl>
 </div>
 <script type="text/javascript" src="../../../AV/Graph/MCSTCON.js"></script>
 <script type="text/javascript" src="../../../AV/Graph/primCON.js"></script>
@@ -509,7 +486,7 @@ would form a cycle.</span><a class="headerlink" href="#id5" title="Permalink to 
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 11, 2021.
+      Last updated on Oct 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

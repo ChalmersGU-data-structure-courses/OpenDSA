@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -181,16 +181,6 @@ We will make use of the algorithm analysis simplifying rules:
 
    where :math:`n` is assumed to be a power of two and again
    :math:`k = 2^i`.
-
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. todo::
-  type: Slideshow
-   We need to think about a technique for visualizing the running time
-   of some loop constructs. This can be very similar to how we
-   visualize reaching the closed form solution of summations.
 
 What about other control statements?
 ``While`` loops are analyzed in a manner similar to ``for``

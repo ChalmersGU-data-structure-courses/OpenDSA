@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -68,16 +68,6 @@ Figure :num:`Figure #MCSTdgm` shows the MCST for an example graph.
    the subset making up the MCST.
    Note that edge :math:`(C, F)` could be replaced with edge
    :math:`(D, F)` to form a different MCST with equal cost.
-
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Slideshow
-   Replace the previous diagram with a slideshow illustrating the
-   concept of MCST.
-
 
 Prim's Algorithm
 ~~~~~~~~~~~~~~~~
@@ -151,15 +141,6 @@ the :term:`heap` stores ``DijkElem`` objects.
 
 .. codeinclude:: Graphs/PrimPQ
    :tag: PrimsPQ
-
-.. raw:: html
-
-   <a id="todo1"></a>
-
-.. TODO::
-  type: Slideshow
-   Implement a slideshow demonstrating the Priority Queue version of
-   Prim's algorithm
 
 Prim's algorithm is an example of a greedy
 algorithm.
@@ -237,13 +218,6 @@ cost?
    :long_name: Prim's Algorithm Proficiency Exercise
 
 
-.. raw:: html
-
-   <a id="todo2"></a>
-
-.. TODO::
-  type: Exercise
-   Proficiency exercise for Prim's algorithm.
 
 .. odsascript:: AV/Graph/MCSTCON.js
 .. odsascript:: AV/Graph/primCON.js

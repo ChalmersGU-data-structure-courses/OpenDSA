@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -68,14 +68,6 @@ priority queue so that both adding and removing take
 .. codeinclude:: Binary/PriorityQueue
    :tag: PriorityQueue
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-   Add max priority queues, and the version with an explicit priority
-   (and/or comparator?)
-
 Sorting
 -------
 
@@ -131,13 +123,6 @@ items, and supporting the following operations:
 * ``add(x)``: add the item ``x`` (in this case a transaction)
   to the collection
 * ``topK()``: return the top :math:`k` items.
-
-.. raw:: html
-
-   <a id="todo1"></a>
-
-.. TODO::
-   Simplify this. Maybe stick to the bank example without generalising.
 
 Here, :math:`k` is a value which is chosen when we initialise the data
 structure (in this example, :math:`k` is 100). Here is how the API

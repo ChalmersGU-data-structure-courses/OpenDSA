@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-11 15:14:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Graph/topSortQCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="topological-sort">
 <h1>12.<span class="section-number">4. </span>Topological Sort<a class="headerlink" href="#topological-sort" title="Permalink to this headline">¶</a></h1>
@@ -186,14 +186,6 @@ meet the prerequisite rules is called a <a class="reference internal" href="Glos
 </div>
 <p class="caption"><span class="caption-text"> Figure 12.5.1: An example graph for topological sort. Seven tasks have
 dependencies as shown by the directed graph.</span></p>
-</div>
-<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Slideshow</dt><dd><p>Replace the above figure with a slideshow that incorporates the
-following paragraph.</p>
-</dd>
-</dl>
 </div>
 <p>Figure <a href="GraphTopsort.html#topsort">12.5.1</a> illustrates the problem.
 An acceptable topological sort for this example is J1,
@@ -249,14 +241,7 @@ Here is implementation for the DFS-based algorithm.</p>
     <span class="n">printout</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#TopsortDFS_TopsortDFS_code" ).tabs();});</script><a id="todo1"></a><div class="admonition-todo admonition" id="id3">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Slideshow</dt><dd><p>Replace the following paragraph with a slideshow.</p>
-</dd>
-</dl>
-</div>
-<p>Using this algorithm starting at J1 and visiting adjacent
+</div></div><script>$(function() {$( "#TopsortDFS_TopsortDFS_code" ).tabs();});</script><p>Using this algorithm starting at J1 and visiting adjacent
 neighbors in alphabetic order, vertices of the graph in
 Figure <a href="GraphTopsort.html#topsort">12.5.1</a> are printed out in the order J7,
 J5, J4, J6, J2, J3, J1.
@@ -285,13 +270,6 @@ J1, J3, J2, J6, J4, J5, J7.</p>
 <h3>12.<span class="section-number">4.1.2. </span>Queue-based Solution<a class="headerlink" href="#queue-based-solution" title="Permalink to this headline">¶</a></h3>
 <p>We can implement topological sort using a queue
 instead of recursion, as follows.</p>
-<a id="todo2"></a><div class="admonition-todo admonition" id="id4">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Slideshow</dt><dd><p>Incorporate the following into a slideshow.</p>
-</dd>
-</dl>
-</div>
 <p>First visit all edges, counting the number of
 edges that lead to each vertex (i.e., count the number of
 prerequisites for each vertex).
@@ -376,34 +354,6 @@ Here is an implementation for the algorithm.</p>
  </div>
 </div>
 <p></p>
-<a id="todo3"></a><div class="admonition-todo admonition" id="id5">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Proficiency Exercise</dt><dd><p>Provide a proficiency exercise that randomly alternates between
-proficiency for DFS-based and queue-based Topsort.
-The bare beginnings of an exercise can be found in
-<code class="docutils literal notranslate"><span class="pre">AV/Development/TopSort/topSortDFSPE.*</span></code></p>
-</dd>
-</dl>
-</div>
-<a id="todo4"></a><div class="admonition-todo admonition" id="id6">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: AV</dt><dd><p>Provide a unified AV that can allow the user to pick which topsort
-(DFS or Queue), with or without cycles in the graph. The start of
-this is in <code class="docutils literal notranslate"><span class="pre">AV/Development/TopSort/topSortAV*</span></code> (for just random DFS),
-<code class="docutils literal notranslate"><span class="pre">AV/Development/TopSort/qTopSortAV.*</span></code> (for just random queue-based
-topsort), and <code class="docutils literal notranslate"><span class="pre">AV/Development/TopSort/topSortAVs*</span></code> (tries to unify).</p>
-</dd>
-</dl>
-</div>
-<a id="todo5"></a><div class="admonition-todo admonition" id="id7">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Summary Questions</dt><dd><p>Provide a summary battery of questions.</p>
-</dd>
-</dl>
-</div>
 <script type="text/javascript" src="../../../AV/Graph/topSortCON.js"></script>
 <script type="text/javascript" src="../../../AV/Graph/topSortDFSCON.js"></script>
 <script type="text/javascript" src="../../../AV/Graph/topSortQCON.js"></script>
@@ -435,7 +385,7 @@ topsort), and <code class="docutils literal notranslate"><span class="pre">AV/De
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 11, 2021.
+      Last updated on Oct 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
