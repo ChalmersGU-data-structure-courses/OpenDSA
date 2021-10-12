@@ -1,5 +1,5 @@
 // Support for plotting non-standard functions
-// Written by Jieun Chon, Cliff Shaffer, and Ville Karavirta
+// Written by Jieun Chon, Cliff Shaffer, Ville Karavirta and Nick Smallbone
 (function() {
   "use strict";
 
@@ -43,6 +43,129 @@
         points.push([x, y]);
       }
       return points;
+    },
+
+    // Plots multiple functions. Does all the drawing including axes etc.
+    // The canvas is 600x300 pixels.
+    //
+    // name: CSS name
+    // xMax, yMax: maximum x and y value to plot
+    // boxX, boxY: if these are non-null a dashed box is drawn from
+    //   (0,0) to (boxX, boxY); if one is non-null a line is drawn
+    // funcs: list of functions to plot, each should be in the form
+    //   ["name", function, "line colour"]
+    //   e.g. ["sin", Math.sin, "red"]
+    plotFuncs: function(name, xMax, yMax, boxX, boxY, funcs) {
+      "use strict";
+      var i;
+      var av = new JSAV(name, {animationMode: "none"});
+      var width = 600, height = 300;
+      var xStart = 100;
+      var xEnd = xStart + width;  //end position of the x on the chart
+      var yEnd = 50;
+      var yStart = yEnd + height;  //end position of the y on the chart
+      var xSteps = width / xMax;  //each pixels per 1 x-unit.
+      var ySteps = height / yMax;  //each pixels per 1 y-unit.
+
+      //x-axis 1
+      av.g.line(xStart, yStart, xEnd, yStart, {"stroke-width": 2});
+
+      //y-axis 1
+      av.g.line(xStart, yStart, xStart, yEnd, {"stroke-width": 2});
+
+      //draw x-axis lines for graph 1
+      var stepx1 = width / 10;
+      var x1 = xStart + stepx1;
+      for (i = 0; i < 10; i++) {
+        av.g.line(x1, yStart, x1, yStart+5, {"stroke-width": 0.8});
+        x1 += stepx1;
+      }
+
+      // draw y-axis lines for graph 1:
+      var stepy1 = height / 10;
+      var y1 = yStart - stepy1;
+      for (i = 0; i < 10; i++) {
+        av.g.line(xStart-5, y1, xStart, y1, {"stroke-width": 0.8});
+        y1 -= stepy1;
+      }
+
+      //plot1 x-axis labels
+      var labelx1_x = xStart;
+      var labelx1_y = yStart - 5;
+      for (i = 0; i <= 10; i++) {
+        var x = Math.floor(xMax/10 * i);
+        var len = String(x).length;
+        av.label(x, {left: labelx1_x-6*len/2, top: labelx1_y});
+        labelx1_x += width/10;
+      }
+
+      // plot1 y-axis labels
+      var labely1_x = xStart - 10;
+      var labely1_y = yStart - 20;
+      for (i = 0; i <= 10; i++) {
+        var y = Math.floor(yMax/10 * i);
+        var len = String(y).length;
+        av.label(y, {left: labely1_x-6*len, top: labely1_y}).addClass("yLabel");
+        labely1_y -= height/10;
+      }
+
+      if (!boxX) boxX = xMax;
+      if (!boxY) boxY = yMax;
+      var xBoxEnd = xStart + (width*boxX/xMax);
+      var yBoxEnd = yStart - (height*boxY/yMax);
+
+      //horizontal lines
+      if (boxX != xMax) {
+        av.g.line(xStart, yBoxEnd, xBoxEnd, yBoxEnd).addClass("dashBoxLine");
+        av.g.line(xStart, yStart, xBoxEnd, yStart).addClass("dashBoxLine");
+      }
+
+      //vertical lines
+      if (boxY != yMax) {
+        av.g.line(xStart,  yBoxEnd, xStart, yStart).addClass("dashBoxLine");
+        av.g.line(xBoxEnd, yBoxEnd, xBoxEnd, yStart).addClass("dashBoxLine");
+      }
+
+      function _autoplot(func, label, colour) {
+        var curve = Plot.drawCurve(func, xStart, yStart, yEnd, xMax, yMax, width, height, xMax/width, false);
+        av.g.polyline(curve, {"stroke-width": 3, "stroke": colour});
+        var x, y, xofs, yofs;
+
+        if (func(xMax) > yMax) {
+            var lo = 0, hi = xMax;
+            while (Math.floor(lo*xSteps) != Math.floor(hi*xSteps)) {
+                var mid = (lo+hi)/2;
+                if (func(mid) < yMax)
+                    lo = mid;
+                else
+                    hi = mid;
+            }
+
+            x = lo;
+            y = yMax;
+
+            xofs = 5;
+            yofs = -10;
+        } else {
+            x = xMax;
+            y = func(xMax);
+
+            xofs = 5;
+            yofs = -3;
+        }
+
+        av.label(label, {left: xStart + x*xSteps + xofs, top: yStart - y*ySteps - 25 - yofs});
+      }
+
+      for (var i = 0; i < funcs.length; i++) {
+        var func = funcs[i][0];
+        var label = funcs[i][1];
+        var colour = funcs[i][2];
+        _autoplot(func, label, colour);
+      }
+
+      av.displayInit();
+      av.recorded();
     }
   }; // Plot
 
