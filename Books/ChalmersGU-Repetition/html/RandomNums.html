@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.10. Random Numbers &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="1. Introduction" href="RecIntro.html" />
+    <link rel="prev" title="9. Chapter Summary Questions" href="MathpreSumm.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/RandomNums.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="MathpreSumm.html">3.<span class="section-number">9. </span>Chapter Summary Questions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="RecIntro.html">4.<span class="section-number">1. </span>Introduction</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RandomNums";ODSA.SETTINGS.MODULE_LONG_NAME = "Random Numbers";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="random-numbers">
+<h1>3.<span class="section-number">10. </span>Random Numbers<a class="headerlink" href="#random-numbers" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.<span class="section-number">10.1. </span>Random Numbers<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The success of randomized algorithms depends on having access to a
+good random number generator.
+While modern compilers are likely to include a random number generator
+that is good enough for most purposes, it is helpful to understand how
+they work, and to even be able to construct your own in case you don’t
+trust the one provided.
+This is easy to do.</p>
+<p>First, let us consider what a random sequence.
+From the following list, which appears to be a sequence of “random”
+numbers?</p>
+<ul class="simple">
+<li><p>1, 1, 1, 1, 1, 1, 1, 1, 1, …</p></li>
+<li><p>1, 2, 3, 4, 5, 6, 7, 8, 9, …</p></li>
+<li><p>2, 7, 1, 8, 2, 8, 1, 8, 2, …</p></li>
+</ul>
+<p>In fact, all three happen to be the beginning of a some sequence in
+which one could continue the pattern to generate more values (in case
+you do not recognize it, the third one is the initial digits of the
+irrational constant <span class="math notranslate nohighlight">\(e\)</span>).
+Viewed as a series of digits, ideally every possible sequence has
+equal probability of being generated (even the three sequences
+above).
+In fact, definitions of randomness generally have features such as:</p>
+<ul class="simple">
+<li><p>One cannot predict the next item better than by guessing.</p></li>
+<li><p>The series cannot be described more briefly than simply listing
+it out.
+This is the <a class="reference internal" href="Glossary.html#term-equidistribution-property"><span class="xref std std-term">equidistribution property</span></a>.</p></li>
+</ul>
+<p>There is no such thing as a random number sequence, only
+“random enough” sequences.
+A sequence is <a class="reference internal" href="Glossary.html#term-pseudo-random"><span class="xref std std-term">pseudo random</span></a> if no future term can be predicted
+in polynomial time, given all past terms.</p>
+<p>Most computer systems use a deterministic algorithm to select
+pseudorandom numbers.  <a class="footnote-reference brackets" href="#id3" id="id2">1</a>
+The most commonly used approach historically is known as the
+<a class="reference internal" href="Glossary.html#term-linear-congruential-method"><span class="xref std std-term">Linear Congruential Method</span></a> (LCM).
+The LCM method is quite simple.
+We begin by picking a <a class="reference internal" href="Glossary.html#term-seed"><span class="xref std std-term">seed</span></a> that we will call <span class="math notranslate nohighlight">\(r(1)\)</span>.
+Then, we can compute successive terms as follows.</p>
+<div class="math notranslate nohighlight">
+\[r(i) = (r(i-1)\times b) \bmod t\]</div>
+<p>where <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(t\)</span> are constants.</p>
+<p>By definition of the <span class="math notranslate nohighlight">\(\bmod\)</span> function, all generated numbers
+must be in the range 0 to <span class="math notranslate nohighlight">\(t-1\)</span>.
+Now, consider what happens when <span class="math notranslate nohighlight">\(r(i) = r(j)\)</span> for values
+<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(j\)</span>.
+Of course then <span class="math notranslate nohighlight">\(r(i+1) = r(j+1)\)</span> which means that we have a
+repeating cycle.</p>
+<p>Since the values coming out of the random number generator are between
+0 and <span class="math notranslate nohighlight">\(t-1\)</span>, the longest cycle that we can hope for has length
+<span class="math notranslate nohighlight">\(t\)</span>.
+In fact, since <span class="math notranslate nohighlight">\(r(0) = 0\)</span>, it cannot even be quite this long.
+It turns out that to get a good result, it is crucial to pick good
+values for both <span class="math notranslate nohighlight">\(b\)</span> and <span class="math notranslate nohighlight">\(t\)</span>.
+To see why, consider the following example.</p>
+<div class="topic">
+<p class="topic-title">Example 3.11.1 </p>
+<p>Given a <span class="math notranslate nohighlight">\(t\)</span> value of 13, we can get very different results
+depending on the <span class="math notranslate nohighlight">\(b\)</span> value that we pick, in ways that are
+hard to predict.</p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}r(i) = 6r(i-1) \bmod 13 =
+\quad ..., 1, 6, 10, 8, 9, 2, 12, 7, 3, 5, 4, 11, 1, ...\\\end{split}\\\begin{split}r(i) = 7r(i-1) \bmod 13 =
+\quad ..., 1, 7, 10, 5, 9, 11, 12, 6, 3, 8, 4, 2, 1, ...\\\end{split}\\\begin{split}\begin{eqnarray}
+r(i) = 5r(i-1) \bmod 13 &amp;=&amp; ..., 1, 5, 12, 8, 1, ...\\
+&amp;&amp; ..., 2, 10, 11, 3, 2, ...\\
+&amp;&amp; ..., 4, 7, 9, 6, 4, ...\\
+&amp;&amp; ..., 0, 0, ...\\
+\end{eqnarray}\end{split}\end{aligned}\end{align} \]</div>
+<p>In the case of <span class="math notranslate nohighlight">\(b=5\)</span>, the generator goes through only a short
+sequence before repeating, with the series depending on the seed value
+chosen.
+Clearly, a <span class="math notranslate nohighlight">\(b\)</span> value of 5 is far inferior to <span class="math notranslate nohighlight">\(b\)</span> values
+of 6 or 7 in this example.</p>
+</div>
+<p>If you would like to write a simple LCM random number generator of
+your own, an effective one can be made with the following formula.</p>
+<div class="math notranslate nohighlight">
+\[r(i) = 16807 r(i-1) \bmod 2^{31} - 1.\]</div>
+<dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>Another approach is based on
+using a computer chip that generates random numbers resulting
+from “thermal noise” in the system.
+Time will tell if this approach replaces deterministic approaches.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="MathpreSumm.html">3.<span class="section-number">9. </span>Chapter Summary Questions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="RecIntro.html">4.<span class="section-number">1. </span>Introduction</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

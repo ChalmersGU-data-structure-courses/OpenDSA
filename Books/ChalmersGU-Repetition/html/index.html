@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Chapter 1 Java Programming, repetition &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="#" />
+    <link rel="next" title="1. Command Line Basics" href="cmdline.html" />
+
+  <style>
+ul li {
+	background: none;
+	list-style-type: none;
+}
+</style>
+</head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="#">
+                <span>Programming Basics: Background and Repetition</span></a></h1><h2 class="heading" ><span> Table Of Contents </span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/index.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        <a  class="uplink" href="#">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="cmdline.html">1.<span class="section-number">1. </span>Command Line Basics</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content"><div class="sidebar" style="border-style:none;background-color:transparent">
+          <h3 style="margin-top:0em;">Search the book</h3>
+          <form class="search" action="search.html" method="get">
+            <input type="text" />
+            <input type="submit" value="Go" />
+            <input type="hidden" value="yes" />
+            <input type="hidden" value="default" />
+          </form>
+          <p class="searchtip" style="font-size: 60%">
+            Enter search terms or a module, class or function name.
+          </p>
+        </div>
+        
+  <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;</script><div class="section" id="java-programming-repetition">
+<h1><span class="sectnum">Chapter 1</span> Java Programming, repetition<a class="headerlink" href="#java-programming-repetition" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cmdline.html">1.1. Command Line Basics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters.html">1.2. Parsing Command Line Parameters In Your Progam</a></li>
+<li class="toctree-l1"><a class="reference internal" href="eclipseparameters.html">1.3. Using Parameters in Eclipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debugmethods.html">1.4. Common Debugging Methods</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">1.5. Debugging In Eclipse</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scanning.html">1.6. Reading Input (from Files or Otherwise)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="junitstart.html">1.7. JUnit Testing And You</a></li>
+<li class="toctree-l1"><a class="reference internal" href="junitbasic.html">1.8. Writing JUnit Tests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="junitcoverage.html">1.9. Code Coverage In JUnit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestIntro.html">1.10. Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TestCoverage.html">1.11. Testing for Code Coverage</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Example2.html">1.12. Another Example</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Bowling.html">1.13. Bowling Example</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="pointers-references-repetition">
+<h1><span class="sectnum">Chapter 2</span> Pointers/References, repetition<a class="headerlink" href="#pointers-references-repetition" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PointerIntro.html">2.1. Pointers Chapter Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicPointers1.html">2.2. Basic References Part 1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="BasicPointers2.html">2.3. Basic References Part 2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Syntax.html">2.4. Pointers Syntax</a></li>
+<li class="toctree-l1"><a class="reference internal" href="LocalMem.html">2.5. Local Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HeapMem.html">2.6. Heap Memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Links1.html">2.7. Link Nodes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Links2.html">2.8. Link Nodes Practice Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercises.html">2.9. Additional Practice Exercises</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="mathematical-background">
+<h1><span class="sectnum">Chapter 3</span> Mathematical Background<a class="headerlink" href="#mathematical-background" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="MathpreIntro.html">3.1. Chapter Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="SetDef.html">3.2. Sets and Relations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MiscMath.html">3.3. Miscellaneous Notation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Logarithms.html">3.4. Logarithms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Summations.html">3.5. Summations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RecurrenceIntro.html">3.6. Recurrence Relations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Proofs.html">3.7. Mathematical Proof Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Estimation.html">3.8. Estimation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="MathpreSumm.html">3.9. Chapter Summary Questions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RandomNums.html">3.10. Random Numbers</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="recursion">
+<h1><span class="sectnum">Chapter 4</span> Recursion<a class="headerlink" href="#recursion" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="RecIntro.html">4.1. Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Write.html">4.2. Writing a recursive function</a></li>
+<li class="toctree-l1"><a class="reference internal" href="CodeCompletionEx.html">4.3. Code Completion Practice Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HarderWrite.html">4.4. Writing More Sophisticated Recursive Functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="HarderCodeCompletionEx.html">4.5. Harder Code Completion Practice Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="WritingEx.html">4.6. Writing Practice Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Trace.html">4.7. Tracing Recursive Code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="TracingEx.html">4.8. Tracing Practice Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="RecSummaryEx.html">4.9. Summary Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="DynamicProgramming.html">4.10. Dynamic Programming</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="appendix">
+<h1><span class="sectnum">Chapter 5</span> Appendix<a class="headerlink" href="#appendix" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Glossary.html">5.1. Glossary</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        <a  class="uplink" href="#">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="cmdline.html">1.<span class="section-number">1. </span>Command Line Basics</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

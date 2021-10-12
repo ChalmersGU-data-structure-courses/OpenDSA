@@ -1,0 +1,99 @@
+{
+  "title": "Programming Basics: Background and Repetition",
+  "desc": "Background and Repetition Material for Data Structures and Algorithms",
+  "build_dir": "Books",
+  "code_dir": "SourceCode/",
+  "lang": "en",
+  "code_lang": {
+    "Java_Generic": {
+      "ext": ["java"],
+      "label": "Java (Generic)",
+      "lang": "java"
+    },
+    "Java": {
+      "ext": ["java"],
+      "label": "Java",
+      "lang": "java"
+    },
+    "Python": {
+      "ext": ["py"],
+      "label": "Python",
+      "lang": "python"
+    }
+  },
+  "build_JSAV": false,
+  "build_cmap": true,
+  "suppress_todo": true,
+  "dispModComp": true,
+  "tabbed_codeinc": true,
+  "narration_enabled": true,
+  "glob_exer_options": {
+    "JXOP-debug": "true"
+  },
+  "glob_ss_options": {},
+  "glob_ka_options": {},
+  "glob_pe_options": {},
+  "glob_ff_options": {},
+  "glob_extr_options": {},
+  "start_chap_num": 1,
+  "max_toc_depth": 1,
+  "chapters": {
+    "Java Programming, repetition": {
+      "Tutorials/cmdline": {},
+      "Tutorials/parameters": {},
+      "Tutorials/eclipseparameters": {},
+      "Tutorials/debugmethods": {},
+      "Tutorials/debug": {},
+      "Tutorials/scanning": {},
+      "Tutorials/junitstart": {},
+      "Tutorials/junitbasic": {},
+      "Tutorials/junitcoverage": {},
+      "Testing/TestIntro": {},
+      "Testing/TestCoverage": {
+        "TriangleApplet": {"exer_options": {"code": "true"}}
+      },
+      "Testing/Example2": {},
+      "Testing/Bowling": {
+        "BowlingApplet": {"exer_options": {"code": "true"}}
+      }
+    },
+    "Pointers/References, repetition": {
+      "PointersJava/PointerIntro": {},
+      "PointersJava/BasicPointers1": {},
+      "PointersJava/BasicPointers2": {},
+      "PointersJava/Syntax": {},
+      "PointersJava/LocalMem": {},
+      "PointersJava/HeapMem": {},
+      "PointersJava/Links1": {},
+      "PointersJava/Links2": {},
+      "PointersJava/Exercises": {}
+    },
+    "Mathematical Background": {
+      "Background/MathpreIntro": {},
+      "Background/SetDef": {},
+      "Background/MiscMath": {},
+      "Background/Logarithms": {},
+      "Background/Summations": {},
+      "Background/RecurrenceIntro": {},
+      "Background/Proofs": {},
+      "Background/Estimation": {},
+      "Background/MathpreSumm": {},
+      "SeniorAlgAnal/RandomNums": {}
+    },
+    "Recursion": {
+      "RecurTutor/RecIntro": {},
+      "RecurTutor/Write": {},
+      "RecurTutor/CodeCompletionEx": {},
+      "RecurTutor/HarderWrite": {},
+      "RecurTutor/HarderCodeCompletionEx": {},
+      "RecurTutor/WritingEx": {},
+      "RecurTutor/Trace": {},
+      "RecurTutor/TracingEx": {},
+      "RecurTutor/RecSummaryEx": {},
+      "SeniorAlgAnal/DynamicProgramming": {}
+    },
+    "Appendix": {
+      "Glossary": {}
+    }
+  }
+}

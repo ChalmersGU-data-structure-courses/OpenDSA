@@ -1,0 +1,453 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.4. Pointers Syntax &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="5. Local Memory" href="LocalMem.html" />
+    <link rel="prev" title="3. Basic References Part 2" href="BasicPointers2.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 2 References, repetition</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Syntax.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BasicPointers2.html">2.<span class="section-number">3. </span>Basic References Part 2</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="LocalMem.html">2.<span class="section-number">5. </span>Local Memory</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['syntax', 'declaring-a-reference-variable', 'assigning-a-pointee-to-a-reference', 'dereference-the-reference', 'example-reference-code', 'changeheadpointer1', 'reference-rules-summary', 'java-references-vs-pointers', 'how-are-references-implemented-in-the-machine'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Syntax";ODSA.SETTINGS.MODULE_LONG_NAME = "Pointers Syntax";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/employeePtr2CON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Pointers/examplePointerCodeCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Pointers/memoryModelCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="pointers-syntax">
+<h1>2.<span class="section-number">4. </span>Pointers Syntax<a class="headerlink" href="#pointers-syntax" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>2.<span class="section-number">4.1. </span>Syntax<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The previously mentioned basic features of references, pointees, dereferencing, and
+assigning are the only concepts you need to build reference code.
+However, in order to talk about reference code, we need to use a known
+syntax which is about as interesting as… a syntax.
+We will use the Java language syntax which has the advantage that it
+has influenced the syntaxes of several languages.</p>
+<div class="section" id="declaring-a-reference-variable">
+<h3>2.<span class="section-number">4.1.1. </span>Declaring a Reference Variable<a class="headerlink" href="#declaring-a-reference-variable" title="Permalink to this headline">¶</a></h3>
+<p>A reference to a non-primitive data type (that is, a reference to any
+object) is defined by declaring a variable of that object’s type.
+In other words, reference variables are declared just like any other
+variable.
+The declaration gives the type and identifier of the new variable, and
+reserves memory to hold its value.
+But—and here is the most important thing—declaring the
+reference variable  does not assign a pointee for the reference.
+The reference starts out with a “bad” value until you assign it to something.</p>
+<div id="PointerExample_PointerVariables_code"><ul><li><a href="#PointerExample_PointerVariables_code_Java_Generic">Java (Generic)</a></li><li><a href="#PointerExample_PointerVariables_code_Java">Java</a></li></ul><div id="PointerExample_PointerVariables_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">Employee</span> <span class="n">empPtr1</span><span class="p">;</span> <span class="c1">// Declare a reference to an Employee</span>
+    <span class="c1">// This allocates space for the reference, but not the pointee.</span>
+    <span class="c1">// The reference starts out as &quot;null&quot;</span>
+</pre></div>
+</div>
+</div><div id="PointerExample_PointerVariables_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">Employee</span> <span class="n">empPtr1</span><span class="p">;</span> <span class="c1">// Declare a reference to an Employee</span>
+    <span class="c1">// This allocates space for the reference, but not the pointee.</span>
+    <span class="c1">// The reference starts out as &quot;null&quot;</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#PointerExample_PointerVariables_code" ).tabs();});</script></div>
+<div class="section" id="assigning-a-pointee-to-a-reference">
+<h3>2.<span class="section-number">4.1.2. </span>Assigning a pointee to a reference<a class="headerlink" href="#assigning-a-pointee-to-a-reference" title="Permalink to this headline">¶</a></h3>
+<div id="employeePtr2CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="employeePtr2CON" data-long-name="employeePtr2CON" data-exer-id="" alt="employeePtr2CON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="employeePtr2CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="employeePtr2CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="employeePtr2CON_cm_error_msg" class="cm_error_msg">
+   <img id="employeePtr2CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<div class="section" id="dereference-the-reference">
+<h3>2.<span class="section-number">4.1.3. </span>Dereference the reference<a class="headerlink" href="#dereference-the-reference" title="Permalink to this headline">¶</a></h3>
+<p>Anytime a reference variable appears anywhere <strong>other</strong> than the left
+side of an assignment statement, it is
+dereferenced.
+This is really no different than how a primitive variable like an
+<code class="docutils literal notranslate"><span class="pre">int</span></code> is used.
+Consider the following code:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>int a = 5;
+int b = a;
+</pre></div>
+</div>
+<p>In this case, the value of <code class="docutils literal notranslate"><span class="pre">a</span></code> in the second line is just 5.
+In exactly the same way, in this code:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>Employee empPtr = johnRef;
+</pre></div>
+</div>
+<p>the value of <code class="docutils literal notranslate"><span class="pre">johnRef</span></code> is simply the location of the object that it
+is referencing.
+This is why <code class="docutils literal notranslate"><span class="pre">empPtr</span></code> ends up pointing to that same object.
+Of course, whenever you dereference any reference variable, it had
+better have a pointee.
+Otherwise, you get a runtime error of type <code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code>.</p>
+</div>
+<div class="section" id="example-reference-code">
+<h3>2.<span class="section-number">4.1.4. </span>Example Reference Code<a class="headerlink" href="#example-reference-code" title="Permalink to this headline">¶</a></h3>
+<div id="examplePointerCodeCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="examplePointerCodeCON" data-long-name="examplePointerCodeCON" data-exer-id="" alt="examplePointerCodeCON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="examplePointerCodeCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="examplePointerCodeCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="examplePointerCodeCON_cm_error_msg" class="cm_error_msg">
+   <img id="examplePointerCodeCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+</div>
+<div class="section" id="changeheadpointer1">
+<h2>2.<span class="section-number">4.2. </span>changeHeadPointer1<a class="headerlink" href="#changeheadpointer1" title="Permalink to this headline">¶</a></h2>
+<div
+    id="changeHeadPointer1"
+    class="embedContainer"
+    data-exer-name="changeHeadPointer1"
+    data-long-name="changeHeadPointer1"
+    data-short-name="changeHeadPointer1"
+    data-frame-src="https://codeworkout.cs.vt.edu/gym/workouts/embed?resource_name=changeHeadPointer1"
+    data-frame-width="1000"
+    data-frame-height="900"
+    data-type="external_tool"
+    data-workout-id="415"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="changeHeadPointer1_iframe"></div>
+  </div>
+</div>
+<div class="section" id="reference-rules-summary">
+<h3>2.<span class="section-number">4.2.1. </span>Reference Rules Summary<a class="headerlink" href="#reference-rules-summary" title="Permalink to this headline">¶</a></h3>
+<p>No matter how complex a reference structure gets, the list of rules
+remains short.</p>
+<ul class="simple">
+<li><p>A reference variable stores a reference to its pointee.
+The pointee, in turn, stores something useful.</p></li>
+<li><p>The dereference operation on a reference accesses its pointee.
+A reference may only be dereferenced after it has been assigned to
+refer to a pointee.
+Most reference bugs involve violating this one rule.</p></li>
+<li><p>Allocating a reference does not automatically assign it to refer to
+a pointee.
+Assigning the reference to refer to a specific pointee is a separate
+operation.
+This is easy to forget.</p></li>
+<li><p>Assignment between two references makes them refer to the same
+pointee, which allows <code class="docutils literal notranslate"><span class="pre">object</span> <span class="pre">sharing</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="java-references-vs-pointers">
+<h2>2.<span class="section-number">4.3. </span>Java References vs Pointers<a class="headerlink" href="#java-references-vs-pointers" title="Permalink to this headline">¶</a></h2>
+<p>Java references have two main features that distinguishes them from
+the less restrictive pointers in a language like C or C++.</p>
+<ol class="arabic simple">
+<li><p>Fewer bugs.
+Because the language implements the reference manipulation
+accurately and automatically, the most common reference bug are no
+longer possible. Yay!
+Also, the Java runtime system checks each reference value every time
+it is used, so dereferencing a <code class="docutils literal notranslate"><span class="pre">null</span></code> reference is caught
+immediately on the line where it occurs.
+This is in contrast to a language like C++, where dereferencing a
+value of <code class="docutils literal notranslate"><span class="pre">null</span></code> might not make the program crash until later.
+This can make a programmer much more productive to know
+exactly where the problem occurred.</p></li>
+<li><p>Slower. Because the language takes responsibility for implementing
+so much reference machinery at runtime, and does so much extra
+runtime checking, Java code runs slower than
+other languages like C and C++.
+But the appeal of increased programmer efficiency and fewer bugs
+makes the slowness worthwhile for many applications.</p></li>
+</ol>
+</div>
+<div class="section" id="how-are-references-implemented-in-the-machine">
+<h2>2.<span class="section-number">4.4. </span>How Are References Implemented In The Machine?<a class="headerlink" href="#how-are-references-implemented-in-the-machine" title="Permalink to this headline">¶</a></h2>
+<p>How are references implemented?
+The short explanation is that every area of memory in the machine has
+a numeric address like 1000 or 20452.
+You can think of memory as a big array, and each position in memory
+has an index which is its memory address.
+A reference to an area of memory is really just an integer which is
+storing the address of that area of memory.</p>
+<div class="divdgm">
+<div id="memoryModelCON">
+</div>
+</div>
+<p>In the picture above, we assume that Java decides to place the new
+Employee object starting at memory location 2000.
+So the reference variable just stores a value of 2000.
+If we looked closely at the computer’s memory then we could see
+exactly how the <code class="docutils literal notranslate"><span class="pre">Employee</span></code> object is layed out in the bytes in
+memory (beginning at 2000).
+But we don’t show it in this picture because the internal details for
+how the <code class="docutils literal notranslate"><span class="pre">Employee</span></code> object is implemented are more complicated than
+we need to care about right now.
+(But you should go ahead and look this up if you really want to know.
+You will learn a lot.)</p>
+<p>A dereference operation looks at the address of the reference
+variable, and goes to that position in memory to retrieve the pointee
+stored there.
+An assignment of one reference variable to another just copies the
+numeric memory location.
+This is exactly like what happens when making an assignment between
+two <code class="docutils literal notranslate"><span class="pre">int</span></code> variables:
+The value is simply copied from one to the other.
+The value of <code class="docutils literal notranslate"><span class="pre">null</span></code> is always a special value that Java will never
+use as the location of any legal pointee.
+A bad reference is really just a reference which contains a <code class="docutils literal notranslate"><span class="pre">null</span></code>
+value.
+Java’s runtime environment is constantly watching for a dereference of
+a reference variable with a <code class="docutils literal notranslate"><span class="pre">null</span></code> value, so it can catch it right
+away if that happens.</p>
+<script type="text/javascript" src="../../../AV/Pointers/employeePtr2CON.js"></script>
+<script type="text/javascript" src="../../../AV/Pointers/examplePointerCodeCON.js"></script>
+<script type="text/javascript" src="../../../AV/Pointers/memoryModelCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BasicPointers2.html">2.<span class="section-number">3. </span>Basic References Part 2</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="LocalMem.html">2.<span class="section-number">5. </span>Local Memory</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

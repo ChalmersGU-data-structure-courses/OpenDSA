@@ -1,0 +1,708 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.7. Mathematical Proof Techniques &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="8. Estimation" href="Estimation.html" />
+    <link rel="prev" title="6. Recurrence Relations" href="RecurrenceIntro.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Proofs.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="RecurrenceIntro.html">3.<span class="section-number">6. </span>Recurrence Relations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Estimation.html">3.<span class="section-number">8. </span>Estimation</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['direct-proof', 'proof-by-contradiction', 'proof-by-mathematical-induction'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Proofs";ODSA.SETTINGS.MODULE_LONG_NAME = "Mathematical Proof Techniques";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Background/twoColorCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Background/TwoColoringProofCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="mathematical-proof-techniques">
+<span id="index-0"></span><h1>3.<span class="section-number">7. </span>Mathematical Proof Techniques<a class="headerlink" href="#mathematical-proof-techniques" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>3.<span class="section-number">7.1. </span>Mathematical Proof Techniques<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>Solving any problem has two distinct parts:
+the investigation and the argument.
+Students are too used to seeing only the argument in their textbooks
+and lectures.
+But to be successful in school (and in life after school),
+one needs to be good at both, and to understand the differences
+between these two phases of the process.
+To solve the problem, you must investigate successfully.
+That means engaging the problem, and working through until you find a
+solution.
+Then, to give the answer to your client (whether that “client” be
+your instructor when writing answers on a homework assignment or exam,
+or a written report to your boss),
+you need to be able to make the argument in a way
+that gets the solution across clearly and succinctly.
+The argument phase involves good technical writing skills—the ability to make a clear, logical argument.</p>
+<p>Being conversant with standard proof techniques can help you in this
+process.
+Knowing how to write a good proof helps in many ways.
+First, it clarifies your thought process, which in turn clarifies your
+explanations.
+Second, if you use one of the standard proof structures such as proof
+by contradiction or an induction proof, then both you and your reader
+are working from a shared understanding of that structure.
+That makes for less complexity to your reader to understand your
+proof, because the reader need not decode the structure of your
+argument from scratch.</p>
+<p>This section briefly introduces three commonly used proof techniques:</p>
+<ol class="arabic simple">
+<li><p>deduction, or direct proof;</p></li>
+<li><p>proof by contradiction and</p></li>
+<li><p>proof by mathematical induction.</p></li>
+</ol>
+<p id="index-1">In general, a <a class="reference internal" href="Glossary.html#term-direct-proof"><span class="xref std std-term">direct proof</span></a> is just a “logical explanation”.
+A direct proof is sometimes referred to as an argument by deduction.
+This is simply an argument in terms of logic.</p>
+<div class="section" id="direct-proof">
+<h3>3.<span class="section-number">7.1.1. </span>Direct Proof<a class="headerlink" href="#direct-proof" title="Permalink to this headline">¶</a></h3>
+<div class="topic" id="sumdirect">
+<p class="topic-title">Example 3.8.1 </p>
+<p>Here is a direct proof that <span class="math notranslate nohighlight">\(\sum_{i=1}^n i = (n+1)n/2\)</span>.
+If we take the first and last terms of the series, since they are 1
+and <span class="math notranslate nohighlight">\(n\)</span>, of course they sum to <span class="math notranslate nohighlight">\(n+1\)</span>.
+If we take the second term and next-to-last term, since they are 2
+and <span class="math notranslate nohighlight">\(n-1\)</span>, they also sum to <span class="math notranslate nohighlight">\(n+1\)</span>.
+Likewise for the third term and third-from-the-end term.
+We can go on and pair up terms like this, such that there are
+<span class="math notranslate nohighlight">\(n/2\)</span> pairs that each sum to <span class="math notranslate nohighlight">\(n+1\)</span>, for a total sum of
+<span class="math notranslate nohighlight">\((n+1)n/2\)</span>.
+You can check for yourself that this is true even if <span class="math notranslate nohighlight">\(n\)</span> is
+odd (and so the middle value of the series has no partner).</p>
+</div>
+<p>Many direct proofs are written in English with words such as
+“if … then”.
+In this case logic notation such as <span class="math notranslate nohighlight">\(P \Rightarrow Q\)</span> can often
+help express the proof.
+Even if we don’t wish to use symbolic logic notation, we can still
+take advantage of fundamental theorems of logic to structure our
+arguments.
+For example, if we want to prove that <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(Q\)</span> are
+equivalent, we can first prove <span class="math notranslate nohighlight">\(P \Rightarrow Q\)</span> and then prove
+<span class="math notranslate nohighlight">\(Q \Rightarrow P\)</span>.</p>
+<p>In some domains, proofs are essentially a series of state changes from
+a start state to an end state.
+Formal predicate logic can be viewed in this way, with the various
+“rules of logic” being used to make the changes from one formula or
+combining a couple of formulas to make a new formula
+on the route to the destination.
+Symbolic manipulations to solve integration problems in introductory
+calculus classes are similar in spirit, as are high school geometry
+proofs.</p>
+</div>
+<div class="section" id="proof-by-contradiction">
+<span id="index-2"></span><h3>3.<span class="section-number">7.1.2. </span>Proof by Contradiction<a class="headerlink" href="#proof-by-contradiction" title="Permalink to this headline">¶</a></h3>
+<p>The simplest way to <em>disprove</em> a theorem or statement is to find
+a counter-example to the theorem.
+Unfortunately, no number of examples supporting a theorem is
+sufficient to prove that the theorem is correct.
+However, there is an approach that is vaguely similar to disproving by
+counter-example, called <a class="reference internal" href="Glossary.html#term-proof-by-contradiction"><span class="xref std std-term">proof by contradiction</span></a>.
+To prove a theorem by contradiction, we first <em>assume</em> that the
+theorem is <em>false</em>.
+We then find a logical contradiction stemming from this assumption.
+If the logic used to find the contradiction is correct, then the only
+way to resolve the contradiction is to recognize that the assumption
+that the theorem is false must be incorrect.
+That is, we conclude that the theorem must be true.</p>
+<div class="topic">
+<p class="topic-title">Example 3.8.2 </p>
+<p>Here is a simple proof by contradiction.</p>
+<p><strong>Theorem:</strong> There is no largest integer.</p>
+<p><strong>Proof by contradiction:</strong></p>
+<p><strong>Step 1. Contrary assumption:</strong> Assume that there <em>is</em> a
+largest integer.
+Call it <span class="math notranslate nohighlight">\(B\)</span> (for “biggest”).</p>
+<p><strong>Step 2. Show this assumption leads to a contradiction:</strong>
+Consider <span class="math notranslate nohighlight">\(C = B + 1\)</span>.
+<span class="math notranslate nohighlight">\(C\)</span> is an integer because it is the sum of two integers.
+Also, <span class="math notranslate nohighlight">\(C &gt; B\)</span>, which means that <span class="math notranslate nohighlight">\(B\)</span> is not the
+largest integer after all.
+Thus, we have reached a contradiction.
+The only flaw in our reasoning is the initial assumption that
+the theorem is false.
+Thus, we conclude that the theorem is correct.</p>
+</div>
+<p>A related proof technique is <a class="reference internal" href="Glossary.html#term-proving-the-contrapositive"><span class="xref std std-term">proving the contrapositive</span></a>.
+We can prove that <span class="math notranslate nohighlight">\(P \Rightarrow Q\)</span> by proving
+<span class="math notranslate nohighlight">\((\mathrm{not}\ Q) \Rightarrow (\mathrm{not}\ P)\)</span>.
+This technique works because the <a class="reference internal" href="Glossary.html#term-truth-table"><span class="xref std std-term">truth table</span></a> for the two
+logical statements are the same.</p>
+</div>
+<div class="section" id="proof-by-mathematical-induction">
+<span id="index-3"></span><h3>3.<span class="section-number">7.1.3. </span>Proof by Mathematical Induction<a class="headerlink" href="#proof-by-mathematical-induction" title="Permalink to this headline">¶</a></h3>
+<p>Mathematical induction can be used to prove a wide variety of
+theorems.
+Induction also provides a useful way to think about algorithm design,
+because it encourages you to think about solving a problem by building
+up from simple subproblems.
+Induction can help to prove that a recursive function produces the
+correct result.
+Understanding recursion is a big step toward understanding induction,
+and vice versa, since they work by essentially the same process.</p>
+<p>Within the context of algorithm analysis, one of the most important
+uses for mathematical induction is as a method to test a hypothesis.
+When <a class="reference internal" href="Glossary.html#term-closed-form-solution"><span class="xref std std-term">seeking a closed-form solution</span></a>
+for a <a class="reference internal" href="Glossary.html#term-summation"><span class="xref std std-term">summation</span></a> or <a class="reference internal" href="Glossary.html#term-recurrence-relation"><span class="xref std std-term">recurrence</span></a>,
+we might first guess or otherwise acquire evidence that a particular
+formula is the correct solution.
+If the formula is indeed correct, it is often an easy matter to prove
+that fact with an induction proof.</p>
+<p>Let <strong>Thrm</strong> be a theorem to prove, and express <strong>Thrm</strong> in
+terms of a positive integer parameter <span class="math notranslate nohighlight">\(n\)</span>.
+Mathematical induction states that <strong>Thrm</strong> is true for any value
+of parameter <span class="math notranslate nohighlight">\(n\)</span> (for <span class="math notranslate nohighlight">\(n \geq c\)</span>, where <cite>c</cite> is some
+constant) if the following two conditions are true:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="Glossary.html#term-base-case"><span class="xref std std-term">Base Case</span></a>: <strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n = c\)</span>, and</p></li>
+<li><p><a class="reference internal" href="Glossary.html#term-induction-step"><span class="xref std std-term">Induction Step</span></a>:
+If <strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n - 1\)</span>, then <strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n\)</span>.</p></li>
+</ol>
+<p>Proving the base case is usually easy, typically requiring that some
+small value such as 1 be substituted for <span class="math notranslate nohighlight">\(n\)</span> in the theorem and
+applying simple algebra or logic as necessary to verify the theorem.
+Proving the induction step is sometimes easy, and sometimes difficult.
+An alternative formulation of the induction step is known as
+<a class="reference internal" href="Glossary.html#term-strong-induction"><span class="xref std std-term">strong induction</span></a>.
+The induction step for strong induction is:</p>
+<dl class="simple">
+<dt>2a. <strong>Induction Step:</strong></dt><dd><p>If <strong>Thrm</strong> holds for all <span class="math notranslate nohighlight">\(k, c \leq k &lt; n\)</span>, then
+<strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n\)</span>.</p>
+</dd>
+</dl>
+<p>Proving either variant of the induction step (in
+conjunction with verifying the base case) yields a satisfactory proof
+by mathematical induction.</p>
+<p>The two conditions that make up the induction proof combine to
+demonstrate that <strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n=2\)</span> as an extension of the
+fact that <strong>Thrm</strong> holds for <span class="math notranslate nohighlight">\(n=1\)</span>.
+This fact, combined again with condition (2) or (2a), indicates
+that <strong>Thrm</strong> also holds for <span class="math notranslate nohighlight">\(n=3\)</span>, and so on.
+Thus, <strong>Thrm</strong> holds for all values of <span class="math notranslate nohighlight">\(n\)</span> (larger than the
+base cases) once the two conditions have been proved.</p>
+<p>What makes mathematical induction so powerful (and so mystifying to
+most people at first) is that we can take advantage of the
+<em>assumption</em> that <strong>Thrm</strong> holds for all values less
+than <span class="math notranslate nohighlight">\(n\)</span> as a tool to help us prove that <strong>Thrm</strong> holds
+for <span class="math notranslate nohighlight">\(n\)</span>.
+This is known as the <a class="reference internal" href="Glossary.html#term-induction-hypothesis"><span class="xref std std-term">induction hypothesis</span></a>.
+Having this assumption to work with makes the induction step
+easier to prove than tackling the original theorem itself.
+Being able to rely on the induction hypothesis provides extra
+information that we can bring to bear on the problem.</p>
+<p>Recursion and induction have many similarities.
+Both are anchored on one or more base cases.
+A recursive function relies on the ability to call itself to get the
+answer for smaller instances of the problem.
+Likewise, induction proofs rely on the truth of the induction
+hypothesis to prove the theorem.
+The induction hypothesis does not come out of thin air.
+It is true if and only if the theorem itself is true, and
+therefore is reliable within the proof context.
+Using the induction hypothesis to do work is exactly the same as using
+a recursive call to do work.</p>
+<div class="topic" id="sumiex">
+<p class="topic-title">Example 3.8.3 </p>
+<p>Here is a sample proof by mathematical induction.
+Call the sum of the first <span class="math notranslate nohighlight">\(n\)</span> positive integers <span class="math notranslate nohighlight">\(\mathbf{S}(n)\)</span>.</p>
+<p><strong>Theorem:</strong> <span class="math notranslate nohighlight">\(\mathbf{S}(n) = n(n+1)/2\)</span>.</p>
+<p><strong>Proof:</strong>
+The proof is by mathematical induction.</p>
+<ol class="arabic">
+<li><p><strong>Check the base case.</strong>
+For <span class="math notranslate nohighlight">\(n = 1\)</span>, verify that <span class="math notranslate nohighlight">\(\mathbf{S}(1) = 1(1+1)/2\)</span>.
+<span class="math notranslate nohighlight">\(\mathbf{S}(1)\)</span> is simply the sum of the first positive
+number, which is 1.
+Because <span class="math notranslate nohighlight">\(1(1+1)/2 = 1\)</span>, the formula is correct for the base
+case.</p></li>
+<li><p><strong>State the induction hypothesis.</strong>
+The induction hypothesis is</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{S}(n-1) = \sum_{i=1}^{n-1} i =
+\frac{(n-1)((n-1)+1)}{2} = \frac{(n-1)(n)}{2}.\]</div>
+</li>
+<li><p><strong>Use the assumption from the induction hypothesis for</strong>
+<span class="math notranslate nohighlight">\(n-1\)</span> <strong>to show that the result is true for</strong> <span class="math notranslate nohighlight">\(n\)</span>.
+The induction hypothesis states that
+<span class="math notranslate nohighlight">\(\mathbf{S}(n-1) =  (n-1)(n)/2\)</span>,
+and because <span class="math notranslate nohighlight">\(\mathbf{S}(n) = \mathbf{S}(n-1) + n\)</span>,
+we can substitute for <span class="math notranslate nohighlight">\(\mathbf{S}(n-1)\)</span> to get</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=1}^n i &amp;=&amp; \left(\sum_{i=1}^{n-1} i\right) + n
+                   = \frac{(n-1)(n)}{2} + n\\
+               &amp;=&amp;\frac{n^2 - n + 2n}{2} = \frac{n(n+1)}{2}.\end{split}\]</div>
+<p>Thus, by mathematical induction,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{S}(n) = \sum_{i=1}^n i = n(n+1)/2.\]</div>
+</li>
+</ol>
+</div>
+<p>Note carefully what took place in this example.
+First we cast <span class="math notranslate nohighlight">\(\mathbf{S}(n)\)</span> in terms of a smaller occurrence
+of the problem: <span class="math notranslate nohighlight">\(\mathbf{S}(n) = \mathbf{S}(n-1) + n\)</span>.
+This is important because once <span class="math notranslate nohighlight">\(\mathbf{S}(n-1)\)</span> comes into the
+picture, we can  use the induction hypothesis to replace
+<span class="math notranslate nohighlight">\(\mathbf{S}(n-1)\)</span> with <span class="math notranslate nohighlight">\((n-1)(n)/2\)</span>.
+From here, it is simple algebra to prove that
+<span class="math notranslate nohighlight">\(\mathbf{S}(n-1) + n\)</span> equals the
+right-hand side of the original theorem.</p>
+<p>We can compare the induction proof of Example <a href="Proofs.html#sumiex">3.8.3</a>
+with the direct proof in Example <a href="Proofs.html#sumdirect">3.8.1</a>.
+Different people might think one is easier to understand than the
+other, but certainly the writer of the direct proof version had
+to discover an insight unique to that problem that might
+not be helpful or relevant when proving other summations.</p>
+<div class="topic" id="nodds">
+<p class="topic-title">Example 3.8.4 </p>
+<p>Here is another simple proof by induction that illustrates
+choosing the proper variable for induction.
+We wish to prove by induction that the sum of the first <span class="math notranslate nohighlight">\(n\)</span>
+positive odd numbers is <span class="math notranslate nohighlight">\(n^2\)</span>.
+First we need a way to describe the <span class="math notranslate nohighlight">\(n\)</span>’th odd number, which is
+simply <span class="math notranslate nohighlight">\(2n - 1\)</span>.
+This also allows us to cast the theorem as a summation.</p>
+<p><strong>Theorem:</strong>
+<span class="math notranslate nohighlight">\(\sum_{i=1}^n (2i - 1) = n^2\)</span>.</p>
+<p><strong>Proof:</strong>
+The base case of <span class="math notranslate nohighlight">\(n = 1\)</span> yields <span class="math notranslate nohighlight">\(1 = 1^2\)</span>, which is
+true.
+The induction hypothesis is</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n-1} (2i - 1) = (n-1)^2.\]</div>
+<p>We now use the induction hypothesis to show that the theorem
+holds true for <span class="math notranslate nohighlight">\(n\)</span>.
+The sum of the first <span class="math notranslate nohighlight">\(n\)</span> odd numbers is simply the sum of the
+first <span class="math notranslate nohighlight">\(n-1\)</span> odd numbers plus the <span class="math notranslate nohighlight">\(n\)</span>’th odd number.
+In the second line below, we will use the induction hypothesis to
+replace the partial summation (shown in brackets in the first line)
+with its closed-form solution.
+After that, algebra takes care of the rest.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i=1}^n (2i - 1) &amp;=&amp; \left[ \sum_{i=1}^{n-1} (2i - 1) \right] + 2n - 1\\
+                      &amp;=&amp; [(n-1)^2] + 2n - 1\\
+                      &amp;=&amp; n^2 - 2n + 1 + 2n - 1\\
+                      &amp;=&amp; n^2.\end{split}\]</div>
+<p>Thus, by mathematical induction,</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^n (2i - 1) = n^2.\]</div>
+</div>
+<div class="topic" id="factrecurproof">
+<p class="topic-title">Example 3.8.5 </p>
+<p>This example shows how we can use induction to prove that a proposed
+closed-form solution for a recurrence relation is correct.</p>
+<p><strong>Theorem:</strong>
+The recurrence relation
+<span class="math notranslate nohighlight">\(\mathbf{T}(n) = \mathbf{T}(n-1) + 1; \quad \mathbf{T}(1) = 0\)</span>
+has closed-form solution <span class="math notranslate nohighlight">\(\mathbf{T}(n) = n - 1\)</span>.</p>
+<p><strong>Proof:</strong>
+To prove the base case, we observe from the definition that
+<span class="math notranslate nohighlight">\(\mathbf{T}(2) = \mathbf{T}(1) + 1 = 0 + 1 = 1\)</span>.
+From the proposed closed-form solution we get
+<span class="math notranslate nohighlight">\(\mathbf{T}(2) = 2 - 1 = 1\)</span>, which matches the definition.</p>
+<p>The induction hypothesis is that <span class="math notranslate nohighlight">\(\mathbf{T}(n-1) = n-2\)</span>.
+Combining the definition of the recurrence with the induction
+hypothesis, we see immediately that</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{T}(n) = \mathbf{T}(n-1) + 1 = n-2 + 1 = n-1\]</div>
+<p>for <span class="math notranslate nohighlight">\(n &gt; 1\)</span>.
+Thus, we have proved the theorem correct by mathematical induction.</p>
+</div>
+<div class="topic" id="thmstamps">
+<p class="topic-title">Example 3.8.6 </p>
+<p>This example uses induction without involving summations or other
+equations.
+It also illustrates a more flexible use of base cases.</p>
+<p><strong>Theorem:</strong>
+2 cent and 5 cent stamps can be used to form any value
+(for values <span class="math notranslate nohighlight">\(\geq 4\)</span>).</p>
+<p><strong>Proof:</strong>
+The theorem defines the problem for values <span class="math notranslate nohighlight">\(\geq 4\)</span>
+because it does not hold for the values 1 and 3.
+Using 4 as the base case, a value of 4 cents can be made from two
+2 cent stamps.
+The induction hypothesis is that a value of <span class="math notranslate nohighlight">\(n-1\)</span> can be
+made from some combination of 2 cent and 5 cent stamps.
+We now use the induction hypothesis to show how to get the value
+<span class="math notranslate nohighlight">\(n\)</span> from 2 cent and 5 cent stamps.
+Either the makeup for value <span class="math notranslate nohighlight">\(n-1\)</span> includes a 5 cent stamp,
+or it does not.
+If so, then replace a 5 cent stamp with three 2 cent stamps.
+If not, then the makeup must have included at least two 2 cent
+stamps (because it is at least of size 4 and contains only 2 cent
+stamps).
+In this case, replace two of the 2 cent stamps with a single
+5 cent stamp.
+In either case, we now have a value of n made up of
+2 cent and 5 cent stamps.
+Thus, by mathematical induction, the theorem is correct.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 3.8.7 </p>
+<p>Here is an example using strong induction.</p>
+<p><strong>Theorem:</strong>
+For <span class="math notranslate nohighlight">\(n &gt; 1, n\)</span> is divisible by some prime number.</p>
+<p><strong>Proof:</strong>
+For the base case, choose <span class="math notranslate nohighlight">\(n = 2\)</span>.
+2 is divisible by the prime number 2.
+The induction hypothesis is that <em>any</em> value <span class="math notranslate nohighlight">\(a, 2 \leq a &lt; n\)</span>,
+is divisible by some prime number.
+There are now two cases to consider when proving the theorem for
+<span class="math notranslate nohighlight">\(n\)</span>.
+If <span class="math notranslate nohighlight">\(n\)</span> is a prime number, then <span class="math notranslate nohighlight">\(n\)</span> is divisible by itself.
+If <span class="math notranslate nohighlight">\(n\)</span> is not a prime number, then <span class="math notranslate nohighlight">\(n = a \times b\)</span>
+for <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, both integers less than <span class="math notranslate nohighlight">\(n\)</span> but
+greater than 1.
+The induction hypothesis tells us that <span class="math notranslate nohighlight">\(a\)</span> is divisible by some
+prime number.
+That same prime number must also divide <span class="math notranslate nohighlight">\(n\)</span>.
+Thus, by mathematical induction, the theorem is correct.</p>
+</div>
+<p>Our next example of mathematical induction proves a theorem from
+geometry.
+It also illustrates a standard technique of induction proof where we
+take <span class="math notranslate nohighlight">\(n\)</span> objects and remove some object to use the
+induction hypothesis.</p>
+<div class="divdgm" id="twocolor">
+<div id="twoColorCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 3.8.1: A two-coloring for the regions formed by three lines in the plane.</span></p>
+</div>
+<div class="topic" id="thmregion">
+<p class="topic-title">Example 3.8.8 </p>
+<p>Define a <a class="reference internal" href="Glossary.html#term-two-coloring"><span class="xref std std-term">two-coloring</span></a> for a
+set of regions as a way of assigning one of two colors to each region
+such that no two regions sharing a side have the same color.
+For example, a chessboard is two-colored.
+Figure <a href="Proofs.html#twocolor">3.8.1</a> shows a two-coloring for the plane
+with three lines.
+We will assume that the two colors to be used are black and white.</p>
+<p><strong>Theorem:</strong>
+The set of regions formed by <span class="math notranslate nohighlight">\(n\)</span> infinite lines in the plane
+can be two-colored.</p>
+<p><strong>Proof:</strong></p>
+<div id="TwoColoringProofCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="TwoColoringProofCON" data-long-name="Two Coloring Proof Slideshow" data-exer-id="" alt="Two Coloring Proof Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="TwoColoringProofCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="TwoColoringProofCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="TwoColoringProofCON_cm_error_msg" class="cm_error_msg">
+   <img id="TwoColoringProofCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+</div>
+<p>Compare the proof in Example <a href="Proofs.html#thmregion">3.8.8</a> with that in
+Example <a href="Proofs.html#thmstamps">3.8.6</a>.
+For Example <a href="Proofs.html#thmstamps">3.8.6</a>, we took a collection of stamps of
+size <span class="math notranslate nohighlight">\(n-1\)</span> (which, by the induction hypothesis, must have the
+desired property) and from that “built” a collection of size <span class="math notranslate nohighlight">\(n\)</span>
+that has the desired property.
+We therefore proved the existence of <em>some</em> collection of stamps
+of size <span class="math notranslate nohighlight">\(n\)</span> with the desired property.</p>
+<p>For Example <a href="Proofs.html#thmregion">3.8.8</a> we must prove that <em>any</em>
+collection of <span class="math notranslate nohighlight">\(n\)</span> lines has the desired property.
+Thus, our strategy is to take an <em>arbitrary</em> collection of
+<span class="math notranslate nohighlight">\(n\)</span> lines, and “reduce” it so that we have a set of lines that
+must have the desired property because it matches the induction
+hypothesis.
+From there, we merely need to show that reversing the original
+reduction process preserves the desired property.</p>
+<p>In contrast, consider what is required if we attempt to
+“build” from a set of lines of size <span class="math notranslate nohighlight">\(n-1\)</span> to one of size
+<span class="math notranslate nohighlight">\(n\)</span>.
+We would have great difficulty justifying that <em>all</em> possible
+collections of <span class="math notranslate nohighlight">\(n\)</span> lines are covered by our building process.
+By reducing from an arbitrary collection of <span class="math notranslate nohighlight">\(n\)</span> lines to
+something less, we avoid this problem.</p>
+<p>Another advantage to thinking in terms of “reducing from <span class="math notranslate nohighlight">\(n\)</span>”
+rather than “building up from <span class="math notranslate nohighlight">\(n-1\)</span>” is that reducing is more
+like what we do when we write a recursive function.
+In recursion, we would naturally compute some
+function of <span class="math notranslate nohighlight">\(n\)</span> by calling the function (recursively) on
+<span class="math notranslate nohighlight">\(n-1\)</span> and then using the result to compute the value for
+<span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>This section’s final example shows how induction can be used to
+prove that a recursive function produces the correct result.</p>
+<div class="topic">
+<p class="topic-title">Example 3.8.9 </p>
+<p>We would like to prove that function <code class="docutils literal notranslate"><span class="pre">fact</span></code> does indeed compute
+the factorial function.
+There are two distinct steps to such a proof.
+The first is to prove that the function always terminates.
+The second is to prove that the function returns the correct value.</p>
+<p><strong>Theorem:</strong>
+Function <code class="docutils literal notranslate"><span class="pre">fact</span></code> will terminate for any value of <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p><strong>Proof:</strong>
+For the base case, we observe that <code class="docutils literal notranslate"><span class="pre">fact</span></code> will terminate directly
+whenever <span class="math notranslate nohighlight">\(n \leq 0\)</span>.
+The induction hypothesis is that <code class="docutils literal notranslate"><span class="pre">fact</span></code> will terminate for
+<span class="math notranslate nohighlight">\(n-1\)</span>.
+For <span class="math notranslate nohighlight">\(n\)</span>, we have two possibilities.
+One possibility is that <span class="math notranslate nohighlight">\(n \geq 12\)</span>.
+In that case, <code class="docutils literal notranslate"><span class="pre">fact</span></code> will terminate directly because it will
+fail its assertion test.
+Otherwise, <code class="docutils literal notranslate"><span class="pre">fact</span></code> will make a recursive call to <code class="docutils literal notranslate"><span class="pre">fact(n-1)</span></code>.
+By the induction hypothesis, <code class="docutils literal notranslate"><span class="pre">fact(n-1)</span></code> must terminate.</p>
+<p><strong>Theorem:</strong>
+Function <code class="docutils literal notranslate"><span class="pre">fact</span></code> does compute the factorial function for any value
+in the range 0 to 12.</p>
+<p><strong>Proof:</strong>
+To prove the base case, observe that when <span class="math notranslate nohighlight">\(n=0\)</span> or
+<span class="math notranslate nohighlight">\(n=1\)</span>, <cite>fact(n)</cite> returns the correct value of 1.
+The induction hypothesis is that <code class="docutils literal notranslate"><span class="pre">fact(n-1)</span></code> returns the correct
+value of <cite>(n-1)!</cite>.
+For any value <cite>n</cite> within the legal range, <code class="docutils literal notranslate"><span class="pre">fact(n)</span></code> returns
+<span class="math notranslate nohighlight">\(n *\)</span> <code class="docutils literal notranslate"><span class="pre">fact(n-1)</span></code>.
+By the induction hypothesis, <code class="docutils literal notranslate"><span class="pre">fact(n-1)</span></code> <span class="math notranslate nohighlight">\(= (n-1)!\)</span>,
+and because <span class="math notranslate nohighlight">\(n * (n-1)! = n!\)</span>, we have proved that <code class="docutils literal notranslate"><span class="pre">fact(n)</span></code>
+produces the correct result.</p>
+</div>
+<p>We can use a similar process to prove many recursive programs correct.
+The general form is to show that the base cases perform correctly, and
+then to use the induction hypothesis to show that the recursive step
+also produces the correct result.
+Prior to this, we must prove that the function always terminates,
+which might also be done using an induction proof.</p>
+<script type="text/javascript" src="../../../AV/Background/twoColorCON.js"></script>
+<script type="text/javascript" src="../../../AV/Background/TwoColoringProofCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="RecurrenceIntro.html">3.<span class="section-number">6. </span>Recurrence Relations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Estimation.html">3.<span class="section-number">8. </span>Estimation</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

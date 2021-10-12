@@ -1,0 +1,412 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.4. Writing More Sophisticated Recursive Functions &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="5. Harder Code Completion Practice Exercises" href="HarderCodeCompletionEx.html" />
+    <link rel="prev" title="3. Code Completion Practice Exercises" href="CodeCompletionEx.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 4 Recursion</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/HarderWrite.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="CodeCompletionEx.html">4.<span class="section-number">3. </span>Code Completion Practice Exercises</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="HarderCodeCompletionEx.html">4.<span class="section-number">5. </span>Harder Code Completion Practice Exercises</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HarderWrite";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing More Sophisticated Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="writing-more-sophisticated-recursive-functions">
+<h1>4.<span class="section-number">4. </span>Writing More Sophisticated Recursive Functions<a class="headerlink" href="#writing-more-sophisticated-recursive-functions" title="Permalink to this headline">¶</a></h1>
+<p>Some recursive functions have only one base case and one recursive
+call.
+But it is common for there to be more than one of either or both.</p>
+<p>The following is the general structure for a recursive function.</p>
+<div id="RecMultBcRc_code"><ul><li><a href="#RecMultBcRc_code_Java_Generic">Java (Generic)</a></li><li><a href="#RecMultBcRc_code_Java">Java</a></li></ul><div id="RecMultBcRc_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// return some simple expression</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// return some simple expression</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">3</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// return some simple expression</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span> <span class="c1">// recursive case 3 </span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="RecMultBcRc_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span>
+  <span class="c1">// return some simple expression</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span>
+  <span class="c1">// return some simple expression</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">3</span> <span class="p">)</span>
+  <span class="c1">// return some simple expression</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span> <span class="c1">// recursive case 3 </span>
+  <span class="c1">// some work before </span>
+  <span class="c1">// recursive call </span>
+  <span class="c1">// some work after </span>
+ <span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#RecMultBcRc_code" ).tabs();});</script><div class="topic">
+<p class="topic-title">Example 4.5.1 </p>
+<p>Consider a rather simple function to determine if an integer <code class="docutils literal notranslate"><span class="pre">X</span></code> is
+prime or not.
+<code class="docutils literal notranslate"><span class="pre">Y</span></code> is a helper variable that is used as the devisor.
+When calling the function initially, <code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">X</span> <span class="pre">-</span> <span class="pre">1</span></code></p>
+<div id="Prime_code"><ul><li><a href="#Prime_code_Java_Generic">Java (Generic)</a></li><li><a href="#Prime_code_Java">Java</a></li></ul><div id="Prime_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>	
+  <span class="p">}</span>
+  <span class="k">else</span><span class="p">{</span>
+    <span class="k">return</span> <span class="n">prime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Prime_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>	
+  <span class="k">else</span>
+    <span class="k">return</span> <span class="n">prime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Prime_code" ).tabs();});</script><p>We see that <code class="docutils literal notranslate"><span class="pre">Prime</span></code> has two base cases and one recursive call.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 4.5.2 </p>
+<p>Here is a function that has multiple recursive calls.
+Given an <code class="docutils literal notranslate"><span class="pre">int</span></code> array named <code class="docutils literal notranslate"><span class="pre">set</span></code>, function
+<code class="docutils literal notranslate"><span class="pre">isSubsetSum</span></code> determines whether some of the values in
+<code class="docutils literal notranslate"><span class="pre">set</span></code> add up to <code class="docutils literal notranslate"><span class="pre">sum</span></code>.
+For example, given the number 3, 8, 1, 7, and -3, with <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">=</span> <span class="pre">4</span></code>,
+the result is <code class="docutils literal notranslate"><span class="pre">true</span></code> because the values 3 and 1 sum to 4.
+If <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">=</span> <span class="pre">6</span></code>, then the result will be <code class="docutils literal notranslate"><span class="pre">true</span></code> because the
+<span class="math notranslate nohighlight">\(8 + 1 + -3 = 6\)</span>.
+On the other hand, if <code class="docutils literal notranslate"><span class="pre">sum</span> <span class="pre">=</span> <span class="pre">2</span></code> then the result is <code class="docutils literal notranslate"><span class="pre">false</span></code>
+there is no combination of the five numbers that adds up to 2.
+In this code, variable <code class="docutils literal notranslate"><span class="pre">n</span></code> is the number of values that we look
+at.
+We don’t want to just use <code class="docutils literal notranslate"><span class="pre">set.length</span></code> because the recursive
+calls need to limit their work to part of the array.</p>
+<div id="IsSubsetSum_code"><ul><li><a href="#IsSubsetSum_code_Java_Generic">Java (Generic)</a></li><li><a href="#IsSubsetSum_code_Java">Java</a></li></ul><div id="IsSubsetSum_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">isSubsetSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">set</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">);</span>	
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="IsSubsetSum_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">isSubsetSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">set</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">sum</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">);</span>	
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#IsSubsetSum_code" ).tabs();});</script><p>This example has two base cases and two recursive calls.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 4.5.3 </p>
+<p>Here is a function that has multiple base cases and multiple
+recursive calls.
+Function <code class="docutils literal notranslate"><span class="pre">paths</span></code> counts the number of different ways to reach a
+given basketball score.
+Recall that in Basketball, it is possible to get points in
+increments of 1, 2, or 3.
+So if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">3</span></code>, then <code class="docutils literal notranslate"><span class="pre">paths</span></code> will return 4, since there are four
+different ways to accumulate 3 points: <span class="math notranslate nohighlight">\(1+1+1, 1+2, 2+1,\)</span> and 3.</p>
+<div id="Paths_code"><ul><li><a href="#Paths_code_Java_Generic">Java (Generic)</a></li><li><a href="#Paths_code_Java">Java</a></li></ul><div id="Paths_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">paths</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Paths_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">paths</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Paths_code" ).tabs();});</script><p>This function has three base cases and three recursive calls.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="CodeCompletionEx.html">4.<span class="section-number">3. </span>Code Completion Practice Exercises</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="HarderCodeCompletionEx.html">4.<span class="section-number">5. </span>Harder Code Completion Practice Exercises</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

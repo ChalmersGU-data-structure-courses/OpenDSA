@@ -1,0 +1,542 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2.3. Basic References Part 2 &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="4. Pointers Syntax" href="Syntax.html" />
+    <link rel="prev" title="2. Basic References Part 1" href="BasicPointers1.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 2 References, repetition</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BasicPointers2.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BasicPointers1.html">2.<span class="section-number">2. </span>Basic References Part 1</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Syntax.html">2.<span class="section-number">4. </span>Pointers Syntax</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sharing', 'shallow-and-deep-copying', 'what-does-it-mean-to-copy', 'shallow-and-deep-comparing', 'bad-references', 'why-are-bad-reference-bugs-so-common'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers2";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 2";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/shallowdeepCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Pointers/shallowdeepExampleCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Pointers/empRefnullCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Pointers/badPointerPowCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="basic-references-part-2">
+<h1>2.<span class="section-number">3. </span>Basic References Part 2<a class="headerlink" href="#basic-references-part-2" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sharing">
+<h2>2.<span class="section-number">3.1. </span>Sharing<a class="headerlink" href="#sharing" title="Permalink to this headline">¶</a></h2>
+<p>Two references which both refer to a single pointee are said to be
+“sharing”.
+Sometimes we say that each is an <a class="reference internal" href="Glossary.html#term-alias"><span class="xref std std-term">alias</span></a> for the other, because
+we can refer to the referenced object through either name.
+That two or more references can cooperatively share a single memory
+structure is a key advantage of references.
+References <code class="docutils literal notranslate"><span class="pre">second</span></code> and <code class="docutils literal notranslate"><span class="pre">empRef</span></code> in the above example both share
+the same object, so either can modify the object’s value.
+Reference manipulation is just technique—sharing is often the
+real goal.
+Later we will see how sharing can be used to provide efficient
+communication between parts of a program.</p>
+<div
+    id="PointerEX1PRO"
+    class="embedContainer"
+    data-exer-name="PointerEX1PRO"
+    data-long-name="PointerEX1PRO"
+    data-short-name="PointerEX1PRO"
+    data-frame-src="../../../Exercises/Pointers/PointerEX1PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic"
+    data-frame-width="950"
+    data-frame-height="800"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="PointerEX1PRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="shallow-and-deep-copying">
+<h2>2.<span class="section-number">3.2. </span>Shallow and Deep Copying<a class="headerlink" href="#shallow-and-deep-copying" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="what-does-it-mean-to-copy">
+<h3>2.<span class="section-number">3.2.1. </span>What does it mean to copy?<a class="headerlink" href="#what-does-it-mean-to-copy" title="Permalink to this headline">¶</a></h3>
+<p>An important use of sharing is to enable communication between two
+methods.
+One method passes a reference to the object of interest to another
+method.
+Both methods can access the object of interest, but the object of
+interest itself is not copied.
+This communication is called <a class="reference internal" href="Glossary.html#term-shallow-copy"><span class="xref std std-term">shallow copy</span></a> since, instead of
+making and sending a (large) copy of the object of interest, a (small)
+reference is sent and the object of interest is shared.
+The recipient needs to understand that they have a shallow copy,
+so that they know not to change or delete it accidentally,
+since it is shared.
+The alternative—where a complete copy is made and sent—is
+known as a <a class="reference internal" href="Glossary.html#term-deep-copy"><span class="xref std std-term">deep copy</span></a>.
+Deep copies are simpler in a way, since each method can change their
+copy without interfering with the other copy.
+But deep copies run slower because of all the copying.
+And if the second method was <strong>meant</strong> to modify the copy for every
+user of the object, then deep copy won’t let this happen.
+The drawing below shows shallow and deep copying between two methods,
+<code class="docutils literal notranslate"><span class="pre">A()</span></code> and <code class="docutils literal notranslate"><span class="pre">B()</span></code>.
+In the shallow case, the smiley face is shared by passing a reference
+between the two.
+In the deep case, the smiley face is copied, and each method gets
+their own.</p>
+<div class="divdgm" id="shallowdeepfig">
+<div id="shallowdeepCON">
+</div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="shallowdeepExampleCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="shallowdeepExampleCON" data-long-name="Shallow Deep Copy Slideshow" data-exer-id="" alt="Shallow Deep Copy Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="shallowdeepExampleCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="shallowdeepExampleCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="shallowdeepExampleCON_cm_error_msg" class="cm_error_msg">
+   <img id="shallowdeepExampleCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div
+    id="PointerEX2PRO"
+    class="embedContainer"
+    data-exer-name="PointerEX2PRO"
+    data-long-name="PointerEX2PRO"
+    data-short-name="PointerEX2PRO"
+    data-frame-src="../../../Exercises/Pointers/PointerEX2PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic"
+    data-frame-width="950"
+    data-frame-height="800"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="PointerEX2PRO_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="section" id="shallow-and-deep-comparing">
+<h2>2.<span class="section-number">3.3. </span>Shallow and Deep Comparing<a class="headerlink" href="#shallow-and-deep-comparing" title="Permalink to this headline">¶</a></h2>
+<p>Related to copying correctly (shallow means to copy the reference
+itself, deep means to copy the object being referenced), there are
+different levels that we might use to compare things when objects are
+involved.
+One possibility is that we just want to know if two reference
+variables are referencing the same object.
+We could do this with code like the following to see if <code class="docutils literal notranslate"><span class="pre">ref1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ref2</span></code> are referring to the same object:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1 == ref2)
+</pre></div>
+</div>
+<p>So here, we are comparing the value of the arrows, that both are
+pointing to the same box.
+While sometimes this is worth doing, it actually is not all that
+common.
+Any use of <code class="docutils literal notranslate"><span class="pre">==</span></code> with reference variables should be treated with
+extra suspicion.</p>
+<p>Quite often, we want to know if the <strong>values</strong> of the two objects are
+the same.
+This is especially common when the objects are strings.
+We might want to know if two strings are the same, meaning they have
+the same characters in the same order, <strong>not</strong> whether two
+string reference variables are referencing the same string object.
+If we want to know whether the contents of two strings are the same,
+then in most languages we do <strong>not</strong> simply compare the two reference
+variables for equality.
+Instead, we need to do a “deep comparison” where we are looking at the
+characters in the strings themselves.
+Most languages have methods to do this for you.
+In Java, we can see if two strings are the same with the <code class="docutils literal notranslate"><span class="pre">.equals()</span></code>
+method of the <code class="docutils literal notranslate"><span class="pre">String</span></code> class, like this:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1.equals(ref2))
+</pre></div>
+</div>
+<p>In Java, another option for comparing the values of two string
+objects is the <code class="docutils literal notranslate"><span class="pre">.compareTo()</span></code> method.
+This will return -1 if the first is less than the second in
+alphabetical order, 0 if they are the same, and 1 if the first is
+greater than the second.
+The following is equivalent to the use of <code class="docutils literal notranslate"><span class="pre">.equals()</span></code> shown above:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1.compareTo(ref2) == 0)
+</pre></div>
+</div>
+</div>
+<div class="section" id="bad-references">
+<h2>2.<span class="section-number">3.4. </span>Bad References<a class="headerlink" href="#bad-references" title="Permalink to this headline">¶</a></h2>
+<p>When a reference is first allocated, it does not have a pointee.
+The reference is <a class="reference internal" href="Glossary.html#term-uninitialized"><span class="xref std std-term">uninitialized</span></a> or simply “bad”.
+In Java, references are actually initialized to the value <code class="docutils literal notranslate"><span class="pre">null</span></code>,
+while in some other languages they are literally of unknown value.
+Either way, dereferencing a bad or null reference value is a serious
+runtime error.
+The dereference operation will crash or halt immediately.
+Each reference must be assigned a pointee before it can support
+dereference operations.
+Before that, the reference is bad and must not be used.
+In our memory drawings, the bad reference value is drawn as a diagonal
+line between the corners of the reference variable’s box.</p>
+<div class="divdgm" id="numptrxxxfig">
+<div id="empRefnullCON">
+</div>
+</div>
+<p>Bad references are common.
+In fact,  <strong>every reference starts out with a bad value</strong>.
+Correct code overwrites the bad value with a correct reference to a
+pointee, and thereafter the reference works fine.
+There is nothing automatic that gives a reference a valid pointee.
+You just have to program carefully.
+Fortunately, the Java compiler will usually spot when a reference
+variable has not been initialized, and generate an error (meaning
+that you cannot even complete compiling and run the program).</p>
+<p>On the other hand, that does not stop you from assigning the variable
+to something that will lead to a serious problem later.
+If your code is crashing, a bad reference should be your first
+suspicion.
+In Java, the run-time system checks each time that a reference
+variable is dereferenced to see if it is <code class="docutils literal notranslate"><span class="pre">null</span></code>.
+So code can still exhibit reference bugs, but the kind that
+dereferences a <code class="docutils literal notranslate"><span class="pre">null</span></code> value will at least halt politely on the
+offending line.
+A runtime error called <code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code> will occur and
+the program will stop.
+As a result, it is much easier to locate and fix reference bugs in
+Java.
+Such run-time checks are also a reason why Java tends to run at least
+a little slower than a language like C or C++.</p>
+<p>One way to think about reference code is that it operates at two
+levels—reference level and pointee level.
+The trick is that <strong>both</strong> levels need to be initialized and connected
+for things to work.
+(1) The reference must be allocated,
+(2) the pointee must be allocated, and (3) the reference must be
+assigned to point to the pointee.
+It’s rare to forget step (1).
+But forget (2) or (3), and the whole thing will blow up at the first
+dereference.
+For example, a popular mistake is to declare a string variable,
+but then never assign it an actual string before tyring to print or
+otherwise use it.
+Remember to account for both levels.
+Making a memory drawing during your design can help to make sure that
+it’s right.</p>
+<p>Code with the most common sort of reference bug will <strong>look</strong> correct,
+but without the middle step where the references
+are assigned pointees.
+The bad code will compile fine, but at run-time, each dereference with
+a bad reference will raise <code class="docutils literal notranslate"><span class="pre">NullPointerException</span></code> and the program
+will crash.
+It is up to you to ensure that each reference is assigned a pointee
+before it is used.
+Here is a simple example of bad code, and a
+visualization of how memory would react if this code were executed.</p>
+<div id="badPointers_badPointers_code"><ul><li><a href="#badPointers_badPointers_code_Java_Generic">Java (Generic)</a></li><li><a href="#badPointers_badPointers_code_Java">Java</a></li></ul><div id="badPointers_badPointers_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>        <span class="n">Employee</span> <span class="n">badPointer</span><span class="p">;</span> <span class="c1">// Allocate the reference ...</span>
+        <span class="c1">// badPointer = new Employee(&quot;Sam&quot;, 1000); ... but forget the pointee</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">badPointer</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>  <span class="c1">// This line causes a NullPointerException</span>
+</pre></div>
+</div>
+</div><div id="badPointers_badPointers_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>        <span class="n">Employee</span> <span class="n">badPointer</span><span class="p">;</span> <span class="c1">// Allocate the reference ...</span>
+        <span class="c1">// badPointer = new Employee(&quot;Sam&quot;, 1000); ... but forget the pointee</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">badPointer</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>  <span class="c1">// This line causes a NullPointerException</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#badPointers_badPointers_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="badPointerPowCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="badPointerPowCON" data-long-name="badPointerPowCON" data-exer-id="" alt="badPointerPowCON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="badPointerPowCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="badPointerPowCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="badPointerPowCON_cm_error_msg" class="cm_error_msg">
+   <img id="badPointerPowCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="section" id="why-are-bad-reference-bugs-so-common">
+<h3>2.<span class="section-number">3.4.1. </span>Why Are Bad Reference Bugs So Common?<a class="headerlink" href="#why-are-bad-reference-bugs-so-common" title="Permalink to this headline">¶</a></h3>
+<p>In the <code class="docutils literal notranslate"><span class="pre">badPointer</span></code> example above,
+the compiler would actually catch the mistake above before it is
+allowed to even run, because the unitialized reference is being
+dereferenced.
+But the exact same result would happen if your program had for some
+reason set the value of <code class="docutils literal notranslate"><span class="pre">badPointer</span></code> to <code class="docutils literal notranslate"><span class="pre">null</span></code>.
+The compiler cannot catch that for you.</p>
+<p>There must be a reason why Java cares so much about dereferencing
+<code class="docutils literal notranslate"><span class="pre">null</span></code> pointers, that its always watching out for it. Why?
+Because it happens in a lot of programs.</p>
+<p>Why is it so often the case that programmers will allocate a
+reference, but forget to set it to refer to a pointee?
+Or, why will a programmer set the value of a reference to be <code class="docutils literal notranslate"><span class="pre">null</span></code>,
+and then dereference it?
+The rules for references do not seem that complex, yet every
+programmer makes this error repeatedly. Why?
+One explanation is that we are trained by the tools that we use.
+Simple variables don’t require any extra setup.
+You can allocate a simple variable, such as <code class="docutils literal notranslate"><span class="pre">int</span></code>, and use it
+immediately.
+You can change it to whatever you want, and the value won’t typically
+make the program crash.
+Try to remember not to dereference a <code class="docutils literal notranslate"><span class="pre">null</span></code> pointer value.
+But don’t be surprised when it happens, and your program breaks.</p>
+<script type="text/javascript" src="../../../AV/Pointers/shallowdeepCON.js"></script>
+<script type="text/javascript" src="../../../AV/Pointers/shallowdeepExampleCON.js"></script>
+<script type="text/javascript" src="../../../AV/Pointers/empRefnullCON.js"></script>
+<script type="text/javascript" src="../../../AV/Pointers/badPointerPowCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BasicPointers1.html">2.<span class="section-number">2. </span>Basic References Part 1</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Syntax.html">2.<span class="section-number">4. </span>Pointers Syntax</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Oct 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>
