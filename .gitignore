@@ -26,8 +26,7 @@ SourceCode/Java/SortTime/build
 # *.csv
 
 # Books directory (these are build targets)
-# (Commented out, to make Github Pages work)
-# Books
+Books
 
 #StandaloneModules directory (these are build targets)
 StandaloneModules
