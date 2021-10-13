@@ -12,6 +12,7 @@ interface List(E) extends Collection(E)
     get(i:int)      : E   // Returns the element at position i; where 0 <= i < size.
     set(i:int, x:E) : E   // Replaces the value at position i with x; where 0 <= i < size.
     remove(i:int)   : E   // Removes the element at position i; where 0 <= i < size.
+    // Note: iterator() should return elements starting from position 0
 /* *** ODSAendTag: ListADT *** */
 
 
@@ -20,6 +21,7 @@ interface Stack(E) extends Collection(E)
     push(x:E)       // Pushes x on top of the stack.
     pop()     : E   // Pops the top of the stack and returns it.
     peek()    : E   // Returns the top element of the stack, without removing it.
+    // Note: iterator() should return elements starting from the top of the stack
 /* *** ODSAendTag: StackADT *** */
 
 
@@ -28,6 +30,7 @@ interface Queue(E) extends Collection(E)
     enqueue(x:E)       // Enqueues x at the end of the queue.
     dequeue()    : E   // Dequeues the frontmost element.
     peek()       : E   // Returns the frontmost element, without removing it.
+    // Note: iterator() should return elements starting from the next to be dequeued
 /* *** ODSAendTag: QueueADT *** */
 
 

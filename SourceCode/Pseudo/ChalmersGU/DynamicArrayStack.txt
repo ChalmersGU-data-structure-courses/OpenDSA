@@ -2,35 +2,35 @@
 /* *** ODSATag: DynamicArrayStack *** */
 /* *** ODSATag: DynamicArrayStackInit *** */
 class DynamicArrayStack(E) implements Stack(E)
-    private internalArray : E[]
-    private top           : int
+    private internalArray : E[]   // Internal array containing the stack elements
+    private stackSize     : int   // Size of stack, and index of the next free slot
 
     DynamicArrayStack()
         internalArray = new array of size 1
-        top = 0
+        stackSize = 0
 /* *** ODSAendTag: DynamicArrayStackInit *** */
 
 /* *** ODSATag: DynamicArrayStackPush *** */
     push(x:E)
-        if top >= size of internalArray
+        if stackSize >= size of internalArray
             resizeArray(2 * size of internalArray)
-        internalArray[top] = x
-        top += 1
+        internalArray[stackSize] = x
+        stackSize += 1
 /* *** ODSAendTag: DynamicArrayStackPush *** */
 
 /* *** ODSATag: DynamicArrayStackPeek *** */
-    // Precondition: top > 0
     peek() : E
-        return internalArray[top-1]
+        // Precondition: stackSize > 0
+        return internalArray[stackSize-1]
 /* *** ODSAendTag: DynamicArrayStackPeek *** */
 
 /* *** ODSATag: DynamicArrayStackPop *** */
-    // Precondition: top > 0
     pop() : E
-        top -= 1
-        x : E = internalArray[top]
-        internalArray[top] = null   // For garbage collection
-        if top < size of internalArray / 3
+        // Precondition: stackSize > 0
+        stackSize -= 1
+        x : E = internalArray[stackSize]
+        internalArray[stackSize] = null   // For garbage collection
+        if stackSize < size of internalArray / 3
             resizeArray(size of internalArray / 2)
         return x
 /* *** ODSAendTag: DynamicArrayStackPop *** */
@@ -38,19 +38,19 @@ class DynamicArrayStack(E) implements Stack(E)
 /* *** ODSATag: DynamicArrayStackResize *** */
     private resizeArray(newCapacity:int)
         newArray : E[] = new array of size newCapacity
-        for i in 0, 1, ..., top-1
+        for i in 0, 1, ..., stackSize-1
             newArray[i] = internalArray[i]
         internalArray = newArray
 /* *** ODSAendTag: DynamicArrayStackResize *** */
 
     isEmpty() : boolean
-        return top == 0
+        return stackSize == 0
 
     size() : int
-        return top
+        return stackSize
 
 /* *** ODSATag: DynamicArrayStackIterator *** */
     iterator() : Iterator(E)
-        return an iterator over the elements in internalArray
+        return an iterator over the elements in internalArray, starting from the top element
 /* *** ODSAendTag: DynamicArrayStackIterator *** */
 /* *** ODSAendTag: DynamicArrayStack *** */

@@ -4,8 +4,8 @@ import java.util.Iterator;
 /* *** ODSATag: StaticArrayList *** */
 /* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList<E> implements List<E> {
-    private E[] internalArray;
-    private int listSize;
+    private E[] internalArray;   // Internal array containing the list elements
+    private int listSize;        // Size of list
 
     @SuppressWarnings("unchecked")
     public StaticArrayList(int capacity) {

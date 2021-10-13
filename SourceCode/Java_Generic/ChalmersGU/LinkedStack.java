@@ -4,7 +4,7 @@ import java.util.Iterator;
 /* *** ODSATag: LinkedStack *** */
 /* *** ODSATag: LinkedStackInit *** */
 class LinkedStack<E> implements Stack<E> {
-    private Node top;        // Pointer to stack header
+    private Node top;        // Pointer to top of stack
     private int stackSize;   // Size of stack
 
     LinkedStack() {
@@ -13,15 +13,17 @@ class LinkedStack<E> implements Stack<E> {
     }
 /* *** ODSAendTag: LinkedStackInit *** */
 
+/* *** ODSATag: LinkedStackNode *** */
     private class Node {
         E elem;       // Value for this node
-        Node next;    // Pointer to next node in list
+        Node next;    // Pointer to next node in stack
 
         Node(E elem, Node next) {
             this.elem = elem;
             this.next = next;
         }
     }
+/* *** ODSAendTag: LinkedStackNode *** */
 
 /* *** ODSATag: LinkedStackPush *** */
     public void push(E x) {

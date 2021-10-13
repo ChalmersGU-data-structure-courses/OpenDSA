@@ -2,8 +2,8 @@
 /* *** ODSATag: StaticArrayList *** */
 /* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList(E) implements List(E)
-    private internalArray : E[]
-    private listSize      : int
+    private internalArray : E[]   // Internal array containing the list elements
+    private listSize      : int   // Size of list
 
     StaticArrayList(capacity:int)
         internalArray = new array of size capacity
@@ -11,20 +11,21 @@ class StaticArrayList(E) implements List(E)
 /* *** ODSAendTag: StaticArrayListInit *** */
 
 /* *** ODSATag: StaticArrayListGetSet *** */
-    // Precondition: 0 <= i < listSize
     get(i:int) : E
+        // Precondition: 0 <= i < listSize
         return internalArray[i]
 
-    // Precondition: 0 <= i < listSize
     set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
         old : E = internalArray[i]
         internalArray[i] = x
         return old
 /* *** ODSAendTag: StaticArrayListGetSet *** */
 
 /* *** ODSATag: StaticArrayListAdd *** */
-    // Precondition: 0 <= i <= listSize, and listSize < size of internalArray
     add(i:int, x:E)
+        // Precondition: listSize < size of internalArray
+        // Precondition: 0 <= i <= listSize
         listSize += 1
         for k in listSize-1, listSize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
@@ -32,8 +33,9 @@ class StaticArrayList(E) implements List(E)
 /* *** ODSAendTag: StaticArrayListAdd *** */
 
 /* *** ODSATag: StaticArrayListRemove *** */
-    // Precondition: 0 <= i < listSize, and listSize > 0
     remove(i:int) : E
+        // Precondition: listSize > 0
+        // Precondition: 0 <= i < listSize
         x : E = internalArray[i]
         for k in i+1, i+2, ..., listSize-1
             internalArray[k] = internalArray[k+1]
@@ -49,5 +51,5 @@ class StaticArrayList(E) implements List(E)
         return listSize
 
     iterator() : Iterator(E)
-        return an iterator over the elements in internalArray
+        return an iterator over the elements in internalArray, starting from element 0
 /* *** ODSAendTag: StaticArrayList *** */

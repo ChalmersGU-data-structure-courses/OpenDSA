@@ -5,8 +5,8 @@ from API import List
 #/* *** ODSATag: StaticArrayListInit *** */
 class StaticArrayList(List):
     def __init__(self, capacity):
-        self._internalArray = [None] * capacity
-        self._listSize = 0
+        self._internalArray = [None] * capacity   # Internal array containing the list elements
+        self._listSize = 0                        # Size of list
 #/* *** ODSAendTag: StaticArrayListInit *** */
 
 #/* *** ODSATag: StaticArrayListGetSet *** */

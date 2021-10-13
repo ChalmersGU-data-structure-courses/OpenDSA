@@ -5,10 +5,11 @@ from API import List, Iterator
 #/* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList(List):
     def __init__(self):
-        self._internalArray = [None]
-        self._listSize = 0
+        self._internalArray = [None]   # Internal array containing the list elements
+        self._listSize = 0             # Size of list
 #/* *** ODSAendTag: DynamicArrayListInit *** */
 
+#/* *** ODSATag: DynamicArrayListGetSet *** */
     def get(self, i):
         if not (0 <= i < self._listSize): raise IndexError("array index out of range")
         return self._internalArray[i]
@@ -18,6 +19,7 @@ class DynamicArrayList(List):
         old = self._internalArray[i]
         self._internalArray[i] = x
         return old
+#/* *** ODSAendTag: DynamicArrayListGetSet *** */
 
 #/* *** ODSATag: DynamicArrayListAdd *** */
     def add(self, i, x):
