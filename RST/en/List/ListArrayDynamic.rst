@@ -51,7 +51,7 @@ So the dynamic ``add`` method will look like this.
    :output: show
 
 How much to increase the array size
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 In the code above we doubled the size of the internal array whenever
 we needed to resize it. But we could have done something else, like:
@@ -70,7 +70,7 @@ On the other hand, if we grow the array by a small amount, we need to
 resize it more often.
 
 We will explore these tradeoffs by looking at the performance of the
-following small program under different resizing strategies:
+following small program under different resizing strategies::
 
   list = new dynamic array list
   for i in 1..n:
@@ -82,8 +82,8 @@ In this case, we could have used a static array-based list of capacity
 comparable performance to the static array-based list. This means that
 the program ought to take `linear time`.
 
-Growing by a constant
-^^^^^^^^^^^^^^^^^^^^^
+Growing by a constant amount
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What happens if we only grow the internal array by 1 element when we resize it?
 
@@ -128,29 +128,141 @@ What happens if we instead grow the array by 100 elements every time?
 You can try the calculation yourself, for say :math:`n = 1,000,000`.
 What happens is that ``resizeArray`` gets called 100 times less
 often -- so there 100 times fewer elements copied. But the runtime is
-still quadratic. When :math:`n = 1,000,000`, the total number of
+still quadratic [1]_. When :math:`n = 1,000,000`, the total number of
 elements copied is about :math:`5,000,000,000`, still far too many.
 
 In short, **growing the array size by a constant amount is bad**,
 because a loop that repeatedly adds to the array will take quadratic time.
 
-Growing by a factor
-^^^^^^^^^^^^^^^^^^^
+Growing by a constant factor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-As discussed in the module about
-:ref:`string building <StringReading>`,
-it's not a good idea to increase the size by a constant.
-Instead we should **grow the array by a factor**, i.e. multiply not add!
-For simplicity, let's
+One way to think about the problem is: as the array gets bigger,
+resizing it gets more expensive. So, to make up for that, when the
+array is bigger we need to grow it by more, so that it gets resized
+less often. One way to do this is to always double the array size when
+it gets full. This turns out to work well!
+
+Suppose that we run the example program with :math:`n = 1000`, i.e. we
+add 1000 elements to the list. As before, the internal array initially
+has a size of 1. What calls to ``resizeArray`` happen, and how many
+elements get copied each time?
+
+* ``resizeArray(2)``, copying 1 element
+* ``resizeArray(4)``, copying 2 elements
+* ``resizeArray(8)``, copying 4 elements
+* ``resizeArray(16)``, copying 8 elements
+* ``resizeArray(32)``, copying 16 elements
+* ``resizeArray(64)``, copying 32 elements
+* ``resizeArray(128)``, copying 64 elements
+* ``resizeArray(256)``, copying 128 elements
+* ``resizeArray(512)``, copying 256 elements
+* ``resizeArray(1024)``, copying 512 elements
+
+You can see that the array gets resized a whole lot at the beginning
+-- but as it gets bigger, it gets resized much less often. We can read
+off how many elements get copied: :math:`1+2+4+8+16+32+64+128+256+512 = 1023`.
+
+Since the array starts from size 1 and always doubles, the array size
+is always a power of two. So to calculate the total number of elements
+copied, instead of adding up all the terms by hand, we can use the
+formula :math:`2^0+2^1+2^2+...+2^n = 2^{n+1}-1` (with :math:`512=2^9`).
+
+Suppose that we now choose :math:`n=1,000,000`. How many elements get
+copied? In this case the final array size will be :math:`2^20 = 1,048,576`.
+The array size will eventually grow from :math:`2^18` to :math:`2^19`
+to :math:`2^20` elements, with the final call to ``resizeArray``
+copying :math:`2^19` elements. Using the formula above, the total number
+of elements copied is :math:`2^0+2^1+2^2+...+2^19 = 2^20-1 = 1,048,575`.
+
+Compared to when we grew the array by a fixed size of 1 element, this is
+:math:`500,000` times fewer! So this in fact seems to be nice and efficient.
+
+Let us now generalise to an arbitrary :math:`n`. The worst case is when
+the final call to ``add`` has to resize the array -- that happens when
+:math:`n` is one more than a power of two, :math:`n-1 = 2^k`. In that
+case, the final call to ``resizeArray`` grows the array from
+:math:`2^k` to :math:`2^{k+1}`, copying :math:`2^k` elements.
+The total number of elements copied is :math:`2^0+2^1+2^2+...+2^k
+= 2^{k+1} - 1 = 2 \cdot 2^k - 1 = 2(n-1) - 1 = 2n-3`. In fact, we have
+just proved the following result.
+
+**Theorem:** When using the array-doubling strategy, calling
+``add`` :math:`n` times starting from an empty dynamic array list
+causes fewer than :math:`2n` elements to be copied.
+
+In short, the overhead of using a dynamic array list is at most `two
+array elements copied per element that we add`. But copying an array
+element is an extremely cheap operation, so dynamic array lists
+implemented using array doubling have almost no overhead, compared to
+static array lists. In particular, the complexity of our example
+program is `linear`, just as we wanted.
+
+What happens if we instead grow the array by 50%? In fact, it still
+works out fine - the program takes linear time to run. To see this,
+you can use the same argument as above, but instead of using the
+formula :math:`2^0+2^1+...+2^k = 2^{k+1}`, you have to use the formula
+for a general `geometric progression`_. What you get is an overhead of
+`three elements copied per element added`. In fact, Java ``ArrayLists``
+grow the array by 50% on resizing.
+
+In fact, **growing the array by any constant factor** works, because
+the same geometric progression reasoning applies. We can calculate
+the exact performance overhead of growing the array by any given factor:
+
+**Theorem:** If we grow the array by a factor of :math:`k` when
+resizing it, then the overhead is at most :math:`1+1/k` elements
+copied per ``add``. For example, when growing by 20% (k=0.2), the
+overhead is 6 elements copied per ``add``.
+
+In short, when resizing a dynamic array list, we should **grow the
+array size by a factor**, because this gives only a constant factor
+performance overhead compared to using a static array list. We can choose
+a large factor (such as 2) if we want fast performance, or a low
+factor (such as 20%) if we want to save memory.
+
+Constant amount vs constant factor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here is a graph that shows just how big the performance difference is
+between the two resizing strategies: growing the array by a constant
+amount, and scaling it by a constant factor. The graph plots how many
+elements need to be copied, as a function of how many elements we add
+to the list.
+
+.. _ListGrowthGraph:
+
+.. inlineav:: ListArrayDynamicCON dgm
+    :links: AV/List/ListArrayDynamicCON.css
+    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicCON.js
+    :align: center
+
+   The performance of different resizing strategies.
+   The horizontal axis represents the number of elements added to the list.
+   The vertical axis represents how many times the line ``newArray[i] = internalArray[i]`` is executed.
+
+Notice that although growing by 10000 seems pretty good at first, for
+largest lists it's worse than growing by 10%. We can see this more
+clearly if we zoom out the graph, making the *x*-axis go up to
+:math:`10,000,000` instead of :math:`1,000,000`:
+
+.. inlineav:: ListArrayDynamicZoomCON dgm
+    :links: AV/List/ListArrayDynamicZoomCON.css
+    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicZoomCON.js
+    :align: center
+
+   The second graph is a zoomed-in version of the first.
+
+Though you can't see it in the graph, at :math:`x=10,000,000`, growing
+by 10000 is **5000 times** slower than growing by 10%! This is because
+the "growing by 10000" strategy takes quadratic time: if we do 10 times as many
+calls to ``add``, it takes 100 times as long. Quadratic algorithms
+always lose to linear algorithms eventually!
 
 .. TODO::
-   Complexity analysis
+   Probably this table isn't needed.
 
 .. _ListGrowthTable:
-
-.. topic:: Table
-
-   Amount of elements copied for different list sizes.
 
    .. math::
 
@@ -165,17 +277,7 @@ For simplicity, let's
     \mathsf{1,000,000} & \mathsf{499,999,500,000} & \mathsf{4,999,500,000} & \mathsf{49,500,000} & \mathsf{10,170,704} & \mathsf{2,099,753} & \mathsf{1,048,575}
       \end{array}
 
-.. _ListGrowthGraph:
-
-.. inlineav:: ListArrayDynamicZoomCON dgm
-    :links: AV/List/ListArrayDynamicZoomCON.css
-    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicZoomCON.js
-    :align: center
-
-   The performance of different resizing strategies.
-   The horizontal axis represents the number of elements added to the list.
-   The vertical axis represents how many times the line ``newArray[i] = internalArray[i]`` is executed.
-
+   The number of elements copied by different resizing strategies.
 
 Practice Exercise
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -263,3 +365,8 @@ since the internal array will automatically grow when needed.
 .. codeinclude:: ChalmersGU/DynamicArrayList
    :tag: DynamicArrayList
 
+.. [1] You can get a precise number by using the formula for an
+   `arithmetic progression`_.
+
+.. _arithmetic progression: https://en.wikipedia.org/wiki/Arithmetic_progression
+.. _geometric progression: https://en.wikipedia.org/wiki/Geometric_progression

@@ -4,7 +4,8 @@
 $(document).ready(function() {
   function _add(k) {
     return function(n) {
-      return n*(n-1)/(2*k);
+      var size = Math.ceil(n/k)*k;
+      return size*(size-1)/(2*k);
     }
   }
 
