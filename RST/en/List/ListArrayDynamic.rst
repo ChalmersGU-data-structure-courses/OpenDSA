@@ -237,10 +237,6 @@ to the list.
     :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicCON.js
     :align: center
 
-   The performance of different resizing strategies.
-   The horizontal axis represents the number of elements added to the list.
-   The vertical axis represents how many times the line ``newArray[i] = internalArray[i]`` is executed.
-
 Notice that although growing by 10000 seems pretty good at first, for
 largest lists it's worse than growing by 10%. We can see this more
 clearly if we zoom out the graph, making the *x*-axis go up to
@@ -250,8 +246,6 @@ clearly if we zoom out the graph, making the *x*-axis go up to
     :links: AV/List/ListArrayDynamicZoomCON.css
     :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicZoomCON.js
     :align: center
-
-   The second graph is a zoomed-in version of the first.
 
 Though you can't see it in the graph, at :math:`x=10,000,000`, growing
 by 10000 is **5000 times** slower than growing by 10%! This is because

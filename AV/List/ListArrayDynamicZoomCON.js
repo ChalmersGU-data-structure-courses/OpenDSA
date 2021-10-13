@@ -21,7 +21,8 @@ $(document).ready(function() {
     }
   }
 
-  Plot.plotFuncs("ListArrayDynamicZoomCON", 1000000, 10000000, null, null,
+  Plot.plotFuncs("ListArrayDynamicZoomCON", 600, 200, 100, 25,
+    1000000, 10000000, null, null,
     [[_add(1), "+1", "red"],
      [_add(100), "+100", "green"],
      [_add(10000), "+10000", "blue"],

@@ -49,20 +49,21 @@
     // The canvas is 600x300 pixels.
     //
     // name: CSS name
+    // width, height: plot size in pixels
+    // xmargin, ymargin: margin size (note: x-axis labels are drawn in margin)
     // xMax, yMax: maximum x and y value to plot
     // boxX, boxY: if these are non-null a dashed box is drawn from
     //   (0,0) to (boxX, boxY); if one is non-null a line is drawn
     // funcs: list of functions to plot, each should be in the form
     //   ["name", function, "line colour"]
     //   e.g. ["sin", Math.sin, "red"]
-    plotFuncs: function(name, xMax, yMax, boxX, boxY, funcs) {
+    plotFuncs: function(name, width, height, xmargin, ymargin, xMax, yMax, boxX, boxY, funcs) {
       "use strict";
       var i;
       var av = new JSAV(name, {animationMode: "none"});
-      var width = 600, height = 300;
-      var xStart = 100;
+      var xStart = xmargin;
       var xEnd = xStart + width;  //end position of the x on the chart
-      var yEnd = 50;
+      var yEnd = ymargin;
       var yStart = yEnd + height;  //end position of the y on the chart
       var xSteps = width / xMax;  //each pixels per 1 x-unit.
       var ySteps = height / yMax;  //each pixels per 1 y-unit.
