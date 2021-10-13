@@ -26,12 +26,8 @@ and copy over all elements to the new one.
 .. codeinclude:: ChalmersGU/DynamicArrayList
    :tag: DynamicArrayListResize
 
-So, how large should the new internal array be?
-As discussed in the module about
-:ref:`string building <StringReading>`,
-it's not a good idea to increase the size by a constant.
-Instead we should **grow the array by a factor**, i.e. multiply not add!
-For simplicity, let's double the size of the internal array when we need to resize,
+So, how large should the new internal array be? For now, let's
+**double the size of the internal array** when we need to resize,
 which means that we add the following if-clause to the ``add`` method:
 
 ::
@@ -56,6 +52,96 @@ So the dynamic ``add`` method will look like this.
 
 How much to increase the array size
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the code above we doubled the size of the internal array whenever
+we needed to resize it. But we could have done something else, like:
+
+* Triple the size
+* Grow the size by 10%
+* Grow the size by 100 elements
+* Grow the size by 1 element
+
+But which is best, and why?
+
+There is a tradeoff: if we grow the array by a lot, we might waste
+memory. For example, immediately after we double the size, half of the
+array's capacity is unused, so we use twice as much memory as needed.
+On the other hand, if we grow the array by a small amount, we need to
+resize it more often.
+
+We will explore these tradeoffs by looking at the performance of the
+following small program under different resizing strategies:
+
+  list = new dynamic array list
+  for i in 1..n:
+    list.add(i)
+
+The program builds a list of length `n` by repeatedly calling :math:`add`.
+In this case, we could have used a static array-based list of capacity
+:math:`n`. So we would like the dynamic array-based list to have
+comparable performance to the static array-based list. This means that
+the program ought to take `linear time`.
+
+Growing by a constant
+^^^^^^^^^^^^^^^^^^^^^
+
+What happens if we only grow the internal array by 1 element when we resize it?
+
+::
+
+        if listSize >= size of internalArray
+            resizeArray(size of internalArray+1)
+
+Every time we call ``add``, the internal array will be resized.
+Resizing the array takes linear time, because if the internal array
+has size :math:`n`, then it has to copy :math:`n` elements from the
+internal array to the new array. To put it another way, the loop body
+``newArray[i] = internalArray[i]`` will be executed :math:`n` times.
+
+Now suppose we run the program above to create a list of :math:`n`
+elements.  Adding up all the calls to ``resizeArray`` that happen, how
+many times does an array element get copied from the internal array to
+the new array (that is, how many times is the statement ``newArray[i]
+= internalArray[i]``) get executed?
+
+The array size is initially 1, so we get the following calls to ``resizeArray``:
+
+* ``resizeArray(2)``, copying 1 element
+* ``resizeArray(3)``, copying 2 elements
+* ``resizeArray(4)``, copying 3 elements
+* ...
+* ``resizeArray(n-2)``, copying :math:`n-3` elements
+* ``resizeArray(n-1)``, copying :math:`n-2` elements
+* ``resizeArray(n)``, copying :math:`n-1` elements
+
+In total, there are :math:`1+2+...+(n-1)` element copy operations,
+which is equal to :math:`n(n-1)/2 = (n^2-n)/2`.
+This means that the program takes `quadratic time`, not linear!
+
+Suppose for example that :math:`n = 1,000,000`. Using the formula
+above, the number of times an array element gets copied is
+:math:`999999 \times 1000000/2 = 499,999,500,000`. If copying one
+array element takes 1 ns, then the program spends nearly 10 minutes
+just resizing the array!
+
+What happens if we instead grow the array by 100 elements every time?
+You can try the calculation yourself, for say :math:`n = 1,000,000`.
+What happens is that ``resizeArray`` gets called 100 times less
+often -- so there 100 times fewer elements copied. But the runtime is
+still quadratic. When :math:`n = 1,000,000`, the total number of
+elements copied is about :math:`5,000,000,000`, still far too many.
+
+In short, **growing the array size by a constant amount is bad**,
+because a loop that repeatedly adds to the array will take quadratic time.
+
+Growing by a factor
+^^^^^^^^^^^^^^^^^^^
+
+As discussed in the module about
+:ref:`string building <StringReading>`,
+it's not a good idea to increase the size by a constant.
+Instead we should **grow the array by a factor**, i.e. multiply not add!
+For simplicity, let's
 
 .. TODO::
    Complexity analysis
