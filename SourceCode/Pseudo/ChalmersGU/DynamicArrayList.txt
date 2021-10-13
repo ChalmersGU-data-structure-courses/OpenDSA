@@ -2,27 +2,29 @@
 /* *** ODSATag: DynamicArrayList *** */
 /* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList(E) implements List(E)
-    private internalArray : E[]
-    private listSize      : int
+    private internalArray : E[]   // Internal array containing the list elements
+    private listSize      : int   // Size of list
 
     DynamicArrayList()
         internalArray = new array of size 1
         listSize = 0
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
-    // Precondition: 0 <= i < listSize
+/* *** ODSATag: DynamicArrayListGetSet *** */
     get(i:int) : E
+        // Precondition: 0 <= i < listSize
         return internalArray[i]
 
-    // Precondition: 0 <= i < listSize
     set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
         old : E = internalArray[i]
         internalArray[i] = x
         return old
+/* *** ODSAendTag: DynamicArrayListGetSet *** */
 
 /* *** ODSATag: DynamicArrayListAdd *** */
-    // Precondition: 0 <= i <= listSize
     add(i:int, x:E)
+        // Precondition: 0 <= i <= listSize
         if listSize >= size of internalArray
             resizeArray(2 * size of internalArray)
         listSize += 1
@@ -32,8 +34,9 @@ class DynamicArrayList(E) implements List(E)
 /* *** ODSAendTag: DynamicArrayListAdd *** */
 
 /* *** ODSATag: DynamicArrayListRemove *** */
-    // Precondition: 0 <= i < listSize, and listSize > 0
     remove(i:int) : E
+        // Precondition: listSize > 0
+        // Precondition: 0 <= i < listSize
         x : E = internalArray[i]
         for k in i+1, i+2, ..., listSize-1
             internalArray[k] = internalArray[k+1]
@@ -60,6 +63,6 @@ class DynamicArrayList(E) implements List(E)
 
 /* *** ODSATag: DynamicArrayListIterator *** */
     iterator() : Iterator(E)
-        return an iterator over the elements in internalArray
+        return an iterator over the elements in internalArray, starting from element 0
 /* *** ODSAendTag: DynamicArrayListIterator *** */
 /* *** ODSAendTag: DynamicArrayList *** */

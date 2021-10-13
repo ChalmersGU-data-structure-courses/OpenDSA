@@ -2,7 +2,7 @@
 /* *** ODSATag: LinkedStack *** */
 /* *** ODSATag: LinkedStackInit *** */
 class LinkedStack(E) implements Stack(E)
-    private top       : Node   // Pointer to stack header
+    private top       : Node   // Pointer to top of stack
     private stackSize : int    // Size of stack
 
     LinkedStack()
@@ -10,9 +10,11 @@ class LinkedStack(E) implements Stack(E)
         stackSize = 0
 /* *** ODSAendTag: LinkedStackInit *** */
 
+/* *** ODSATag: LinkedStackNode *** */
     private class Node
         elem : E      // Value for this node
-        next : Node   // Pointer to next node in list
+        next : Node   // Pointer to next node in stack
+/* *** ODSAendTag: LinkedStackNode *** */
 
 /* *** ODSATag: LinkedStackPush *** */
     push(x:E)
@@ -21,14 +23,14 @@ class LinkedStack(E) implements Stack(E)
 /* *** ODSAendTag: LinkedStackPush *** */
 
 /* *** ODSATag: LinkedStackPeek *** */
-    // Precondition: stackSize > 0
     peek() : E
+        // Precondition: stackSize > 0
         return top.elem
 /* *** ODSAendTag: LinkedStackPeek *** */
 
 /* *** ODSATag: LinkedStackPop *** */
-    // Precondition: stackSize > 0
     pop() : E
+        // Precondition: stackSize > 0
         removed : Node = top
         top = removed.next
         removed.next = null   // For garbage collection
@@ -44,7 +46,7 @@ class LinkedStack(E) implements Stack(E)
 
 /* *** ODSATag: LinkedStackIterator *** */
     iterator() : Iterator(E)
-        return an iterator over the nodes in the stack
+        return an iterator over the elements in the stack, starting from the top element
 /* *** ODSAendTag: LinkedStackIterator *** */
 /* *** ODSAendTag: LinkedStack *** */
 

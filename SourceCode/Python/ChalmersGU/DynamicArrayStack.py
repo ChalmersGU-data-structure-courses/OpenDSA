@@ -5,31 +5,31 @@ from API import Stack, Iterator
 #/* *** ODSATag: DynamicArrayStackInit *** */
 class DynamicArrayStack(Stack):
     def __init__(self):
-        self._internalArray = [None]
-        self._top = 0
+        self._internalArray = [None]   # Internal array containing the stack elements
+        self._stackSize = 0            # Size of stack, and index of the next free slot
 #/* *** ODSAendTag: DynamicArrayStackInit *** */
 
 #/* *** ODSATag: DynamicArrayStackPush *** */
     def push(self, x):
-        if self._top >= len(self._internalArray):
+        if self._stackSize >= len(self._internalArray):
             self._resizeArray(2 * len(self._internalArray))
-        self._internalArray[self._top] = x
-        self._top += 1
+        self._internalArray[self._stackSize] = x
+        self._stackSize += 1
 #/* *** ODSAendTag: DynamicArrayStackPush *** */
 
 #/* *** ODSATag: DynamicArrayStackPeek *** */
     def peek(self):
-        if not (self._top > 0): raise IndexError("peek from empty stack")
-        return self._internalArray[self._top-1]
+        if not (self._stackSize > 0): raise IndexError("peek from empty stack")
+        return self._internalArray[self._stackSize-1]
 #/* *** ODSAendTag: DynamicArrayStackPeek *** */
 
 #/* *** ODSATag: DynamicArrayStackPop *** */
     def pop(self):
-        if not (self._top > 0): raise IndexError("pop from empty stack")
-        self._top -= 1
-        x = self._internalArray[self._top]
-        self._internalArray[self._top] = None   # For garbage collection
-        if self._top <= len(self._internalArray) // 3:
+        if not (self._stackSize > 0): raise IndexError("pop from empty stack")
+        self._stackSize -= 1
+        x = self._internalArray[self._stackSize]
+        self._internalArray[self._stackSize] = None   # For garbage collection
+        if self._stackSize <= len(self._internalArray) // 3:
             self._resizeArray(len(self._internalArray) // 2)
         return x
 #/* *** ODSAendTag: DynamicArrayStackPop *** */
@@ -37,20 +37,20 @@ class DynamicArrayStack(Stack):
 #/* *** ODSATag: DynamicArrayStackResize *** */
     def _resizeArray(self, newCapacity):
         newArray = [None] * newCapacity
-        for i in range(self._top):
+        for i in range(self._stackSize):
             newArray[i] = self._internalArray[i]
         self._internalArray = newArray
 #/* *** ODSAendTag: DynamicArrayStackResize *** */
 
     def isEmpty(self):
-        return self._top == 0
+        return self._stackSize == 0
 
     def size(self):
-        return self._top
+        return self._stackSize
 
 #/* *** ODSATag: DynamicArrayStackIterator *** */
     def __iter__(self):
-        return DynamicArrayStackIterator(self._internalArray, self._top)
+        return DynamicArrayStackIterator(self._internalArray, self._stackSize)
 
 # Python does not have internal classes, so we have to make the iterator standalone.
 class DynamicArrayStackIterator(Iterator):

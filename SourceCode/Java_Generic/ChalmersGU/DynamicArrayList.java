@@ -4,8 +4,8 @@ import java.util.Iterator;
 /* *** ODSATag: DynamicArrayList *** */
 /* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList<E> implements List<E> {
-    private E[] internalArray;
-    private int listSize;
+    private E[] internalArray;   // Internal array containing the list elements
+    private int listSize;        // Size of list
 
     @SuppressWarnings("unchecked")
     public DynamicArrayList() {
@@ -14,6 +14,7 @@ class DynamicArrayList<E> implements List<E> {
     }
 /* *** ODSAendTag: DynamicArrayListInit *** */
 
+/* *** ODSATag: DynamicArrayListGetSet *** */
     public E get(int i) {
         if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
         return internalArray[i];
@@ -25,6 +26,7 @@ class DynamicArrayList<E> implements List<E> {
         internalArray[i] = x;
         return old;
     }
+/* *** ODSAendTag: DynamicArrayListGetSet *** */
 
 /* *** ODSATag: DynamicArrayListAdd *** */
     public void add(int i, E x) {

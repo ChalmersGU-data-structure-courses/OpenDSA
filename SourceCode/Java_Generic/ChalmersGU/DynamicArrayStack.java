@@ -4,40 +4,40 @@ import java.util.Iterator;
 /* *** ODSATag: DynamicArrayStack *** */
 /* *** ODSATag: DynamicArrayStackInit *** */
 class DynamicArrayStack<E> implements Stack<E> {
-    private E[] internalArray;
-    private int top;
+    private E[] internalArray;   // Internal array containing the stack elements
+    private int stackSize;       // Size of stack, and index of the next free slot
 
     @SuppressWarnings("unchecked")
     public DynamicArrayStack() {
         internalArray = (E[]) new Object[1];
-        top = 0;
+        stackSize = 0;
     }
 /* *** ODSAendTag: DynamicArrayStackInit *** */
 
 /* *** ODSATag: DynamicArrayStackPush *** */
     public void push(E x) {
-        if (top >= internalArray.length) {
+        if (stackSize >= internalArray.length) {
             resizeArray(2 * internalArray.length);
         }
-        internalArray[top] = x;
-        top++;
+        internalArray[stackSize] = x;
+        stackSize++;
     }
 /* *** ODSAendTag: DynamicArrayStackPush *** */
 
 /* *** ODSATag: DynamicArrayStackPeek *** */
     public E peek() {
-        if (!(top > 0)) throw new IndexOutOfBoundsException("peek from empty stack");
-        return internalArray[top-1];
+        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("peek from empty stack");
+        return internalArray[stackSize-1];
     }
 /* *** ODSAendTag: DynamicArrayStackPeek *** */
 
 /* *** ODSATag: DynamicArrayStackPop *** */
     public E pop() {
-        if (!(top > 0)) throw new IndexOutOfBoundsException("pop from empty stack");
-        top--;
-        E x = internalArray[top];
-        internalArray[top] = null;   // For garbage collection
-        if (top <= internalArray.length / 3) {
+        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("pop from empty stack");
+        stackSize--;
+        E x = internalArray[stackSize];
+        internalArray[stackSize] = null;   // For garbage collection
+        if (stackSize <= internalArray.length / 3) {
             resizeArray(internalArray.length / 2);
         }
         return x;
@@ -48,7 +48,7 @@ class DynamicArrayStack<E> implements Stack<E> {
     private void resizeArray(int newCapacity) {
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[newCapacity];
-        for (int i = 0; i < top; i++) {
+        for (int i = 0; i < stackSize; i++) {
             newArray[i] = internalArray[i];
         }
         internalArray = newArray;
@@ -56,11 +56,11 @@ class DynamicArrayStack<E> implements Stack<E> {
 /* *** ODSAendTag: DynamicArrayStackResize *** */
 
     public boolean isEmpty() {
-        return top == 0;
+        return stackSize == 0;
     }
 
     public int size() {
-        return top;
+        return stackSize;
     }
 
 /* *** ODSATag: DynamicArrayStackIterator *** */
@@ -71,7 +71,7 @@ class DynamicArrayStack<E> implements Stack<E> {
     private class DynamicArrayStackIterator implements Iterator<E> {
         private int index;
         DynamicArrayStackIterator() {
-            index = top;
+            index = stackSize;
         }
         public boolean hasNext() {
             return index > 0;

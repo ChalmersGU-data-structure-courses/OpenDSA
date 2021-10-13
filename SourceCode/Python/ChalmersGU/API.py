@@ -14,6 +14,7 @@ class List(Collection):
     def get(self, i):    """Returns the element at position i."""
     def set(self, i, x): """Replaces the value at position i with x."""
     def remove(self, i): """Removes the element at position i."""
+    # Note: iterator() should return elements starting from position 0
 #/* *** ODSAendTag: ListADT *** */
 
 
@@ -22,6 +23,7 @@ class Stack(Collection):
     def push(self, x): """Pushes x on top of the stack."""
     def pop(self):     """Pops the top of the stack and returns it."""
     def peek(self):    """Returns the top element of the stack, without removing it."""
+    # Note: iterator() should return elements starting from the top of the stack
 #/* *** ODSAendTag: StackADT *** */
 
 
@@ -30,6 +32,7 @@ class Queue(Collection):
     def enqueue(self, x): """Enqueues x at the end of the queue."""
     def dequeue(self):    """Dequeues the frontmost element."""
     def peek(self):       """Returns the frontmost element, without removing it."""
+    # Note: iterator() should return elements starting from the next to be dequeued
 #/* *** ODSAendTag: QueueADT *** */
 
 

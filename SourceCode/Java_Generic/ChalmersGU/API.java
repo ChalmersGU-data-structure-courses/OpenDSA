@@ -20,6 +20,7 @@ interface List<E> extends Collection<E> {
     E get(int i);          // Returns the element at position i.
     E set(int i, E x);     // Replaces the value at position i with x.
     E remove(int i);       // Removes the element at position i.
+    // Note: iterator() should return elements starting from position 0
 }
 /* *** ODSAendTag: ListADT *** */
 
@@ -30,6 +31,7 @@ interface Stack<E> extends Collection<E> {
     void push(E x);  // Pushes x on top of the stack.
     E pop();         // Pops the top of the stack and returns it.
     E peek();        // Returns the top element of the stack, without removing it.
+    // Note: iterator() should return elements starting from the top of the stack
 }
 /* *** ODSAendTag: StackADT *** */
 
@@ -40,6 +42,7 @@ interface Queue<E> extends Collection<E> {
     void enqueue(E x);  // Enqueues x at the end of the queue.
     E dequeue();        // Dequeues the frontmost element.
     E peek();           // Returns the frontmost element, without removing it.
+    // Note: iterator() should return elements starting from the next to be dequeued
 }
 /* *** ODSAendTag: QueueADT *** */
 

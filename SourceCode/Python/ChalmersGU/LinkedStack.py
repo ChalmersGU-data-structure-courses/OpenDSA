@@ -5,7 +5,7 @@ from API import Stack, Iterator
 #/* *** ODSATag: LinkedStackInit *** */
 class LinkedStack(Stack):
     def __init__(self):
-        self._top = None      # Pointer to stack header
+        self._top = None      # Pointer to top of stack
         self._stackSize = 0   # Size of stack
 #/* *** ODSAendTag: LinkedStackInit *** */
 
@@ -63,7 +63,7 @@ class LinkedStackIterator(Iterator):
 class LinkedStackNode:
     def __init__(self, elem, next):
         self.elem = elem   # Value for this node
-        self.next = next   # Pointer to next node in list
+        self.next = next   # Pointer to next node in stack
 #/* *** ODSAendTag: LinkedStackNode *** */
 #/* *** ODSAendTag: LinkedStack *** */
 

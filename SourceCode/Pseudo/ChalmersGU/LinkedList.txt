@@ -17,15 +17,15 @@ class LinkedList(E) implements List(E)
 /* *** ODSAendTag: LinkedListNode *** */
 
 /* *** ODSATag: LinkedListGetSet *** */
-    // Precondition: 0 <= i < listSize
     get(i:int) : E
+        // Precondition: 0 <= i < listSize
         current : E = head
         repeat i times
             current = current.next
         return current.elem
 
-    // Precondition: 0 <= i < listSize
     set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
         current : Node = head
         repeat i times
             current = current.next
@@ -35,8 +35,8 @@ class LinkedList(E) implements List(E)
 /* *** ODSAendTag: LinkedListGetSet *** */
 
 /* *** ODSATag: LinkedListAdd *** */
-    // Precondition: 0 <= i <= listSize
     add(i:int, x:E)
+        // Precondition: 0 <= i <= listSize
         if i == 0
             head = new Node(x, head)
         else
@@ -48,8 +48,8 @@ class LinkedList(E) implements List(E)
 /* *** ODSAendTag: LinkedListAdd *** */
 
 /* *** ODSATag: LinkedListRemove *** */
-    // Precondition: 0 <= i < listSize, and listSize > 0
     remove(i:int) : E
+        // Precondition: 0 <= i < listSize, and listSize > 0
         if i == 0
             removed : Node = head
             head = removed.next
@@ -72,7 +72,7 @@ class LinkedList(E) implements List(E)
 
 /* *** ODSATag: LinkedListIterator *** */
     iterator() : Iterator(E)
-        return an iterator over the elements in internalArray
+        return an iterator over the elements in the list, starting from the head
 /* *** ODSAendTag: LinkedListIterator *** */
 /* *** ODSAendTag: LinkedList *** */
 
