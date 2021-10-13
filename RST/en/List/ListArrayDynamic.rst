@@ -253,26 +253,6 @@ the "growing by 10000" strategy takes quadratic time: if we do 10 times as many
 calls to ``add``, it takes 100 times as long. Quadratic algorithms
 always lose to linear algorithms eventually!
 
-.. TODO::
-   Probably this table isn't needed.
-
-.. _ListGrowthTable:
-
-   .. math::
-
-      \begin{array}{r||r|r|r||r|r|r}
-      \textsf{Final list size} & \textsf{+1} & \textsf{+100} & \textsf{+10,000} & \textsf{+10%} & \textsf{+50%} & \textsf{+100%} 2 \\
-      \hline
-      \mathsf{10} & \mathsf{45} & \mathsf{0} & \mathsf{0} & \mathsf{45} & \mathsf{25} & \mathsf{15} \\
-    \mathsf{100} & \mathsf{4,950} & \mathsf{0} & \mathsf{0} & \mathsf{1,098} & \mathsf{284} & \mathsf{127} \\
-    \mathsf{1,000} & \mathsf{499,500} & \mathsf{4,500} & \mathsf{0} & \mathsf{10,867} & \mathsf{2,137} & \mathsf{1,023} \\
-    \mathsf{10,000} & \mathsf{49,995,000} & \mathsf{495,000} & \mathsf{0} & \mathsf{105,166} & \mathsf{24,284} & \mathsf{16,383} \\
-    \mathsf{100,000} & \mathsf{4,999,950,000} & \mathsf{49,950,000} & \mathsf{450,000} & \mathsf{1,032,977} & \mathsf{276,521} & \mathsf{131,071} \\
-    \mathsf{1,000,000} & \mathsf{499,999,500,000} & \mathsf{4,999,500,000} & \mathsf{49,500,000} & \mathsf{10,170,704} & \mathsf{2,099,753} & \mathsf{1,048,575}
-      \end{array}
-
-   The number of elements copied by different resizing strategies.
-
 Practice Exercise
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
