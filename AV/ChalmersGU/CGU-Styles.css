@@ -241,3 +241,49 @@
 }
 
 /*********************************************************/
+
+#LinkedStack-Overview-CON {
+  height: 95px;
+}
+
+/*********************************************************/
+
+#LinkedStack-Push-CON {
+  height: 210px;
+}
+
+#LinkedStack-Push-CON .jsavoutput.jsavline {
+  height: 15px;
+}
+
+#LinkedStack-Push-CON .jsavcode {
+  position: relative;
+  top: 0;
+  left: 196px;
+  width: 450px;
+}
+
+/*********************************************************/
+
+#LinkedStack-Pop-CON {
+  height: 250px;
+}
+
+#LinkedStack-Pop-CON .jsavoutput.jsavline {
+  height: 20px;
+}
+
+#LinkedStack-Pop-CON .jsavcode {
+  position: relative;
+  top: -20px;
+  left: 195px;
+  width: 450px;
+}
+
+/*********************************************************/
+
+#LinkedStack-Twostack-CON {
+  height: 90px;
+}
+
+/*********************************************************/

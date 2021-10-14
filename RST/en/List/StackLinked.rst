@@ -17,33 +17,40 @@ Linked Stack Implementation
 
 The linked stack implementation is quite simple.
 Elements are inserted and removed only from the head of the list.
-A header node is not used because no special-case code is required
-for lists of zero or one elements.
-
 Here is a visual representation for the linked stack.
 
-.. inlineav:: lstackDiagramCON dgm
-   :links: AV/List/lstackCON.css
-   :scripts: AV/List/llist.js AV/List/lstackDiagramCON.js
+.. inlineav:: LinkedStack-Overview-CON dgm
+   :long_name: Linked Stack Overview
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedStack-Overview-CON.js
    :align: center   
 
-   
+|
+
 .. codeinclude:: ChalmersGU/LinkedStack
    :tag: LinkedStackInit
 
+Stack nodes are exactly the same as the :ref:`linked list nodes <LinkedList>` we saw earlier.
+
+.. codeinclude:: ChalmersGU/LinkedStack
+   :tag: LinkedStackNode
 
 
 Linked Stack Push
 ~~~~~~~~~~~~~~~~~
 
-.. inlineav:: lstackPushCON ss
-   :long_name: Linked stack push
-   :links: AV/List/lstackCON.css
-   :scripts: AV/List/llist.js AV/List/lstackPushCON.js
+.. inlineav:: LinkedStack-Push-CON ss
+   :long_name: Linked Stack Push
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedStack-Push-CON.js
    :output: show
+
+|
 
 .. codeinclude:: ChalmersGU/LinkedStack
    :tag: LinkedStackPush
+
+|
 
 .. avembed:: Exercises/List/LstackPushPRO.html ka
    :long_name: Linked Stack Push Exercise
@@ -52,14 +59,18 @@ Linked Stack Push
 Linked Stack Pop
 ----------------
 
-.. inlineav:: lstackPopCON ss
-   :long_name: Linked stack pop
-   :links: AV/List/lstackCON.css
-   :scripts: AV/List/llist.js AV/List/lstackPopCON.js
+.. inlineav:: LinkedStack-Pop-CON ss
+   :long_name: Linked Stack Pop
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedStack-Pop-CON.js
    :output: show
-   
+
+|
+
 .. codeinclude:: ChalmersGU/LinkedStack
    :tag: LinkedStackPop
+
+|
 
 .. avembed:: Exercises/List/LstackPopPRO.html ka
    :long_name: Linked Stack Pop Exercise
@@ -75,7 +86,7 @@ Here is the complete linked stack implementation.
 
    
 Comparison of Array-Based and Linked Stacks
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------------------
 
 All operations for the array-based and linked stack implementations
 take constant time, so from a time efficiency perspective,
@@ -83,12 +94,15 @@ neither has a significant advantage.
 Another basis for comparison is the total space
 required.
 The analysis is similar to that done for list implementations.
-The array-based stack must declare a fixed-size array initially, and
+The array-based stack must allocate an array with more elements than actually needed, and
 some of that space is wasted whenever the stack is not full.
 The linked stack can shrink and grow but requires the overhead of a
-link field for every element.
+``next`` field for every element.
 
-When implementing multiple stacks, sometimes you can take advantage of
+Implementing two stacks using one array
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If you need to use two stacks at the same time, you can take advantage of
 the one-way growth of the array-based stack
 by using a single array to store two stacks.
 One stack grows inward from each end as illustrated by the figure
@@ -99,11 +113,13 @@ In other words, ideally when one stack grows, the other will shrink.
 This is particularly effective when elements are taken from
 one stack and given to the other.
 If instead both stacks grow at the same time, then the free space
-in the middle of the array will be exhausted quickly.
+in the middle of the array will be exhausted quickly,
+and the array has to be resized.
 
 .. _TwoArrayStacks:
 
-.. inlineav:: lstackTwostackCON dgm
-   :links: AV/List/lstackCON.css
-   :scripts: AV/List/llist.js AV/List/lstackTwostackCON.js
-   :align: center
+.. inlineav:: LinkedStack-Twostack-CON dgm
+   :long_name: Two Stacks in the same Array
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedStack-Twostack-CON.js
+   :align: center   
