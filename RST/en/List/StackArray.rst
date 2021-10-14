@@ -53,7 +53,9 @@ Dynamic Array-Based Stacks
 ------------------------------
 
 The dynamic array-based stack contains an internal array (which will grow and shrink dynamically),
-and a pointer ot the **top** of the stack (i.e., the next free slot in the array). 
+and the index of the **top** of the stack.
+Or actually, the index is for the next free slot in the array,
+which at the same time is the size of the stack.
    
 .. codeinclude:: ChalmersGU/DynamicArrayStack
    :tag: DynamicArrayStackInit

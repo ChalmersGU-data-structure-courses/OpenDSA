@@ -102,7 +102,7 @@ According to the calculations above, linked lists are worse than array-based lis
 because all operations are slow (linear time). So why even bother using linked lists?
 
 First there are limited versions of lists that can be implemented efficiently using linked lists,
-we will look at :ref:`stacks <stack> <StackLinked>` and :ref:`queues <queue> <QueueLinked>` later.
+we will look at :ref:`stacks <StackLinked>` and :ref:`queues <QueueLinked>` later.
 
 Second, our list API is not the best for linked lists.
 If we instead could have a pointer to the "current" list node, and have methods for

@@ -38,8 +38,8 @@ Whether a list implementation is doubly or singly linked should
 be hidden from the ``List`` class user.
 
 Like our singly linked list implementation, the doubly linked list
-implementation makes use of a :term:`header pointer`.
-We also add a **tail pointer** to the end of the list.
+implementation makes use of a **header pointer**, but
+we also add a **tail pointer** to the end of the list.
  
 Here is an implementation for the class variables and the internal list node class.
 The only real difference between single linked lists are that we have pointers
