@@ -106,8 +106,7 @@ class DynamicArrayQueue<E> implements Queue<E> {
             list.enqueue(String.valueOf((char)(i+65)));
             list.enqueue(String.valueOf((char)(i+97)));
             list.dequeue();
-            //if (list.size() % 5 == 0)
-                list.pPrint();
+            if (list.size() % 5 == 0) list.pPrint();
         }
         list.pPrint();
         while (!list.isEmpty()) {
