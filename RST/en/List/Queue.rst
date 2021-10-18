@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: list ADT
    :satisfies: queue; array-based queue
    :topic: Lists
@@ -35,12 +35,12 @@ Here is a sample queue ADT.
 This section presents two implementations for queues:
 the array-based queue and the linked queue.
 
-.. codeinclude:: Lists/Queue
-   :tag: Queue
+.. codeinclude:: ChalmersGU/API
+   :tag: QueueADT
 
 
 Array-Based Queues
-~~~~~~~~~~~~~~~~~~
+----------------------
 
 The array-based queue is somewhat tricky to implement effectively.
 A simple conversion of the array-based list implementation is not
@@ -70,7 +70,7 @@ efficient.
 
 
 The Circular Queue
-~~~~~~~~~~~~~~~~~~
+---------------------
 
 .. inlineav:: aqueueCircularCON ss
    :long_name: Circular Array-based Queue Slideshow
@@ -105,18 +105,16 @@ elements in the queue, or at least a Boolean variable that indicates
 whether the queue is empty or not.
 Another solution is to make the array be of size :math:`n+1`,
 and only allow :math:`n` elements to be stored.
+A third solution is to set ``front`` and ``rear`` to –1 when the queue becomes empty.
 Which of these solutions to adopt is purely a matter of the
 implementor's taste in such affairs.
-Our choice here is to use an array of size :math:`n+1`.
-
-Here is an array-based queue implementation.
-
-.. codeinclude:: Lists/AQueue
-   :tag: AQueue1,AQueue2
+Our choice here is to keep an explicit count of the number of elements,
+in the variable ``queueSize``, because this will make the code more similar
+to our list and stack implementations.
 
 
 Array-based Queue Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 .. inlineav:: aqueueVarCON ss
    :long_name: Array-based Queue Variables Slideshow
@@ -141,3 +139,12 @@ Array-based Dequeue Practice
 
 .. avembed:: Exercises/List/AqueueDequeuePRO.html ka
    :long_name: Array-based Queue Dequeue Exercise
+
+
+Array-based Queues, Full Implementation
+-----------------------------------------
+
+Here is an array-based queue implementation.
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueue
