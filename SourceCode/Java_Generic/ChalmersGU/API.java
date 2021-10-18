@@ -20,7 +20,7 @@ interface List<E> extends Collection<E> {
     E get(int i);          // Returns the element at position i.
     E set(int i, E x);     // Replaces the value at position i with x.
     E remove(int i);       // Removes the element at position i.
-    // Note: iterator() should return elements starting from position 0
+    // Note: iterator() should yield the elements starting from position 0.
 }
 /* *** ODSAendTag: ListADT *** */
 
@@ -31,7 +31,7 @@ interface Stack<E> extends Collection<E> {
     void push(E x);  // Pushes x on top of the stack.
     E pop();         // Pops the top of the stack and returns it.
     E peek();        // Returns the top element of the stack, without removing it.
-    // Note: iterator() should return elements starting from the top of the stack
+    // Note: iterator() should yield the elements starting from the top of the stack.
 }
 /* *** ODSAendTag: StackADT *** */
 
@@ -42,7 +42,7 @@ interface Queue<E> extends Collection<E> {
     void enqueue(E x);  // Enqueues x at the end of the queue.
     E dequeue();        // Dequeues the frontmost element.
     E peek();           // Returns the frontmost element, without removing it.
-    // Note: iterator() should return elements starting from the next to be dequeued
+    // Note: iterator() should yield the elements starting from the frontmost element.
 }
 /* *** ODSAendTag: QueueADT *** */
 
@@ -54,6 +54,7 @@ interface PriorityQueue<E> extends Collection<E> {
     void add(E x);  // Adds x to the priority queue.
     E removeMin();  // Removes the minimum element, and returns it.
     E getMin();     // Returns the minimum element, without removing it.
+    // Note: iterator() can yield the elements in any order, but the minimum element should come first.
 }
 /* *** ODSAendTag: PriorityQueueADT *** */
 
@@ -64,6 +65,7 @@ interface Set<E> extends Collection<E> {
     void add(E x);          // Adds x to the set.
     void remove(E x);       // Removes x from the set, and returns it.
     boolean contains(E x);  // Checks if x is in the set.
+    // Note: iterator() can yield the elements in any order.
 }
 /* *** ODSAendTag: SetADT *** */
 
@@ -76,7 +78,7 @@ interface SortedSet<E> extends Set<E> {
     E last();        // Returns the last (largest) element.
     E floor(E x);    // Returns the closest element <= x.
     E ceiling(E x);  // Returns the closest element >= x.
-    // Note: iterator() should return the elements in order.
+    // Note: iterator() should yield the elements in order.
 }
 /* *** ODSAendTag: SortedSetADT *** */
 
@@ -92,6 +94,7 @@ interface Map<K, V> {
     Iterator<K> keyIterator();   // Returns an iterator over the keys.
     boolean isEmpty();           // Returns true if there are no keys.
     int size();                  // Returns the number of keys (i.e., the number of key/value pairs).
+    // Note: keyIterator() can yield the keys in any order.
 }
 /* *** ODSAendTag: MapADT *** */
 
@@ -104,7 +107,7 @@ interface SortedMap<K, V> extends Map<K, V> {
     K lastKey();           // Returns the last (largest) key.
     K floorKey(K key);     // Returns the closest key <= k.
     K ceilingKey(K key);   // Returns the closest key >= k.
-    // Note: keyIterator() should return the keys in order.
+    // Note: keyIterator() should yield the keys in order.
 }
 /* *** ODSAendTag: SortedMapADT *** */
 

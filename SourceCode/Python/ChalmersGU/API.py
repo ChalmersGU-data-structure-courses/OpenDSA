@@ -14,7 +14,7 @@ class List(Collection):
     def get(self, i):    """Returns the element at position i."""
     def set(self, i, x): """Replaces the value at position i with x."""
     def remove(self, i): """Removes the element at position i."""
-    # Note: iterator() should return elements starting from position 0
+    # Note: __iter__() should yield the elements starting from position 0.
 #/* *** ODSAendTag: ListADT *** */
 
 
@@ -23,7 +23,7 @@ class Stack(Collection):
     def push(self, x): """Pushes x on top of the stack."""
     def pop(self):     """Pops the top of the stack and returns it."""
     def peek(self):    """Returns the top element of the stack, without removing it."""
-    # Note: iterator() should return elements starting from the top of the stack
+    # Note: __iter__() should yield the elements starting from the top of the stack.
 #/* *** ODSAendTag: StackADT *** */
 
 
@@ -32,7 +32,7 @@ class Queue(Collection):
     def enqueue(self, x): """Enqueues x at the end of the queue."""
     def dequeue(self):    """Dequeues the frontmost element."""
     def peek(self):       """Returns the frontmost element, without removing it."""
-    # Note: iterator() should return elements starting from the next to be dequeued
+    # Note: __iter__() should yield the elements starting from the frontmost element.
 #/* *** ODSAendTag: QueueADT *** */
 
 
@@ -41,6 +41,7 @@ class PriorityQueue(Collection):
     def add(self, x):    """Adds x to the priority queue."""
     def removeMin(self): """Removes the minimum element, and returns it."""
     def getMin(self):    """Returns the minimum element, without removing it."""
+    # Note: __iter__() can yield the elements in any order, but the minimum element should come first.
 #/* *** ODSAendTag: PriorityQueueADT *** */
 
 
@@ -49,6 +50,7 @@ class Set(Collection):
     def add(self, x):      """Adds x to the set."""
     def remove(self, x):   """Removes x from the set, and returns it."""
     def contains(self, x): """Checks if x is in the set."""
+    # Note: __iter__() can yield the elements in any order.
 #/* *** ODSAendTag: SetADT *** */
 
 
@@ -58,7 +60,7 @@ class SortedSet(Set):
     def last(self):       """Returns the last (largest) element."""
     def floor(self, x):   """Returns the closest element <= x."""
     def ceiling(self, x): """Returns the closest element >= x."""
-    # Note: __iter__() should yield the elements in order
+    # Note: __iter__() should yield the elements in order.
 #/* *** ODSAendTag: SortedSetADT *** */
 
 
@@ -71,6 +73,7 @@ class Map:
     def keyIterator(self):      """Returns an iterator over the keys."""
     def isEmpty(self):          """Returns true if there are no ."""
     def size(self):             """Returns the number of keys (i.e., the number of key/value pairs)."""
+    # Note: keyIterator() can yield the keys in any order.
 #/* *** ODSAendTag: MapADT *** */
 
 
@@ -80,7 +83,7 @@ class SortedMap(Map):
     def lastKey(self):         """Returns the last (largest) key."""
     def floorKey(self, key):   """Returns the closest key <= k."""
     def ceilingKey(self, key): """Returns the closest key >= k."""
-    # Note: keyIterator() should yield the keys in order
+    # Note: keyIterator() should yield the keys in order.
 #/* *** ODSAendTag: SortedMapADT *** */
 
 
