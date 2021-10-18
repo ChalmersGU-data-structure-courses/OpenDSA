@@ -15,14 +15,9 @@ Linked Queues
 Linked Queues
 -------------
 
-The linked queue implementation is a straightforward adaptation
-of the linked list.
-Here is the linked queue class declaration.
-
-.. codeinclude:: Lists/LQueue
-   :tag: LQueue1,LQueue2
-
-|
+The linked queue implementation is an adaptation of the linked list.
+The only thing is that we have to add a pointer to the rear node
+in the queue, to be able to add new elements efficiently.
 
 .. inlineav:: lqueueIntroCON ss
    :long_name: Linked Queue Intro
@@ -30,7 +25,8 @@ Here is the linked queue class declaration.
    :scripts: AV/List/llist.js AV/List/lqueueIntroCON.js
    :output: show    
    
-|
+Enqueueing Elements
+-------------------------
 
 .. inlineav:: lqueueEnqueueCON ss
    :long_name: Linked Queue Enqueue
@@ -42,8 +38,8 @@ Here is the linked queue class declaration.
    :long_name: Linked Queue Enqueue Exercise
 
 
-Linked Dequeue
---------------
+Dequeueing Elements
+-------------------------
 
 .. inlineav:: lqueueDequeueCON ss
    :long_name: Linked Queue Dequeue
@@ -53,6 +49,15 @@ Linked Dequeue
    
 .. avembed:: Exercises/List/LqueueDequeuePRO.html ka
    :long_name: Linked Queue Dequeue Exercise
+
+
+Linked Queue, Full Implementation
+-------------------------------------
+
+Here is the linked queue class declaration.
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueue
 
 
 Comparison of Array-Based and Linked Queues
