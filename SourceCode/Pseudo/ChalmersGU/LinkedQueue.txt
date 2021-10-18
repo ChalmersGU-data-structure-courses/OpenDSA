@@ -1,0 +1,62 @@
+
+/* *** ODSATag: LinkedQueue *** */
+/* *** ODSATag: LinkedQueueInit *** */
+class LinkedQueue(E) implements Queue(E)
+    private front      : Node   // Pointer to front queue node
+    private rear       : Node   // Pointer to rear queue node
+    private queueSize  : int    // Size of queue
+
+    LinkedQueue()
+        front = null
+        rear = null
+        queueSize = 0
+/* *** ODSAendTag: LinkedQueueInit *** */
+
+/* *** ODSATag: LinkedQueueNode *** */
+    private class Node
+        elem : E      // Value for this node
+        next : Node   // Pointer to next node in list
+/* *** ODSAendTag: LinkedQueueNode *** */
+
+/* *** ODSATag: LinkedQueueEnqueue *** */
+    enqueue(x:E)
+        newRear : E = new Node(x, null)
+        if queueSize == 0
+            front = newRear
+        else
+            rear.next = newRear
+        rear = newRear
+        queueSize += 1
+/* *** ODSAendTag: LinkedQueueEnqueue *** */
+
+/* *** ODSATag: LinkedQueuePeek *** */
+    peek() : E
+        // Precondition: queueSize > 0
+        return front.elem
+    }
+/* *** ODSAendTag: LinkedQueuePeek *** */
+
+/* *** ODSATag: LinkedQueueDequeue *** */
+    dequeue() : E
+        // Precondition: queueSize > 0
+        removed : Node = front
+        front = removed.next
+        removed.next = null   // For garbage collection
+        if queueSize == 0
+            rear = null
+        queueSize -= 1
+        return removed.elem
+    }
+/* *** ODSAendTag: LinkedQueueDequeue *** */
+
+    isEmpty() : boolean
+        return queueSize == 0
+
+    size() : int
+        return queueSize
+
+/* *** ODSATag: LinkedQueueIterator *** */
+    iterator() : Iterator(E)
+        return an iterator over the elements in the queue, starting from the frontmost element
+/* *** ODSAendTag: LinkedQueueIterator *** */
+/* *** ODSAendTag: LinkedQueue *** */
