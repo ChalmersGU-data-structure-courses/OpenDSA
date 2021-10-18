@@ -1,0 +1,64 @@
+
+/* *** ODSATag: DynamicArrayQueue *** */
+/* *** ODSATag: DynamicArrayQueueInit *** */
+class DynamicArrayQueue(E) implements Queue(E)
+    private internalArray : E[]   // Internal array containing the queue elements
+    private queueSize     : int   // Size of queue, and index of the next free slot
+    private front         : int   // Index of front element
+    private rear          : int   // Index of rear element
+
+    DynamicArrayQueue()
+        internalArray = new array of size 1
+        queueSize = 0
+        front = 0
+        rear = -1
+/* *** ODSAendTag: DynamicArrayQueueInit *** */
+
+/* *** ODSATag: DynamicArrayQueueEnqueue *** */
+    enqueue(x:E)
+        if queueSize >= size of internalArray
+            resizeArray(2 * size of internalArray)
+        rear += 1  (modulo size of internalArray)   // Circular increment
+        internalArray[rear] = x
+        queueSize += 1
+/* *** ODSAendTag: DynamicArrayQueueEnqueue *** */
+
+/* *** ODSATag: DynamicArrayQueuePeek *** */
+    peek() : E
+        // Precondition: queueSize > 0
+        return internalArray[front]
+/* *** ODSAendTag: DynamicArrayQueuePeek *** */
+
+/* *** ODSATag: DynamicArrayQueueDequeue *** */
+    dequeue() : E
+        // Precondition: queueSize > 0
+        queueSize -= 1
+        x : E = internalArray[front]
+        internalArray[front] = null   // For garbage collection
+        front += 1  (modulo size of internalArray)   // Circular increment
+        if queueSize < size of internalArray / 3
+            resizeArray(size of internalArray / 2)
+        return x
+/* *** ODSAendTag: DynamicArrayQueuePop *** */
+
+/* *** ODSATag: DynamicArrayQueueResize *** */
+    private resizeArray(newCapacity:int)
+        newArray : E[] = new array of size newCapacity
+        for i in 0, 1, ..., queueSize-1
+            newArray[i] = internalArray[i + front (modulo size of internalArray)]
+        internalArray = newArray
+        front = 0
+        rear = queueSize-1
+/* *** ODSAendTag: DynamicArrayQueueResize *** */
+
+    isEmpty() : boolean
+        return queueSize == 0
+
+    size() : int
+        return queueSize
+
+/* *** ODSATag: DynamicArrayQueueIterator *** */
+    iterator() : Iterator(E)
+        return an iterator over the elements in internalArray, starting from the frontmost element
+/* *** ODSAendTag: DynamicArrayQueueIterator *** */
+/* *** ODSAendTag: DynamicArrayQueue *** */
