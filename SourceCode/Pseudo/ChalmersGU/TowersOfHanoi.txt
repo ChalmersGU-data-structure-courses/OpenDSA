@@ -1,0 +1,33 @@
+
+/* *** ODSATag: TOH *** */
+// Compute the moves to solve a Tower of Hanoi puzzle.
+// Function move does (or prints) the actual move of a disk
+// from one pole to another.
+//  - n: The number of disks
+//  - start: The start pole
+//  - goal: The goal pole
+//  - temp: The other pole
+/* *** ODSATag: TOHshort *** */
+TOH_recursive(n:int, start:Pole, goal:Pole, temp:Pole)
+    if n == 0                              // Base case
+        return
+    TOH_recursive(n-1, start, temp, goal)  // Recursive call: n-1 rings
+    move(start, goal)                      // Move bottom disk to goal
+    TOH_recursive(n-1, temp, goal, start)  // Recursive call: n-1 rings
+#/* *** ODSAendTag: TOHshort *** */
+#/* *** ODSAendTag: TOH *** */
+
+
+#/* *** ODSATag: TOHstack *** */
+TOH_stack(n:int, start:Pole, goal:Pole, temp:Pole)
+    S : Stack = new LinkedStack()
+    S.push(TOH(n, start, goal, temp))
+    while S.size() > 0
+        it = S.pop()           // Get next task
+        if it is a MOVE        // Do a move
+            move(it.start, it.goal)
+        else if it.num > 0:    // Imitate TOH recursive solution (in reverse)
+            S.push(TOH(it.num-1, it.temp, it.goal, it.start))
+            S.push(MOVE(0, it.start, it.goal))     // A move to do
+            S.push(TOH(it.num-1, it.start, it.temp, it.goal))
+#/* *** ODSAendTag: TOHstack *** */
