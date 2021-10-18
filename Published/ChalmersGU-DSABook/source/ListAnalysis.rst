@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -119,7 +119,7 @@ According to the calculations above, linked lists are worse than array-based lis
 because all operations are slow (linear time). So why even bother using linked lists?
 
 First there are limited versions of lists that can be implemented efficiently using linked lists,
-we will look at :ref:`stacks <stack> <StackLinked>` and :ref:`queues <queue> <QueueLinked>` later.
+we will look at :ref:`stacks <StackLinked>` and :ref:`queues <QueueLinked>` later.
 Second, our list API is not the best for linked lists.
 If we instead could have a pointer to the "current" list node, and have methods for
 moving forward and backward in the list, several of the operations can be constant time.

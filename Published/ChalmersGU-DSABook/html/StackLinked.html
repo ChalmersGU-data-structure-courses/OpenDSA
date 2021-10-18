@@ -162,22 +162,23 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linked-stack-implementation', 'linked-stack-push', 'linked-stack-pop', 'linked-stacks:-full-implementation', 'comparison-of-array-based-and-linked-stacks'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/lstackCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linked-stack-implementation', 'linked-stack-push', 'linked-stack-pop', 'linked-stacks:-full-implementation', 'comparison-of-array-based-and-linked-stacks', 'implementing-two-stacks-using-one-array'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-stacks">
 <h1>5.<span class="section-number">9. </span>Linked Stacks<a class="headerlink" href="#linked-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="linked-stack-implementation">
 <h2>5.<span class="section-number">9.1. </span>Linked Stack Implementation<a class="headerlink" href="#linked-stack-implementation" title="Permalink to this headline">¶</a></h2>
 <p>The linked stack implementation is quite simple.
 Elements are inserted and removed only from the head of the list.
-A header node is not used because no special-case code is required
-for lists of zero or one elements.</p>
-<p>Here is a visual representation for the linked stack.</p>
+Here is a visual representation for the linked stack.</p>
 <div class="divdgm">
-<div id="lstackDiagramCON">
+<div id="LinkedStack-Overview-CON">
 </div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
 <div id="LinkedStack_LinkedStackInit_code"><ul><li><a href="#LinkedStack_LinkedStackInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackInit_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackInit_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedStack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Stack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to stack header</span>
+    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="n">stackSize</span> <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of stack</span>
 
     <span class="n">LinkedStack</span><span class="p">()</span>
@@ -186,7 +187,7 @@ for lists of zero or one elements.</p>
 </pre></div>
 </div>
 </div><div id="LinkedStack_LinkedStackInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to stack header</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>   <span class="c1">// Size of stack</span>
 
     <span class="n">LinkedStack</span><span class="p">()</span> <span class="p">{</span>
@@ -197,29 +198,56 @@ for lists of zero or one elements.</p>
 </div>
 </div><div id="LinkedStack_LinkedStackInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Pointer to stack header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Pointer to top of stack</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of stack</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedStack_LinkedStackInit_code" ).tabs();});</script><div class="section" id="linked-stack-push">
+</div></div><script>$(function() {$( "#LinkedStack_LinkedStackInit_code" ).tabs();});</script><p>Stack nodes are exactly the same as the linked list nodes  we saw earlier.</p>
+<div id="LinkedStack_LinkedStackNode_code"><ul><li><a href="#LinkedStack_LinkedStackNode_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackNode_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackNode_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackNode_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span>
+        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
+        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in stack</span>
+</pre></div>
+</div>
+</div><div id="LinkedStack_LinkedStackNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
+        <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>    <span class="c1">// Pointer to next node in stack</span>
+
+        <span class="n">Node</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="n">Node</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedStack_LinkedStackNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python does not have internal classes, so we have to make the stack node standalone.</span>
+<span class="k">class</span> <span class="nc">LinkedStackNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>   <span class="c1"># Value for this node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in stack</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedStack_LinkedStackNode_code" ).tabs();});</script><div class="section" id="linked-stack-push">
 <h3>5.<span class="section-number">9.1.1. </span>Linked Stack Push<a class="headerlink" href="#linked-stack-push" title="Permalink to this headline">¶</a></h3>
-<div id="lstackPushCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="lstackPushCON" data-long-name="Linked stack push" data-exer-id="" alt="Linked stack push" tabIndex="-1">
+<div id="LinkedStack-Push-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedStack-Push-CON" data-long-name="Linked Stack Push" data-exer-id="" alt="Linked Stack Push" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
  <div class="jsavcontrols"></div>
  <p class="jsavoutput jsavline"></p>
  <div class="jsavcanvas"></div>
  <div class="prof_indicators">
-  <img id="lstackPushCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="lstackPushCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="lstackPushCON_cm_error_msg" class="cm_error_msg">
-   <img id="lstackPushCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+  <img id="LinkedStack-Push-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedStack-Push-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedStack-Push-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedStack-Push-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
    Server Error<br />
    <a href="#" class="resubmit_link">Resubmit</a>
   </span>
  </div>
 </div>
 <p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div id="LinkedStack_LinkedStackPush_code"><ul><li><a href="#LinkedStack_LinkedStackPush_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackPush_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPush_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPush_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
         <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -236,7 +264,10 @@ for lists of zero or one elements.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedStack_LinkedStackPush_code" ).tabs();});</script><div
+</div></div><script>$(function() {$( "#LinkedStack_LinkedStackPush_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div
     id="LstackPushPRO"
     class="embedContainer"
     data-exer-name="LstackPushPRO"
@@ -262,25 +293,28 @@ for lists of zero or one elements.</p>
 </div>
 <div class="section" id="linked-stack-pop">
 <h2>5.<span class="section-number">9.2. </span>Linked Stack Pop<a class="headerlink" href="#linked-stack-pop" title="Permalink to this headline">¶</a></h2>
-<div id="lstackPopCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="lstackPopCON" data-long-name="Linked stack pop" data-exer-id="" alt="Linked stack pop" tabIndex="-1">
+<div id="LinkedStack-Pop-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedStack-Pop-CON" data-long-name="Linked Stack Pop" data-exer-id="" alt="Linked Stack Pop" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
  <div class="jsavcontrols"></div>
  <p class="jsavoutput jsavline"></p>
  <div class="jsavcanvas"></div>
  <div class="prof_indicators">
-  <img id="lstackPopCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="lstackPopCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="lstackPopCON_cm_error_msg" class="cm_error_msg">
-   <img id="lstackPopCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+  <img id="LinkedStack-Pop-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedStack-Pop-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedStack-Pop-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedStack-Pop-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
    Server Error<br />
    <a href="#" class="resubmit_link">Resubmit</a>
   </span>
  </div>
 </div>
 <p></p>
-<div id="LinkedStack_LinkedStackPop_code"><ul><li><a href="#LinkedStack_LinkedStackPop_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPop_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: stackSize &gt; 0</span>
-    <span class="n">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedStack_LinkedStackPop_code"><ul><li><a href="#LinkedStack_LinkedStackPop_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPop_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: stackSize &gt; 0</span>
         <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">top</span>
         <span class="n">top</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
@@ -307,7 +341,10 @@ for lists of zero or one elements.</p>
         <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedStack_LinkedStackPop_code" ).tabs();});</script><div
+</div></div><script>$(function() {$( "#LinkedStack_LinkedStackPop_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div
     id="LstackPopPRO"
     class="embedContainer"
     data-exer-name="LstackPopPRO"
@@ -334,7 +371,7 @@ for lists of zero or one elements.</p>
 <h2>5.<span class="section-number">9.3. </span>Linked stacks: Full implementation<a class="headerlink" href="#linked-stacks-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is the complete linked stack implementation.</p>
 <div id="LinkedStack_LinkedStack_code"><ul><li><a href="#LinkedStack_LinkedStack_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStack_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStack_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStack_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedStack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Stack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to stack header</span>
+    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="n">stackSize</span> <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of stack</span>
 
     <span class="n">LinkedStack</span><span class="p">()</span>
@@ -343,18 +380,18 @@ for lists of zero or one elements.</p>
 
     <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span>
         <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
-        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in list</span>
+        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in stack</span>
 
     <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
         <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="c1">// Precondition: stackSize &gt; 0</span>
     <span class="n">peek</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: stackSize &gt; 0</span>
         <span class="k">return</span> <span class="n">top</span><span class="p">.</span><span class="na">elem</span>
 
-    <span class="c1">// Precondition: stackSize &gt; 0</span>
-    <span class="n">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: stackSize &gt; 0</span>
         <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">top</span>
         <span class="n">top</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
@@ -368,11 +405,11 @@ for lists of zero or one elements.</p>
         <span class="k">return</span> <span class="n">stackSize</span>
 
     <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">nodes</span> <span class="n">in</span> <span class="n">the</span> <span class="n">stack</span>
+        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">the</span> <span class="n">stack</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">top</span> <span class="n">element</span>
 </pre></div>
 </div>
 </div><div id="LinkedStack_LinkedStack_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to stack header</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>   <span class="c1">// Size of stack</span>
 
     <span class="n">LinkedStack</span><span class="p">()</span> <span class="p">{</span>
@@ -382,7 +419,7 @@ for lists of zero or one elements.</p>
 
     <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
         <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
-        <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>    <span class="c1">// Pointer to next node in list</span>
+        <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>    <span class="c1">// Pointer to next node in stack</span>
 
         <span class="n">Node</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="n">Node</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">this</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>
@@ -440,7 +477,7 @@ for lists of zero or one elements.</p>
 </div>
 </div><div id="LinkedStack_LinkedStack_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Pointer to stack header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_top</span> <span class="o">=</span> <span class="kc">None</span>      <span class="c1"># Pointer to top of stack</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of stack</span>
 
     <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
@@ -488,22 +525,25 @@ for lists of zero or one elements.</p>
 <span class="k">class</span> <span class="nc">LinkedStackNode</span><span class="p">:</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>   <span class="c1"># Value for this node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in stack</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedStack_LinkedStack_code" ).tabs();});</script><div class="section" id="comparison-of-array-based-and-linked-stacks">
-<h3>5.<span class="section-number">9.3.1. </span>Comparison of Array-Based and Linked Stacks<a class="headerlink" href="#comparison-of-array-based-and-linked-stacks" title="Permalink to this headline">¶</a></h3>
+</div></div><script>$(function() {$( "#LinkedStack_LinkedStack_code" ).tabs();});</script></div>
+<div class="section" id="comparison-of-array-based-and-linked-stacks">
+<h2>5.<span class="section-number">9.4. </span>Comparison of Array-Based and Linked Stacks<a class="headerlink" href="#comparison-of-array-based-and-linked-stacks" title="Permalink to this headline">¶</a></h2>
 <p>All operations for the array-based and linked stack implementations
 take constant time, so from a time efficiency perspective,
 neither has a significant advantage.
 Another basis for comparison is the total space
 required.
 The analysis is similar to that done for list implementations.
-The array-based stack must declare a fixed-size array initially, and
+The array-based stack must allocate an array with more elements than actually needed, and
 some of that space is wasted whenever the stack is not full.
 The linked stack can shrink and grow but requires the overhead of a
-link field for every element.</p>
-<p>When implementing multiple stacks, sometimes you can take advantage of
+<code class="docutils literal notranslate"><span class="pre">next</span></code> field for every element.</p>
+<div class="section" id="implementing-two-stacks-using-one-array">
+<h3>5.<span class="section-number">9.4.1. </span>Implementing two stacks using one array<a class="headerlink" href="#implementing-two-stacks-using-one-array" title="Permalink to this headline">¶</a></h3>
+<p>If you need to use two stacks at the same time, you can take advantage of
 the one-way growth of the array-based stack
 by using a single array to store two stacks.
 One stack grows inward from each end as illustrated by the figure
@@ -514,16 +554,16 @@ In other words, ideally when one stack grows, the other will shrink.
 This is particularly effective when elements are taken from
 one stack and given to the other.
 If instead both stacks grow at the same time, then the free space
-in the middle of the array will be exhausted quickly.</p>
+in the middle of the array will be exhausted quickly,
+and the array has to be resized.</p>
 <div class="divdgm" id="twoarraystacks">
-<div id="lstackTwostackCON">
+<div id="LinkedStack-Twostack-CON">
 </div>
 </div>
-<script type="text/javascript" src="../../../AV/List/llist.js"></script>
-<script type="text/javascript" src="../../../AV/List/lstackDiagramCON.js"></script>
-<script type="text/javascript" src="../../../AV/List/lstackPushCON.js"></script>
-<script type="text/javascript" src="../../../AV/List/lstackPopCON.js"></script>
-<script type="text/javascript" src="../../../AV/List/lstackTwostackCON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedStack-Overview-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedStack-Push-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedStack-Pop-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedStack-Twostack-CON.js"></script>
 </div>
 </div>
 </div>
@@ -552,7 +592,7 @@ in the middle of the array will be exhausted quickly.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 12, 2021.
+      Last updated on Oct 18, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

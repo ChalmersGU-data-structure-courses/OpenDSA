@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linked-dequeue', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script>
 
 .. _QueueLinked:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -34,14 +34,9 @@ Linked Queues
 Linked Queues
 -------------
 
-The linked queue implementation is a straightforward adaptation
-of the linked list.
-Here is the linked queue class declaration.
-
-.. codeinclude:: Lists/LQueue
-   :tag: LQueue1,LQueue2
-
-|
+The linked queue implementation is an adaptation of the linked list.
+The only thing is that we have to add a pointer to the rear node
+in the queue, to be able to add new elements efficiently.
 
 .. inlineav:: lqueueIntroCON ss
    :points: 0.0
@@ -50,7 +45,8 @@ Here is the linked queue class declaration.
    :long_name: Linked Queue Intro
    :output: show    
    
-|
+Enqueueing Elements
+-------------------------
 
 .. inlineav:: lqueueEnqueueCON ss
    :points: 0.0
@@ -68,8 +64,8 @@ Here is the linked queue class declaration.
    :long_name: Linked Queue Enqueue Exercise
 
 
-Linked Dequeue
---------------
+Dequeueing Elements
+-------------------------
 
 .. inlineav:: lqueueDequeueCON ss
    :points: 0.0
@@ -85,6 +81,15 @@ Linked Dequeue
    :threshold: 5
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Linked Queue Dequeue Exercise
+
+
+Linked Queue, Full Implementation
+-------------------------------------
+
+Here is the linked queue class declaration.
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueue
 
 
 Comparison of Array-Based and Linked Queues

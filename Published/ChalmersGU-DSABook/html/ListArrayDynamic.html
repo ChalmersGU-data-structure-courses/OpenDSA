@@ -162,7 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'complexity-analysis', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-lists">
 <h1>5.<span class="section-number">4. </span>Dynamic Array-Based Lists<a class="headerlink" href="#dynamic-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>The problem with a static array-based list is that it has a limited capacity.
@@ -197,12 +199,8 @@ and copy over all elements to the new one.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="n">newArray</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListResize_code" ).tabs();});</script><p>So, how large should the new internal array be?
-As discussed in the module about
-<a class="reference internal" href="StringReading.html#stringreading"><span class="std std-ref">string building</span></a>,
-it’s not a good idea to increase the size by a constant.
-Instead we should <strong>grow the array by a factor</strong>, i.e. multiply not add!
-For simplicity, let’s double the size of the internal array when we need to resize,
+</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListResize_code" ).tabs();});</script><p>So, how large should the new internal array be? For now, let’s
+<strong>double the size of the internal array</strong> when we need to resize,
 which means that we add the following if-clause to the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
     resizeArray(2 * size of internalArray)
@@ -210,8 +208,8 @@ which means that we add the following if-clause to the <code class="docutils lit
 </div>
 <p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.add</span></code> method.
 So the dynamic <code class="docutils literal notranslate"><span class="pre">add</span></code> method will look like this.</p>
-<div id="DynamicArrayList_DynamicArrayListAdd_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+<div id="DynamicArrayList_DynamicArrayListAdd_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
         <span class="k">if</span> <span class="n">listSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
             <span class="nf">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>
         <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -263,15 +261,185 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">add<
  </div>
 </div>
 <p></p>
-<div class="section" id="complexity-analysis">
-<h3>5.<span class="section-number">4.1.1. </span>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="how-much-to-increase-the-array-size">
+<h2>5.<span class="section-number">4.2. </span>How much to increase the array size<a class="headerlink" href="#how-much-to-increase-the-array-size" title="Permalink to this headline">¶</a></h2>
+<p>In the code above we doubled the size of the internal array whenever
+we needed to resize it. But we could have done something else, like:</p>
+<ul class="simple">
+<li><p>Triple the size</p></li>
+<li><p>Grow the size by 10%</p></li>
+<li><p>Grow the size by 100 elements</p></li>
+<li><p>Grow the size by 1 element</p></li>
+</ul>
+<p>But which is best, and why?</p>
+<p>There is a tradeoff: if we grow the array by a lot, we might waste
+memory. For example, immediately after we double the size, half of the
+array’s capacity is unused, so we use twice as much memory as needed.
+On the other hand, if we grow the array by a small amount, we need to
+resize it more often.</p>
+<p>We will explore these tradeoffs by looking at the performance of the
+following small program under different resizing strategies:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>list = new dynamic array list
+for i in 1..n:
+  list.add(i)
+</pre></div>
+</div>
+<p>The program builds a list of length <cite>n</cite> by repeatedly calling <span class="math notranslate nohighlight">\(add\)</span>.
+In this case, we could have used a static array-based list of capacity
+<span class="math notranslate nohighlight">\(n\)</span>. So we would like the dynamic array-based list to have
+comparable performance to the static array-based list. This means that
+the program ought to take <cite>linear time</cite>.</p>
+<div class="section" id="growing-by-a-constant-amount">
+<h3>5.<span class="section-number">4.2.1. </span>Growing by a constant amount<a class="headerlink" href="#growing-by-a-constant-amount" title="Permalink to this headline">¶</a></h3>
+<p>What happens if we only grow the internal array by 1 element when we resize it?</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
+    resizeArray(size of internalArray+1)
+</pre></div>
+</div>
+<p>Every time we call <code class="docutils literal notranslate"><span class="pre">add</span></code>, the internal array will be resized.
+Resizing the array takes linear time, because if the internal array
+has size <span class="math notranslate nohighlight">\(n\)</span>, then it has to copy <span class="math notranslate nohighlight">\(n\)</span> elements from the
+internal array to the new array. To put it another way, the loop body
+<code class="docutils literal notranslate"><span class="pre">newArray[i]</span> <span class="pre">=</span> <span class="pre">internalArray[i]</span></code> will be executed <span class="math notranslate nohighlight">\(n\)</span> times.</p>
+<p>Now suppose we run the program above to create a list of <span class="math notranslate nohighlight">\(n\)</span>
+elements.  Adding up all the calls to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> that happen, how
+many times does an array element get copied from the internal array to
+the new array (that is, how many times is the statement <code class="docutils literal notranslate"><span class="pre">newArray[i]</span>
+<span class="pre">=</span> <span class="pre">internalArray[i]</span></code>) get executed?</p>
+<p>The array size is initially 1, so we get the following calls to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(2)</span></code>, copying 1 element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(3)</span></code>, copying 2 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(4)</span></code>, copying 3 elements</p></li>
+<li><p>…</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(n-2)</span></code>, copying <span class="math notranslate nohighlight">\(n-3\)</span> elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(n-1)</span></code>, copying <span class="math notranslate nohighlight">\(n-2\)</span> elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(n)</span></code>, copying <span class="math notranslate nohighlight">\(n-1\)</span> elements</p></li>
+</ul>
+<p>In total, there are <span class="math notranslate nohighlight">\(1+2+...+(n-1)\)</span> element copy operations,
+which is equal to <span class="math notranslate nohighlight">\(n(n-1)/2 = (n^2-n)/2\)</span>.
+This means that the program takes <cite>quadratic time</cite>, not linear!</p>
+<p>Suppose for example that <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>. Using the formula
+above, the number of times an array element gets copied is
+<span class="math notranslate nohighlight">\(999999 \times 1000000/2 = 499,999,500,000\)</span>. If copying one
+array element takes 1 ns, then the program spends nearly 10 minutes
+just resizing the array!</p>
+<p>What happens if we instead grow the array by 100 elements every time?
+You can try the calculation yourself, for say <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>.
+What happens is that <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> gets called 100 times less
+often – so there 100 times fewer elements copied. But the runtime is
+still quadratic <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. When <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>, the total number of
+elements copied is about <span class="math notranslate nohighlight">\(5,000,000,000\)</span>, still far too many.</p>
+<p>In short, <strong>growing the array size by a constant amount is bad</strong>,
+because a loop that repeatedly adds to the array will take quadratic time.</p>
+</div>
+<div class="section" id="growing-by-a-constant-factor">
+<h3>5.<span class="section-number">4.2.2. </span>Growing by a constant factor<a class="headerlink" href="#growing-by-a-constant-factor" title="Permalink to this headline">¶</a></h3>
+<p>One way to think about the problem is: as the array gets bigger,
+resizing it gets more expensive. So, to make up for that, when the
+array is bigger we need to grow it by more, so that it gets resized
+less often. One way to do this is to always double the array size when
+it gets full. This turns out to work well!</p>
+<p>Suppose that we run the example program with <span class="math notranslate nohighlight">\(n = 1000\)</span>, i.e. we
+add 1000 elements to the list. As before, the internal array initially
+has a size of 1. What calls to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> happen, and how many
+elements get copied each time?</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(2)</span></code>, copying 1 element</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(4)</span></code>, copying 2 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(8)</span></code>, copying 4 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(16)</span></code>, copying 8 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(32)</span></code>, copying 16 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(64)</span></code>, copying 32 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(128)</span></code>, copying 64 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(256)</span></code>, copying 128 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(512)</span></code>, copying 256 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(1024)</span></code>, copying 512 elements</p></li>
+</ul>
+<p>You can see that the array gets resized a whole lot at the beginning
+– but as it gets bigger, it gets resized much less often. We can read
+off how many elements get copied: <span class="math notranslate nohighlight">\(1+2+4+8+16+32+64+128+256+512 = 1023\)</span>.</p>
+<p>Since the array starts from size 1 and always doubles, the array size
+is always a power of two. So to calculate the total number of elements
+copied, instead of adding up all the terms by hand, we can use the
+formula <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^n = 2^{n+1}-1\)</span> (with <span class="math notranslate nohighlight">\(512=2^9\)</span>).</p>
+<p>Suppose that we now choose <span class="math notranslate nohighlight">\(n=1,000,000\)</span>. How many elements get
+copied? In this case the final array size will be <span class="math notranslate nohighlight">\(2^20 = 1,048,576\)</span>.
+The array size will eventually grow from <span class="math notranslate nohighlight">\(2^18\)</span> to <span class="math notranslate nohighlight">\(2^19\)</span>
+to <span class="math notranslate nohighlight">\(2^20\)</span> elements, with the final call to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code>
+copying <span class="math notranslate nohighlight">\(2^19\)</span> elements. Using the formula above, the total number
+of elements copied is <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^19 = 2^20-1 = 1,048,575\)</span>.</p>
+<p>Compared to when we grew the array by a fixed size of 1 element, this is
+<span class="math notranslate nohighlight">\(500,000\)</span> times fewer! So this in fact seems to be nice and efficient.</p>
+<p>Let us now generalise to an arbitrary <span class="math notranslate nohighlight">\(n\)</span>. The worst case is when
+the final call to <code class="docutils literal notranslate"><span class="pre">add</span></code> has to resize the array – that happens when
+<span class="math notranslate nohighlight">\(n\)</span> is one more than a power of two, <span class="math notranslate nohighlight">\(n-1 = 2^k\)</span>. In that
+case, the final call to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> grows the array from
+<span class="math notranslate nohighlight">\(2^k\)</span> to <span class="math notranslate nohighlight">\(2^{k+1}\)</span>, copying <span class="math notranslate nohighlight">\(2^k\)</span> elements.
+The total number of elements copied is <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^k
+= 2^{k+1} - 1 = 2 \cdot 2^k - 1 = 2(n-1) - 1 = 2n-3\)</span>. In fact, we have
+just proved the following result.</p>
+<p><strong>Theorem:</strong> When using the array-doubling strategy, calling
+<code class="docutils literal notranslate"><span class="pre">add</span></code> <span class="math notranslate nohighlight">\(n\)</span> times starting from an empty dynamic array list
+causes fewer than <span class="math notranslate nohighlight">\(2n\)</span> elements to be copied.</p>
+<p>In short, the overhead of using a dynamic array list is at most <cite>two
+array elements copied per element that we add</cite>. But copying an array
+element is an extremely cheap operation, so dynamic array lists
+implemented using array doubling have almost no overhead, compared to
+static array lists. In particular, the complexity of our example
+program is <cite>linear</cite>, just as we wanted.</p>
+<p>What happens if we instead grow the array by 50%? In fact, it still
+works out fine - the program takes linear time to run. To see this,
+you can use the same argument as above, but instead of using the
+formula <span class="math notranslate nohighlight">\(2^0+2^1+...+2^k = 2^{k+1}\)</span>, you have to use the formula
+for a general <a class="reference external" href="https://en.wikipedia.org/wiki/Geometric_progression">geometric progression</a>. What you get is an overhead of
+<cite>three elements copied per element added</cite>. In fact, Java <code class="docutils literal notranslate"><span class="pre">ArrayLists</span></code>
+grow the array by 50% on resizing.</p>
+<p>In fact, <strong>growing the array by any constant factor</strong> works, because
+the same geometric progression reasoning applies. We can calculate
+the exact performance overhead of growing the array by any given factor:</p>
+<p><strong>Theorem:</strong> If we grow the array by a factor of <span class="math notranslate nohighlight">\(k\)</span> when
+resizing it, then the overhead is at most <span class="math notranslate nohighlight">\(1+1/k\)</span> elements
+copied per <code class="docutils literal notranslate"><span class="pre">add</span></code>. For example, when growing by 20% (k=0.2), the
+overhead is 6 elements copied per <code class="docutils literal notranslate"><span class="pre">add</span></code>.</p>
+<p>In short, when resizing a dynamic array list, we should <strong>grow the
+array size by a factor</strong>, because this gives only a constant factor
+performance overhead compared to using a static array list. We can choose
+a large factor (such as 2) if we want fast performance, or a low
+factor (such as 20%) if we want to save memory.</p>
+</div>
+<div class="section" id="constant-amount-vs-constant-factor">
+<h3>5.<span class="section-number">4.2.3. </span>Constant amount vs constant factor<a class="headerlink" href="#constant-amount-vs-constant-factor" title="Permalink to this headline">¶</a></h3>
+<p>Here is a graph that shows just how big the performance difference is
+between the two resizing strategies: growing the array by a constant
+amount, and scaling it by a constant factor. The graph plots how many
+elements need to be copied, as a function of how many elements we add
+to the list.</p>
+<div class="divdgm" id="listgrowthgraph">
+<div id="ListArrayDynamicCON">
+</div>
+</div>
+<p>Notice that although growing by 10000 seems pretty good at first, for
+largest lists it’s worse than growing by 10%. We can see this more
+clearly if we zoom out the graph, making the <em>x</em>-axis go up to
+<span class="math notranslate nohighlight">\(10,000,000\)</span> instead of <span class="math notranslate nohighlight">\(1,000,000\)</span>:</p>
+<div class="divdgm">
+<div id="ListArrayDynamicZoomCON">
+</div>
+</div>
+<p>Though you can’t see it in the graph, at <span class="math notranslate nohighlight">\(x=10,000,000\)</span>, growing
+by 10000 is <strong>5000 times</strong> slower than growing by 10%! This is because
+the “growing by 10000” strategy takes quadratic time: if we do 10 times as many
+calls to <code class="docutils literal notranslate"><span class="pre">add</span></code>, it takes 100 times as long. Quadratic algorithms
+always lose to linear algorithms eventually!</p>
 </div>
 <div class="section" id="practice-exercise">
-<h3>5.<span class="section-number">4.1.2. </span>Practice Exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">4.2.4. </span>Practice Exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="shrinking-the-internal-array">
-<h2>5.<span class="section-number">4.2. </span>Shrinking the internal array<a class="headerlink" href="#shrinking-the-internal-array" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">4.3. </span>Shrinking the internal array<a class="headerlink" href="#shrinking-the-internal-array" title="Permalink to this headline">¶</a></h2>
 <p>We don’t have to change anything else in the code from <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>
 to have a working dynamic array list that has room for any number of elements.</p>
 <p>But the problem is that if we first build a large list with 1000’s of elements,
@@ -305,8 +473,9 @@ So we can add the following lines to the end of the <code class="docutils litera
 </div>
 <p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.remove</span></code> method.
 So the dynamic <code class="docutils literal notranslate"><span class="pre">remove</span></code> method will look like this.</p>
-<div id="DynamicArrayList_DynamicArrayListRemove_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
-    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+<div id="DynamicArrayList_DynamicArrayListRemove_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
         <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
             <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
@@ -366,38 +535,38 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">remo
  </div>
 </div>
 <p></p>
-<div class="section" id="id1">
-<h3>5.<span class="section-number">4.2.1. </span>Complexity analysis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="complexity-analysis">
+<h3>5.<span class="section-number">4.3.1. </span>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="id2">
-<h3>5.<span class="section-number">4.2.2. </span>Practice Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">4.3.2. </span>Practice Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="dynamic-array-based-list-full-code">
-<h2>5.<span class="section-number">4.3. </span>Dynamic Array-based List: Full code<a class="headerlink" href="#dynamic-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">4.4. </span>Dynamic Array-based List: Full code<a class="headerlink" href="#dynamic-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <code class="docutils literal notranslate"><span class="pre">DynamicArrayList</span></code>.
 Note that now the constructor doesn’t take any capacity argument,
 since the internal array will automatically grow when needed.</p>
 <div id="DynamicArrayList_DynamicArrayList_code"><ul><li><a href="#DynamicArrayList_DynamicArrayList_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayList_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayList_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DynamicArrayList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>
-    <span class="kd">private</span> <span class="n">listSize</span>      <span class="p">:</span> <span class="kt">int</span>
+    <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the list elements</span>
+    <span class="kd">private</span> <span class="n">listSize</span>      <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of list</span>
 
-    <span class="nf">DynamicArrayList</span><span class="p">()</span>
+    <span class="n">DynamicArrayList</span><span class="p">()</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span>
         <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
     <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-    <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">old</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="k">return</span> <span class="n">old</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+    <span class="nf">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
         <span class="k">if</span> <span class="n">listSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
             <span class="nf">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>
         <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -405,8 +574,9 @@ since the internal array will automatically grow when needed.</p>
             <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
-    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
         <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
             <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
@@ -429,12 +599,12 @@ since the internal array will automatically grow when needed.</p>
         <span class="k">return</span> <span class="n">listSize</span>
 
     <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">internalArray</span>
+        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">internalArray</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">element</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div><div id="DynamicArrayList_DynamicArrayList_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DynamicArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the list elements</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>        <span class="c1">// Size of list</span>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayList</span><span class="p">()</span> <span class="p">{</span>
@@ -520,8 +690,8 @@ since the internal array will automatically grow when needed.</p>
 </div>
 </div><div id="DynamicArrayList_DynamicArrayList_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>   <span class="c1"># Internal array containing the list elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>             <span class="c1"># Size of list</span>
 
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
@@ -586,7 +756,16 @@ since the internal array will automatically grow when needed.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayList_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayList-Append-CON.js"></script>
+</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayList_code" ).tabs();});</script><dl class="footnote brackets">
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>You can get a precise number by using the formula for an
+<a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_progression">arithmetic progression</a>.</p>
+</dd>
+</dl>
+<script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayList-Append-CON.js"></script>
+<script type="text/javascript" src="../../../DataStructures/Plot.js"></script>
+<script type="text/javascript" src="../../../AV/List/ListArrayDynamicCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/ListArrayDynamicZoomCON.js"></script>
 <script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayList-Remove-CON.js"></script>
 </div>
 </div>
@@ -615,7 +794,7 @@ since the internal array will automatically grow when needed.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 12, 2021.
+      Last updated on Oct 18, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

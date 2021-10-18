@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['basic-abstract-data-types', 'lists', 'sets', 'maps-or-dictionaries', 'graphs', 'comparison-with-the-standard-java-api'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="all-adts-used-in-this-book">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['basic-abstract-data-types', 'lists', 'sets', 'maps-or-dictionaries', 'graphs', 'comparison-with-the-standard-java-api'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="all-adts-used-in-this-book">
 <h1>1.<span class="section-number">3. </span>All ADTs Used in This Book<a class="headerlink" href="#all-adts-used-in-this-book" title="Permalink to this headline">¶</a></h1>
 <p>Here we list all abstract data types that we will introduce in this course book.
 Together they form an API (application programming interface) for this book.</p>
@@ -262,6 +262,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>      <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the element at position i; where 0 &lt;= i &lt; size.</span>
     <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Replaces the value at position i with x; where 0 &lt;= i &lt; size.</span>
     <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>   <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Removes the element at position i; where 0 &lt;= i &lt; size.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from position 0.</span>
 </pre></div>
 </div>
 </div><div id="API_ListADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.List</span>
@@ -270,6 +271,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>          <span class="c1">// Returns the element at position i.</span>
     <span class="n">E</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">);</span>     <span class="c1">// Replaces the value at position i with x.</span>
     <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>       <span class="c1">// Removes the element at position i.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from position 0.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -278,6 +280,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the element at position i.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Replaces the value at position i with x.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Removes the element at position i.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() should yield the elements starting from position 0.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_ListADT_code" ).tabs();});</script><p>Stacks:</p>
@@ -285,6 +288,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>       <span class="c1">// Pushes x on top of the stack.</span>
     <span class="n">pop</span><span class="p">()</span>     <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Pops the top of the stack and returns it.</span>
     <span class="n">peek</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the top element of the stack, without removing it.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from the top of the stack.</span>
 </pre></div>
 </div>
 </div><div id="API_StackADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is an interface, while java.util.Stack is a class!</span>
@@ -292,6 +296,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Pushes x on top of the stack.</span>
     <span class="n">E</span> <span class="nf">pop</span><span class="p">();</span>         <span class="c1">// Pops the top of the stack and returns it.</span>
     <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>        <span class="c1">// Returns the top element of the stack, without removing it.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from the top of the stack.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -299,6 +304,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Pushes x on top of the stack.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Pops the top of the stack and returns it.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the top element of the stack, without removing it.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() should yield the elements starting from the top of the stack.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_StackADT_code" ).tabs();});</script><p>Queues:</p>
@@ -306,6 +312,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>       <span class="c1">// Enqueues x at the end of the queue.</span>
     <span class="n">dequeue</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Dequeues the frontmost element.</span>
     <span class="n">peek</span><span class="p">()</span>       <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the frontmost element, without removing it.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from the frontmost element.</span>
 </pre></div>
 </div>
 </div><div id="API_QueueADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Queue; and it uses different method names.</span>
@@ -313,6 +320,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Enqueues x at the end of the queue.</span>
     <span class="n">E</span> <span class="nf">dequeue</span><span class="p">();</span>        <span class="c1">// Dequeues the frontmost element.</span>
     <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>           <span class="c1">// Returns the frontmost element, without removing it.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from the frontmost element.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -320,6 +328,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Enqueues x at the end of the queue.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Dequeues the frontmost element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the frontmost element, without removing it.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() should yield the elements starting from the frontmost element.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_QueueADT_code" ).tabs();});</script><p>Priority queues:</p>
@@ -327,6 +336,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>          <span class="c1">// Adds x to the priority queue.</span>
     <span class="n">removeMin</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Removes the minimum element, and returns it.</span>
     <span class="n">getMin</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the minimum element, without removing it.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order, but the minimum element should come first.</span>
 </pre></div>
 </div>
 </div><div id="API_PriorityQueueADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is an interface, while java.util.PriorityQueue is a class</span>
@@ -335,6 +345,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Adds x to the priority queue.</span>
     <span class="n">E</span> <span class="nf">removeMin</span><span class="p">();</span>  <span class="c1">// Removes the minimum element, and returns it.</span>
     <span class="n">E</span> <span class="nf">getMin</span><span class="p">();</span>     <span class="c1">// Returns the minimum element, without removing it.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order, but the minimum element should come first.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -342,6 +353,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Adds x to the priority queue.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">removeMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Removes the minimum element, and returns it.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the minimum element, without removing it.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() can yield the elements in any order, but the minimum element should come first.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_PriorityQueueADT_code" ).tabs();});</script></div>
@@ -352,6 +364,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>                  <span class="c1">// Adds x to the set.</span>
     <span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>               <span class="c1">// Removes x from the set, and returns it.</span>
     <span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">boolean</span>   <span class="c1">// Checks if x is in the set.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order.</span>
 </pre></div>
 </div>
 </div><div id="API_SetADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Set</span>
@@ -359,6 +372,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>          <span class="c1">// Adds x to the set.</span>
     <span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>       <span class="c1">// Removes x from the set, and returns it.</span>
     <span class="kt">boolean</span> <span class="nf">contains</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Checks if x is in the set.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -366,6 +380,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Adds x to the set.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Removes x from the set, and returns it.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Checks if x is in the set.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() can yield the elements in any order.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_SetADT_code" ).tabs();});</script><p>Sets where the elements are sorted:</p>
@@ -384,7 +399,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">E</span> <span class="nf">last</span><span class="p">();</span>        <span class="c1">// Returns the last (largest) element.</span>
     <span class="n">E</span> <span class="nf">floor</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>    <span class="c1">// Returns the closest element &lt;= x.</span>
     <span class="n">E</span> <span class="nf">ceiling</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Returns the closest element &gt;= x.</span>
-    <span class="c1">// Note: iterator() should return the elements in order.</span>
+    <span class="c1">// Note: iterator() should yield the elements in order.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -393,7 +408,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the last (largest) element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &lt;= x.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceiling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest element &gt;= x.&quot;&quot;&quot;</span>
-    <span class="c1"># Note: __iter__() should yield the elements in order</span>
+    <span class="c1"># Note: __iter__() should yield the elements in order.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_SortedSetADT_code" ).tabs();});</script></div>
@@ -409,6 +424,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">keyIterator</span><span class="p">()</span>    <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>  <span class="c1">// Returns an iterator over the keys.</span>
     <span class="n">isEmpty</span><span class="p">()</span>        <span class="p">:</span> <span class="kt">boolean</span>      <span class="c1">// Returns true if there are no keys.</span>
     <span class="n">size</span><span class="p">()</span>           <span class="p">:</span> <span class="kt">int</span>          <span class="c1">// Returns the number of keys (i.e., the number of key/value pairs).</span>
+    <span class="c1">// Note: keyIterator() can yield the keys in any order.</span>
 </pre></div>
 </div>
 </div><div id="API_MapADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Map, where</span>
@@ -421,6 +437,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">keyIterator</span><span class="p">();</span>   <span class="c1">// Returns an iterator over the keys.</span>
     <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>           <span class="c1">// Returns true if there are no keys.</span>
     <span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>                  <span class="c1">// Returns the number of keys (i.e., the number of key/value pairs).</span>
+    <span class="c1">// Note: keyIterator() can yield the keys in any order.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -432,6 +449,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">keyIterator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Returns an iterator over the keys.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>          <span class="s2">&quot;&quot;&quot;Returns true if there are no .&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>             <span class="s2">&quot;&quot;&quot;Returns the number of keys (i.e., the number of key/value pairs).&quot;&quot;&quot;</span>
+    <span class="c1"># Note: keyIterator() can yield the keys in any order.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_MapADT_code" ).tabs();});</script><p>Maps where the keys are sorted:</p>
@@ -450,7 +468,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="n">K</span> <span class="nf">lastKey</span><span class="p">();</span>           <span class="c1">// Returns the last (largest) key.</span>
     <span class="n">K</span> <span class="nf">floorKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>     <span class="c1">// Returns the closest key &lt;= k.</span>
     <span class="n">K</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>   <span class="c1">// Returns the closest key &gt;= k.</span>
-    <span class="c1">// Note: keyIterator() should return the keys in order.</span>
+    <span class="c1">// Note: keyIterator() should yield the keys in order.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -459,7 +477,7 @@ So, we will define classes which act as interfaces, and call them abstract class
     <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>         <span class="s2">&quot;&quot;&quot;Returns the last (largest) key.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &lt;= k.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &gt;= k.&quot;&quot;&quot;</span>
-    <span class="c1"># Note: keyIterator() should yield the keys in order</span>
+    <span class="c1"># Note: keyIterator() should yield the keys in order.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_SortedMapADT_code" ).tabs();});</script></div>
@@ -566,7 +584,7 @@ Also, some methods are simpler than the corresponding ones in the standard API.<
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 12, 2021.
+      Last updated on Oct 18, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

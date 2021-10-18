@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-list', 'collections', 'defining-the-list-adt'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-list', 'collections', 'defining-the-list-adt'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="the-list-adt">
 <h1>5.<span class="section-number">2. </span>The List ADT<a class="headerlink" href="#the-list-adt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-a-list">
@@ -285,6 +285,7 @@ There are four main operations we want to support:</p>
     <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>      <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the element at position i; where 0 &lt;= i &lt; size.</span>
     <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Replaces the value at position i with x; where 0 &lt;= i &lt; size.</span>
     <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>   <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Removes the element at position i; where 0 &lt;= i &lt; size.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from position 0.</span>
 </pre></div>
 </div>
 </div><div id="API_ListADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.List</span>
@@ -293,6 +294,7 @@ There are four main operations we want to support:</p>
     <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>          <span class="c1">// Returns the element at position i.</span>
     <span class="n">E</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">);</span>     <span class="c1">// Replaces the value at position i with x.</span>
     <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>       <span class="c1">// Removes the element at position i.</span>
+    <span class="c1">// Note: iterator() should yield the elements starting from position 0.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -301,6 +303,7 @@ There are four main operations we want to support:</p>
     <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the element at position i.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Replaces the value at position i with x.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Removes the element at position i.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() should yield the elements starting from position 0.</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_ListADT_code" ).tabs();});</script><div class="line-block">
@@ -417,7 +420,7 @@ implementation, just the list ADT.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 12, 2021.
+      Last updated on Oct 18, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

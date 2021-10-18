@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['call-stacks-for-implementing-recursion', 'towers-of-hanoi'];</script>
 
 .. _StackRecur:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -21,7 +21,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: stack
    :satisfies: implementing recursion
    :topic: Lists
@@ -41,6 +41,9 @@ understanding.
 There are good reasons to understand how recursion is implemented,
 but helping you to write recursive functions is not one of them.
 
+Call stacks for implementing recursion
+----------------------------------------------
+
 Perhaps the most common computer application that uses
 :ref:`stacks  <StackArray>` is not even visible to its users.
 This is the implementation of subroutine calls in most programming
@@ -55,7 +58,7 @@ record off the stack.
 As an example, here is a recursive implementation for the factorial
 function. 
 
-.. codeinclude:: Misc/Fact 
+.. codeinclude:: ChalmersGU/Factorial
    :tag: RFact
 
 Here is an illustration for how the internal processing works.
@@ -120,8 +123,8 @@ recursion can easily be replaced by iteration.
    As a simple example of replacing recursion with a stack, consider
    the following non-recursive version of the factorial function.
 
-   .. codeinclude:: Misc/Fact
-      :tag: Sfact
+   .. codeinclude:: ChalmersGU/Factorial
+         :tag: SFact
 
    Here, we simply push successively smaller values of :math:`n` onto
    the stack until the base case is reached, then repeatedly pop off
@@ -137,58 +140,61 @@ Hanoi algorithm, or when
 The :ref:`Mergesort  <Mergesort>` and
 :ref:`Quicksort  <Quicksort>` sorting algorithms
 also require recursion.
+
 Fortunately, it is always possible to imitate recursion with a stack.
-Let us now turn to a non-recursive version of the Towers of
-Hanoi function, which cannot be done iteratively.
-
-.. topic:: Example
-
-   Here is a recursive implementation for Towers of Hanoi.
-
-   .. codeinclude:: Misc/TOH 
-      :tag: TOH
-
-   ``TOH`` makes two recursive calls:
-   one to move :math:`n-1` rings off the bottom ring, and another to
-   move these :math:`n-1` rings back to the goal pole.
-   We can eliminate the recursion by using a stack to store a
-   representation of the three operations that ``TOH`` must perform:
-   two recursive calls and a move operation.
-   To do so, we must first come up with a representation of the
-   various operations, implemented as a class whose objects will be
-   stored on the stack.
-
-   .. codeinclude:: Misc/TOH
-      :tag: TOHstack
-
-   We first enumerate the possible operations MOVE and TOH, to
-   indicate calls to the ``move`` function 
-   and recursive calls to ``TOH``, respectively.
-   Class ``TOHobj`` stores five values: an operation value
-   (indicating either a MOVE or a new TOH operation), the number of
-   rings, and the three poles.
-   Note that the move operation actually needs only to store
-   information about two poles.
-   Thus, there are two constructors: one to store the state when
-   imitating a recursive call, and one to store the state for a move
-   operation.
-
-   An array-based stack is used because we know that the stack
-   will need to store exactly :math:`2n+1` elements.
-   The new version of ``TOH`` begins by placing on the stack a
-   description of the initial problem for :math:`n` rings.
-   The rest of the function is simply a ``while`` loop that pops the
-   stack and executes the appropriate operation.
-   In the case of a ``TOH`` operation (for :math:`n>0`), we store on
-   the stack representations for the three operations executed by the
-   recursive version.
-   However, these operations must be placed on the stack in reverse
-   order, so that they will be popped off in the correct order.
-
 Recursive algorithms lend themselves to efficient implementation with
 a stack when the amount of information needed to describe a
 sub-problem is small.
 For example, :ref:`Quicksort  <Quicksort>` can effectively
 use a stack to replace its recursion since only bounds information for
 the subarray to be processed needs to be saved.
+
+Let us now turn to a non-recursive version of the Towers of
+Hanoi function, which cannot be done iteratively.
+
+
+Towers of Hanoi
+----------------
+
+Here is a recursive implementation for Towers of Hanoi.
+
+.. codeinclude:: ChalmersGU/TowersOfHanoi
+   :tag: TOH
+
+``TOH`` makes two recursive calls:
+one to move :math:`n-1` rings off the bottom ring, and another to
+move these :math:`n-1` rings back to the goal pole.
+We can eliminate the recursion by using a stack to store a
+representation of the three operations that ``TOH`` must perform:
+two recursive calls and a move operation.
+To do so, we must first come up with a representation of the
+various operations, implemented as a class whose objects will be
+stored on the stack.
+
+.. codeinclude:: ChalmersGU/TowersOfHanoi
+   :tag: TOHstack
+
+We first enumerate the possible operations MOVE and TOH, to
+indicate calls to the ``move`` function 
+and recursive calls to ``TOH``, respectively.
+Class ``TOH_object`` stores five values: an operation value
+(indicating either a MOVE or a new TOH operation), the number of
+rings, and the three poles.
+Note that the move operation actually needs only to store
+information about two poles.
+Thus, there are two constructors: one to store the state when
+imitating a recursive call, and one to store the state for a move
+operation.
+
+An array-based stack is used because we know that the stack
+will need to store exactly :math:`2n+1` elements.
+The new version of ``TOH`` begins by placing on the stack a
+description of the initial problem for :math:`n` rings.
+The rest of the function is simply a ``while`` loop that pops the
+stack and executes the appropriate operation.
+In the case of a ``TOH`` operation (for :math:`n>0`), we store on
+the stack representations for the three operations executed by the
+recursive version.
+However, these operations must be placed on the stack in reverse
+order, so that they will be popped off in the correct order.
 

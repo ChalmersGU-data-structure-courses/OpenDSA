@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script>
 
 .. _Queue:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -23,7 +23,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: list ADT
    :satisfies: queue; array-based queue
    :topic: Lists
@@ -54,12 +54,12 @@ Here is a sample queue ADT.
 This section presents two implementations for queues:
 the array-based queue and the linked queue.
 
-.. codeinclude:: Lists/Queue
-   :tag: Queue
+.. codeinclude:: ChalmersGU/API
+   :tag: QueueADT
 
 
 Array-Based Queues
-~~~~~~~~~~~~~~~~~~
+----------------------
 
 The array-based queue is somewhat tricky to implement effectively.
 A simple conversion of the array-based list implementation is not
@@ -92,7 +92,7 @@ efficient.
 
 
 The Circular Queue
-~~~~~~~~~~~~~~~~~~
+---------------------
 
 .. inlineav:: aqueueCircularCON ss
    :points: 0.0
@@ -129,18 +129,16 @@ elements in the queue, or at least a Boolean variable that indicates
 whether the queue is empty or not.
 Another solution is to make the array be of size :math:`n+1`,
 and only allow :math:`n` elements to be stored.
+A third solution is to set ``front`` and ``rear`` to –1 when the queue becomes empty.
 Which of these solutions to adopt is purely a matter of the
 implementor's taste in such affairs.
-Our choice here is to use an array of size :math:`n+1`.
-
-Here is an array-based queue implementation.
-
-.. codeinclude:: Lists/AQueue
-   :tag: AQueue1,AQueue2
+Our choice here is to keep an explicit count of the number of elements,
+in the variable ``queueSize``, because this will make the code more similar
+to our list and stack implementations.
 
 
 Array-based Queue Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 .. inlineav:: aqueueVarCON ss
    :points: 0.0
@@ -176,6 +174,15 @@ Array-based Dequeue Practice
    :threshold: 5
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Array-based Queue Dequeue Exercise
+
+
+Array-based Queues, Full Implementation
+-----------------------------------------
+
+Here is an array-based queue implementation.
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueue
 
 .. odsascript:: AV/List/aqueueFirstCON.js
 .. odsascript:: AV/List/aqueueDriftCON.js

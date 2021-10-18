@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-and-setting-values', 'adding-and-removing-nodes', 'adding-a-node', 'removing-a-node', 'complexity-analysis', 'linked-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-12 13:09:13"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-and-setting-values', 'adding-and-removing-nodes', 'adding-a-node', 'removing-a-node', 'complexity-analysis', 'linked-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-lists">
 <h1>5.<span class="section-number">5. </span>Linked Lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -267,15 +267,15 @@ the next node on the list.</p>
 <h3>5.<span class="section-number">5.1.1. </span>Getting and setting values<a class="headerlink" href="#getting-and-setting-values" title="Permalink to this headline">¶</a></h3>
 <p>If we want to get or set the value at a certain index,
 we simply iterate through the nodes in sequence until we get to the node we want.</p>
-<div id="LinkedList_LinkedListGetSet_code"><ul><li><a href="#LinkedList_LinkedListGetSet_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListGetSet_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListGetSet_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListGetSet_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+<div id="LinkedList_LinkedListGetSet_code"><ul><li><a href="#LinkedList_LinkedListGetSet_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListGetSet_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListGetSet_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListGetSet_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">current</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">head</span>
         <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
         <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-    <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">current</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
         <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
@@ -391,8 +391,8 @@ Inserting at the beginning of a list, and appending at the end.</p>
 </div>
 <p></p>
 <p>Here’s the code for addition.</p>
-<div id="LinkedList_LinkedListAdd_code"><ul><li><a href="#LinkedList_LinkedListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListAdd_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListAdd_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+<div id="LinkedList_LinkedListAdd_code"><ul><li><a href="#LinkedList_LinkedListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListAdd_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListAdd_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
         <span class="k">else</span>
@@ -473,8 +473,8 @@ Inserting at the beginning of a list, and appending at the end.</p>
 </div>
 <p></p>
 <p>Here’s the code for deletion:</p>
-<div id="LinkedList_LinkedListRemove_code"><ul><li><a href="#LinkedList_LinkedListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListRemove_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListRemove_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
-    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+<div id="LinkedList_LinkedListRemove_code"><ul><li><a href="#LinkedList_LinkedListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListRemove_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListRemove_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
@@ -580,15 +580,15 @@ which is part of Java’s standard <a class="reference external" href="https://d
         <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
         <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in list</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
     <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">current</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">head</span>
         <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
         <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-    <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="n">current</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
         <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
             <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
@@ -596,8 +596,8 @@ which is part of Java’s standard <a class="reference external" href="https://d
         <span class="n">current</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">x</span>
         <span class="k">return</span> <span class="n">old</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+    <span class="nf">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
         <span class="k">else</span>
@@ -607,8 +607,8 @@ which is part of Java’s standard <a class="reference external" href="https://d
             <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">)</span>
         <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
 
-    <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
     <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
@@ -629,7 +629,7 @@ which is part of Java’s standard <a class="reference external" href="https://d
         <span class="k">return</span> <span class="n">listSize</span>
 
     <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">internalArray</span>
+        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">the</span> <span class="n">list</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">head</span>
 </pre></div>
 </div>
 </div><div id="LinkedList_LinkedList_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -844,7 +844,7 @@ which is part of Java’s standard <a class="reference external" href="https://d
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 12, 2021.
+      Last updated on Oct 18, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
