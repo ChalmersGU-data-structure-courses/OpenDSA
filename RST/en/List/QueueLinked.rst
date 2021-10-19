@@ -28,7 +28,7 @@ in the queue, to be able to add new elements efficiently.
 |
 
 .. codeinclude:: ChalmersGU/LinkedQueue
-   :tag: LinkedQueueIntro
+   :tag: LinkedQueueInit
 
 Enqueueing Elements
 -------------------------
