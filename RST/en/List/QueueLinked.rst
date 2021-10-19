@@ -73,7 +73,7 @@ Dequeueing Elements
 Linked Queue, Full Implementation
 -------------------------------------
 
-Here is the linked queue class declaration.
+Here is the full implementation for linked queues.
 
 .. codeinclude:: ChalmersGU/LinkedQueue
    :tag: LinkedQueue
@@ -91,8 +91,9 @@ Unlike the array-based stack implementation, there is no convenient
 way to store two queues in the same array,
 unless items are always transferred directly from one queue to the other.
 
+
 Stack and Queue Summary Questions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 .. avembed:: Exercises/List/StackQSumm.html ka
    :long_name: Stack/Queue Summary Exercise
