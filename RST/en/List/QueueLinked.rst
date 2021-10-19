@@ -46,7 +46,7 @@ Enqueueing Elements
 
 |
 
-.. avembed:: Exercises/List/LqueueEnqueuePRO.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedQueue-Enqueue-PRO.html ka
    :long_name: Linked Queue Enqueue Exercise
 
 
