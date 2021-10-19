@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: queue
    :satisfies: linked queue
    :topic: Lists
@@ -19,21 +19,33 @@ The linked queue implementation is an adaptation of the linked list.
 The only thing is that we have to add a pointer to the rear node
 in the queue, to be able to add new elements efficiently.
 
-.. inlineav:: lqueueIntroCON ss
+.. inlineav:: LinkedQueue-Intro-CON ss
    :long_name: Linked Queue Intro
-   :links: AV/List/lqueueCON.css
-   :scripts: AV/List/llist.js AV/List/lqueueIntroCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedQueue-Intro-CON.js
    :output: show    
-   
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueIntro
+
 Enqueueing Elements
 -------------------------
 
-.. inlineav:: lqueueEnqueueCON ss
+.. inlineav:: LinkedQueue-Enqueue-CON ss
    :long_name: Linked Queue Enqueue
-   :links: AV/List/lqueueCON.css
-   :scripts: AV/List/llist.js AV/List/lqueueEnqueueCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedQueue-Enqueue-CON.js
    :output: show   
-   
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueEnqueue
+
+|
+
 .. avembed:: Exercises/List/LqueueEnqueuePRO.html ka
    :long_name: Linked Queue Enqueue Exercise
 
@@ -41,11 +53,18 @@ Enqueueing Elements
 Dequeueing Elements
 -------------------------
 
-.. inlineav:: lqueueDequeueCON ss
+.. inlineav:: LinkedQueue-Dequeue-CON ss
    :long_name: Linked Queue Dequeue
-   :links: AV/List/lqueueCON.css
-   :scripts: AV/List/llist.js AV/List/lqueueDequeueCON.js
+   :links: AV/ChalmersGU/CGU-Styles.css
+   :scripts: AV/ChalmersGU/LinkedQueue-Dequeue-CON.js
    :output: show 
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueDequeue
+
+|
    
 .. avembed:: Exercises/List/LqueueDequeuePRO.html ka
    :long_name: Linked Queue Dequeue Exercise
@@ -67,6 +86,7 @@ All member functions for both the array-based and linked queue
 implementations require constant time.
 The space comparison issues are the same as for the equivalent stack
 implementations.
+
 Unlike the array-based stack implementation, there is no convenient
 way to store two queues in the same array,
 unless items are always transferred directly from one queue to the other.

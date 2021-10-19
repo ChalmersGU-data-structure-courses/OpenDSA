@@ -287,3 +287,54 @@
 }
 
 /*********************************************************/
+
+#LinkedQueue-Intro-CON {
+  height: 300px;
+}
+
+#LinkedQueue-Intro-CON .jsavoutput.jsavline {
+  height: 40px;
+}
+
+#LinkedQueue-Intro-CON .jsavcode {
+  position: relative;
+  left: 150px;
+  top: -10px;
+  width:535px;
+}
+
+/*********************************************************/
+
+#LinkedQueue-Enqueue-CON {
+  height: 280px;
+}
+
+#LinkedQueue-Enqueue-CON .jsavoutput.jsavline {
+  height: 20px;
+}
+
+#LinkedQueue-Enqueue-CON .jsavcode {
+  position: relative;
+  left: 195px;
+  top: -10px;
+  width:450px;
+}
+
+/*********************************************************/
+
+#LinkedQueue-Dequeue-CON {
+  height: 300px;
+}
+
+#LinkedQueue-Dequeue-CON .jsavoutput.jsavline {
+  height: 20px;
+}
+
+#LinkedQueue-Dequeue-CON .jsavcode {
+  position: relative;
+  left: 150px;
+  top: -10px;
+  width:550px;
+}
+
+/*********************************************************/
