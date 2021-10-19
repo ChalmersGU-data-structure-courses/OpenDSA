@@ -22,14 +22,11 @@ $(document).ready(function() {
 
   // Would like to put this in Slide 2, but the slash doesn't hide correctly
   var listInit = av.ds.list({nodegap: 30, left: leftMargin, top: topMargin});
-  listInit.addFirst("null");
+  listInit.addFirst(" ");
   listInit.layout();
-  var frontIP = av.pointer("front", null);
-  var rearIP = av.pointer("rear", null);
-  // var frontIP = av.pointer("front", listInit.get(0));
-  // var rearIP = av.pointer("rear", listInit.get(0),
-  //                         {anchor: "right top",
-  //                          myAnchor: "left bottom", left: -10});
+  var frontIP = av.pointer("front", listInit.get(0), {left:-10, top:0});
+  var rearIP = av.pointer("rear", listInit.get(0),
+                          {anchor: "right top", myAnchor: "left bottom", left:-10, top:0});
   listInit.hide();
   frontIP.hide();
   rearIP.hide();
