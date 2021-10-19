@@ -66,7 +66,7 @@ Dequeueing Elements
 
 |
    
-.. avembed:: Exercises/List/LqueueDequeuePRO.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedQueue-Dequeue-PRO.html ka
    :long_name: Linked Queue Dequeue Exercise
 
 
