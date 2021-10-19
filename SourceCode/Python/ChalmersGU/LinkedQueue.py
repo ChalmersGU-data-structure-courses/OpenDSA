@@ -33,9 +33,9 @@ class LinkedQueue(Queue):
         removed = self._front
         self._front = removed.next
         removed.next = None   # For garbage collection
+        self._queueSize -= 1
         if self._queueSize == 0:
             self._rear = None
-        self._queueSize -= 1
         return removed.elem
 #/* *** ODSAendTag: LinkedQueueDequeue *** */
 
