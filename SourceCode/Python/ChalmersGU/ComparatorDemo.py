@@ -53,16 +53,15 @@ def fullNameComparator(one, other):
 
 #/* *** ODSATag: GetPeople *** */
 def getPeople():
-    people = [Person("Unsuk", "Chin", 1961),
-              Person("Anna", "Thorvaldsdóttir", 1977),
-              Person("Andrea", "Tarrodi", 1981),
-              Person("Diana", "Čemerytė", 1974),
-              Person("Elfrida", "Andrée", 1841),
-              Person("Guy", "d’Hardelot", 1858),
-              Person("Nadia", "Boulanger", 1887),
-              Person("Lili", "Boulanger", 1893),
-              ]
-    return people
+    return [Person("Unsuk", "Chin", 1961),
+            Person("Anna", "Thorvaldsdóttir", 1977),
+            Person("Andrea", "Tarrodi", 1981),
+            Person("Diana", "Čemerytė", 1974),
+            Person("Elfrida", "Andrée", 1841),
+            Person("Guy", "d’Hardelot", 1858),
+            Person("Nadia", "Boulanger", 1887),
+            Person("Lili", "Boulanger", 1893),
+            ]
 #/* *** ODSAendTag: GetPeople *** */
 
 if __name__ == '__main__':

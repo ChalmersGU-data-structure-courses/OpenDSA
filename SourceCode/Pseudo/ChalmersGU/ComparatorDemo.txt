@@ -44,16 +44,15 @@ class FullNameComparator implements Comparator(Person)
 
 /* *** ODSATag: GetPeople *** */
 getPeople() : List(Person)
-    people : List(Person) = new ArrayList()
-    people.add(new Person("Unsuk", "Chin", 1961))
-    people.add(new Person("Anna", "Thorvaldsdóttir", 1977))
-    people.add(new Person("Andrea", "Tarrodi", 1981))
-    people.add(new Person("Diana", "Čemerytė", 1974))
-    people.add(new Person("Elfrida", "Andrée", 1841))
-    people.add(new Person("Guy", "d’Hardelot", 1858))
-    people.add(new Person("Nadia", "Boulanger", 1887))
-    people.add(new Person("Lili", "Boulanger", 1893))
-    return people
+    return [new Person("Unsuk", "Chin", 1961),
+            new Person("Anna", "Thorvaldsdóttir", 1977),
+            new Person("Andrea", "Tarrodi", 1981),
+            new Person("Diana", "Čemerytė", 1974),
+            new Person("Elfrida", "Andrée", 1841),
+            new Person("Guy", "d’Hardelot", 1858),
+            new Person("Nadia", "Boulanger", 1887),
+            new Person("Lili", "Boulanger", 1893),
+            ]
 /* *** ODSAendTag: GetPeople *** */
 
 
