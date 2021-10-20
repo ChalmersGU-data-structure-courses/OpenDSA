@@ -28,73 +28,119 @@ some criteria. Here are some examples:
   Given a list of all Swedish towns and their populations, find
   the towns whose population is between 10,000 and 20,000.
 
-- move to a later chapter? include indexing?
+All of these problems can be solved using ADTs called *sets* and *maps*.
 
-We can define searching formally as follows.
-Suppose that we have a collection **L** of :math:`n` records of the
-form
+Spell-checking: Sets
+~~~~~~~~~~~~~~~~~~~~
 
-.. math::
+A *set* represents a collection of items, where we can *add* and
+*remove* items, and *check* if a given item is present in the set.
+A set cannot contain duplicate items: if we try to add an item that is
+already present, nothing happens, and the set is left unchanged.
 
-   (k_1, I_1), (k_2, I_2), ..., (k_n, I_n)
+.. codeinclude:: ChalmersGU/API
+   :tag: SetADT
 
-where :math:`I_j` is information associated with key :math:`k_j`
-from record :math:`j` for :math:`1 \leq j \leq n`.
-Given a particular key value :math:`K`,
-the :term:`search problem` is to locate a record
-:math:`(k_j, I_j)` in **L** such that :math:`k_j = K`
-(if one exists).
-:term:`Searching` is a systematic method for
-locating the record (or records) with key value :math:`k_j = K`.
+We can use a set for the spell-checking example. To create the
+spell-checking dictionary, we start with an initially empty set, and
+then call ``add`` repeatedly to add each valid word to the set.
+Then to spell-check a given word, we just call ``contains``.
 
-A :term:`successful search` is one in which a record with key
-:math:`k_j = K` is found.
-An :term:`unsuccessful search` is one in which no record with
-:math:`k_j = K` is found (and no such record exists).
+.. codeinclude:: Searching/SpellCheck
+   :tag: SpellCheck
 
-An :term:`exact-match query` is a search for the record whose key
-value matches a specified key value.
-A :term:`range query` is a search for all records whose key value
-falls within a specified range of key values.
+Database lookup: Maps
+~~~~~~~~~~~~~~~~~~~~~
 
+A *map* represents a set of *keys*, where each key has an associated
+*value*. We can *add* and *remove* keys, but when we add a key we must
+specify what *value* we want to associated with it. We can *check* if
+a given key is present in the map. We can also *look up* a key to find
+the associated value.
 
+.. codeinclude:: ChalmersGU/API
+   :tag: MapADT
 
-We can categorize search algorithms into three general
-approaches:
+A map cannot contain duplicate *keys*, so each key is associated with
+exactly one value. If we call ``add(k,v)``, but the key ``k`` is
+already present, then the value associated with ``k`` gets changed to
+``v``. On the other hand, a map *can* contain duplicate *values*: two
+keys can have the same value.
 
-#. Sequential and list methods.
+The map is a perfect match for our database example. Here, the key
+should be a personnummer, and the value should be a record containing
+information about that person. If the personnummer is stored in a
+field ``pnr``, then to add a person ``p`` we call ``add(p.pnr, p)``.
+To find the person with personnummer ``pnr`` we call ``lookup(pnr)``.
 
-#. Direct access by key value (hashing).
+.. codeinclude:: Searching/Database
+   :tag: Database
 
-#. Tree indexing methods.
+Search engine: Multimaps
+~~~~~~~~~~~~~~~~~~~~~~~~
 
-Any of these approaches are potentially suitable for implementing the
-:ref:`Dictionary <dictionary> <Dictionary>` ADT.
-However, each has different performance characteristics that make it
-the method of choice in particular circumstances.
+Maps have the restriction that each key has only one value. However,
+sometimes we want to store a list of records, where some records might
+have the same key. Then we want something like a map, but where a key
+can have multiple values associated with it. This structure is called
+a *multimap*.
 
-The current chapter considers methods for searching data stored in
-lists.
-List in this context means any list implementation including a
-linked list or an array.
-Most of these methods are appropriate for sequences
-(i.e., duplicate key values are allowed), although there are special
-techniques applicable to :ref:`sets <set> <SetSearch>`.
-The techniques from the first three sections of this chapter are most
-appropriate for searching a collection of records stored in RAM.
-Chapter :chap:`Hash Tables` introduces hashing, a technique for
-organizing data in an array such that the location of each record
-within the array is a function of its key value.
-Hashing is appropriate when records are stored either in RAM or on
-disk.
+A multimap is the perfect data structure for our search engine
+example. We want to find all documents containing a given word. To do
+that, we will build a multimap, where the key is a word, and the
+values are all documents containing that word. Then, searching for a
+word will just mean looking it up in the multimap.
 
-Chapter :chap:`Indexing` discusses tree-based methods for organizing
-information on disk, including a commonly used file structure called
-the B-tree.
-Nearly all programs that must organize large collections of records
-stored on disk use some variant of either hashing or the B-tree.
-Hashing is practical for only certain access applications
-(exact-match queries) and is generally appropriate only when duplicate
-key values are not allowed.
-B-trees are the method of choice for dynamic disk-based
-applications anytime hashing is not appropriate.
+Unfortunately, most programming languages do not provide a multimap
+data structure. Instead, we can implement it ourselves. The idea is to
+use a map, where the key is a word, and the value is not a document
+but a *set* of documents.
+
+.. codeinclude:: Searching/SearchEngine
+   :tag: SearchEngine
+
+Between X and Y: Ordered Sets and Maps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. codeinclude:: ChalmersGU/API
+   :tag: OrderedSetADT
+
+.. codeinclude:: ChalmersGU/API
+   :tag: OrderedMapADT
+
+.. codeinclude:: Searching/Between
+   :tag: Between
+
+How to implement sets and maps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In Chapter :chap:`Arrays: Sorting and Searching`, we saw two ways to
+implement a set: using an array, or using a *sorted* array. We could
+implement a map using either an array of (key, value) tuples, or by
+storing the keys in one array and the values in another.
+
+An unsorted array is not a good implementation of a set (or a map),
+because the ``contains`` method must use *linear search*, which takes
+:math:`O(n)` time.
+
+A sorted array is suitable for a set or a map that *never changes*,
+because the ``contains`` method can use *binary search*, which takes
+:math:`O(\log n)` time. Updating the set or map is slow, because
+``add`` and ``remove`` must keep the array in the correct order, which
+takes :math:`O(n)` time. However, if the set or map never changes, we
+can sort it once at the beginning (in :math:`O(n \log n)` time) and
+use binary search from then on.
+
+In this chapter and the next one, we learn about *balanced binary
+search trees (BSTs)*, a data structure that implements the set and map
+ADTs, where ``add``, ``remove`` and ``contains`` all take
+:math:`O(\log n)` time. Balanced BSTs also support ordered operations
+such as :ref:`range queries <range query> <range query>`.
+
+In chapter :chap:`Indexing`, we learn about *hash tables*, another way
+to implement the set and map ADTs. In a hash table, ``add``,
+``remove`` and ``contains`` take *constant* time on average,
+but they are a little harder to use than BSTs, the performance
+guarantees are not as strong, and they do not support ordered operations.
+Balanced BSTs and hash tables are the main ways that sets and maps are
+implemented in practice.
