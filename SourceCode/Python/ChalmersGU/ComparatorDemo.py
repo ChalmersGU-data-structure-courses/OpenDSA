@@ -1,7 +1,5 @@
- #
-# This program is accompanying the tutorial on comparables and comparators.
-# Run without any arguments.
 
+#/* *** ODSATag: ComparatorDemo *** */
 from BaseAPI import Comparable
 import functools 
 import operator
@@ -31,7 +29,7 @@ class Person(Comparable):
 
 
 #/* *** ODSATag: BirthYearComparator *** */
-# Note: Python doesn't have comparators as Java does.
+# Note: Python doesn't have comparators like Java does.
 # The most similar is to define a comparator-like function:
 def birthYearComparator(one, other):
     return (-1 if one.birthYear < other.birthYear else
@@ -139,6 +137,7 @@ if __name__ == '__main__':
 
     print("\n### Ordered by full name: family name + given name (functional solution and tuples)")
 #/* *** ODSATag: ByFullNameThenComparing *** */
+    # In Python we can simply create a tuple, and it will sort the way we want
     byFullName = lambda person: (person.familyName, person.givenName)
 #/* *** ODSAendTag: ByFullNameThenComparing *** */
 #/* *** ODSATag: SortByFullName *** */
@@ -160,6 +159,7 @@ if __name__ == '__main__':
     people = getPeople()  # reset the people list
     people.sort(key=bySwedishLocale)
     for p in people: print(p)
+    # Note: Because of a bug in Python's Swedish locale, Diana Čemerytė is still printed last
 #/* *** ODSAendTag: SortBySwedishLocale *** */
 
     print("\n### Ordered by Swedish locale, given name first")
@@ -168,3 +168,4 @@ if __name__ == '__main__':
     people = getPeople()  # reset the people list
     people.sort(key=bySwedishLocale)
     for p in people: print(p)
+#/* *** ODSAendTag: ComparatorDemo *** */

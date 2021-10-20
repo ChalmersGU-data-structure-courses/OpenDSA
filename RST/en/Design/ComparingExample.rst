@@ -148,14 +148,6 @@ Since Java 8, there’s a functional interface which can be used to build compar
 .. codeinclude:: ChalmersGU/ComparatorDemo
    :tag: ByBirthYearFunctional, ByGivenNameFunctional
 
-::
-
-   Comparator<Person> bybirthYear = (one, other) -> 
-       Integer.compare(one.birthYear, other.birthYear)
-
-   Comparator<Person> byGivenName = (one, other) ->
-       one.givenName.compareTo(other.givenName)
-
 Yay! That’s a lot nicer than the clumsy class definition
 (``class BirthYearComparator implements Comparator<Person>``, etc).
 
@@ -165,16 +157,7 @@ Comparing fields using key extractors
 In many cases (including our example case), we only want to compare some fields in a class. Then we can use *key extractors* to simplify even more:
 
 .. codeinclude:: ChalmersGU/ComparatorDemo
-   :tag: ByBirthYearKeyExtractor
-
-.. codeinclude:: ChalmersGU/ComparatorDemo
-   :tag: ByGivenNameKeyExtractor
-
-::
-
-   Comparator<Person> byBirthYear = Comparator.comparingInt(Person::birthYear)
-
-   Comparator<Person> byGivenName = Comparator.comparing(Person::givenName)
+   :tag: ByBirthYearKeyExtractor, ByGivenNameKeyExtractor
 
 * *Note*: We use ``.comparingInt(…)`` when defining ``byBirthYear``. It’s not strictly necessary (i.e., we can use ``.comparing(…)``), but it makes things slightly more efficient.
 
@@ -248,12 +231,15 @@ Result:
 
 Finally Diana Čemerytė and Guy d’Hardelot find their right places in the list!
 
-Running the program
-----------------------------------
-
-If you don't want to write this up as a Java program, you can find it here: ComparatorDemo.java . Just compile and run it without any arguments.
-
 …and what about the names?
 -------------------------------
 
 The names are taken from here: https://female-composers.forts.se/ 
+
+Running the program
+----------------------------------
+
+Here is the full source code. Just compile and run it without any arguments:
+
+.. codeinclude:: ChalmersGU/ComparatorDemo
+   :tag: ComparatorDemo
