@@ -1,0 +1,16 @@
+/* *** ODSATag: SpellCheck *** */
+list_of_valid_words: list(string) = ["cat", "dog"]
+list_of_words_to_check: list(string) = ["dog", "kat"]
+
+// Convert the list of words into a set.
+set_of_valid_words: Set(string) = new Set()
+for word in list_of_words
+  set_of_valid_words.add(word)
+
+// Now we can spell-check a word easily.
+for word in list_of_words_to_check
+  if set_of_valid_words.contains(word)
+    print word, "is valid"
+  else
+    print word, "is invalid"
+/* *** ODSAendTag: SpellCheck *** */

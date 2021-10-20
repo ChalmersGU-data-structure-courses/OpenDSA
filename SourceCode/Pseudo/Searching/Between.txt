@@ -1,0 +1,21 @@
+/* *** ODSATag: Between *** */
+class City:
+  public name: string
+  public population: int
+
+// Similar to the search engine, use a map where the value is a list of cities
+cities: SortedMap(int, Set(City)) = new SortedMap()
+
+add(city: City)
+  // This is the same code as for the search engine
+
+// Call findBetween(1000, 2000) to solve the example problem
+findBetween(lower, upper: int): List(City)
+  result: List(City) = new List()
+  // The range query returns a set of keys, i.e. populations
+  for population in cities.between(lower, upper)
+    // cities.get(population) returns the list of cities with that population
+    for city in cities.get(population):
+      result.add(city)
+  return result
+/* *** ODSAendTag: Between *** */

@@ -1,0 +1,19 @@
+/* *** ODSATag: Database *** */
+class Person
+  public pnr:  string // personnummer
+  public name: string // person's name
+
+database: Map(string, Person) = new Map()
+
+add(p: Person)
+  // Add the person to the database
+  database.add(p.pnr, p)
+
+remove(p: Person)
+  // Remove a person from the database
+  database.remove(p.pnr)
+
+find(pnr: string): Person
+  // Find the person who has a given personnummer
+  return database.lookup(pnr)
+/* *** ODSAendTag: Database *** */

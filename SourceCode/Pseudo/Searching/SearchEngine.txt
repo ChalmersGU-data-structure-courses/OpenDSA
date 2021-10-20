@@ -1,0 +1,28 @@
+/* *** ODSATag: SearchEngine *** */
+// We model a document as a list of words
+class Document
+  public contents: string[]
+
+database: Map(string, Set(Document))
+
+// Add a new document to the database
+add(doc: Document)
+  for word in doc.contents
+    // Get the set of documents containing this word
+    set: Set(Document) = database.get(word)
+    if set is null
+      // This is the first document containing this word
+      set = new Set()
+
+    // Add the document to the set
+    set.add(doc)
+    database.put(word, doc)
+
+// Find all documents containing a given word
+find(word: string): Set(Document)
+  if database.containsKey(word)
+    return database.get(word)
+  else
+    // If the word is not found, return an empty set rather than null
+    return new Set()
+/* *** ODSAendTag: SearchEngine *** */
