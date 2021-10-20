@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.7. Information Flow in Recursive Functions &mdash; Data Structures and Algorithms</title>
+    <title>6.7. Information Flow in Recursive Functions &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 7 Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 6 Binary Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="WritingTraversals.html">7.<span class="section-number">6. </span>Implementing Tree Traversals</a>
+        «&#160;&#160;<a id="prevmod" href="WritingTraversals.html">6.<span class="section-number">6. </span>Implementing Tree Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryTreeImpl.html">7.<span class="section-number">8. </span>Binary Tree Node Implementations</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryTreeImpl.html">6.<span class="section-number">8. </span>Binary Tree Node Implementations</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['local', 'passing-down-information', 'binary-tree-set-depth-exercise', 'collect-and-return', 'binary-tree-check-sum-exercise', 'binary-tree-leaf-nodes-count-exercise', 'binary-tree-sum-nodes-exercise', 'combining-information-flows', 'binary-tree-check-value-exercise', 'combination-problems', 'binary-tree-height-exercise', 'binary-tree-get-difference-exercise', 'binary-tree-has-path-sum-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Information Flow in Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/WriteTrav.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['local', 'passing-down-information', 'binary-tree-set-depth-exercise', 'collect-and-return', 'binary-tree-check-sum-exercise', 'binary-tree-leaf-nodes-count-exercise', 'binary-tree-sum-nodes-exercise', 'combining-information-flows', 'binary-tree-check-value-exercise', 'combination-problems', 'binary-tree-height-exercise', 'binary-tree-get-difference-exercise', 'binary-tree-has-path-sum-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Information Flow in Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/WriteTrav.css" rel="stylesheet" type="text/css" />
 <div class="section" id="information-flow-in-recursive-functions">
-<h1>7.<span class="section-number">7. </span>Information Flow in Recursive Functions<a class="headerlink" href="#information-flow-in-recursive-functions" title="Permalink to this headline">¶</a></h1>
+<h1>6.<span class="section-number">7. </span>Information Flow in Recursive Functions<a class="headerlink" href="#information-flow-in-recursive-functions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>7.<span class="section-number">7.1. </span>Information Flow in Recursive Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.1. </span>Information Flow in Recursive Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Handling information flow in a recursive function can be a challenge.
 In any given function, we might need to be concerned with either or
 both of:</p>
@@ -181,7 +181,7 @@ caller.</p></li>
 <p>Any given problems might need to do either or both.
 Here are some examples and exercises.</p>
 <div class="section" id="local">
-<h3>7.<span class="section-number">7.1.1. </span>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">7.1.1. </span>Local<a class="headerlink" href="#local" title="Permalink to this headline">¶</a></h3>
 <p>Local traversal involves going to each node in the tree to do some
 operation.
 Such functions need no information from the parent (other than a
@@ -190,7 +190,7 @@ Examples include preorder traversal and incrementing the value of
 every node by one.</p>
 </div>
 <div class="section" id="passing-down-information">
-<h3>7.<span class="section-number">7.1.2. </span>Passing Down Information<a class="headerlink" href="#passing-down-information" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">7.1.2. </span>Passing Down Information<a class="headerlink" href="#passing-down-information" title="Permalink to this headline">¶</a></h3>
 <p>Slightly more complicated is the situation where every node needs the
 same piece of information to be passed to it.
 An example would be incrementing the value for all nodes by some
@@ -205,7 +205,7 @@ each recursive call must adjust that value (by adding one).</p>
 </div>
 </div>
 <div class="section" id="binary-tree-set-depth-exercise">
-<h2>7.<span class="section-number">7.2. </span>Binary Tree Set Depth Exercise<a class="headerlink" href="#binary-tree-set-depth-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.2. </span>Binary Tree Set Depth Exercise<a class="headerlink" href="#binary-tree-set-depth-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Set_Depth_Exercise"
     class="embedContainer"
@@ -225,13 +225,13 @@ each recursive call must adjust that value (by adding one).</p>
 </div>
 </div>
 <div class="section" id="collect-and-return">
-<h2>7.<span class="section-number">7.3. </span>Collect-and-return<a class="headerlink" href="#collect-and-return" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.3. </span>Collect-and-return<a class="headerlink" href="#collect-and-return" title="Permalink to this headline">¶</a></h2>
 <p>Collect-and-return requires that we communicate information back up
 the tree to the caller.
 Simple examples are to count the number of nodes in a tree,
 or to sum the values of all the nodes.</p>
 <div class="topic">
-<p class="topic-title">Example 7.8.1 </p>
+<p class="topic-title">Example 6.8.1 </p>
 <p>Consider the problem of counting (and returning) the number of
 nodes in a binary tree.
 The key insight is that the total count for any (non-empty) subtree is
@@ -304,7 +304,7 @@ Another common mistake is to not return a value.</p>
 <p></p>
 </div>
 <div class="section" id="binary-tree-check-sum-exercise">
-<h2>7.<span class="section-number">7.4. </span>Binary Tree Check Sum Exercise<a class="headerlink" href="#binary-tree-check-sum-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.4. </span>Binary Tree Check Sum Exercise<a class="headerlink" href="#binary-tree-check-sum-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Check_Sum_Exercise"
     class="embedContainer"
@@ -324,7 +324,7 @@ Another common mistake is to not return a value.</p>
 </div>
 </div>
 <div class="section" id="binary-tree-leaf-nodes-count-exercise">
-<h2>7.<span class="section-number">7.5. </span>Binary Tree Leaf Nodes Count Exercise<a class="headerlink" href="#binary-tree-leaf-nodes-count-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.5. </span>Binary Tree Leaf Nodes Count Exercise<a class="headerlink" href="#binary-tree-leaf-nodes-count-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Leaf_Nodes_Count_Exercise"
     class="embedContainer"
@@ -344,7 +344,7 @@ Another common mistake is to not return a value.</p>
 </div>
 </div>
 <div class="section" id="binary-tree-sum-nodes-exercise">
-<h2>7.<span class="section-number">7.6. </span>Binary Tree Sum Nodes Exercise<a class="headerlink" href="#binary-tree-sum-nodes-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.6. </span>Binary Tree Sum Nodes Exercise<a class="headerlink" href="#binary-tree-sum-nodes-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Sum_Nodes_Exercise"
     class="embedContainer"
@@ -364,7 +364,7 @@ Another common mistake is to not return a value.</p>
 </div>
 </div>
 <div class="section" id="combining-information-flows">
-<h2>7.<span class="section-number">7.7. </span>Combining Information Flows<a class="headerlink" href="#combining-information-flows" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.7. </span>Combining Information Flows<a class="headerlink" href="#combining-information-flows" title="Permalink to this headline">¶</a></h2>
 <p>Many functions require both that information be passed in, and that
 information be passed back.
 Let’s start with a relatively simple case.
@@ -377,7 +377,7 @@ The information passed up has the simple collect-and-return style:
 Return True if and only if one of the children returns True.</p>
 </div>
 <div class="section" id="binary-tree-check-value-exercise">
-<h2>7.<span class="section-number">7.8. </span>Binary Tree Check Value Exercise<a class="headerlink" href="#binary-tree-check-value-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.8. </span>Binary Tree Check Value Exercise<a class="headerlink" href="#binary-tree-check-value-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Check_Value_Exercise"
     class="embedContainer"
@@ -397,13 +397,13 @@ Return True if and only if one of the children returns True.</p>
 </div>
 </div>
 <div class="section" id="combination-problems">
-<h2>7.<span class="section-number">7.9. </span>Combination Problems<a class="headerlink" href="#combination-problems" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.9. </span>Combination Problems<a class="headerlink" href="#combination-problems" title="Permalink to this headline">¶</a></h2>
 <p>Slightly more complicated problems combine what we have seen so far.
 Information passing down the tree changes from node to node.
 Data passed back up the tree uses the collect-and-return paradigm.</p>
 </div>
 <div class="section" id="binary-tree-height-exercise">
-<h2>7.<span class="section-number">7.10. </span>Binary Tree Height Exercise<a class="headerlink" href="#binary-tree-height-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.10. </span>Binary Tree Height Exercise<a class="headerlink" href="#binary-tree-height-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Height_Exercise"
     class="embedContainer"
@@ -423,7 +423,7 @@ Data passed back up the tree uses the collect-and-return paradigm.</p>
 </div>
 </div>
 <div class="section" id="binary-tree-get-difference-exercise">
-<h2>7.<span class="section-number">7.11. </span>Binary Tree Get Difference Exercise<a class="headerlink" href="#binary-tree-get-difference-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.11. </span>Binary Tree Get Difference Exercise<a class="headerlink" href="#binary-tree-get-difference-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Get_Difference_Exercise"
     class="embedContainer"
@@ -443,7 +443,7 @@ Data passed back up the tree uses the collect-and-return paradigm.</p>
 </div>
 </div>
 <div class="section" id="binary-tree-has-path-sum-exercise">
-<h2>7.<span class="section-number">7.12. </span>Binary Tree Has Path Sum Exercise<a class="headerlink" href="#binary-tree-has-path-sum-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">7.12. </span>Binary Tree Has Path Sum Exercise<a class="headerlink" href="#binary-tree-has-path-sum-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Has_Path_Sum_Exercise"
     class="embedContainer"
@@ -470,11 +470,11 @@ Data passed back up the tree uses the collect-and-return paradigm.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="WritingTraversals.html">7.<span class="section-number">6. </span>Implementing Tree Traversals</a>
+        «&#160;&#160;<a id="prevmod1" href="WritingTraversals.html">6.<span class="section-number">6. </span>Implementing Tree Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryTreeImpl.html">7.<span class="section-number">8. </span>Binary Tree Node Implementations</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryTreeImpl.html">6.<span class="section-number">8. </span>Binary Tree Node Implementations</a>&#160;&#160;»
 
 </p>
       </div>
@@ -489,7 +489,7 @@ Data passed back up the tree uses the collect-and-return paradigm.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

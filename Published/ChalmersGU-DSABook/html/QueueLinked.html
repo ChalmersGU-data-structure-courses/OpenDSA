@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/lqueueCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-queues">
 <h1>5.<span class="section-number">12. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -170,50 +170,121 @@
 <p>The linked queue implementation is an adaptation of the linked list.
 The only thing is that we have to add a pointer to the rear node
 in the queue, to be able to add new elements efficiently.</p>
-<div id="lqueueIntroCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="lqueueIntroCON" data-long-name="Linked Queue Intro" data-exer-id="" alt="Linked Queue Intro" tabIndex="-1">
+<div id="LinkedQueue-Intro-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Intro-CON" data-long-name="Linked Queue Intro" data-exer-id="" alt="Linked Queue Intro" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
  <div class="jsavcontrols"></div>
  <p class="jsavoutput jsavline"></p>
  <div class="jsavcanvas"></div>
  <div class="prof_indicators">
-  <img id="lqueueIntroCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="lqueueIntroCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="lqueueIntroCON_cm_error_msg" class="cm_error_msg">
-   <img id="lqueueIntroCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+  <img id="LinkedQueue-Intro-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Intro-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Intro-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Intro-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
    Server Error<br />
    <a href="#" class="resubmit_link">Resubmit</a>
   </span>
  </div>
 </div>
 <p></p>
+<div class="line-block">
+<div class="line"><br /></div>
 </div>
+<div id="LinkedQueue_LinkedQueueInit_code"><ul><li><a href="#LinkedQueue_LinkedQueueInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="n">front</span>      <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to front queue node</span>
+    <span class="kd">private</span> <span class="n">rear</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to rear queue node</span>
+    <span class="kd">private</span> <span class="n">queueSize</span>  <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of queue</span>
+
+    <span class="n">LinkedQueue</span><span class="p">()</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">front</span><span class="p">;</span>      <span class="c1">// Pointer to front queue node</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">rear</span><span class="p">;</span>       <span class="c1">// Pointer to rear queue node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>   <span class="c1">// Size of queue</span>
+
+    <span class="n">LinkedQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to front queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Pointer to rear queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of queue</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueInit_code" ).tabs();});</script></div>
 <div class="section" id="enqueueing-elements">
 <h2>5.<span class="section-number">12.2. </span>Enqueueing Elements<a class="headerlink" href="#enqueueing-elements" title="Permalink to this headline">¶</a></h2>
-<div id="lqueueEnqueueCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="lqueueEnqueueCON" data-long-name="Linked Queue Enqueue" data-exer-id="" alt="Linked Queue Enqueue" tabIndex="-1">
+<div id="LinkedQueue-Enqueue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Enqueue-CON" data-long-name="Linked Queue Enqueue" data-exer-id="" alt="Linked Queue Enqueue" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
  <div class="jsavcontrols"></div>
  <p class="jsavoutput jsavline"></p>
  <div class="jsavcanvas"></div>
  <div class="prof_indicators">
-  <img id="lqueueEnqueueCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="lqueueEnqueueCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="lqueueEnqueueCON_cm_error_msg" class="cm_error_msg">
-   <img id="lqueueEnqueueCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+  <img id="LinkedQueue-Enqueue-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Enqueue-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Enqueue-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Enqueue-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
    Server Error<br />
    <a href="#" class="resubmit_link">Resubmit</a>
   </span>
  </div>
 </div>
 <p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedQueue_LinkedQueueEnqueue_code"><ul><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueEnqueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="n">newRear</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="k">else</span>
+            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="n">queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueEnqueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">newRear</span> <span class="o">=</span> <span class="n">LinkedQueueNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueEnqueue_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div
-    id="LqueueEnqueuePRO"
+    id="LinkedQueue-Enqueue-PRO"
     class="embedContainer"
-    data-exer-name="LqueueEnqueuePRO"
+    data-exer-name="LinkedQueue-Enqueue-PRO"
     data-long-name="Linked Queue Enqueue Exercise"
-    data-short-name="LqueueEnqueuePRO"
-    data-frame-src="../../../Exercises/List/LqueueEnqueuePRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-short-name="LinkedQueue-Enqueue-PRO"
+    data-frame-src="../../../Exercises/ChalmersGU/LinkedQueue-Enqueue-PRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
     data-frame-width="950"
     data-frame-height="550"
     data-vertical-scrolling="no"
@@ -226,36 +297,77 @@ in the queue, to be able to add new elements efficiently.</p>
     data-exer-id="">
   
   <div class="center">
-    <div id="LqueueEnqueuePRO_iframe"></div>
+    <div id="LinkedQueue-Enqueue-PRO_iframe"></div>
   </div>
 </div>
 </div>
 <div class="section" id="dequeueing-elements">
 <h2>5.<span class="section-number">12.3. </span>Dequeueing Elements<a class="headerlink" href="#dequeueing-elements" title="Permalink to this headline">¶</a></h2>
-<div id="lqueueDequeueCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="lqueueDequeueCON" data-long-name="Linked Queue Dequeue" data-exer-id="" alt="Linked Queue Dequeue" tabIndex="-1">
+<div id="LinkedQueue-Dequeue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Dequeue-CON" data-long-name="Linked Queue Dequeue" data-exer-id="" alt="Linked Queue Dequeue" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
  <div class="jsavcontrols"></div>
  <p class="jsavoutput jsavline"></p>
  <div class="jsavcanvas"></div>
  <div class="prof_indicators">
-  <img id="lqueueDequeueCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="lqueueDequeueCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="lqueueDequeueCON_cm_error_msg" class="cm_error_msg">
-   <img id="lqueueDequeueCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+  <img id="LinkedQueue-Dequeue-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Dequeue-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Dequeue-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Dequeue-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
    Server Error<br />
    <a href="#" class="resubmit_link">Resubmit</a>
   </span>
  </div>
 </div>
 <p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedQueue_LinkedQueueDequeue_code"><ul><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueDequeue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: queueSize &gt; 0</span>
+        <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">front</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;pop from empty queue&quot;</span><span class="p">);</span>
+        <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueDequeue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueDequeue_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div
-    id="LqueueDequeuePRO"
+    id="LinkedQueue-Dequeue-PRO"
     class="embedContainer"
-    data-exer-name="LqueueDequeuePRO"
+    data-exer-name="LinkedQueue-Dequeue-PRO"
     data-long-name="Linked Queue Dequeue Exercise"
-    data-short-name="LqueueDequeuePRO"
-    data-frame-src="../../../Exercises/List/LqueueDequeuePRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-short-name="LinkedQueue-Dequeue-PRO"
+    data-frame-src="../../../Exercises/ChalmersGU/LinkedQueue-Dequeue-PRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
     data-frame-width="950"
     data-frame-height="550"
     data-vertical-scrolling="no"
@@ -268,13 +380,13 @@ in the queue, to be able to add new elements efficiently.</p>
     data-exer-id="">
   
   <div class="center">
-    <div id="LqueueDequeuePRO_iframe"></div>
+    <div id="LinkedQueue-Dequeue-PRO_iframe"></div>
   </div>
 </div>
 </div>
 <div class="section" id="linked-queue-full-implementation">
 <h2>5.<span class="section-number">12.4. </span>Linked Queue, Full Implementation<a class="headerlink" href="#linked-queue-full-implementation" title="Permalink to this headline">¶</a></h2>
-<p>Here is the linked queue class declaration.</p>
+<p>Here is the full implementation for linked queues.</p>
 <div id="LinkedQueue_LinkedQueue_code"><ul><li><a href="#LinkedQueue_LinkedQueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">front</span>      <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to front queue node</span>
     <span class="kd">private</span> <span class="n">rear</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to rear queue node</span>
@@ -301,20 +413,18 @@ in the queue, to be able to add new elements efficiently.</p>
     <span class="n">peek</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
         <span class="c1">// Precondition: queueSize &gt; 0</span>
         <span class="k">return</span> <span class="n">front</span><span class="p">.</span><span class="na">elem</span>
-    <span class="p">}</span>
 
-    <span class="n">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
+    <span class="nf">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
         <span class="c1">// Precondition: queueSize &gt; 0</span>
         <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">front</span>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
-    <span class="p">}</span>
 
-    <span class="n">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
+    <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
         <span class="k">return</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
 
     <span class="n">size</span><span class="p">()</span> <span class="p">:</span> <span class="kt">int</span>
@@ -366,10 +476,10 @@ in the queue, to be able to add new elements efficiently.</p>
         <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -426,9 +536,9 @@ in the queue, to be able to add new elements efficiently.</p>
         <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
         <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
 
     <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -469,12 +579,13 @@ in the queue, to be able to add new elements efficiently.</p>
 <p>All member functions for both the array-based and linked queue
 implementations require constant time.
 The space comparison issues are the same as for the equivalent stack
-implementations.
-Unlike the array-based stack implementation, there is no convenient
+implementations.</p>
+<p>Unlike the array-based stack implementation, there is no convenient
 way to store two queues in the same array,
 unless items are always transferred directly from one queue to the other.</p>
+</div>
 <div class="section" id="stack-and-queue-summary-questions">
-<h3>5.<span class="section-number">12.5.1. </span>Stack and Queue Summary Questions<a class="headerlink" href="#stack-and-queue-summary-questions" title="Permalink to this headline">¶</a></h3>
+<h2>5.<span class="section-number">12.6. </span>Stack and Queue Summary Questions<a class="headerlink" href="#stack-and-queue-summary-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="StackQSumm"
     class="embedContainer"
@@ -497,11 +608,9 @@ unless items are always transferred directly from one queue to the other.</p>
     <div id="StackQSumm_iframe"></div>
   </div>
 </div>
-<script type="text/javascript" src="../../../AV/List/llist.js"></script>
-<script type="text/javascript" src="../../../AV/List/lqueueIntroCON.js"></script>
-<script type="text/javascript" src="../../../AV/List/lqueueEnqueueCON.js"></script>
-<script type="text/javascript" src="../../../AV/List/lqueueDequeueCON.js"></script>
-</div>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Intro-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Enqueue-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Dequeue-CON.js"></script>
 </div>
 </div>
 
@@ -529,7 +638,7 @@ unless items are always transferred directly from one queue to the other.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

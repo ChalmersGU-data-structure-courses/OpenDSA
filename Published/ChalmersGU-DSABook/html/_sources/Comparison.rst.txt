@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'implementing-key-value-search'];</script>
 
 .. _Comparison:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Records";ODSA.SETTINGS.MODULE_CHAPTER = "Iterators, Comparators, Dictionaries"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Records";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,9 +32,6 @@
 
 Comparing Records
 ==================
-
-Comparing Records
------------------
 
 If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.
@@ -78,6 +75,9 @@ In this example the ID number is the :term:`search key`.
 
 .. index:: ! comparable
 
+Comparables
+-----------------
+
 To implement sorting or searching, we require that keys be :term:`comparable`.
 At a minimum, we must be able to take two keys and reliably determine
 whether they are equal or not.
@@ -120,6 +120,9 @@ So, you cannot always count on being able to use your favorite method
 name (or even the comparable interface) to extract the desired key
 value.
 
+Comparators
+-----------------
+
 Another, more general approach is to supply a function or
 class |---| called a :term:`comparator` |---|
 whose job is to extract the key from the record.
@@ -140,6 +143,10 @@ Unfortunately, while flexible and able to handle nearly all
 situations, there are a few situations for which it is not possible to
 write a key extraction method.
 In that case, a comparator will not work. [#]_
+
+
+Implementing Key-Value Search
+-------------------------------------
 
 One good general-purpose solution is to explicitly store
 :term:`key-value pairs <key-value pair>` in the data structure.

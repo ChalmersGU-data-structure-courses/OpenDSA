@@ -9,8 +9,8 @@
    :satisfies: dictionary
    :topic: Design
 
-The Dictionary ADT
-==================
+Maps or Dictionaries
+======================
 
 The Dictionary ADT
 ------------------

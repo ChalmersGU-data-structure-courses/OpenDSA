@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.5. Binary Tree Traversals &mdash; Data Structures and Algorithms</title>
+    <title>6.5. Binary Tree Traversals &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 7 Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 6 Binary Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeFullThm.html">7.<span class="section-number">4. </span>The Full Binary Tree Theorem</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeFullThm.html">6.<span class="section-number">4. </span>The Full Binary Tree Theorem</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="WritingTraversals.html">7.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod" href="WritingTraversals.html">6.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['preorder-traversal', 'postorder-traversal', 'inorder-traversal', 'implementation', 'postorder-traversal-practice', 'inorder-traversal-practice', 'summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['preorder-traversal', 'postorder-traversal', 'inorder-traversal', 'implementation', 'postorder-traversal-practice', 'inorder-traversal-practice', 'summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-tree-traversals">
-<h1>7.<span class="section-number">5. </span>Binary Tree Traversals<a class="headerlink" href="#binary-tree-traversals" title="Permalink to this headline">¶</a></h1>
+<h1>6.<span class="section-number">5. </span>Binary Tree Traversals<a class="headerlink" href="#binary-tree-traversals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>7.<span class="section-number">5.1. </span>Binary Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">5.1. </span>Binary Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Often we wish to process a binary tree by “visiting” each of its
 nodes, each time performing a specific action such as printing the
 contents of the node.
@@ -180,19 +180,19 @@ particular order as long as each node is visited precisely once.
 For other applications, nodes must be visited in an order that
 preserves some relationship.</p>
 <div class="section" id="preorder-traversal">
-<h3>7.<span class="section-number">5.1.1. </span>Preorder Traversal<a class="headerlink" href="#preorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">5.1.1. </span>Preorder Traversal<a class="headerlink" href="#preorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>For example, we might wish to make sure that we visit any given node
 <em>before</em> we visit its children.
 This is called a <a class="reference internal" href="Glossary.html#term-preorder-traversal"><span class="xref std std-term">preorder traversal</span></a>.</p>
 <div class="divdgm" id="bintravexample">
 <div id="BinExampCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 7.6.1: A binary tree for traversal examples.</span></p>
+<p class="caption"><span class="caption-text"> Figure 6.6.1: A binary tree for traversal examples.</span></p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 7.6.1 </p>
+<p class="topic-title">Example 6.6.1 </p>
 <p>The preorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">7.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">6.6.1</a> is
 <strong>A B D C E G F H I</strong>.</p>
 <p>The first node printed is the root.
 Then all nodes of the left subtree are printed (in preorder) before
@@ -217,7 +217,7 @@ any node of the right subtree.</p>
 <p></p>
 </div>
 <div class="section" id="postorder-traversal">
-<h3>7.<span class="section-number">5.1.2. </span>Postorder Traversal<a class="headerlink" href="#postorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">5.1.2. </span>Postorder Traversal<a class="headerlink" href="#postorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, we might wish to visit each node only
 <em>after</em> we visit its children (and their subtrees).
 For example, this would be necessary if we wish to return all nodes
@@ -228,9 +228,9 @@ But to do that requires that the children’s children be deleted
 first, and so on.
 This is called a <a class="reference internal" href="Glossary.html#term-postorder-traversal"><span class="xref std std-term">postorder traversal</span></a>.</p>
 <div class="topic">
-<p class="topic-title">Example 7.6.2 </p>
+<p class="topic-title">Example 6.6.2 </p>
 <p>The postorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">7.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">6.6.1</a> is
 <strong>D B G E H I F C A</strong>.</p>
 </div>
 <div id="postorderCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="postorderCON" data-long-name="Postorder Traversal Slideshow" data-exer-id="" alt="Postorder Traversal Slideshow" tabIndex="-1">
@@ -252,7 +252,7 @@ Figure <a href="BinaryTreeTraversal.html#bintravexample">7.6.1</a> is
 <p></p>
 </div>
 <div class="section" id="inorder-traversal">
-<h3>7.<span class="section-number">5.1.3. </span>Inorder Traversal<a class="headerlink" href="#inorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">5.1.3. </span>Inorder Traversal<a class="headerlink" href="#inorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>An <a class="reference internal" href="Glossary.html#term-inorder-traversal"><span class="xref std std-term">inorder traversal</span></a> first visits the left child
 (including its entire subtree), then visits the node, and finally
 visits the right child (including its entire
@@ -260,9 +260,9 @@ subtree).
 The <a class="reference internal" href="BST.html#bst"><span class="std std-ref">binary search tree</span></a> makes use of
 this traversal to print all nodes in ascending order of value.</p>
 <div class="topic">
-<p class="topic-title">Example 7.6.3 </p>
+<p class="topic-title">Example 6.6.3 </p>
 <p>The inorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">7.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">6.6.1</a> is
 <strong>B D A G E C H F I</strong>.</p>
 </div>
 <div id="inorderCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="inorderCON" data-long-name="Inorder Traversal Slideshow" data-exer-id="" alt="Inorder Traversal Slideshow" tabIndex="-1">
@@ -284,7 +284,7 @@ Figure <a href="BinaryTreeTraversal.html#bintravexample">7.6.1</a> is
 <p></p>
 </div>
 <div class="section" id="implementation">
-<h3>7.<span class="section-number">5.1.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">5.1.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
 <p>Now we will discuss some implementations for the traversals, but we
 need to define a node ADT to work with.
 Just as a linked list is composed of a collection of link objects, a
@@ -368,7 +368,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="postorder-traversal-practice">
-<h2>7.<span class="section-number">5.2. </span>Postorder Traversal Practice<a class="headerlink" href="#postorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">5.2. </span>Postorder Traversal Practice<a class="headerlink" href="#postorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="btTravPostorderPRO"
     class="embedContainer"
@@ -393,7 +393,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="inorder-traversal-practice">
-<h2>7.<span class="section-number">5.3. </span>Inorder Traversal Practice<a class="headerlink" href="#inorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">5.3. </span>Inorder Traversal Practice<a class="headerlink" href="#inorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="btTravInorderPRO"
     class="embedContainer"
@@ -418,7 +418,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="summary-questions">
-<h2>7.<span class="section-number">5.4. </span>Summary Questions<a class="headerlink" href="#summary-questions" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">5.4. </span>Summary Questions<a class="headerlink" href="#summary-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="TravSumm"
     class="embedContainer"
@@ -453,11 +453,11 @@ visited, as appropriate.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeFullThm.html">7.<span class="section-number">4. </span>The Full Binary Tree Theorem</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeFullThm.html">6.<span class="section-number">4. </span>The Full Binary Tree Theorem</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="WritingTraversals.html">7.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod1" href="WritingTraversals.html">6.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
 
 </p>
       </div>
@@ -472,7 +472,7 @@ visited, as appropriate.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

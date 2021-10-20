@@ -43,7 +43,10 @@
         "Some Software Engineering Topics": {"showsection": false}
       },
       "Design/ADT": {},
-      "Design/CourseAPI": {}
+      "Design/CourseAPI": {},
+      "Design/Comparison": {},
+      "Design/ComparingExample": {},
+      "Design/Dictionary": {}
     },
     "Arrays": {
       "Searching/SearchIntro": {},
@@ -108,11 +111,6 @@
       "List/Queue": {},
       "List/QueueLinked": {},
       "List/ListSumm": {}
-    },
-    "Iterators, Comparators, Dictionaries": {
-      "Design/DesignAltList": {},
-      "Design/Comparison": {},
-      "Design/Dictionary": {}
     },
     "Binary Trees": {
       "Binary/BinaryTreeIntro": {},

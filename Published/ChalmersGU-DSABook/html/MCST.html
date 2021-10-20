@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>12.6. Minimal Cost Spanning Trees &mdash; Data Structures and Algorithms</title>
+    <title>11.6. Minimal Cost Spanning Trees &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+              <h2 class="heading" ><span>Chapter 11 Graphs</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        «&#160;&#160;<a id="prevmod" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Kruskal.html">12.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+        <a  id="nextmod" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="minimal-cost-spanning-trees">
-<h1>12.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
+<h1>11.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>12.<span class="section-number">6.1. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">6.1. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="Glossary.html#term-minimal-cost-spanning-tree"><span class="xref std std-term">minimal-cost spanning tree</span></a> (MCST)
 problem takes as input a connected, undirected graph
 <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, where each edge has a distance or weight measure
@@ -187,11 +187,11 @@ Thus, the MCST is a free tree with <span class="math notranslate nohighlight">\(
 The name “minimum-cost spanning tree” comes from the fact that the
 required set of edges forms a tree, it spans the vertices (i.e., it
 connects them together), and it has minimum cost.
-Figure <a href="MCST.html#mcstdgm">12.7.1</a> shows the MCST for an example graph.</p>
+Figure <a href="MCST.html#mcstdgm">11.7.1</a> shows the MCST for an example graph.</p>
 <div class="divdgm" id="mcstdgm">
 <div id="MCSTCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.7.1: A graph and its MCST.
+<p class="caption"><span class="caption-text"> Figure 11.7.1: A graph and its MCST.
 All edges appear in the original graph.
 Those edges drawn with heavy lines indicate
 the subset making up the MCST.
@@ -199,7 +199,7 @@ Note that edge <span class="math notranslate nohighlight">\((C, F)\)</span> coul
 <span class="math notranslate nohighlight">\((D, F)\)</span> to form a different MCST with equal cost.</span></p>
 </div>
 <div class="section" id="prim-s-algorithm">
-<h3>12.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
 <p>The first of our two algorithms for finding MCSTs is commonly
 referred to as <a class="reference internal" href="Glossary.html#term-prim-s-algorithm"><span class="xref std std-term">Prim’s algorithm</span></a>.
 Prim’s algorithm is very simple.
@@ -305,7 +305,7 @@ MCST.</p>
 <p></p>
 </div>
 <div class="section" id="prim-s-algorithm-alternative-implementation">
-<h3>12.<span class="section-number">6.1.2. </span>Prim’s Algorithm Alternative Implementation<a class="headerlink" href="#prim-s-algorithm-alternative-implementation" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">6.1.2. </span>Prim’s Algorithm Alternative Implementation<a class="headerlink" href="#prim-s-algorithm-alternative-implementation" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, we can implement Prim’s algorithm using a
 <a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queue</span></a> to find the next closest vertex, as
 shown next.
@@ -414,7 +414,7 @@ Because <span class="math notranslate nohighlight">\(e_j\)</span> is not part of
 <span class="math notranslate nohighlight">\(e_j\)</span> to <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> forms a cycle.
 Edge <span class="math notranslate nohighlight">\(e'\)</span> must be of lower cost than
 edge <span class="math notranslate nohighlight">\(e_j\)</span>, because Prim’s algorithm did not generate an MCST.
-This situation is illustrated in Figure <a href="MCST.html#primproof">12.7.2</a>.
+This situation is illustrated in Figure <a href="MCST.html#primproof">11.7.2</a>.
 However, Prim’s algorithm would have selected the least-cost edge
 available.
 It would have selected <span class="math notranslate nohighlight">\(e'\)</span>, not <span class="math notranslate nohighlight">\(e_j\)</span>.
@@ -423,7 +423,7 @@ the wrong edge, and thus, Prim’s algorithm must be correct. BOX HERE</p>
 </div></blockquote>
 <div class="figure align-center" id="id2" style="width: 90%">
 <span id="primproof"></span><a class="reference internal image-reference" href="_images/PrimMST.png"><img alt="Prim's MCST algorithm proof" src="_images/PrimMST.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 12.7.2: Prim’s MCST algorithm proof.
+<p class="caption"><span class="caption-text"> Figure 11.7.2: Prim’s MCST algorithm proof.
 The left oval contains that portion of the graph where Prim’s MCST
 and the “true” MCST <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> agree.
 The right oval contains the rest of the graph.
@@ -467,11 +467,11 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        «&#160;&#160;<a id="prevmod1" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Kruskal.html">12.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+        <a  id="nextmod1" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
 
 </p>
       </div>
@@ -486,7 +486,7 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

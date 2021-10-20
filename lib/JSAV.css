@@ -876,8 +876,3 @@ ul.jsavcode {
 .jsavsound.soundOff:hover {
   background-color: #888;
 }
-
-/* Hide some elements that we don't want in the ChalmersGU books */
-body > img , .email_div , .sidebar , .topnav > p > a:nth-child(-n+2) , .code-snippet button{
-    display: none !important;
-}

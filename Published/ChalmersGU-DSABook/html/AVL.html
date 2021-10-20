@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.2. The AVL Tree &mdash; Data Structures and Algorithms</title>
+    <title>8.2. The AVL Tree &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 9 Balanced Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 8 Balanced Binary Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BalancedTree.html">9.<span class="section-number">1. </span>Balanced Trees</a>
+        «&#160;&#160;<a id="prevmod" href="BalancedTree.html">8.<span class="section-number">1. </span>Balanced Trees</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Splay.html">9.<span class="section-number">3. </span>The Splay Tree</a>&#160;&#160;»
+        <a  id="nextmod" href="Splay.html">8.<span class="section-number">3. </span>The Splay Tree</a>&#160;&#160;»
 
 
         </p>
@@ -162,8 +162,8 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-avl-tree">
-<h1>9.<span class="section-number">2. </span>The AVL Tree<a class="headerlink" href="#the-avl-tree" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-avl-tree">
+<h1>8.<span class="section-number">2. </span>The AVL Tree<a class="headerlink" href="#the-avl-tree" title="Permalink to this headline">¶</a></h1>
 <p>The AVL tree (named for its inventors Adelson-Velskii and Landis)
 should be viewed as a BST with the following additional property:
 For every node, the heights of its left and right subtrees differ by
@@ -180,7 +180,7 @@ Of course, to be practical, we must be able to implement the revised
 update routines in <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time.</p>
 <div class="figure align-center" id="id1" style="width: 90%">
 <span id="avlinsert"></span><a class="reference internal image-reference" href="_images/AVLins.png"><img alt="An insertion that violates the AVL tree balance property" src="_images/AVLins.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 9.3.1: Example of an insert operation that violates the AVL tree balance
+<p class="caption"><span class="caption-text"> Figure 8.3.1: Example of an insert operation that violates the AVL tree balance
 property.
 Prior to the insert operation, all nodes of the tree are balanced
 (i.e., the depths of the left and right subtrees for every node
@@ -189,7 +189,7 @@ After inserting the node with value 5, the nodes with values 7 and
 24 are no longer balanced.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider what happens when we insert a node with key value 5,
-as shown in Figure <a href="AVL.html#avlinsert">9.3.1</a>.
+as shown in Figure <a href="AVL.html#avlinsert">8.3.1</a>.
 The tree on the left meets the AVL tree balance requirements.
 After the insertion, two nodes no longer meet the requirements.
 Because the original tree met the balance requirement, nodes in the
@@ -214,12 +214,12 @@ the root to the newly inserted node.</p>
 It turns out that we can do this using a series of local operations
 known as <a class="reference internal" href="Glossary.html#term-rotation"><span class="xref std std-term">rotations</span></a>.
 Cases 1 and 4 can be fixed using a <a class="reference internal" href="Glossary.html#term-single-rotation"><span class="xref std std-term">single rotation</span></a>,
-as shown in Figure <a href="AVL.html#avlsingle">9.3.2</a>.
+as shown in Figure <a href="AVL.html#avlsingle">8.3.2</a>.
 Cases 2 and 3 can be fixed using a <a class="reference internal" href="Glossary.html#term-double-rotation"><span class="xref std std-term">double rotation</span></a>, as shown
-in Figure <a href="AVL.html#avldouble">9.3.3</a>.</p>
+in Figure <a href="AVL.html#avldouble">8.3.3</a>.</p>
 <div class="figure align-center" id="id2" style="width: 90%">
 <span id="avlsingle"></span><a class="reference internal image-reference" href="_images/AVLSingRot.png"><img alt="AVL tree single rotation" src="_images/AVLSingRot.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 9.3.2: A single rotation in an AVL tree.
+<p class="caption"><span class="caption-text"> Figure 8.3.2: A single rotation in an AVL tree.
 This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(A\)</span>)
 is in the left child of the left child of the unbalanced node
 labeled <span class="math notranslate nohighlight">\(S\)</span>.
@@ -232,7 +232,7 @@ way.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶<
 </div>
 <div class="figure align-center" id="id3" style="width: 90%">
 <span id="avldouble"></span><a class="reference internal image-reference" href="_images/AVLDblRot.png"><img alt="AVL tree double rotation" src="_images/AVLDblRot.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 9.3.3: A double rotation in an AVL tree.
+<p class="caption"><span class="caption-text"> Figure 8.3.3: A double rotation in an AVL tree.
 This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(B\)</span>)
 is in the right child of the left child of the unbalanced node
 labeled <span class="math notranslate nohighlight">\(S\)</span>.
@@ -248,8 +248,8 @@ rotation on any node that is found to be unbalanced.
 Deletion is similar; however, consideration for unbalanced nodes must
 begin at the level of the <cite>deletemin</cite> operation.</p>
 <div class="topic">
-<p class="topic-title">Example 9.3.1 </p>
-<p>In Figure <a href="AVL.html#avlinsert">9.3.1</a> (b), the bottom-most unbalanced
+<p class="topic-title">Example 8.3.1 </p>
+<p>In Figure <a href="AVL.html#avlinsert">8.3.1</a> (b), the bottom-most unbalanced
 node has value 7.
 The excess node (with value 5) is in the right subtree of the left
 child of 7, so we have an example of Case 2.
@@ -264,11 +264,11 @@ left child of 5, and 7 becomes the right child of 5.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BalancedTree.html">9.<span class="section-number">1. </span>Balanced Trees</a>
+        «&#160;&#160;<a id="prevmod1" href="BalancedTree.html">8.<span class="section-number">1. </span>Balanced Trees</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Splay.html">9.<span class="section-number">3. </span>The Splay Tree</a>&#160;&#160;»
+        <a  id="nextmod1" href="Splay.html">8.<span class="section-number">3. </span>The Splay Tree</a>&#160;&#160;»
 
 </p>
       </div>
@@ -283,7 +283,7 @@ left child of 5, and 7 becomes the right child of 5.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

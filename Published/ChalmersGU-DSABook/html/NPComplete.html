@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>13.3. NP-Completeness &mdash; Data Structures and Algorithms</title>
+    <title>12.3. NP-Completeness &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 13 Limits to Computing</span></h2>
+              <h2 class="heading" ><span>Chapter 12 Limits to Computing</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Reduction.html">13.<span class="section-number">2. </span>Reductions</a>
+        «&#160;&#160;<a id="prevmod" href="Reduction.html">12.<span class="section-number">2. </span>Reductions</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="circuitSAT.html">13.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
+        <a  id="nextmod" href="circuitSAT.html">12.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
 
 
         </p>
@@ -162,15 +162,15 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hard-problems', 'the-theory-of-np-completeness'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "NPComplete";ODSA.SETTINGS.MODULE_LONG_NAME = "NP-Completeness";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SalesCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hard-problems', 'the-theory-of-np-completeness'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "NPComplete";ODSA.SETTINGS.MODULE_LONG_NAME = "NP-Completeness";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SalesCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/cliqueCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/ComplexCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="np-completeness">
-<h1>13.<span class="section-number">3. </span>NP-Completeness<a class="headerlink" href="#np-completeness" title="Permalink to this headline">¶</a></h1>
+<h1>12.<span class="section-number">3. </span>NP-Completeness<a class="headerlink" href="#np-completeness" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>13.<span class="section-number">3.1. </span>NP-Completeness<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>12.<span class="section-number">3.1. </span>NP-Completeness<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="hard-problems">
-<h3>13.<span class="section-number">3.1.1. </span>Hard Problems<a class="headerlink" href="#hard-problems" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">3.1.1. </span>Hard Problems<a class="headerlink" href="#hard-problems" title="Permalink to this headline">¶</a></h3>
 <p>There are several ways that a problem could be considered hard.
 For example, we might have trouble understanding the definition of the
 problem itself.
@@ -254,7 +254,7 @@ to be one that runs in exponential time, that is, in
 A definition for a hard <em>problem</em> will be presented soon.</p>
 </div>
 <div class="section" id="the-theory-of-np-completeness">
-<h3>13.<span class="section-number">3.1.2. </span>The Theory of NP-Completeness<a class="headerlink" href="#the-theory-of-np-completeness" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">3.1.2. </span>The Theory of NP-Completeness<a class="headerlink" href="#the-theory-of-np-completeness" title="Permalink to this headline">¶</a></h3>
 <p>Imagine a magical computer that works by guessing the correct
 solution from among all of the possible solutions to a problem.
 Another way to look at this is to imagine a super parallel computer
@@ -296,10 +296,10 @@ answer in less time.</p>
 positive distances assigned to each edge in the graph.</p>
 <p><strong>Output:</strong> The shortest simple cycle that includes every vertex.</p>
 </div>
-<p>Figure <a href="NPComplete.html#sales">13.4.1</a> illustrates this problem.
+<p>Figure <a href="NPComplete.html#sales">12.4.1</a> illustrates this problem.
 Five vertices are shown, with edges and associated costs between each
 pair of edges.
-(For simplicity Figure <a href="NPComplete.html#sales">13.4.1</a> shows an undirected graph,
+(For simplicity Figure <a href="NPComplete.html#sales">12.4.1</a> shows an undirected graph,
 assuming that the cost is the same in both
 directions, though this need not be the case.)
 If the salesman visits the cities in the order ABCDEA, they will travel
@@ -309,7 +309,7 @@ The best route for this particular graph would be ABEDCA, with cost 9.</p>
 <div class="divdgm" id="sales">
 <div id="SalesCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 13.4.1: An illustration of the TRAVELING SALESMAN problem.
+<p class="caption"><span class="caption-text"> Figure 12.4.1: An illustration of the TRAVELING SALESMAN problem.
 Five vertices are shown, with edges between each pair of cities.
 The problem is to visit all of the cities exactly once,
 returning to the start city, with the least total cost.</span></p>
@@ -451,11 +451,11 @@ We can consider all problems solvable in exponential time or better as
 an even bigger class of problems because all problems solvable in
 polynomial time are solvable in exponential time.
 Thus, we can view the world of exponential-time-or-better problems in
-terms of Figure <a href="NPComplete.html#complex">13.4.2</a>.</p>
+terms of Figure <a href="NPComplete.html#complex">12.4.2</a>.</p>
 <div class="divdgm" id="complex">
 <div id="ComplexCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 13.4.2: Our knowledge regarding the world of problems requiring exponential
+<p class="caption"><span class="caption-text"> Figure 12.4.2: Our knowledge regarding the world of problems requiring exponential
 time or less.
 Some of these problems are solvable in polynomial time by a
 non-deterministic computer.
@@ -485,11 +485,11 @@ exponential time lower bound, then we would know that
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Reduction.html">13.<span class="section-number">2. </span>Reductions</a>
+        «&#160;&#160;<a id="prevmod1" href="Reduction.html">12.<span class="section-number">2. </span>Reductions</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="circuitSAT.html">13.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
+        <a  id="nextmod1" href="circuitSAT.html">12.<span class="section-number">4. </span>Circuit Satisfiability</a>&#160;&#160;»
 
 </p>
       </div>
@@ -504,7 +504,7 @@ exponential time lower bound, then we would know that
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

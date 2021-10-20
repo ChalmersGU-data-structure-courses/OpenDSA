@@ -22,7 +22,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -40,6 +40,9 @@ Introduction
    IntroDSA
    ADT
    CourseAPI
+   Comparison
+   ComparingExample
+   Dictionary
 
 Arrays
 ======
@@ -120,17 +123,6 @@ Linear Structures
    Queue
    QueueLinked
    ListSumm
-
-Iterators, Comparators, Dictionaries
-====================================
-
-.. toctree::
-   :numbered:
-   :maxdepth: 1
-
-   DesignAltList
-   Comparison
-   Dictionary
 
 Binary Trees
 ============
