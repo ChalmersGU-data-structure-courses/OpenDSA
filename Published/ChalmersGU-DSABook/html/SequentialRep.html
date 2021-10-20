@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8.3. Sequential Tree Representations &mdash; Data Structures and Algorithms</title>
+    <title>7.3. Sequential Tree Representations &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 8 General Trees (misc stuff)</span></h2>
+              <h2 class="heading" ><span>Chapter 7 General Trees (misc stuff)</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="UnionFind.html">8.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>
+        «&#160;&#160;<a id="prevmod" href="UnionFind.html">7.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="GenTreeImplement.html">8.<span class="section-number">4. </span>General Tree Implementations</a>&#160;&#160;»
+        <a  id="nextmod" href="GenTreeImplement.html">7.<span class="section-number">4. </span>General Tree Implementations</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['alternative-sequential-representation', 'bit-vector-representation', 'general-tree-sequential-representation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SequentialRep";ODSA.SETTINGS.MODULE_LONG_NAME = "Sequential Tree Representations";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['alternative-sequential-representation', 'bit-vector-representation', 'general-tree-sequential-representation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SequentialRep";ODSA.SETTINGS.MODULE_LONG_NAME = "Sequential Tree Representations";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/General/SequentialTreeCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="sequential-tree-representations">
-<h1>8.<span class="section-number">3. </span>Sequential Tree Representations<a class="headerlink" href="#sequential-tree-representations" title="Permalink to this headline">¶</a></h1>
+<h1>7.<span class="section-number">3. </span>Sequential Tree Representations<a class="headerlink" href="#sequential-tree-representations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>8.<span class="section-number">3.1. </span>Sequential Tree Representations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">3.1. </span>Sequential Tree Representations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Next we consider a fundamentally different approach to implementing
 trees.
 The goal is to store a series of node values with the minimum
@@ -225,7 +225,7 @@ the tree structure.</p>
 <div class="divdgm" id="binexampb">
 <div id="BinExampCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 8.4.1: Sample binary tree for sequential tree implementation examples.</span></p>
+<p class="caption"><span class="caption-text"> Figure 7.4.1: Sample binary tree for sequential tree implementation examples.</span></p>
 </div>
 <div id="SequentialTreeCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SequentialTreeCON" data-long-name="First sequential representation Slideshow" data-exer-id="" alt="First sequential representation Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -268,7 +268,7 @@ the tree structure.</p>
 </div>
 </div>
 <div class="section" id="alternative-sequential-representation">
-<h2>8.<span class="section-number">3.2. </span>Alternative Sequential Representation<a class="headerlink" href="#alternative-sequential-representation" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">3.2. </span>Alternative Sequential Representation<a class="headerlink" href="#alternative-sequential-representation" title="Permalink to this headline">¶</a></h2>
 <p>To illustrate the difficulty involved in using the sequential tree
 representation for processing, consider searching for the right child
 of the root node.
@@ -360,7 +360,7 @@ the mark bit.</p>
 </div>
 </div>
 <div class="section" id="bit-vector-representation">
-<h2>8.<span class="section-number">3.3. </span>Bit Vector Representation<a class="headerlink" href="#bit-vector-representation" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">3.3. </span>Bit Vector Representation<a class="headerlink" href="#bit-vector-representation" title="Permalink to this headline">¶</a></h2>
 <p>Another approach is to store a separate bit vector to represent the
 status of each node.
 In this case, each node of the tree corresponds to one bit in the bit
@@ -408,7 +408,7 @@ a leaf node.</p>
 </div>
 </div>
 <div class="section" id="general-tree-sequential-representation">
-<h2>8.<span class="section-number">3.4. </span>General Tree Sequential Representation<a class="headerlink" href="#general-tree-sequential-representation" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">3.4. </span>General Tree Sequential Representation<a class="headerlink" href="#general-tree-sequential-representation" title="Permalink to this headline">¶</a></h2>
 <p>Storing general trees by means of a sequential implementation requires
 that more explicit structural information be included with the node
 list.
@@ -448,7 +448,7 @@ general tree with at most two children.
 Every binary tree node has a left and a right child, though either or
 both might be empty.
 So this representation cannot let us distinguish whether node
-<span class="math notranslate nohighlight">\(D\)</span> in Figure <a href="SequentialRep.html#binexampb">8.4.1</a> is the left or right
+<span class="math notranslate nohighlight">\(D\)</span> in Figure <a href="SequentialRep.html#binexampb">7.4.1</a> is the left or right
 child of node <span class="math notranslate nohighlight">\(B\)</span>.</p>
 <div
     id="SequentialTreeGenTreePRO"
@@ -485,11 +485,11 @@ child of node <span class="math notranslate nohighlight">\(B\)</span>.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="UnionFind.html">8.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>
+        «&#160;&#160;<a id="prevmod1" href="UnionFind.html">7.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="GenTreeImplement.html">8.<span class="section-number">4. </span>General Tree Implementations</a>&#160;&#160;»
+        <a  id="nextmod1" href="GenTreeImplement.html">7.<span class="section-number">4. </span>General Tree Implementations</a>&#160;&#160;»
 
 </p>
       </div>
@@ -504,7 +504,7 @@ child of node <span class="math notranslate nohighlight">\(B\)</span>.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

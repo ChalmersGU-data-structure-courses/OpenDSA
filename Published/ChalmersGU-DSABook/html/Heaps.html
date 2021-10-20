@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.3. Heaps and Priority Queues &mdash; Data Structures and Algorithms</title>
+    <title>9.3. Heaps and Priority Queues &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 10 Priority Queues</span></h2>
+              <h2 class="heading" ><span>Chapter 9 Priority Queues</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="CompleteTree.html">10.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
+        «&#160;&#160;<a id="prevmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Heapsort.html">10.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
+        <a  id="nextmod" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
 
 
         </p>
@@ -162,13 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/HeapsIndCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/heapbuildProofCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="heaps-and-priority-queues">
-<h1>10.<span class="section-number">3. </span>Heaps and Priority Queues<a class="headerlink" href="#heaps-and-priority-queues" title="Permalink to this headline">¶</a></h1>
+<h1>9.<span class="section-number">3. </span>Heaps and Priority Queues<a class="headerlink" href="#heaps-and-priority-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>10.<span class="section-number">3.1. </span>Heaps and Priority Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.1. </span>Heaps and Priority Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>There are many situations, both in real life and in computing
 applications, where we wish to choose the next “most important”
 from a collection of people, tasks, or objects.
@@ -556,7 +556,7 @@ worst case.</p>
 </div>
 </div>
 <div class="section" id="building-a-heap">
-<h2>10.<span class="section-number">3.2. </span>Building a Heap<a class="headerlink" href="#building-a-heap" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.2. </span>Building a Heap<a class="headerlink" href="#building-a-heap" title="Permalink to this headline">¶</a></h2>
 <p>If all <span class="math notranslate nohighlight">\(n\)</span> values are available at the beginning of the
 building process, we can build the heap faster than just
 inserting the values into the heap one by one.
@@ -580,7 +580,7 @@ set of values in an array.</p>
  </div>
 </div>
 <p></p>
-<p class="caption"><span class="caption-text"> Figure 10.4.1: Two series of exchanges to build a max heap.
+<p class="caption"><span class="caption-text"> Figure 9.4.1: Two series of exchanges to build a max heap.
 (a) This heap is built by a series of nine exchanges in the order
 (4-2), (4-1), (2-1), (5-2), (5-4), (6-3), (6-5), (7-5), (7-6).
 (b) This heap is built by a series of four exchanges in the order
@@ -598,7 +598,7 @@ This situation is illustrated by this figure:</p>
 <div class="divdgm" id="heapinduct">
 <div id="HeapsIndCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 10.4.2: Final stage in the heap-building algorithm.
+<p class="caption"><span class="caption-text"> Figure 9.4.2: Final stage in the heap-building algorithm.
 Both subtrees of node <span class="math notranslate nohighlight">\(R\)</span> are heaps.
 All that remains is to push <span class="math notranslate nohighlight">\(R\)</span> down to its proper level in
 the heap.</span></p>
@@ -712,7 +712,7 @@ BST.</p>
 <p></p>
 </div>
 <div class="section" id="removing-from-the-heap-or-updating-an-object-s-priority">
-<h2>10.<span class="section-number">3.3. </span>Removing from the heap or updating an object’s priority<a class="headerlink" href="#removing-from-the-heap-or-updating-an-object-s-priority" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.3. </span>Removing from the heap or updating an object’s priority<a class="headerlink" href="#removing-from-the-heap-or-updating-an-object-s-priority" title="Permalink to this headline">¶</a></h2>
 <div id="heapmaxCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="heapmaxCON" data-long-name="Remove Max Slideshow" data-exer-id="" alt="Remove Max Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -789,7 +789,7 @@ So we use a utility method called <code class="docutils literal notranslate"><sp
 and <code class="docutils literal notranslate"><span class="pre">modify</span></code> methods to handle this process.</p>
 </div>
 <div class="section" id="priority-queues">
-<h2>10.<span class="section-number">3.4. </span>Priority Queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.4. </span>Priority Queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
 <p>The heap is a natural implementation for the priority queue discussed
 at the beginning of this section.
 Jobs can be added to the heap (using their priority value as the
@@ -855,11 +855,11 @@ and
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="CompleteTree.html">10.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
+        «&#160;&#160;<a id="prevmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Heapsort.html">10.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
+        <a  id="nextmod1" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
 
 </p>
       </div>
@@ -874,7 +874,7 @@ and
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

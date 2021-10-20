@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>11.3. Sample Hash Functions &mdash; Data Structures and Algorithms</title>
+    <title>10.3. Sample Hash Functions &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 11 Hash Tables</span></h2>
+              <h2 class="heading" ><span>Chapter 10 Hash Tables</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashFunc.html">11.<span class="section-number">2. </span>Hash Function Principles</a>
+        «&#160;&#160;<a id="prevmod" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="OpenHash.html">11.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+        <a  id="nextmod" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions">
-<h1>11.<span class="section-number">3. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions">
+<h1>10.<span class="section-number">3. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>11.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="simple-mod-function">
-<h3>11.<span class="section-number">3.1.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h3>
+<h3>10.<span class="section-number">3.1.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following hash function used to hash integers to a table
 of sixteen slots.</p>
 <div id="Hash_Mod_code"><ul><li><a href="#Hash_Mod_code_Java_Generic">Java</a></li><li><a href="#Hash_Mod_code_Python">Python</a></li></ul><div id="Hash_Mod_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kt">int</span> <span class="nf">h</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
@@ -211,7 +211,7 @@ is typically used as the modulus to ensure that the hash
 function produces a number in the range 0 to <span class="math notranslate nohighlight">\(M-1\)</span>.</p>
 </div>
 <div class="section" id="binning">
-<h3>11.<span class="section-number">3.1.2. </span>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
+<h3>10.<span class="section-number">3.1.2. </span>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
 <p>Say we are given keys in the range 0 to 999, and have a hash table of
 size 10.
 In this case, a possible hash function might simply divide the key
@@ -273,7 +273,7 @@ Or if you want to think in base 10 instead of base 2, modding by 10 or
 10 or 100 looks at the high-order digits.</p>
 <p>As another example, consider hashing a collection of keys whose values
 follow a normal distribution, as illustrated by
-Figure <a href="HashFuncExamp.html#hashnormal">11.4.1</a>.
+Figure <a href="HashFuncExamp.html#hashnormal">10.4.1</a>.
 Keys near the mean of the normal distribution are far more likely
 to occur than keys near the tails of the distribution.
 For a given slot, think of where the keys come from within the distribution.
@@ -290,11 +290,11 @@ slot are near the tails, and some are near the center.
 Thus, each table slot is equally likely (roughly) to get a key value.</p>
 <div class="figure align-center" id="id2" style="width: 90%">
 <span id="hashnormal"></span><a class="reference internal image-reference" href="_images/HashNormal.png"><img alt="Binning vs. Mod Function" src="_images/HashNormal.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 11.4.1: A comparison of binning vs. modulus as a hash function.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"> Figure 10.4.1: A comparison of binning vs. modulus as a hash function.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="the-mid-square-method">
-<h3>11.<span class="section-number">3.1.3. </span>The Mid-Square Method<a class="headerlink" href="#the-mid-square-method" title="Permalink to this headline">¶</a></h3>
+<h3>10.<span class="section-number">3.1.3. </span>The Mid-Square Method<a class="headerlink" href="#the-mid-square-method" title="Permalink to this headline">¶</a></h3>
 <p>A good hash function to use with integer key values is the
 <a class="reference internal" href="Glossary.html#term-mid-square-method"><span class="xref std std-term">mid-square method</span></a>.
 The mid-square method squares the key value, and then takes out the middle
@@ -303,7 +303,7 @@ The mid-square method squares the key value, and then takes out the middle
 This works well because most or all bits of the key value contribute to
 the result.
 For example, consider records whose keys are 4-digit numbers in base
-10, as shown in Figure <a href="HashFuncExamp.html#midsquarefig">11.4.2</a>.
+10, as shown in Figure <a href="HashFuncExamp.html#midsquarefig">10.4.2</a>.
 The goal is to hash these key values to a table of size 100
 (i.e., a range of 0 to 99).
 This range is equivalent to two digits in base 10.
@@ -320,7 +320,7 @@ Of course, if the key values all tend to be small numbers,
 then their squares will only affect the low-order digits of the hash value.</p>
 <div class="figure align-center" id="id3" style="width: 90%">
 <span id="midsquarefig"></span><a class="reference internal image-reference" href="_images/MidSquare.png"><img alt="Mid-square method example" src="_images/MidSquare.png" style="width: 70px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 11.4.2: An example of the mid-square method. This image shows the
+<p class="caption"><span class="caption-text"> Figure 10.4.2: An example of the mid-square method. This image shows the
 traditional gradeschool long multiplication process. The value
 being squared is 4567. The result of squaring is 20857489.
 At the bottom, of the image, the value 4567 is show again, with
@@ -358,7 +358,7 @@ Start with ‘4567’ as an example.</p>
 </div>
 </div>
 <div class="section" id="a-simple-hash-function-for-strings">
-<h2>11.<span class="section-number">3.2. </span>A Simple Hash Function for Strings<a class="headerlink" href="#a-simple-hash-function-for-strings" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.2. </span>A Simple Hash Function for Strings<a class="headerlink" href="#a-simple-hash-function-for-strings" title="Permalink to this headline">¶</a></h2>
 <p>Now we will examine some hash functions suitable for storing strings
 of characters.
 We start with a simple summation function.</p>
@@ -435,7 +435,7 @@ slots.</p>
 </div>
 </div>
 <div class="section" id="string-folding">
-<h2>11.<span class="section-number">3.3. </span>String Folding<a class="headerlink" href="#string-folding" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.3. </span>String Folding<a class="headerlink" href="#string-folding" title="Permalink to this headline">¶</a></h2>
 <p>Here is a much better hash function for strings.</p>
 <div id="Hash_sfold_code"><ul><li><a href="#Hash_sfold_code_Java_Generic">Java</a></li><li><a href="#Hash_sfold_code_Python">Python</a></li></ul><div id="Hash_sfold_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use folding on a string, summed 4 bytes at a time</span>
 <span class="kt">int</span> <span class="nf">sfold</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
@@ -511,7 +511,7 @@ Other choices could be made.
 Another alternative would be to fold two characters at a time.</p>
 </div>
 <div class="section" id="hash-function-practice">
-<h2>11.<span class="section-number">3.4. </span>Hash Function Practice<a class="headerlink" href="#hash-function-practice" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.4. </span>Hash Function Practice<a class="headerlink" href="#hash-function-practice" title="Permalink to this headline">¶</a></h2>
 <p>Now here is an exercise to let you practice these various hash
 functions.
 You should use the calculators above for the more complicated hash
@@ -540,7 +540,7 @@ functions.</p>
 </div>
 </div>
 <div class="section" id="hash-function-review-questions">
-<h2>11.<span class="section-number">3.5. </span>Hash Function Review Questions<a class="headerlink" href="#hash-function-review-questions" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.5. </span>Hash Function Review Questions<a class="headerlink" href="#hash-function-review-questions" title="Permalink to this headline">¶</a></h2>
 <p>Here are some review questions.</p>
 <div
     id="HashFuncSumm"
@@ -574,11 +574,11 @@ functions.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">11.<span class="section-number">2. </span>Hash Function Principles</a>
+        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="OpenHash.html">11.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+        <a  id="nextmod1" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
 
 </p>
       </div>
@@ -593,7 +593,7 @@ functions.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

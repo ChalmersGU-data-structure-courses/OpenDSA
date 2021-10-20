@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>12.5. Shortest-Paths Problems &mdash; Data Structures and Algorithms</title>
+    <title>11.5. Shortest-Paths Problems &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+              <h2 class="heading" ><span>Chapter 11 Graphs</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GraphTopsort.html">12.<span class="section-number">4. </span>Topological Sort</a>
+        «&#160;&#160;<a id="prevmod" href="GraphTopsort.html">11.<span class="section-number">4. </span>Topological Sort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="MCST.html">12.<span class="section-number">6. </span>Minimal Cost Spanning Trees</a>&#160;&#160;»
+        <a  id="nextmod" href="MCST.html">11.<span class="section-number">6. </span>Minimal Cost Spanning Trees</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="shortest-paths-problems">
-<h1>12.<span class="section-number">5. </span>Shortest-Paths Problems<a class="headerlink" href="#shortest-paths-problems" title="Permalink to this headline">¶</a></h1>
+<h1>11.<span class="section-number">5. </span>Shortest-Paths Problems<a class="headerlink" href="#shortest-paths-problems" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>12.<span class="section-number">5.1. </span>Shortest-Paths Problems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">5.1. </span>Shortest-Paths Problems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>On a road map, a road connecting two towns is typically
 labeled with its distance.
 We can model a road network as a directed graph whose edges are
@@ -181,7 +181,7 @@ length of the shortest path between two specified vertices.
 This is not a trivial problem, because the shortest path may not be
 along the edge (if any) connecting two vertices, but rather may be
 along a path involving one or more intermediate vertices.</p>
-<p>For example, in Figure <a href="GraphShortest.html#distexamp">12.6.1</a>,
+<p>For example, in Figure <a href="GraphShortest.html#distexamp">11.6.1</a>,
 the cost of the path from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 15.
 The cost of the edge directly from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 20.
 The cost of the path from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(C\)</span> to <span class="math notranslate nohighlight">\(B\)</span> to
@@ -190,7 +190,7 @@ Thus, the shortest path from <span class="math notranslate nohighlight">\(A\)</s
 (rather than along the edge connecting <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span>).
 We use the notation <span class="math notranslate nohighlight">\(\mathbf{d}(A, D) = 10\)</span> to indicate that the
 shortest distance from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 10.
-In Figure <a href="GraphShortest.html#distexamp">12.6.1</a>, there is no path from <span class="math notranslate nohighlight">\(E\)</span> to
+In Figure <a href="GraphShortest.html#distexamp">11.6.1</a>, there is no path from <span class="math notranslate nohighlight">\(E\)</span> to
 <span class="math notranslate nohighlight">\(B\)</span>, so we set <span class="math notranslate nohighlight">\(\mathbf{d}(E, B) = \infty\)</span>.
 We define <span class="math notranslate nohighlight">\(\mathbf{w}(A, D) = 20\)</span> to be the weight of edge
 <span class="math notranslate nohighlight">\((A, D)\)</span>, that is, the weight of the direct connection
@@ -198,15 +198,15 @@ from <span class="math notranslate nohighlight">\(A\)</span> to <span class="mat
 Because there is no edge from <span class="math notranslate nohighlight">\(E\)</span> to <span class="math notranslate nohighlight">\(B\)</span>,
 <span class="math notranslate nohighlight">\(\mathbf{w}(E, B) = \infty\)</span>.
 Note that <span class="math notranslate nohighlight">\(\mathbf{w}(D, A) = \infty\)</span> because the graph of
-Figure <a href="GraphShortest.html#distexamp">12.6.1</a> is directed.
+Figure <a href="GraphShortest.html#distexamp">11.6.1</a> is directed.
 We assume that all weights are positive.</p>
 <div class="divdgm" id="distexamp">
 <div id="DistanceExampCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.6.1: Example graph for shortest-path definitions.</span></p>
+<p class="caption"><span class="caption-text"> Figure 11.6.1: Example graph for shortest-path definitions.</span></p>
 </div>
 <div class="section" id="single-source-shortest-paths">
-<h3>12.<span class="section-number">5.1.1. </span>Single-Source Shortest Paths<a class="headerlink" href="#single-source-shortest-paths" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">5.1.1. </span>Single-Source Shortest Paths<a class="headerlink" href="#single-source-shortest-paths" title="Permalink to this headline">¶</a></h3>
 <p>We will now present an algorithm to solve the
 <a class="reference internal" href="Glossary.html#term-single-source-shortest-paths-problem"><span class="xref std std-term">single-source shortest paths problem</span></a>.
 Given Vertex <span class="math notranslate nohighlight">\(S\)</span> in Graph <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>,
@@ -509,11 +509,11 @@ However, when the graph is dense, this cost can become as great as
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GraphTopsort.html">12.<span class="section-number">4. </span>Topological Sort</a>
+        «&#160;&#160;<a id="prevmod1" href="GraphTopsort.html">11.<span class="section-number">4. </span>Topological Sort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="MCST.html">12.<span class="section-number">6. </span>Minimal Cost Spanning Trees</a>&#160;&#160;»
+        <a  id="nextmod1" href="MCST.html">11.<span class="section-number">6. </span>Minimal Cost Spanning Trees</a>&#160;&#160;»
 
 </p>
       </div>
@@ -528,7 +528,7 @@ However, when the graph is dense, this cost can become as great as
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

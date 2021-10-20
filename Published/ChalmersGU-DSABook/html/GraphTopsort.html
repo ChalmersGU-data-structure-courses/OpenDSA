@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>12.4. Topological Sort &mdash; Data Structures and Algorithms</title>
+    <title>11.4. Topological Sort &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+              <h2 class="heading" ><span>Chapter 11 Graphs</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GraphTraversal.html">12.<span class="section-number">3. </span>Graph Traversals</a>
+        «&#160;&#160;<a id="prevmod" href="GraphTraversal.html">11.<span class="section-number">3. </span>Graph Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>&#160;&#160;»
+        <a  id="nextmod" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Graph/topSortQCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="topological-sort">
-<h1>12.<span class="section-number">4. </span>Topological Sort<a class="headerlink" href="#topological-sort" title="Permalink to this headline">¶</a></h1>
+<h1>11.<span class="section-number">4. </span>Topological Sort<a class="headerlink" href="#topological-sort" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>12.<span class="section-number">4.1. </span>Topological Sort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">4.1. </span>Topological Sort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Assume that we need to schedule a series of tasks, such as classes or
 construction jobs, where we cannot start one task until after its
 prerequisites are completed.
@@ -184,15 +184,15 @@ meet the prerequisite rules is called a <a class="reference internal" href="Glos
 <div class="divdgm" id="topsort">
 <div id="topSortCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.5.1: An example graph for topological sort. Seven tasks have
+<p class="caption"><span class="caption-text"> Figure 11.5.1: An example graph for topological sort. Seven tasks have
 dependencies as shown by the directed graph.</span></p>
 </div>
-<p>Figure <a href="GraphTopsort.html#topsort">12.5.1</a> illustrates the problem.
+<p>Figure <a href="GraphTopsort.html#topsort">11.5.1</a> illustrates the problem.
 An acceptable topological sort for this example is J1,
 J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
 such as J1, J3, J2, J6, J4, J5, J7.</p>
 <div class="section" id="depth-first-solution">
-<h3>12.<span class="section-number">4.1.1. </span>Depth-first solution<a class="headerlink" href="#depth-first-solution" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">4.1.1. </span>Depth-first solution<a class="headerlink" href="#depth-first-solution" title="Permalink to this headline">¶</a></h3>
 <p>A topological sort may be found by performing a DFS on the graph.
 When a vertex is visited, no action is taken (i.e., function
 <code class="docutils literal notranslate"><span class="pre">PreVisit</span></code> does nothing).
@@ -243,7 +243,7 @@ Here is implementation for the DFS-based algorithm.</p>
 </div>
 </div></div><script>$(function() {$( "#TopsortDFS_TopsortDFS_code" ).tabs();});</script><p>Using this algorithm starting at J1 and visiting adjacent
 neighbors in alphabetic order, vertices of the graph in
-Figure <a href="GraphTopsort.html#topsort">12.5.1</a> are printed out in the order J7,
+Figure <a href="GraphTopsort.html#topsort">11.5.1</a> are printed out in the order J7,
 J5, J4, J6, J2, J3, J1.
 Reversing this yields the topological sort
 J1, J3, J2, J6, J4, J5, J7.</p>
@@ -267,7 +267,7 @@ J1, J3, J2, J6, J4, J5, J7.</p>
 <p></p>
 </div>
 <div class="section" id="queue-based-solution">
-<h3>12.<span class="section-number">4.1.2. </span>Queue-based Solution<a class="headerlink" href="#queue-based-solution" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">4.1.2. </span>Queue-based Solution<a class="headerlink" href="#queue-based-solution" title="Permalink to this headline">¶</a></h3>
 <p>We can implement topological sort using a queue
 instead of recursion, as follows.</p>
 <p>First visit all edges, counting the number of
@@ -284,7 +284,7 @@ the graph contains a cycle (i.e., there is no possible ordering
 for the tasks that does not violate some prerequisite).
 The printed order for the vertices of the graph in
 Applying the queue version of topological sort to the graph of
-Figure <a href="GraphTopsort.html#topsort">12.5.1</a> produces J1, J2, J3, J6, J4, J5, J7.
+Figure <a href="GraphTopsort.html#topsort">11.5.1</a> produces J1, J2, J3, J6, J4, J5, J7.
 Here is an implementation for the algorithm.</p>
 <p>Here is the code to implement the queue-based topological sort:</p>
 <div id="TopsortBFS_TopsortBFS_code"><ul><li><a href="#TopsortBFS_TopsortBFS_code_Java_Generic">Java</a></li><li><a href="#TopsortBFS_TopsortBFS_code_Python">Python</a></li></ul><div id="TopsortBFS_TopsortBFS_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">topsortBFS</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// Topological sort: Queue</span>
@@ -366,11 +366,11 @@ Here is an implementation for the algorithm.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GraphTraversal.html">12.<span class="section-number">3. </span>Graph Traversals</a>
+        «&#160;&#160;<a id="prevmod1" href="GraphTraversal.html">11.<span class="section-number">3. </span>Graph Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="GraphShortest.html">12.<span class="section-number">5. </span>Shortest-Paths Problems</a>&#160;&#160;»
+        <a  id="nextmod1" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>&#160;&#160;»
 
 </p>
       </div>
@@ -385,7 +385,7 @@ Here is an implementation for the algorithm.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

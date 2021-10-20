@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.5. Huffman Coding Trees &mdash; Data Structures and Algorithms</title>
+    <title>9.5. Huffman Coding Trees &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 10 Priority Queues</span></h2>
+              <h2 class="heading" ><span>Chapter 9 Priority Queues</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Heapsort.html">10.<span class="section-number">4. </span>Heapsort</a>
+        «&#160;&#160;<a id="prevmod" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="TreeTrie.html">10.<span class="section-number">6. </span>Trees versus Tries</a>&#160;&#160;»
+        <a  id="nextmod" href="TreeTrie.html">9.<span class="section-number">6. </span>Trees versus Tries</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['building-huffman-coding-trees', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['building-huffman-coding-trees', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/huffmanCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="huffman-coding-trees">
-<span id="index-0"></span><h1>10.<span class="section-number">5. </span>Huffman Coding Trees<a class="headerlink" href="#huffman-coding-trees" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>9.<span class="section-number">5. </span>Huffman Coding Trees<a class="headerlink" href="#huffman-coding-trees" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>10.<span class="section-number">5.1. </span>Huffman Coding Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">5.1. </span>Huffman Coding Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>One can often gain an improvement in space requirements in exchange
 for a penalty in running time.
 There are many situations where this is a desirable tradeoff.
@@ -194,7 +194,7 @@ However, you are probably aware that not all characters are used
 equally often in many applications.
 For example, the various letters in an English language document have
 greatly different frequencies of use.</p>
-<p>Table <a href="Huffman.html#freq">10.6.1</a> shows the relative frequencies of the
+<p>Table <a href="Huffman.html#freq">9.6.1</a> shows the relative frequencies of the
 letters of the alphabet. From this table we can see that the letter
 ‘E’ appears about 60 times more often than the letter ‘Z’. In normal
 ASCII, the words “DEED” and “MUCK” require the same amount of space
@@ -203,7 +203,7 @@ composed of relatively common letters, should be storable in less
 space than words such as “MUCK”, which are composed of relatively
 uncommon letters.</p>
 <div class="topic" id="freq">
-<p class="topic-title">Table 10.6.1  </p>
+<p class="topic-title">Table 9.6.1  </p>
 <p>Relative frequencies for the 26 letters of the
 alphabet as they appear in a selected set of English
 documents. “Frequency” represents the expected frequency of occurrence
@@ -252,7 +252,7 @@ But a real implementation would use a <a class="reference internal" href="Glossa
 </dd>
 </dl>
 <div class="section" id="building-huffman-coding-trees">
-<h3>10.<span class="section-number">5.1.1. </span>Building Huffman Coding Trees<a class="headerlink" href="#building-huffman-coding-trees" title="Permalink to this headline">¶</a></h3>
+<h3>9.<span class="section-number">5.1.1. </span>Building Huffman Coding Trees<a class="headerlink" href="#building-huffman-coding-trees" title="Permalink to this headline">¶</a></h3>
 <p>Huffman coding assigns codes to characters such that the length of the
 code depends on the relative frequency or <a class="reference internal" href="Glossary.html#term-weight"><span class="xref std std-term">weight</span></a> of the
 corresponding character.
@@ -291,7 +291,7 @@ Put this new tree back into the priority queue.
 This process is repeated until all of the partial Huffman trees have
 been combined into one.</p>
 <div class="topic" id="freqexamp">
-<p class="topic-title">Table 10.6.2  </p>
+<p class="topic-title">Table 9.6.2  </p>
 <p>The relative frequencies for eight selected letters.</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}\begin{array}{|c|cccccccc|}
@@ -303,7 +303,7 @@ been combined into one.</p>
 </div>
 <p>The following slideshow illustrates the Huffman tree
 construction process for the eight letters of
-Table <a href="Huffman.html#freqexamp">10.6.2</a>. <a class="footnote-reference brackets" href="#id5" id="id4">2</a></p>
+Table <a href="Huffman.html#freqexamp">9.6.2</a>. <a class="footnote-reference brackets" href="#id5" id="id4">2</a></p>
 <div id="huffmanBuildCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanBuildCON" data-long-name="Huffman Coding Tree Slideshow: Build" data-exer-id="" alt="Huffman Coding Tree Slideshow: Build" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -554,7 +554,7 @@ message with its binary code.
 A lookup table can be used for this purpose.</p>
 </div>
 <div class="section" id="decoding">
-<h3>10.<span class="section-number">5.1.2. </span>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h3>
+<h3>9.<span class="section-number">5.1.2. </span>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h3>
 <p>A set of codes is said to meet the <a class="reference internal" href="Glossary.html#term-prefix-property"><span class="xref std std-term">prefix property</span></a> if no
 code in the set is the prefix of another.
 The prefix property guarantees that there will be no ambiguity in how
@@ -611,7 +611,7 @@ by traversing the tree appropriately.</p>
 </div>
 </div>
 <div class="section" id="how-efficient-is-huffman-coding">
-<h3>10.<span class="section-number">5.1.3. </span>How efficient is Huffman coding?<a class="headerlink" href="#how-efficient-is-huffman-coding" title="Permalink to this headline">¶</a></h3>
+<h3>9.<span class="section-number">5.1.3. </span>How efficient is Huffman coding?<a class="headerlink" href="#how-efficient-is-huffman-coding" title="Permalink to this headline">¶</a></h3>
 <p>In theory, Huffman coding is an optimal coding method whenever the
 true frequencies are known, and the frequency of a letter is
 independent of the context of that letter in the message.
@@ -630,9 +630,9 @@ codes; others can result in great compression.
 In general, Huffman coding does better when there is large variation
 in the frequencies of letters.</p>
 <div class="topic">
-<p class="topic-title">Example 10.6.1 </p>
+<p class="topic-title">Example 9.6.1 </p>
 <p>In the particular case of the frequencies shown in
-Table <a href="Huffman.html#freq">10.6.1</a>, we can determine the expected savings from
+Table <a href="Huffman.html#freq">9.6.1</a>, we can determine the expected savings from
 Huffman coding if the actual frequencies of a coded message match the
 expected frequencies.
 Because the sum of the frequencies is 306 and E has frequency 120,
@@ -665,7 +665,7 @@ letters.</p>
 </div>
 <p>Huffman coding for all ASCII symbols should do better than this
 example.
-The letters of Table <a href="Huffman.html#freq">10.6.1</a> are atypical in that there
+The letters of Table <a href="Huffman.html#freq">9.6.1</a> are atypical in that there
 are too many common letters compared to the number of rare letters.
 Huffman coding for all 26 letters would yield an expected
 cost of 4.29 bits per letter.
@@ -726,11 +726,11 @@ your own set of letters and frequencies.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Heapsort.html">10.<span class="section-number">4. </span>Heapsort</a>
+        «&#160;&#160;<a id="prevmod1" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="TreeTrie.html">10.<span class="section-number">6. </span>Trees versus Tries</a>&#160;&#160;»
+        <a  id="nextmod1" href="TreeTrie.html">9.<span class="section-number">6. </span>Trees versus Tries</a>&#160;&#160;»
 
 </p>
       </div>
@@ -745,7 +745,7 @@ your own set of letters and frequencies.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

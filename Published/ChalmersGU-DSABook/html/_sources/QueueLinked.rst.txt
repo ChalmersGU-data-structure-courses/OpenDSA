@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -16,14 +16,14 @@
 
 
 
-.. odsalink:: AV/List/lqueueCON.css
+.. odsalink:: AV/ChalmersGU/CGU-Styles.css
 .. This file is part of the OpenDSA eTextbook project. See
 .. http://opendsa.org for more details.
 .. Copyright (c) 2012-2020 by the OpenDSA Project Contributors, and
 .. distributed under an MIT open source license.
 
 .. avmetadata:: 
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: queue
    :satisfies: linked queue
    :topic: Lists
@@ -38,24 +38,36 @@ The linked queue implementation is an adaptation of the linked list.
 The only thing is that we have to add a pointer to the rear node
 in the queue, to be able to add new elements efficiently.
 
-.. inlineav:: lqueueIntroCON ss
+.. inlineav:: LinkedQueue-Intro-CON ss
    :points: 0.0
    :required: False
    :threshold: 1.0
    :long_name: Linked Queue Intro
    :output: show    
-   
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueInit
+
 Enqueueing Elements
 -------------------------
 
-.. inlineav:: lqueueEnqueueCON ss
+.. inlineav:: LinkedQueue-Enqueue-CON ss
    :points: 0.0
    :required: False
    :threshold: 1.0
    :long_name: Linked Queue Enqueue
    :output: show   
-   
-.. avembed:: Exercises/List/LqueueEnqueuePRO.html ka
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueEnqueue
+
+|
+
+.. avembed:: Exercises/ChalmersGU/LinkedQueue-Enqueue-PRO.html ka
    :module: QueueLinked
    :points: 1.0
    :required: True
@@ -67,14 +79,21 @@ Enqueueing Elements
 Dequeueing Elements
 -------------------------
 
-.. inlineav:: lqueueDequeueCON ss
+.. inlineav:: LinkedQueue-Dequeue-CON ss
    :points: 0.0
    :required: False
    :threshold: 1.0
    :long_name: Linked Queue Dequeue
    :output: show 
+
+|
+
+.. codeinclude:: ChalmersGU/LinkedQueue
+   :tag: LinkedQueueDequeue
+
+|
    
-.. avembed:: Exercises/List/LqueueDequeuePRO.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedQueue-Dequeue-PRO.html ka
    :module: QueueLinked
    :points: 1.0
    :required: True
@@ -86,7 +105,7 @@ Dequeueing Elements
 Linked Queue, Full Implementation
 -------------------------------------
 
-Here is the linked queue class declaration.
+Here is the full implementation for linked queues.
 
 .. codeinclude:: ChalmersGU/LinkedQueue
    :tag: LinkedQueue
@@ -99,12 +118,14 @@ All member functions for both the array-based and linked queue
 implementations require constant time.
 The space comparison issues are the same as for the equivalent stack
 implementations.
+
 Unlike the array-based stack implementation, there is no convenient
 way to store two queues in the same array,
 unless items are always transferred directly from one queue to the other.
 
+
 Stack and Queue Summary Questions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 .. avembed:: Exercises/List/StackQSumm.html ka
    :module: QueueLinked
@@ -114,7 +135,6 @@ Stack and Queue Summary Questions
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Stack/Queue Summary Exercise
 
-.. odsascript:: AV/List/llist.js
-.. odsascript:: AV/List/lqueueIntroCON.js
-.. odsascript:: AV/List/lqueueEnqueueCON.js
-.. odsascript:: AV/List/lqueueDequeueCON.js
+.. odsascript:: AV/ChalmersGU/LinkedQueue-Intro-CON.js
+.. odsascript:: AV/ChalmersGU/LinkedQueue-Enqueue-CON.js
+.. odsascript:: AV/ChalmersGU/LinkedQueue-Dequeue-CON.js

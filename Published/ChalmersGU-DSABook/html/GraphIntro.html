@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>12.1. Graphs Chapter Introduction &mdash; Data Structures and Algorithms</title>
+    <title>11.1. Graphs Chapter Introduction &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 12 Graphs</span></h2>
+              <h2 class="heading" ><span>Chapter 11 Graphs</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashSumm.html">11.<span class="section-number">10. </span>Hashing Chapter Summary Exercises</a>
+        «&#160;&#160;<a id="prevmod" href="HashSumm.html">10.<span class="section-number">10. </span>Hashing Chapter Summary Exercises</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="GraphImpl.html">12.<span class="section-number">2. </span>Graph Implementations</a>&#160;&#160;»
+        <a  id="nextmod" href="GraphImpl.html">11.<span class="section-number">2. </span>Graph Implementations</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-terminology-and-implementation', 'graph-representations', 'graph-terminology-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Graphs Chapter Introduction";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/GraphDefCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-terminology-and-implementation', 'graph-representations', 'graph-terminology-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Graphs Chapter Introduction";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/GraphDefCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="graphs-chapter-introduction">
-<h1>12.<span class="section-number">1. </span>Graphs Chapter Introduction<a class="headerlink" href="#graphs-chapter-introduction" title="Permalink to this headline">¶</a></h1>
+<h1>11.<span class="section-number">1. </span>Graphs Chapter Introduction<a class="headerlink" href="#graphs-chapter-introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="graph-terminology-and-implementation">
-<h2>12.<span class="section-number">1.1. </span>Graph Terminology and Implementation<a class="headerlink" href="#graph-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">1.1. </span>Graph Terminology and Implementation<a class="headerlink" href="#graph-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Graphs provide the ultimate in data structure flexibility.
 A graph consists of a set of nodes, and a set of edges where an
 edge connects two nodes.
@@ -233,7 +233,7 @@ A graph whose edges have weights
 <div class="divdgm" id="graphterms">
 <div id="GdirundirCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.2.1: Some types of graphs.</span></p>
+<p class="caption"><span class="caption-text"> Figure 11.2.1: Some types of graphs.</span></p>
 </div>
 <p>An edge connecting Vertices <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> is written
 <span class="math notranslate nohighlight">\((a, b)\)</span>.
@@ -308,7 +308,7 @@ cycles.
 An equivalent definition is that
 a free tree is connected and has <span class="math notranslate nohighlight">\(|\mathbf{V}| - 1\)</span> edges.</p>
 <div class="section" id="graph-representations">
-<h3>12.<span class="section-number">1.1.1. </span>Graph Representations<a class="headerlink" href="#graph-representations" title="Permalink to this headline">¶</a></h3>
+<h3>11.<span class="section-number">1.1.1. </span>Graph Representations<a class="headerlink" href="#graph-representations" title="Permalink to this headline">¶</a></h3>
 <p>There are two commonly used methods for representing graphs.
 The <a class="reference internal" href="Glossary.html#term-adjacency-matrix"><span class="xref std std-term">adjacency matrix</span></a> for a graph is a
 <span class="math notranslate nohighlight">\(|\mathbf{V}| \times |\mathbf{V}|\)</span> array.
@@ -337,7 +337,7 @@ because this edge comes into Vertex 2 rather than going out.</p>
 <div class="divdgm" id="directed">
 <div id="GdirRepCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.2.7: Representing a directed graph.</span></p>
+<p class="caption"><span class="caption-text"> Figure 11.2.7: Representing a directed graph.</span></p>
 </div>
 <p>Both the adjacency matrix and the adjacency list can be used to store
 directed or undirected graphs.
@@ -352,7 +352,7 @@ entry for both Vertex 3 and Vertex 4.</p>
 <div class="divdgm" id="undirected">
 <div id="GundirRepCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 12.2.8: Representing an undirected graph.</span></p>
+<p class="caption"><span class="caption-text"> Figure 11.2.8: Representing an undirected graph.</span></p>
 </div>
 <p>The storage requirements for the adjacency list depend on both the
 number of edges and the number of vertices in the graph.
@@ -361,10 +361,10 @@ not adjacent to any other vertex and thus has no elements on its
 linked list), and each edge must appear on one of the lists.
 Thus, the cost is <span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}| + |\mathbf{E}|)\)</span>.</p>
 <p>Sometimes we want to store weights or distances with each each edge,
-such as in Figure <a href="GraphIntro.html#graphterms">12.2.1</a> (c).
+such as in Figure <a href="GraphIntro.html#graphterms">11.2.1</a> (c).
 This is easy with the adjacency matrix, where we will just store
 values for the weights in the matrix.
-In Figures <a href="GraphIntro.html#directed">12.2.7</a> and <a href="GraphIntro.html#undirected">12.2.8</a> we
+In Figures <a href="GraphIntro.html#directed">11.2.7</a> and <a href="GraphIntro.html#undirected">11.2.8</a> we
 store a value of “1” at each position just to show that the edge
 exists.
 That could have been done using a single bit, but since bit
@@ -399,7 +399,7 @@ relatively more space efficient.
 Sparse graphs are likely to have their adjacency list representation
 be more space efficient.</p>
 <div class="topic">
-<p class="topic-title">Example 12.2.1 </p>
+<p class="topic-title">Example 11.2.1 </p>
 <p>Assume that a vertex index requires two bytes, a pointer requires
 four bytes, and an edge weight requires two bytes.
 Then, each link node in the adjacency list needs
@@ -451,7 +451,7 @@ but not when the graph is closer to full.</p>
 </div>
 </div>
 <div class="section" id="graph-terminology-questions">
-<h2>12.<span class="section-number">1.2. </span>Graph Terminology Questions<a class="headerlink" href="#graph-terminology-questions" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">1.2. </span>Graph Terminology Questions<a class="headerlink" href="#graph-terminology-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="GraphIntroSumm"
     class="embedContainer"
@@ -491,11 +491,11 @@ but not when the graph is closer to full.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashSumm.html">11.<span class="section-number">10. </span>Hashing Chapter Summary Exercises</a>
+        «&#160;&#160;<a id="prevmod1" href="HashSumm.html">10.<span class="section-number">10. </span>Hashing Chapter Summary Exercises</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="GraphImpl.html">12.<span class="section-number">2. </span>Graph Implementations</a>&#160;&#160;»
+        <a  id="nextmod1" href="GraphImpl.html">11.<span class="section-number">2. </span>Graph Implementations</a>&#160;&#160;»
 
 </p>
       </div>
@@ -510,7 +510,7 @@ but not when the graph is closer to full.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

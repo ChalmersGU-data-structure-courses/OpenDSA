@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>13.2. Reductions &mdash; Data Structures and Algorithms</title>
+    <title>12.2. Reductions &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 13 Limits to Computing</span></h2>
+              <h2 class="heading" ><span>Chapter 12 Limits to Computing</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="LimComp.html">13.<span class="section-number">1. </span>Limits to Computing</a>
+        «&#160;&#160;<a id="prevmod" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="NPComplete.html">13.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
+        <a  id="nextmod" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
 
 
         </p>
@@ -162,15 +162,15 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['example:-the-pairing-problem', 'reduction-and-finding-a-lower-bound', 'the-reduction-template', 'two-multiplication-examples', 'bounds-theorems', 'the-cost-of-making-a-simple-polygon'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Reduction";ODSA.SETTINGS.MODULE_LONG_NAME = "Reductions";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SortingProblemCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['example:-the-pairing-problem', 'reduction-and-finding-a-lower-bound', 'the-reduction-template', 'two-multiplication-examples', 'bounds-theorems', 'the-cost-of-making-a-simple-polygon'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Reduction";ODSA.SETTINGS.MODULE_LONG_NAME = "Reductions";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SortingProblemCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/pairToSortCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/sortToPairCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/matrixMulCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/ReduceSimpPCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="reductions">
-<h1>13.<span class="section-number">2. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h1>
+<h1>12.<span class="section-number">2. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>13.<span class="section-number">2.1. </span>Reductions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>12.<span class="section-number">2.1. </span>Reductions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>This module introduces an important concept for
 understanding the relationships between problems, called
 <a class="reference internal" href="Glossary.html#term-reduction"><span class="xref std std-term">reduction</span></a>.
@@ -212,7 +212,7 @@ sequence such that <span class="math notranslate nohighlight">\(y_i \leq y_j\)</
 </div>
 <p></p>
 <div class="section" id="example-the-pairing-problem">
-<h3>13.<span class="section-number">2.1.1. </span>Example: The Pairing Problem<a class="headerlink" href="#example-the-pairing-problem" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.1. </span>Example: The Pairing Problem<a class="headerlink" href="#example-the-pairing-problem" title="Permalink to this headline">¶</a></h3>
 <p>When you buy or write a program to solve one problem, such
 as sorting, you might be able to use it to help solve a different
 problem.
@@ -232,7 +232,7 @@ next least value in <span class="math notranslate nohighlight">\(Y\)</span>, and
 </div>
 <div class="figure align-center" id="id4" style="width: 90%">
 <span id="pair"></span><a class="reference internal image-reference" href="_images/Pairing.png"><img alt="Illustration of PAIRING" src="_images/Pairing.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 13.3.1: An illustration of PAIRING.
+<p class="caption"><span class="caption-text"> Figure 12.3.1: An illustration of PAIRING.
 The two lists of numbers are paired up so that the least values
 from each list make a pair, the next smallest values from each list
 make a pair, and so on.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
@@ -254,7 +254,7 @@ make a pair, and so on.</span><a class="headerlink" href="#id4" title="Permalink
  </div>
 </div>
 <p></p>
-<p>Figure <a href="Reduction.html#pair">13.3.1</a> illustrates PAIRING.
+<p>Figure <a href="Reduction.html#pair">12.3.1</a> illustrates PAIRING.
 One way to solve PAIRING is to use an existing sorting
 program to sort each of the two sequences, and then pair off
 items based on their position in sorted order.
@@ -297,7 +297,7 @@ the algorithms will require <span class="math notranslate nohighlight">\(\Omega(
 But, another approach might conceivably be faster.</p>
 </div>
 <div class="section" id="reduction-and-finding-a-lower-bound">
-<h3>13.<span class="section-number">2.1.2. </span>Reduction and Finding a Lower Bound<a class="headerlink" href="#reduction-and-finding-a-lower-bound" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.2. </span>Reduction and Finding a Lower Bound<a class="headerlink" href="#reduction-and-finding-a-lower-bound" title="Permalink to this headline">¶</a></h3>
 <p>There is another use of reductions aside from applying an old
 algorithm to solve a new problem (and thereby establishing an upper
 bound for the new problem).
@@ -350,7 +350,7 @@ Thus, the cost of this “sorting algorithm” is dominated by the cost
 for <strong>PAIRING</strong>.</p>
 </div>
 <div class="section" id="the-reduction-template">
-<h3>13.<span class="section-number">2.1.3. </span>The Reduction Template<a class="headerlink" href="#the-reduction-template" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.3. </span>The Reduction Template<a class="headerlink" href="#the-reduction-template" title="Permalink to this headline">¶</a></h3>
 <p>Consider any two problems for which a suitable reduction from one to
 the other can be found.
 The first problem takes an arbitrary instance of its input, which
@@ -374,9 +374,9 @@ for the reduction to be acceptable.</p></li>
 </ol>
 <div class="figure align-center" id="id5" style="width: 90%">
 <span id="blackbox"></span><a class="reference internal image-reference" href="_images/BlackBox.png"><img alt="General blackbox reduction" src="_images/BlackBox.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 13.3.2: The general process for reduction shown as a “blackbox” diagram.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"> Figure 12.3.2: The general process for reduction shown as a “blackbox” diagram.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<p>Figure <a href="Reduction.html#blackbox">13.3.2</a> shows a graphical representation of the
+<p>Figure <a href="Reduction.html#blackbox">12.3.2</a> shows a graphical representation of the
 general reduction process, showing the role of the two problems, and
 the two transformations.
 Next is a slideshow that shows the steps for
@@ -412,7 +412,7 @@ Conversely, the lower bound of the second problem is at least the
 lower bound of the first.</p>
 </div>
 <div class="section" id="two-multiplication-examples">
-<h3>13.<span class="section-number">2.1.4. </span>Two Multiplication Examples<a class="headerlink" href="#two-multiplication-examples" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.4. </span>Two Multiplication Examples<a class="headerlink" href="#two-multiplication-examples" title="Permalink to this headline">¶</a></h3>
 <p>As a second example of reduction, consider the simple problem of
 multiplying two <span class="math notranslate nohighlight">\(n\)</span>-digit numbers.
 The standard long-hand method for multiplication is to multiply the
@@ -547,7 +547,7 @@ This can easily be done in <span class="math notranslate nohighlight">\(n^2\)</s
 </dl>
 </div>
 <div class="section" id="bounds-theorems">
-<h3>13.<span class="section-number">2.1.5. </span>Bounds Theorems<a class="headerlink" href="#bounds-theorems" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.5. </span>Bounds Theorems<a class="headerlink" href="#bounds-theorems" title="Permalink to this headline">¶</a></h3>
 <p>We will use the following notation:
 <span class="math notranslate nohighlight">\(\leq_{O(g(n))}\)</span> means that a reduction can be done
 with transformations that cost <span class="math notranslate nohighlight">\(O(g(n))\)</span>.</p>
@@ -571,7 +571,7 @@ lower bound on PAIRING.</p>
 <span class="math notranslate nohighlight">\(\Omega(P_1)\)</span> and at most <span class="math notranslate nohighlight">\(O(P_2)\)</span>.</p>
 </div>
 <div class="section" id="the-cost-of-making-a-simple-polygon">
-<h3>13.<span class="section-number">2.1.6. </span>The Cost of Making a Simple Polygon<a class="headerlink" href="#the-cost-of-making-a-simple-polygon" title="Permalink to this headline">¶</a></h3>
+<h3>12.<span class="section-number">2.1.6. </span>The Cost of Making a Simple Polygon<a class="headerlink" href="#the-cost-of-making-a-simple-polygon" title="Permalink to this headline">¶</a></h3>
 <p>SIMPLE POLYGON: Given a set of <span class="math notranslate nohighlight">\(n\)</span> points in the plane,
 find a simple polygon with those points as vertices.
 (Here, “simple” means that no lines cross.)
@@ -586,7 +586,7 @@ in the array to be sorted with a corresponding point defined as</p>
 <div class="divdgm">
 <div id="ReduceSimpPCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 13.3.3: Input to SORTING: the values 5, -3, 2, 0, 10.
+<p class="caption"><span class="caption-text"> Figure 12.3.3: Input to SORTING: the values 5, -3, 2, 0, 10.
 When converted to points, they fall on a circle as shown.</span></p>
 </div>
 <p>It is an important fact that all of these points fall on <span class="math notranslate nohighlight">\(C\)</span>.
@@ -611,11 +611,11 @@ Therefore, by the Lower Bound Theorem, SIMPLE POLYGON is in
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="LimComp.html">13.<span class="section-number">1. </span>Limits to Computing</a>
+        «&#160;&#160;<a id="prevmod1" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="NPComplete.html">13.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
+        <a  id="nextmod1" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
 
 </p>
       </div>
@@ -630,7 +630,7 @@ Therefore, by the Lower Bound Theorem, SIMPLE POLYGON is in
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

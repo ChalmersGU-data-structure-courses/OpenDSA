@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="1. Chapter Introduction: Search" href="SearchIntro.html" />
+    <link rel="next" title="4. Comparing Records" href="Comparison.html" />
     <link rel="prev" title="2. Abstract Data Types" href="ADT.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="SearchIntro.html">2.<span class="section-number">1. </span>Chapter Introduction: Search</a>&#160;&#160;»
+        <a  id="nextmod" href="Comparison.html">1.<span class="section-number">4. </span>Comparing Records</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['basic-abstract-data-types', 'lists', 'sets', 'maps-or-dictionaries', 'graphs', 'comparison-with-the-standard-java-api'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:09:37"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="all-adts-used-in-this-book">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['basic-abstract-data-types', 'lists', 'sets', 'maps-or-dictionaries', 'graphs', 'comparison-with-the-standard-java-api'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 13:26:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="all-adts-used-in-this-book">
 <h1>1.<span class="section-number">3. </span>All ADTs Used in This Book<a class="headerlink" href="#all-adts-used-in-this-book" title="Permalink to this headline">¶</a></h1>
 <p>Here we list all abstract data types that we will introduce in this course book.
 Together they form an API (application programming interface) for this book.</p>
@@ -181,7 +181,7 @@ So, we will define classes which act as interfaces, and call them abstract class
 <h2>1.<span class="section-number">3.1. </span>Basic Abstract Data Types<a class="headerlink" href="#basic-abstract-data-types" title="Permalink to this headline">¶</a></h2>
 <p>These include comparables.</p>
 <div id="BaseAPI_ComparableADT_code"><ul><li><a href="#BaseAPI_ComparableADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#BaseAPI_ComparableADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparableADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparableADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Returns &lt;0 if one&lt;other, 0 if one==other, &gt;0 if one&gt;other.</span>
+    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Returns &lt;0 if this&lt;other, 0 if this==other, &gt;0 if this&gt;other.</span>
     <span class="c1">// Note: Python uses a range of basic comparisons instead.</span>
 </pre></div>
 </div>
@@ -569,7 +569,7 @@ Also, some methods are simpler than the corresponding ones in the standard API.<
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="SearchIntro.html">2.<span class="section-number">1. </span>Chapter Introduction: Search</a>&#160;&#160;»
+        <a  id="nextmod1" href="Comparison.html">1.<span class="section-number">4. </span>Comparing Records</a>&#160;&#160;»
 
 </p>
       </div>
@@ -584,7 +584,7 @@ Also, some methods are simpler than the corresponding ones in the standard API.<
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 18, 2021.
+      Last updated on Oct 20, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
