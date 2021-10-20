@@ -109,9 +109,9 @@ would be a population number, and the values would be all towns having
 that population. Then we could find the required towns by making a
 sequence of calls to ``contains``:
 
-* ``contains(1000)``` - find all towns with 1,000 population
-* ``contains(1001)``` - find all towns with 1,001 population
-* ``contains(1002)``` - find all towns with 1,002 population
+* ``contains(1000)`` - find all towns with 1,000 population
+* ``contains(1001)`` - find all towns with 1,001 population
+* ``contains(1002)`` - find all towns with 1,002 population
 * etc.
 
 But this is not a sensible approach. We would need to make ~1,000

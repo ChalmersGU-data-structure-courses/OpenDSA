@@ -7,7 +7,7 @@ pqsort(array: T[]): T[]
   for item in array
     pq.add(item)
 
-  result = new array of length 'array.length'
+  result = new array of length "array.length"
   for i in 0..result.length-1
     result[i] = pq.removeMin()
     

@@ -44,12 +44,11 @@ following operations:
 * adding a new object to the priority queue
 * removing the *smallest* object from the priority queue.
 
-As we shall see in the next section, it is possible to implement a
-priority queue so that both adding and removing take
-:math:`O(n \log n)` time.
+In this chapter, we will see how to implement a priority queue so that
+both adding and removing the minimum take :math:`O(\log n)` time.
 
-.. codeinclude:: Binary/PriorityQueue
-   :tag: PriorityQueue
+.. codeinclude:: ChalmersGU/API
+   :tag: PriorityQueueADT
 
 .. TODO::
    Add max priority queues, and the version with an explicit priority

@@ -8,7 +8,7 @@ def pqsort(array):
     pq.add(item)
 
   result = []
-  while !pq.isEmpty():
+  while not pq.isEmpty():
     result.add(pq.removeMin())
     
   return result
