@@ -53,10 +53,10 @@ class LinkedQueue<E> implements Queue<E> {
         Node removed = front;
         front = removed.next;
         removed.next = null;   // For garbage collection
+        queueSize--;
         if (queueSize == 0) {
             rear = null;
         }
-        queueSize--;
         return removed.elem;
     }
 /* *** ODSAendTag: LinkedQueueDequeue *** */
