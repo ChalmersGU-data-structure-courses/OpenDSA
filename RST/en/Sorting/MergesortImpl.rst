@@ -84,27 +84,5 @@ Here is a visualization for the merge step.
    :scripts: AV/Sorting/mergeImplS1CON.js
    :output: show
 
-An optimized Mergesort implementation is shown below.
-It reverses the order of the second subarray during the initial copy.
-Now the current positions of the two subarrays work inwards from the
-ends, allowing the end of each subarray to act as a sentinel for the
-other.
-Unlike the previous implementation, no test is needed to check for
-when one of the two subarrays becomes empty.
-This version also has a second optimization:
-It uses Insertion Sort to sort small subarrays whenever the size of
-the array is smaller than a value defined by ``THRESHOLD``.
-
-.. codeinclude:: Sorting/Mergesort
-   :tag: MergesortOpt
-
-Here is a visualization for the optimized merge step.
-
-.. inlineav:: mergeImplS2CON ss
-   :long_name: Mergesort Implementation Slideshow 2
-   :links: 
-   :scripts: AV/Sorting/mergeImplS2CON.js
-   :output: show
-
 .. avembed:: Exercises/Sorting/MergesortSumm.html ka
    :long_name: Mergesort Summary Exercise
