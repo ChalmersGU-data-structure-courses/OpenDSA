@@ -64,8 +64,7 @@ optimal is reassuring.
 In particular, it means that you need not bang your head against
 the wall searching for an :math:`O(n)` sorting algorithm.
 (Or at least not one that is in any way based on key comparisons.
-But it is hard to imagine how to sort without any comparisons.
-Even Radix Sort is does comparisons, though in quite a different way.)
+But it is hard to imagine how to sort without any comparisons.)
 Second, this proof is one of the few non-trivial lower-bounds proofs
 that we have for any problem; that is, this proof provides one of the
 relatively few instances where our lower bound is tighter than simply
@@ -79,27 +78,12 @@ The process of deriving asymptotic bounds for one problem from the
 asymptotic bounds of another is called a
 :ref:`reduction <reduction> <Reductions>`.
 
-Except for the Radix Sort and Binsort, all of the sorting algorithms
+All of the sorting algorithms
 we have studied make decisions based on the direct comparison of two
 key values.
 For example, Insertion Sort sequentially compares the value to be
 inserted into the sorted list until a comparison against the next
 value in the list fails.
-In contrast, Radix Sort has no direct comparison of key values.
-All decisions are based on the value of specific digits in the key
-value,
-so it is possible to take approaches to sorting that do not involve
-direct key comparisons.
-Of course, Radix Sort in the end does not provide a more efficient
-sorting algorithm than comparison-based sorting.
-Thus, empirical evidence suggests that comparison-based sorting is a
-good approach.
-
-(Actually, the truth is stronger than this statement implies.
-In reality, Radix Sort relies on comparisons as well and so can be
-modeled by the technique used in this section.
-The result is an :math:`\Omega(n \log n)` bound in the general case
-even for algorithms that look like Radix Sort.)
 
 The proof that any comparison sort requires :math:`\Omega(n \log n)`
 comparisons in the worst case is structured as follows.
