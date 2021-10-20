@@ -11,7 +11,9 @@
 Comparables and comparators, an example
 ==============================================
 
-*Note*: Despite treating comparables and comparators in Java, the code here is written in pseudocode and ignores some Java-specific details, so to actually implement it you have to think a little bit and read the Java documentation to translate it into Java. (You can also look at the associated Java file at the end of this document, but that's cheating :).
+*Note*: This example treats comparables and comparators, as they work in Java.
+Python code is also included, but since Python thinks of comparisons in a different way,
+the code is not always transferrable.
 
 Comparables and comparators in Java
 --------------------------------------------
