@@ -1,28 +1,21 @@
 /* *** ODSATag: OnlineTopK *** */
-class TopK<Item extends Comparable<Item>> {
-    private PriorityQueue<Item> pq;
-    private int k;
+class Top100Transactions {
+    // Assume that the Transaction class implements Comparable
+    // by comparing the value of the transaction.
+    private PriorityQueue<Transaction> pq = new MinHeap<>();
 
-    public TopK(int k) {
-        this.pq = new MinHeap<Item>();
-        this.k = k;
-    }
-
-    public void add(Item item) {
-        pq.add(item);
-        if (pq.size() > k)
+    // Add a new transaction to the priority queue.
+    public void add(Transaction transaction) {
+        pq.add(transaction);
+        // If the priority queue grows to 101 transactions,
+        // cut it down to 100 by removing the smallest-valued one.
+        if (pq.size() > 100)
             pq.removeMin();
     }
 
-    public Item[] topK() {
-        Item[] result = (Item[]) new Object[pq.size()];
-        int i = 0;
-        for (Item item: pq) {
-            result[i] = item;
-            i++;
-        }
-        Collections.sort(result);
-        return result;
+    // Return the top 100 transactions.
+    public Iterator<Transaction> top100() {
+        return pq.iterator();
     }
 }
 /* *** ODSAendTag: OnlineTopK *** */
