@@ -26,7 +26,7 @@ some criteria. Here are some examples:
   pages containing a given word.
 * *Between X and Y:*
   Given a list of all Swedish towns and their populations, find
-  the towns whose population is between 10,000 and 20,000.
+  the towns whose population is between 1,000 and 2,000.
 
 All of these problems can be solved using ADTs called *sets* and *maps*.
 
@@ -99,14 +99,82 @@ but a *set* of documents.
 .. codeinclude:: Searching/SearchEngine
    :tag: SearchEngine
 
-Between X and Y: Ordered Sets and Maps
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Between X and Y: Sorted Sets and Maps
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Consider our problem: Given a list of all Swedish towns and their
+populations, find the towns whose population is between 1,000 and 2,000.
+One way to solve this problem would be to use a multimap. The key
+would be a population number, and the values would be all towns having
+that population. Then we could find the required towns by making a
+sequence of calls to ``contains``:
+
+* ``contains(1000)``` - find all towns with 1,000 population
+* ``contains(1001)``` - find all towns with 1,001 population
+* ``contains(1002)``` - find all towns with 1,002 population
+* etc.
+
+But this is not a sensible approach. We would need to make ~1,000
+calls to ``contains``, and if we wanted to instead find all cities in
+the USA having a population of between 1 and 2 million, we would need
+to make ~1,000,000 calls.
+
+There is a better way. If the towns are stored in a array, and sorted
+by population, we can use the following algorithm:
+
+* Use a binary search to find the first town with a population of at
+  least 1,000, and remember what position it has in the array.
+* Use another binary search to find the *last* town with a population
+  of *at most* 2,000, and remember its position.
+* Now return all towns between those two positions in the array.
+
+The cost of finding the towns using this algorithm is only
+:math:`O(\log n)` (two calls to binary search).
+
+This is an example of a *range query*: given a map, finding all items
+whose key lies in a given range. Some map implementations (such as
+sorted arrays) support answering range queries efficiently; we say
+that these data structures implement *sorted maps*.
+
+Apart from range queries, sorted maps support several other operations
+that take advantage of the natural order of the keys:
+
+* Finding the *smallest* or *largest* key in the map.
+* Finding the *closest* key to a given one. Given a key :math:`k`
+  (which may or may not be in the map), then:
+
+  - The *successor* of :math:`k` is the next key after :math:`k` in
+    the map, i.e. the smallest key :math:`k\prime` such that
+    :math:`k < k\prime`.
+
+  - The *predecessor* of :math:`k` is the previous key before
+    :math:`k` in the map, i.e. the greatest key :math:`k\prime` such
+    that :math:`k\prime < k`.
+
+  A variant which is sometimes useful is *floor* and *ceiling*:
+
+  - The *floor* of :math:`k` is the greatest key :math:`k\prime`
+    such that :math:`k\prime \leq k`. If :math:`k` is in the map,
+    then the floor of :math:`k` is just :math:`k`; otherwise it is the
+    predecessor of :math:`k`.
+
+  - The *ceiling* of :math:`k` is the least key :math:`k\prime`
+    such that :math:`k \leq k\prime`. If :math:`k` is in the map,
+    then the ceiling of :math:`k` is just :math:`k`; otherwise it is the
+    successor of :math:`k`.
 
 .. codeinclude:: ChalmersGU/API
-   :tag: OrderedSetADT
+   :tag: SortedMapADT
+
+As well as a sorted map, it is also possible to have a *sorted set*:
 
 .. codeinclude:: ChalmersGU/API
-   :tag: OrderedMapADT
+   :tag: SortedSetADT
+
+Here is how to use a sorted map ADT to find all Swedish towns having
+between 1,000 and 2,000 population. As there may be towns that have
+the same population, we need a *multimap*. As before, we solve this by
+having the key be a population number and the value be a list of towns.
 
 .. codeinclude:: Searching/Between
    :tag: Between
