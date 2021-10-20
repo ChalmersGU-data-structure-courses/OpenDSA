@@ -45,12 +45,9 @@
       "Design/ADT": {},
       "Design/CourseAPI": {}
     },
-    "Arrays": {
-      "Searching/SearchIntro": {},
+    "Arrays: Searching and Sorting": {
+      "Searching/ArraysIntro": {},
       "Searching/BinarySearch": {},
-      "Searching/StringReading": {}
-    },
-    "Sorting": {
       "Sorting/InSort": {},
       "Sorting/SortNotation": {},
       "Sorting/InsertionSort": {},
@@ -109,11 +106,6 @@
       "List/QueueLinked": {},
       "List/ListSumm": {}
     },
-    "Iterators, Comparators, Dictionaries": {
-      "Design/DesignAltList": {},
-      "Design/Comparison": {},
-      "Design/Dictionary": {}
-    },
     "Binary Trees": {
       "Binary/BinaryTreeIntro": {},
       "Binary/BinaryTree": {},
@@ -127,7 +119,19 @@
       "Binary/WritingTraversals": {},
       "BTRecurTutor/BinaryTreeInfFlw": {},
       "Binary/BinaryTreeImpl": {},
-      "Binary/BinaryTreeNodeSpace": {},
+      "Binary/BinaryTreeNodeSpace": {}
+    },
+    "General Trees (misc stuff)": {
+      "General/GenTreeIntro": {},
+      "General/UnionFind": {},
+      "General/SequentialRep": {},
+      "Development/GenTreeImplement": {}
+    },
+    "Search Trees": {
+      "Searching/SearchIntro": {},
+      "Design/DesignAltList": {},
+      "Design/Comparison": {},
+      "Design/Dictionary": {},
       "Binary/BST": {
         "BSTinsertPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTremovePRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
@@ -137,15 +141,8 @@
       "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
       "BTRecurTutor/MultipleBinaryTrees": {},
       "BTRecurTutor/BSTCheck": {},
-      "Binary/BinaryChapSumm": {}
-    },
-    "General Trees (misc stuff)": {
-      "General/GenTreeIntro": {},
-      "General/UnionFind": {},
-      "General/SequentialRep": {},
-      "Development/GenTreeImplement": {}
-    },
-    "Balanced Binary Trees": {
+      "Binary/BinaryChapSumm": {},
+    "Balanced Search Trees": {
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
       "SearchStruct/Splay": {},

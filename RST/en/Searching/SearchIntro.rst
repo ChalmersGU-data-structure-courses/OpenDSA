@@ -4,27 +4,31 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Nick Smallbone
    :requires:
    :satisfies:
    :topic: Search
 
-Chapter Introduction: Search
-============================
+Searching
+=========
 
-.. TODO::
-   Generalise this introduction to also include arrays (since the chapter is called Arrays now)
+Many tasks that we want to solve using a computer involve *searching*:
+We have some set of items, and we want to find the items that match
+some criteria. Here are some examples:
 
-Organizing and retrieving information is at the heart of most computer
-applications, and searching is surely the most frequently performed
-of all computing tasks.
-Search can be viewed abstractly as a process to determine if
-an element with a particular value is a member of a particular set.
-The more common view of searching is an attempt to
-find the record within a collection of records that has
-a particular key value, or those records in a collection whose key
-values meet some criterion such as falling within a range of
-values.
+* *Spell-checking:*
+  Given a set containing all valid English words, check if a given
+  string is present in the set (i.e. is a valid word).
+* *Database lookup:*
+  Given a list of people, find the person with a given personnummer.
+* *Search engine:*
+  Given a collection of documents (e.g. web pages), find all web
+  pages containing a given word.
+* *Between X and Y:*
+  Given a list of all Swedish towns and their populations, find
+  the towns whose population is between 10,000 and 20,000.
+
+- move to a later chapter? include indexing?
 
 We can define searching formally as follows.
 Suppose that we have a collection **L** of :math:`n` records of the
@@ -53,6 +57,8 @@ value matches a specified key value.
 A :term:`range query` is a search for all records whose key value
 falls within a specified range of key values.
 
+
+
 We can categorize search algorithms into three general
 approaches:
 
@@ -76,7 +82,7 @@ Most of these methods are appropriate for sequences
 techniques applicable to :ref:`sets <set> <SetSearch>`.
 The techniques from the first three sections of this chapter are most
 appropriate for searching a collection of records stored in RAM.
-Chapter :chap:`Hashing` introduces hashing, a technique for
+Chapter :chap:`Hash Tables` introduces hashing, a technique for
 organizing data in an array such that the location of each record
 within the array is a function of its key value.
 Hashing is appropriate when records are stored either in RAM or on
