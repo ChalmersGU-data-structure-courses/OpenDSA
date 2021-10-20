@@ -13,10 +13,14 @@ class Comparable:
 
 
 #/* *** ODSATag: ComparatorADT *** */
-# Python doesn't use the same interface for comparators as Java does.
-# Instead they advocate to use a *key extractor*, which is a function
+# Python 3 has nothing similar to the Java comparator interface.
+#
+# Instead Python 3 advocates to use a *key extractor*, which is a function
 # that converts an element to another element which then can be compared
 # using the natural ordering.
+#
+# The `functools` library has a function `cmp_to_key` which can
+# convert a comparator-like function to a key extractor.
 #/* *** ODSAendTag: ComparatorADT *** */
 
 
