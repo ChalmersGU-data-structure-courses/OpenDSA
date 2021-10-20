@@ -1,8 +1,6 @@
 
-// This program is accompanying the tutorial on comparables and comparators:
-// https://chalmers.instructure.com/courses/10681/pages/comparables-and-comparators
-//
-// Compile and run without any arguments
+// This program is accompanying the tutorial on comparables and comparators.
+// Compile and run without any arguments.
 
 import java.util.*;
 import java.text.Collator;
@@ -98,14 +96,14 @@ public class ComparatorDemo {
         System.out.println("\n### No order");
 /* *** ODSATag: PrintPeople *** */
         List<Person> people = getPeople();
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: PrintPeople *** */
 
         System.out.println("\n### Natural ordering");
 /* *** ODSATag: SortNatural *** */
         people = getPeople(); // reset the people list
         Collections.sort(people);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: SortNatural *** */
 
         System.out.println("\n### Ordered by birth year (pre-Java-8 solution)");
@@ -113,7 +111,7 @@ public class ComparatorDemo {
         Comparator<Person> byBirthYear = new BirthYearComparator();
         people = getPeople(); // reset the people list
         Collections.sort(people, byBirthYear);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: SortByBirthYear *** */
 
         System.out.println("\n### Ordered by birth year (functional solution)");
@@ -122,7 +120,7 @@ public class ComparatorDemo {
 /* *** ODSAendTag: ByBirthYearFunctional *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byBirthYear);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 
         System.out.println("\n### Ordered by birth year (using a key extractor)");
 /* *** ODSATag: ByBirthYearKeyExtractor *** */
@@ -130,14 +128,14 @@ public class ComparatorDemo {
 /* *** ODSAendTag: ByBirthYearKeyExtractor *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byBirthYear);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 
         System.out.println("\n### Ordered by given name (pre-Java-8 solution)");
 /* *** ODSATag: SortByGivenName *** */
         Comparator<Person> byGivenName = new GivenNameComparator();
         people = getPeople(); // reset the people list
         Collections.sort(people, byGivenName);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: SortByGivenName *** */
 
         System.out.println("\n### Ordered by given name (functional solution)");
@@ -146,7 +144,7 @@ public class ComparatorDemo {
 /* *** ODSAendTag: ByGivenNameFunctional *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byGivenName);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 
         System.out.println("\n### Ordered by given name (using a key extractor)");
 /* *** ODSATag: ByGivenNameKeyExtractor *** */
@@ -154,7 +152,7 @@ public class ComparatorDemo {
 /* *** ODSAendTag: ByGivenNameKeyExtractor *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byGivenName);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 
         System.out.println("\n### Ordered by full name: family name + given name (pre-Java-8 solution)");
 /* *** ODSATag: ByFullName *** */
@@ -162,7 +160,7 @@ public class ComparatorDemo {
 /* *** ODSAendTag: ByFullName *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byFullName);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 
         System.out.println("\n### Ordered by full name: family name + given name (using key extractors and thenComparing)");
 /* *** ODSATag: ByFullNameThenComparing *** */
@@ -172,30 +170,29 @@ public class ComparatorDemo {
 /* *** ODSATag: SortByFullName *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, byFullName);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: SortByFullName *** */
 
         System.out.println("\n### Ordered by Swedish locale, case-insensitive");
 /* *** ODSATag: BySwedishLocale *** */
         Collator swedishLocale = Collator.getInstance(new Locale("sv", "SE"));
-	swedishLocale.setStrength(Collator.PRIMARY);
-	Comparator<Person> bySwedishLocale = 
+        swedishLocale.setStrength(Collator.PRIMARY);
+        Comparator<Person> bySwedishLocale = 
             Comparator.comparing(Person::familyName, swedishLocale)
             .thenComparing(Person::givenName, swedishLocale);
 /* *** ODSAendTag: BySwedishLocale *** */
 /* *** ODSATag: SortBySwedishLocale *** */
         people = getPeople(); // reset the people list
         Collections.sort(people, bySwedishLocale);
-	people.forEach(System.out::println);
+        for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: SortBySwedishLocale *** */
 
         System.out.println("\n### Ordered by Swedish locale, given name first");
-	Comparator<Person> bySwedishGivenName = 
+        Comparator<Person> bySwedishGivenName = 
             Comparator.comparing(Person::givenName, swedishLocale)
             .thenComparing(Person::familyName, swedishLocale);
         people = getPeople(); // reset the people list
         Collections.sort(people, bySwedishGivenName);
-	people.forEach(System.out::println);
-
+        for (Person p : people) System.out.println(p);
     }
 }
