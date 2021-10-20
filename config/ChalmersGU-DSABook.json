@@ -132,9 +132,6 @@
     },
     "Search Trees": {
       "Searching/SearchIntro": {},
-      "Design/DesignAltList": {},
-      "Design/Comparison": {},
-      "Design/Dictionary": {},
       "Binary/BST": {
         "BSTinsertPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTremovePRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
