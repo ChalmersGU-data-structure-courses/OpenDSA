@@ -141,7 +141,8 @@
       "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
       "BTRecurTutor/MultipleBinaryTrees": {},
       "BTRecurTutor/BSTCheck": {},
-      "Binary/BinaryChapSumm": {},
+      "Binary/BinaryChapSumm": {}
+    },
     "Balanced Search Trees": {
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
