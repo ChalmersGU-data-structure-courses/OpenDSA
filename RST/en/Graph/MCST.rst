@@ -9,8 +9,8 @@
    :requires: graph shortest path
    :topic: Graphs
 
-Minimal Cost Spanning Trees
-===========================
+Minimal Cost Spanning Trees (WORK IN PROGRESS)
+===============================================
 
 Minimal Cost Spanning Trees
 ---------------------------

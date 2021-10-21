@@ -9,8 +9,8 @@
    :satisfies: analyzing problems
    :topic: Algorithm Analysis
 
-Analyzing Problems
-==================
+Analyzing Problems (WORK IN PROGRESS)
+=====================================
 
 Analyzing Problems
 ------------------

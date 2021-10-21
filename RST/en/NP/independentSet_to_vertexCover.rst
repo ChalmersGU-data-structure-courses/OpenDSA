@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of Independent Set to Vertex Cover
-============================================
+Reduction of Independent Set to Vertex Cover (optional) (WORK IN PROGRESS)
+==============================================================================
 
 Independent Set to Vertex Cover
 -------------------------------

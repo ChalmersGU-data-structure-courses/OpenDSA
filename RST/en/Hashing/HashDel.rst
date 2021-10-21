@@ -9,8 +9,8 @@
    :satisfies: hash deletion
    :topic: Hashing
 
-Deletion
-========
+Deletion (WORK IN PROGRESS)
+==============================
 
 Deletion
 --------

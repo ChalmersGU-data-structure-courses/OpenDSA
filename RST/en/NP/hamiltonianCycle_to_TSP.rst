@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of Hamiltonian Cycle to Traveling Salesman
-====================================================
+Reduction of Hamiltonian Cycle to Traveling Salesman (optional) (WORK IN PROGRESS)
+======================================================================================
 
 Hamiltonian Cycle to Traveling Salesman
 ---------------------------------------

@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-The Independent Set Problem
-===========================
+The Independent Set Problem (optional) (WORK IN PROGRESS)
+============================================================
 
 Independent Set
 ---------------

@@ -11,8 +11,8 @@
 
 .. index:: ! Huffman
 
-Huffman Coding Trees
-====================
+Huffman Coding Trees (optional) (WORK IN PROGRESS)
+===================================================
 
 Huffman Coding Trees
 --------------------

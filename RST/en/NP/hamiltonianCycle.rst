@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-The Hamiltonian Cycle Problem
-=============================
+The Hamiltonian Cycle Problem (optional) (WORK IN PROGRESS)
+=============================================================
 
 Hamiltonian Cycle
 -----------------

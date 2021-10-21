@@ -11,8 +11,8 @@
 
 .. index:: ! hashing function
 
-Hash Function Principles
-========================
+Hash Function Principles (WORK IN PROGRESS)
+==============================================
 
 Hash Function Principles
 ------------------------

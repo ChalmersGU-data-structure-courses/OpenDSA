@@ -9,8 +9,8 @@
    :satisfies: uncomputable problems
    :topic: Limits to Computing
 
-Unsolveable Problems
-====================
+Unsolveable Problems (optional) (WORK IN PROGRESS)
+==================================================
 
 Unsolveable Problems
 --------------------

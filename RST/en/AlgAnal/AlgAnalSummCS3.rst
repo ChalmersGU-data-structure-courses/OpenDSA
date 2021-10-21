@@ -9,8 +9,8 @@
    :satisfies: algorithm analysis review
    :topic: Algorithm Analysis
 
-Algorithm Analysis Summary Exercises
-====================================
+Algorithm Analysis Summary Exercises (WORK IN PROGRESS)
+========================================================
 
 Summary Exercise: CS3
 ---------------------

@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: NP-completeness
 
-Coping with NP-Complete Problems
-================================
+Coping with NP-Complete Problems (optional) (WORK IN PROGRESS)
+==================================================================
 
 Finding that your problem is NP-complete might not mean
 that you can just forget about it.

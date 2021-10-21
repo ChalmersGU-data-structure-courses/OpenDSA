@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: Reductions
 
-Reductions
-==========
+Reductions (optional) (WORK IN PROGRESS)
+=========================================
 
 Reductions
 ----------

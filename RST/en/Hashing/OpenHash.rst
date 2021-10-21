@@ -9,8 +9,8 @@
    :satisfies: open hashing
    :topic: Hashing
 
-Open Hashing
-============
+Open Hashing (WORK IN PROGRESS)
+==================================
 
 Open Hashing
 ------------

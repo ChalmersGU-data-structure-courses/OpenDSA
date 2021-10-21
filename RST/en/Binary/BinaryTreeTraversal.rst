@@ -9,8 +9,8 @@
    :satisfies: binary tree traversal
    :topic: Binary Trees
 
-Binary Tree Traversals
-======================
+Binary Tree Traversals (WORK IN PROGRESS)
+==========================================
 
 Binary Tree Traversals
 ----------------------

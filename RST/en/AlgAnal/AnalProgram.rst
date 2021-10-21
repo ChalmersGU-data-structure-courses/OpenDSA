@@ -9,8 +9,8 @@
    :satisfies: analyzing programs
    :topic: Algorithm Analysis
 
-Calculating Program Running Time
-================================
+Calculating Program Running Time (WORK IN PROGRESS)
+===================================================
 
 Calculating Program Running Time
 --------------------------------

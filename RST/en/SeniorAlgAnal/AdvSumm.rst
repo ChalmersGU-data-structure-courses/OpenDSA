@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: Advanced Analysis
 
-Summation Techniques
-====================
+Summation Techniques (optional) (WORK IN PROGRESS)
+==================================================
 
 Consider the following simple summation.
 

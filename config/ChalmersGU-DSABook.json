@@ -23,7 +23,7 @@
   },
   "build_JSAV": false,
   "build_cmap": true,
-  "suppress_todo": true,
+  "suppress_todo": false,
   "dispModComp": true,
   "tabbed_codeinc": true,
   "narration_enabled": true,
@@ -44,6 +44,7 @@
       },
       "Design/ADT": {},
       "Design/CourseAPI": {},
+      "Searching/SearchIntro": {},
       "Design/Comparison": {},
       "Design/ComparingExample": {},
       "Design/Dictionary": {}
@@ -124,14 +125,12 @@
       "Binary/BinaryTreeImpl": {},
       "Binary/BinaryTreeNodeSpace": {}
     },
-    "General Trees (misc stuff)": {
+    "General Trees and Union-Find (optional)": {
       "General/GenTreeIntro": {},
       "General/UnionFind": {},
-      "General/SequentialRep": {},
-      "Development/GenTreeImplement": {}
+      "General/SequentialRep": {}
     },
     "Search Trees": {
-      "Searching/SearchIntro": {},
       "Binary/BST": {
         "BSTinsertPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTremovePRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
@@ -186,9 +185,10 @@
       "Graph/GraphShortest": {},
       "Graph/MCST": {},
       "Graph/Kruskal": {},
-      "Graph/Floyd": {}
+      "Graph/Floyd": {},
+      "Graph/GraphCM": {}
     },
-    "Limits to Computing": {
+    "Limits to Computing (optional)": {
       "NP/LimComp": {},
       "NP/Reduction": {},
       "NP/NPComplete": {},

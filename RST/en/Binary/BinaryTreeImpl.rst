@@ -9,8 +9,8 @@
    :satisfies: binary tree node implementation; expression tree
    :topic: Binary Trees
 
-Binary Tree Node Implementations
-================================
+Binary Tree Node Implementations (WORK IN PROGRESS)
+====================================================
 
 Binary Tree Node Implementations
 --------------------------------

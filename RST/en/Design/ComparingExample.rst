@@ -8,8 +8,8 @@
    :requires: comparison
 
 
-Comparables and comparators, an example
-==============================================
+Comparables and comparators: An example
+=======================================
 
 *Note*: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,

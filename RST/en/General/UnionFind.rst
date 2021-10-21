@@ -9,8 +9,8 @@
    :satisfies: Union/Find
    :topic: Union/Find
 
-Union/Find and the Parent Pointer Implementation
-================================================
+The Union/Find Algorithm (optional) (WORK IN PROGRESS)
+======================================================
 
 The Union/Find Problem
 ----------------------

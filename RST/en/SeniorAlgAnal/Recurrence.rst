@@ -6,8 +6,8 @@
 .. avmetadata::
    :author: Cliff Shaffer
 
-Solving Recurrence Relations
-============================
+Solving Recurrence Relations (optional) (WORK IN PROGRESS)
+==========================================================
 
 Solving Recurrence Relations
 ----------------------------

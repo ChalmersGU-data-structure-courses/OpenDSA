@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: Advanced Algorithm Analysis
 
-Amortized Analysis
-==================
+Amortized Analysis (optional) (WORK IN PROGRESS)
+================================================
 
 This module presents the concept of :term:`amortized analysis`,
 which is the analysis for a series of operations taken as a whole.

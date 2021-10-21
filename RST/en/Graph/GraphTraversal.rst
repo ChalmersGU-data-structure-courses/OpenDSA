@@ -9,8 +9,8 @@
    :satisfies: graph traversal
    :topic: Graphs
 
-Graph Traversals
-================
+Graph Traversals (WORK IN PROGRESS)
+======================================
 
 Graph Traversals
 ----------------

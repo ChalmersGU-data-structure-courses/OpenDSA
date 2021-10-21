@@ -9,8 +9,8 @@
    :satisfies: BST Dictionary
    :topic: Binary Trees
 
-Dictionary Implementation Using a BST
-=====================================
+Dictionary Implementation Using a BST (WORK IN PROGRESS)
+==========================================================
 
 A simple implementation for the
 :ref:`Dictionary <Dictionary> <Dictionary>` ADT can be

@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic:
 
-All-Pairs Shortest Paths
-========================
+All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)
+=======================================================
 
 We next consider the problem of finding the shortest distance
 between all pairs of vertices in the graph, called

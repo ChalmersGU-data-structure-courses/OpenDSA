@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of Clique to Independent Set
-======================================
+Reduction of Clique to Independent Set (optional) (WORK IN PROGRESS)
+========================================================================
 
 Clique to Independent Set
 -------------------------

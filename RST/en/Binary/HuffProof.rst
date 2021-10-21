@@ -9,8 +9,8 @@
    :satisfies: Huffman proof
    :topic: Huffman Coding Trees
 
-Proof of Optimality for Huffman Coding
-======================================
+Proof of Optimality for Huffman Coding (optional) (WORK IN PROGRESS)
+========================================================================
 
 Proof of Optimality for Huffman Coding
 --------------------------------------

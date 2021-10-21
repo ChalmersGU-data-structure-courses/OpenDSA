@@ -9,8 +9,8 @@
    :satisfies: growth rate
    :topic: Algorithm Analysis
 
-Comparing Algorithms
-====================
+Comparing Algorithms (WORK IN PROGRESS)
+=======================================
 
 Comparing Algorithms
 --------------------

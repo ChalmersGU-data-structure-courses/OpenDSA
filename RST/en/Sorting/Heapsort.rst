@@ -11,8 +11,8 @@
 
 .. index:: ! Heapsort
 
-Heapsort
-========
+Heapsort (WORK IN PROGRESS)
+=============================
 
 Heapsort
 --------

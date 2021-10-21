@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of 3-SAT to Hamiltonian Cycle
-=======================================
+Reduction of 3-SAT to Hamiltonian Cycle (optional) (WORK IN PROGRESS)
+=====================================================================
 
 3-SAT to Hamiltonian Cycle
 --------------------------

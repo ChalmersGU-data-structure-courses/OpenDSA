@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of Circuit SAT to SAT
-===============================
+Reduction of Circuit SAT to SAT (optional) (WORK IN PROGRESS)
+===============================================================
 
 Reduction of Circuit SAT to SAT
 -------------------------------

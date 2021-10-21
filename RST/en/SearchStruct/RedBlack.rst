@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Red-Black Tree
 
-The Red-Black Tree
-==================
+The Red-Black Tree (WORK IN PROGRESS)
+=========================================
 
 Exercise 1
 ----------

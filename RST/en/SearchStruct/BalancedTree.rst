@@ -11,8 +11,8 @@
 
 .. odsalink:: AV/Indexing/treeIndexingCON.css
 
-Balanced Trees
-==============
+Balanced Trees (WORK IN PROGRESS)
+==================================
 
 The :ref:`Binary Search Tree <BST> <BST>` has a serious deficiency for
 practical use as a search structure.

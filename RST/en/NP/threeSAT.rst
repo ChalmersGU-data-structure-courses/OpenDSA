@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-3-CNF Satisfiability
-====================
+3-CNF Satisfiability (optional) (WORK IN PROGRESS)
+===================================================
 
 3-CNF Satisfiability
 --------------------

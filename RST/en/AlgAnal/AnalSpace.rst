@@ -9,8 +9,8 @@
    :satisfies: space analysis introduction; overhead; space/time tradeoff
    :topic: Algorithm Analysis
 
-Space Bounds
-============
+Space Bounds (WORK IN PROGRESS)
+===============================
 
 Besides time, space is the other computing resource that is commonly
 of concern to programmers.

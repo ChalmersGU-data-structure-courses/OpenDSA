@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Formula Satisfiability
-======================
+Formula Satisfiability (optional) (WORK IN PROGRESS)
+========================================================
 
 Formula Satisfiability
 ----------------------

@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Concept Maps
 
-Graph Concepts Summary
-======================
+Graph Concepts Summary (WORK IN PROGRESS)
+============================================
 
 Graph Concepts Summary
 ----------------------

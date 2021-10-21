@@ -8,8 +8,8 @@
    :requires: graph traversal
    :topic: Graphs
 
-Topological Sort
-================
+Topological Sort (WORK IN PROGRESS)
+====================================
 
 Topological Sort
 ----------------

@@ -9,8 +9,8 @@
    :topic: Graphs
 
 
-Kruskal's Algorithm
-===================
+Kruskal's Algorithm (WORK IN PROGRESS)
+========================================
 
 Kruskal's Algorithm
 -------------------

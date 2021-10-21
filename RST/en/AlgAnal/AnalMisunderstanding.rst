@@ -9,8 +9,8 @@
    :satisfies: analysis misunderstandings
    :topic: Algorithm Analysis
 
-Common Misunderstandings
-========================
+Common Misunderstandings (WORK IN PROGRESS)
+===========================================
 
 Common Misunderstandings
 ------------------------

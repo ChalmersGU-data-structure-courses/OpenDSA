@@ -8,8 +8,8 @@
    :requires: hash deletion
    :topic: Hashing
 
-Hashing Chapter Summary Exercises
-=================================
+Hashing Chapter Summary Exercises (WORK IN PROGRESS)
+======================================================
 
 Hashing Review
 --------------

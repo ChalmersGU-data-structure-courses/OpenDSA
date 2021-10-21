@@ -8,8 +8,8 @@
    :satisfies: 2-3 tree
    :topic: Indexing
 
-2-3 Trees
-=========
+2-3 Trees (WORK IN PROGRESS)
+===============================
 
 2-3 Trees
 ---------

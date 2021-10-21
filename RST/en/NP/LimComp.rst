@@ -8,8 +8,8 @@
    :satisfies: Limits to Computing
    :topic: Limits to Computing
 
-Limits to Computing
-===================
+Limits to Computing (optional) (WORK IN PROGRESS)
+====================================================
 
 Limits to Computing
 -------------------

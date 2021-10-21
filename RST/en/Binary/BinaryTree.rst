@@ -9,8 +9,8 @@
    :satisfies: binary tree terminology
    :topic: Binary Trees
 
-Binary Trees
-============
+Binary Trees (WORK IN PROGRESS)
+===============================
 
 Definitions and Properties
 --------------------------

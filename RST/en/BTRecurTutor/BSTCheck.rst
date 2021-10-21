@@ -7,8 +7,8 @@
    :author: Sally Hamouda and Cliff Shaffer
    :topic: Advanced Recursion
 
-A Hard Information Flow Problem
-===============================
+A Hard Information Flow Problem (WORK IN PROGRESS)
+=====================================================
 
 Sometimes, passing the right information up and down the tree to
 control a recursive function gets complicated.

@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-The Clique Problem
-==================
+The Clique Problem (optional) (WORK IN PROGRESS)
+==================================================
 
 The Clique Problem
 ------------------

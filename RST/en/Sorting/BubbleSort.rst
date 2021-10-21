@@ -11,8 +11,8 @@
 
 .. index:: ! Bubble Sort
 
-Bubble Sort
-===========
+Bubble Sort (optional)
+=========================
 
 Bubble Sort
 -----------

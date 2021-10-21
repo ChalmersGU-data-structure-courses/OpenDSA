@@ -10,8 +10,8 @@
 
 .. index:: ! hashing
 
-Introduction
-============
+Chapter Introduction: Hashing (WORK IN PROGRESS)
+=====================================================
 
 Introduction
 ------------

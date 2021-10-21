@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Search
 
-Searching
-=========
+Searching: Sets and Maps
+===============================
 
 Many tasks that we want to solve using a computer involve *searching*:
 We have some set of items, and we want to find the items that match

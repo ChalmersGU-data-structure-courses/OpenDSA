@@ -9,8 +9,8 @@
    :requires: growth rate; best and worst case
    :topic: Algorithm Analysis
 
-Asymptotic Analysis and Upper Bounds
-====================================
+Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)
+=======================================================
 
 Asymptotic Analysis and Upper Bounds
 ------------------------------------

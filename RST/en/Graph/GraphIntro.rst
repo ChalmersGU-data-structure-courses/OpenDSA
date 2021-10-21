@@ -8,8 +8,8 @@
    :satisfies: graph terminology
    :topic: Graphs
 
-Graphs Chapter Introduction
-===========================
+Chapter Introduction: Graphs (WORK IN PROGRESS)
+==================================================
 
 Graph Terminology and Implementation
 ------------------------------------

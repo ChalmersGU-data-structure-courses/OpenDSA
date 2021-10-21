@@ -9,8 +9,8 @@
    :satisfies: dictionary
    :topic: Design
 
-Maps or Dictionaries
-======================
+Implementing Sets and Maps (WORK IN PROGRESS)
+===============================================
 
 The Dictionary ADT
 ------------------

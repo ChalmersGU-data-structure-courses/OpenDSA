@@ -8,8 +8,8 @@
    :requires: hash function
    :topic: Hashing
 
-Sample Hash Functions
-=====================
+Sample Hash Functions (WORK IN PROGRESS)
+===========================================
 
 Sample Hash Functions
 ---------------------

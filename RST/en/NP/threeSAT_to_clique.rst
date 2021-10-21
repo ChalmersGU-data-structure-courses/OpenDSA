@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of 3-SAT to Clique
-============================
+Reduction of 3-SAT to Clique (optional) (WORK IN PROGRESS)
+==========================================================
 
 Reduction of 3-SAT to Clique
 ----------------------------

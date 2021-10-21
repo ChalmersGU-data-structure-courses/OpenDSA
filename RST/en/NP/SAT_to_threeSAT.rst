@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of SAT to 3-SAT
-=========================
+Reduction of SAT to 3-SAT (optional) (WORK IN PROGRESS)
+=========================================================
 
 Reduction of SAT to 3-SAT
 -------------------------

@@ -9,8 +9,8 @@
    :satisfies: bucket hashing
    :topic: Hashing
 
-Bucket Hashing
-==============
+Bucket Hashing (WORK IN PROGRESS)
+======================================
 
 Bucket Hashing
 --------------

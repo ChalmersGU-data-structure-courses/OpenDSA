@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Circuit Satisfiability
-======================
+Circuit Satisfiability (optional) (WORK IN PROGRESS)
+=======================================================
 
 Circuit Satisfiability
 ----------------------

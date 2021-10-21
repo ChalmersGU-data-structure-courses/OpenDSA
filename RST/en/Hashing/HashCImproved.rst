@@ -8,8 +8,8 @@
    :requires: collision resolution
    :topic: Hashing
 
-Improved Collision Resolution
-=============================
+Improved Collision Resolution (WORK IN PROGRESS)
+=====================================================
 
 Linear Probing by Steps
 -----------------------

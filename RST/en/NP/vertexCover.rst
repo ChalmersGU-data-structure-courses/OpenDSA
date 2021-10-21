@@ -7,8 +7,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-The Vertex Cover Problem
-========================
+The Vertex Cover Problem (optional) (WORK IN PROGRESS)
+======================================================
 
 Vertex Cover
 ------------

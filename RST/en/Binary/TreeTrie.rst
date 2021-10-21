@@ -9,8 +9,8 @@
    :satisfies: 
    :topic: Trie
 
-Trees versus Tries
-==================
+Trees versus Tries (optional) (WORK IN PROGRESS)
+==================================================
 
 Trees versus Tries
 ------------------

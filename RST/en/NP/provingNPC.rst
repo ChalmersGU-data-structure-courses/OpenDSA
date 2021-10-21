@@ -7,8 +7,8 @@
    :author: Cliff Shaffer, Nabanita Maji
    :topic: NP-completeness
 
-NP-Completeness Proofs
-======================
+NP-Completeness Proofs (optional) (WORK IN PROGRESS)
+======================================================
 
 
 

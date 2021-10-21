@@ -9,8 +9,8 @@
    :satisfies: heap; priority queue
    :topic: Heaps
 
-Heaps and Priority Queues
-=========================
+Heaps and Priority Queues (WORK IN PROGRESS)
+===============================================
 
 Heaps and Priority Queues
 -------------------------

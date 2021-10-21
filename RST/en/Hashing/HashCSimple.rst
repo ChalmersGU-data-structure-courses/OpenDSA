@@ -11,8 +11,8 @@
 
 .. index:: ! collision resolution
 
-Collision Resolution
-====================
+Collision Resolution (WORK IN PROGRESS)
+===========================================
 
 Collision Resolution
 --------------------

@@ -9,8 +9,8 @@
    :satisfies: analysis multiple parameters
    :topic: Algorithm Analysis
 
-Multiple Parameters
-===================
+Multiple Parameters (WORK IN PROGRESS)
+======================================
 
 Sometimes the proper analysis for an algorithm requires
 multiple parameters to describe the cost.

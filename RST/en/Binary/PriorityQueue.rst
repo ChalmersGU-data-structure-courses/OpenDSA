@@ -9,8 +9,8 @@
    :satisfies: priority queue
    :topic: Priority queues
 
-Priority queues
-===============
+Priority queues (WORK IN PROGRESS)
+=====================================
 
 Priority queues
 ---------------

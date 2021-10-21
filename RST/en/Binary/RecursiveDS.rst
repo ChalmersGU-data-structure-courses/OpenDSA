@@ -8,8 +8,8 @@
    :satisfies: binary tree as a recursive data Structures
    :topic: Binary Tree as a Recursive Data Structures
 
-Binary Tree as a Recursive Data Structure
-=========================================
+Binary Tree as a Recursive Data Structure (WORK IN PROGRESS)
+===============================================================
 
 Binary Tree as a Recursive Data Structure
 -----------------------------------------

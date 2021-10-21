@@ -9,8 +9,8 @@
    :satisfies: BST
    :topic: Binary Trees
 
-Binary Search Trees
-===================
+Binary Search Trees (WORK IN PROGRESS)
+=======================================
 
 Binary Search Tree Definition
 -----------------------------

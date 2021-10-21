@@ -9,8 +9,8 @@
    :satisfies: hashing
    :topic: Hashing
 
-Analysis of Closed Hashing
-==========================
+Analysis of Closed Hashing (WORK IN PROGRESS)
+===============================================
 
 Analysis of Closed Hashing
 --------------------------

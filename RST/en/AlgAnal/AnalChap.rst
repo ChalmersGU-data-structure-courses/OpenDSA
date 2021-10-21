@@ -8,8 +8,8 @@
    :satisfies: algorithm analysis chapter introduction
    :topic: Algorithm Analysis
 
-Chapter Introduction
-====================
+Chapter Introduction: Algorithm Analysis (WORK IN PROGRESS)
+===========================================================
 
 How long will it take to process the company payroll once we complete
 our planned merger?

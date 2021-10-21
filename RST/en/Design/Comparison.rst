@@ -13,8 +13,9 @@
    pair: sorting; record comparison
    pair: searching; record comparison
 
-Comparing Records
-==================
+
+Comparing Records: Key-Value Pairs (WORK IN PROGRESS)
+========================================================
 
 If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.

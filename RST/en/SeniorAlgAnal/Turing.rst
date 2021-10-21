@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: Turing Machines
 
-Turing Machines
-===============
+Turing Machines (optional) (WORK IN PROGRESS)
+================================================
 
 Turing Machines
 ---------------

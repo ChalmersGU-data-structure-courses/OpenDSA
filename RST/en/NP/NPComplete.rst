@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: NP-completeness
 
-NP-Completeness
-===============
+NP-Completeness (optional) (WORK IN PROGRESS)
+===============================================
 
 NP-Completeness
 ---------------

@@ -9,8 +9,8 @@
    :satisfies:
    :topic: AVL Trees
 
-The AVL Tree
-============
+The AVL Tree (WORK IN PROGRESS)
+================================
 
 The AVL tree (named for its inventors Adelson-Velskii and Landis)
 should be viewed as a BST with the following additional property:
