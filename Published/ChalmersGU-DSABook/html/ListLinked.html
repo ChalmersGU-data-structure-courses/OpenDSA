@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-and-setting-values', 'adding-and-removing-nodes', 'adding-a-node', 'removing-a-node', 'complexity-analysis', 'linked-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-and-setting-values', 'adding-and-removing-nodes', 'adding-a-node', 'removing-a-node', 'complexity-analysis', 'linked-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-lists">
 <h1>4.<span class="section-number">5. </span>Linked Lists<a class="headerlink" href="#linked-lists" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -474,7 +474,8 @@ Inserting at the beginning of a list, and appending at the end.</p>
 <p></p>
 <p>Here’s the code for deletion:</p>
 <div id="LinkedList_LinkedListRemove_code"><ul><li><a href="#LinkedList_LinkedListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedList_LinkedListRemove_code_Java_Generic">Java</a></li><li><a href="#LinkedList_LinkedListRemove_code_Python">Python</a></li></ul><div id="LinkedList_LinkedListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
@@ -503,8 +504,8 @@ Inserting at the beginning of a list, and appending at the end.</p>
             <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
             <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
@@ -521,8 +522,8 @@ Inserting at the beginning of a list, and appending at the end.</p>
                 <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
             <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
             <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
 </pre></div>
 </div>
@@ -608,7 +609,8 @@ which is part of Java’s standard <a class="reference external" href="https://d
         <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
 
     <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize, and listSize &gt; 0</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
         <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
             <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">head</span>
             <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
@@ -696,8 +698,8 @@ which is part of Java’s standard <a class="reference external" href="https://d
             <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
             <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="p">}</span>
-        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -775,8 +777,8 @@ which is part of Java’s standard <a class="reference external" href="https://d
                 <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
             <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
             <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
 
     <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

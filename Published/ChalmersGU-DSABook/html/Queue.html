@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.11. Queues &mdash; Data Structures and Algorithms</title>
+    <title>4.11. Array-Based Queues &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="queues">
-<h1>4.<span class="section-number">11. </span>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="array-based-queues">
+<h1>4.<span class="section-number">11. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
 <h2>4.<span class="section-number">11.1. </span>Queue Terminology and Implementation<a class="headerlink" href="#queue-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Like the stack, the <a class="reference internal" href="Glossary.html#term-queue"><span class="xref std std-term">queue</span></a> is a list-like structure that
@@ -210,8 +210,8 @@ the array-based queue and the linked queue.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_QueueADT_code" ).tabs();});</script></div>
-<div class="section" id="array-based-queues">
-<h2>4.<span class="section-number">11.2. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>4.<span class="section-number">11.2. </span>Array-Based Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The array-based queue is somewhat tricky to implement effectively.
 A simple conversion of the array-based list implementation is not
 efficient.</p>
@@ -563,7 +563,7 @@ Implementation of all member functions is straightforward.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;pop from empty queue&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>

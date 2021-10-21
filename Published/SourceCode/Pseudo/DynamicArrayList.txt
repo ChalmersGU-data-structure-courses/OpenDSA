@@ -1,0 +1,54 @@
+
+class DynamicArrayList(E) implements List(E)
+    private internalArray : E[]   // Internal array containing the list elements
+    private listSize      : int   // Size of list
+
+    DynamicArrayList()
+        internalArray = new array of size 1
+        listSize = 0
+
+    get(i:int) : E
+        // Precondition: 0 <= i < listSize
+        return internalArray[i]
+
+    set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
+        old : E = internalArray[i]
+        internalArray[i] = x
+        return old
+
+    add(i:int, x:E)
+        // Precondition: 0 <= i <= listSize
+        if listSize >= size of internalArray
+            resizeArray(2 * size of internalArray)
+        listSize += 1
+        for k in listSize-1, listSize-2, ..., i+1
+            internalArray[k] = internalArray[k-1]
+        internalArray[i] = x
+
+    remove(i:int) : E
+        // Precondition: listSize > 0
+        // Precondition: 0 <= i < listSize
+        x : E = internalArray[i]
+        for k in i+1, i+2, ..., listSize-1
+            internalArray[k] = internalArray[k+1]
+        listSize -= 1
+        internalArray[listSize] = null   // For garbage collection
+        if listSize < size of internalArray / 3
+            resizeArray(size of internalArray / 2)
+        return x
+
+    private resizeArray(newCapacity:int)
+        newArray : E[] = new array of size newCapacity
+        for i in 0, 1, ..., listSize-1
+            newArray[i] = internalArray[i]
+        internalArray = newArray
+
+    isEmpty() : boolean
+        return listSize == 0
+
+    size() : int
+        return listSize
+
+    iterator() : Iterator(E)
+        return an iterator over the elements in internalArray, starting from element 0

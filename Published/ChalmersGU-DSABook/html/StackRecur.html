@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="11. Queues" href="Queue.html" />
+    <link rel="next" title="11. Array-Based Queues" href="Queue.html" />
     <link rel="prev" title="9. Linked Stacks" href="StackLinked.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
+        <a  id="nextmod" href="Queue.html">4.<span class="section-number">11. </span>Array-Based Queues</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['call-stacks-for-implementing-recursion', 'towers-of-hanoi'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-recursion">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['call-stacks-for-implementing-recursion', 'towers-of-hanoi'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-recursion">
 <h1>4.<span class="section-number">10. </span>Implementing Recursion<a class="headerlink" href="#implementing-recursion" title="Permalink to this headline">¶</a></h1>
 <p>WARNING! You should not read this section unless you are already
 comfortable with implementing <a class="reference internal" href="Glossary.html#term-recursion"><span class="xref std std-term">recursive</span></a>
@@ -190,7 +190,7 @@ Each return from a subroutine <a class="reference internal" href="Glossary.html#
 record off the stack.
 As an example, here is a recursive implementation for the factorial
 function.</p>
-<div id="Factorial_RFact_code"><ul><li><a href="#Factorial_RFact_code_Pseudo">Pseudo-Code</a></li><li><a href="#Factorial_RFact_code_Java_Generic">Java</a></li><li><a href="#Factorial_RFact_code_Python">Python</a></li></ul><div id="Factorial_RFact_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recursively compute and return n!</span>
+<div id="DemoFactorial_RFact_code"><ul><li><a href="#DemoFactorial_RFact_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoFactorial_RFact_code_Java_Generic">Java</a></li><li><a href="#DemoFactorial_RFact_code_Python">Python</a></li></ul><div id="DemoFactorial_RFact_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recursively compute and return n!</span>
 <span class="n">factorial_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
     <span class="c1">// Precondition: n &gt;= 0</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span>
@@ -199,7 +199,7 @@ function.</p>
         <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>   <span class="c1">// Recursive call for n &gt; 1</span>
 </pre></div>
 </div>
-</div><div id="Factorial_RFact_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recursively compute and return n!</span>
+</div><div id="DemoFactorial_RFact_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Recursively compute and return n!</span>
 <span class="kd">static</span> <span class="kt">long</span> <span class="nf">factorial_recursive</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Argument must be &gt;= 0&quot;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Cannot handle larger values than 20!&quot;</span><span class="p">);</span>
@@ -211,7 +211,7 @@ function.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Factorial_RFact_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recursively compute and return n!</span>
+</div><div id="DemoFactorial_RFact_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Recursively compute and return n!</span>
 <span class="k">def</span> <span class="nf">factorial_recursive</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument must be &gt;= 0&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
@@ -220,7 +220,7 @@ function.</p>
         <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>   <span class="c1"># Recursive call for n &gt; 1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Factorial_RFact_code" ).tabs();});</script><p>Here is an illustration for how the internal processing works.</p>
+</div></div><script>$(function() {$( "#DemoFactorial_RFact_code" ).tabs();});</script><p>Here is an illustration for how the internal processing works.</p>
 <div class="figure align-center" id="recurstack" style="width: 90%">
 <a class="reference internal image-reference" href="_images/RecurSta.png"><img alt="Implementing recursion with a stack" src="_images/RecurSta.png" style="width: 500px;" /></a>
 </div>
@@ -275,7 +275,7 @@ recursion can easily be replaced by iteration.</p>
 <p class="topic-title">Example 4.11.1 </p>
 <p>As a simple example of replacing recursion with a stack, consider
 the following non-recursive version of the factorial function.</p>
-<div id="Factorial_SFact_code"><ul><li><a href="#Factorial_SFact_code_Pseudo">Pseudo-Code</a></li><li><a href="#Factorial_SFact_code_Java_Generic">Java</a></li><li><a href="#Factorial_SFact_code_Python">Python</a></li></ul><div id="Factorial_SFact_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return n!</span>
+<div id="DemoFactorial_SFact_code"><ul><li><a href="#DemoFactorial_SFact_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoFactorial_SFact_code_Java_Generic">Java</a></li><li><a href="#DemoFactorial_SFact_code_Python">Python</a></li></ul><div id="DemoFactorial_SFact_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return n!</span>
 <span class="n">factorial_stack</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
     <span class="c1">// Precondition: n &gt;= 0</span>
     <span class="n">S</span> <span class="p">:</span> <span class="n">Stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedStack</span><span class="p">()</span>
@@ -288,7 +288,7 @@ the following non-recursive version of the factorial function.</p>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-</div><div id="Factorial_SFact_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return n!</span>
+</div><div id="DemoFactorial_SFact_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return n!</span>
 <span class="kd">static</span> <span class="kt">long</span> <span class="nf">factorial_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&gt;</span> <span class="n">n</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Argument must be &gt;= 0&quot;</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">20</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalArgumentException</span><span class="p">(</span><span class="s">&quot;Cannot handle larger values than 20!&quot;</span><span class="p">);</span>
@@ -305,7 +305,7 @@ the following non-recursive version of the factorial function.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Factorial_SFact_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return n!</span>
+</div><div id="DemoFactorial_SFact_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return n!</span>
 <span class="k">def</span> <span class="nf">factorial_stack</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Argument must be &gt;= 0&quot;</span><span class="p">)</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">LinkedStack</span><span class="p">()</span>
@@ -318,7 +318,7 @@ the following non-recursive version of the factorial function.</p>
     <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Factorial_SFact_code" ).tabs();});</script><p>Here, we simply push successively smaller values of <span class="math notranslate nohighlight">\(n\)</span> onto
+</div></div><script>$(function() {$( "#DemoFactorial_SFact_code" ).tabs();});</script><p>Here, we simply push successively smaller values of <span class="math notranslate nohighlight">\(n\)</span> onto
 the stack until the base case is reached, then repeatedly pop off
 the stored values and multiply them into the result.</p>
 </div>
@@ -345,7 +345,7 @@ Hanoi function, which cannot be done iteratively.</p>
 <div class="section" id="towers-of-hanoi">
 <h2>4.<span class="section-number">10.2. </span>Towers of Hanoi<a class="headerlink" href="#towers-of-hanoi" title="Permalink to this headline">¶</a></h2>
 <p>Here is a recursive implementation for Towers of Hanoi.</p>
-<div id="TowersOfHanoi_TOH_code"><ul><li><a href="#TowersOfHanoi_TOH_code_Pseudo">Pseudo-Code</a></li><li><a href="#TowersOfHanoi_TOH_code_Java_Generic">Java</a></li><li><a href="#TowersOfHanoi_TOH_code_Python">Python</a></li></ul><div id="TowersOfHanoi_TOH_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the moves to solve a Tower of Hanoi puzzle.</span>
+<div id="DemoTowersOfHanoi_TOH_code"><ul><li><a href="#DemoTowersOfHanoi_TOH_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoTowersOfHanoi_TOH_code_Java_Generic">Java</a></li><li><a href="#DemoTowersOfHanoi_TOH_code_Python">Python</a></li></ul><div id="DemoTowersOfHanoi_TOH_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the moves to solve a Tower of Hanoi puzzle.</span>
 <span class="c1">// Function move does (or prints) the actual move of a disk</span>
 <span class="c1">// from one pole to another.</span>
 <span class="c1">//  - n: The number of disks</span>
@@ -360,7 +360,7 @@ Hanoi function, which cannot be done iteratively.</p>
     <span class="n">TOH_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>  <span class="c1">// Recursive call: n-1 rings</span>
 </pre></div>
 </div>
-</div><div id="TowersOfHanoi_TOH_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the moves to solve a Tower of Hanoi puzzle.</span>
+</div><div id="DemoTowersOfHanoi_TOH_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the moves to solve a Tower of Hanoi puzzle.</span>
 <span class="c1">// Function move does (or prints) the actual move of a disk</span>
 <span class="c1">// from one pole to another.</span>
 <span class="c1">//  - n: The number of disks</span>
@@ -376,7 +376,7 @@ Hanoi function, which cannot be done iteratively.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="TowersOfHanoi_TOH_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the moves to solve a Tower of Hanoi puzzle.</span>
+</div><div id="DemoTowersOfHanoi_TOH_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute the moves to solve a Tower of Hanoi puzzle.</span>
 <span class="c1"># Function move does (or prints) the actual move of a disk</span>
 <span class="c1"># from one pole to another.</span>
 <span class="c1">#  - n: The number of disks</span>
@@ -391,7 +391,7 @@ Hanoi function, which cannot be done iteratively.</p>
     <span class="n">TOH_recursive</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">start</span><span class="p">)</span>  <span class="c1"># Recursive call: n-1 rings</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#TowersOfHanoi_TOH_code" ).tabs();});</script><p><code class="docutils literal notranslate"><span class="pre">TOH</span></code> makes two recursive calls:
+</div></div><script>$(function() {$( "#DemoTowersOfHanoi_TOH_code" ).tabs();});</script><p><code class="docutils literal notranslate"><span class="pre">TOH</span></code> makes two recursive calls:
 one to move <span class="math notranslate nohighlight">\(n-1\)</span> rings off the bottom ring, and another to
 move these <span class="math notranslate nohighlight">\(n-1\)</span> rings back to the goal pole.
 We can eliminate the recursion by using a stack to store a
@@ -400,7 +400,7 @@ two recursive calls and a move operation.
 To do so, we must first come up with a representation of the
 various operations, implemented as a class whose objects will be
 stored on the stack.</p>
-<div id="TowersOfHanoi_TOHstack_code"><ul><li><a href="#TowersOfHanoi_TOHstack_code_Pseudo">Pseudo-Code</a></li><li><a href="#TowersOfHanoi_TOHstack_code_Java_Generic">Java</a></li><li><a href="#TowersOfHanoi_TOHstack_code_Python">Python</a></li></ul><div id="TowersOfHanoi_TOHstack_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">TOH_stack</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">Pole</span><span class="p">,</span> <span class="n">goal</span><span class="p">:</span><span class="n">Pole</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span><span class="n">Pole</span><span class="p">)</span>
+<div id="DemoTowersOfHanoi_TOHstack_code"><ul><li><a href="#DemoTowersOfHanoi_TOHstack_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoTowersOfHanoi_TOHstack_code_Java_Generic">Java</a></li><li><a href="#DemoTowersOfHanoi_TOHstack_code_Python">Python</a></li></ul><div id="DemoTowersOfHanoi_TOHstack_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">TOH_stack</span><span class="p">(</span><span class="n">n</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span><span class="n">Pole</span><span class="p">,</span> <span class="n">goal</span><span class="p">:</span><span class="n">Pole</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span><span class="n">Pole</span><span class="p">)</span>
     <span class="n">S</span> <span class="p">:</span> <span class="n">Stack</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedStack</span><span class="p">()</span>
     <span class="n">S</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">TOH</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
     <span class="k">while</span> <span class="n">S</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span>
@@ -413,7 +413,7 @@ stored on the stack.</p>
             <span class="n">S</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">TOH</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">num</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="na">start</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="na">temp</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="na">goal</span><span class="p">))</span>
 </pre></div>
 </div>
-</div><div id="TowersOfHanoi_TOHstack_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">TOH_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">start</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">goal</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">temp</span><span class="p">)</span> <span class="p">{</span>
+</div><div id="DemoTowersOfHanoi_TOHstack_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">TOH_stack</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">start</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">goal</span><span class="p">,</span> <span class="n">Pole</span> <span class="n">temp</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Make a stack just big enough</span>
     <span class="n">Stack</span><span class="o">&lt;</span><span class="n">TOH_object</span><span class="o">&gt;</span> <span class="n">S</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedStack</span><span class="o">&lt;&gt;</span><span class="p">();</span>
     <span class="n">S</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="k">new</span> <span class="n">TOH_object</span><span class="p">(</span><span class="n">TOH</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">temp</span><span class="p">));</span>
@@ -445,7 +445,7 @@ stored on the stack.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="TowersOfHanoi_TOHstack_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">TOH_stack</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>
+</div><div id="DemoTowersOfHanoi_TOHstack_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">TOH_stack</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">temp</span><span class="p">):</span>
     <span class="n">S</span> <span class="o">=</span> <span class="n">LinkedStack</span><span class="p">()</span>
     <span class="n">S</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="n">TOH_object</span><span class="p">(</span><span class="n">TOH</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="n">goal</span><span class="p">,</span> <span class="n">temp</span><span class="p">))</span>
     <span class="k">while</span> <span class="n">S</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -466,7 +466,7 @@ stored on the stack.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">temp</span> <span class="o">=</span> <span class="n">t</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#TowersOfHanoi_TOHstack_code" ).tabs();});</script><p>We first enumerate the possible operations MOVE and TOH, to
+</div></div><script>$(function() {$( "#DemoTowersOfHanoi_TOHstack_code" ).tabs();});</script><p>We first enumerate the possible operations MOVE and TOH, to
 indicate calls to the <code class="docutils literal notranslate"><span class="pre">move</span></code> function
 and recursive calls to <code class="docutils literal notranslate"><span class="pre">TOH</span></code>, respectively.
 Class <code class="docutils literal notranslate"><span class="pre">TOH_object</span></code> stores five values: an operation value
@@ -500,7 +500,7 @@ order, so that they will be popped off in the correct order.</p>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
+        <a  id="nextmod1" href="Queue.html">4.<span class="section-number">11. </span>Array-Based Queues</a>&#160;&#160;»
 
 </p>
       </div>

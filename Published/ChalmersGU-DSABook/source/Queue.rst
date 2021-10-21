@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script>
 
 .. _Queue:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: queue; array-based queue
    :topic: Lists
 
-Queues
-======
+Array-Based Queues
+=========================
 
 Queue Terminology and Implementation
 ------------------------------------

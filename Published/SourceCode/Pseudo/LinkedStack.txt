@@ -1,0 +1,38 @@
+
+class LinkedStack(E) implements Stack(E)
+    private top       : Node   // Pointer to top of stack
+    private stackSize : int    // Size of stack
+
+    LinkedStack()
+        top = null
+        stackSize = 0
+
+    private class Node
+        elem : E      // Value for this node
+        next : Node   // Pointer to next node in stack
+
+    push(x:E)
+        top = new Node(x, top)
+        stackSize += 1
+
+    peek() : E
+        // Precondition: stackSize > 0
+        return top.elem
+
+    pop() : E
+        // Precondition: stackSize > 0
+        removed : Node = top
+        top = removed.next
+        removed.next = null   // For garbage collection
+        stackSize -= 1
+        return removed.elem
+
+    isEmpty() : boolean
+        return stackSize == 0
+
+    size() : int
+        return stackSize
+
+    iterator() : Iterator(E)
+        return an iterator over the elements in the stack, starting from the top element
+

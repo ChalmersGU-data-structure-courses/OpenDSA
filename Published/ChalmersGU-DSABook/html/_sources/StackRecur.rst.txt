@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -58,7 +58,7 @@ record off the stack.
 As an example, here is a recursive implementation for the factorial
 function. 
 
-.. codeinclude:: ChalmersGU/Factorial
+.. codeinclude:: ChalmersGU/DemoFactorial
    :tag: RFact
 
 Here is an illustration for how the internal processing works.
@@ -132,7 +132,7 @@ recursion can easily be replaced by iteration.
    As a simple example of replacing recursion with a stack, consider
    the following non-recursive version of the factorial function.
 
-   .. codeinclude:: ChalmersGU/Factorial
+   .. codeinclude:: ChalmersGU/DemoFactorial
          :tag: SFact
 
    Here, we simply push successively smaller values of :math:`n` onto
@@ -167,7 +167,7 @@ Towers of Hanoi
 
 Here is a recursive implementation for Towers of Hanoi.
 
-.. codeinclude:: ChalmersGU/TowersOfHanoi
+.. codeinclude:: ChalmersGU/DemoTowersOfHanoi
    :tag: TOH
 
 ``TOH`` makes two recursive calls:
@@ -180,7 +180,7 @@ To do so, we must first come up with a representation of the
 various operations, implemented as a class whose objects will be
 stored on the stack.
 
-.. codeinclude:: ChalmersGU/TowersOfHanoi
+.. codeinclude:: ChalmersGU/DemoTowersOfHanoi
    :tag: TOHstack
 
 We first enumerate the possible operations MOVE and TOH, to

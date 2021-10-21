@@ -45,7 +45,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
     <link rel="next" title="13. Linear Structure Summary Exercises (WORK IN PROGRESS)" href="ListSumm.html" />
-    <link rel="prev" title="11. Queues" href="Queue.html" />
+    <link rel="prev" title="11. Array-Based Queues" href="Queue.html" />
 
   </head>
 
@@ -150,7 +150,7 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>
+        «&#160;&#160;<a id="prevmod" href="Queue.html">4.<span class="section-number">11. </span>Array-Based Queues</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-queues">
 <h1>4.<span class="section-number">12. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -335,7 +335,7 @@ in the queue, to be able to add new elements efficiently.</p>
 </pre></div>
 </div>
 </div><div id="LinkedQueue_LinkedQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;pop from empty queue&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
         <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
@@ -472,7 +472,7 @@ in the queue, to be able to add new elements efficiently.</p>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;pop from empty queue&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
         <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
@@ -619,7 +619,7 @@ unless items are always transferred directly from one queue to the other.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>
+        «&#160;&#160;<a id="prevmod1" href="Queue.html">4.<span class="section-number">11. </span>Array-Based Queues</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;

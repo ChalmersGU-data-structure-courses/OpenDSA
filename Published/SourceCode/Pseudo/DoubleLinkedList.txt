@@ -1,0 +1,85 @@
+
+class DoubleLinkedList(E) implements List(E)
+    private head     : DNode   // Pointer to list header
+    private tail     : DNode   // Pointer to list tail
+    private listSize : int     // Size of list
+
+    DoubleLinkedList()
+        head = null
+        tail = null
+        listSize = 0
+
+    private class DNode
+        elem : E       // Value for this node
+        prev : DNode   // Pointer to previous node in list
+        next : DNode   // Pointer to next node in list
+
+    get(i:int) : E
+        // Precondition: 0 <= i < listSize
+        current : E = head
+        repeat i times
+            current = current.next
+        return current.elem
+
+    set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
+        current : DNode = head
+        repeat i times
+            current = current.next
+        old : E = current.elem
+        current.elem = x
+        return old
+
+    add(i:int, x:E)
+        // Precondition: 0 <= i <= listSize
+        if listSize == 0:
+            head = tail = new DNode(x, null, null)
+        else if i == 0
+            newhead : DNode = new DNode(x, null, head)
+            head.prev = newhead
+            head = newhead
+        else if i == listSize
+            newtail : DNode = new DNone(x, tail, null)
+            tail.next = newtail
+            tail = newtail
+        else
+            prev: DNode = head
+            repeat i-1 times
+                prev = prev.next
+            next : DNode  = prev.next
+            newnode = new DNode(x, prev, next)
+            prev.next = newnode
+            next.prev = newnode
+        listSize += 1
+
+    remove(i:int) : E
+        // Precondition: listSize > 0
+        // Precondition: 0 <= i < listSize
+        if i == 0
+            removed : DNode = head
+            head = removed.next
+            head.prev = null
+        else if i == listSize-1
+            removed : DNode = tail
+            tail = removed.prev
+            tail.next = null
+        else
+            prev : DNode = head
+            repeat i-1 times
+                prev = prev.next
+            removed : DNode = prev.next
+            prev.next = removed.next
+            prev.next.prev = prev
+        removed.prev = removed.next = null   // For garbage collection
+        listSize -= 1
+        return removed.elem
+
+    isEmpty() : boolean
+        return listSize == 0
+
+    size() : int
+        return listSize
+
+    iterator() : Iterator(E)
+        return an iterator over the elements in internalArray
+
