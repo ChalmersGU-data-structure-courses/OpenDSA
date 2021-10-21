@@ -76,7 +76,10 @@ class LinkedQueueNode:
 #/* *** ODSAendTag: LinkedQueue *** */
 
 
-def _pprint(l):
+#######################################################################################
+## What comes below is purely for debugging and testing purposes - it can be removed ##
+
+def _printList(l):
     print("[", " ".join(str(e) for e in l), "]", l.size())
 
 if __name__ == '__main__':
@@ -85,9 +88,9 @@ if __name__ == '__main__':
         a.enqueue(chr(i+65))
         a.enqueue(chr(i+97))
         a.dequeue()
-        if a.size() % 5 == 0: _pprint(a)
-    _pprint(a)
+        if a.size() % 5 == 0: _printList(a)
+    _printList(a)
     while not a.isEmpty():
         assert a.peek() == a.dequeue(), (a,)
-        if a.size() % 3 == 2: _pprint(a)
-    _pprint(a)
+        if a.size() % 3 == 2: _printList(a)
+    _printList(a)

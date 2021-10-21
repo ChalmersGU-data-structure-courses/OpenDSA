@@ -80,7 +80,11 @@ class LinkedStack<E> implements Stack<E> {
 /* *** ODSAendTag: LinkedStackIterator *** */
 /* *** ODSAendTag: LinkedStack *** */
 
-    public void pPrint() {
+
+/***************************************************************************************/
+/** What comes below is purely for debugging and testing purposes - it can be removed **/
+
+    public void _printList() {
         System.out.print("[ ");
         for (E e : this) System.out.print(e + " ");
         System.out.println("] " + size());
@@ -90,14 +94,14 @@ class LinkedStack<E> implements Stack<E> {
         LinkedStack<String> list = new LinkedStack<>();
         for (int i=0; i<23; i++) {
             list.push(String.valueOf((char)(i+65)));
-            if (list.size() % 5 == 0) list.pPrint();
+            if (list.size() % 5 == 0) list._printList();
         }
-        list.pPrint();
+        list._printList();
         while (!list.isEmpty()) {
             if (list.peek() != list.pop()) throw new IndexOutOfBoundsException("ERROR!!!");
-            if (list.size() % 3 == 2) list.pPrint();
+            if (list.size() % 3 == 2) list._printList();
         }
-        list.pPrint();
+        list._printList();
     }
 /* *** ODSATag: LinkedStack *** */
 }

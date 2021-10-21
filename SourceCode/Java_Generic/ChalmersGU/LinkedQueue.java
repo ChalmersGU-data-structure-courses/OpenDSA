@@ -91,7 +91,11 @@ class LinkedQueue<E> implements Queue<E> {
 /* *** ODSAendTag: LinkedQueueIterator *** */
 /* *** ODSAendTag: LinkedQueue *** */
 
-    public void pPrint() {
+
+/***************************************************************************************/
+/** What comes below is purely for debugging and testing purposes - it can be removed **/
+
+    public void _printList() {
         System.out.print("[ ");
         for (E e : this) System.out.print(e + " ");
         System.out.println("] " + size());
@@ -103,14 +107,14 @@ class LinkedQueue<E> implements Queue<E> {
             list.enqueue(String.valueOf((char)(i+65)));
             list.enqueue(String.valueOf((char)(i+97)));
             list.dequeue();
-            if (list.size() % 5 == 0) list.pPrint();
+            if (list.size() % 5 == 0) list._printList();
         }
-        list.pPrint();
+        list._printList();
         while (!list.isEmpty()) {
             if (list.peek() != list.dequeue()) throw new IndexOutOfBoundsException("ERROR!!!");
-            if (list.size() % 3 == 2) list.pPrint();
+            if (list.size() % 3 == 2) list._printList();
         }
-        list.pPrint();
+        list._printList();
     }
 /* *** ODSATag: LinkedQueue *** */
 }

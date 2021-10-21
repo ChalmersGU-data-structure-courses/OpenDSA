@@ -13,24 +13,24 @@ class DoubleLinkedList(E) implements List(E)
         listSize = 0
 /* *** ODSAendTag: DoubleLinkedListVars *** */
 
-/* *** ODSATag: DoubleLinkedListNode *** */
+/* *** ODSATag: DoubleLinkedListDNode *** */
     private class DNode
-        elem : E      // Value for this node
-        prev : Node   // Pointer to previous node in list
-        next : Node   // Pointer to next node in list
-/* *** ODSAendTag: DoubleLinkedListNode *** */
+        elem : E       // Value for this node
+        prev : DNode   // Pointer to previous node in list
+        next : DNode   // Pointer to next node in list
+/* *** ODSAendTag: DoubleLinkedListDNode *** */
 /* *** ODSAendTag: DoubleLinkedListHeader *** */
 
 /* *** ODSATag: DoubleLinkedListGetSet *** */
-    // Precondition: 0 <= i < listSize
     get(i:int) : E
+        // Precondition: 0 <= i < listSize
         current : E = head
         repeat i times
             current = current.next
         return current.elem
 
-    // Precondition: 0 <= i < listSize
     set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
         current : DNode = head
         repeat i times
             current = current.next
@@ -40,18 +40,20 @@ class DoubleLinkedList(E) implements List(E)
 /* *** ODSAendTag: DoubleLinkedListGetSet *** */
 
 /* *** ODSATag: DoubleLinkedListAdd *** */
-    // Precondition: 0 <= i <= listSize
     add(i:int, x:E)
-        if i == 0
-            newhead = new DNode(x, null, head)
+        // Precondition: 0 <= i <= listSize
+        if listSize == 0:
+            head = tail = new DNode(x, null, null)
+        else if i == 0
+            newhead : DNode = new DNode(x, null, head)
             head.prev = newhead
             head = newhead
-        if i == listSize
-            newtail = new DNone(x, tail, null)
+        else if i == listSize
+            newtail : DNode = new DNone(x, tail, null)
             tail.next = newtail
             tail = newtail
         else
-            prev : DNode = head
+            prev: DNode = head
             repeat i-1 times
                 prev = prev.next
             next : DNode  = prev.next
@@ -62,22 +64,24 @@ class DoubleLinkedList(E) implements List(E)
 /* *** ODSAendTag: DoubleLinkedListAdd *** */
 
 /* *** ODSATag: DoubleLinkedListRemove *** */
-    // Precondition: 0 <= i < listSize, and listSize > 0
     remove(i:int) : E
+        // Precondition: listSize > 0
+        // Precondition: 0 <= i < listSize
         if i == 0
-            removed : Node = head
+            removed : DNode = head
             head = removed.next
-            removed.prev = null
+            head.prev = null
         else if i == listSize-1
-            removed : Node = tail
+            removed : DNode = tail
             tail = removed.prev
             tail.next = null
         else
-            prev : Node = head
+            prev : DNode = head
             repeat i-1 times
                 prev = prev.next
-            removed : Node = prev.next
+            removed : DNode = prev.next
             prev.next = removed.next
+            prev.next.prev = prev
         removed.prev = removed.next = null   // For garbage collection
         listSize -= 1
         return removed.elem
