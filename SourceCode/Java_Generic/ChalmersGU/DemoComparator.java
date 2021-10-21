@@ -74,10 +74,10 @@ class FullNameComparator implements Comparator<Person> {
 }
 /* *** ODSAendTag: FullNameComparator *** */
 
-public class ComparatorDemo {
+public class DemoComparator {
 /* *** ODSATag: GetPeople *** */
-static List<Person> getPeople() {
-    List<Person> people = new ArrayList<>();
+static ArrayList<Person> getPeople() {
+    ArrayList<Person> people = new ArrayList<>();
     people.add(new Person("Unsuk", "Chin", 1961));
     people.add(new Person("Anna", "Thorvaldsdóttir", 1977));
     people.add(new Person("Andrea", "Tarrodi", 1981));
@@ -93,7 +93,7 @@ static List<Person> getPeople() {
 public static void main(String[] args) {
     System.out.println("\n### No order");
 /* *** ODSATag: PrintPeople *** */
-    List<Person> people = getPeople();
+    ArrayList<Person> people = getPeople();
     for (Person p : people) System.out.println(p);
 /* *** ODSAendTag: PrintPeople *** */
 

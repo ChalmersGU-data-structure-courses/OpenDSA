@@ -1,6 +1,6 @@
 
 // Tester for TOH code
-public class TowersOfHanoi {
+public class DemoTowersOfHanoi {
     static int counter;
 
     // Fake an "enum" -- a Processing deficiency

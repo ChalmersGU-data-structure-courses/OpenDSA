@@ -41,7 +41,7 @@ record off the stack.
 As an example, here is a recursive implementation for the factorial
 function. 
 
-.. codeinclude:: ChalmersGU/Factorial
+.. codeinclude:: ChalmersGU/DemoFactorial
    :tag: RFact
 
 Here is an illustration for how the internal processing works.
@@ -112,7 +112,7 @@ recursion can easily be replaced by iteration.
    As a simple example of replacing recursion with a stack, consider
    the following non-recursive version of the factorial function.
 
-   .. codeinclude:: ChalmersGU/Factorial
+   .. codeinclude:: ChalmersGU/DemoFactorial
          :tag: SFact
 
    Here, we simply push successively smaller values of :math:`n` onto
@@ -147,7 +147,7 @@ Towers of Hanoi
 
 Here is a recursive implementation for Towers of Hanoi.
 
-.. codeinclude:: ChalmersGU/TowersOfHanoi
+.. codeinclude:: ChalmersGU/DemoTowersOfHanoi
    :tag: TOH
 
 ``TOH`` makes two recursive calls:
@@ -160,7 +160,7 @@ To do so, we must first come up with a representation of the
 various operations, implemented as a class whose objects will be
 stored on the stack.
 
-.. codeinclude:: ChalmersGU/TowersOfHanoi
+.. codeinclude:: ChalmersGU/DemoTowersOfHanoi
    :tag: TOHstack
 
 We first enumerate the possible operations MOVE and TOH, to
