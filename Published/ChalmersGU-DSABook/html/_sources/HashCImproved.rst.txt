@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,8 +27,8 @@
    :requires: collision resolution
    :topic: Hashing
 
-Improved Collision Resolution
-=============================
+Improved Collision Resolution (WORK IN PROGRESS)
+=====================================================
 
 Linear Probing by Steps
 -----------------------
@@ -320,6 +320,17 @@ Now you can try it.
    :threshold: 5
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Double Hashing Proficiency Exercise
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: AV
+   Fix and return hashAV.html to here.
+
+   The following visualization lets you test out different combinations
+   of hash function and collision resolution, on your own input data.
 
 .. [#] The secondary hash function
        :math:`\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1` might

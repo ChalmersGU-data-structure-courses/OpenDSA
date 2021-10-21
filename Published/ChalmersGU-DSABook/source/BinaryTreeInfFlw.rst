@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['local', 'passing-down-information', 'binary-tree-set-depth-exercise', 'collect-and-return', 'binary-tree-check-sum-exercise', 'binary-tree-leaf-nodes-count-exercise', 'binary-tree-sum-nodes-exercise', 'combining-information-flows', 'binary-tree-check-value-exercise', 'combination-problems', 'binary-tree-height-exercise', 'binary-tree-get-difference-exercise', 'binary-tree-has-path-sum-exercise'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['information-flow-in-recursive-functions', 'local', 'passing-down-information', 'binary-tree-set-depth-exercise', 'collect-and-return', 'binary-tree-check-sum-exercise', 'binary-tree-leaf-nodes-count-exercise', 'binary-tree-sum-nodes-exercise', 'combining-information-flows', 'binary-tree-check-value-exercise', 'combination-problems', 'binary-tree-height-exercise', 'binary-tree-get-difference-exercise', 'binary-tree-has-path-sum-exercise'];</script>
 
 .. _BinaryTreeInfFlw:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Information Flow in Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Information Flow in Recursive Functions (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: recursive function information flow
    :topic: Advanced Recursion
 
-Information Flow in Recursive Functions
-=======================================
+Information Flow in Recursive Functions (WORK IN PROGRESS)
+==========================================================
 
 Information Flow in Recursive Functions
 ---------------------------------------

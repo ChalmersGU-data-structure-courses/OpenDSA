@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.18. Solving Recurrence Relations &mdash; Data Structures and Algorithms</title>
+    <title>3.18. Solving Recurrence Relations (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="19. Amortized Analysis" href="AmortAnal.html" />
-    <link rel="prev" title="17. Summation Techniques" href="AdvSumm.html" />
+    <link rel="next" title="19. Amortized Analysis (optional) (WORK IN PROGRESS)" href="AmortAnal.html" />
+    <link rel="prev" title="17. Summation Techniques (optional) (WORK IN PROGRESS)" href="AdvSumm.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AdvSumm.html">4.<span class="section-number">17. </span>Summation Techniques</a>
+        «&#160;&#160;<a id="prevmod" href="AdvSumm.html">3.<span class="section-number">17. </span>Summation Techniques (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AmortAnal.html">4.<span class="section-number">19. </span>Amortized Analysis</a>&#160;&#160;»
+        <a  id="nextmod" href="AmortAnal.html">3.<span class="section-number">19. </span>Amortized Analysis (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,21 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['estimating-upper-and-lower-bounds', 'expanding-recurrences', 'divide-and-conquer-recurrences', 'average-case-analysis-of-quicksort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Recurrence";ODSA.SETTINGS.MODULE_LONG_NAME = "Solving Recurrence Relations";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV//SeniorAlgAnal/ExpandRecurrenceCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['solving-recurrence-relations', 'estimating-upper-and-lower-bounds', 'expanding-recurrences', 'divide-and-conquer-recurrences', 'average-case-analysis-of-quicksort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Recurrence";ODSA.SETTINGS.MODULE_LONG_NAME = "Solving Recurrence Relations (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV//SeniorAlgAnal/ExpandRecurrenceCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/DandCRecurrenceCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="solving-recurrence-relations-optional-work-in-progress">
+<h1>3.<span class="section-number">18. </span>Solving Recurrence Relations (optional) (WORK IN PROGRESS)<a class="headerlink" href="#solving-recurrence-relations-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="solving-recurrence-relations">
-<h1>4.<span class="section-number">18. </span>Solving Recurrence Relations<a class="headerlink" href="#solving-recurrence-relations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>4.<span class="section-number">18.1. </span>Solving Recurrence Relations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.<span class="section-number">18.1. </span>Solving Recurrence Relations<a class="headerlink" href="#solving-recurrence-relations" title="Permalink to this headline">¶</a></h2>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Equation cross-reference</dt><dd><p>Throughout this module, there are references to equations, both
+on this page and in the Summations module. These should be made
+into proper cross-references rather than hard-coded equation numbers.</p>
+</dd>
+</dl>
+</div>
 <p>Recurrence relations are often used to model the cost of recursive
 functions.
 For example, the standard <a class="reference internal" href="Mergesort.html#mergesort"><span class="std std-ref">Mergesort</span></a>
@@ -193,7 +202,7 @@ In particular, typical divide-and-conquer algorithms such as
 Mergesort yield recurrences of a form that fits a pattern for which
 we have a ready solution.</p>
 <div class="section" id="estimating-upper-and-lower-bounds">
-<h3>4.<span class="section-number">18.1.1. </span>Estimating Upper and Lower Bounds<a class="headerlink" href="#estimating-upper-and-lower-bounds" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">18.1.1. </span>Estimating Upper and Lower Bounds<a class="headerlink" href="#estimating-upper-and-lower-bounds" title="Permalink to this headline">¶</a></h3>
 <p>The first approach to solving recurrences is to guess the
 answer and then attempt to prove it correct.
 If a correct upper or lower bound estimate is given,
@@ -207,7 +216,7 @@ When seeking a precise closed-form solution (i.e., you seek the
 constants for the expression), this method will probably be too much
 work.</p>
 <div class="topic">
-<p class="topic-title">Example 4.19.1 </p>
+<p class="topic-title">Example 3.19.1 </p>
 <p>Use the guessing technique to find the asymptotic bounds for
 Mergesort, whose running time is described by the equation</p>
 <div class="math notranslate nohighlight">
@@ -256,7 +265,7 @@ In similar fashion, we can prove that <span class="math notranslate nohighlight"
 Thus, <span class="math notranslate nohighlight">\({\bf T}(n)\)</span> is also <span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.19.2 </p>
+<p class="topic-title">Example 3.19.2 </p>
 <p>We know that the factorial function grows exponentially.
 How does it compare to <span class="math notranslate nohighlight">\(2^n\)</span>? To <span class="math notranslate nohighlight">\(n^n\)</span>?
 Do they all grow “equally fast” (in an asymptotic sense)?
@@ -333,7 +342,7 @@ But knowing that <span class="math notranslate nohighlight">\(\log f(n) = \Theta
 necessarily mean that <span class="math notranslate nohighlight">\(f(n) = \Theta(g(n))\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.19.3 </p>
+<p class="topic-title">Example 3.19.3 </p>
 <p>What is the growth rate of the Fibonacci sequence?
 We define the Fibonacci sequence as
 <span class="math notranslate nohighlight">\(f(n) = f(n-1) + f(n-2)\)</span> for <span class="math notranslate nohighlight">\(n \geq 2\)</span>;
@@ -382,7 +391,7 @@ More precisely, <span class="math notranslate nohighlight">\(f(n)\)</span> conve
 </div>
 </div>
 <div class="section" id="expanding-recurrences">
-<h3>4.<span class="section-number">18.1.2. </span>Expanding Recurrences<a class="headerlink" href="#expanding-recurrences" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">18.1.2. </span>Expanding Recurrences<a class="headerlink" href="#expanding-recurrences" title="Permalink to this headline">¶</a></h3>
 <p>Estimating bounds is effective if you only need an approximation to
 the answer.
 More precise techniques are required to find an exact solution.
@@ -412,7 +421,7 @@ and techniques for solving summations can then be used.</p>
 </div>
 <p></p>
 <div class="topic">
-<p class="topic-title">Example 4.19.4 </p>
+<p class="topic-title">Example 3.19.4 </p>
 <p>Our next example models the cost of the algorithm to build a heap.
 You should recall that to build a <a class="reference internal" href="Heaps.html#heaps"><span class="std std-ref">heap</span></a>,
 we first heapify the two subheaps, then push down the root to its
@@ -441,7 +450,7 @@ f(n) &amp;\leq&amp; \sum_{i=0}^{\log n -1} 2^{i+1} \log(n/2^i)\\
 </div>
 </div>
 <div class="section" id="divide-and-conquer-recurrences">
-<h3>4.<span class="section-number">18.1.3. </span>Divide-and-Conquer Recurrences<a class="headerlink" href="#divide-and-conquer-recurrences" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">18.1.3. </span>Divide-and-Conquer Recurrences<a class="headerlink" href="#divide-and-conquer-recurrences" title="Permalink to this headline">¶</a></h3>
 <p>The third approach to solving recurrences is to take advantage of
 known theorems that provide the solution for classes of recurrences.
 Of particular practical use is a theorem that gives the
@@ -540,7 +549,7 @@ From Equation (5) of Module <a class="reference internal" href="Glossary.html#te
 <p>We can summarize the above derivation as the following theorem,
 sometimes referred to as the <a class="reference internal" href="Glossary.html#term-master-theorem"><span class="xref std std-term">Master Theorem</span></a>.</p>
 <div class="topic" id="recurthm">
-<p class="topic-title">Theorem 4.19.1  </p>
+<p class="topic-title">Theorem 3.19.1  </p>
 <p><strong>The Master Theorem:</strong> For any recurrence relation of the form
 <span class="math notranslate nohighlight">\({\bf T}(n) = a{\bf T}(n/b) + cn^k, {\bf T}(1) = c\)</span>,
 the following relationships hold.</p>
@@ -555,7 +564,7 @@ the following relationships hold.</p>
 <p>This theorem may be applied whenever appropriate, rather than
 re-deriving the solution for the recurrence.</p>
 <div class="topic">
-<p class="topic-title">Example 4.19.5 </p>
+<p class="topic-title">Example 3.19.5 </p>
 <p>Apply the Master Theorem to solve</p>
 <div class="math notranslate nohighlight">
 \[{\bf T}(n) = 3{\bf T}(n/5) + 8n^2.\]</div>
@@ -564,7 +573,7 @@ find that <span class="math notranslate nohighlight">\(3&lt;5^2\)</span>.
 Applying case (3) of the theorem, <span class="math notranslate nohighlight">\({\bf T}(n) = \Theta(n^2)\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.19.6 </p>
+<p class="topic-title">Example 3.19.6 </p>
 <p>Use the Master Theorem to solve the recurrence relation
 for Mergesort:</p>
 <div class="math notranslate nohighlight">
@@ -576,7 +585,7 @@ Applying case (2) of the theorem,
 </div>
 </div>
 <div class="section" id="average-case-analysis-of-quicksort">
-<h3>4.<span class="section-number">18.1.4. </span>Average-Case Analysis of Quicksort<a class="headerlink" href="#average-case-analysis-of-quicksort" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">18.1.4. </span>Average-Case Analysis of Quicksort<a class="headerlink" href="#average-case-analysis-of-quicksort" title="Permalink to this headline">¶</a></h3>
 <p>In Module <a class="reference internal" href="Quicksort.html#quicksort"><span class="std std-ref">Quicksort</span></a>, we determined that
 the average-case analysis of Quicksort had the following recurrence:</p>
 <div class="math notranslate nohighlight">
@@ -651,11 +660,11 @@ so the final solution is <span class="math notranslate nohighlight">\(\Theta(n \
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AdvSumm.html">4.<span class="section-number">17. </span>Summation Techniques</a>
+        «&#160;&#160;<a id="prevmod1" href="AdvSumm.html">3.<span class="section-number">17. </span>Summation Techniques (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AmortAnal.html">4.<span class="section-number">19. </span>Amortized Analysis</a>&#160;&#160;»
+        <a  id="nextmod1" href="AmortAnal.html">3.<span class="section-number">19. </span>Amortized Analysis (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -670,7 +679,7 @@ so the final solution is <span class="math notranslate nohighlight">\(\Theta(n \
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

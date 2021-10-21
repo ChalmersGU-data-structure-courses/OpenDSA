@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators, an example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators: An example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -25,8 +25,8 @@
    :requires: comparison
 
 
-Comparables and comparators, an example
-==============================================
+Comparables and comparators: An example
+=======================================
 
 *Note*: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,

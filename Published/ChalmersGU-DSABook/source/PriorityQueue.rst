@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sorting', 'finding-the-top-k-items'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script>
 
 .. _PriorityQueue:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: priority queue
    :topic: Priority queues
 
-Priority queues
-===============
+Priority queues (WORK IN PROGRESS)
+=====================================
 
 Priority queues
 ---------------
@@ -61,12 +61,21 @@ following operations:
 * adding a new object to the priority queue
 * removing the *smallest* object from the priority queue.
 
-As we shall see in the next section, it is possible to implement a
-priority queue so that both adding and removing take
-:math:`O(n \log n)` time.
+In this chapter, we will see how to implement a priority queue so that
+both adding and removing the minimum take :math:`O(\log n)` time.
 
-.. codeinclude:: Binary/PriorityQueue
-   :tag: PriorityQueue
+.. codeinclude:: ChalmersGU/API
+   :tag: PriorityQueueADT
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+   Add max priority queues, and the version with an explicit priority
+   (and/or comparator?)
+
+Now let's look at a couple of applications of priority queues.
 
 Sorting
 -------
@@ -90,8 +99,8 @@ of size :math:`n`, the algorithm calls ``add`` :math:`n` times and
 runtime is :math:`O(n \log n)` -- as efficient as any of the sorting
 algorithms we have seen so far!
 
-Finding the top k items
------------------------
+Finding the top 100 items
+-------------------------
 
 Suppose that we are running a bank. Every day, every transaction that
 occurs at the bank is recorded in a list. When the bank closes at the
@@ -108,31 +117,45 @@ for finding the largest :math:`k` items in a list of :math:`n` items, in
 :math:`O(n \log n)` time.)
 
 Now suppose that we want to monitor the transactions *throughout* the
-day. We want to have a screen, continuously updating, which shows the
-100 highest-valued transactions *so far* today. How can we do this?
+day. At any point, we want to be able to find the 100 highest-valued
+transactions *so far* today. How can we do this?
 
-The sorting approach is no longer suitable. Every time a new
-transaction comes in, we would need to sort the entire list of
-transactions. If there are :math:`n` transactions in total,
-then we would sort the transaction list :math:`n` times, and
-this would take :math:`O(n^2 \log n)` time in total. Not good!
+We could still use the sorting approach, but we would need to sort the
+list of transactions *every time* we wanted to find the 100 top
+transactions. This may be prohibitively expensive if there are a lot
+of transactions: it takes :math:`O(n \log n)` time every time we do it.
 
-What we would like is a data structure representing a collection of
-items, and supporting the following operations:
+We can do better with the help of a priority queue. The idea is to
+have a priority queue that holds the *100 highest-value transactions*
+only. Whenever a new transaction comes in, we need to update the
+priority queue accordingly:
 
-* ``add(x)``: add the item ``x`` (in this case a transaction)
-  to the collection
-* ``topK()``: return the top :math:`k` items.
+1. If the priority queue has fewer than 100 transactions (i.e. there
+   have been fewer than 100 transactions so far today), then add the
+   new transaction to the priority queue.
+2. Otherwise, if the new transaction is *greater in value than the
+   lowest-valued of the top 100 transactions*, then remove that
+   transaction and add the new transaction.
+3. Otherwise, don't add the new transaction to the priority queue
+   (it's not in the top 100).
 
-Here, :math:`k` is a value which is chosen when we initialise the data
-structure (in this example, :math:`k` is 100). Here is how the API
-might look in code:
+Notice that in step 2, we are comparing the new transaction to the
+*lowest-valued* of the top 100 transactions -- if the transactions
+are ordered by value, then this transaction can be found by calling
+``getMin``, and removed using ``removeMin``. So this algorithm can
+be implemented efficiently using a priority queue.
 
-.. codeinclude:: Binary/OnlineTopKTypes
-   :tag: OnlineTopKTypes
-
-blah blah blah blah
+In fact, we can simplify these three steps into two steps. First, we
+add the new transaction to the priority queue. This might make the
+priority queue grow to 101 transactions. If so, we remove the
+lowest-valued transaction. Here it is in code:
 
 .. codeinclude:: Binary/OnlineTopK
    :tag: OnlineTopK
+
+What is the complexity of ``add``? Well, in fact it takes constant
+time, because the priority queue has a constant maximum size of 100
+elements. If we generalize this problem to keeping track of the top
+:math:`k` transactions, then the complexity of ``add`` is
+:math:`O(\log k)`.
 

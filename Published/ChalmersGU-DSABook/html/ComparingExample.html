@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.5. Comparables and comparators, an example &mdash; Data Structures and Algorithms</title>
+    <title>1.6. Comparables and comparators: An example &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="6. Maps or Dictionaries" href="Dictionary.html" />
-    <link rel="prev" title="4. Comparing Records" href="Comparison.html" />
+    <link rel="next" title="7. Implementing Sets and Maps (WORK IN PROGRESS)" href="Dictionary.html" />
+    <link rel="prev" title="5. Comparing Records: Key-Value Pairs (WORK IN PROGRESS)" href="Comparison.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Comparison.html">1.<span class="section-number">4. </span>Comparing Records</a>
+        «&#160;&#160;<a id="prevmod" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Dictionary.html">1.<span class="section-number">6. </span>Maps or Dictionaries</a>&#160;&#160;»
+        <a  id="nextmod" href="Dictionary.html">1.<span class="section-number">7. </span>Implementing Sets and Maps (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,13 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators, an example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
-<h1>1.<span class="section-number">5. </span>Comparables and comparators, an example<a class="headerlink" href="#comparables-and-comparators-an-example" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators: An example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
+<h1>1.<span class="section-number">6. </span>Comparables and comparators: An example<a class="headerlink" href="#comparables-and-comparators-an-example" title="Permalink to this headline">¶</a></h1>
 <p><em>Note</em>: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,
 the code is not always transferrable.</p>
 <div class="section" id="comparables-and-comparators-in-java">
-<h2>1.<span class="section-number">5.1. </span>Comparables and comparators in Java<a class="headerlink" href="#comparables-and-comparators-in-java" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.1. </span>Comparables and comparators in Java<a class="headerlink" href="#comparables-and-comparators-in-java" title="Permalink to this headline">¶</a></h2>
 <p>In Java there are two main ways of comparing objects. The one that most people find easier to understand is <em>comparable</em>. But there is an alternative, <em>comparator</em>, which is very useful.</p>
 <p>As a running example we use a class for persons:</p>
 <div id="ComparatorDemo_Person_code"><ul><li><a href="#ComparatorDemo_Person_code_Pseudo">Pseudo-Code</a></li><li><a href="#ComparatorDemo_Person_code_Java_Generic">Java</a></li><li><a href="#ComparatorDemo_Person_code_Python">Python</a></li></ul><div id="ComparatorDemo_Person_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
@@ -272,7 +272,7 @@ the code is not always transferrable.</p>
 </div></blockquote>
 </div>
 <div class="section" id="comparables">
-<h2>1.<span class="section-number">5.2. </span>Comparables<a class="headerlink" href="#comparables" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.2. </span>Comparables<a class="headerlink" href="#comparables" title="Permalink to this headline">¶</a></h2>
 <p>With the Comparable interface we can define “natural ordering” for a class (<a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Java 8 Comparable</a>):</p>
 <div id="BaseAPI_ComparableADT_code"><ul><li><a href="#BaseAPI_ComparableADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#BaseAPI_ComparableADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparableADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparableADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Returns &lt;0 if this&lt;other, 0 if this==other, &gt;0 if this&gt;other.</span>
@@ -357,7 +357,7 @@ the code is not always transferrable.</p>
 </ol>
 </div>
 <div class="section" id="comparators-the-old-way">
-<h2>1.<span class="section-number">5.3. </span>Comparators, the old way<a class="headerlink" href="#comparators-the-old-way" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.3. </span>Comparators, the old way<a class="headerlink" href="#comparators-the-old-way" title="Permalink to this headline">¶</a></h2>
 <p>What if we sometimes want to sort the list according to some other ordering, e.g., birth year or given name? Enter <em>comparators</em>, and here is the interface (<a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">Java 8 Comparator</a>):</p>
 <div id="BaseAPI_ComparatorADT_code"><ul><li><a href="#BaseAPI_ComparatorADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#BaseAPI_ComparatorADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparatorADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparatorADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">compareTo</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">E</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Returns &lt;0 if one&lt;other, 0 if one==other, &gt;0 if one&gt;other.</span>
@@ -489,7 +489,7 @@ the code is not always transferrable.</p>
 </div></blockquote>
 </div>
 <div class="section" id="comparators-the-new-functional-interface-in-java-8">
-<h2>1.<span class="section-number">5.4. </span>Comparators, the new functional interface in Java 8<a class="headerlink" href="#comparators-the-new-functional-interface-in-java-8" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.4. </span>Comparators, the new functional interface in Java 8<a class="headerlink" href="#comparators-the-new-functional-interface-in-java-8" title="Permalink to this headline">¶</a></h2>
 <p>Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similar to we would do in Python or Haskell:</p>
 <div id="ComparatorDemo_ByBirthYearFunctional_-ByGivenNameFunctional_code"><ul><li><a href="#ComparatorDemo_ByBirthYearFunctional_-ByGivenNameFunctional_code_Pseudo">Pseudo-Code</a></li><li><a href="#ComparatorDemo_ByBirthYearFunctional_-ByGivenNameFunctional_code_Java_Generic">Java</a></li><li><a href="#ComparatorDemo_ByBirthYearFunctional_-ByGivenNameFunctional_code_Python">Python</a></li></ul><div id="ComparatorDemo_ByBirthYearFunctional_-ByGivenNameFunctional_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
     <span class="n">byGivenName</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
@@ -507,7 +507,7 @@ the code is not always transferrable.</p>
 (<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">BirthYearComparator</span> <span class="pre">implements</span> <span class="pre">Comparator&lt;Person&gt;</span></code>, etc).</p>
 </div>
 <div class="section" id="comparing-fields-using-key-extractors">
-<h2>1.<span class="section-number">5.5. </span>Comparing fields using key extractors<a class="headerlink" href="#comparing-fields-using-key-extractors" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.5. </span>Comparing fields using key extractors<a class="headerlink" href="#comparing-fields-using-key-extractors" title="Permalink to this headline">¶</a></h2>
 <p>In many cases (including our example case), we only want to compare some fields in a class. Then we can use <em>key extractors</em> to simplify even more:</p>
 <div id="ComparatorDemo_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code"><ul><li><a href="#ComparatorDemo_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Pseudo">Pseudo-Code</a></li><li><a href="#ComparatorDemo_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Java_Generic">Java</a></li><li><a href="#ComparatorDemo_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Python">Python</a></li></ul><div id="ComparatorDemo_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">birthYear</span><span class="p">)</span>
     <span class="n">byGivenName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
@@ -526,7 +526,7 @@ the code is not always transferrable.</p>
 </ul>
 </div>
 <div class="section" id="comparing-several-fields">
-<h2>1.<span class="section-number">5.6. </span>Comparing several fields<a class="headerlink" href="#comparing-several-fields" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.6. </span>Comparing several fields<a class="headerlink" href="#comparing-several-fields" title="Permalink to this headline">¶</a></h2>
 <p>Remember the natural ordering? The problem with only comparing the family name is that if two persons have the same they keep their internal order. So, Nadia Boulanger comes before Lili Boulanger even though L precedes N in the alphabet.</p>
 <p>What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:</p>
 <div id="ComparatorDemo_FullNameComparator_code"><ul><li><a href="#ComparatorDemo_FullNameComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#ComparatorDemo_FullNameComparator_code_Java_Generic">Java</a></li><li><a href="#ComparatorDemo_FullNameComparator_code_Python">Python</a></li></ul><div id="ComparatorDemo_FullNameComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>class FullNameComparator implements Comparator(Person)
@@ -610,7 +610,7 @@ the code is not always transferrable.</p>
 <p>As you can see, Lili now comes before Nadia. But there’s still the problem with Guy and Diana coming last in the list.</p>
 </div>
 <div class="section" id="case-insensitive-and-language-specific-comparisons">
-<h2>1.<span class="section-number">5.7. </span>Case-insensitive and language-specific comparisons<a class="headerlink" href="#case-insensitive-and-language-specific-comparisons" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.7. </span>Case-insensitive and language-specific comparisons<a class="headerlink" href="#case-insensitive-and-language-specific-comparisons" title="Permalink to this headline">¶</a></h2>
 <p>The Java String class has a method <code class="docutils literal notranslate"><span class="pre">.compareToIgnoringCase(…)</span></code> which is what it sounds like.</p>
 <p>But you shouldn’t use it if you’re serious about handling text correctly. This is because strings are no longer ASCII, but Unicode. And Unicode is a beast of its own – it knows how to write hundreds of different alphabets with diacritics and other special characters. (Unicode even knows about bidirectional text (left-to-right vs right-to-left), but we won’t discuss that here).</p>
 <p>Now, correct string sorting depends on your locale. E.g., in Swedish we put Å, Ä, Ö at the end of the alphabet, while Á, Ô, È are mixed together with A, O, E, respectively. Also, it’s common to mix V and W in Swedish dictionaries. German on the other hand mixes Ä, Ö with A, O. And it sorts ß together with S.</p>
@@ -668,11 +668,11 @@ the code is not always transferrable.</p>
 <p>Finally Diana Čemerytė and Guy d’Hardelot find their right places in the list!</p>
 </div>
 <div class="section" id="and-what-about-the-names">
-<h2>1.<span class="section-number">5.8. </span>…and what about the names?<a class="headerlink" href="#and-what-about-the-names" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.8. </span>…and what about the names?<a class="headerlink" href="#and-what-about-the-names" title="Permalink to this headline">¶</a></h2>
 <p>The names are taken from here: <a class="reference external" href="https://female-composers.forts.se/">https://female-composers.forts.se/</a></p>
 </div>
 <div class="section" id="running-the-program">
-<h2>1.<span class="section-number">5.9. </span>Running the program<a class="headerlink" href="#running-the-program" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">6.9. </span>Running the program<a class="headerlink" href="#running-the-program" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full source code. Just compile and run it without any arguments:</p>
 <div id="ComparatorDemo_ComparatorDemo_code"><ul><li><a href="#ComparatorDemo_ComparatorDemo_code_Pseudo">Pseudo-Code</a></li><li><a href="#ComparatorDemo_ComparatorDemo_code_Java_Generic">Java</a></li><li><a href="#ComparatorDemo_ComparatorDemo_code_Python">Python</a></li></ul><div id="ComparatorDemo_ComparatorDemo_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>class Person implements Comparable(Person)
     givenName  : String
@@ -1079,11 +1079,11 @@ main()
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Comparison.html">1.<span class="section-number">4. </span>Comparing Records</a>
+        «&#160;&#160;<a id="prevmod1" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Dictionary.html">1.<span class="section-number">6. </span>Maps or Dictionaries</a>&#160;&#160;»
+        <a  id="nextmod1" href="Dictionary.html">1.<span class="section-number">7. </span>Implementing Sets and Maps (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -1098,7 +1098,7 @@ main()
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

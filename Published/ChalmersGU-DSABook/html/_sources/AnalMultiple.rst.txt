@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMultiple";ODSA.SETTINGS.MODULE_LONG_NAME = "Multiple Parameters";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMultiple";ODSA.SETTINGS.MODULE_LONG_NAME = "Multiple Parameters (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: analysis multiple parameters
    :topic: Algorithm Analysis
 
-Multiple Parameters
-===================
+Multiple Parameters (WORK IN PROGRESS)
+======================================
 
 Sometimes the proper analysis for an algorithm requires
 multiple parameters to describe the cost.

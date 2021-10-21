@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.12. Linked Queues &mdash; Data Structures and Algorithms</title>
+    <title>4.12. Linked Queues &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="13. Linear Structure Summary Exercises" href="ListSumm.html" />
+    <link rel="next" title="13. Linear Structure Summary Exercises (WORK IN PROGRESS)" href="ListSumm.html" />
     <link rel="prev" title="11. Queues" href="Queue.html" />
 
   </head>
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Queue.html">5.<span class="section-number">11. </span>Queues</a>
+        «&#160;&#160;<a id="prevmod" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ListSumm.html">5.<span class="section-number">13. </span>Linear Structure Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod" href="ListSumm.html">4.<span class="section-number">13. </span>Linear Structure Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-queues">
-<h1>5.<span class="section-number">12. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
+<h1>4.<span class="section-number">12. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>5.<span class="section-number">12.1. </span>Linked Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.1. </span>Linked Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The linked queue implementation is an adaptation of the linked list.
 The only thing is that we have to add a pointer to the rear node
 in the queue, to be able to add new elements efficiently.</p>
@@ -222,7 +222,7 @@ in the queue, to be able to add new elements efficiently.</p>
 </div>
 </div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueInit_code" ).tabs();});</script></div>
 <div class="section" id="enqueueing-elements">
-<h2>5.<span class="section-number">12.2. </span>Enqueueing Elements<a class="headerlink" href="#enqueueing-elements" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.2. </span>Enqueueing Elements<a class="headerlink" href="#enqueueing-elements" title="Permalink to this headline">¶</a></h2>
 <div id="LinkedQueue-Enqueue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Enqueue-CON" data-long-name="Linked Queue Enqueue" data-exer-id="" alt="Linked Queue Enqueue" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -302,7 +302,7 @@ in the queue, to be able to add new elements efficiently.</p>
 </div>
 </div>
 <div class="section" id="dequeueing-elements">
-<h2>5.<span class="section-number">12.3. </span>Dequeueing Elements<a class="headerlink" href="#dequeueing-elements" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.3. </span>Dequeueing Elements<a class="headerlink" href="#dequeueing-elements" title="Permalink to this headline">¶</a></h2>
 <div id="LinkedQueue-Dequeue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Dequeue-CON" data-long-name="Linked Queue Dequeue" data-exer-id="" alt="Linked Queue Dequeue" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -385,7 +385,7 @@ in the queue, to be able to add new elements efficiently.</p>
 </div>
 </div>
 <div class="section" id="linked-queue-full-implementation">
-<h2>5.<span class="section-number">12.4. </span>Linked Queue, Full Implementation<a class="headerlink" href="#linked-queue-full-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.4. </span>Linked Queue, Full Implementation<a class="headerlink" href="#linked-queue-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full implementation for linked queues.</p>
 <div id="LinkedQueue_LinkedQueue_code"><ul><li><a href="#LinkedQueue_LinkedQueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">front</span>      <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to front queue node</span>
@@ -575,7 +575,7 @@ in the queue, to be able to add new elements efficiently.</p>
 </div>
 </div></div><script>$(function() {$( "#LinkedQueue_LinkedQueue_code" ).tabs();});</script></div>
 <div class="section" id="comparison-of-array-based-and-linked-queues">
-<h2>5.<span class="section-number">12.5. </span>Comparison of Array-Based and Linked Queues<a class="headerlink" href="#comparison-of-array-based-and-linked-queues" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.5. </span>Comparison of Array-Based and Linked Queues<a class="headerlink" href="#comparison-of-array-based-and-linked-queues" title="Permalink to this headline">¶</a></h2>
 <p>All member functions for both the array-based and linked queue
 implementations require constant time.
 The space comparison issues are the same as for the equivalent stack
@@ -585,7 +585,7 @@ way to store two queues in the same array,
 unless items are always transferred directly from one queue to the other.</p>
 </div>
 <div class="section" id="stack-and-queue-summary-questions">
-<h2>5.<span class="section-number">12.6. </span>Stack and Queue Summary Questions<a class="headerlink" href="#stack-and-queue-summary-questions" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">12.6. </span>Stack and Queue Summary Questions<a class="headerlink" href="#stack-and-queue-summary-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="StackQSumm"
     class="embedContainer"
@@ -619,11 +619,11 @@ unless items are always transferred directly from one queue to the other.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Queue.html">5.<span class="section-number">11. </span>Queues</a>
+        «&#160;&#160;<a id="prevmod1" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ListSumm.html">5.<span class="section-number">13. </span>Linear Structure Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod1" href="ListSumm.html">4.<span class="section-number">13. </span>Linear Structure Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -638,7 +638,7 @@ unless items are always transferred directly from one queue to the other.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

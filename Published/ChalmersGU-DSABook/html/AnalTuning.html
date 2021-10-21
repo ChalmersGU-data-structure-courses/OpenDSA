@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.13. Code Tuning and Empirical Analysis &mdash; Data Structures and Algorithms</title>
+    <title>3.13. Code Tuning and Empirical Analysis (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="14. Algorithm Analysis Summary Exercises" href="AlgAnalSummCS2.html" />
-    <link rel="prev" title="12. Space Bounds" href="AnalSpace.html" />
+    <link rel="next" title="14. Algorithm Analysis Summary Exercises (WORK IN PROGRESS)" href="AlgAnalSummCS2.html" />
+    <link rel="prev" title="12. Space Bounds (WORK IN PROGRESS)" href="AnalSpace.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AnalSpace.html">4.<span class="section-number">12. </span>Space Bounds</a>
+        «&#160;&#160;<a id="prevmod" href="AnalSpace.html">3.<span class="section-number">12. </span>Space Bounds (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AlgAnalSummCS2.html">4.<span class="section-number">14. </span>Algorithm Analysis Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod" href="AlgAnalSummCS2.html">3.<span class="section-number">14. </span>Algorithm Analysis Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['empirical-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="code-tuning-and-empirical-analysis">
-<h1>4.<span class="section-number">13. </span>Code Tuning and Empirical Analysis<a class="headerlink" href="#code-tuning-and-empirical-analysis" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>4.<span class="section-number">13.1. </span>Code Tuning and Empirical Analysis<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-and-empirical-analysis', 'empirical-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="code-tuning-and-empirical-analysis-work-in-progress">
+<h1>3.<span class="section-number">13. </span>Code Tuning and Empirical Analysis (WORK IN PROGRESS)<a class="headerlink" href="#code-tuning-and-empirical-analysis-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="code-tuning-and-empirical-analysis">
+<h2>3.<span class="section-number">13.1. </span>Code Tuning and Empirical Analysis<a class="headerlink" href="#code-tuning-and-empirical-analysis" title="Permalink to this headline">¶</a></h2>
 <p>In practice, there is not such a big difference in running time
 between an algorithm with growth rate <span class="math notranslate nohighlight">\(\Theta(n)\)</span> and another
 with growth rate <span class="math notranslate nohighlight">\(\Theta(n \log n)\)</span>.
@@ -190,6 +190,13 @@ Even speedups by a factor of five to ten are not uncommon.
 Occasionally, you can get an even bigger speedup
 by converting from a symbolic representation of the data
 to a numeric coding scheme on which you can do direct computation.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: text</dt><dd><p>Give an example of this type of representational change.</p>
+</dd>
+</dl>
+</div>
 <p>Here are some suggestions for ways to speed up your
 programs by code tuning.
 The most important thing to realize is that most statements in a
@@ -219,7 +226,7 @@ While one test might be cheaper than the work potentially saved, the
 test must always be made and the work can be avoided only some
 fraction of the time.</p>
 <div class="topic">
-<p class="topic-title">Example 4.14.1 </p>
+<p class="topic-title">Example 3.14.1 </p>
 <p>A common operation in computer graphics applications is to find
 which among a set of complex objects contains a given point in
 space.
@@ -271,7 +278,7 @@ The most important rule of code tuning is:</p>
 <div><p><strong>First tune the algorithm, then tune the code.</strong></p>
 </div></blockquote>
 <div class="section" id="empirical-analysis">
-<h3>4.<span class="section-number">13.1.1. </span>Empirical Analysis<a class="headerlink" href="#empirical-analysis" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">13.1.1. </span>Empirical Analysis<a class="headerlink" href="#empirical-analysis" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="Glossary.html#term-algorithm-analysis"><span class="xref std std-term">Asymptotic algorithm analysis</span></a>
 is an analytic tool, whereby we model the key aspects of an
 algorithm to determine the growth rate of the algorithm as the input
@@ -344,11 +351,11 @@ versus hash table size (space cost).</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AnalSpace.html">4.<span class="section-number">12. </span>Space Bounds</a>
+        «&#160;&#160;<a id="prevmod1" href="AnalSpace.html">3.<span class="section-number">12. </span>Space Bounds (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AlgAnalSummCS2.html">4.<span class="section-number">14. </span>Algorithm Analysis Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod1" href="AlgAnalSummCS2.html">3.<span class="section-number">14. </span>Algorithm Analysis Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -363,7 +370,7 @@ versus hash table size (space cost).</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6.8. Binary Tree Node Implementations &mdash; Data Structures and Algorithms</title>
+    <title>5.8. Binary Tree Node Implementations (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Binary Tree Space Requirements" href="BinaryTreeNodeSpace.html" />
-    <link rel="prev" title="7. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
+    <link rel="next" title="9. Binary Tree Space Requirements (WORK IN PROGRESS)" href="BinaryTreeNodeSpace.html" />
+    <link rel="prev" title="7. Information Flow in Recursive Functions (WORK IN PROGRESS)" href="BinaryTreeInfFlw.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 6 Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 5 Binary Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeInfFlw.html">6.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryTreeNodeSpace.html">6.<span class="section-number">9. </span>Binary Tree Space Requirements</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,13 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-tree-node-implementations'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BTnullpointerCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/expressionTreeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="binary-tree-node-implementations-work-in-progress">
+<h1>5.<span class="section-number">8. </span>Binary Tree Node Implementations (WORK IN PROGRESS)<a class="headerlink" href="#binary-tree-node-implementations-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="binary-tree-node-implementations">
-<h1>6.<span class="section-number">8. </span>Binary Tree Node Implementations<a class="headerlink" href="#binary-tree-node-implementations" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>6.<span class="section-number">8.1. </span>Binary Tree Node Implementations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">8.1. </span>Binary Tree Node Implementations<a class="headerlink" href="#binary-tree-node-implementations" title="Permalink to this headline">¶</a></h2>
 <p>In this module we examine various ways to implement binary tree
 nodes.
 By definition, all binary tree nodes have two children,
@@ -221,7 +221,7 @@ one to its left child and another to its right child.</p>
 <div class="divdgm" id="binlink">
 <div id="BTnullpointerCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 6.9.1: Illustration of a typical pointer-based binary tree implementation,
+<p class="caption"><span class="caption-text"> Figure 5.9.1: Illustration of a typical pointer-based binary tree implementation,
 where each node stores two child pointers and a value.</span></p>
 </div>
 <p>Some programmers find it convenient to add a pointer to the
@@ -247,7 +247,7 @@ Other applications require one type of value for the leaves and
 another for the internal nodes.
 Examples include the <a class="reference internal" href="Glossary.html#term-binary-trie"><span class="xref std std-term">binary trie</span></a>, the <a class="reference internal" href="Glossary.html#term-pr-quadtree"><span class="xref std std-term">PR Quadtree</span></a>,
 the <a class="reference internal" href="Glossary.html#term-huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, and the <a class="reference internal" href="Glossary.html#term-expression-tree"><span class="xref std std-term">expression tree</span></a>
-illustrated by Figure <a href="BinaryTreeImpl.html#diffnodes">6.9.2</a>.
+illustrated by Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a>.
 By definition, only internal nodes have non-empty children.
 If we use the same node implementation for both internal and leaf
 nodes, then both must store the child pointers.
@@ -257,16 +257,16 @@ implementations for internal and leaf nodes.</p>
 <div class="divdgm" id="diffnodes">
 <div id="expressionTreeCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 6.9.2: An expression tree for <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.</span></p>
+<p class="caption"><span class="caption-text"> Figure 5.9.2: An expression tree for <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.</span></p>
 </div>
 <p>As an example of a tree that stores different information at the leaf
 and internal nodes, consider the expression tree illustrated by
-Figure <a href="BinaryTreeImpl.html#diffnodes">6.9.2</a>.
+Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a>.
 The expression tree represents an algebraic expression
 composed of binary operators such as addition, subtraction,
 multiplication, and division.
 Internal nodes store operators, while the leaves store operands.
-The tree of Figure <a href="BinaryTreeImpl.html#diffnodes">6.9.2</a> represents the expression
+The tree of Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a> represents the expression
 <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.
 The storage requirements for a leaf in an expression tree are quite
 different from those of an internal node.
@@ -421,11 +421,11 @@ function <code class="docutils literal notranslate"><span class="pre">traverse</
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeInfFlw.html">6.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryTreeNodeSpace.html">6.<span class="section-number">9. </span>Binary Tree Space Requirements</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -440,7 +440,7 @@ function <code class="docutils literal notranslate"><span class="pre">traverse</
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

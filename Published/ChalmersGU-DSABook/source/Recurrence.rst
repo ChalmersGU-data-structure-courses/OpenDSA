@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['estimating-upper-and-lower-bounds', 'expanding-recurrences', 'divide-and-conquer-recurrences', 'average-case-analysis-of-quicksort'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['solving-recurrence-relations', 'estimating-upper-and-lower-bounds', 'expanding-recurrences', 'divide-and-conquer-recurrences', 'average-case-analysis-of-quicksort'];</script>
 
 .. _Recurrence:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Recurrence";ODSA.SETTINGS.MODULE_LONG_NAME = "Solving Recurrence Relations";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Recurrence";ODSA.SETTINGS.MODULE_LONG_NAME = "Solving Recurrence Relations (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,11 +27,21 @@
 .. avmetadata::
    :author: Cliff Shaffer
 
-Solving Recurrence Relations
-============================
+Solving Recurrence Relations (optional) (WORK IN PROGRESS)
+==========================================================
 
 Solving Recurrence Relations
 ----------------------------
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Equation cross-reference
+   Throughout this module, there are references to equations, both
+   on this page and in the Summations module. These should be made
+   into proper cross-references rather than hard-coded equation numbers.
 
 Recurrence relations are often used to model the cost of recursive
 functions.

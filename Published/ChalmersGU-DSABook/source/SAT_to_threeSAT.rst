@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['reduction-of-sat-to-3-sat'];</script>
 
 .. _SAT_to_threeSAT:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SAT_to_threeSAT";ODSA.SETTINGS.MODULE_LONG_NAME = "Reduction of SAT to 3-SAT";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SAT_to_threeSAT";ODSA.SETTINGS.MODULE_LONG_NAME = "Reduction of SAT to 3-SAT (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :author: Nabanita Maji
    :topic: NP-completeness
 
-Reduction of SAT to 3-SAT
-=========================
+Reduction of SAT to 3-SAT (optional) (WORK IN PROGRESS)
+=========================================================
 
 Reduction of SAT to 3-SAT
 -------------------------

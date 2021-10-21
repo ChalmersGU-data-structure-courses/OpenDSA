@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heapsort-proficiency-practice', 'heapsort-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heapsort', 'heapsort-proficiency-practice', 'heapsort-analysis'];</script>
 
 .. _Heapsort:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
 
 .. index:: ! Heapsort
 
-Heapsort
-========
+Heapsort (WORK IN PROGRESS)
+=============================
 
 Heapsort
 --------

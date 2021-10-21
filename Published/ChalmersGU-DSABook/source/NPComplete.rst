@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hard-problems', 'the-theory-of-np-completeness'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['np-completeness', 'hard-problems', 'the-theory-of-np-completeness'];</script>
 
 .. _NPComplete:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "NPComplete";ODSA.SETTINGS.MODULE_LONG_NAME = "NP-Completeness";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "NPComplete";ODSA.SETTINGS.MODULE_LONG_NAME = "NP-Completeness (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :author: Cliff Shaffer
    :topic: NP-completeness
 
-NP-Completeness
-===============
+NP-Completeness (optional) (WORK IN PROGRESS)
+===============================================
 
 NP-Completeness
 ---------------

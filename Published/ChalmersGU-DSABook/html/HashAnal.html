@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.8. Analysis of Closed Hashing &mdash; Data Structures and Algorithms</title>
+    <title>10.8. Analysis of Closed Hashing (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Deletion" href="HashDel.html" />
-    <link rel="prev" title="7. Improved Collision Resolution" href="HashCImproved.html" />
+    <link rel="next" title="9. Deletion (WORK IN PROGRESS)" href="HashDel.html" />
+    <link rel="prev" title="7. Improved Collision Resolution (WORK IN PROGRESS)" href="HashCImproved.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashCImproved.html">10.<span class="section-number">7. </span>Improved Collision Resolution</a>
+        «&#160;&#160;<a id="prevmod" href="HashCImproved.html">10.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="HashDel.html">10.<span class="section-number">9. </span>Deletion</a>&#160;&#160;»
+        <a  id="nextmod" href="HashDel.html">10.<span class="section-number">9. </span>Deletion (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Closed Hashing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="analysis-of-closed-hashing">
-<h1>10.<span class="section-number">8. </span>Analysis of Closed Hashing<a class="headerlink" href="#analysis-of-closed-hashing" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>10.<span class="section-number">8.1. </span>Analysis of Closed Hashing<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['analysis-of-closed-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Closed Hashing (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="analysis-of-closed-hashing-work-in-progress">
+<h1>10.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)<a class="headerlink" href="#analysis-of-closed-hashing-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="analysis-of-closed-hashing">
+<h2>10.<span class="section-number">8.1. </span>Analysis of Closed Hashing<a class="headerlink" href="#analysis-of-closed-hashing" title="Permalink to this headline">¶</a></h2>
 <p>How efficient is hashing?
 We can measure hashing performance in terms of the number of
 record accesses required when performing an operation.
@@ -241,6 +241,13 @@ probing is <span class="math notranslate nohighlight">\(.5(1 + 1/(1-\alpha)^2)\)
 insertions or unsuccessful searches and
 <span class="math notranslate nohighlight">\(.5(1 + 1/(1-\alpha))\)</span> for deletions or successful
 searches.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Text</dt><dd><p>Where did that last claim about the linear probing cost come from?</p>
+</dd>
+</dl>
+</div>
 <div class="figure align-center" id="id2" style="width: 90%">
 <span id="hashplot"></span><a class="reference internal image-reference" href="_images/hashplot.png"><img alt="Hashing analysis plot" src="_images/hashplot.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text"> Figure 10.9.1: A plot showing the growth rate of the cost for insertion and
@@ -310,11 +317,11 @@ keep performance good on the other.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashCImproved.html">10.<span class="section-number">7. </span>Improved Collision Resolution</a>
+        «&#160;&#160;<a id="prevmod1" href="HashCImproved.html">10.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="HashDel.html">10.<span class="section-number">9. </span>Deletion</a>&#160;&#160;»
+        <a  id="nextmod1" href="HashDel.html">10.<span class="section-number">9. </span>Deletion (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -329,7 +336,7 @@ keep performance good on the other.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.10. Implementing Recursion &mdash; Data Structures and Algorithms</title>
+    <title>4.10. Implementing Recursion &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="StackLinked.html">5.<span class="section-number">9. </span>Linked Stacks</a>
+        «&#160;&#160;<a id="prevmod" href="StackLinked.html">4.<span class="section-number">9. </span>Linked Stacks</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Queue.html">5.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
+        <a  id="nextmod" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
 
 
         </p>
@@ -162,8 +162,8 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['call-stacks-for-implementing-recursion', 'towers-of-hanoi'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-recursion">
-<h1>5.<span class="section-number">10. </span>Implementing Recursion<a class="headerlink" href="#implementing-recursion" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['call-stacks-for-implementing-recursion', 'towers-of-hanoi'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackRecur";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Recursion";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-recursion">
+<h1>4.<span class="section-number">10. </span>Implementing Recursion<a class="headerlink" href="#implementing-recursion" title="Permalink to this headline">¶</a></h1>
 <p>WARNING! You should not read this section unless you are already
 comfortable with implementing <a class="reference internal" href="Glossary.html#term-recursion"><span class="xref std std-term">recursive</span></a>
 functions.
@@ -176,7 +176,7 @@ understanding.
 There are good reasons to understand how recursion is implemented,
 but helping you to write recursive functions is not one of them.</p>
 <div class="section" id="call-stacks-for-implementing-recursion">
-<h2>5.<span class="section-number">10.1. </span>Call stacks for implementing recursion<a class="headerlink" href="#call-stacks-for-implementing-recursion" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">10.1. </span>Call stacks for implementing recursion<a class="headerlink" href="#call-stacks-for-implementing-recursion" title="Permalink to this headline">¶</a></h2>
 <p>Perhaps the most common computer application that uses
 <a class="reference internal" href="StackArray.html#stackarray"><span class="std std-ref">stacks</span></a> is not even visible to its users.
 This is the implementation of subroutine calls in most programming
@@ -230,6 +230,14 @@ On each recursive function call to <code class="docutils literal notranslate"><s
 address and the current value of <code class="docutils literal notranslate"><span class="pre">n</span></code> must be saved.
 Each return from <code class="docutils literal notranslate"><span class="pre">fact</span></code> pops the top activation record off the
 stack.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>The figure above and the following text should all be rolled into
+a slideshow.</p>
+</dd>
+</dl>
+</div>
 <p>Consider what happens when we call <code class="docutils literal notranslate"><span class="pre">fact</span></code> with the value 4.
 We use <span class="math notranslate nohighlight">\(\beta\)</span> to indicate the address of the program
 instruction where the call to <code class="docutils literal notranslate"><span class="pre">fact</span></code> is made.
@@ -264,7 +272,7 @@ recursive function calls.
 In some cases, such as the factorial function above,
 recursion can easily be replaced by iteration.</p>
 <div class="topic" id="stackfact">
-<p class="topic-title">Example 5.11.1 </p>
+<p class="topic-title">Example 4.11.1 </p>
 <p>As a simple example of replacing recursion with a stack, consider
 the following non-recursive version of the factorial function.</p>
 <div id="Factorial_SFact_code"><ul><li><a href="#Factorial_SFact_code_Pseudo">Pseudo-Code</a></li><li><a href="#Factorial_SFact_code_Java_Generic">Java</a></li><li><a href="#Factorial_SFact_code_Python">Python</a></li></ul><div id="Factorial_SFact_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return n!</span>
@@ -335,7 +343,7 @@ the subarray to be processed needs to be saved.</p>
 Hanoi function, which cannot be done iteratively.</p>
 </div>
 <div class="section" id="towers-of-hanoi">
-<h2>5.<span class="section-number">10.2. </span>Towers of Hanoi<a class="headerlink" href="#towers-of-hanoi" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">10.2. </span>Towers of Hanoi<a class="headerlink" href="#towers-of-hanoi" title="Permalink to this headline">¶</a></h2>
 <p>Here is a recursive implementation for Towers of Hanoi.</p>
 <div id="TowersOfHanoi_TOH_code"><ul><li><a href="#TowersOfHanoi_TOH_code_Pseudo">Pseudo-Code</a></li><li><a href="#TowersOfHanoi_TOH_code_Java_Generic">Java</a></li><li><a href="#TowersOfHanoi_TOH_code_Python">Python</a></li></ul><div id="TowersOfHanoi_TOH_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute the moves to solve a Tower of Hanoi puzzle.</span>
 <span class="c1">// Function move does (or prints) the actual move of a disk</span>
@@ -488,11 +496,11 @@ order, so that they will be popped off in the correct order.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="StackLinked.html">5.<span class="section-number">9. </span>Linked Stacks</a>
+        «&#160;&#160;<a id="prevmod1" href="StackLinked.html">4.<span class="section-number">9. </span>Linked Stacks</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Queue.html">5.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
+        <a  id="nextmod1" href="Queue.html">4.<span class="section-number">11. </span>Queues</a>&#160;&#160;»
 
 </p>
       </div>
@@ -507,7 +515,7 @@ order, so that they will be popped off in the correct order.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-search', 'breadth-first-search'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-traversals', 'depth-first-search', 'breadth-first-search'];</script>
 
 .. _GraphTraversal:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :satisfies: graph traversal
    :topic: Graphs
 
-Graph Traversals
-================
+Graph Traversals (WORK IN PROGRESS)
+======================================
 
 Graph Traversals
 ----------------
@@ -220,6 +220,13 @@ Here is an exercise for you to practice BFS.
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: BFS Proficiency Exercise
 
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Exercise
+   Summary exercise for graph traversals.
 
 .. odsascript:: AV/Graph/DFSCON.js
 .. odsascript:: AV/Graph/BFSCON.js

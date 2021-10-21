@@ -22,7 +22,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -40,28 +40,20 @@ Introduction
    IntroDSA
    ADT
    CourseAPI
+   SearchIntro
    Comparison
    ComparingExample
    Dictionary
 
-Arrays
-======
+Arrays: Searching and Sorting
+=============================
 
 .. toctree::
    :numbered:
    :maxdepth: 1
 
-   SearchIntro
+   ArraysIntro
    BinarySearch
-   StringReading
-
-Sorting
-=======
-
-.. toctree::
-   :numbered:
-   :maxdepth: 1
-
    InSort
    SortNotation
    InsertionSort
@@ -140,15 +132,9 @@ Binary Trees
    BinaryTreeInfFlw
    BinaryTreeImpl
    BinaryTreeNodeSpace
-   BST
-   BSTDict
-   BinaryTreeGuidedInfFlw
-   MultipleBinaryTrees
-   BSTCheck
-   BinaryChapSumm
 
-General Trees (misc stuff)
-==========================
+General Trees and Union-Find (optional)
+=======================================
 
 .. toctree::
    :numbered:
@@ -157,9 +143,22 @@ General Trees (misc stuff)
    GenTreeIntro
    UnionFind
    SequentialRep
-   GenTreeImplement
 
-Balanced Binary Trees
+Search Trees
+============
+
+.. toctree::
+   :numbered:
+   :maxdepth: 1
+
+   BST
+   BSTDict
+   BinaryTreeGuidedInfFlw
+   MultipleBinaryTrees
+   BSTCheck
+   BinaryChapSumm
+
+Balanced Search Trees
 =====================
 
 .. toctree::
@@ -221,9 +220,10 @@ Graphs
    MCST
    Kruskal
    Floyd
+   GraphCM
 
-Limits to Computing
-===================
+Limits to Computing (optional)
+==============================
 
 .. toctree::
    :numbered:
@@ -265,6 +265,7 @@ Appendix
 .. toctree::
    :maxdepth: 1
 
+   ToDo
 
 * :ref:`genindex`
 * :ref:`search`

@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['alternative-sequential-representation', 'bit-vector-representation', 'general-tree-sequential-representation'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sequential-tree-representations', 'alternative-sequential-representation', 'bit-vector-representation', 'general-tree-sequential-representation'];</script>
 
 .. _SequentialRep:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SequentialRep";ODSA.SETTINGS.MODULE_LONG_NAME = "Sequential Tree Representations";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SequentialRep";ODSA.SETTINGS.MODULE_LONG_NAME = "Sequential Tree Representations (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :author: Cliff Shaffer
    :topic: General Trees
 
-Sequential Tree Representations
-===============================
+Sequential Tree Representations (optional) (WORK IN PROGRESS)
+==============================================================
 
 Sequential Tree Representations
 -------------------------------

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTDict";ODSA.SETTINGS.MODULE_LONG_NAME = "Dictionary Implementation Using a BST";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTDict";ODSA.SETTINGS.MODULE_LONG_NAME = "Dictionary Implementation Using a BST (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: BST Dictionary
    :topic: Binary Trees
 
-Dictionary Implementation Using a BST
-=====================================
+Dictionary Implementation Using a BST (WORK IN PROGRESS)
+==========================================================
 
 A simple implementation for the
 :ref:`Dictionary  <Dictionary>` ADT can be
@@ -64,6 +64,14 @@ as :math:`\Theta(n)`.
 
 Here is an implementation for the Dictionary interface, using a BST to
 store the records.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+   This code is seriously buggy! The BST stores (k,v) pairs,
+   but find and remove searches for keys only!
 
 .. codeinclude:: Binary/BSTDict
 

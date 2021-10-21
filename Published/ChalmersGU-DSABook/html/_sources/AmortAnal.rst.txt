@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AmortAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Amortized Analysis";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AmortAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Amortized Analysis (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -24,8 +24,8 @@
    :author: Cliff Shaffer
    :topic: Advanced Algorithm Analysis
 
-Amortized Analysis
-==================
+Amortized Analysis (optional) (WORK IN PROGRESS)
+================================================
 
 This module presents the concept of :term:`amortized analysis`,
 which is the analysis for a series of operations taken as a whole.

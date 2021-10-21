@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['bubble-sort-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['bubble-sort', 'bubble-sort-analysis'];</script>
 
 .. _BubbleSort:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BubbleSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Bubble Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BubbleSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Bubble Sort (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
 
 .. index:: ! Bubble Sort
 
-Bubble Sort
-===========
+Bubble Sort (optional)
+=========================
 
 Bubble Sort
 -----------

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.6. Asymptotic Analysis and Upper Bounds &mdash; Data Structures and Algorithms</title>
+    <title>3.6. Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Lower Bounds and \(\Theta\) Notation" href="AnalLower.html" />
-    <link rel="prev" title="5. Faster Computer, or Faster Algorithm?" href="AnalCompvsAlg.html" />
+    <link rel="next" title="7. Lower Bounds and \(\Theta\) Notation (WORK IN PROGRESS)" href="AnalLower.html" />
+    <link rel="prev" title="5. Faster Computer, or Faster Algorithm? (WORK IN PROGRESS)" href="AnalCompvsAlg.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AnalCompvsAlg.html">4.<span class="section-number">5. </span>Faster Computer, or Faster Algorithm?</a>
+        «&#160;&#160;<a id="prevmod" href="AnalCompvsAlg.html">3.<span class="section-number">5. </span>Faster Computer, or Faster Algorithm? (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>&#160;&#160;»
+        <a  id="nextmod" href="AnalLower.html">3.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,14 +162,14 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['upper-bounds', 'simplifying-rules', 'summary', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalAsymptotic";ODSA.SETTINGS.MODULE_LONG_NAME = "Asymptotic Analysis and Upper Bounds";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/GrowthRatesCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['asymptotic-analysis-and-upper-bounds', 'upper-bounds', 'simplifying-rules', 'summary', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalAsymptotic";ODSA.SETTINGS.MODULE_LONG_NAME = "Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/GrowthRatesCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/AlgAnal/GrowthRatesZoomCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/AlgAnal/UpperBoundCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/SimpleCostsCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="asymptotic-analysis-and-upper-bounds-work-in-progress">
+<h1>3.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)<a class="headerlink" href="#asymptotic-analysis-and-upper-bounds-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="asymptotic-analysis-and-upper-bounds">
-<h1>4.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds<a class="headerlink" href="#asymptotic-analysis-and-upper-bounds" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>4.<span class="section-number">6.1. </span>Asymptotic Analysis and Upper Bounds<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.<span class="section-number">6.1. </span>Asymptotic Analysis and Upper Bounds<a class="headerlink" href="#asymptotic-analysis-and-upper-bounds" title="Permalink to this headline">¶</a></h2>
 <div class="divdgm" id="runtimegraph2">
 <div id="GrowthRatesCON">
 </div>
@@ -177,7 +177,7 @@
 <div class="divdgm">
 <div id="GrowthRatesZoomCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 4.7.2: Two views of a graph illustrating the growth rates for
+<p class="caption"><span class="caption-text"> Figure 3.7.2: Two views of a graph illustrating the growth rates for
 six equations.
 The bottom view shows in detail the lower-left portion
 of the top view.
@@ -237,7 +237,7 @@ algorithms.
 Just be aware of the limitations to asymptotic analysis in the
 rare situation where the constant is important.</p>
 <div class="section" id="upper-bounds">
-<h3>4.<span class="section-number">6.1.1. </span>Upper Bounds<a class="headerlink" href="#upper-bounds" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">6.1.1. </span>Upper Bounds<a class="headerlink" href="#upper-bounds" title="Permalink to this headline">¶</a></h3>
 <p>Several terms are used to describe the running-time equation for an
 algorithm.
 These terms—and their associated symbols—indicate
@@ -278,7 +278,7 @@ type in question (such as the worst case for all inputs of size
 the algorithm <em>always</em> executes in less than or equal to <span class="math notranslate nohighlight">\(cf(n)\)</span>
 steps for some constant <span class="math notranslate nohighlight">\(c\)</span>.</p>
 <div class="topic">
-<p class="topic-title">Example 4.7.1 </p>
+<p class="topic-title">Example 3.7.1 </p>
 <p>Consider the sequential search algorithm for finding a specified
 value in an array of integers.
 If visiting and examining one value in the array requires
@@ -291,7 +291,7 @@ Therefore, by the definition, <span class="math notranslate nohighlight">\(\math
 <span class="math notranslate nohighlight">\(O(n)\)</span> for <span class="math notranslate nohighlight">\(n_0 = 1\)</span> and <span class="math notranslate nohighlight">\(c = c_s\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.7.2 </p>
+<p class="topic-title">Example 3.7.2 </p>
 <p>For a particular algorithm, <span class="math notranslate nohighlight">\(\mathbf{T}(n) = c_1 n^2 + c_2 n\)</span>
 in the average case where <span class="math notranslate nohighlight">\(c_1\)</span> and <span class="math notranslate nohighlight">\(c_2\)</span> are positive
 numbers.
@@ -305,7 +305,7 @@ Therefore, <span class="math notranslate nohighlight">\(\mathbf{T}(n)\)</span> i
 definition.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.7.3 </p>
+<p class="topic-title">Example 3.7.3 </p>
 <p>Assigning the value from the first position of an array to a
 variable takes constant time regardless of the size of the
 array.
@@ -354,7 +354,7 @@ There is no strict equality to the use of big-Oh notation.
 <span class="math notranslate nohighlight">\(O(n)\)</span>.</p>
 </div>
 <div class="section" id="simplifying-rules">
-<h3>4.<span class="section-number">6.1.2. </span>Simplifying Rules<a class="headerlink" href="#simplifying-rules" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">6.1.2. </span>Simplifying Rules<a class="headerlink" href="#simplifying-rules" title="Permalink to this headline">¶</a></h3>
 <p>Once you determine the running-time equation for an algorithm,
 it really is a simple matter to derive the big-Oh
 expressions from the equation.
@@ -404,7 +404,7 @@ for large <span class="math notranslate nohighlight">\(n\)</span>.</p>
 rules when discussing the cost for a program or algorithm.</p>
 </div>
 <div class="section" id="summary">
-<h3>4.<span class="section-number">6.1.4. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">6.1.4. </span>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
 <div id="UpperBoundCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="UpperBoundCON" data-long-name="Upper Bounds visualization" data-exer-id="" alt="Upper Bounds visualization" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -431,7 +431,7 @@ rules when discussing the cost for a program or algorithm.</p>
 </div>
 </div>
 <div class="section" id="practice-questions">
-<h3>4.<span class="section-number">6.1.5. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">6.1.5. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h3>
 <div
     id="UpperBoundsSumm"
     class="embedContainer"
@@ -468,11 +468,11 @@ rules when discussing the cost for a program or algorithm.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AnalCompvsAlg.html">4.<span class="section-number">5. </span>Faster Computer, or Faster Algorithm?</a>
+        «&#160;&#160;<a id="prevmod1" href="AnalCompvsAlg.html">3.<span class="section-number">5. </span>Faster Computer, or Faster Algorithm? (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>&#160;&#160;»
+        <a  id="nextmod1" href="AnalLower.html">3.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -487,7 +487,7 @@ rules when discussing the cost for a program or algorithm.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

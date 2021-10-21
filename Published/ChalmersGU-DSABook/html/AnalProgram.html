@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.8. Calculating Program Running Time &mdash; Data Structures and Algorithms</title>
+    <title>3.8. Calculating Program Running Time (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Analyzing Problems" href="AnalProblem.html" />
-    <link rel="prev" title="7. Lower Bounds and \(\Theta\) Notation" href="AnalLower.html" />
+    <link rel="next" title="9. Analyzing Problems (WORK IN PROGRESS)" href="AnalProblem.html" />
+    <link rel="prev" title="7. Lower Bounds and \(\Theta\) Notation (WORK IN PROGRESS)" href="AnalLower.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>
+        «&#160;&#160;<a id="prevmod" href="AnalLower.html">3.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AnalProblem.html">4.<span class="section-number">9. </span>Analyzing Problems</a>&#160;&#160;»
+        <a  id="nextmod" href="AnalProblem.html">3.<span class="section-number">9. </span>Analyzing Problems (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['case-study:-two-search-algorithms', 'binary-search-practice-exercise', 'analyzing-binary-search', 'summary-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['calculating-program-running-time', 'case-study:-two-search-algorithms', 'binary-search-practice-exercise', 'analyzing-binary-search', 'summary-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/AlgAnal/BsearchDandCRecurCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="calculating-program-running-time-work-in-progress">
+<h1>3.<span class="section-number">8. </span>Calculating Program Running Time (WORK IN PROGRESS)<a class="headerlink" href="#calculating-program-running-time-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="calculating-program-running-time">
-<h1>4.<span class="section-number">8. </span>Calculating Program Running Time<a class="headerlink" href="#calculating-program-running-time" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>4.<span class="section-number">8.1. </span>Calculating Program Running Time<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.<span class="section-number">8.1. </span>Calculating Program Running Time<a class="headerlink" href="#calculating-program-running-time" title="Permalink to this headline">¶</a></h2>
 <p>This modules discusses the analysis for several simple code
 fragments.
 We will make use of the algorithm analysis simplifying rules:</p>
@@ -184,7 +184,7 @@ We will make use of the algorithm analysis simplifying rules:</p>
 <span class="math notranslate nohighlight">\(O(g_1(n) g_2(n))\)</span>.</p></li>
 </ol>
 <div class="topic" id="assignanal">
-<p class="topic-title">Example 4.9.1 </p>
+<p class="topic-title">Example 3.9.1 </p>
 <p>We begin with an analysis of a simple assignment to an integer
 variable.</p>
 <div id="Anal_c3p2_code"><ul><li><a href="#Anal_c3p2_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p2_code_Python">Python</a></li></ul><div id="Anal_c3p2_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
@@ -197,7 +197,7 @@ variable.</p>
 <span class="math notranslate nohighlight">\(\Theta(1)\)</span>.</p>
 </div>
 <div class="topic" id="flanal">
-<p class="topic-title">Example 4.9.2 </p>
+<p class="topic-title">Example 3.9.2 </p>
 <p>Consider a simple <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.</p>
 <div id="Anal_c3p3_code"><ul><li><a href="#Anal_c3p3_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p3_code_Python">Python</a></li></ul><div id="Anal_c3p3_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
@@ -219,7 +219,7 @@ By rule (3), the cost of the entire code fragment is also
 <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.9.3 </p>
+<p class="topic-title">Example 3.9.3 </p>
 <p>We now analyze a code fragment with several <code class="docutils literal notranslate"><span class="pre">for</span></code>
 loops, some of which are nested.</p>
 <div id="Anal_c3p4_code"><ul><li><a href="#Anal_c3p4_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p4_code_Python">Python</a></li></ul><div id="Anal_c3p4_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -246,7 +246,7 @@ first assignment statement and the two <code class="docutils literal notranslate
 Again the assignment statement takes constant time;
 call it <span class="math notranslate nohighlight">\(c_1\)</span>.
 The second <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is just like the one in
-Example <a href="AnalProgram.html#flanal">4.9.2</a> and takes <span class="math notranslate nohighlight">\(c_2 n = \Theta(n)\)</span> time.</p>
+Example <a href="AnalProgram.html#flanal">3.9.2</a> and takes <span class="math notranslate nohighlight">\(c_2 n = \Theta(n)\)</span> time.</p>
 <p>The first <code class="docutils literal notranslate"><span class="pre">for</span></code> loop is a double loop and requires a special
 technique.
 We work from the inside of the loop outward.
@@ -272,7 +272,7 @@ By simplifying rule (3), <span class="math notranslate nohighlight">\(\Theta(c_1
 simply <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.9.4 </p>
+<p class="topic-title">Example 3.9.4 </p>
 <p>Compare the asymptotic analysis for the following two code
 fragments.</p>
 <div id="Anal_c3p5_code"><ul><li><a href="#Anal_c3p5_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p5_code_Python">Python</a></li></ul><div id="Anal_c3p5_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -313,7 +313,7 @@ Thus, both double loops cost <span class="math notranslate nohighlight">\(\Theta
 requires about half the time of the first.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.9.5 </p>
+<p class="topic-title">Example 3.9.5 </p>
 <p>Not all doubly nested <code class="docutils literal notranslate"><span class="pre">for</span></code> loops are <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>.
 The following pair of nested loops illustrates this fact.</p>
 <div id="Anal_c3p6_code"><ul><li><a href="#Anal_c3p6_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p6_code_Python">Python</a></li></ul><div id="Anal_c3p6_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -367,6 +367,15 @@ The summation can be expressed as</p>
 <p>where <span class="math notranslate nohighlight">\(n\)</span> is assumed to be a power of two and again
 <span class="math notranslate nohighlight">\(k = 2^i\)</span>.</p>
 </div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>We need to think about a technique for visualizing the running time
+of some loop constructs. This can be very similar to how we
+visualize reaching the closed form solution of summations.</p>
+</dd>
+</dl>
+</div>
 <p>What about other control statements?
 <code class="docutils literal notranslate"><span class="pre">While</span></code> loops are analyzed in a manner similar to <code class="docutils literal notranslate"><span class="pre">for</span></code>
 loops.
@@ -410,7 +419,7 @@ Thus, the running time for this function can be expressed as</p>
 <p>The closed-form solution for this
 recurrence relation is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
 <div class="section" id="case-study-two-search-algorithms">
-<h3>4.<span class="section-number">8.1.1. </span>Case Study: Two Search Algorithms<a class="headerlink" href="#case-study-two-search-algorithms" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">8.1.1. </span>Case Study: Two Search Algorithms<a class="headerlink" href="#case-study-two-search-algorithms" title="Permalink to this headline">¶</a></h3>
 <p>The final example of algorithm analysis for this section will compare
 two algorithms for performing search in an array.
 Earlier, we determined that the running time for sequential search on
@@ -440,7 +449,7 @@ Here is a visualization of the binary search method.</p>
 <p></p>
 </div>
 <div class="section" id="binary-search-practice-exercise">
-<h3>4.<span class="section-number">8.1.2. </span>Binary Search Practice Exercise<a class="headerlink" href="#binary-search-practice-exercise" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">8.1.2. </span>Binary Search Practice Exercise<a class="headerlink" href="#binary-search-practice-exercise" title="Permalink to this headline">¶</a></h3>
 <div
     id="binarySearchPRO"
     class="embedContainer"
@@ -465,7 +474,7 @@ Here is a visualization of the binary search method.</p>
 </div>
 </div>
 <div class="section" id="analyzing-binary-search">
-<h3>4.<span class="section-number">8.1.3. </span>Analyzing Binary Search<a class="headerlink" href="#analyzing-binary-search" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">8.1.3. </span>Analyzing Binary Search<a class="headerlink" href="#analyzing-binary-search" title="Permalink to this headline">¶</a></h3>
 <div id="BsearchDandCRecurCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BsearchDandCRecurCON" data-long-name="Binary Search recurrence slideshow" data-exer-id="" alt="Binary Search recurrence slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -519,7 +528,7 @@ whether the advantage outweighs the disadvantage.</p>
 </div>
 </div>
 <div class="section" id="summary-exercise">
-<h2>4.<span class="section-number">8.2. </span>Summary Exercise<a class="headerlink" href="#summary-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>3.<span class="section-number">8.2. </span>Summary Exercise<a class="headerlink" href="#summary-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="AnalProgramSumm"
     class="embedContainer"
@@ -552,11 +561,11 @@ whether the advantage outweighs the disadvantage.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AnalLower.html">4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation</a>
+        «&#160;&#160;<a id="prevmod1" href="AnalLower.html">3.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AnalProblem.html">4.<span class="section-number">9. </span>Analyzing Problems</a>&#160;&#160;»
+        <a  id="nextmod1" href="AnalProblem.html">3.<span class="section-number">9. </span>Analyzing Problems (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -571,7 +580,7 @@ whether the advantage outweighs the disadvantage.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

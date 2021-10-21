@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeFullThm";ODSA.SETTINGS.MODULE_LONG_NAME = "The Full Binary Tree Theorem";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeFullThm";ODSA.SETTINGS.MODULE_LONG_NAME = "The Full Binary Tree Theorem (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: full binary tree theorem
    :topic: Binary Trees
 
-The Full Binary Tree Theorem
-============================
+The Full Binary Tree Theorem (WORK IN PROGRESS)
+===============================================
 
 Some binary tree implementations store data only at the
 :term:`leaf nodes <leaf node>`,

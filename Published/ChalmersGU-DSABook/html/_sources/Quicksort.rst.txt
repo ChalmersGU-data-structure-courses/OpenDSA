@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -383,6 +383,22 @@ less as suggested above, about three quarters of the function calls
 will already have been eliminated.
 Thus, eliminating the remaining function calls will yield only a
 modest speedup.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Exercise
+   Consider the Quicksort implementation for this module, where the
+   pivot is selected as the middle value of the partition.
+   Give a permutation for the values 0 through 7 that will cause
+   Quicksort to have its worst-case behavior.
+
+   There are a number of possible correct answers. To assess the
+   answer, will need to run Quicksort over student's
+   partition, and verify that at each step it will generate new
+   partitions of size 6, 5, 4, 3, 2, then 1.
 
 .. avembed:: Exercises/Sorting/QuicksortSumm.html ka
    :module: Quicksort

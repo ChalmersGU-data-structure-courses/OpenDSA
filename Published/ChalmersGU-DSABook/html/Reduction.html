@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>12.2. Reductions &mdash; Data Structures and Algorithms</title>
+    <title>12.2. Reductions (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="3. NP-Completeness" href="NPComplete.html" />
-    <link rel="prev" title="1. Limits to Computing" href="LimComp.html" />
+    <link rel="next" title="3. NP-Completeness (optional) (WORK IN PROGRESS)" href="NPComplete.html" />
+    <link rel="prev" title="1. Limits to Computing (optional) (WORK IN PROGRESS)" href="LimComp.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 12 Limits to Computing</span></h2>
+              <h2 class="heading" ><span>Chapter 12 Limits to Computing (optional)</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing</a>
+        «&#160;&#160;<a id="prevmod" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
+        <a  id="nextmod" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,15 +162,15 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['example:-the-pairing-problem', 'reduction-and-finding-a-lower-bound', 'the-reduction-template', 'two-multiplication-examples', 'bounds-theorems', 'the-cost-of-making-a-simple-polygon'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Reduction";ODSA.SETTINGS.MODULE_LONG_NAME = "Reductions";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SortingProblemCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['reductions', 'example:-the-pairing-problem', 'reduction-and-finding-a-lower-bound', 'the-reduction-template', 'two-multiplication-examples', 'bounds-theorems', 'the-cost-of-making-a-simple-polygon'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Reduction";ODSA.SETTINGS.MODULE_LONG_NAME = "Reductions (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SortingProblemCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/pairToSortCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/sortToPairCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/NP/matrixMulCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/ReduceSimpPCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="reductions-optional-work-in-progress">
+<h1>12.<span class="section-number">2. </span>Reductions (optional) (WORK IN PROGRESS)<a class="headerlink" href="#reductions-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="reductions">
-<h1>12.<span class="section-number">2. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>12.<span class="section-number">2.1. </span>Reductions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>12.<span class="section-number">2.1. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h2>
 <p>This module introduces an important concept for
 understanding the relationships between problems, called
 <a class="reference internal" href="Glossary.html#term-reduction"><span class="xref std std-term">reduction</span></a>.
@@ -230,12 +230,12 @@ the least value in <span class="math notranslate nohighlight">\(X\)</span> is pa
 <span class="math notranslate nohighlight">\(Y\)</span>, the next least value in <span class="math notranslate nohighlight">\(X\)</span> is paired with the
 next least value in <span class="math notranslate nohighlight">\(Y\)</span>, and so on.</p>
 </div>
-<div class="figure align-center" id="id4" style="width: 90%">
+<div class="figure align-center" id="id3" style="width: 90%">
 <span id="pair"></span><a class="reference internal image-reference" href="_images/Pairing.png"><img alt="Illustration of PAIRING" src="_images/Pairing.png" style="width: 200px;" /></a>
 <p class="caption"><span class="caption-text"> Figure 12.3.1: An illustration of PAIRING.
 The two lists of numbers are paired up so that the least values
 from each list make a pair, the next smallest values from each list
-make a pair, and so on.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+make a pair, and so on.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <div id="pairToSortCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="pairToSortCON" data-long-name="Pair to Sorting Reduction Slideshow" data-exer-id="" alt="Pair to Sorting Reduction Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -372,9 +372,9 @@ second problem.</p></li>
 Note that <strong>SLN</strong> must in fact be the correct solution for <strong>I</strong>
 for the reduction to be acceptable.</p></li>
 </ol>
-<div class="figure align-center" id="id5" style="width: 90%">
+<div class="figure align-center" id="id4" style="width: 90%">
 <span id="blackbox"></span><a class="reference internal image-reference" href="_images/BlackBox.png"><img alt="General blackbox reduction" src="_images/BlackBox.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 12.3.2: The general process for reduction shown as a “blackbox” diagram.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"> Figure 12.3.2: The general process for reduction shown as a “blackbox” diagram.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>Figure <a href="Reduction.html#blackbox">12.3.2</a> shows a graphical representation of the
 general reduction process, showing the role of the two problems, and
@@ -488,7 +488,7 @@ A^{\rm T}&amp; 0
 \right].\end{split}\]</div>
 <p>Here 0 stands for an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix composed of zero
 values, <span class="math notranslate nohighlight">\(A\)</span> is the original matrix, and <span class="math notranslate nohighlight">\(A^{\rm T}\)</span> stands
-for the transpose of matrix <span class="math notranslate nohighlight">\(A\)</span>. <a class="footnote-reference brackets" href="#id3" id="id2">1</a></p>
+for the transpose of matrix <span class="math notranslate nohighlight">\(A\)</span>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 <p>Note that the resulting matrix is now symmetric.
 We can convert matrix <span class="math notranslate nohighlight">\(B\)</span> to a symmetric matrix in a similar
 manner.
@@ -537,7 +537,7 @@ matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class
 </div>
 <p></p>
 <dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>The transpose operation
 takes position <span class="math notranslate nohighlight">\(ij\)</span> of the original matrix and places it
 in position <span class="math notranslate nohighlight">\(ji\)</span> of the transpose matrix.
@@ -611,11 +611,11 @@ Therefore, by the Lower Bound Theorem, SIMPLE POLYGON is in
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing</a>
+        «&#160;&#160;<a id="prevmod1" href="LimComp.html">12.<span class="section-number">1. </span>Limits to Computing (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness</a>&#160;&#160;»
+        <a  id="nextmod1" href="NPComplete.html">12.<span class="section-number">3. </span>NP-Completeness (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -630,7 +630,7 @@ Therefore, by the Lower Bound Theorem, SIMPLE POLYGON is in
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

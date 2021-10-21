@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['a-general-model-of-computation', 'interpreting-turing-machines', 'turing-decideable-vs-turing-acceptable-languages', 'making-more-complicated-machines', 'turing-machine-extensions'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['turing-machines', 'a-general-model-of-computation', 'interpreting-turing-machines', 'turing-decideable-vs-turing-acceptable-languages', 'making-more-complicated-machines', 'turing-machine-extensions'];</script>
 
 .. _Turing:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Turing";ODSA.SETTINGS.MODULE_LONG_NAME = "Turing Machines";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Turing";ODSA.SETTINGS.MODULE_LONG_NAME = "Turing Machines (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -40,8 +40,8 @@
    :author: Cliff Shaffer
    :topic: Turing Machines
 
-Turing Machines
-===============
+Turing Machines (optional) (WORK IN PROGRESS)
+================================================
 
 Turing Machines
 ---------------

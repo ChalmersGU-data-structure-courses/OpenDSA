@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "Union/Find and the Parent Pointer Implementation";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: Union/Find
    :topic: Union/Find
 
-Union/Find and the Parent Pointer Implementation
-================================================
+The Union/Find Algorithm (optional) (WORK IN PROGRESS)
+======================================================
 
 The Union/Find Problem
 ----------------------

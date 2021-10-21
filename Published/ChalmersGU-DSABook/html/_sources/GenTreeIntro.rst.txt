@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['general-tree-definitions-and-terminology', 'an-adt-for-general-tree-nodes', 'general-tree-traversals'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['general-trees', 'general-tree-definitions-and-terminology', 'an-adt-for-general-tree-nodes', 'general-tree-traversals'];</script>
 
 .. _GenTreeIntro:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "General Trees";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "General Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,8 +27,8 @@
    :satisfies: general trees
    :topic: General Trees
 
-General Trees
-=============
+General Trees (optional) (WORK IN PROGRESS)
+============================================
 
 General Trees
 -------------

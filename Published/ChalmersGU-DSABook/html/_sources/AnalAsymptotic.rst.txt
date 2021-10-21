@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['upper-bounds', 'simplifying-rules', 'summary', 'practice-questions'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['asymptotic-analysis-and-upper-bounds', 'upper-bounds', 'simplifying-rules', 'summary', 'practice-questions'];</script>
 
 .. _AnalAsymptotic:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalAsymptotic";ODSA.SETTINGS.MODULE_LONG_NAME = "Asymptotic Analysis and Upper Bounds";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalAsymptotic";ODSA.SETTINGS.MODULE_LONG_NAME = "Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -34,8 +34,8 @@
    :requires: growth rate; best and worst case
    :topic: Algorithm Analysis
 
-Asymptotic Analysis and Upper Bounds
-====================================
+Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)
+=======================================================
 
 Asymptotic Analysis and Upper Bounds
 ------------------------------------

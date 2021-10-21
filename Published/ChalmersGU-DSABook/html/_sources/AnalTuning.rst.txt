@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['empirical-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-and-empirical-analysis', 'empirical-analysis'];</script>
 
 .. _AnalTuning:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:45"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: code tuning; empirical analysis
    :topic: Algorithm Analysis
 
-Code Tuning and Empirical Analysis
-==================================
+Code Tuning and Empirical Analysis (WORK IN PROGRESS)
+=====================================================
 
 Code Tuning and Empirical Analysis
 ----------------------------------
@@ -57,6 +57,14 @@ Even speedups by a factor of five to ten are not uncommon.
 Occasionally, you can get an even bigger speedup
 by converting from a symbolic representation of the data
 to a numeric coding scheme on which you can do direct computation.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: text
+   Give an example of this type of representational change.
 
 Here are some suggestions for ways to speed up your
 programs by code tuning.

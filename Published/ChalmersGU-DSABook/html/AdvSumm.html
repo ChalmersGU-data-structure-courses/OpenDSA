@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.17. Summation Techniques &mdash; Data Structures and Algorithms</title>
+    <title>3.17. Summation Techniques (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="18. Solving Recurrence Relations" href="Recurrence.html" />
-    <link rel="prev" title="16. Growth Rates Review" href="GrowthRate.html" />
+    <link rel="next" title="18. Solving Recurrence Relations (optional) (WORK IN PROGRESS)" href="Recurrence.html" />
+    <link rel="prev" title="16. Growth Rates Review (optional) (WORK IN PROGRESS)" href="GrowthRate.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GrowthRate.html">4.<span class="section-number">16. </span>Growth Rates Review</a>
+        «&#160;&#160;<a id="prevmod" href="GrowthRate.html">3.<span class="section-number">16. </span>Growth Rates Review (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Recurrence.html">4.<span class="section-number">18. </span>Solving Recurrence Relations</a>&#160;&#160;»
+        <a  id="nextmod" href="Recurrence.html">3.<span class="section-number">18. </span>Solving Recurrence Relations (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AdvSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Summation Techniques";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Background/SummationOneToNCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AdvSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Summation Techniques (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 10:59:46"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Background/SummationOneToNCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/GeometricSumProofCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="summation-techniques">
-<h1>4.<span class="section-number">17. </span>Summation Techniques<a class="headerlink" href="#summation-techniques" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summation-techniques-optional-work-in-progress">
+<h1>3.<span class="section-number">17. </span>Summation Techniques (optional) (WORK IN PROGRESS)<a class="headerlink" href="#summation-techniques-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <p>Consider the following simple summation.</p>
 <div class="math notranslate nohighlight">
 \[\sum_{i=1}^n i.\]</div>
@@ -287,7 +287,7 @@ most of the terms cancel out.
 To solve sum <span class="math notranslate nohighlight">\(f\)</span>, we pick a known function <span class="math notranslate nohighlight">\(g\)</span> and find a
 pattern in terms of <span class="math notranslate nohighlight">\(f(n) - g(n)\)</span> or <span class="math notranslate nohighlight">\(f(n)/g(n)\)</span>.</p>
 <div class="topic">
-<p class="topic-title">Example 4.18.1 </p>
+<p class="topic-title">Example 3.18.1 </p>
 <p>Find the closed form solution for <span class="math notranslate nohighlight">\(\sum_{i=1}^n i\)</span> using
 the divide-and-guess approach.
 We will try two example functions to illustrate the
@@ -346,7 +346,7 @@ Fortunately, it is easy to check our hypothesis with
 induction.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.18.2 </p>
+<p class="topic-title">Example 3.18.2 </p>
 <p>Solve the summation</p>
 <div class="math notranslate nohighlight">
 \[\sum_{i=1}^n 1/2^i.\]</div>
@@ -382,7 +382,7 @@ From this we can easily deduce a guess that
 Again, a simple induction proof will verify the guess.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.18.3 </p>
+<p class="topic-title">Example 3.18.3 </p>
 <p>Solve the summation</p>
 <div class="math notranslate nohighlight">
 \[f(n) = \sum_{i=0}^{n} ar^i = a + ar + ar^2 + \cdots + ar^n.\]</div>
@@ -413,7 +413,7 @@ f(n) - rf(n) &amp; = &amp; \sum_{i=0}^{n} ar^i - r\sum_{i=0}^{n} ar^i.\\
 <p>where <span class="math notranslate nohighlight">\(r \neq 1\)</span>.</p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 4.18.4 </p>
+<p class="topic-title">Example 3.18.4 </p>
 <p>For our second example of the shifting method, we solve</p>
 <div class="math notranslate nohighlight">
 \[f(n) = \sum_{i=1}^{n} i2^i = 1 \cdot 2^1 + 2 \cdot 2^2 + 3 \cdot
@@ -484,11 +484,11 @@ solution that we already know:</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GrowthRate.html">4.<span class="section-number">16. </span>Growth Rates Review</a>
+        «&#160;&#160;<a id="prevmod1" href="GrowthRate.html">3.<span class="section-number">16. </span>Growth Rates Review (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Recurrence.html">4.<span class="section-number">18. </span>Solving Recurrence Relations</a>&#160;&#160;»
+        <a  id="nextmod1" href="Recurrence.html">3.<span class="section-number">18. </span>Solving Recurrence Relations (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -503,7 +503,7 @@ solution that we already know:</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
