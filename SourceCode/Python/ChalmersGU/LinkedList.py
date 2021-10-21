@@ -53,8 +53,8 @@ class LinkedList(List):
                 prev = prev.next
             removed = prev.next
             prev.next = removed.next
-        self._listSize -= 1
         removed.next = None   # For garbage collection
+        self._listSize -= 1
         return removed.elem
 #/* *** ODSAendTag: LinkedListRemove *** */
 

@@ -75,8 +75,8 @@ class LinkedList<E> implements List<E> {
             removed = prev.next;
             prev.next = removed.next;
         }
-        listSize--;
         removed.next = null;   // For garbage collection
+        listSize--;
         return removed.elem;
     }
 /* *** ODSAendTag: LinkedListRemove *** */

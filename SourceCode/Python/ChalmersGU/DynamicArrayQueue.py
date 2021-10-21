@@ -28,7 +28,7 @@ class DynamicArrayQueue(Queue):
 
 #/* *** ODSATag: DynamicArrayQueueDequeue *** */
     def dequeue(self):
-        if not (self._queueSize > 0): raise IndexError("pop from empty queue")
+        if not (self._queueSize > 0): raise IndexError("dequeue from empty queue")
         self._queueSize -= 1
         x = self._internalArray[self._front]
         self._internalArray[self._front] = None   # For garbage collection

@@ -49,7 +49,7 @@ class LinkedQueue<E> implements Queue<E> {
 
 /* *** ODSATag: LinkedQueueDequeue *** */
     public E dequeue() {
-        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("pop from empty queue");
+        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("dequeue from empty queue");
         Node removed = front;
         front = removed.next;
         removed.next = null;   // For garbage collection
