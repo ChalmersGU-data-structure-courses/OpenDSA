@@ -16,12 +16,12 @@ class DynamicArrayList<E> implements List<E> {
 
 /* *** ODSATag: DynamicArrayListGetSet *** */
     public E get(int i) {
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         return internalArray[i];
     }
 
     public E set(int i, E x) {
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E old = internalArray[i];
         internalArray[i] = x;
         return old;
@@ -30,7 +30,7 @@ class DynamicArrayList<E> implements List<E> {
 
 /* *** ODSATag: DynamicArrayListAdd *** */
     public void add(int i, E x) {
-        if (!(0 <= i && i <= listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i <= listSize)) throw new IndexOutOfBoundsException("list index out of range");
         if (listSize >= internalArray.length) {
             resizeArray(2 * internalArray.length);
         }
@@ -44,8 +44,7 @@ class DynamicArrayList<E> implements List<E> {
 
 /* *** ODSATag: DynamicArrayListRemove *** */
     public E remove(int i) {
-        if (!(listSize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E x = internalArray[i];
         for (int k = i+1; k < listSize; k++) {
             internalArray[k-1] = internalArray[k];

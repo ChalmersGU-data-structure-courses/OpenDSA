@@ -11,11 +11,11 @@ class StaticArrayList(List):
 
 #/* *** ODSATag: StaticArrayListGetSet *** */
     def get(self, i):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         return self._internalArray[i]
 
     def set(self, i, x):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         old = self._internalArray[i]
         self._internalArray[i] = x
         return old
@@ -23,8 +23,8 @@ class StaticArrayList(List):
 
 #/* *** ODSATag: StaticArrayListAdd *** */
     def add(self, i, x):
-        if not (self._listSize < len(self._internalArray)): raise IndexError("array capacity exceeded")
-        if not (0 <= i <= self._listSize):                  raise IndexError("array index out of range")
+        if not (self._listSize < len(self._internalArray)): raise IndexError("list capacity exceeded")
+        if not (0 <= i <= self._listSize):                  raise IndexError("list index out of range")
         self._listSize += 1
         for k in reversed(range(i+1, self._listSize)):
             self._internalArray[k] = self._internalArray[k-1]
@@ -33,8 +33,7 @@ class StaticArrayList(List):
 
 #/* *** ODSATag: StaticArrayListRemove *** */
     def remove(self, i):
-        if not (self._listSize > 0):      raise IndexError("remove from empty array")
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         x = self._internalArray[i]
         for k in range(i+1, self._listSize):
             self._internalArray[k-1] = self._internalArray[k]

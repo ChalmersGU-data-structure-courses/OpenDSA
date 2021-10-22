@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /* *** ODSATag: DynamicArrayQueue *** */
 /* *** ODSATag: DynamicArrayQueueInit *** */
@@ -31,14 +32,14 @@ class DynamicArrayQueue<E> implements Queue<E> {
 
 /* *** ODSATag: DynamicArrayQueuePeek *** */
     public E peek() {
-        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("peek from empty queue");
+        if (!(queueSize > 0)) throw new NoSuchElementException("peek from empty queue");
         return internalArray[front];
     }
 /* *** ODSAendTag: DynamicArrayQueuePeek *** */
 
 /* *** ODSATag: DynamicArrayQueueDequeue *** */
     public E dequeue() {
-        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("dequeue from empty queue");
+        if (!(queueSize > 0)) throw new NoSuchElementException("dequeue from empty queue");
         queueSize--;
         E x = internalArray[front];
         internalArray[front] = null;   // For garbage collection
