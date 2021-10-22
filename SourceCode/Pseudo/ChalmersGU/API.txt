@@ -63,15 +63,14 @@ interface SortedSet(E) extends Set(E)
 
 
 /* *** ODSATag: MapADT *** */
-interface Map(K,V)
+interface Map(K,V) extends Iterable(K)
     put(k:K, v:V)                   // Sets the value of the given key. Returns the previous value, or null.
     get(k:K)         : V            // Returns the value associated with the given key, or null if the key is not there.
     remove(k:K)      : V            // Removes and returns the value associated with the given key, or null if there is no key.
     containsKey(k:K) : boolean      // Returns true if the key has an associated value.
-    keyIterator()    : Iterator(K)  // Returns an iterator over the keys.
     isEmpty()        : boolean      // Returns true if there are no keys.
     size()           : int          // Returns the number of keys (i.e., the number of key/value pairs).
-    // Note: keyIterator() can yield the keys in any order.
+    // Note: iterator() can yield the keys in any order.
 /* *** ODSAendTag: MapADT *** */
 
 
@@ -81,7 +80,7 @@ interface SortedMap(K,V) extends Map(K,V)
     lastKey()       : K   // Returns the last (largest) key. Raises an exception if the map is empty.
     floorKey(k:K)   : K   // Returns the closest key <= k, or null if there is no key.
     ceilingKey(k:K) : K   // Returns the closest key >= k, or null if there is no key.
-    // Note: keyIterator() should yield the keys in order.
+    // Note: iterator() should yield the keys in order.
 /* *** ODSAendTag: SortedMapADT *** */
 
 

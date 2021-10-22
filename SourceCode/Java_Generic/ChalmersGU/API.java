@@ -85,16 +85,15 @@ interface SortedSet<E> extends Set<E> {
 
 /* *** ODSATag: MapADT *** */
 // Note: This is a subset of java.util.Map, where
-// `keyIterator` replaces the more complicated `keySet`.
-interface Map<K, V> {
+// `iterator` iterates over the keys, and replaces the more complicated `keySet`.
+interface Map<K, V> extends Iterable<K> {
     V put(K key, V value);       // Sets the value of the given key. Returns the previous value, or null.
     V get(K key);                // Returns the value associated with the given key, or null if the key is not there.
     V remove(K key);             // Removes and returns the value associated with the given key, or null if there is no key.
     boolean containsKey(K key);  // Returns true if the key has an associated value.
-    Iterator<K> keyIterator();   // Returns an iterator over the keys.
     boolean isEmpty();           // Returns true if there are no keys.
     int size();                  // Returns the number of keys (i.e., the number of key/value pairs).
-    // Note: keyIterator() can yield the keys in any order.
+    // Note: iterator() can yield the keys in any order.
 }
 /* *** ODSAendTag: MapADT *** */
 
@@ -107,7 +106,7 @@ interface SortedMap<K, V> extends Map<K, V> {
     K lastKey();           // Returns the last (largest) key. Raises an exception if the map is empty.
     K floorKey(K key);     // Returns the closest key <= k, or null if there is no key.
     K ceilingKey(K key);   // Returns the closest key >= k, or null if there is no key.
-    // Note: keyIterator() should yield the keys in order.
+    // Note: iterator() should yield the keys in order.
 }
 /* *** ODSAendTag: SortedMapADT *** */
 
