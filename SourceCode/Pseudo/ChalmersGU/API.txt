@@ -19,8 +19,8 @@ interface List(E) extends Collection(E)
 /* *** ODSATag: StackADT *** */
 interface Stack(E) extends Collection(E)
     push(x:E)       // Pushes x on top of the stack.
-    pop()     : E   // Pops the top of the stack and returns it.
-    peek()    : E   // Returns the top element of the stack, without removing it.
+    pop()     : E   // Pops the top of the stack and returns it. Raises an exception if the stack is empty.
+    peek()    : E   // Returns the top element, without removing it. Raises an exception if the stack is empty.
     // Note: iterator() should yield the elements starting from the top of the stack.
 /* *** ODSAendTag: StackADT *** */
 
@@ -28,8 +28,8 @@ interface Stack(E) extends Collection(E)
 /* *** ODSATag: QueueADT *** */
 interface Queue(E) extends Collection(E)
     enqueue(x:E)       // Enqueues x at the end of the queue.
-    dequeue()    : E   // Dequeues the frontmost element.
-    peek()       : E   // Returns the frontmost element, without removing it.
+    dequeue()    : E   // Dequeues the frontmost element. Raises an exception if the queue is empty.
+    peek()       : E   // Returns the frontmost element, without removing it. Raises an exception if the queue is empty.
     // Note: iterator() should yield the elements starting from the frontmost element.
 /* *** ODSAendTag: QueueADT *** */
 
@@ -37,58 +37,57 @@ interface Queue(E) extends Collection(E)
 /* *** ODSATag: PriorityQueueADT *** */
 interface PriorityQueue(E) extends Collection(E)
     add(x:E)          // Adds x to the priority queue.
-    removeMin() : E   // Removes the minimum element, and returns it.
-    getMin()    : E   // Returns the minimum element, without removing it.
+    removeMin() : E   // Removes and returns the minimum element. Raises an exception if the priority queue is empty.
+    getMin()    : E   // Returns the minimum element, without removing it.  Raises an exception if the priority queue is empty.
     // Note: iterator() can yield the elements in any order, but the minimum element should come first.
 /* *** ODSAendTag: PriorityQueueADT *** */
 
 
 /* *** ODSATag: SetADT *** */
 interface Set(E) extends Collection(E)
-    add(x:E)                  // Adds x to the set.
-    remove(x:E)               // Removes x from the set, and returns it.
-    contains(x:E) : boolean   // Checks if x is in the set.
+    add(x:E)                  // Adds x to the set. Returns true if the element wasn't already in the set.
+    remove(x:E)               // Removes x from the set. Returns true if the element was in the set.
+    contains(x:E) : boolean   // Returns true if x is in the set.
     // Note: iterator() can yield the elements in any order.
 /* *** ODSAendTag: SetADT *** */
 
 
 /* *** ODSATag: SortedSetADT *** */
 interface SortedSet(E) extends Set(E)
-    first()      : E   // Returns the first (smallest) element.
-    last()       : E   // Returns the last (largest) element.
-    floor(x:E)   : E   // Returns the closest element <= x.
-    ceiling(x:E) : E   // Returns the closest element >= x.
+    first()      : E   // Returns the first (smallest) element. Raises an exception if the set is empty.
+    last()       : E   // Returns the last (largest) element. Raises an exception if the set is empty.
+    floor(x:E)   : E   // Returns the closest element <= x, or null if there is no such element.
+    ceiling(x:E) : E   // Returns the closest element >= x, or null if there is no such element.
     // Note: iterator() should yield the elements in order.
 /* *** ODSAendTag: SortedSetADT *** */
 
 
 /* *** ODSATag: MapADT *** */
-interface Map(K,V)
-    put(k:K, v:V)                   // Sets the value of the given key.
-    get(k:K)         : V            // Returns the value associated with the given key.
-    remove(k:K)      : V            // Removes the value associated with the given key.
-    containsKey(k:K) : boolean      // Checks if the key has an associated value.
-    keyIterator()    : Iterator(K)  // Returns an iterator over the keys.
+interface Map(K,V) extends Iterable(K)
+    put(k:K, v:V)                   // Sets the value of the given key. Returns the previous value, or null.
+    get(k:K)         : V            // Returns the value associated with the given key, or null if the key is not there.
+    remove(k:K)      : V            // Removes and returns the value associated with the given key, or null if there is no key.
+    containsKey(k:K) : boolean      // Returns true if the key has an associated value.
     isEmpty()        : boolean      // Returns true if there are no keys.
     size()           : int          // Returns the number of keys (i.e., the number of key/value pairs).
-    // Note: keyIterator() can yield the keys in any order.
+    // Note: iterator() can yield the keys in any order.
 /* *** ODSAendTag: MapADT *** */
 
 
 /* *** ODSATag: SortedMapADT *** */
 interface SortedMap(K,V) extends Map(K,V)
-    firstKey()      : K   // Returns the first (smallest) key.
-    lastKey()       : K   // Returns the last (largest) key.
-    floorKey(k:K)   : K   // Returns the closest key <= k.
-    ceilingKey(k:K) : K   // Returns the closest key >= k.
-    // Note: keyIterator() should yield the keys in order.
+    firstKey()      : K   // Returns the first (smallest) key. Raises an exception if the map is empty.
+    lastKey()       : K   // Returns the last (largest) key. Raises an exception if the map is empty.
+    floorKey(k:K)   : K   // Returns the closest key <= k, or null if there is no key.
+    ceilingKey(k:K) : K   // Returns the closest key >= k, or null if there is no key.
+    // Note: iterator() should yield the keys in order.
 /* *** ODSAendTag: SortedMapADT *** */
 
 
 /* *** ODSATag: GraphADT *** */
 interface Graph(V)
-    addVertex(v:V)                            // Adds the vertex v to the graph.
-    addEdge(e:Edge(V))                        // Adds the edge e to the graph.
+    addVertex(v:V)                            // Adds the vertex v to the graph. Returns true if it wasn't already in the graph.
+    addEdge(e:Edge(V))                        // Adds the edge e to the graph. Returns true if it wasn't already in the graph.
     vertices()         : Collection(V)        // Returns a Collection of all vertices in the graph.
     outgoingEdges(v:V) : Collection(Edge(V))  // Returns a Collection of the edges that originates in vertex v.
     vertexCount()      : int                  // Returns the number of vertices in the graph.

@@ -16,12 +16,12 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListGetSet *** */
     public E get(int i) {
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         return internalArray[i];
     }
 
     public E set(int i, E x) {
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E old = internalArray[i];
         internalArray[i] = x;
         return old;
@@ -30,8 +30,8 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListAdd *** */
     public void add(int i, E x) {
-        if (!(listSize < internalArray.length)) throw new IndexOutOfBoundsException("array capacity exceeded");
-        if (!(0 <= i && i <= listSize))         throw new IndexOutOfBoundsException("array index out of range");
+        if (!(listSize < internalArray.length)) throw new IndexOutOfBoundsException("list capacity exceeded");
+        if (!(0 <= i && i <= listSize))         throw new IndexOutOfBoundsException("list index out of range");
         listSize++;
         for (int k = listSize-1; k > i; k--) {
             internalArray[k] = internalArray[k-1];
@@ -42,8 +42,7 @@ class StaticArrayList<E> implements List<E> {
 
 /* *** ODSATag: StaticArrayListRemove *** */
     public E remove(int i) {
-        if (!(listSize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E x = internalArray[i];
         for (int k = i+1; k < listSize; k++) {
             internalArray[k-1] = internalArray[k];
@@ -63,7 +62,7 @@ class StaticArrayList<E> implements List<E> {
     }
 
     public Iterator<E> iterator() {
-        throw new java.lang.UnsupportedOperationException("Left as an exercise.");
+        throw new UnsupportedOperationException("Left as an exercise.");
     }
 /* *** ODSAendTag: StaticArrayList *** */
 

@@ -11,14 +11,14 @@ class LinkedList(List):
 
 #/* *** ODSATag: LinkedListGetSet *** */
     def get(self, i):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         current = self._head
         for _ in range(i):
             current = current.next
         return current.elem
 
     def set(self, i, x):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         current = self._head
         for _ in range(i):
             current = current.next
@@ -29,7 +29,7 @@ class LinkedList(List):
 
 #/* *** ODSATag: LinkedListAdd *** */
     def add(self, i, x):
-        if not (0 <= i <= self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i <= self._listSize): raise IndexError("list index out of range")
         if i == 0:
             self._head = LinkedListNode(x, self._head)
         else:
@@ -42,8 +42,7 @@ class LinkedList(List):
 
 #/* *** ODSATag: LinkedListRemove *** */
     def remove(self, i):
-        if not (self._listSize > 0):      raise IndexError("remove from empty array")
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         if i == 0:
             removed = self._head
             self._head = removed.next

@@ -49,7 +49,6 @@ class LinkedList(E) implements List(E)
 
 /* *** ODSATag: LinkedListRemove *** */
     remove(i:int) : E
-        // Precondition: listSize > 0
         // Precondition: 0 <= i < listSize
         if i == 0
             removed : Node = head

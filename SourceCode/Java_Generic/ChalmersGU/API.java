@@ -16,10 +16,10 @@ interface Collection<E> extends Iterable<E> {
 /* *** ODSATag: ListADT *** */
 // Note: This is a subset of java.util.List
 interface List<E> extends Collection<E> {
-    void add(int i, E x);  // Adds x at position i.
-    E get(int i);          // Returns the element at position i.
-    E set(int i, E x);     // Replaces the value at position i with x.
-    E remove(int i);       // Removes the element at position i.
+    void add(int i, E x);  // Adds x at position i; where 0 <= i <= size.
+    E get(int i);          // Returns the element at position i; where 0 <= i < size.
+    E set(int i, E x);     // Replaces the value at position i with x; where 0 <= i < size..
+    E remove(int i);       // Removes the element at position i; where 0 <= i < size..
     // Note: iterator() should yield the elements starting from position 0.
 }
 /* *** ODSAendTag: ListADT *** */
@@ -29,8 +29,8 @@ interface List<E> extends Collection<E> {
 // Note: This is an interface, while java.util.Stack is a class!
 interface Stack<E> extends Collection<E> {
     void push(E x);  // Pushes x on top of the stack.
-    E pop();         // Pops the top of the stack and returns it.
-    E peek();        // Returns the top element of the stack, without removing it.
+    E pop();         // Pops the top of the stack and returns it. Raises an exception if the stack is empty.
+    E peek();        // Returns the top element, without removing it. Raises an exception if the stack is empty.
     // Note: iterator() should yield the elements starting from the top of the stack.
 }
 /* *** ODSAendTag: StackADT *** */
@@ -40,8 +40,8 @@ interface Stack<E> extends Collection<E> {
 // Note: This is a subset of java.util.Queue; and it uses different method names.
 interface Queue<E> extends Collection<E> {
     void enqueue(E x);  // Enqueues x at the end of the queue.
-    E dequeue();        // Dequeues the frontmost element.
-    E peek();           // Returns the frontmost element, without removing it.
+    E dequeue();        // Dequeues the frontmost element. Raises an exception if the queue is empty.
+    E peek();           // Returns the frontmost element, without removing it. Raises an exception if the queue is empty.
     // Note: iterator() should yield the elements starting from the frontmost element.
 }
 /* *** ODSAendTag: QueueADT *** */
@@ -52,8 +52,8 @@ interface Queue<E> extends Collection<E> {
 // implementing the Queue interface (so different method names)!
 interface PriorityQueue<E> extends Collection<E> {
     void add(E x);  // Adds x to the priority queue.
-    E removeMin();  // Removes the minimum element, and returns it.
-    E getMin();     // Returns the minimum element, without removing it.
+    E removeMin();  // Removes and returns the minimum element. Raises an exception if the priority queue is empty.
+    E getMin();     // Returns the minimum element, without removing it. Raises an exception if the priority queue is empty.
     // Note: iterator() can yield the elements in any order, but the minimum element should come first.
 }
 /* *** ODSAendTag: PriorityQueueADT *** */
@@ -62,9 +62,9 @@ interface PriorityQueue<E> extends Collection<E> {
 /* *** ODSATag: SetADT *** */
 // Note: This is a subset of java.util.Set
 interface Set<E> extends Collection<E> {
-    void add(E x);          // Adds x to the set.
-    void remove(E x);       // Removes x from the set, and returns it.
-    boolean contains(E x);  // Checks if x is in the set.
+    boolean add(E x);       // Adds x to the set. Returns true if the element wasn't already in the set.
+    boolean remove(E x);    // Removes x from the set. Returns true if the element was in the set.
+    boolean contains(E x);  // Returns true if x is in the set.
     // Note: iterator() can yield the elements in any order.
 }
 /* *** ODSAendTag: SetADT *** */
@@ -74,10 +74,10 @@ interface Set<E> extends Collection<E> {
 // Note: This is a subset of java.util.SortedSet, where
 // `floor` and `ceiling` are borrowed from java.util.NavigableSet.
 interface SortedSet<E> extends Set<E> {
-    E first();       // Returns the first (smallest) element.
-    E last();        // Returns the last (largest) element.
-    E floor(E x);    // Returns the closest element <= x.
-    E ceiling(E x);  // Returns the closest element >= x.
+    E first();       // Returns the first (smallest) element. Raises an exception if the set is empty.
+    E last();        // Returns the last (largest) element. Raises an exception if the set is empty.
+    E floor(E x);    // Returns the closest element <= x, or null if there is no such element.
+    E ceiling(E x);  // Returns the closest element >= x, or null if there is no such element.
     // Note: iterator() should yield the elements in order.
 }
 /* *** ODSAendTag: SortedSetADT *** */
@@ -85,16 +85,15 @@ interface SortedSet<E> extends Set<E> {
 
 /* *** ODSATag: MapADT *** */
 // Note: This is a subset of java.util.Map, where
-// `keyIterator` replaces the more complicated `keySet`.
-interface Map<K, V> {
-    void put(K key, V value);    // Sets the value of the given key.
-    V get(K key);                // Returns the value associated with the given key.
-    V remove(K key);             // Removes and returns the value associated with the given key.
-    boolean containsKey(K key);  // Checks if the key has an associated value.
-    Iterator<K> keyIterator();   // Returns an iterator over the keys.
+// `iterator` iterates over the keys, and replaces the more complicated `keySet`.
+interface Map<K, V> extends Iterable<K> {
+    V put(K key, V value);       // Sets the value of the given key. Returns the previous value, or null.
+    V get(K key);                // Returns the value associated with the given key, or null if the key is not there.
+    V remove(K key);             // Removes and returns the value associated with the given key, or null if there is no key.
+    boolean containsKey(K key);  // Returns true if the key has an associated value.
     boolean isEmpty();           // Returns true if there are no keys.
     int size();                  // Returns the number of keys (i.e., the number of key/value pairs).
-    // Note: keyIterator() can yield the keys in any order.
+    // Note: iterator() can yield the keys in any order.
 }
 /* *** ODSAendTag: MapADT *** */
 
@@ -103,11 +102,11 @@ interface Map<K, V> {
 // Note: This is a subset of java.util.SortedMap, where
 // `floorKey` and `ceilingKey` are borrowed from java.util.NavigableMap.
 interface SortedMap<K, V> extends Map<K, V> {
-    K firstKey();          // Returns the first (smallest) key.
-    K lastKey();           // Returns the last (largest) key.
-    K floorKey(K key);     // Returns the closest key <= k.
-    K ceilingKey(K key);   // Returns the closest key >= k.
-    // Note: keyIterator() should yield the keys in order.
+    K firstKey();          // Returns the first (smallest) key. Raises an exception if the map is empty.
+    K lastKey();           // Returns the last (largest) key. Raises an exception if the map is empty.
+    K floorKey(K key);     // Returns the closest key <= k, or null if there is no key.
+    K ceilingKey(K key);   // Returns the closest key >= k, or null if there is no key.
+    // Note: iterator() should yield the keys in order.
 }
 /* *** ODSAendTag: SortedMapADT *** */
 
@@ -115,8 +114,8 @@ interface SortedMap<K, V> extends Map<K, V> {
 /* *** ODSATag: GraphADT *** */
 // Note: This interface does not exist in the standard Java API.
 interface Graph<V> {
-    void addVertex(V v);                         // Adds the vertex v to the graph.
-    void addEdge(Edge<V> e);                     // Adds the edge e to the graph.
+    boolean addVertex(V v);                      // Adds the vertex v to the graph. Returns true if it wasn't already in the graph.
+    boolean addEdge(Edge<V> e);                  // Adds the edge e to the graph. Returns true if it wasn't already in the graph.
     Collection<V> vertices();                    // Returns a Collection of all vertices in the graph.
     Collection<Edge<V>> outgoingEdges(V from);   // Returns a Collection of the edges that originates in vertex v.
     int vertexCount();                           // Returns the number of vertices in the graph.

@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /* *** ODSATag: LinkedQueue *** */
 /* *** ODSATag: LinkedQueueInit *** */
@@ -42,14 +43,14 @@ class LinkedQueue<E> implements Queue<E> {
 
 /* *** ODSATag: LinkedQueuePeek *** */
     public E peek() {
-        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("peek from empty queue");
+        if (!(queueSize > 0)) throw new NoSuchElementException("peek from empty queue");
         return front.elem;
     }
 /* *** ODSAendTag: LinkedQueuePeek *** */
 
 /* *** ODSATag: LinkedQueueDequeue *** */
     public E dequeue() {
-        if (!(queueSize > 0)) throw new IndexOutOfBoundsException("dequeue from empty queue");
+        if (!(queueSize > 0)) throw new NoSuchElementException("dequeue from empty queue");
         Node removed = front;
         front = removed.next;
         removed.next = null;   // For garbage collection

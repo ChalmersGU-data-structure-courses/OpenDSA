@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /* *** ODSATag: LinkedStack *** */
 /* *** ODSATag: LinkedStackInit *** */
@@ -34,14 +35,14 @@ class LinkedStack<E> implements Stack<E> {
 
 /* *** ODSATag: LinkedStackPeek *** */
     public E peek() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("peek from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("peek from empty stack");
         return top.elem;
     }
 /* *** ODSAendTag: LinkedStackPeek *** */
 
 /* *** ODSATag: LinkedStackPop *** */
     public E pop() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("pop from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("pop from empty stack");
         Node removed = top;
         top = removed.next;
         removed.next = null;   // For garbage collection
