@@ -131,31 +131,57 @@ class RedBlackTree:
 
     @staticmethod
     def rotate_left(node):
-        node1 = node.left
-        node2 = node.right.left
-        node3 = node.right.right
-        key1 = node.key
-        value1 = node.value
-        red1 = node._is_red
-        key2 = node.right.key
-        value2 = node.right.value
-        red2 = node.right._is_red
+        """
+        Left rotation.
 
-        return Node(red1, key2, value2, Node(red2, key1, value1, node1, node2), node3)
+           x                y
+          / \              / \
+         A  y      ===>   x  C
+           / \           / \
+          B  C          A  B
+        """
+
+        # Variables are named according to the picture above.
+        x = node
+        A = x.left
+        y = x.right
+        B = y.left
+        C = y.right
+
+        # We also swap x's and y's colours
+        # (e.g. if x was black before, then y will be black afterwards).
+        return Node(is_red = x.is_red(), key = y.key, value = y.value,
+                    left =
+                        Node(is_red = y.is_red(), key = x.key, value = x.value,
+                             left = A, right = B),
+                    right = C)
 
     @staticmethod
     def rotate_right(node):
-        node1 = node.left.left
-        node2 = node.left.right
-        node3 = node.right
-        key1 = node.left.key
-        value1 = node.left.value
-        red1 = node.left._is_red
-        key2 = node.key
-        value2 = node.value
-        red2 = node._is_red
+        """
+        Right rotation.
 
-        return Node(red2, key1, value1, node1, Node(red1, key2, value2, node2, node3))
+             x             y
+            / \           / \
+           y  C    ===>  A  x
+          / \              / \
+         A  B             B  C
+        """
+
+        # Variables are named according to the picture above.
+        x = node
+        y = x.left
+        A = y.left
+        B = y.right
+        C = x.right
+
+        # We also swap x's and y's colours
+        # (e.g. if x was black before, then y will be black afterwards).
+        return Node(is_red = x.is_red(), key = y.key, value = y.value,
+                    left = A,
+                    right =
+                        Node(is_red = y.is_red(), key = x.key, value = x.value,
+                             left = B, right = C))
 
     def __iter__(self):
         """Iterate through all keys.
