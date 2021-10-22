@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.10. Quicksort &mdash; Data Structures and Algorithms</title>
+    <title>2.12. Quicksort &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="11. An Empirical Comparison of Sorting Algorithms" href="SortingEmpirical.html" />
-    <link rel="prev" title="9. Implementing Mergesort" href="MergesortImpl.html" />
+    <link rel="next" title="13. An Empirical Comparison of Sorting Algorithms" href="SortingEmpirical.html" />
+    <link rel="prev" title="11. Implementing Mergesort" href="MergesortImpl.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 3 Sorting</span></h2>
+              <h2 class="heading" ><span>Chapter 2 Arrays: Searching and Sorting</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="MergesortImpl.html">3.<span class="section-number">9. </span>Implementing Mergesort</a>
+        «&#160;&#160;<a id="prevmod" href="MergesortImpl.html">2.<span class="section-number">11. </span>Implementing Mergesort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="SortingEmpirical.html">3.<span class="section-number">11. </span>An Empirical Comparison of Sorting Algorithms</a>&#160;&#160;»
+        <a  id="nextmod" href="SortingEmpirical.html">2.<span class="section-number">13. </span>An Empirical Comparison of Sorting Algorithms</a>&#160;&#160;»
 
 
         </p>
@@ -162,15 +162,15 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'partition', 'putting-it-together', 'quicksort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/quicksortCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'partition', 'putting-it-together', 'quicksort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/quicksortCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortPartitionAnalysisCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortWorstCaseCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortBestCaseCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortAverageCaseCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="index-0">
-<span id="id1"></span><h1>3.<span class="section-number">10. </span>Quicksort<a class="headerlink" href="#index-0" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>2.<span class="section-number">12. </span>Quicksort<a class="headerlink" href="#index-0" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="introduction">
-<h2>3.<span class="section-number">10.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">12.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>While Mergesort uses the most obvious form of divide and conquer
 (split the list in half then sort the halves), this is not the only way
 that we can break down the sorting problem.
@@ -301,7 +301,7 @@ Here is a simple <code class="docutils literal notranslate"><span class="pre">fi
 </div>
 </div>
 <div class="section" id="partition">
-<h2>3.<span class="section-number">10.2. </span>Partition<a class="headerlink" href="#partition" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">12.2. </span>Partition<a class="headerlink" href="#partition" title="Permalink to this headline">¶</a></h2>
 <p>We now turn to function <code class="docutils literal notranslate"><span class="pre">partition</span></code>.
 If we knew in advance how many keys are less than the pivot,
 <code class="docutils literal notranslate"><span class="pre">partition</span></code> could simply copy records with key values less
@@ -413,7 +413,7 @@ bound for the recursive calls to <code class="docutils literal notranslate"><spa
 <p></p>
 </div>
 <div class="section" id="putting-it-together">
-<h2>3.<span class="section-number">10.3. </span>Putting It Together<a class="headerlink" href="#putting-it-together" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">12.3. </span>Putting It Together<a class="headerlink" href="#putting-it-together" title="Permalink to this headline">¶</a></h2>
 <p>Here is a visualization for the entire Quicksort algorithm.
 This visualization shows you how the logical decomposition caused by
 the partitioning process works.
@@ -469,7 +469,7 @@ Quicksort.</p>
 </div>
 </div>
 <div class="section" id="quicksort-analysis">
-<h2>3.<span class="section-number">10.4. </span>Quicksort Analysis<a class="headerlink" href="#quicksort-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">12.4. </span>Quicksort Analysis<a class="headerlink" href="#quicksort-analysis" title="Permalink to this headline">¶</a></h2>
 <p>This visualization explains the worst-case running time of Quick Sort</p>
 <div id="QuickSortWorstCaseCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="QuickSortWorstCaseCON" data-long-name="Quicksort Worst Case Analysis Slideshow" data-exer-id="" alt="Quicksort Worst Case Analysis Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -643,6 +643,20 @@ less as suggested above, about three quarters of the function calls
 will already have been eliminated.
 Thus, eliminating the remaining function calls will yield only a
 modest speedup.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl>
+<dt>type: Exercise</dt><dd><p>Consider the Quicksort implementation for this module, where the
+pivot is selected as the middle value of the partition.
+Give a permutation for the values 0 through 7 that will cause
+Quicksort to have its worst-case behavior.</p>
+<p>There are a number of possible correct answers. To assess the
+answer, will need to run Quicksort over student’s
+partition, and verify that at each step it will generate new
+partitions of size 6, 5, 4, 3, 2, then 1.</p>
+</dd>
+</dl>
+</div>
 <div
     id="QuicksortSumm"
     class="embedContainer"
@@ -679,11 +693,11 @@ modest speedup.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="MergesortImpl.html">3.<span class="section-number">9. </span>Implementing Mergesort</a>
+        «&#160;&#160;<a id="prevmod1" href="MergesortImpl.html">2.<span class="section-number">11. </span>Implementing Mergesort</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="SortingEmpirical.html">3.<span class="section-number">11. </span>An Empirical Comparison of Sorting Algorithms</a>&#160;&#160;»
+        <a  id="nextmod1" href="SortingEmpirical.html">2.<span class="section-number">13. </span>An Empirical Comparison of Sorting Algorithms</a>&#160;&#160;»
 
 </p>
       </div>
@@ -698,7 +712,7 @@ modest speedup.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.7. Doubly Linked Lists &mdash; Data Structures and Algorithms</title>
+    <title>4.7. Doubly Linked Lists (optional) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="8. Stacks" href="StackArray.html" />
+    <link rel="next" title="8. Dynamic Array-Based Stacks" href="StackArray.html" />
     <link rel="prev" title="6. Comparison of List Implementations" href="ListAnalysis.html" />
 
   </head>
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListAnalysis.html">5.<span class="section-number">6. </span>Comparison of List Implementations</a>
+        «&#160;&#160;<a id="prevmod" href="ListAnalysis.html">4.<span class="section-number">6. </span>Comparison of List Implementations</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="StackArray.html">5.<span class="section-number">8. </span>Stacks</a>&#160;&#160;»
+        <a  id="nextmod" href="StackArray.html">4.<span class="section-number">8. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/DoubleLinkList.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['doubly-linked-lists', 'implementation-of-the-list-methods', 'addinginserting-elements', 'removing-elements', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/DoubleLinkList.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+<div class="section" id="doubly-linked-lists-optional">
+<h1>4.<span class="section-number">7. </span>Doubly Linked Lists (optional)<a class="headerlink" href="#doubly-linked-lists-optional" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="doubly-linked-lists">
-<h1>5.<span class="section-number">7. </span>Doubly Linked Lists<a class="headerlink" href="#doubly-linked-lists" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>5.<span class="section-number">7.1. </span>Doubly Linked Lists<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">7.1. </span>Doubly Linked Lists<a class="headerlink" href="#doubly-linked-lists" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="ListLinked.html#listlinked"><span class="std std-ref">singly linked list</span></a> allows
 for direct access from a list node only to the next node in the list.
 A <a class="reference internal" href="Glossary.html#term-doubly-linked-list"><span class="xref std std-term">doubly linked list</span></a> allows convenient access from a list node
@@ -180,10 +180,8 @@ linked list), and a second pointer to the node preceding it.</p>
 </div>
 </div>
 <p>The most common reason to use a doubly linked list is
-because it is easier to implement than a singly linked list.
-While the code for the doubly linked implementation is a little longer
-than for the singly linked version, it tends to be a bit more
-“obvious” in its intention, and so easier to implement and debug.
+because it gives an additional possibility to move both forwards
+and backwards in the list, and to efficiently add and remove elements from both ends.
 Whether a list implementation is doubly or singly linked should
 be hidden from the <code class="docutils literal notranslate"><span class="pre">List</span></code> class user.</p>
 <p>Like our singly linked list implementation, the doubly linked list
@@ -192,7 +190,7 @@ we also add a <strong>tail pointer</strong> to the end of the list.</p>
 <p>Here is an implementation for the class variables and the internal list node class.
 The only real difference between single linked lists are that we have pointers
 to the previous node, and a pointer to the tail of the list.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DoubleLinkedList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+<div id="DoubleLinkedList_DoubleLinkedListHeader_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedListHeader_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListHeader_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListHeader_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedListHeader_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DoubleLinkedList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">head</span>     <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to list header</span>
     <span class="kd">private</span> <span class="n">tail</span>     <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to list tail</span>
     <span class="kd">private</span> <span class="n">listSize</span> <span class="p">:</span> <span class="kt">int</span>     <span class="c1">// Size of list</span>
@@ -203,15 +201,517 @@ to the previous node, and a pointer to the tail of the list.</p>
         <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="kd">private</span> <span class="kd">class</span> <span class="nc">DNode</span>
-        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
-        <span class="n">prev</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to previous node in list</span>
-        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in list</span>
+        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>       <span class="c1">// Value for this node</span>
+        <span class="n">prev</span> <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to previous node in list</span>
+        <span class="n">next</span> <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to next node in list</span>
 </pre></div>
 </div>
-<p>The main advantage with doubly linked lists are that we can implement more advanced iterators
+</div><div id="DoubleLinkedList_DoubleLinkedListHeader_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DoubleLinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">DNode</span> <span class="n">head</span><span class="p">;</span>     <span class="c1">// Pointer to list header</span>
+    <span class="kd">private</span> <span class="n">DNode</span> <span class="n">tail</span><span class="p">;</span>     <span class="c1">// Pointer to list tail</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>   <span class="c1">// Size of list</span>
+
+    <span class="n">DoubleLinkedList</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">DNode</span> <span class="p">{</span>
+        <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
+        <span class="n">DNode</span> <span class="n">prev</span><span class="p">;</span>   <span class="c1">// Pointer to previous node in list</span>
+        <span class="n">DNode</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Pointer to next node in list</span>
+
+        <span class="n">DNode</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="n">DNode</span> <span class="n">prev</span><span class="p">,</span> <span class="n">DNode</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedListHeader_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoubleLinkedList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list tail</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of list</span>
+
+<span class="c1"># Python does not have internal classes, so we have to make the list node standalone.</span>
+<span class="k">class</span> <span class="nc">DoubleLinkedListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>   <span class="c1"># Value for this node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span>   <span class="c1"># Pointer to previous node in list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in list</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedListHeader_code" ).tabs();});</script><p>The main advantage with doubly linked lists are that we can implement more advanced iterators
 (<a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html">ListIterator</a> in the Java standard API) that can move forward and backward through a list.
 In fact, Java’s standard <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a> is implemented as a doubly linked list.</p>
-<script type="text/javascript" src="../../../DataStructures/DoubleLinkList.js"></script>
+</div>
+<div class="section" id="implementation-of-the-list-methods">
+<h2>4.<span class="section-number">7.2. </span>Implementation of the list methods<a class="headerlink" href="#implementation-of-the-list-methods" title="Permalink to this headline">¶</a></h2>
+<p>Getting and setting are exactly the same as for normal linked lists, so we don’t show them here.</p>
+<div class="section" id="adding-inserting-elements">
+<h3>4.<span class="section-number">7.2.1. </span>Adding/inserting elements<a class="headerlink" href="#adding-inserting-elements" title="Permalink to this headline">¶</a></h3>
+<p>Adding elements becomes a bit trickier, because we have to make sure that all pointers are updated correctly.
+We get some special cases – when the list is empty, or when we add before the head or after the tail.</p>
+<div id="DoubleLinkedList_DoubleLinkedListAdd_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
+        <span class="k">if</span> <span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">newhead</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newhead</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">newhead</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span>
+            <span class="n">newtail</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNone</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newtail</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">newtail</span>
+        <span class="k">else</span>
+            <span class="n">prev</span><span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">repeat</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">next</span> <span class="p">:</span> <span class="n">DNode</span>  <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">next</span><span class="p">)</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newnode</span>
+            <span class="n">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newnode</span>
+        <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedListAdd_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">newhead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newhead</span><span class="p">;</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">newhead</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">newtail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newtail</span><span class="p">;</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">newtail</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">DNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">DNode</span> <span class="n">newnode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">next</span><span class="p">);</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newnode</span><span class="p">;</span>
+            <span class="n">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newnode</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">listSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedListAdd_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">newhead</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">newhead</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">newhead</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">:</span>
+            <span class="n">newtail</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newtail</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">newtail</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="nb">next</span>  <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newnode</span>
+            <span class="nb">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">newnode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedListAdd_code" ).tabs();});</script></div>
+<div class="section" id="removing-elements">
+<h3>4.<span class="section-number">7.2.2. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h3>
+<p>The same goes for removing elements – we get special cases when we remove the head or the tail.</p>
+<div id="DoubleLinkedList_DoubleLinkedListRemove_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">tail</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">prev</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="k">else</span>
+            <span class="n">prev</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">repeat</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedListRemove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">listSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>           <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;remove from empty array&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;array index out of range&quot;</span><span class="p">);</span>
+        <span class="n">DNode</span> <span class="n">removed</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">prev</span><span class="p">;</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedListRemove_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>      <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;remove from empty array&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">prev</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span>
+        <span class="n">removed</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedListRemove_code" ).tabs();});</script></div>
+</div>
+<div class="section" id="full-implementation">
+<h2>4.<span class="section-number">7.3. </span>Full implementation<a class="headerlink" href="#full-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Here is the full implementation of doubly linked lists.</p>
+<div id="DoubleLinkedList_DoubleLinkedList_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DoubleLinkedList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="n">head</span>     <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to list header</span>
+    <span class="kd">private</span> <span class="n">tail</span>     <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to list tail</span>
+    <span class="kd">private</span> <span class="n">listSize</span> <span class="p">:</span> <span class="kt">int</span>     <span class="c1">// Size of list</span>
+
+    <span class="n">DoubleLinkedList</span><span class="p">()</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">DNode</span>
+        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>       <span class="c1">// Value for this node</span>
+        <span class="n">prev</span> <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to previous node in list</span>
+        <span class="n">next</span> <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to next node in list</span>
+
+    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
+        <span class="n">current</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
+        <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span>
+
+    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
+        <span class="n">current</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+        <span class="n">repeat</span> <span class="n">i</span> <span class="n">times</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span>
+        <span class="n">old</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span>
+        <span class="n">current</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">old</span>
+
+    <span class="nf">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
+        <span class="k">if</span> <span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">newhead</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">head</span><span class="p">)</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newhead</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">newhead</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span>
+            <span class="n">newtail</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNone</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newtail</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">newtail</span>
+        <span class="k">else</span>
+            <span class="n">prev</span><span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">repeat</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">next</span> <span class="p">:</span> <span class="n">DNode</span>  <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">next</span><span class="p">)</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newnode</span>
+            <span class="n">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newnode</span>
+        <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
+        <span class="c1">// Precondition: listSize &gt; 0</span>
+        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">tail</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">prev</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>
+        <span class="k">else</span>
+            <span class="n">prev</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">head</span>
+            <span class="n">repeat</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span> <span class="n">times</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">removed</span> <span class="p">:</span> <span class="n">DNode</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
+
+    <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
+        <span class="k">return</span> <span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="n">size</span><span class="p">()</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="k">return</span> <span class="n">listSize</span>
+
+    <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">internalArray</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedList_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DoubleLinkedList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">DNode</span> <span class="n">head</span><span class="p">;</span>     <span class="c1">// Pointer to list header</span>
+    <span class="kd">private</span> <span class="n">DNode</span> <span class="n">tail</span><span class="p">;</span>     <span class="c1">// Pointer to list tail</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>   <span class="c1">// Size of list</span>
+
+    <span class="n">DoubleLinkedList</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">DNode</span> <span class="p">{</span>
+        <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
+        <span class="n">DNode</span> <span class="n">prev</span><span class="p">;</span>   <span class="c1">// Pointer to previous node in list</span>
+        <span class="n">DNode</span> <span class="n">next</span><span class="p">;</span>   <span class="c1">// Pointer to next node in list</span>
+
+        <span class="n">DNode</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="n">DNode</span> <span class="n">prev</span><span class="p">,</span> <span class="n">DNode</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
+        <span class="n">DNode</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
+        <span class="n">DNode</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="n">E</span> <span class="n">old</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+        <span class="n">current</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">tail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">newhead</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">head</span><span class="p">);</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newhead</span><span class="p">;</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">newhead</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">newtail</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">tail</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newtail</span><span class="p">;</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">newtail</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">DNode</span> <span class="n">next</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">DNode</span> <span class="n">newnode</span> <span class="o">=</span> <span class="k">new</span> <span class="n">DNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="n">next</span><span class="p">);</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newnode</span><span class="p">;</span>
+            <span class="n">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">newnode</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">listSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">listSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span>           <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;remove from empty array&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;array index out of range&quot;</span><span class="p">);</span>
+        <span class="n">DNode</span> <span class="n">removed</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="n">head</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">tail</span><span class="p">;</span>
+            <span class="n">tail</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">prev</span><span class="p">;</span>
+            <span class="n">tail</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">DNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="n">prev</span><span class="p">.</span><span class="na">next</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">listSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">listSize</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">DoubleLinkedListIterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">DoubleLinkedListIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="n">DNode</span> <span class="n">current</span><span class="p">;</span>
+        <span class="n">DoubleLinkedListIterator</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="n">E</span> <span class="nf">next</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DoubleLinkedList_DoubleLinkedList_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DoubleLinkedList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list header</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list tail</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of list</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">elem</span>
+
+    <span class="k">def</span> <span class="nf">set</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">elem</span>
+        <span class="n">current</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">return</span> <span class="n">old</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">newhead</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">newhead</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">newhead</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">:</span>
+            <span class="n">newtail</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newtail</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">newtail</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="nb">next</span>  <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">newnode</span> <span class="o">=</span> <span class="n">DoubleLinkedListNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="nb">next</span><span class="p">)</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newnode</span>
+            <span class="nb">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">newnode</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span>      <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;remove from empty array&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;array index out of range&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">i</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">prev</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">removed</span> <span class="o">=</span> <span class="n">prev</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">prev</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span>
+        <span class="n">removed</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
+
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">DoubleLinkedListIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="p">)</span>
+
+<span class="c1"># Python does not have internal classes, so we have to make the iterator standalone.</span>
+<span class="k">class</span> <span class="nc">DoubleLinkedListIterator</span><span class="p">(</span><span class="n">Iterator</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">head</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="n">head</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">StopIteration</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span><span class="o">.</span><span class="n">elem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span><span class="o">.</span><span class="n">next</span>
+        <span class="k">return</span> <span class="n">x</span>
+
+
+<span class="c1"># Python does not have internal classes, so we have to make the list node standalone.</span>
+<span class="k">class</span> <span class="nc">DoubleLinkedListNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">prev</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>   <span class="c1"># Value for this node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prev</span> <span class="o">=</span> <span class="n">prev</span>   <span class="c1"># Pointer to previous node in list</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in list</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedList_code" ).tabs();});</script><script type="text/javascript" src="../../../DataStructures/DoubleLinkList.js"></script>
 <script type="text/javascript" src="../../../AV/ChalmersGU/DoublyLinkedList-CON.js"></script>
 </div>
 </div>
@@ -221,11 +721,11 @@ In fact, Java’s standard <a class="reference external" href="https://docs.orac
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListAnalysis.html">5.<span class="section-number">6. </span>Comparison of List Implementations</a>
+        «&#160;&#160;<a id="prevmod1" href="ListAnalysis.html">4.<span class="section-number">6. </span>Comparison of List Implementations</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="StackArray.html">5.<span class="section-number">8. </span>Stacks</a>&#160;&#160;»
+        <a  id="nextmod1" href="StackArray.html">4.<span class="section-number">8. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
 
 </p>
       </div>
@@ -240,7 +740,7 @@ In fact, Java’s standard <a class="reference external" href="https://docs.orac
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

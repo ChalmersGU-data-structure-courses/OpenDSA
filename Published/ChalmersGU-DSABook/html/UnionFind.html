@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.2. Union/Find and the Parent Pointer Implementation &mdash; Data Structures and Algorithms</title>
+    <title>6.2. The Union/Find Algorithm (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="3. Sequential Tree Representations" href="SequentialRep.html" />
-    <link rel="prev" title="1. General Trees" href="GenTreeIntro.html" />
+    <link rel="next" title="3. Sequential Tree Representations (optional) (WORK IN PROGRESS)" href="SequentialRep.html" />
+    <link rel="prev" title="1. General Trees (optional) (WORK IN PROGRESS)" href="GenTreeIntro.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 7 General Trees (misc stuff)</span></h2>
+              <h2 class="heading" ><span>Chapter 6 General Trees and Union-Find (optional)</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GenTreeIntro.html">7.<span class="section-number">1. </span>General Trees</a>
+        «&#160;&#160;<a id="prevmod" href="GenTreeIntro.html">6.<span class="section-number">1. </span>General Trees (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="SequentialRep.html">7.<span class="section-number">3. </span>Sequential Tree Representations</a>&#160;&#160;»
+        <a  id="nextmod" href="SequentialRep.html">6.<span class="section-number">3. </span>Sequential Tree Representations (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['the-unionfind-problem', 'parent-pointer-trees', 'equivalence-classes', 'weighted-union', 'path-compression'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "Union/Find and the Parent Pointer Implementation";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/UFCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="union-find-and-the-parent-pointer-implementation">
-<h1>7.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation<a class="headerlink" href="#union-find-and-the-parent-pointer-implementation" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['the-unionfind-problem', 'parent-pointer-trees', 'equivalence-classes', 'weighted-union', 'path-compression'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/UFCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="the-union-find-algorithm-optional-work-in-progress">
+<h1>6.<span class="section-number">2. </span>The Union/Find Algorithm (optional) (WORK IN PROGRESS)<a class="headerlink" href="#the-union-find-algorithm-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-union-find-problem">
-<h2>7.<span class="section-number">2.1. </span>The Union/Find Problem<a class="headerlink" href="#the-union-find-problem" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">2.1. </span>The Union/Find Problem<a class="headerlink" href="#the-union-find-problem" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="Glossary.html#term-general-tree"><span class="xref std std-term">General trees</span></a> are trees whose
 <a class="reference internal" href="Glossary.html#term-internal-node"><span class="xref std std-term">internal nodes</span></a> have no fixed number of
 <a class="reference internal" href="Glossary.html#term-child"><span class="xref std std-term">children</span></a>.
@@ -199,7 +199,7 @@ tree.
 The process of finding the ultimate root for a given node we will call
 <a class="reference internal" href="Glossary.html#term-find"><span class="xref std std-term">FIND</span></a>.</p>
 <div class="section" id="parent-pointer-trees">
-<h3>7.<span class="section-number">2.1.1. </span>Parent Pointer Trees<a class="headerlink" href="#parent-pointer-trees" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">2.1.1. </span>Parent Pointer Trees<a class="headerlink" href="#parent-pointer-trees" title="Permalink to this headline">¶</a></h3>
 <p>The parent pointer representation is most often used to maintain a
 collection of <a class="reference internal" href="Glossary.html#term-disjoint-sets"><span class="xref std std-term">disjoint sets</span></a>.
 Two disjoint sets share no members in common (their intersection is
@@ -300,7 +300,7 @@ UNION/FIND array, and methods <code class="docutils literal notranslate"><span c
 <div class="divdgm" id="uffig">
 <div id="UFfigCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 7.3.1: The parent pointer array implementation.
+<p class="caption"><span class="caption-text"> Figure 6.3.1: The parent pointer array implementation.
 Each node corresponds to a position in the node array,
 which stores its value and a pointer to its parent.
 The parent pointers are represented by an array index corresponding
@@ -314,7 +314,7 @@ and the other rooted at <span class="math notranslate nohighlight">\(J\)</span> 
 </div>
 </div>
 <div class="section" id="equivalence-classes">
-<h3>7.<span class="section-number">2.1.2. </span>Equivalence Classes<a class="headerlink" href="#equivalence-classes" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">2.1.2. </span>Equivalence Classes<a class="headerlink" href="#equivalence-classes" title="Permalink to this headline">¶</a></h3>
 <p>Consider the problem of assigning the members of a set to
 disjoint subsets called
 <a class="reference internal" href="Glossary.html#term-equivalence-class"><span class="xref std std-term">equivalence classes</span></a>.
@@ -336,8 +336,8 @@ For example, consider this graph of ten nodes labeled <span class="math notransl
 <div class="divdgm" id="ufconcom">
 <div id="UFconcomCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 7.3.2: A graph with two connected components.
-The tree of Figure <a href="UnionFind.html#uffig">7.3.1</a> shows the corresponding
+<p class="caption"><span class="caption-text"> Figure 6.3.2: A graph with two connected components.
+The tree of Figure <a href="UnionFind.html#uffig">6.3.1</a> shows the corresponding
 tree structure resulting form processing the edges to determine the
 connected components.</span></p>
 </div>
@@ -398,7 +398,7 @@ processing to be worth the effort, so we must settle for getting as
 close as possible.</p>
 </div>
 <div class="section" id="weighted-union">
-<h3>7.<span class="section-number">2.1.3. </span>Weighted Union<a class="headerlink" href="#weighted-union" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">2.1.3. </span>Weighted Union<a class="headerlink" href="#weighted-union" title="Permalink to this headline">¶</a></h3>
 <p>A low-cost approach to reducing the height is to be smart about how
 two trees are joined together.
 One simple technique, called the
@@ -466,7 +466,7 @@ weighted union.</p>
 <p></p>
 </div>
 <div class="section" id="path-compression">
-<h3>7.<span class="section-number">2.1.4. </span>Path Compression<a class="headerlink" href="#path-compression" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">2.1.4. </span>Path Compression<a class="headerlink" href="#path-compression" title="Permalink to this headline">¶</a></h3>
 <p>The weighted union rule helps to minimize the depth of the tree, but
 we can do better than this.
 <a class="reference internal" href="Glossary.html#term-path-compression"><span class="xref std std-term">Path compression</span></a> is a method that tends to
@@ -585,11 +585,11 @@ covers many aspects of the equivalence class problem.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GenTreeIntro.html">7.<span class="section-number">1. </span>General Trees</a>
+        «&#160;&#160;<a id="prevmod1" href="GenTreeIntro.html">6.<span class="section-number">1. </span>General Trees (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="SequentialRep.html">7.<span class="section-number">3. </span>Sequential Tree Representations</a>&#160;&#160;»
+        <a  id="nextmod1" href="SequentialRep.html">6.<span class="section-number">3. </span>Sequential Tree Representations (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -604,7 +604,7 @@ covers many aspects of the equivalence class problem.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

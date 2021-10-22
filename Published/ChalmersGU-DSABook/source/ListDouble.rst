@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['doubly-linked-lists', 'implementation-of-the-list-methods', 'addinginserting-elements', 'removing-elements', 'full-implementation'];</script>
 
 .. _ListDouble:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :satisfies: doubly linked list
    :topic: Lists
 
-Doubly Linked Lists
-===================
+Doubly Linked Lists (optional)
+================================
 
 
 Doubly Linked Lists
@@ -49,10 +49,8 @@ linked list), and a second pointer to the node preceding it.
    :align: center
 
 The most common reason to use a doubly linked list is
-because it is easier to implement than a singly linked list.
-While the code for the doubly linked implementation is a little longer
-than for the singly linked version, it tends to be a bit more
-"obvious" in its intention, and so easier to implement and debug.
+because it gives an additional possibility to move both forwards
+and backwards in the list, and to efficiently add and remove elements from both ends.
 Whether a list implementation is doubly or singly linked should
 be hidden from the ``List`` class user.
 
@@ -74,38 +72,37 @@ In fact, Java's standard LinkedList_ is implemented as a doubly linked list.
 .. _ListIterator: https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html
 .. _LinkedList: https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
 
-..
-  Insert
 
-  inlineav:: dlistInsertCON ss
-   :long_name: Doubly Linked List Insert
-   :links: DataStructures/DoubleLinkList.css AV/List/dlistCON.css
-   :scripts: DataStructures/DoubleLinkList.js AV/List/dlist.js AV/List/dlistInsertCON.js
-   :output: show   
+Implementation of the list methods
+-----------------------------------
 
-..
-  Append
-  inlineav:: dlistAppendCON ss
-   :long_name: Doubly Linked List Append
-   :links: DataStructures/DoubleLinkList.css AV/List/dlistCON.css
-   :scripts: DataStructures/DoubleLinkList.js AV/List/dlist.js AV/List/dlistAppendCON.js
-   :output: show  
+Getting and setting are exactly the same as for normal linked lists, so we don't show them here.
 
-..
-  Remove
-  inlineav:: dlistRemoveCON ss
-   :long_name: Doubly Linked List Remove
-   :links: DataStructures/DoubleLinkList.css AV/List/dlistCON.css
-   :scripts: DataStructures/DoubleLinkList.js AV/List/dlist.js AV/List/dlistRemoveCON.js
-   :output: show
-   
-..
-  Prev
-  inlineav:: dlistPrevCON ss
-   :long_name: Doubly Linked List Prev
-   :links: DataStructures/DoubleLinkList.css AV/List/dlistCON.css
-   :scripts: DataStructures/DoubleLinkList.js AV/List/dlist.js AV/List/dlistPrevCON.js
-   :output: show
+Adding/inserting elements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding elements becomes a bit trickier, because we have to make sure that all pointers are updated correctly.
+We get some special cases – when the list is empty, or when we add before the head or after the tail.
+
+.. codeinclude:: ChalmersGU/DoubleLinkedList
+   :tag: DoubleLinkedListAdd
+
+Removing elements
+~~~~~~~~~~~~~~~~~~~
+
+The same goes for removing elements – we get special cases when we remove the head or the tail.
+
+.. codeinclude:: ChalmersGU/DoubleLinkedList
+   :tag: DoubleLinkedListRemove
+
+
+Full implementation
+-----------------------
+
+Here is the full implementation of doubly linked lists.
+
+.. codeinclude:: ChalmersGU/DoubleLinkedList
+   :tag: DoubleLinkedList
 
 .. odsascript:: DataStructures/DoubleLinkList.js
 .. odsascript:: AV/ChalmersGU/DoublyLinkedList-CON.js

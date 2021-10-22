@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.7. Optimizing Sort Algorithms with Code Tuning &mdash; Data Structures and Algorithms</title>
+    <title>2.9. Optimizing Sort Algorithms with Code Tuning &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="8. Mergesort Concepts" href="Mergesort.html" />
-    <link rel="prev" title="6. The Cost of Exchange Sorting" href="ExchangeSort.html" />
+    <link rel="next" title="10. Mergesort Concepts" href="Mergesort.html" />
+    <link rel="prev" title="8. The Cost of Exchange Sorting" href="ExchangeSort.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 3 Sorting</span></h2>
+              <h2 class="heading" ><span>Chapter 2 Arrays: Searching and Sorting</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ExchangeSort.html">3.<span class="section-number">6. </span>The Cost of Exchange Sorting</a>
+        «&#160;&#160;<a id="prevmod" href="ExchangeSort.html">2.<span class="section-number">8. </span>The Cost of Exchange Sorting</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Mergesort.html">3.<span class="section-number">8. </span>Mergesort Concepts</a>&#160;&#160;»
+        <a  id="nextmod" href="Mergesort.html">2.<span class="section-number">10. </span>Mergesort Concepts</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,21 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning">
-<h1>3.<span class="section-number">7. </span>Optimizing Sort Algorithms with Code Tuning<a class="headerlink" href="#optimizing-sort-algorithms-with-code-tuning" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning">
+<h1>2.<span class="section-number">9. </span>Optimizing Sort Algorithms with Code Tuning<a class="headerlink" href="#optimizing-sort-algorithms-with-code-tuning" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="code-tuning-for-simple-sorting-algorithms">
-<h2>3.<span class="section-number">7.1. </span>Code Tuning for Simple Sorting Algorithms<a class="headerlink" href="#code-tuning-for-simple-sorting-algorithms" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">9.1. </span>Code Tuning for Simple Sorting Algorithms<a class="headerlink" href="#code-tuning-for-simple-sorting-algorithms" title="Permalink to this headline">¶</a></h2>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Revision</dt><dd><p>Rewrite along these lines: A classic form of code tuning is “test
+to save work”. For each of our three sorting algorithms, we have a
+potential “test to save work” “optimization”. The question is: When
+is the cost of test worth the work saved? Let’s look at each of the
+three.</p>
+</dd>
+</dl>
+</div>
 <p>Since sorting is such an important application,
 it is natural for programmers to want
 to optimize their sorting code to run faster.
@@ -183,7 +194,7 @@ It is also interesting to see the relative performance of the three
 algorithms, as well as how various programming languages compare.</p>
 </div>
 <div class="section" id="insertion-sort">
-<h2>3.<span class="section-number">7.2. </span>Insertion Sort<a class="headerlink" href="#insertion-sort" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">9.2. </span>Insertion Sort<a class="headerlink" href="#insertion-sort" title="Permalink to this headline">¶</a></h2>
 <p>We start by trying to speed up Insertion Sort.
 Recall that Insertion Sort repeatedly moves an element toward the
 beginning of the sorted part of the list until it encounters a key
@@ -249,7 +260,7 @@ Here is an implementation for Insertion Sort using this optimization.</p>
   </div>
 </div>
 <div class="topic" id="optimizetable">
-<p class="topic-title">Table 3.8.1  </p>
+<p class="topic-title">Table 2.10.1  </p>
 <p>Empirical comparison of proposed optimizations to quadratic sort
 implementations.
 Each sorting algorithm is run on a random integer
@@ -276,7 +287,7 @@ languages that support this.</p>
 \hline
 \end{array}\end{split}\]</div>
 </div>
-<p>Table <a href="SortOpt.html#optimizetable">3.8.1</a> shows the relative costs for
+<p>Table <a href="SortOpt.html#optimizetable">2.10.1</a> shows the relative costs for
 a number of optimizations in four programming languages: Java,
 JavaScipt, Processing, and Python.</p>
 <p>The programming language that you use can have a big influence on the
@@ -299,7 +310,7 @@ It turns out that there is a big difference in JavaScript between
 using <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">&lt;</span> <span class="pre">n</span></code> or <code class="docutils literal notranslate"><span class="pre">i</span> <span class="pre">!=</span> <span class="pre">n</span></code> to test termination of a loop.</p>
 </div>
 <div class="section" id="bubble-sort">
-<h2>3.<span class="section-number">7.3. </span>Bubble Sort<a class="headerlink" href="#bubble-sort" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">9.3. </span>Bubble Sort<a class="headerlink" href="#bubble-sort" title="Permalink to this headline">¶</a></h2>
 <p>Turning to Bubble Sort, the first thing we should notice from this
 table is that it is far slower on random input than Insertion Sort.
 Let’s consider a possible improvement that is sometimes suggested
@@ -379,7 +390,7 @@ In fact, if we took a sorted list and moved the smallest value to the
 end, then there would be no benefit from swap checking whatsoever.</p>
 </div>
 <div class="section" id="selection-sort">
-<h2>3.<span class="section-number">7.4. </span>Selection Sort<a class="headerlink" href="#selection-sort" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">9.4. </span>Selection Sort<a class="headerlink" href="#selection-sort" title="Permalink to this headline">¶</a></h2>
 <p>Finally, let’s consider Selection Sort.
 The table shows foremost that Selection Sort can be viewed as a far
 better optimization to Bubble Sort than tracking the last swap
@@ -445,11 +456,11 @@ more than double over those shown in the table.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ExchangeSort.html">3.<span class="section-number">6. </span>The Cost of Exchange Sorting</a>
+        «&#160;&#160;<a id="prevmod1" href="ExchangeSort.html">2.<span class="section-number">8. </span>The Cost of Exchange Sorting</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Mergesort.html">3.<span class="section-number">8. </span>Mergesort Concepts</a>&#160;&#160;»
+        <a  id="nextmod1" href="Mergesort.html">2.<span class="section-number">10. </span>Mergesort Concepts</a>&#160;&#160;»
 
 </p>
       </div>
@@ -464,7 +475,7 @@ more than double over those shown in the table.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

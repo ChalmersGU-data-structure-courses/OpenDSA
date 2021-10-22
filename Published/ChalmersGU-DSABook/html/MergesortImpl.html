@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.9. Implementing Mergesort &mdash; Data Structures and Algorithms</title>
+    <title>2.11. Implementing Mergesort &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="10. Quicksort" href="Quicksort.html" />
-    <link rel="prev" title="8. Mergesort Concepts" href="Mergesort.html" />
+    <link rel="next" title="12. Quicksort" href="Quicksort.html" />
+    <link rel="prev" title="10. Mergesort Concepts" href="Mergesort.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 3 Sorting</span></h2>
+              <h2 class="heading" ><span>Chapter 2 Arrays: Searching and Sorting</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Mergesort.html">3.<span class="section-number">8. </span>Mergesort Concepts</a>
+        «&#160;&#160;<a id="prevmod" href="Mergesort.html">2.<span class="section-number">10. </span>Mergesort Concepts</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Quicksort.html">3.<span class="section-number">10. </span>Quicksort</a>&#160;&#160;»
+        <a  id="nextmod" href="Quicksort.html">2.<span class="section-number">12. </span>Quicksort</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-mergesort">
-<h1>3.<span class="section-number">9. </span>Implementing Mergesort<a class="headerlink" href="#implementing-mergesort" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-mergesort">
+<h1>2.<span class="section-number">11. </span>Implementing Mergesort<a class="headerlink" href="#implementing-mergesort" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>3.<span class="section-number">9.1. </span>Implementing Mergesort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">11.1. </span>Implementing Mergesort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Implementing Mergesort presents a number of technical difficulties.
 The first decision is how to represent the lists.
 Mergesort lends itself well to sorting a singly linked list because
@@ -296,100 +296,6 @@ The initial call to <code class="docutils literal notranslate"><span class="pre"
  </div>
 </div>
 <p></p>
-<p>An optimized Mergesort implementation is shown below.
-It reverses the order of the second subarray during the initial copy.
-Now the current positions of the two subarrays work inwards from the
-ends, allowing the end of each subarray to act as a sentinel for the
-other.
-Unlike the previous implementation, no test is needed to check for
-when one of the two subarrays becomes empty.
-This version also has a second optimization:
-It uses Insertion Sort to sort small subarrays whenever the size of
-the array is smaller than a value defined by <code class="docutils literal notranslate"><span class="pre">THRESHOLD</span></code>.</p>
-<div id="Mergesort_MergesortOpt_code"><ul><li><a href="#Mergesort_MergesortOpt_code_Java_Generic">Java</a></li><li><a href="#Mergesort_MergesortOpt_code_Python">Python</a></li></ul><div id="Mergesort_MergesortOpt_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">mergesortOpt</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">,</span> <span class="n">T</span><span class="o">[]</span> <span class="n">temp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>    <span class="c1">// Select the midpoint</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span>           <span class="c1">// List has one record</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">mid</span><span class="o">-</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">THRESHOLD</span><span class="p">)</span>
-    <span class="n">mergesortOpt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
-  <span class="k">else</span>
-    <span class="n">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">right</span><span class="o">-</span><span class="n">mid</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="p">)</span>
-    <span class="n">mergesortOpt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
-  <span class="k">else</span>
-    <span class="n">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>
-  <span class="c1">// Do the merge operation.  First, copy 2 halves to temp.</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="n">left</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">mid</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">right</span><span class="p">;</span> <span class="n">j</span><span class="o">&gt;</span><span class="n">mid</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
-    <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="c1">// Merge sublists back to array</span>
-  <span class="n">i</span><span class="o">=</span><span class="n">left</span><span class="p">;</span> <span class="n">j</span><span class="o">=</span><span class="n">right</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="o">=</span><span class="n">left</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;=</span><span class="n">right</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">j</span><span class="o">--</span><span class="p">;</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="Mergesort_MergesortOpt_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergesortOpt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-  <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>      <span class="c1"># Select the midpoint</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">):</span>       <span class="c1"># List has one record</span>
-    <span class="k">return</span>
-  <span class="k">if</span> <span class="n">mid</span><span class="o">-</span><span class="n">left</span> <span class="o">&gt;=</span> <span class="n">THRESHOLD</span><span class="p">:</span>
-    <span class="n">mergesortOpt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">right</span><span class="o">-</span><span class="n">mid</span> <span class="o">&gt;</span> <span class="n">THRESHOLD</span><span class="p">:</span>
-    <span class="n">mergesortOpt</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-  <span class="k">else</span><span class="p">:</span>
-    <span class="n">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
-  <span class="c1"># Do the merge operation.  First, copy 2 halves to temp.</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span>
-  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">mid</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-    <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-    <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-  <span class="c1"># Merge sublists back to array</span>
-  <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">j</span> <span class="o">=</span> <span class="n">right</span>
-  <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-      <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
-      <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#Mergesort_MergesortOpt_code" ).tabs();});</script><p>Here is a visualization for the optimized merge step.</p>
-<div id="mergeImplS2CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="mergeImplS2CON" data-long-name="Mergesort Implementation Slideshow 2" data-exer-id="" alt="Mergesort Implementation Slideshow 2" tabIndex="-1">
- <span class="jsavcounter"></span>
- <a class="jsavsettings" href="#">Settings</a>
- <div class="jsavcontrols"></div>
- <p class="jsavoutput jsavline"></p>
- <div class="jsavcanvas"></div>
- <div class="prof_indicators">
-  <img id="mergeImplS2CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
-  <span id="mergeImplS2CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
-  <span id="mergeImplS2CON_cm_error_msg" class="cm_error_msg">
-   <img id="mergeImplS2CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
-   Server Error<br />
-   <a href="#" class="resubmit_link">Resubmit</a>
-  </span>
- </div>
-</div>
-<p></p>
 <div
     id="MergesortSumm"
     class="embedContainer"
@@ -413,7 +319,6 @@ the array is smaller than a value defined by <code class="docutils literal notra
   </div>
 </div>
 <script type="text/javascript" src="../../../AV/Sorting/mergeImplS1CON.js"></script>
-<script type="text/javascript" src="../../../AV/Sorting/mergeImplS2CON.js"></script>
 </div>
 </div>
 
@@ -422,11 +327,11 @@ the array is smaller than a value defined by <code class="docutils literal notra
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Mergesort.html">3.<span class="section-number">8. </span>Mergesort Concepts</a>
+        «&#160;&#160;<a id="prevmod1" href="Mergesort.html">2.<span class="section-number">10. </span>Mergesort Concepts</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Quicksort.html">3.<span class="section-number">10. </span>Quicksort</a>&#160;&#160;»
+        <a  id="nextmod1" href="Quicksort.html">2.<span class="section-number">12. </span>Quicksort</a>&#160;&#160;»
 
 </p>
       </div>
@@ -441,7 +346,7 @@ the array is smaller than a value defined by <code class="docutils literal notra
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

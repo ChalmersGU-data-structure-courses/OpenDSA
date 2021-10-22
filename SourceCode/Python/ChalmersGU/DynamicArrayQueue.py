@@ -28,7 +28,7 @@ class DynamicArrayQueue(Queue):
 
 #/* *** ODSATag: DynamicArrayQueueDequeue *** */
     def dequeue(self):
-        if not (self._queueSize > 0): raise IndexError("pop from empty queue")
+        if not (self._queueSize > 0): raise IndexError("dequeue from empty queue")
         self._queueSize -= 1
         x = self._internalArray[self._front]
         self._internalArray[self._front] = None   # For garbage collection
@@ -78,7 +78,10 @@ class DynamicArrayQueueIterator(Iterator):
 #/* *** ODSAendTag: DynamicArrayQueue *** */
 
 
-def _pprint(l):
+#######################################################################################
+## What comes below is purely for debugging and testing purposes - it can be removed ##
+
+def _printList(l):
     print(len(l._internalArray), ":", l._front, "[",
           " ".join("-" if e is None else str(e) for e in l._internalArray), "]",
           l._rear, " ... ", " ".join(str(e) for e in l), "|", l.size())
@@ -89,9 +92,9 @@ if __name__ == '__main__':
         a.enqueue(chr(i+65))
         a.enqueue(chr(i+97))
         a.dequeue()
-        if a.size() % 5 == 0: _pprint(a)
-    _pprint(a)
+        if a.size() % 5 == 0: _printList(a)
+    _printList(a)
     while not a.isEmpty():
         assert a.peek() == a.dequeue(), (a,)
-        if a.size() % 3 == 2: _pprint(a)
-    _pprint(a)
+        if a.size() % 3 == 2: _printList(a)
+    _printList(a)

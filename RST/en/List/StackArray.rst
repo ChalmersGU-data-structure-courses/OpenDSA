@@ -9,8 +9,8 @@
    :satisfies: stack ADT; array-based stack; stack
    :topic: Lists
 
-Stacks
-======
+Dynamic Array-Based Stacks
+================================
 
 Stack Terminology and Implementation
 ------------------------------------

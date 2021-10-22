@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Splay";ODSA.SETTINGS.MODULE_LONG_NAME = "The Splay Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Splay";ODSA.SETTINGS.MODULE_LONG_NAME = "The Splay Tree (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Balanced Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies:
    :topic: Splay Trees
 
-The Splay Tree
-==============
+The Splay Tree (WORK IN PROGRESS)
+===================================
 
 Like the AVL tree, the splay tree is not actually a distinct data
 structure, but rather reimplements the BST insert, delete, and search

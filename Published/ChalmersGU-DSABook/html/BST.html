@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6.10. Binary Search Trees &mdash; Data Structures and Algorithms</title>
+    <title>7.1. Binary Search Trees (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="11. Dictionary Implementation Using a BST" href="BSTDict.html" />
-    <link rel="prev" title="9. Binary Tree Space Requirements" href="BinaryTreeNodeSpace.html" />
+    <link rel="next" title="2. Dictionary Implementation Using a BST (WORK IN PROGRESS)" href="BSTDict.html" />
+    <link rel="prev" title="3. Sequential Tree Representations (optional) (WORK IN PROGRESS)" href="SequentialRep.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 6 Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 7 Search Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeNodeSpace.html">6.<span class="section-number">9. </span>Binary Tree Space Requirements</a>
+        «&#160;&#160;<a id="prevmod" href="SequentialRep.html">6.<span class="section-number">3. </span>Sequential Tree Representations (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BSTDict.html">6.<span class="section-number">11. </span>Dictionary Implementation Using a BST</a>&#160;&#160;»
+        <a  id="nextmod" href="BSTDict.html">7.<span class="section-number">2. </span>Dictionary Implementation Using a BST (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="binary-search-trees">
-<h1>6.<span class="section-number">10. </span>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="binary-search-trees-work-in-progress">
+<h1>7.<span class="section-number">1. </span>Binary Search Trees (WORK IN PROGRESS)<a class="headerlink" href="#binary-search-trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="binary-search-tree-definition">
-<h2>6.<span class="section-number">10.1. </span>Binary Search Tree Definition<a class="headerlink" href="#binary-search-tree-definition" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">1.1. </span>Binary Search Tree Definition<a class="headerlink" href="#binary-search-tree-definition" title="Permalink to this headline">¶</a></h2>
 <p>A <a class="reference internal" href="Glossary.html#term-binary-search-tree"><span class="xref std std-term">binary search tree</span></a> (<a class="reference internal" href="Glossary.html#term-bst"><span class="xref std std-term">BST</span></a>)
 is a <a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">binary tree</span></a> that conforms to the
 following condition, known
@@ -177,7 +177,7 @@ All <a class="reference internal" href="Glossary.html#term-node"><span class="xr
 less than or equal to <span class="math notranslate nohighlight">\(K\)</span>.
 All nodes stored in the right subtree of a node whose key value
 is <span class="math notranslate nohighlight">\(K\)</span> have key values greater than <span class="math notranslate nohighlight">\(K\)</span>.
-Figure <a href="BST.html#bstshape">6.11.1</a> shows two BSTs for a collection of
+Figure <a href="BST.html#bstshape">7.2.1</a> shows two BSTs for a collection of
 values.
 One consequence of the binary search tree property is that if the BST
 nodes are printed using an
@@ -187,7 +187,7 @@ sorted order from lowest to highest.</p>
 <div class="divdgm" id="bstshape">
 <div id="BSTShapeCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 6.11.1: Two Binary Search Trees for a collection of values.
+<p class="caption"><span class="caption-text"> Figure 7.2.1: Two Binary Search Trees for a collection of values.
 Tree (a) results if values are inserted
 in the order 37, 24, 42, 7, 2, 40, 42, 32, 120.
 Tree (b) results if the same values are inserted in the
@@ -242,7 +242,7 @@ Our BST implementation will require that records implement the
 </pre></div>
 </div>
 <div class="section" id="bst-search">
-<h3>6.<span class="section-number">10.1.1. </span>BST Search<a class="headerlink" href="#bst-search" title="Permalink to this headline">¶</a></h3>
+<h3>7.<span class="section-number">1.1.1. </span>BST Search<a class="headerlink" href="#bst-search" title="Permalink to this headline">¶</a></h3>
 <p>The first operation that we will look at in detail will find the
 record that matches a given key.
 Notice that in the BST class, public member function
@@ -297,7 +297,7 @@ subroutine and is implemented as follows.</p>
 </div>
 </div>
 <div class="section" id="bst-insert">
-<h2>6.<span class="section-number">10.2. </span>BST Insert<a class="headerlink" href="#bst-insert" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">1.2. </span>BST Insert<a class="headerlink" href="#bst-insert" title="Permalink to this headline">¶</a></h2>
 <p>Now we look at how to insert a new node into the BST.</p>
 <div id="BSTinsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTinsertCON" data-long-name="BST Insert Slideshow" data-exer-id="" alt="BST Insert Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -336,7 +336,7 @@ duplicate in the left subtree.</p>
 <p>The shape of a BST depends on the order in which elements are inserted.
 A new element is added to the BST as a new leaf node,
 potentially increasing the depth of the tree.
-Figure <a href="BST.html#bstshape">6.11.1</a> illustrates two BSTs for a collection
+Figure <a href="BST.html#bstshape">7.2.1</a> illustrates two BSTs for a collection
 of values.
 It is possible for the BST containing <span class="math notranslate nohighlight">\(n\)</span> nodes to be a chain of
 nodes with height <span class="math notranslate nohighlight">\(n\)</span>.
@@ -369,7 +369,7 @@ This keeps the average cost of a BST operation low.</p>
 </div>
 </div>
 <div class="section" id="bst-remove">
-<h2>6.<span class="section-number">10.3. </span>BST Remove<a class="headerlink" href="#bst-remove" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">1.3. </span>BST Remove<a class="headerlink" href="#bst-remove" title="Permalink to this headline">¶</a></h2>
 <p>Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered
 individually.
@@ -496,7 +496,7 @@ least value from its right subtree.</p>
 </div>
 </div>
 <div class="section" id="bst-analysis">
-<h2>6.<span class="section-number">10.4. </span>BST Analysis<a class="headerlink" href="#bst-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>7.<span class="section-number">1.4. </span>BST Analysis<a class="headerlink" href="#bst-analysis" title="Permalink to this headline">¶</a></h2>
 <p>The cost for <code class="docutils literal notranslate"><span class="pre">findhelp</span></code> and <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code> is the depth of
 the node found or inserted.
 The cost for <code class="docutils literal notranslate"><span class="pre">removehelp</span></code> is the depth of the node being
@@ -585,11 +585,11 @@ remain balanced, such as the <a class="reference internal" href="TwoThreeTree.ht
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeNodeSpace.html">6.<span class="section-number">9. </span>Binary Tree Space Requirements</a>
+        «&#160;&#160;<a id="prevmod1" href="SequentialRep.html">6.<span class="section-number">3. </span>Sequential Tree Representations (optional) (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BSTDict.html">6.<span class="section-number">11. </span>Dictionary Implementation Using a BST</a>&#160;&#160;»
+        <a  id="nextmod1" href="BSTDict.html">7.<span class="section-number">2. </span>Dictionary Implementation Using a BST (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -604,7 +604,7 @@ remain balanced, such as the <a class="reference internal" href="TwoThreeTree.ht
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

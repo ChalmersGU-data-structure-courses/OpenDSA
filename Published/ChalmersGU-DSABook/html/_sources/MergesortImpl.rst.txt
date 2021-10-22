@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -102,29 +102,6 @@ Here is a visualization for the merge step.
    :long_name: Mergesort Implementation Slideshow 1
    :output: show
 
-An optimized Mergesort implementation is shown below.
-It reverses the order of the second subarray during the initial copy.
-Now the current positions of the two subarrays work inwards from the
-ends, allowing the end of each subarray to act as a sentinel for the
-other.
-Unlike the previous implementation, no test is needed to check for
-when one of the two subarrays becomes empty.
-This version also has a second optimization:
-It uses Insertion Sort to sort small subarrays whenever the size of
-the array is smaller than a value defined by ``THRESHOLD``.
-
-.. codeinclude:: Sorting/Mergesort
-   :tag: MergesortOpt
-
-Here is a visualization for the optimized merge step.
-
-.. inlineav:: mergeImplS2CON ss
-   :points: 0.0
-   :required: False
-   :threshold: 1.0
-   :long_name: Mergesort Implementation Slideshow 2
-   :output: show
-
 .. avembed:: Exercises/Sorting/MergesortSumm.html ka
    :module: MergesortImpl
    :points: 1.0
@@ -134,4 +111,3 @@ Here is a visualization for the optimized merge step.
    :long_name: Mergesort Summary Exercise
 
 .. odsascript:: AV/Sorting/mergeImplS1CON.js
-.. odsascript:: AV/Sorting/mergeImplS2CON.js

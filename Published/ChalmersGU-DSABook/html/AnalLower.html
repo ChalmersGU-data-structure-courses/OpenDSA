@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.7. Lower Bounds and \(\Theta\) Notation &mdash; Data Structures and Algorithms</title>
+    <title>3.7. Lower Bounds and \(\Theta\) Notation (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="8. Calculating Program Running Time" href="AnalProgram.html" />
-    <link rel="prev" title="6. Asymptotic Analysis and Upper Bounds" href="AnalAsymptotic.html" />
+    <link rel="next" title="8. Calculating Program Running Time (WORK IN PROGRESS)" href="AnalProgram.html" />
+    <link rel="prev" title="6. Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)" href="AnalAsymptotic.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 4 Algorithm Analysis</span></h2>
+              <h2 class="heading" ><span>Chapter 3 Algorithm Analysis</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AnalAsymptotic.html">4.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds</a>
+        «&#160;&#160;<a id="prevmod" href="AnalAsymptotic.html">3.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AnalProgram.html">4.<span class="section-number">8. </span>Calculating Program Running Time</a>&#160;&#160;»
+        <a  id="nextmod" href="AnalProgram.html">3.<span class="section-number">8. </span>Calculating Program Running Time (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,13 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['lower-bounds-and-:math:`\\theta`-notation', 'lower-bounds', 'theta-notation', 'classifying-functions', 'summary-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalLower";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds and Theta Notation";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/LowerBoundCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['lower-bounds-and-:math:`\\theta`-notation-work-in-progress', 'lower-bounds-and-theta-notation', 'lower-bounds', 'theta-notation', 'classifying-functions', 'summary-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalLower";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds and Theta Notation (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/LowerBoundCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="lower-bounds-and-theta-notation-work-in-progress">
+<h1>3.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation (WORK IN PROGRESS)<a class="headerlink" href="#lower-bounds-and-theta-notation-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="lower-bounds-and-theta-notation">
-<h1>4.<span class="section-number">7. </span>Lower Bounds and <span class="math notranslate nohighlight">\(\Theta\)</span> Notation<a class="headerlink" href="#lower-bounds-and-theta-notation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>4.<span class="section-number">7.1. </span>Lower Bounds and Theta Notation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>3.<span class="section-number">7.1. </span>Lower Bounds and Theta Notation<a class="headerlink" href="#lower-bounds-and-theta-notation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="lower-bounds">
-<h3>4.<span class="section-number">7.1.1. </span>Lower Bounds<a class="headerlink" href="#lower-bounds" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">7.1.1. </span>Lower Bounds<a class="headerlink" href="#lower-bounds" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference internal" href="Glossary.html#term-big-oh-notation"><span class="xref std std-term">Big-Oh notation</span></a> describes an upper bound.
 In other words, big-Oh notation states a claim about the greatest
 amount of some resource (usually time) that is required by an
@@ -194,10 +194,10 @@ definition of big-Oh.</p>
 <div><p>For <span class="math notranslate nohighlight">\(\mathbf{T}(n)\)</span> a non-negatively valued function,
 <span class="math notranslate nohighlight">\(\mathbf{T}(n)\)</span> is in set <span class="math notranslate nohighlight">\(\Omega(g(n))\)</span> if there exist
 two positive constants <span class="math notranslate nohighlight">\(c\)</span> and <span class="math notranslate nohighlight">\(n_0\)</span> such that
-<span class="math notranslate nohighlight">\(\mathbf{T}(n) \geq c g(n)\)</span> for all <span class="math notranslate nohighlight">\(n &gt; n_0\)</span>. <a class="footnote-reference brackets" href="#id3" id="id2">1</a></p>
+<span class="math notranslate nohighlight">\(\mathbf{T}(n) \geq c g(n)\)</span> for all <span class="math notranslate nohighlight">\(n &gt; n_0\)</span>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 </div></blockquote>
 <div class="topic" id="aanalex">
-<p class="topic-title">Example 4.8.1 </p>
+<p class="topic-title">Example 3.8.1 </p>
 <p>Assume <span class="math notranslate nohighlight">\(\mathbf{T}(n) = c_1 n^2 + c_2 n\)</span> for <span class="math notranslate nohighlight">\(c_1\)</span> and
 <span class="math notranslate nohighlight">\(c_2 &gt; 0\)</span>.
 Then,</p>
@@ -221,7 +221,7 @@ because in both the average and worst cases we must examine
 <em>at least</em> <span class="math notranslate nohighlight">\(cn\)</span> values (where <span class="math notranslate nohighlight">\(c\)</span> is 1/2 in the average
 case and 1 in the worst case).</p>
 <dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>An alternate (non-equivalent) definition for <span class="math notranslate nohighlight">\(\Omega\)</span> is</p>
 <blockquote>
 <div><p><span class="math notranslate nohighlight">\(\mathbf{T}(n)\)</span> is in the set <span class="math notranslate nohighlight">\(\Omega(g(n))\)</span> if
@@ -279,7 +279,7 @@ behavior of algorithms.</p>
 </dl>
 </div>
 <div class="section" id="theta-notation">
-<h3>4.<span class="section-number">7.1.2. </span>Theta Notation<a class="headerlink" href="#theta-notation" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">7.1.2. </span>Theta Notation<a class="headerlink" href="#theta-notation" title="Permalink to this headline">¶</a></h3>
 <p>The definitions for big-Oh and <span class="math notranslate nohighlight">\(\Omega\)</span> give us ways to
 describe the upper bound for an algorithm (if we can find an equation
 for the maximum cost of a particular class of inputs of size
@@ -344,7 +344,7 @@ lower bound of a problem or algorithm, the corresponding notation will
 be used in preference to <span class="math notranslate nohighlight">\(\Theta\)</span> notation.</p>
 </div>
 <div class="section" id="classifying-functions">
-<h3>4.<span class="section-number">7.1.3. </span>Classifying Functions<a class="headerlink" href="#classifying-functions" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">7.1.3. </span>Classifying Functions<a class="headerlink" href="#classifying-functions" title="Permalink to this headline">¶</a></h3>
 <p>Given functions <span class="math notranslate nohighlight">\(f(n)\)</span> and <span class="math notranslate nohighlight">\(g(n)\)</span> whose growth rates are
 expressed as algebraic equations, we might like to determine if one
 grows faster than the other.
@@ -359,7 +359,7 @@ because <span class="math notranslate nohighlight">\(g(n)\)</span> grows faster.
 If the limit goes to some constant other than zero, then
 <span class="math notranslate nohighlight">\(f(n) = \Theta(g(n))\)</span> because both grow at the same rate.</p>
 <div class="topic">
-<p class="topic-title">Example 4.8.2 </p>
+<p class="topic-title">Example 3.8.2 </p>
 <p>If <span class="math notranslate nohighlight">\(f(n) = n^2\)</span> and <span class="math notranslate nohighlight">\(g(n) = 2n\log n\)</span>, is <span class="math notranslate nohighlight">\(f(n)\)</span> in
 <span class="math notranslate nohighlight">\(O(g(n))\)</span>, <span class="math notranslate nohighlight">\(\Omega(g(n))\)</span>, or <span class="math notranslate nohighlight">\(\Theta(g(n))\)</span>?
 Since</p>
@@ -390,7 +390,7 @@ Thus, <span class="math notranslate nohighlight">\(n^2\)</span> is in <span clas
 <p></p>
 </div>
 <div class="section" id="summary-exercise">
-<h3>4.<span class="section-number">7.1.4. </span>Summary Exercise<a class="headerlink" href="#summary-exercise" title="Permalink to this headline">¶</a></h3>
+<h3>3.<span class="section-number">7.1.4. </span>Summary Exercise<a class="headerlink" href="#summary-exercise" title="Permalink to this headline">¶</a></h3>
 <div
     id="LowerThetaSumm"
     class="embedContainer"
@@ -423,11 +423,11 @@ Thus, <span class="math notranslate nohighlight">\(n^2\)</span> is in <span clas
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AnalAsymptotic.html">4.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds</a>
+        «&#160;&#160;<a id="prevmod1" href="AnalAsymptotic.html">3.<span class="section-number">6. </span>Asymptotic Analysis and Upper Bounds (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AnalProgram.html">4.<span class="section-number">8. </span>Calculating Program Running Time</a>&#160;&#160;»
+        <a  id="nextmod1" href="AnalProgram.html">3.<span class="section-number">8. </span>Calculating Program Running Time (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -442,7 +442,7 @@ Thus, <span class="math notranslate nohighlight">\(n^2\)</span> is in <span clas
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

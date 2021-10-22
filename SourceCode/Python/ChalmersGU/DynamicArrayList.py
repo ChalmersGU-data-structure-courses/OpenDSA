@@ -83,7 +83,10 @@ class DynamicArrayListIterator(Iterator):
 #/* *** ODSAendTag: DynamicArrayList *** */
 
 
-def _pprint(l):
+#######################################################################################
+## What comes below is purely for debugging and testing purposes - it can be removed ##
+
+def _printList(l):
     print(len(l._internalArray), "[", " ".join(str(e) for e in l), "|",
               "- " * (len(l._internalArray) - l.size()) + "]", l.size())
 
@@ -92,10 +95,10 @@ if __name__ == '__main__':
     for i in range(20):
         a.add(a.size(), chr(i+65))
         if i % 5 == 0:
-            _pprint(a)
-    _pprint(a)
+            _printList(a)
+    _printList(a)
     for i in range(0, a.size(), 2): a.set(i, a.get(i).lower())
-    _pprint(a)
+    _printList(a)
     for _ in range(4):
         for i in range(a.size()-1, -1, -3): a.remove(i)
-        _pprint(a)
+        _printList(a)

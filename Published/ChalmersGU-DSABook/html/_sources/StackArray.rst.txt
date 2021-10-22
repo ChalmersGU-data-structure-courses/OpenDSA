@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'dynamic-array-based-stacks', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script>
 
 .. _StackArray:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: stack ADT; array-based stack; stack
    :topic: Lists
 
-Stacks
-======
+Dynamic Array-Based Stacks
+================================
 
 Stack Terminology and Implementation
 ------------------------------------

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.3. Sample Hash Functions &mdash; Data Structures and Algorithms</title>
+    <title>10.3. Sample Hash Functions (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="4. Open Hashing" href="OpenHash.html" />
-    <link rel="prev" title="2. Hash Function Principles" href="HashFunc.html" />
+    <link rel="next" title="4. Open Hashing (WORK IN PROGRESS)" href="OpenHash.html" />
+    <link rel="prev" title="2. Hash Function Principles (WORK IN PROGRESS)" href="HashFunc.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles</a>
+        «&#160;&#160;<a id="prevmod" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+        <a  id="nextmod" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions">
-<h1>10.<span class="section-number">3. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>10.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sample-hash-functions', 'simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions-work-in-progress">
+<h1>10.<span class="section-number">3. </span>Sample Hash Functions (WORK IN PROGRESS)<a class="headerlink" href="#sample-hash-functions-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="sample-hash-functions">
+<h2>10.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="simple-mod-function">
 <h3>10.<span class="section-number">3.1.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h3>
 <p>Consider the following hash function used to hash integers to a table
@@ -288,9 +288,9 @@ slot in the table a series of thin slices in steps of 8.
 In the normal distribution, some of these slices associated with any given
 slot are near the tails, and some are near the center.
 Thus, each table slot is equally likely (roughly) to get a key value.</p>
-<div class="figure align-center" id="id2" style="width: 90%">
+<div class="figure align-center" id="id1" style="width: 90%">
 <span id="hashnormal"></span><a class="reference internal image-reference" href="_images/HashNormal.png"><img alt="Binning vs. Mod Function" src="_images/HashNormal.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 10.4.1: A comparison of binning vs. modulus as a hash function.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+<p class="caption"><span class="caption-text"> Figure 10.4.1: A comparison of binning vs. modulus as a hash function.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="the-mid-square-method">
@@ -318,7 +318,7 @@ Thus, the result is not dominated by the distribution of the bottom
 digit or the top digit of the original key value.
 Of course, if the key values all tend to be small numbers,
 then their squares will only affect the low-order digits of the hash value.</p>
-<div class="figure align-center" id="id3" style="width: 90%">
+<div class="figure align-center" id="id2" style="width: 90%">
 <span id="midsquarefig"></span><a class="reference internal image-reference" href="_images/MidSquare.png"><img alt="Mid-square method example" src="_images/MidSquare.png" style="width: 70px;" /></a>
 <p class="caption"><span class="caption-text"> Figure 10.4.2: An example of the mid-square method. This image shows the
 traditional gradeschool long multiplication process. The value
@@ -329,7 +329,7 @@ the digits from the result that are being affected by each digit of
 the input. That is, “4” affects the output digits 2, 0, 8, 5,
 an 7. But it has no affect on the last 3 digits. The key point is
 that the middle two digits of the result (5 and 7) are affected by
-every digit of the input.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+every digit of the input.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Here is a little calculator for you to see how this works.
 Start with ‘4567’ as an example.</p>
@@ -574,11 +574,11 @@ functions.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles</a>
+        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">10.<span class="section-number">2. </span>Hash Function Principles (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing</a>&#160;&#160;»
+        <a  id="nextmod1" href="OpenHash.html">10.<span class="section-number">4. </span>Open Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -593,7 +593,7 @@ functions.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -53,8 +53,8 @@ class LinkedList(List):
                 prev = prev.next
             removed = prev.next
             prev.next = removed.next
-        self._listSize -= 1
         removed.next = None   # For garbage collection
+        self._listSize -= 1
         return removed.elem
 #/* *** ODSAendTag: LinkedListRemove *** */
 
@@ -95,7 +95,10 @@ class LinkedListNode:
 #/* *** ODSAendTag: LinkedList *** */
 
 
-def _pprint(l):
+#######################################################################################
+## What comes below is purely for debugging and testing purposes - it can be removed ##
+
+def _printList(l):
     print("[", " ".join(str(e) for e in l), "]", l.size())
 
 if __name__ == '__main__':
@@ -103,10 +106,10 @@ if __name__ == '__main__':
     for i in range(20):
         a.add(a.size(), chr(i+65))
         if i % 5 == 0:
-            _pprint(a)
-    _pprint(a)
+            _printList(a)
+    _printList(a)
     for i in range(0, a.size(), 2): a.set(i, a.get(i).lower())
-    _pprint(a)
+    _printList(a)
     for _ in range(4):
         for i in range(a.size()-1, -1, -3): a.remove(i)
-        _pprint(a)
+        _printList(a)

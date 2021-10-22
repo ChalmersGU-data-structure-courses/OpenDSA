@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.1. Priority queues &mdash; Data Structures and Algorithms</title>
+    <title>9.1. Priority queues (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Array Implementation for Complete Binary Trees" href="CompleteTree.html" />
-    <link rel="prev" title="6. Skip Lists" href="SkipList.html" />
+    <link rel="next" title="2. Array Implementation for Complete Binary Trees (WORK IN PROGRESS)" href="CompleteTree.html" />
+    <link rel="prev" title="6. Skip Lists (WORK IN PROGRESS)" href="SkipList.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists</a>
+        «&#160;&#160;<a id="prevmod" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>&#160;&#160;»
+        <a  id="nextmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sorting', 'finding-the-top-k-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues">
-<h1>9.<span class="section-number">1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>9.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues-work-in-progress">
+<h1>9.<span class="section-number">1. </span>Priority queues (WORK IN PROGRESS)<a class="headerlink" href="#priority-queues-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="priority-queues">
+<h2>9.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
 <p>So far we have seen two <a class="reference internal" href="Glossary.html#term-adt"><span class="xref std std-term">ADTs</span></a> that represent a collection
 of objects, and support adding and removing objects:</p>
 <ul class="simple">
@@ -194,27 +194,38 @@ following operations:</p>
 <li><p>adding a new object to the priority queue</p></li>
 <li><p>removing the <em>smallest</em> object from the priority queue.</p></li>
 </ul>
-<p>As we shall see in the next section, it is possible to implement a
-priority queue so that both adding and removing take
-<span class="math notranslate nohighlight">\(O(n \log n)\)</span> time.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// PriorityQueue class ADT</span>
-  <span class="c1">// Add element</span>
-  <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Item</span> <span class="n">x</span><span class="p">);</span>
-
-  <span class="c1">// Remove and return smallest element</span>
-  <span class="n">Item</span> <span class="nf">removeMin</span><span class="p">();</span>
-
-  <span class="c1">// Return smallest element</span>
-  <span class="n">Item</span> <span class="nf">getMin</span><span class="p">();</span>
-
-  <span class="c1">// Return priority queue size</span>
-  <span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>
-
-  <span class="c1">// Return true if the priority queue is empty</span>
-  <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>
+<p>In this chapter, we will see how to implement a priority queue so that
+both adding and removing the minimum take <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.</p>
+<div id="API_PriorityQueueADT_code"><ul><li><a href="#API_PriorityQueueADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_PriorityQueueADT_code_Java_Generic">Java</a></li><li><a href="#API_PriorityQueueADT_code_Python">Python</a></li></ul><div id="API_PriorityQueueADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">PriorityQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>          <span class="c1">// Adds x to the priority queue.</span>
+    <span class="n">removeMin</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Removes the minimum element, and returns it.</span>
+    <span class="n">getMin</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the minimum element, without removing it.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order, but the minimum element should come first.</span>
+</pre></div>
+</div>
+</div><div id="API_PriorityQueueADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is an interface, while java.util.PriorityQueue is a class</span>
+<span class="c1">// implementing the Queue interface (so different method names)!</span>
+<span class="kd">interface</span> <span class="nc">PriorityQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Adds x to the priority queue.</span>
+    <span class="n">E</span> <span class="nf">removeMin</span><span class="p">();</span>  <span class="c1">// Removes the minimum element, and returns it.</span>
+    <span class="n">E</span> <span class="nf">getMin</span><span class="p">();</span>     <span class="c1">// Returns the minimum element, without removing it.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order, but the minimum element should come first.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+</div><div id="API_PriorityQueueADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">PriorityQueue</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Adds x to the priority queue.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">removeMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Removes the minimum element, and returns it.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the minimum element, without removing it.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() can yield the elements in any order, but the minimum element should come first.</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#API_PriorityQueueADT_code" ).tabs();});</script><a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Add max priority queues, and the version with an explicit priority
+(and/or comparator?)</p>
+</div>
+<p>Now let’s look at a couple of applications of priority queues.</p>
 </div>
 <div class="section" id="sorting">
 <h2>9.<span class="section-number">1.2. </span>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
@@ -226,7 +237,22 @@ sort a list of items:</p>
 come out in ascending order.</p></li>
 </ul>
 <p>Here is an implementation of this algorithm in code:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">T</span><span class="o">[]</span> <span class="nf">pqsort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">array</span><span class="p">)</span> <span class="p">{</span>
+<div id="PQsort_PQsort_code"><ul><li><a href="#PQsort_PQsort_code_Pseudo">Pseudo-Code</a></li><li><a href="#PQsort_PQsort_code_Java_Generic">Java</a></li><li><a href="#PQsort_PQsort_code_Python">Python</a></li></ul><div id="PQsort_PQsort_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">pqsort</span><span class="p">(</span><span class="n">array</span><span class="p">:</span> <span class="n">T</span><span class="o">[]</span><span class="p">):</span> <span class="n">T</span><span class="o">[]</span>
+  <span class="n">pq</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">()</span>
+    <span class="c1">// MinHeap is a class that implements the</span>
+    <span class="c1">//  priority queue ADT; we will see how it works</span>
+    <span class="c1">// in the next section.</span>
+  <span class="k">for</span> <span class="n">item</span> <span class="n">in</span> <span class="n">array</span>
+    <span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+  <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">length</span> <span class="s">&quot;array.length&quot;</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="mf">0.</span><span class="p">.</span><span class="na">result</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">pq</span><span class="p">.</span><span class="na">removeMin</span><span class="p">()</span>
+    
+  <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div><div id="PQsort_PQsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="n">T</span><span class="o">[]</span> <span class="nf">pqsort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">array</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span>
     <span class="c1">// MinHeap is a class that implements the</span>
     <span class="c1">// priority queue ADT; we will see how it works</span>
@@ -242,15 +268,30 @@ come out in ascending order.</p></li>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>What is the time complexity of this algorithm? Well, for an input list
+</div><div id="PQsort_PQsort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">pqsort</span><span class="p">(</span><span class="n">array</span><span class="p">):</span>
+  <span class="n">pq</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">()</span>
+    <span class="c1"># MinHeap is a class that implements the</span>
+    <span class="c1"># priority queue ADT; we will see how it works</span>
+    <span class="c1"># in the next section.</span>
+  <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">array</span><span class="p">:</span>
+    <span class="n">pq</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+
+  <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+  <span class="k">while</span> <span class="ow">not</span> <span class="n">pq</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">():</span>
+    <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">pq</span><span class="o">.</span><span class="n">removeMin</span><span class="p">())</span>
+    
+  <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#PQsort_PQsort_code" ).tabs();});</script><p>What is the time complexity of this algorithm? Well, for an input list
 of size <span class="math notranslate nohighlight">\(n\)</span>, the algorithm calls <code class="docutils literal notranslate"><span class="pre">add</span></code> <span class="math notranslate nohighlight">\(n\)</span> times and
 <code class="docutils literal notranslate"><span class="pre">removeMin</span></code> <span class="math notranslate nohighlight">\(n\)</span> times.  In a binary heap, <code class="docutils literal notranslate"><span class="pre">add</span></code> and
 <code class="docutils literal notranslate"><span class="pre">removeMin</span></code> both take <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.  Therefore, the total
 runtime is <span class="math notranslate nohighlight">\(O(n \log n)\)</span> – as efficient as any of the sorting
 algorithms we have seen so far!</p>
 </div>
-<div class="section" id="finding-the-top-k-items">
-<h2>9.<span class="section-number">1.3. </span>Finding the top k items<a class="headerlink" href="#finding-the-top-k-items" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="finding-the-top-100-items">
+<h2>9.<span class="section-number">1.3. </span>Finding the top 100 items<a class="headerlink" href="#finding-the-top-100-items" title="Permalink to this headline">¶</a></h2>
 <p>Suppose that we are running a bank. Every day, every transaction that
 occurs at the bank is recorded in a list. When the bank closes at the
 end of the day, we would like to find the 100 highest-valued
@@ -264,64 +305,98 @@ we use an efficient sorting algorithm, this will take
 for finding the largest <span class="math notranslate nohighlight">\(k\)</span> items in a list of <span class="math notranslate nohighlight">\(n\)</span> items, in
 <span class="math notranslate nohighlight">\(O(n \log n)\)</span> time.)</p>
 <p>Now suppose that we want to monitor the transactions <em>throughout</em> the
-day. We want to have a screen, continuously updating, which shows the
-100 highest-valued transactions <em>so far</em> today. How can we do this?</p>
-<p>The sorting approach is no longer suitable. Every time a new
-transaction comes in, we would need to sort the entire list of
-transactions. If there are <span class="math notranslate nohighlight">\(n\)</span> transactions in total,
-then we would sort the transaction list <span class="math notranslate nohighlight">\(n\)</span> times, and
-this would take <span class="math notranslate nohighlight">\(O(n^2 \log n)\)</span> time in total. Not good!</p>
-<p>What we would like is a data structure representing a collection of
-items, and supporting the following operations:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">add(x)</span></code>: add the item <code class="docutils literal notranslate"><span class="pre">x</span></code> (in this case a transaction)
-to the collection</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">topK()</span></code>: return the top <span class="math notranslate nohighlight">\(k\)</span> items.</p></li>
-</ul>
-<p>Here, <span class="math notranslate nohighlight">\(k\)</span> is a value which is chosen when we initialise the data
-structure (in this example, <span class="math notranslate nohighlight">\(k\)</span> is 100). Here is how the API
-might look in code:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">TopK</span><span class="o">&lt;</span><span class="n">Item</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
-    <span class="c1">// Initialise the data structure, choosing the value for k.</span>
-    <span class="kd">public</span> <span class="nf">TopK</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+day. At any point, we want to be able to find the 100 highest-valued
+transactions <em>so far</em> today. How can we do this?</p>
+<p>We could still use the sorting approach, but we would need to sort the
+list of transactions <em>every time</em> we wanted to find the 100 top
+transactions. This may be prohibitively expensive if there are a lot
+of transactions: it takes <span class="math notranslate nohighlight">\(O(n \log n)\)</span> time every time we do it.</p>
+<p>We can do better with the help of a priority queue. The idea is to
+have a priority queue that holds the <em>100 highest-value transactions</em>
+only. Whenever a new transaction comes in, we need to update the
+priority queue accordingly:</p>
+<ol class="arabic simple">
+<li><p>If the priority queue has fewer than 100 transactions (i.e. there
+have been fewer than 100 transactions so far today), then add the
+new transaction to the priority queue.</p></li>
+<li><p>Otherwise, if the new transaction is <em>greater in value than the
+lowest-valued of the top 100 transactions</em>, then remove that
+transaction and add the new transaction.</p></li>
+<li><p>Otherwise, don’t add the new transaction to the priority queue
+(it’s not in the top 100).</p></li>
+</ol>
+<p>Notice that in step 2, we are comparing the new transaction to the
+<em>lowest-valued</em> of the top 100 transactions – if the transactions
+are ordered by value, then this transaction can be found by calling
+<code class="docutils literal notranslate"><span class="pre">getMin</span></code>, and removed using <code class="docutils literal notranslate"><span class="pre">removeMin</span></code>. So this algorithm can
+be implemented efficiently using a priority queue.</p>
+<p>In fact, we can simplify these three steps into two steps. First, we
+add the new transaction to the priority queue. This might make the
+priority queue grow to 101 transactions. If so, we remove the
+lowest-valued transaction. Here it is in code:</p>
+<div id="OnlineTopK_OnlineTopK_code"><ul><li><a href="#OnlineTopK_OnlineTopK_code_Pseudo">Pseudo-Code</a></li><li><a href="#OnlineTopK_OnlineTopK_code_Java_Generic">Java</a></li><li><a href="#OnlineTopK_OnlineTopK_code_Python">Python</a></li></ul><div id="OnlineTopK_OnlineTopK_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Top100Transactions</span>
+    <span class="c1">// Assume that the Transaction class implements comparisons</span>
+    <span class="c1">// by comparing the value of the transaction.</span>
+    <span class="kd">private</span> <span class="nf">PriorityQueue</span><span class="p">(</span><span class="n">Transaction</span><span class="p">)</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="p">()</span>
 
-    <span class="c1">// Add an item to the data structure. O(log k).</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Item</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
+    <span class="c1">// Add a new transaction to the priority queue.</span>
+    <span class="kd">public</span> <span class="nf">add</span><span class="p">(</span><span class="n">transaction</span><span class="p">:</span> <span class="n">Transaction</span><span class="p">):</span>
+        <span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+        <span class="c1">// If the priority queue grows to 101 transactions,</span>
+        <span class="c1">// cut it down to 100 by removing the smallest-valued one.</span>
+        <span class="k">if</span> <span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span>
+            <span class="n">pq</span><span class="p">.</span><span class="na">removeMin</span><span class="p">()</span>
 
-    <span class="c1">// Return the top k items, in ascending order. O(k log k).</span>
-    <span class="kd">public</span> <span class="n">Item</span><span class="o">[]</span> <span class="nf">topK</span><span class="p">()</span> <span class="p">{</span> <span class="p">...</span> <span class="p">}</span>
-<span class="p">}</span>
+    <span class="c1">// Return the top 100 transactions.</span>
+    <span class="n">top100</span><span class="p">():</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">Transaction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pq</span><span class="p">.</span><span class="na">iterator</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>blah blah blah blah</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">TopK</span><span class="o">&lt;</span><span class="n">Item</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span> <span class="n">pq</span><span class="p">;</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">k</span><span class="p">;</span>
+</div><div id="OnlineTopK_OnlineTopK_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Top100Transactions</span> <span class="p">{</span>
+    <span class="c1">// Assume that the Transaction class implements Comparable</span>
+    <span class="c1">// by comparing the value of the transaction.</span>
+    <span class="kd">private</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">Transaction</span><span class="o">&gt;</span> <span class="n">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
 
-    <span class="kd">public</span> <span class="nf">TopK</span><span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">pq</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="o">&lt;</span><span class="n">Item</span><span class="o">&gt;</span><span class="p">();</span>
-        <span class="k">this</span><span class="p">.</span><span class="na">k</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Item</span> <span class="n">item</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">item</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">k</span><span class="p">)</span>
+    <span class="c1">// Add a new transaction to the priority queue.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Transaction</span> <span class="n">transaction</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">pq</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">transaction</span><span class="p">);</span>
+        <span class="c1">// If the priority queue grows to 101 transactions,</span>
+        <span class="c1">// cut it down to 100 by removing the smallest-valued one.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">)</span>
             <span class="n">pq</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
     <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">Item</span><span class="o">[]</span> <span class="nf">topK</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">Item</span><span class="o">[]</span> <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">Item</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">pq</span><span class="p">.</span><span class="na">size</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">Item</span> <span class="n">item</span><span class="p">:</span> <span class="n">pq</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">result</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">item</span><span class="p">;</span>
-            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
-        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="c1">// Return the top 100 transactions.</span>
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Transaction</span><span class="o">&gt;</span> <span class="nf">top100</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">pq</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+</div><div id="OnlineTopK_OnlineTopK_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Top100Transactions</span><span class="p">:</span>
+    <span class="c1"># Assume that the Transaction class implements comparisons</span>
+    <span class="c1"># by comparing the value of the transaction.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pq</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">()</span>
+
+    <span class="c1"># Add a new transaction to the priority queue.</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">transaction</span><span class="p">):</span>
+        <span class="n">pq</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">transaction</span><span class="p">)</span>
+        <span class="c1"># If the priority queue grows to 101 transactions,</span>
+        <span class="c1"># cut it down to 100 by removing the smallest-valued one.</span>
+        <span class="k">if</span> <span class="n">pq</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+            <span class="n">pq</span><span class="o">.</span><span class="n">removeMin</span><span class="p">()</span>
+
+    <span class="c1"># Return the top 100 transactions.</span>
+    <span class="k">def</span> <span class="nf">top100</span><span class="p">():</span>
+        <span class="k">return</span> <span class="n">pq</span><span class="o">.</span><span class="n">iterator</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OnlineTopK_OnlineTopK_code" ).tabs();});</script><p>What is the complexity of <code class="docutils literal notranslate"><span class="pre">add</span></code>? Well, in fact it takes constant
+time, because the priority queue has a constant maximum size of 100
+elements. If we generalize this problem to keeping track of the top
+<span class="math notranslate nohighlight">\(k\)</span> transactions, then the complexity of <code class="docutils literal notranslate"><span class="pre">add</span></code> is
+<span class="math notranslate nohighlight">\(O(\log k)\)</span>.</p>
 </div>
 </div>
 
@@ -330,11 +405,11 @@ might look in code:</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists</a>
+        «&#160;&#160;<a id="prevmod1" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>&#160;&#160;»
+        <a  id="nextmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -349,7 +424,7 @@ might look in code:</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

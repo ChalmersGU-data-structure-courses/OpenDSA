@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'uncountability', 'the-halting-problem-is-unsolvable'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['unsolveable-problems', 'introduction', 'uncountability', 'the-halting-problem-is-unsolvable'];</script>
 
 .. _Impossible:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :satisfies: uncomputable problems
    :topic: Limits to Computing
 
-Unsolveable Problems
-====================
+Unsolveable Problems (optional) (WORK IN PROGRESS)
+==================================================
 
 Unsolveable Problems
 --------------------
@@ -81,6 +81,14 @@ Note that for this code fragment, because we do not know if it halts,
 we also do not know an upper bound for its running time.
 As for the lower bound, we can easily show
 :math:`\Omega(\log n)`.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Exercise
+   Need an exercise to study lower bound on Colletz function
 
 Personally, I have faith that someday some smart person will
 completely analyze the Collatz function, proving once and for all

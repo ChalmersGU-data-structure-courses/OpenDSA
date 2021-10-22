@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>11.6. Minimal Cost Spanning Trees &mdash; Data Structures and Algorithms</title>
+    <title>11.6. Minimal Cost Spanning Trees (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Kruskal’s Algorithm" href="Kruskal.html" />
-    <link rel="prev" title="5. Shortest-Paths Problems" href="GraphShortest.html" />
+    <link rel="next" title="7. Kruskal’s Algorithm (WORK IN PROGRESS)" href="Kruskal.html" />
+    <link rel="prev" title="5. Shortest-Paths Problems (WORK IN PROGRESS)" href="GraphShortest.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        «&#160;&#160;<a id="prevmod" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+        <a  id="nextmod" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['minimal-cost-spanning-trees', 'prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="minimal-cost-spanning-trees-work-in-progress">
+<h1>11.<span class="section-number">6. </span>Minimal Cost Spanning Trees (WORK IN PROGRESS)<a class="headerlink" href="#minimal-cost-spanning-trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="minimal-cost-spanning-trees">
-<h1>11.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>11.<span class="section-number">6.1. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>11.<span class="section-number">6.1. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="Glossary.html#term-minimal-cost-spanning-tree"><span class="xref std std-term">minimal-cost spanning tree</span></a> (MCST)
 problem takes as input a connected, undirected graph
 <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, where each edge has a distance or weight measure
@@ -197,6 +197,14 @@ Those edges drawn with heavy lines indicate
 the subset making up the MCST.
 Note that edge <span class="math notranslate nohighlight">\((C, F)\)</span> could be replaced with edge
 <span class="math notranslate nohighlight">\((D, F)\)</span> to form a different MCST with equal cost.</span></p>
+</div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Replace the previous diagram with a slideshow illustrating the
+concept of MCST.</p>
+</dd>
+</dl>
 </div>
 <div class="section" id="prim-s-algorithm">
 <h3>11.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
@@ -376,7 +384,15 @@ the <a class="reference internal" href="Glossary.html#term-heap"><span class="xr
                 <span class="n">H</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">w</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#PrimPQ_PrimsPQ_code" ).tabs();});</script><p>Prim’s algorithm is an example of a greedy
+</div></div><script>$(function() {$( "#PrimPQ_PrimsPQ_code" ).tabs();});</script><a id="todo1"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Implement a slideshow demonstrating the Priority Queue version of
+Prim’s algorithm</p>
+</dd>
+</dl>
+</div>
+<p>Prim’s algorithm is an example of a greedy
 algorithm.
 At each step in the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, we select the least-cost edge that
 connects some marked vertex to some unmarked vertex.
@@ -421,7 +437,7 @@ It would have selected <span class="math notranslate nohighlight">\(e'\)</span>,
 Thus, it is a contradiction that Prim’s algorithm would have selected
 the wrong edge, and thus, Prim’s algorithm must be correct. BOX HERE</p>
 </div></blockquote>
-<div class="figure align-center" id="id2" style="width: 90%">
+<div class="figure align-center" id="id4" style="width: 90%">
 <span id="primproof"></span><a class="reference internal image-reference" href="_images/PrimMST.png"><img alt="Prim's MCST algorithm proof" src="_images/PrimMST.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text"> Figure 11.7.2: Prim’s MCST algorithm proof.
 The left oval contains that portion of the graph where Prim’s MCST
@@ -432,7 +448,7 @@ The two portions of the graph are connected by (at least) edges
 <span class="math notranslate nohighlight">\(e'\)</span> (the “correct” edge to be placed in the MCST).
 Note that the path from <span class="math notranslate nohighlight">\(v_w\)</span> to <span class="math notranslate nohighlight">\(v_j\)</span> cannot
 include any marked vertex <span class="math notranslate nohighlight">\(v_i, i \leq j\)</span>, because to do so
-would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+would form a cycle.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <div
     id="PrimPE"
@@ -456,6 +472,13 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
     <div id="PrimPE_iframe"></div>
   </div>
 </div>
+<a id="todo2"></a><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Exercise</dt><dd><p>Proficiency exercise for Prim’s algorithm.</p>
+</dd>
+</dl>
+</div>
 <script type="text/javascript" src="../../../AV/Graph/MCSTCON.js"></script>
 <script type="text/javascript" src="../../../AV/Graph/primCON.js"></script>
 </div>
@@ -467,11 +490,11 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems</a>
+        «&#160;&#160;<a id="prevmod1" href="GraphShortest.html">11.<span class="section-number">5. </span>Shortest-Paths Problems (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
+        <a  id="nextmod1" href="Kruskal.html">11.<span class="section-number">7. </span>Kruskal’s Algorithm (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -486,7 +509,7 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

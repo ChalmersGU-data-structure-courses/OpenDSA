@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.3. Heaps and Priority Queues &mdash; Data Structures and Algorithms</title>
+    <title>9.3. Heaps and Priority Queues (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="4. Heapsort" href="Heapsort.html" />
-    <link rel="prev" title="2. Array Implementation for Complete Binary Trees" href="CompleteTree.html" />
+    <link rel="next" title="4. Heapsort (WORK IN PROGRESS)" href="Heapsort.html" />
+    <link rel="prev" title="2. Array Implementation for Complete Binary Trees (WORK IN PROGRESS)" href="CompleteTree.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
+        «&#160;&#160;<a id="prevmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
+        <a  id="nextmod" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,13 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heaps-and-priority-queues', 'building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/HeapsIndCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/heapbuildProofCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="heaps-and-priority-queues-work-in-progress">
+<h1>9.<span class="section-number">3. </span>Heaps and Priority Queues (WORK IN PROGRESS)<a class="headerlink" href="#heaps-and-priority-queues-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="heaps-and-priority-queues">
-<h1>9.<span class="section-number">3. </span>Heaps and Priority Queues<a class="headerlink" href="#heaps-and-priority-queues" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>9.<span class="section-number">3.1. </span>Heaps and Priority Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.1. </span>Heaps and Priority Queues<a class="headerlink" href="#heaps-and-priority-queues" title="Permalink to this headline">¶</a></h2>
 <p>There are many situations, both in real life and in computing
 applications, where we wish to choose the next “most important”
 from a collection of people, tasks, or objects.
@@ -196,7 +196,7 @@ However, there is always the possibility that the BST will become
 unbalanced, leading to bad performance.
 Instead, we would like to find a data structure that is guaranteed to
 have good performance for this special application.</p>
-<p>This section presents the <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> <a class="footnote-reference brackets" href="#id3" id="id2">1</a> data structure.
+<p>This section presents the <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> <a class="footnote-reference brackets" href="#id2" id="id1">1</a> data structure.
 A heap is defined by two properties.
 First, it is a complete binary tree,
 so heaps are nearly always implemented using the
@@ -208,7 +208,7 @@ any node and the values of its children.
 There are two variants of the heap, depending on the definition of
 this relationship.</p>
 <dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>Note that the term “heap” is also sometimes used to refer to
 <a class="reference internal" href="Glossary.html#term-free-store"><span class="xref std std-term">free store</span></a>.</p>
 </dd>
@@ -855,11 +855,11 @@ and
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>
+        «&#160;&#160;<a id="prevmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort</a>&#160;&#160;»
+        <a  id="nextmod1" href="Heapsort.html">9.<span class="section-number">4. </span>Heapsort (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -874,7 +874,7 @@ and
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['lower-bounds-and-:math:`\\theta`-notation', 'lower-bounds', 'theta-notation', 'classifying-functions', 'summary-exercise'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['lower-bounds-and-:math:`\\theta`-notation-work-in-progress', 'lower-bounds-and-theta-notation', 'lower-bounds', 'theta-notation', 'classifying-functions', 'summary-exercise'];</script>
 
 .. _AnalLower:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalLower";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds and Theta Notation";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalLower";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds and Theta Notation (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :requires: growth rate; best and worst case
    :topic: Algorithm Analysis
 
-Lower Bounds and :math:`\Theta` Notation
-========================================
+Lower Bounds and :math:`\Theta` Notation (WORK IN PROGRESS)
+===========================================================
 
 Lower Bounds and Theta Notation
 -------------------------------

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.12. Lower Bounds for Sorting &mdash; Data Structures and Algorithms</title>
+    <title>2.14. Lower Bounds for Sorting &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="13. Sorting Summary Exercises" href="SortSumm.html" />
-    <link rel="prev" title="11. An Empirical Comparison of Sorting Algorithms" href="SortingEmpirical.html" />
+    <link rel="next" title="15. Sorting Summary Exercises" href="SortSumm.html" />
+    <link rel="prev" title="13. An Empirical Comparison of Sorting Algorithms" href="SortingEmpirical.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 3 Sorting</span></h2>
+              <h2 class="heading" ><span>Chapter 2 Arrays: Searching and Sorting</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="SortingEmpirical.html">3.<span class="section-number">11. </span>An Empirical Comparison of Sorting Algorithms</a>
+        «&#160;&#160;<a id="prevmod" href="SortingEmpirical.html">2.<span class="section-number">13. </span>An Empirical Comparison of Sorting Algorithms</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="SortSumm.html">3.<span class="section-number">13. </span>Sorting Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod" href="SortSumm.html">2.<span class="section-number">15. </span>Sorting Summary Exercises</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortingLowerBound";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds for Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/SortingLowerBoundCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortingLowerBound";ODSA.SETTINGS.MODULE_LONG_NAME = "Lower Bounds for Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/SortingLowerBoundCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="lower-bounds-for-sorting">
-<span id="index-0"></span><h1>3.<span class="section-number">12. </span>Lower Bounds for Sorting<a class="headerlink" href="#lower-bounds-for-sorting" title="Permalink to this headline">¶</a></h1>
+<span id="index-0"></span><h1>2.<span class="section-number">14. </span>Lower Bounds for Sorting<a class="headerlink" href="#lower-bounds-for-sorting" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>3.<span class="section-number">12.1. </span>Lower Bounds for Sorting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>2.<span class="section-number">14.1. </span>Lower Bounds for Sorting<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>By now you have seen many analyses for algorithms.
 These analyses generally define the upper and lower bounds for
 algorithms in their worst and average cases.
@@ -211,8 +211,7 @@ optimal is reassuring.
 In particular, it means that you need not bang your head against
 the wall searching for an <span class="math notranslate nohighlight">\(O(n)\)</span> sorting algorithm.
 (Or at least not one that is in any way based on key comparisons.
-But it is hard to imagine how to sort without any comparisons.
-Even Radix Sort is does comparisons, though in quite a different way.)
+But it is hard to imagine how to sort without any comparisons.)
 Second, this proof is one of the few non-trivial lower-bounds proofs
 that we have for any problem; that is, this proof provides one of the
 relatively few instances where our lower bound is tighter than simply
@@ -225,26 +224,12 @@ as the basis for a sorting algorithm.
 The process of deriving asymptotic bounds for one problem from the
 asymptotic bounds of another is called a
 <a class="reference internal" href="Glossary.html#term-reduction"><span class="xref std std-term">reduction</span></a>.</p>
-<p>Except for the Radix Sort and Binsort, all of the sorting algorithms
+<p>All of the sorting algorithms
 we have studied make decisions based on the direct comparison of two
 key values.
 For example, Insertion Sort sequentially compares the value to be
 inserted into the sorted list until a comparison against the next
-value in the list fails.
-In contrast, Radix Sort has no direct comparison of key values.
-All decisions are based on the value of specific digits in the key
-value,
-so it is possible to take approaches to sorting that do not involve
-direct key comparisons.
-Of course, Radix Sort in the end does not provide a more efficient
-sorting algorithm than comparison-based sorting.
-Thus, empirical evidence suggests that comparison-based sorting is a
-good approach.</p>
-<p>(Actually, the truth is stronger than this statement implies.
-In reality, Radix Sort relies on comparisons as well and so can be
-modeled by the technique used in this section.
-The result is an <span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span> bound in the general case
-even for algorithms that look like Radix Sort.)</p>
+value in the list fails.</p>
 <p>The proof that any comparison sort requires <span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span>
 comparisons in the worst case is structured as follows.
 First, comparison-based decisions can be modeled as the
@@ -332,11 +317,11 @@ this proof.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="SortingEmpirical.html">3.<span class="section-number">11. </span>An Empirical Comparison of Sorting Algorithms</a>
+        «&#160;&#160;<a id="prevmod1" href="SortingEmpirical.html">2.<span class="section-number">13. </span>An Empirical Comparison of Sorting Algorithms</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="SortSumm.html">3.<span class="section-number">13. </span>Sorting Summary Exercises</a>&#160;&#160;»
+        <a  id="nextmod1" href="SortSumm.html">2.<span class="section-number">15. </span>Sorting Summary Exercises</a>&#160;&#160;»
 
 </p>
       </div>
@@ -351,7 +336,7 @@ this proof.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

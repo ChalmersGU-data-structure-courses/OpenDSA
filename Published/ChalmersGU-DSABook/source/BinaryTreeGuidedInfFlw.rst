@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-small-count-exercise'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-tree-guided-information-flow', 'binary-search-tree-small-count-exercise'];</script>
 
 .. _BinaryTreeGuidedInfFlw:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeGuidedInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Guided Information Flow";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeGuidedInfFlw";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Guided Information Flow (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -25,8 +25,8 @@
    :satisfies: information flow in a binary tree
    :topic: Information Flow in a Binary
 
-Binary Tree Guided Information Flow
-===================================
+Binary Tree Guided Information Flow (WORK IN PROGRESS)
+=========================================================
 
 Binary Tree Guided Information Flow
 -----------------------------------
@@ -79,4 +79,5 @@ Binary Search Tree Small Count Exercise
    :long_name: Binary Search Tree Small Count Exercise
    :learning_tool: code-workout
    :workout_id: 64
+
 .. odsascript:: AV/BTRecurTutor/IneffBinaryTreeRangeCON.js

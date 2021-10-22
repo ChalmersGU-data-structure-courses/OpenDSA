@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6.14. A Hard Information Flow Problem &mdash; Data Structures and Algorithms</title>
+    <title>7.5. A Hard Information Flow Problem (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="15. Binary Tree Chapter Summary" href="BinaryChapSumm.html" />
-    <link rel="prev" title="13. Multiple Binary Trees" href="MultipleBinaryTrees.html" />
+    <link rel="next" title="6. Binary Tree Chapter Summary (WORK IN PROGRESS)" href="BinaryChapSumm.html" />
+    <link rel="prev" title="4. Multiple Binary Trees (WORK IN PROGRESS)" href="MultipleBinaryTrees.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 6 Binary Trees</span></h2>
+              <h2 class="heading" ><span>Chapter 7 Search Trees</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="MultipleBinaryTrees.html">6.<span class="section-number">13. </span>Multiple Binary Trees</a>
+        «&#160;&#160;<a id="prevmod" href="MultipleBinaryTrees.html">7.<span class="section-number">4. </span>Multiple Binary Trees (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryChapSumm.html">6.<span class="section-number">15. </span>Binary Tree Chapter Summary</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryChapSumm.html">7.<span class="section-number">6. </span>Binary Tree Chapter Summary (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/BTRecurTutor/BSTCheckCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="a-hard-information-flow-problem">
-<h1>6.<span class="section-number">14. </span>A Hard Information Flow Problem<a class="headerlink" href="#a-hard-information-flow-problem" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/BTRecurTutor/BSTCheckCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="a-hard-information-flow-problem-work-in-progress">
+<h1>7.<span class="section-number">5. </span>A Hard Information Flow Problem (WORK IN PROGRESS)<a class="headerlink" href="#a-hard-information-flow-problem-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes, passing the right information up and down the tree to
 control a recursive function gets complicated.
 The information flow itself is simple enough, but deciding what to
@@ -181,10 +181,10 @@ children.</p>
 <div class="divdgm" id="bstcheckfig">
 <div id="BSTCheckCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 6.15.1: To be a binary search tree, the left child of the node with value
+<p class="caption"><span class="caption-text"> Figure 7.6.1: To be a binary search tree, the left child of the node with value
 40 must have a value between 20 and 40.</span></p>
 </div>
-<p>As shown by Figure <a href="BSTCheck.html#bstcheckfig">6.15.1</a>,
+<p>As shown by Figure <a href="BSTCheck.html#bstcheckfig">7.6.1</a>,
 it is not enough to verify that <span class="math notranslate nohighlight">\(A\)</span>’s left child has a value
 less than that of <span class="math notranslate nohighlight">\(A\)</span>, and that <span class="math notranslate nohighlight">\(A\)</span>’s right child
 has a greater value.
@@ -216,11 +216,11 @@ We can implement this function as follows.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="MultipleBinaryTrees.html">6.<span class="section-number">13. </span>Multiple Binary Trees</a>
+        «&#160;&#160;<a id="prevmod1" href="MultipleBinaryTrees.html">7.<span class="section-number">4. </span>Multiple Binary Trees (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryChapSumm.html">6.<span class="section-number">15. </span>Binary Tree Chapter Summary</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryChapSumm.html">7.<span class="section-number">6. </span>Binary Tree Chapter Summary (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -235,7 +235,7 @@ We can implement this function as follows.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

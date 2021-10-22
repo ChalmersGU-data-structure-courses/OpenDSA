@@ -9,8 +9,8 @@
    :satisfies: queue; array-based queue
    :topic: Lists
 
-Queues
-======
+Array-Based Queues
+=========================
 
 Queue Terminology and Implementation
 ------------------------------------

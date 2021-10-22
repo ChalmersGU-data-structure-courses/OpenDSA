@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators, an example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and comparators: An example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -25,8 +25,8 @@
    :requires: comparison
 
 
-Comparables and comparators, an example
-==============================================
+Comparables and comparators: An example
+=======================================
 
 *Note*: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,
@@ -39,17 +39,17 @@ In Java there are two main ways of comparing objects. The one that most people f
 
 As a running example we use a class for persons:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: Person
 
 Also, let’s create an array of persons that we can use later:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: GetPeople
 
 Now we can print the list:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: PrintPeople
 
 Which results in:
@@ -75,12 +75,12 @@ With the Comparable interface we can define “natural ordering” for a class (
 
 Let’s say that we want the natural ordering to be to compare persons by their family name. Then we let ``Person`` implement the ``Comparable`` interface by overriding ``.compareTo(…)``:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: PersonCompareTo
 
 Now we can sort our people array according to family name:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: SortNatural
 
 Resulting in:
@@ -111,7 +111,7 @@ What if we sometimes want to sort the list according to some other ordering, e.g
 
 To use this we have to implement a separate class for each ordering we want to use. Here's one for comparing birth year:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: BirthYearComparator
 
 
@@ -122,12 +122,12 @@ To use this we have to implement a separate class for each ordering we want to u
 
 And here’s the class for comparing by given name:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: GivenNameComparator
 
 To use them you have to first create an object, i.e., instantiate the comparator:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: SortByBirthYear
 
 Result:
@@ -143,7 +143,7 @@ Result:
 
 And similar for given names:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: SortByGivenName
 
 Result:
@@ -162,7 +162,7 @@ Comparators, the new functional interface in Java 8
 
 Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similar to we would do in Python or Haskell:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: ByBirthYearFunctional, ByGivenNameFunctional
 
 Yay! That’s a lot nicer than the clumsy class definition
@@ -173,7 +173,7 @@ Comparing fields using key extractors
 
 In many cases (including our example case), we only want to compare some fields in a class. Then we can use *key extractors* to simplify even more:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: ByBirthYearKeyExtractor, ByGivenNameKeyExtractor
 
 * *Note*: We use ``.comparingInt(…)`` when defining ``byBirthYear``. It’s not strictly necessary (i.e., we can use ``.comparing(…)``), but it makes things slightly more efficient.
@@ -185,22 +185,22 @@ Remember the natural ordering? The problem with only comparing the family name i
 
 What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: FullNameComparator
 
 After this we can instantiate a specific comparator:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: ByFullName
 
 If we have many fields this gets quite cumbersome (and error-prone). But using the functional interface, and the magic ``.thenComparing(…)`` method, it’s really easy:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: ByFullNameThenComparing
 
 And here it is in action:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: SortByFullName
 
 Result:
@@ -227,12 +227,12 @@ Now, correct string sorting depends on your locale. E.g., in Swedish we put Å, 
 
 So, here’s how to define a correct comparator for Swedish, which ignores case differences and orders according to Swedish locale:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: BySwedishLocale
 
 And in action:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: SortBySwedishLocale
 
 Result:
@@ -258,6 +258,6 @@ Running the program
 
 Here is the full source code. Just compile and run it without any arguments:
 
-.. codeinclude:: ChalmersGU/ComparatorDemo
+.. codeinclude:: ChalmersGU/DemoComparator
    :tag: ComparatorDemo
 

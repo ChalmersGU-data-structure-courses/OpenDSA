@@ -99,7 +99,11 @@ class DynamicArrayList<E> implements List<E> {
 /* *** ODSAendTag: DynamicArrayListIterator *** */
 /* *** ODSAendTag: DynamicArrayList *** */
 
-    public void pPrint() {
+
+/***************************************************************************************/
+/** What comes below is purely for debugging and testing purposes - it can be removed **/
+
+    public void _printList() {
         System.out.print(internalArray.length + " [ ");
         for (E e : this) System.out.print(e + " ");
         System.out.print("| ");
@@ -111,14 +115,14 @@ class DynamicArrayList<E> implements List<E> {
         DynamicArrayList<String> list = new DynamicArrayList<>();
         for (int i=0; i<20; i++) {
             list.add(list.size(), String.valueOf((char)(i+65)));
-            if (i % 5 == 0) list.pPrint();
+            if (i % 5 == 0) list._printList();
         }
-        list.pPrint();
+        list._printList();
         for (int i=0; i<list.size(); i+=2) list.set(i, list.get(i).toLowerCase());
-        list.pPrint();
+        list._printList();
         for (int k=0; k<4; k++) {
             for (int i=list.size()-1; i>=0; i-=3) list.remove(i);
-            list.pPrint();
+            list._printList();
         }
     }
 /* *** ODSATag: DynamicArrayList *** */

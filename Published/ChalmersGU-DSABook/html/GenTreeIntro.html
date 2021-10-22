@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.1. General Trees &mdash; Data Structures and Algorithms</title>
+    <title>6.1. General Trees (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Union/Find and the Parent Pointer Implementation" href="UnionFind.html" />
-    <link rel="prev" title="15. Binary Tree Chapter Summary" href="BinaryChapSumm.html" />
+    <link rel="next" title="2. The Union/Find Algorithm (optional) (WORK IN PROGRESS)" href="UnionFind.html" />
+    <link rel="prev" title="9. Binary Tree Space Requirements (WORK IN PROGRESS)" href="BinaryTreeNodeSpace.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 7 General Trees (misc stuff)</span></h2>
+              <h2 class="heading" ><span>Chapter 6 General Trees and Union-Find (optional)</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryChapSumm.html">6.<span class="section-number">15. </span>Binary Tree Chapter Summary</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="UnionFind.html">7.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>&#160;&#160;»
+        <a  id="nextmod" href="UnionFind.html">6.<span class="section-number">2. </span>The Union/Find Algorithm (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['general-tree-definitions-and-terminology', 'an-adt-for-general-tree-nodes', 'general-tree-traversals'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "General Trees";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/GenTreeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['general-trees', 'general-tree-definitions-and-terminology', 'an-adt-for-general-tree-nodes', 'general-tree-traversals'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "General Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/GenTreeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="general-trees-optional-work-in-progress">
+<h1>6.<span class="section-number">1. </span>General Trees (optional) (WORK IN PROGRESS)<a class="headerlink" href="#general-trees-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="general-trees">
-<h1>7.<span class="section-number">1. </span>General Trees<a class="headerlink" href="#general-trees" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>7.<span class="section-number">1.1. </span>General Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>6.<span class="section-number">1.1. </span>General Trees<a class="headerlink" href="#general-trees" title="Permalink to this headline">¶</a></h2>
 <p>Many organizations are hierarchical in nature, such as the military
 and most businesses.
 Consider a company with a president and some number of vice presidents
@@ -191,7 +191,7 @@ we use the term <a class="reference internal" href="Glossary.html#term-general-t
 <p>In this module we will examine general tree terminology and define a
 basic ADT for general trees.</p>
 <div class="section" id="general-tree-definitions-and-terminology">
-<h3>7.<span class="section-number">1.1.1. </span>General Tree Definitions and Terminology<a class="headerlink" href="#general-tree-definitions-and-terminology" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">1.1.1. </span>General Tree Definitions and Terminology<a class="headerlink" href="#general-tree-definitions-and-terminology" title="Permalink to this headline">¶</a></h3>
 <p>A <a class="reference internal" href="Glossary.html#term-tree"><span class="xref std std-term">tree</span></a> <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is a finite set of one or more nodes
 such that there is one designated node <span class="math notranslate nohighlight">\(R\)</span>, called the root
 of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
@@ -208,12 +208,12 @@ By convention, the subtrees are arranged from left to right with
 subtree <span class="math notranslate nohighlight">\(\mathbf{T}_0\)</span> called the leftmost child of <span class="math notranslate nohighlight">\(R\)</span>.
 A node’s <a class="reference internal" href="Glossary.html#term-out-degree"><span class="xref std std-term">out degree</span></a> is the number of children for that node.
 A <a class="reference internal" href="Glossary.html#term-forest"><span class="xref std std-term">forest</span></a> is a collection of one or more trees.
-Figure <a href="GenTreeIntro.html#gentreefig">7.2.1</a> presents further tree notation
+Figure <a href="GenTreeIntro.html#gentreefig">6.2.1</a> presents further tree notation
 generalized from the notation for binary trees.</p>
 <div class="divdgm" id="gentreefig">
 <div id="GenTreeCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 7.2.1: Notation for general trees.
+<p class="caption"><span class="caption-text"> Figure 6.2.1: Notation for general trees.
 Node <span class="math notranslate nohighlight">\(P\)</span> is the parent of nodes <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(S1\)</span>,
 and <span class="math notranslate nohighlight">\(S2\)</span>.
 Thus, <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(S1\)</span>, and <span class="math notranslate nohighlight">\(S2\)</span> are children
@@ -230,7 +230,7 @@ From this observation, it immediately follows that a tree with
 from the root, has one edge connecting that node to its parent.</p>
 </div>
 <div class="section" id="an-adt-for-general-tree-nodes">
-<h3>7.<span class="section-number">1.1.2. </span>An ADT for General Tree Nodes<a class="headerlink" href="#an-adt-for-general-tree-nodes" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">1.1.2. </span>An ADT for General Tree Nodes<a class="headerlink" href="#an-adt-for-general-tree-nodes" title="Permalink to this headline">¶</a></h3>
 <p>Before discussing general tree implementations, we should first make
 precise what operations such implementations must support.
 Any implementation must be able to initialize a tree.
@@ -313,7 +313,7 @@ Trying to find the next sibling of the rightmost sibling would return
 </div>
 </div></div><script>$(function() {$( "#GenTree_GenTreeADT_code" ).tabs();});</script></div>
 <div class="section" id="general-tree-traversals">
-<h3>7.<span class="section-number">1.1.3. </span>General Tree Traversals<a class="headerlink" href="#general-tree-traversals" title="Permalink to this headline">¶</a></h3>
+<h3>6.<span class="section-number">1.1.3. </span>General Tree Traversals<a class="headerlink" href="#general-tree-traversals" title="Permalink to this headline">¶</a></h3>
 <p>There are three traditional
 <a class="reference internal" href="BinaryTreeTraversal.html#binarytreetraversal"><span class="std std-ref">tree traversals</span></a>
 for <a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">binary trees</span></a>:
@@ -416,11 +416,11 @@ to the next child until calling <code class="docutils literal notranslate"><span
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryChapSumm.html">6.<span class="section-number">15. </span>Binary Tree Chapter Summary</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="UnionFind.html">7.<span class="section-number">2. </span>Union/Find and the Parent Pointer Implementation</a>&#160;&#160;»
+        <a  id="nextmod1" href="UnionFind.html">6.<span class="section-number">2. </span>The Union/Find Algorithm (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -435,7 +435,7 @@ to the next child until calling <code class="docutils literal notranslate"><span
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

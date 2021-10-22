@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.6. Comparison of List Implementations &mdash; Data Structures and Algorithms</title>
+    <title>4.6. Comparison of List Implementations &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Doubly Linked Lists" href="ListDouble.html" />
+    <link rel="next" title="7. Doubly Linked Lists (optional)" href="ListDouble.html" />
     <link rel="prev" title="5. Linked Lists" href="ListLinked.html" />
 
   </head>
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListLinked.html">5.<span class="section-number">5. </span>Linked Lists</a>
+        «&#160;&#160;<a id="prevmod" href="ListLinked.html">4.<span class="section-number">5. </span>Linked Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ListDouble.html">5.<span class="section-number">7. </span>Doubly Linked Lists</a>&#160;&#160;»
+        <a  id="nextmod" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
-<h1>5.<span class="section-number">6. </span>Comparison of List Implementations<a class="headerlink" href="#comparison-of-list-implementations" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
+<h1>4.<span class="section-number">6. </span>Comparison of List Implementations<a class="headerlink" href="#comparison-of-list-implementations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="space-comparison">
-<h2>5.<span class="section-number">6.1. </span>Space Comparison<a class="headerlink" href="#space-comparison" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">6.1. </span>Space Comparison<a class="headerlink" href="#space-comparison" title="Permalink to this headline">¶</a></h2>
 <p>Now that you have seen two substantially different implementations for
 lists, it is natural to ask which is better.
 In particular, if you must implement a list for some task,
@@ -215,7 +215,7 @@ And in many cases, the objects themselves are much larger than the list nodes
 (or array cells).</p>
 </div>
 <div class="section" id="time-comparison">
-<h2>5.<span class="section-number">6.2. </span>Time Comparison<a class="headerlink" href="#time-comparison" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">6.2. </span>Time Comparison<a class="headerlink" href="#time-comparison" title="Permalink to this headline">¶</a></h2>
 <p>Array-based lists are faster for access by position.
 To locate an element anywhere in the list is constant time,
 i.e., they take <span class="math notranslate nohighlight">\(\Theta(1)\)</span> time.
@@ -235,7 +235,7 @@ This requires <span class="math notranslate nohighlight">\(\Theta(n)\)</span> ti
 isntances! For a linked list, inserting/removing at the end takes the longest time,
 while for an array-base list, the problem is to insert/remove from the beginning.</p>
 <div class="section" id="when-to-use-linked-lists">
-<h3>5.<span class="section-number">6.2.1. </span>When to use linked lists?<a class="headerlink" href="#when-to-use-linked-lists" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">6.2.1. </span>When to use linked lists?<a class="headerlink" href="#when-to-use-linked-lists" title="Permalink to this headline">¶</a></h3>
 <p>According to the calculations above, linked lists are worse than array-based lists,
 because all operations are slow (linear time). So why even bother using linked lists?</p>
 <p>First there are limited versions of lists that can be implemented efficiently using linked lists,
@@ -249,7 +249,11 @@ which is part of Java’s standard <a class="reference external" href="https://d
 algorithms where list iterators are particularly useful.</p>
 </div>
 <div class="section" id="practice-questions">
-<h3>5.<span class="section-number">6.2.2. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">6.2.2. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h3>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Update this exercise</p>
+</div>
 <div
     id="LLSumm"
     class="embedContainer"
@@ -275,7 +279,7 @@ algorithms where list iterators are particularly useful.</p>
 </div>
 </div>
 <div class="section" id="how-are-lists-implemented-in-the-standard-libraries">
-<h2>5.<span class="section-number">6.3. </span>How are lists implemented in the standard libraries?<a class="headerlink" href="#how-are-lists-implemented-in-the-standard-libraries" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">6.3. </span>How are lists implemented in the standard libraries?<a class="headerlink" href="#how-are-lists-implemented-in-the-standard-libraries" title="Permalink to this headline">¶</a></h2>
 <p>All serious languages have dynamic list implementations.
 Here are how they are implemented in Java and Python:</p>
 <ul class="simple">
@@ -308,11 +312,11 @@ It shrinks the array by 1/8 whenever less than half of the array is occupied.
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListLinked.html">5.<span class="section-number">5. </span>Linked Lists</a>
+        «&#160;&#160;<a id="prevmod1" href="ListLinked.html">4.<span class="section-number">5. </span>Linked Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ListDouble.html">5.<span class="section-number">7. </span>Doubly Linked Lists</a>&#160;&#160;»
+        <a  id="nextmod1" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -327,7 +331,7 @@ It shrinks the array by 1/8 whenever less than half of the array is occupied.
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

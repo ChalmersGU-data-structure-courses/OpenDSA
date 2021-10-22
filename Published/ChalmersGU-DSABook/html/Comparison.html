@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.4. Comparing Records &mdash; Data Structures and Algorithms</title>
+    <title>1.5. Comparing Records: Key-Value Pairs (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="5. Comparables and comparators, an example" href="ComparingExample.html" />
-    <link rel="prev" title="3. All ADTs Used in This Book" href="CourseAPI.html" />
+    <link rel="next" title="6. Comparables and comparators: An example" href="ComparingExample.html" />
+    <link rel="prev" title="4. Searching: Sets and Maps" href="SearchIntro.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>
+        «&#160;&#160;<a id="prevmod" href="SearchIntro.html">1.<span class="section-number">4. </span>Searching: Sets and Maps</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ComparingExample.html">1.<span class="section-number">5. </span>Comparables and comparators, an example</a>&#160;&#160;»
+        <a  id="nextmod" href="ComparingExample.html">1.<span class="section-number">6. </span>Comparables and comparators: An example</a>&#160;&#160;»
 
 
         </p>
@@ -162,8 +162,8 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'implementing-key-value-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Records";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparing-records">
-<span id="index-0"></span><h1>1.<span class="section-number">4. </span>Comparing Records<a class="headerlink" href="#comparing-records" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'implementing-key-value-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Records: Key-Value Pairs (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparing-records-key-value-pairs-work-in-progress">
+<span id="index-0"></span><h1>1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)<a class="headerlink" href="#comparing-records-key-value-pairs-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <p>If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.
 How do we compare two things?
@@ -199,7 +199,7 @@ For example, if searching for payroll records, we might wish to
 search for the record that matches a particular ID number.
 In this example the ID number is the <a class="reference internal" href="Glossary.html#term-search-key"><span class="xref std std-term">search key</span></a>.</p>
 <span class="target" id="index-2"></span><div class="section" id="comparables">
-<span id="index-3"></span><h2>1.<span class="section-number">4.1. </span>Comparables<a class="headerlink" href="#comparables" title="Permalink to this headline">¶</a></h2>
+<span id="index-3"></span><h2>1.<span class="section-number">5.1. </span>Comparables<a class="headerlink" href="#comparables" title="Permalink to this headline">¶</a></h2>
 <p>To implement sorting or searching, we require that keys be <a class="reference internal" href="Glossary.html#term-comparable"><span class="xref std std-term">comparable</span></a>.
 At a minimum, we must be able to take two keys and reliably determine
 whether they are equal or not.
@@ -240,7 +240,7 @@ name (or even the comparable interface) to extract the desired key
 value.</p>
 </div>
 <div class="section" id="comparators">
-<h2>1.<span class="section-number">4.2. </span>Comparators<a class="headerlink" href="#comparators" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">5.2. </span>Comparators<a class="headerlink" href="#comparators" title="Permalink to this headline">¶</a></h2>
 <p>Another, more general approach is to supply a function or
 class—called a <a class="reference internal" href="Glossary.html#term-comparator"><span class="xref std std-term">comparator</span></a>—whose job is to extract the key from the record.
 A comparator function can be passed in as a parameter, such as in a
@@ -261,7 +261,7 @@ write a key extraction method.
 In that case, a comparator will not work. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
 </div>
 <div class="section" id="implementing-key-value-search">
-<h2>1.<span class="section-number">4.3. </span>Implementing Key-Value Search<a class="headerlink" href="#implementing-key-value-search" title="Permalink to this headline">¶</a></h2>
+<h2>1.<span class="section-number">5.3. </span>Implementing Key-Value Search<a class="headerlink" href="#implementing-key-value-search" title="Permalink to this headline">¶</a></h2>
 <p>One good general-purpose solution is to explicitly store
 <a class="reference internal" href="Glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pairs</span></a> in the data structure.
 For example, if we want to sort a bunch of records, we can store them
@@ -399,11 +399,11 @@ such a record.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>
+        «&#160;&#160;<a id="prevmod1" href="SearchIntro.html">1.<span class="section-number">4. </span>Searching: Sets and Maps</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ComparingExample.html">1.<span class="section-number">5. </span>Comparables and comparators, an example</a>&#160;&#160;»
+        <a  id="nextmod1" href="ComparingExample.html">1.<span class="section-number">6. </span>Comparables and comparators: An example</a>&#160;&#160;»
 
 </p>
       </div>
@@ -418,7 +418,7 @@ such a record.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

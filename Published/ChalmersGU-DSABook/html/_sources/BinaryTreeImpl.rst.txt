@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-tree-node-implementations'];</script>
 
 .. _BinaryTreeImpl:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,8 +32,8 @@
    :satisfies: binary tree node implementation; expression tree
    :topic: Binary Trees
 
-Binary Tree Node Implementations
-================================
+Binary Tree Node Implementations (WORK IN PROGRESS)
+====================================================
 
 Binary Tree Node Implementations
 --------------------------------

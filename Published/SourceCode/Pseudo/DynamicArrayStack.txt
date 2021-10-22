@@ -1,0 +1,42 @@
+
+class DynamicArrayStack(E) implements Stack(E)
+    private internalArray : E[]   // Internal array containing the stack elements
+    private stackSize     : int   // Size of stack, and index of the next free slot
+
+    DynamicArrayStack()
+        internalArray = new array of size 1
+        stackSize = 0
+
+    push(x:E)
+        if stackSize >= size of internalArray
+            resizeArray(2 * size of internalArray)
+        internalArray[stackSize] = x
+        stackSize += 1
+
+    peek() : E
+        // Precondition: stackSize > 0
+        return internalArray[stackSize-1]
+
+    pop() : E
+        // Precondition: stackSize > 0
+        stackSize -= 1
+        x : E = internalArray[stackSize]
+        internalArray[stackSize] = null   // For garbage collection
+        if stackSize < size of internalArray / 3
+            resizeArray(size of internalArray / 2)
+        return x
+
+    private resizeArray(newCapacity:int)
+        newArray : E[] = new array of size newCapacity
+        for i in 0, 1, ..., stackSize-1
+            newArray[i] = internalArray[i]
+        internalArray = newArray
+
+    isEmpty() : boolean
+        return stackSize == 0
+
+    size() : int
+        return stackSize
+
+    iterator() : Iterator(E)
+        return an iterator over the elements in internalArray, starting from the top element

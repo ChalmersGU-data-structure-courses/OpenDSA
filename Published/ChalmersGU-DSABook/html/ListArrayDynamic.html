@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.4. Dynamic Array-Based Lists &mdash; Data Structures and Algorithms</title>
+    <title>4.4. Dynamic Array-Based Lists &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListArray.html">5.<span class="section-number">3. </span>Static Array-Based Lists</a>
+        «&#160;&#160;<a id="prevmod" href="ListArray.html">4.<span class="section-number">3. </span>Static Array-Based Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ListLinked.html">5.<span class="section-number">5. </span>Linked Lists</a>&#160;&#160;»
+        <a  id="nextmod" href="ListLinked.html">4.<span class="section-number">5. </span>Linked Lists</a>&#160;&#160;»
 
 
         </p>
@@ -162,16 +162,16 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-lists">
-<h1>5.<span class="section-number">4. </span>Dynamic Array-Based Lists<a class="headerlink" href="#dynamic-array-based-lists" title="Permalink to this headline">¶</a></h1>
+<h1>4.<span class="section-number">4. </span>Dynamic Array-Based Lists<a class="headerlink" href="#dynamic-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>The problem with a static array-based list is that it has a limited capacity.
 If we try to add new elements when the internal array is full,
 the method will throw an exception.</p>
 <div class="section" id="resizing-the-internal-array">
-<h2>5.<span class="section-number">4.1. </span>Resizing the internal array<a class="headerlink" href="#resizing-the-internal-array" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">4.1. </span>Resizing the internal array<a class="headerlink" href="#resizing-the-internal-array" title="Permalink to this headline">¶</a></h2>
 <p>How can we modify our class to allow for any number of elements?
 One solution is to create a larger internal array whenever the capacity is exceeded,
 and copy over all elements to the new one.</p>
@@ -263,7 +263,7 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">add<
 <p></p>
 </div>
 <div class="section" id="how-much-to-increase-the-array-size">
-<h2>5.<span class="section-number">4.2. </span>How much to increase the array size<a class="headerlink" href="#how-much-to-increase-the-array-size" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">4.2. </span>How much to increase the array size<a class="headerlink" href="#how-much-to-increase-the-array-size" title="Permalink to this headline">¶</a></h2>
 <p>In the code above we doubled the size of the internal array whenever
 we needed to resize it. But we could have done something else, like:</p>
 <ul class="simple">
@@ -291,7 +291,7 @@ In this case, we could have used a static array-based list of capacity
 comparable performance to the static array-based list. This means that
 the program ought to take <cite>linear time</cite>.</p>
 <div class="section" id="growing-by-a-constant-amount">
-<h3>5.<span class="section-number">4.2.1. </span>Growing by a constant amount<a class="headerlink" href="#growing-by-a-constant-amount" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">4.2.1. </span>Growing by a constant amount<a class="headerlink" href="#growing-by-a-constant-amount" title="Permalink to this headline">¶</a></h3>
 <p>What happens if we only grow the internal array by 1 element when we resize it?</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
     resizeArray(size of internalArray+1)
@@ -329,13 +329,13 @@ just resizing the array!</p>
 You can try the calculation yourself, for say <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>.
 What happens is that <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> gets called 100 times less
 often – so there 100 times fewer elements copied. But the runtime is
-still quadratic <a class="footnote-reference brackets" href="#id3" id="id1">1</a>. When <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>, the total number of
+still quadratic <a class="footnote-reference brackets" href="#id6" id="id1">1</a>. When <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>, the total number of
 elements copied is about <span class="math notranslate nohighlight">\(5,000,000,000\)</span>, still far too many.</p>
 <p>In short, <strong>growing the array size by a constant amount is bad</strong>,
 because a loop that repeatedly adds to the array will take quadratic time.</p>
 </div>
 <div class="section" id="growing-by-a-constant-factor">
-<h3>5.<span class="section-number">4.2.2. </span>Growing by a constant factor<a class="headerlink" href="#growing-by-a-constant-factor" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">4.2.2. </span>Growing by a constant factor<a class="headerlink" href="#growing-by-a-constant-factor" title="Permalink to this headline">¶</a></h3>
 <p>One way to think about the problem is: as the array gets bigger,
 resizing it gets more expensive. So, to make up for that, when the
 array is bigger we need to grow it by more, so that it gets resized
@@ -410,7 +410,7 @@ a large factor (such as 2) if we want fast performance, or a low
 factor (such as 20%) if we want to save memory.</p>
 </div>
 <div class="section" id="constant-amount-vs-constant-factor">
-<h3>5.<span class="section-number">4.2.3. </span>Constant amount vs constant factor<a class="headerlink" href="#constant-amount-vs-constant-factor" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">4.2.3. </span>Constant amount vs constant factor<a class="headerlink" href="#constant-amount-vs-constant-factor" title="Permalink to this headline">¶</a></h3>
 <p>Here is a graph that shows just how big the performance difference is
 between the two resizing strategies: growing the array by a constant
 amount, and scaling it by a constant factor. The graph plots how many
@@ -435,11 +435,15 @@ calls to <code class="docutils literal notranslate"><span class="pre">add</span>
 always lose to linear algorithms eventually!</p>
 </div>
 <div class="section" id="practice-exercise">
-<h3>5.<span class="section-number">4.2.4. </span>Practice Exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">4.2.4. </span>Practice Exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this headline">¶</a></h3>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Exercise for dynamic addition</p>
+</div>
 </div>
 </div>
 <div class="section" id="shrinking-the-internal-array">
-<h2>5.<span class="section-number">4.3. </span>Shrinking the internal array<a class="headerlink" href="#shrinking-the-internal-array" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">4.3. </span>Shrinking the internal array<a class="headerlink" href="#shrinking-the-internal-array" title="Permalink to this headline">¶</a></h2>
 <p>We don’t have to change anything else in the code from <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>
 to have a working dynamic array list that has room for any number of elements.</p>
 <p>But the problem is that if we first build a large list with 1000’s of elements,
@@ -536,14 +540,22 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">remo
 </div>
 <p></p>
 <div class="section" id="complexity-analysis">
-<h3>5.<span class="section-number">4.3.1. </span>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">4.3.1. </span>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
+<a id="todo1"></a><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>Complexity analysis</p>
 </div>
-<div class="section" id="id2">
-<h3>5.<span class="section-number">4.3.2. </span>Practice Exercise<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id4">
+<h3>4.<span class="section-number">4.3.2. </span>Practice Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<a id="todo2"></a><div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Exercise for dynamic addition</p>
+</div>
 </div>
 </div>
 <div class="section" id="dynamic-array-based-list-full-code">
-<h2>5.<span class="section-number">4.4. </span>Dynamic Array-based List: Full code<a class="headerlink" href="#dynamic-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">4.4. </span>Dynamic Array-based List: Full code<a class="headerlink" href="#dynamic-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <code class="docutils literal notranslate"><span class="pre">DynamicArrayList</span></code>.
 Note that now the constructor doesn’t take any capacity argument,
 since the internal array will automatically grow when needed.</p>
@@ -757,7 +769,7 @@ since the internal array will automatically grow when needed.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayList_code" ).tabs();});</script><dl class="footnote brackets">
-<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>You can get a precise number by using the formula for an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_progression">arithmetic progression</a>.</p>
 </dd>
@@ -775,11 +787,11 @@ since the internal array will automatically grow when needed.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListArray.html">5.<span class="section-number">3. </span>Static Array-Based Lists</a>
+        «&#160;&#160;<a id="prevmod1" href="ListArray.html">4.<span class="section-number">3. </span>Static Array-Based Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ListLinked.html">5.<span class="section-number">5. </span>Linked Lists</a>&#160;&#160;»
+        <a  id="nextmod1" href="ListLinked.html">4.<span class="section-number">5. </span>Linked Lists</a>&#160;&#160;»
 
 </p>
       </div>
@@ -794,7 +806,7 @@ since the internal array will automatically grow when needed.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

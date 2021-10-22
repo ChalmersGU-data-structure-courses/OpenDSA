@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.3. Static Array-Based Lists &mdash; Data Structures and Algorithms</title>
+    <title>4.3. Static Array-Based Lists &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListADT.html">5.<span class="section-number">2. </span>The List ADT</a>
+        «&#160;&#160;<a id="prevmod" href="ListADT.html">4.<span class="section-number">2. </span>The List ADT</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ListArrayDynamic.html">5.<span class="section-number">4. </span>Dynamic Array-Based Lists</a>&#160;&#160;»
+        <a  id="nextmod" href="ListArrayDynamic.html">4.<span class="section-number">4. </span>Dynamic Array-Based Lists</a>&#160;&#160;»
 
 
         </p>
@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="static-array-based-lists">
-<h1>5.<span class="section-number">3. </span>Static Array-Based Lists<a class="headerlink" href="#static-array-based-lists" title="Permalink to this headline">¶</a></h1>
+<h1>4.<span class="section-number">3. </span>Static Array-Based Lists<a class="headerlink" href="#static-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>First we give a static implementation for array-based lists,
 named <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>.
 This inherits from the <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">List ADT</span></a>,
@@ -174,7 +174,7 @@ How can this be implemented?
 Well, what we <em>don’t</em> want to do is to create a completely new array every time elements
 are added or removed. So instead we will use an underlying array which is larger than we need.</p>
 <div class="section" id="internal-variables">
-<h2>5.<span class="section-number">3.1. </span>Internal variables<a class="headerlink" href="#internal-variables" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.1. </span>Internal variables<a class="headerlink" href="#internal-variables" title="Permalink to this headline">¶</a></h2>
 <p>Therefore we will need two internal variables:
 the underlying array, and a counter telling how much of the array that is actually used.
 When we create a new array-list we have to tell what the largest possible capacity is.
@@ -228,7 +228,7 @@ no elements yet.</p>
 </div>
 </div></div><script>$(function() {$( "#StaticArrayList_StaticArrayListInit_code" ).tabs();});</script></div>
 <div class="section" id="getting-and-setting-values">
-<h2>5.<span class="section-number">3.2. </span>Getting and setting values<a class="headerlink" href="#getting-and-setting-values" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.2. </span>Getting and setting values<a class="headerlink" href="#getting-and-setting-values" title="Permalink to this headline">¶</a></h2>
 <p>Random access to any element in the list is quick and easy.</p>
 <div id="StaticArrayList-Intro-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="StaticArrayList-Intro-CON" data-long-name="Static Array-based List Intro Slideshow" data-exer-id="" alt="Static Array-based List Intro Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -287,7 +287,7 @@ require <span class="math notranslate nohighlight">\(\Theta(1)\)</span> time.</p
 </div>
 </div></div><script>$(function() {$( "#StaticArrayList_StaticArrayListGetSet_code" ).tabs();});</script></div>
 <div class="section" id="adding-elements">
-<h2>5.<span class="section-number">3.3. </span>Adding elements<a class="headerlink" href="#adding-elements" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.3. </span>Adding elements<a class="headerlink" href="#adding-elements" title="Permalink to this headline">¶</a></h2>
 <p>Because the array-based list implementation is defined to store list
 elements in contiguous cells of the array, the <code class="docutils literal notranslate"><span class="pre">add</span></code>
 and <code class="docutils literal notranslate"><span class="pre">remove</span></code> methods must maintain this property.</p>
@@ -362,7 +362,7 @@ which is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#StaticArrayList_StaticArrayListAdd_code" ).tabs();});</script><div class="section" id="add-practice-exericse">
-<h3>5.<span class="section-number">3.3.1. </span>Add Practice Exericse<a class="headerlink" href="#add-practice-exericse" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">3.3.1. </span>Add Practice Exericse<a class="headerlink" href="#add-practice-exericse" title="Permalink to this headline">¶</a></h3>
 <div
     id="StaticArrayList-Add-PRO"
     class="embedContainer"
@@ -388,7 +388,7 @@ which is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
 </div>
 </div>
 <div class="section" id="removing-elements">
-<h2>5.<span class="section-number">3.4. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.4. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h2>
 <p>Removing an element from the head of the list is
 similar to adding in that all remaining elements must shift.
 But now we have to shift toward the head to fill in the gap,
@@ -451,7 +451,7 @@ following slideshow.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#StaticArrayList_StaticArrayListRemove_code" ).tabs();});</script><div class="section" id="remove-practice-exericise">
-<h3>5.<span class="section-number">3.4.1. </span>Remove Practice Exericise<a class="headerlink" href="#remove-practice-exericise" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">3.4.1. </span>Remove Practice Exericise<a class="headerlink" href="#remove-practice-exericise" title="Permalink to this headline">¶</a></h3>
 <div
     id="StaticArrayList-Remove-PRO"
     class="embedContainer"
@@ -477,7 +477,7 @@ following slideshow.</p>
 </div>
 </div>
 <div class="section" id="static-array-based-list-summary-questions">
-<h2>5.<span class="section-number">3.5. </span>Static Array-based List Summary Questions<a class="headerlink" href="#static-array-based-list-summary-questions" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.5. </span>Static Array-based List Summary Questions<a class="headerlink" href="#static-array-based-list-summary-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="StaticArrayList-Summary-QUIZ"
     class="embedContainer"
@@ -502,7 +502,7 @@ following slideshow.</p>
 </div>
 </div>
 <div class="section" id="static-array-based-list-full-code">
-<h2>5.<span class="section-number">3.6. </span>Static Array-based List: Full code<a class="headerlink" href="#static-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">3.6. </span>Static Array-based List: Full code<a class="headerlink" href="#static-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>.</p>
 <div id="StaticArrayList_StaticArrayList_code"><ul><li><a href="#StaticArrayList_StaticArrayList_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayList_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayList_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">StaticArrayList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the list elements</span>
@@ -664,11 +664,11 @@ following slideshow.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListADT.html">5.<span class="section-number">2. </span>The List ADT</a>
+        «&#160;&#160;<a id="prevmod1" href="ListADT.html">4.<span class="section-number">2. </span>The List ADT</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ListArrayDynamic.html">5.<span class="section-number">4. </span>Dynamic Array-Based Lists</a>&#160;&#160;»
+        <a  id="nextmod1" href="ListArrayDynamic.html">4.<span class="section-number">4. </span>Dynamic Array-Based Lists</a>&#160;&#160;»
 
 </p>
       </div>
@@ -683,7 +683,7 @@ following slideshow.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

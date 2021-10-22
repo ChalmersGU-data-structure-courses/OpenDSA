@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['topological-sort', 'depth-first-solution', 'queue-based-solution'];</script>
 
 .. _GraphTopsort:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -29,8 +29,8 @@
    :requires: graph traversal
    :topic: Graphs
 
-Topological Sort
-================
+Topological Sort (WORK IN PROGRESS)
+====================================
 
 Topological Sort
 ----------------
@@ -57,6 +57,15 @@ meet the prerequisite rules is called a :term:`topological sort`.
    An example graph for topological sort. Seven tasks have
    dependencies as shown by the directed graph.
 
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Slideshow
+   Replace the above figure with a slideshow that incorporates the
+   following paragraph.
+
 Figure :num:`Figure #TopSort` illustrates the problem.
 An acceptable topological sort for this example is J1,
 J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
@@ -78,6 +87,14 @@ Here is implementation for the DFS-based algorithm.
 
 .. codeinclude:: Graphs/TopsortDFS
    :tag: TopsortDFS
+
+.. raw:: html
+
+   <a id="todo1"></a>
+
+.. TODO::
+  type: Slideshow
+   Replace the following paragraph with a slideshow.
 
 Using this algorithm starting at J1 and visiting adjacent
 neighbors in alphabetic order, vertices of the graph in
@@ -101,6 +118,14 @@ Queue-based Solution
 
 We can implement topological sort using a queue
 instead of recursion, as follows.
+
+.. raw:: html
+
+   <a id="todo2"></a>
+
+.. TODO::
+  type: Slideshow
+   Incorporate the following into a slideshow.
 
 First visit all edges, counting the number of
 edges that lead to each vertex (i.e., count the number of
@@ -131,6 +156,37 @@ Here is the code to implement the queue-based topological sort:
    :long_name: topSortQCON Slideshow
    :output: show
 
+.. raw:: html
+
+   <a id="todo3"></a>
+
+.. TODO::
+  type: Proficiency Exercise
+   Provide a proficiency exercise that randomly alternates between
+   proficiency for DFS-based and queue-based Topsort.
+   The bare beginnings of an exercise can be found in
+   ``AV/Development/TopSort/topSortDFSPE.*``
+
+.. raw:: html
+
+   <a id="todo4"></a>
+
+.. TODO::
+  type: AV
+   Provide a unified AV that can allow the user to pick which topsort
+   (DFS or Queue), with or without cycles in the graph. The start of
+   this is in ``AV/Development/TopSort/topSortAV*`` (for just random DFS),
+   ``AV/Development/TopSort/qTopSortAV.*`` (for just random queue-based
+   topsort), and ``AV/Development/TopSort/topSortAVs*`` (tries to unify).
+
+
+.. raw:: html
+
+   <a id="todo5"></a>
+
+.. TODO::
+  type: Summary Questions
+   Provide a summary battery of questions.
 
 .. odsascript:: AV/Graph/topSortCON.js
 .. odsascript:: AV/Graph/topSortDFSCON.js

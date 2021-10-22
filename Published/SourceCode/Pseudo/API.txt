@@ -1,0 +1,82 @@
+
+interface Collection(E) extends Iterable(E)
+    isEmpty() : boolean   // Returns true if the collection is empty.
+    size()    : int       // Returns the number of elements in this collection.
+
+
+interface List(E) extends Collection(E)
+    add(i:int, x:E)       // Adds x at position i; where 0 <= i <= size.
+    get(i:int)      : E   // Returns the element at position i; where 0 <= i < size.
+    set(i:int, x:E) : E   // Replaces the value at position i with x; where 0 <= i < size.
+    remove(i:int)   : E   // Removes the element at position i; where 0 <= i < size.
+    // Note: iterator() should yield the elements starting from position 0.
+
+
+interface Stack(E) extends Collection(E)
+    push(x:E)       // Pushes x on top of the stack.
+    pop()     : E   // Pops the top of the stack and returns it.
+    peek()    : E   // Returns the top element of the stack, without removing it.
+    // Note: iterator() should yield the elements starting from the top of the stack.
+
+
+interface Queue(E) extends Collection(E)
+    enqueue(x:E)       // Enqueues x at the end of the queue.
+    dequeue()    : E   // Dequeues the frontmost element.
+    peek()       : E   // Returns the frontmost element, without removing it.
+    // Note: iterator() should yield the elements starting from the frontmost element.
+
+
+interface PriorityQueue(E) extends Collection(E)
+    add(x:E)          // Adds x to the priority queue.
+    removeMin() : E   // Removes the minimum element, and returns it.
+    getMin()    : E   // Returns the minimum element, without removing it.
+    // Note: iterator() can yield the elements in any order, but the minimum element should come first.
+
+
+interface Set(E) extends Collection(E)
+    add(x:E)                  // Adds x to the set.
+    remove(x:E)               // Removes x from the set, and returns it.
+    contains(x:E) : boolean   // Checks if x is in the set.
+    // Note: iterator() can yield the elements in any order.
+
+
+interface SortedSet(E) extends Set(E)
+    first()      : E   // Returns the first (smallest) element.
+    last()       : E   // Returns the last (largest) element.
+    floor(x:E)   : E   // Returns the closest element <= x.
+    ceiling(x:E) : E   // Returns the closest element >= x.
+    // Note: iterator() should yield the elements in order.
+
+
+interface Map(K,V)
+    put(k:K, v:V)                   // Sets the value of the given key.
+    get(k:K)         : V            // Returns the value associated with the given key.
+    remove(k:K)      : V            // Removes the value associated with the given key.
+    containsKey(k:K) : boolean      // Checks if the key has an associated value.
+    keyIterator()    : Iterator(K)  // Returns an iterator over the keys.
+    isEmpty()        : boolean      // Returns true if there are no keys.
+    size()           : int          // Returns the number of keys (i.e., the number of key/value pairs).
+    // Note: keyIterator() can yield the keys in any order.
+
+
+interface SortedMap(K,V) extends Map(K,V)
+    firstKey()      : K   // Returns the first (smallest) key.
+    lastKey()       : K   // Returns the last (largest) key.
+    floorKey(k:K)   : K   // Returns the closest key <= k.
+    ceilingKey(k:K) : K   // Returns the closest key >= k.
+    // Note: keyIterator() should yield the keys in order.
+
+
+interface Graph(V)
+    addVertex(v:V)                            // Adds the vertex v to the graph.
+    addEdge(e:Edge(V))                        // Adds the edge e to the graph.
+    vertices()         : Collection(V)        // Returns a Collection of all vertices in the graph.
+    outgoingEdges(v:V) : Collection(Edge(V))  // Returns a Collection of the edges that originates in vertex v.
+    vertexCount()      : int                  // Returns the number of vertices in the graph.
+    edgeCount()        : int                  // Returns the number of edges in the graph.
+
+class Edge(V)
+    start     : V           // The start vertex.
+    end       : V           // The end vertex.
+    weight    : double      // The weight (if the edge is unweighted this defaults to 1.0).
+

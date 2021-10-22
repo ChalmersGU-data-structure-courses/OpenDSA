@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['kruskal-s-algorithm'];</script>
 
 .. _Kruskal:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :topic: Graphs
 
 
-Kruskal's Algorithm
-===================
+Kruskal's Algorithm (WORK IN PROGRESS)
+========================================
 
 Kruskal's Algorithm
 -------------------
@@ -91,5 +91,12 @@ If so, the cost is often close to
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Kruskal's Algorithm Proficiency Exercise
 
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Exercise
+    Summary battery of questions for Prim's and Kruskal's algorithms.
 
 .. odsascript:: AV/Graph/kruskalCON.js

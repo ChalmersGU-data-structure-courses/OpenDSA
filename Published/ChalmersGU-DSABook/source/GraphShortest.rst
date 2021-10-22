@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['single-source-shortest-paths'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['shortest-paths-problems', 'single-source-shortest-paths'];</script>
 
 .. _GraphShortest:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: graph shortest path
    :topic: Graphs
 
-Shortest-Paths Problems
-=======================
+Shortest-Paths Problems (WORK IN PROGRESS)
+============================================
 
 Shortest-Paths Problems
 -----------------------
@@ -48,6 +48,15 @@ length of the shortest path between two specified vertices.
 This is not a trivial problem, because the shortest path may not be
 along the edge (if any) connecting two vertices, but rather may be
 along a path involving one or more intermediate vertices.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Slideshow
+   Incorporate the following paragraph into a slideshow with the
+   figure below it.
 
 For example, in Figure :num:`Figure #DistExamp`,
 the cost of the path from :math:`A` to :math:`B` to :math:`D` is 15.
@@ -110,6 +119,14 @@ single-source shortest paths can be found using a simple breadth-first
 search.
 When weights are added, BFS will not give the correct answer.
 
+.. raw:: html
+
+   <a id="todo1"></a>
+
+.. TODO::
+  type: Slideshow
+   Provide a slideshow to demonstrate the following example.
+
 One approach to solving this problem when the edges have
 differing weights might be to process the
 vertices in a fixed order.
@@ -169,6 +186,15 @@ At the end, array ``D`` will contain the shortest distance values.
    :long_name: Dijkstra Slideshow
    :output: show
 
+.. raw:: html
+
+   <a id="todo2"></a>
+
+.. TODO::
+  type: AV
+   Provide an AV that runs on a random graph. An initial version is in 
+   ``AV/Development/TopSort/dijkstraAV.*``.
+   
 There are two reasonable solutions to the key issue of finding the
 unvisited vertex with minimum distance value during each pass through
 the main ``for`` loop.
@@ -179,12 +205,29 @@ follows:
 .. codeinclude:: Graphs/Dijkstra
    :tag: MinVertex
 
+.. raw:: html
+
+   <a id="todo3"></a>
+
+.. TODO::
+  type: Code
+   Why does the code look for an unvisited value first?
+   Is there an easier way?
+
 Because this scan is done :math:`|\mathbf{V}|` times,
 and because each edge requires a constant-time update to ``D``,
 the total cost for this approach
 is :math:`\Theta(|\mathbf{V}|^2 + |\mathbf{E}|) =
 \Theta(|\mathbf{V}|^2)`,
 because :math:`|\mathbf{E}|` is in :math:`O(|\mathbf{V}|^2)`.
+
+.. raw:: html
+
+   <a id="todo4"></a>
+
+.. TODO::
+  type: AV
+   AV here to demonstrate the minVertex implementation.
 
 An alternative approach is to store unprocessed vertices in a
 min-heap ordered by their distance from the processed vertices.
@@ -219,6 +262,24 @@ here is the implementation for Dijkstra's algorithm using a heap.
 .. codeinclude:: Graphs/DijkstraPQ
    :tag: DijkstraPQ
 
+.. raw:: html
+
+   <a id="todo5"></a>
+
+.. TODO::
+  type: Slideshow
+   This slideshow illustrates Dijkstra's algorithm using the heap.
+   The start vertex is A.
+   All vertices except A have an initial value of :math:`\infty`.
+   After processing Vertex A, its neighbors have their D estimates
+   updated to be the direct distance from A.
+   After processing C (the closest vertex to A),
+   Vertices B and E are updated to reflect the shortest
+   path through C.
+   The remaining vertices are processed in order B, D,
+   and E.
+   Changes in the D array should be shown along with this.
+
 Using ``MinVertex`` to scan the vertex list for the minimum value
 is more efficient when the graph is dense, that is, when
 :math:`|\mathbf{E}|` approaches :math:`|\mathbf{V}|^2`.
@@ -227,6 +288,14 @@ because its cost is
 :math:`\Theta((|\mathbf{V}| + |\mathbf{E}|) \log |\mathbf{E}|)`.
 However, when the graph is dense, this cost can become as great as
 :math:`\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|V|^2 \log |V|)`.
+
+.. raw:: html
+
+   <a id="todo6"></a>
+
+.. TODO::
+  type: Slideshow
+   Slideshow to demonstrate the relative costs of the two algorithms.
 
 Now you can practice using Dijkstra's algorithm.
 
@@ -238,6 +307,13 @@ Now you can practice using Dijkstra's algorithm.
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Dijkstra's Algorithm Proficiency Exercise
 
+.. raw:: html
+
+   <a id="todo7"></a>
+
+.. TODO::
+  type: Exercise
+   Summary battery of questions for Dijkstra's algorithm
 
 .. odsascript:: AV/Graph/DistanceExampCON.js
 .. odsascript:: AV/Graph/DijkstraCON.js

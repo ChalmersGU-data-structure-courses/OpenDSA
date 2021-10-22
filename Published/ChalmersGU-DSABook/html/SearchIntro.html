@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>2.1. Chapter Introduction: Search &mdash; Data Structures and Algorithms</title>
+    <title>1.4. Searching: Sets and Maps &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Searching in an Array" href="BinarySearch.html" />
-    <link rel="prev" title="6. Maps or Dictionaries" href="Dictionary.html" />
+    <link rel="next" title="5. Comparing Records: Key-Value Pairs (WORK IN PROGRESS)" href="Comparison.html" />
+    <link rel="prev" title="3. All ADTs Used in This Book" href="CourseAPI.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 2 Arrays</span></h2>
+              <h2 class="heading" ><span>Chapter 1 Introduction</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="Dictionary.html">1.<span class="section-number">6. </span>Maps or Dictionaries</a>
+        «&#160;&#160;<a id="prevmod" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinarySearch.html">2.<span class="section-number">2. </span>Searching in an Array</a>&#160;&#160;»
+        <a  id="nextmod" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,74 +162,363 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SearchIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Search";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="chapter-introduction-search">
-<h1>2.<span class="section-number">1. </span>Chapter Introduction: Search<a class="headerlink" href="#chapter-introduction-search" title="Permalink to this headline">¶</a></h1>
-<p>Organizing and retrieving information is at the heart of most computer
-applications, and searching is surely the most frequently performed
-of all computing tasks.
-Search can be viewed abstractly as a process to determine if
-an element with a particular value is a member of a particular set.
-The more common view of searching is an attempt to
-find the record within a collection of records that has
-a particular key value, or those records in a collection whose key
-values meet some criterion such as falling within a range of
-values.</p>
-<p>We can define searching formally as follows.
-Suppose that we have a collection <strong>L</strong> of <span class="math notranslate nohighlight">\(n\)</span> records of the
-form</p>
-<div class="math notranslate nohighlight">
-\[(k_1, I_1), (k_2, I_2), ..., (k_n, I_n)\]</div>
-<p>where <span class="math notranslate nohighlight">\(I_j\)</span> is information associated with key <span class="math notranslate nohighlight">\(k_j\)</span>
-from record <span class="math notranslate nohighlight">\(j\)</span> for <span class="math notranslate nohighlight">\(1 \leq j \leq n\)</span>.
-Given a particular key value <span class="math notranslate nohighlight">\(K\)</span>,
-the <a class="reference internal" href="Glossary.html#term-search-problem"><span class="xref std std-term">search problem</span></a> is to locate a record
-<span class="math notranslate nohighlight">\((k_j, I_j)\)</span> in <strong>L</strong> such that <span class="math notranslate nohighlight">\(k_j = K\)</span>
-(if one exists).
-<a class="reference internal" href="Glossary.html#term-searching"><span class="xref std std-term">Searching</span></a> is a systematic method for
-locating the record (or records) with key value <span class="math notranslate nohighlight">\(k_j = K\)</span>.</p>
-<p>A <a class="reference internal" href="Glossary.html#term-successful-search"><span class="xref std std-term">successful search</span></a> is one in which a record with key
-<span class="math notranslate nohighlight">\(k_j = K\)</span> is found.
-An <a class="reference internal" href="Glossary.html#term-unsuccessful-search"><span class="xref std std-term">unsuccessful search</span></a> is one in which no record with
-<span class="math notranslate nohighlight">\(k_j = K\)</span> is found (and no such record exists).</p>
-<p>An <a class="reference internal" href="Glossary.html#term-exact-match-query"><span class="xref std std-term">exact-match query</span></a> is a search for the record whose key
-value matches a specified key value.
-A <a class="reference internal" href="Glossary.html#term-range-query"><span class="xref std std-term">range query</span></a> is a search for all records whose key value
-falls within a specified range of key values.</p>
-<p>We can categorize search algorithms into three general
-approaches:</p>
-<ol class="arabic simple">
-<li><p>Sequential and list methods.</p></li>
-<li><p>Direct access by key value (hashing).</p></li>
-<li><p>Tree indexing methods.</p></li>
-</ol>
-<p>Any of these approaches are potentially suitable for implementing the
-<a class="reference internal" href="Dictionary.html#dictionary"><span class="std std-ref">Dictionary</span></a> ADT.
-However, each has different performance characteristics that make it
-the method of choice in particular circumstances.</p>
-<p>The current chapter considers methods for searching data stored in
-lists.
-List in this context means any list implementation including a
-linked list or an array.
-Most of these methods are appropriate for sequences
-(i.e., duplicate key values are allowed), although there are special
-techniques applicable to <a class="reference internal" href="Glossary.html#term-set"><span class="xref std std-term">sets</span></a>.
-The techniques from the first three sections of this chapter are most
-appropriate for searching a collection of records stored in RAM.
-Chapter  introduces hashing, a technique for
-organizing data in an array such that the location of each record
-within the array is a function of its key value.
-Hashing is appropriate when records are stored either in RAM or on
-disk.</p>
-<p>Chapter  discusses tree-based methods for organizing
-information on disk, including a commonly used file structure called
-the B-tree.
-Nearly all programs that must organize large collections of records
-stored on disk use some variant of either hashing or the B-tree.
-Hashing is practical for only certain access applications
-(exact-match queries) and is generally appropriate only when duplicate
-key values are not allowed.
-B-trees are the method of choice for dynamic disk-based
-applications anytime hashing is not appropriate.</p>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SearchIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="searching-sets-and-maps">
+<h1>1.<span class="section-number">4. </span>Searching: Sets and Maps<a class="headerlink" href="#searching-sets-and-maps" title="Permalink to this headline">¶</a></h1>
+<p>Many tasks that we want to solve using a computer involve <em>searching</em>:
+We have some set of items, and we want to find the items that match
+some criteria. Here are some examples:</p>
+<ul class="simple">
+<li><p><em>Spell-checking:</em>
+Given a set containing all valid English words, check if a given
+string is present in the set (i.e. is a valid word).</p></li>
+<li><p><em>Database lookup:</em>
+Given a list of people, find the person with a given personnummer.</p></li>
+<li><p><em>Search engine:</em>
+Given a collection of documents (e.g. web pages), find all web
+pages containing a given word.</p></li>
+<li><p><em>Between X and Y:</em>
+Given a list of all Swedish towns and their populations, find
+the towns whose population is between 1,000 and 2,000.</p></li>
+</ul>
+<p>All of these problems can be solved using ADTs called <em>sets</em> and <em>maps</em>.</p>
+<div class="section" id="spell-checking-sets">
+<h2>1.<span class="section-number">4.1. </span>Spell-checking: Sets<a class="headerlink" href="#spell-checking-sets" title="Permalink to this headline">¶</a></h2>
+<p>A <em>set</em> represents a collection of items, where we can <em>add</em> and
+<em>remove</em> items, and <em>check</em> if a given item is present in the set.
+A set cannot contain duplicate items: if we try to add an item that is
+already present, nothing happens, and the set is left unchanged.</p>
+<div id="API_SetADT_code"><ul><li><a href="#API_SetADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SetADT_code_Java_Generic">Java</a></li><li><a href="#API_SetADT_code_Python">Python</a></li></ul><div id="API_SetADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Set</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>                  <span class="c1">// Adds x to the set.</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>               <span class="c1">// Removes x from the set, and returns it.</span>
+    <span class="n">contains</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">boolean</span>   <span class="c1">// Checks if x is in the set.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order.</span>
+</pre></div>
+</div>
+</div><div id="API_SetADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Set</span>
+<span class="kd">interface</span> <span class="nc">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>          <span class="c1">// Adds x to the set.</span>
+    <span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>       <span class="c1">// Removes x from the set, and returns it.</span>
+    <span class="kt">boolean</span> <span class="nf">contains</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Checks if x is in the set.</span>
+    <span class="c1">// Note: iterator() can yield the elements in any order.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="API_SetADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Set</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Adds x to the set.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Removes x from the set, and returns it.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Checks if x is in the set.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() can yield the elements in any order.</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#API_SetADT_code" ).tabs();});</script><p>We can use a set for the spell-checking example. To create the
+spell-checking dictionary, we start with an initially empty set, and
+then call <code class="docutils literal notranslate"><span class="pre">add</span></code> repeatedly to add each valid word to the set.
+Then to spell-check a given word, we just call <code class="docutils literal notranslate"><span class="pre">contains</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nl">list_of_valid_words:</span> <span class="n">list</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;cat&quot;</span><span class="p">,</span> <span class="s">&quot;dog&quot;</span><span class="o">]</span>
+<span class="nl">list_of_words_to_check:</span> <span class="n">list</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;dog&quot;</span><span class="p">,</span> <span class="s">&quot;kat&quot;</span><span class="o">]</span>
+
+<span class="c1">// Convert the list of words into a set.</span>
+<span class="nl">set_of_valid_words:</span> <span class="n">Set</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">list_of_words</span>
+  <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+<span class="c1">// Now we can spell-check a word easily.</span>
+<span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">list_of_words_to_check</span>
+  <span class="k">if</span> <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">print</span> <span class="n">word</span><span class="p">,</span> <span class="s">&quot;is valid&quot;</span>
+  <span class="k">else</span>
+    <span class="n">print</span> <span class="n">word</span><span class="p">,</span> <span class="s">&quot;is invalid&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="database-lookup-maps">
+<h2>1.<span class="section-number">4.2. </span>Database lookup: Maps<a class="headerlink" href="#database-lookup-maps" title="Permalink to this headline">¶</a></h2>
+<p>A <em>map</em> represents a set of <em>keys</em>, where each key has an associated
+<em>value</em>. We can <em>add</em> and <em>remove</em> keys, but when we add a key we must
+specify what <em>value</em> we want to associated with it. We can <em>check</em> if
+a given key is present in the map. We can also <em>look up</em> a key to find
+the associated value.</p>
+<div id="API_MapADT_code"><ul><li><a href="#API_MapADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_MapADT_code_Java_Generic">Java</a></li><li><a href="#API_MapADT_code_Python">Python</a></li></ul><div id="API_MapADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Map</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span><span class="n">V</span><span class="p">)</span>                   <span class="c1">// Sets the value of the given key.</span>
+    <span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span>         <span class="p">:</span> <span class="n">V</span>            <span class="c1">// Returns the value associated with the given key.</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span>      <span class="p">:</span> <span class="n">V</span>            <span class="c1">// Removes the value associated with the given key.</span>
+    <span class="n">containsKey</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span> <span class="p">:</span> <span class="kt">boolean</span>      <span class="c1">// Checks if the key has an associated value.</span>
+    <span class="n">keyIterator</span><span class="p">()</span>    <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>  <span class="c1">// Returns an iterator over the keys.</span>
+    <span class="n">isEmpty</span><span class="p">()</span>        <span class="p">:</span> <span class="kt">boolean</span>      <span class="c1">// Returns true if there are no keys.</span>
+    <span class="n">size</span><span class="p">()</span>           <span class="p">:</span> <span class="kt">int</span>          <span class="c1">// Returns the number of keys (i.e., the number of key/value pairs).</span>
+    <span class="c1">// Note: keyIterator() can yield the keys in any order.</span>
+</pre></div>
+</div>
+</div><div id="API_MapADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Map, where</span>
+<span class="c1">// `keyIterator` replaces the more complicated `keySet`.</span>
+<span class="kd">interface</span> <span class="nc">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">);</span>    <span class="c1">// Sets the value of the given key.</span>
+    <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>                <span class="c1">// Returns the value associated with the given key.</span>
+    <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>             <span class="c1">// Removes and returns the value associated with the given key.</span>
+    <span class="kt">boolean</span> <span class="nf">containsKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>  <span class="c1">// Checks if the key has an associated value.</span>
+    <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">keyIterator</span><span class="p">();</span>   <span class="c1">// Returns an iterator over the keys.</span>
+    <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>           <span class="c1">// Returns true if there are no keys.</span>
+    <span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>                  <span class="c1">// Returns the number of keys (i.e., the number of key/value pairs).</span>
+    <span class="c1">// Note: keyIterator() can yield the keys in any order.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="API_MapADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Map</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>  <span class="s2">&quot;&quot;&quot;Sets the value of the given key.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>         <span class="s2">&quot;&quot;&quot;Returns the value associated with the given key.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Removes the value associated with the given key.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Checks if the key has an associated value.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">keyIterator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Returns an iterator over the keys.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>          <span class="s2">&quot;&quot;&quot;Returns true if there are no .&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>             <span class="s2">&quot;&quot;&quot;Returns the number of keys (i.e., the number of key/value pairs).&quot;&quot;&quot;</span>
+    <span class="c1"># Note: keyIterator() can yield the keys in any order.</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#API_MapADT_code" ).tabs();});</script><p>A map cannot contain duplicate <em>keys</em>, so each key is associated with
+exactly one value. If we call <code class="docutils literal notranslate"><span class="pre">add(k,v)</span></code>, but the key <code class="docutils literal notranslate"><span class="pre">k</span></code> is
+already present, then the value associated with <code class="docutils literal notranslate"><span class="pre">k</span></code> gets changed to
+<code class="docutils literal notranslate"><span class="pre">v</span></code>. On the other hand, a map <em>can</em> contain duplicate <em>values</em>: two
+keys can have the same value.</p>
+<p>The map is a perfect match for our database example. Here, the key
+should be a personnummer, and the value should be a record containing
+information about that person. If the personnummer is stored in a
+field <code class="docutils literal notranslate"><span class="pre">pnr</span></code>, then to add a person <code class="docutils literal notranslate"><span class="pre">p</span></code> we call <code class="docutils literal notranslate"><span class="pre">add(p.pnr,</span> <span class="pre">p)</span></code>.
+To find the person with personnummer <code class="docutils literal notranslate"><span class="pre">pnr</span></code> we call <code class="docutils literal notranslate"><span class="pre">lookup(pnr)</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span>
+  <span class="kd">public</span> <span class="n">pnr</span><span class="p">:</span>  <span class="n">string</span> <span class="c1">// personnummer</span>
+  <span class="kd">public</span> <span class="n">name</span><span class="p">:</span> <span class="n">string</span> <span class="c1">// person&#39;s name</span>
+
+<span class="nl">database:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">()</span>
+
+<span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span>
+  <span class="c1">// Add the person to the database</span>
+  <span class="n">database</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span>
+  <span class="c1">// Remove a person from the database</span>
+  <span class="n">database</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">)</span>
+
+<span class="n">find</span><span class="p">(</span><span class="n">pnr</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">Person</span>
+  <span class="c1">// Find the person who has a given personnummer</span>
+  <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="n">pnr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="search-engine-multimaps">
+<h2>1.<span class="section-number">4.3. </span>Search engine: Multimaps<a class="headerlink" href="#search-engine-multimaps" title="Permalink to this headline">¶</a></h2>
+<p>Maps have the restriction that each key has only one value. However,
+sometimes we want to store a list of records, where some records might
+have the same key. Then we want something like a map, but where a key
+can have multiple values associated with it. This structure is called
+a <em>multimap</em>.</p>
+<p>A multimap is the perfect data structure for our search engine
+example. We want to find all documents containing a given word. To do
+that, we will build a multimap, where the key is a word, and the
+values are all documents containing that word. Then, searching for a
+word will just mean looking it up in the multimap.</p>
+<p>Unfortunately, most programming languages do not provide a multimap
+data structure. Instead, we can implement it ourselves. The idea is to
+use a map, where the key is a word, and the value is not a document
+but a <em>set</em> of documents.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// We model a document as a list of words</span>
+<span class="kd">class</span> <span class="nc">Document</span>
+  <span class="kd">public</span> <span class="n">contents</span><span class="p">:</span> <span class="n">string</span><span class="o">[]</span>
+
+<span class="nl">database:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">))</span>
+
+<span class="c1">// Add a new document to the database</span>
+<span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">doc</span><span class="p">.</span><span class="na">contents</span>
+    <span class="c1">// Get the set of documents containing this word</span>
+    <span class="n">set</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">set</span> <span class="n">is</span> <span class="kc">null</span>
+      <span class="c1">// This is the first document containing this word</span>
+      <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+
+    <span class="c1">// Add the document to the set</span>
+    <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+    <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+
+<span class="c1">// Find all documents containing a given word</span>
+<span class="n">find</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">database</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+  <span class="k">else</span>
+    <span class="c1">// If the word is not found, return an empty set rather than null</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="between-x-and-y-sorted-sets-and-maps">
+<h2>1.<span class="section-number">4.4. </span>Between X and Y: Sorted Sets and Maps<a class="headerlink" href="#between-x-and-y-sorted-sets-and-maps" title="Permalink to this headline">¶</a></h2>
+<p>Consider our problem: Given a list of all Swedish towns and their
+populations, find the towns whose population is between 1,000 and 2,000.
+One way to solve this problem would be to use a multimap. The key
+would be a population number, and the values would be all towns having
+that population. Then we could find the required towns by making a
+sequence of calls to <code class="docutils literal notranslate"><span class="pre">contains</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">contains(1000)</span></code> - find all towns with 1,000 population</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contains(1001)</span></code> - find all towns with 1,001 population</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">contains(1002)</span></code> - find all towns with 1,002 population</p></li>
+<li><p>etc.</p></li>
+</ul>
+<p>But this is not a sensible approach. We would need to make ~1,000
+calls to <code class="docutils literal notranslate"><span class="pre">contains</span></code>, and if we wanted to instead find all cities in
+the USA having a population of between 1 and 2 million, we would need
+to make ~1,000,000 calls.</p>
+<p>There is a better way. If the towns are stored in a array, and sorted
+by population, we can use the following algorithm:</p>
+<ul class="simple">
+<li><p>Use a binary search to find the first town with a population of at
+least 1,000, and remember what position it has in the array.</p></li>
+<li><p>Use another binary search to find the <em>last</em> town with a population
+of <em>at most</em> 2,000, and remember its position.</p></li>
+<li><p>Now return all towns between those two positions in the array.</p></li>
+</ul>
+<p>The cost of finding the towns using this algorithm is only
+<span class="math notranslate nohighlight">\(O(\log n)\)</span> (two calls to binary search).</p>
+<p>This is an example of a <em>range query</em>: given a map, finding all items
+whose key lies in a given range. Some map implementations (such as
+sorted arrays) support answering range queries efficiently; we say
+that these data structures implement <em>sorted maps</em>.</p>
+<p>Apart from range queries, sorted maps support several other operations
+that take advantage of the natural order of the keys:</p>
+<ul>
+<li><p>Finding the <em>smallest</em> or <em>largest</em> key in the map.</p></li>
+<li><p>Finding the <em>closest</em> key to a given one. Given a key <span class="math notranslate nohighlight">\(k\)</span>
+(which may or may not be in the map), then:</p>
+<ul class="simple">
+<li><p>The <em>successor</em> of <span class="math notranslate nohighlight">\(k\)</span> is the next key after <span class="math notranslate nohighlight">\(k\)</span> in
+the map, i.e. the smallest key <span class="math notranslate nohighlight">\(k\prime\)</span> such that
+<span class="math notranslate nohighlight">\(k &lt; k\prime\)</span>.</p></li>
+<li><p>The <em>predecessor</em> of <span class="math notranslate nohighlight">\(k\)</span> is the previous key before
+<span class="math notranslate nohighlight">\(k\)</span> in the map, i.e. the greatest key <span class="math notranslate nohighlight">\(k\prime\)</span> such
+that <span class="math notranslate nohighlight">\(k\prime &lt; k\)</span>.</p></li>
+</ul>
+<p>A variant which is sometimes useful is <em>floor</em> and <em>ceiling</em>:</p>
+<ul class="simple">
+<li><p>The <em>floor</em> of <span class="math notranslate nohighlight">\(k\)</span> is the greatest key <span class="math notranslate nohighlight">\(k\prime\)</span>
+such that <span class="math notranslate nohighlight">\(k\prime \leq k\)</span>. If <span class="math notranslate nohighlight">\(k\)</span> is in the map,
+then the floor of <span class="math notranslate nohighlight">\(k\)</span> is just <span class="math notranslate nohighlight">\(k\)</span>; otherwise it is the
+predecessor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p>The <em>ceiling</em> of <span class="math notranslate nohighlight">\(k\)</span> is the least key <span class="math notranslate nohighlight">\(k\prime\)</span>
+such that <span class="math notranslate nohighlight">\(k \leq k\prime\)</span>. If <span class="math notranslate nohighlight">\(k\)</span> is in the map,
+then the ceiling of <span class="math notranslate nohighlight">\(k\)</span> is just <span class="math notranslate nohighlight">\(k\)</span>; otherwise it is the
+successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</li>
+</ul>
+<div id="API_SortedMapADT_code"><ul><li><a href="#API_SortedMapADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SortedMapADT_code_Java_Generic">Java</a></li><li><a href="#API_SortedMapADT_code_Python">Python</a></li></ul><div id="API_SortedMapADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">SortedMap</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Map</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span>
+    <span class="n">firstKey</span><span class="p">()</span>      <span class="p">:</span> <span class="n">K</span>   <span class="c1">// Returns the first (smallest) key.</span>
+    <span class="n">lastKey</span><span class="p">()</span>       <span class="p">:</span> <span class="n">K</span>   <span class="c1">// Returns the last (largest) key.</span>
+    <span class="n">floorKey</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span>   <span class="p">:</span> <span class="n">K</span>   <span class="c1">// Returns the closest key &lt;= k.</span>
+    <span class="n">ceilingKey</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span> <span class="p">:</span> <span class="n">K</span>   <span class="c1">// Returns the closest key &gt;= k.</span>
+    <span class="c1">// Note: keyIterator() should yield the keys in order.</span>
+</pre></div>
+</div>
+</div><div id="API_SortedMapADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.SortedMap, where</span>
+<span class="c1">// `floorKey` and `ceilingKey` are borrowed from java.util.NavigableMap.</span>
+<span class="kd">interface</span> <span class="nc">SortedMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">K</span> <span class="nf">firstKey</span><span class="p">();</span>          <span class="c1">// Returns the first (smallest) key.</span>
+    <span class="n">K</span> <span class="nf">lastKey</span><span class="p">();</span>           <span class="c1">// Returns the last (largest) key.</span>
+    <span class="n">K</span> <span class="nf">floorKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>     <span class="c1">// Returns the closest key &lt;= k.</span>
+    <span class="n">K</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>   <span class="c1">// Returns the closest key &gt;= k.</span>
+    <span class="c1">// Note: keyIterator() should yield the keys in order.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="API_SortedMapADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SortedMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">firstKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>        <span class="s2">&quot;&quot;&quot;Returns the first (smallest) key.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>         <span class="s2">&quot;&quot;&quot;Returns the last (largest) key.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">floorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &lt;= k.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &gt;= k.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: keyIterator() should yield the keys in order.</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#API_SortedMapADT_code" ).tabs();});</script><p>As well as a sorted map, it is also possible to have a <em>sorted set</em>:</p>
+<div id="API_SortedSetADT_code"><ul><li><a href="#API_SortedSetADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SortedSetADT_code_Java_Generic">Java</a></li><li><a href="#API_SortedSetADT_code_Python">Python</a></li></ul><div id="API_SortedSetADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">SortedSet</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Set</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">first</span><span class="p">()</span>      <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the first (smallest) element.</span>
+    <span class="n">last</span><span class="p">()</span>       <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the last (largest) element.</span>
+    <span class="n">floor</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>   <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the closest element &lt;= x.</span>
+    <span class="n">ceiling</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the closest element &gt;= x.</span>
+    <span class="c1">// Note: iterator() should yield the elements in order.</span>
+</pre></div>
+</div>
+</div><div id="API_SortedSetADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.SortedSet, where</span>
+<span class="c1">// `floor` and `ceiling` are borrowed from java.util.NavigableSet.</span>
+<span class="kd">interface</span> <span class="nc">SortedSet</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">E</span> <span class="nf">first</span><span class="p">();</span>       <span class="c1">// Returns the first (smallest) element.</span>
+    <span class="n">E</span> <span class="nf">last</span><span class="p">();</span>        <span class="c1">// Returns the last (largest) element.</span>
+    <span class="n">E</span> <span class="nf">floor</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>    <span class="c1">// Returns the closest element &lt;= x.</span>
+    <span class="n">E</span> <span class="nf">ceiling</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Returns the closest element &gt;= x.</span>
+    <span class="c1">// Note: iterator() should yield the elements in order.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="API_SortedSetADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SortedSet</span><span class="p">(</span><span class="n">Set</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>      <span class="s2">&quot;&quot;&quot;Returns the first (smallest) element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the last (largest) element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">floor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &lt;= x.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">ceiling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest element &gt;= x.&quot;&quot;&quot;</span>
+    <span class="c1"># Note: __iter__() should yield the elements in order.</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#API_SortedSetADT_code" ).tabs();});</script><p>Here is how to use a sorted map ADT to find all Swedish towns having
+between 1,000 and 2,000 population. As there may be towns that have
+the same population, we need a <em>multimap</em>. As before, we solve this by
+having the key be a population number and the value be a list of towns.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">City</span><span class="p">:</span>
+  <span class="kd">public</span> <span class="n">name</span><span class="p">:</span> <span class="n">string</span>
+  <span class="kd">public</span> <span class="n">population</span><span class="p">:</span> <span class="kt">int</span>
+
+<span class="c1">// Similar to the search engine, use a map where the value is a list of cities</span>
+<span class="nl">cities:</span> <span class="n">SortedMap</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">))</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SortedMap</span><span class="p">()</span>
+
+<span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="n">City</span><span class="p">)</span>
+  <span class="c1">// This is the same code as for the search engine</span>
+
+<span class="c1">// Call findBetween(1000, 2000) to solve the example problem</span>
+<span class="n">findBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="n">List</span><span class="p">(</span><span class="n">City</span><span class="p">)</span>
+  <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">City</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">()</span>
+  <span class="c1">// The range query returns a set of keys, i.e. populations</span>
+  <span class="k">for</span> <span class="n">population</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+    <span class="c1">// cities.get(population) returns the list of cities with that population</span>
+    <span class="k">for</span> <span class="n">city</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">population</span><span class="p">):</span>
+      <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+  <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-implement-sets-and-maps">
+<h2>1.<span class="section-number">4.5. </span>How to implement sets and maps<a class="headerlink" href="#how-to-implement-sets-and-maps" title="Permalink to this headline">¶</a></h2>
+<p>In Chapter , we saw two ways to
+implement a set: using an array, or using a <em>sorted</em> array. We could
+implement a map using either an array of (key, value) tuples, or by
+storing the keys in one array and the values in another.</p>
+<p>An unsorted array is not a good implementation of a set (or a map),
+because the <code class="docutils literal notranslate"><span class="pre">contains</span></code> method must use <em>linear search</em>, which takes
+<span class="math notranslate nohighlight">\(O(n)\)</span> time.</p>
+<p>A sorted array is suitable for a set or a map that <em>never changes</em>,
+because the <code class="docutils literal notranslate"><span class="pre">contains</span></code> method can use <em>binary search</em>, which takes
+<span class="math notranslate nohighlight">\(O(\log n)\)</span> time. Updating the set or map is slow, because
+<code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">remove</span></code> must keep the array in the correct order, which
+takes <span class="math notranslate nohighlight">\(O(n)\)</span> time. However, if the set or map never changes, we
+can sort it once at the beginning (in <span class="math notranslate nohighlight">\(O(n \log n)\)</span> time) and
+use binary search from then on.</p>
+<p>In this chapter and the next one, we learn about <em>balanced binary
+search trees (BSTs)</em>, a data structure that implements the set and map
+ADTs, where <code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">remove</span></code> and <code class="docutils literal notranslate"><span class="pre">contains</span></code> all take
+<span class="math notranslate nohighlight">\(O(\log n)\)</span> time. Balanced BSTs also support ordered operations
+such as <a class="reference internal" href="Glossary.html#term-range-query"><span class="xref std std-term">range queries</span></a>.</p>
+<p>In chapter , we learn about <em>hash tables</em>, another way
+to implement the set and map ADTs. In a hash table, <code class="docutils literal notranslate"><span class="pre">add</span></code>,
+<code class="docutils literal notranslate"><span class="pre">remove</span></code> and <code class="docutils literal notranslate"><span class="pre">contains</span></code> take <em>constant</em> time on average,
+but they are a little harder to use than BSTs, the performance
+guarantees are not as strong, and they do not support ordered operations.
+Balanced BSTs and hash tables are the main ways that sets and maps are
+implemented in practice.</p>
+</div>
 </div>
 
 
@@ -237,11 +526,11 @@ applications anytime hashing is not appropriate.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="Dictionary.html">1.<span class="section-number">6. </span>Maps or Dictionaries</a>
+        «&#160;&#160;<a id="prevmod1" href="CourseAPI.html">1.<span class="section-number">3. </span>All ADTs Used in This Book</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinarySearch.html">2.<span class="section-number">2. </span>Searching in an Array</a>&#160;&#160;»
+        <a  id="nextmod1" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -256,7 +545,7 @@ applications anytime hashing is not appropriate.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

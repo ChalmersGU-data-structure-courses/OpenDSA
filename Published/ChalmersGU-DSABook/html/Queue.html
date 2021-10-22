@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.11. Queues &mdash; Data Structures and Algorithms</title>
+    <title>4.11. Array-Based Queues &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 5 Linear Structures</span></h2>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="StackRecur.html">5.<span class="section-number">10. </span>Implementing Recursion</a>
+        «&#160;&#160;<a id="prevmod" href="StackRecur.html">4.<span class="section-number">10. </span>Implementing Recursion</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="QueueLinked.html">5.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
+        <a  id="nextmod" href="QueueLinked.html">4.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'array-based-queues', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="queues">
-<h1>5.<span class="section-number">11. </span>Queues<a class="headerlink" href="#queues" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="array-based-queues">
+<h1>4.<span class="section-number">11. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
-<h2>5.<span class="section-number">11.1. </span>Queue Terminology and Implementation<a class="headerlink" href="#queue-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">11.1. </span>Queue Terminology and Implementation<a class="headerlink" href="#queue-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Like the stack, the <a class="reference internal" href="Glossary.html#term-queue"><span class="xref std std-term">queue</span></a> is a list-like structure that
 provides restricted access to its elements.
 Queue elements may only be inserted at the back (called an
@@ -210,8 +210,8 @@ the array-based queue and the linked queue.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#API_QueueADT_code" ).tabs();});</script></div>
-<div class="section" id="array-based-queues">
-<h2>5.<span class="section-number">11.2. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h2>4.<span class="section-number">11.2. </span>Array-Based Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The array-based queue is somewhat tricky to implement effectively.
 A simple conversion of the array-based list implementation is not
 efficient.</p>
@@ -274,7 +274,7 @@ efficient.</p>
 <p></p>
 </div>
 <div class="section" id="the-circular-queue">
-<h2>5.<span class="section-number">11.3. </span>The Circular Queue<a class="headerlink" href="#the-circular-queue" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">11.3. </span>The Circular Queue<a class="headerlink" href="#the-circular-queue" title="Permalink to this headline">¶</a></h2>
 <div id="aqueueCircularCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueCircularCON" data-long-name="Circular Array-based Queue Slideshow" data-exer-id="" alt="Circular Array-based Queue Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -338,7 +338,7 @@ in the variable <code class="docutils literal notranslate"><span class="pre">que
 to our list and stack implementations.</p>
 </div>
 <div class="section" id="array-based-queue-implementation">
-<h2>5.<span class="section-number">11.4. </span>Array-based Queue Implementation<a class="headerlink" href="#array-based-queue-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">11.4. </span>Array-based Queue Implementation<a class="headerlink" href="#array-based-queue-implementation" title="Permalink to this headline">¶</a></h2>
 <div id="aqueueVarCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueVarCON" data-long-name="Array-based Queue Variables Slideshow" data-exer-id="" alt="Array-based Queue Variables Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -387,7 +387,7 @@ Implementation of all member functions is straightforward.</p>
 </div>
 </div>
 <div class="section" id="array-based-dequeue-practice">
-<h2>5.<span class="section-number">11.5. </span>Array-based Dequeue Practice<a class="headerlink" href="#array-based-dequeue-practice" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">11.5. </span>Array-based Dequeue Practice<a class="headerlink" href="#array-based-dequeue-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="AqueueDequeuePRO"
     class="embedContainer"
@@ -412,7 +412,7 @@ Implementation of all member functions is straightforward.</p>
 </div>
 </div>
 <div class="section" id="array-based-queues-full-implementation">
-<h2>5.<span class="section-number">11.6. </span>Array-based Queues, Full Implementation<a class="headerlink" href="#array-based-queues-full-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">11.6. </span>Array-based Queues, Full Implementation<a class="headerlink" href="#array-based-queues-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is an array-based queue implementation.</p>
 <div id="DynamicArrayQueue_DynamicArrayQueue_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueue_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueue_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DynamicArrayQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the queue elements</span>
@@ -563,7 +563,7 @@ Implementation of all member functions is straightforward.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;pop from empty queue&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
@@ -622,11 +622,11 @@ Implementation of all member functions is straightforward.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="StackRecur.html">5.<span class="section-number">10. </span>Implementing Recursion</a>
+        «&#160;&#160;<a id="prevmod1" href="StackRecur.html">4.<span class="section-number">10. </span>Implementing Recursion</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="QueueLinked.html">5.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
+        <a  id="nextmod1" href="QueueLinked.html">4.<span class="section-number">12. </span>Linked Queues</a>&#160;&#160;»
 
 </p>
       </div>
@@ -641,7 +641,7 @@ Implementation of all member functions is straightforward.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 20, 2021.
+      Last updated on Oct 21, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

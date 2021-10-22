@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['analysis-of-closed-hashing'];</script>
 
 .. _HashAnal:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Closed Hashing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-20 16:40:19"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Closed Hashing (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: hashing
    :topic: Hashing
 
-Analysis of Closed Hashing
-==========================
+Analysis of Closed Hashing (WORK IN PROGRESS)
+===============================================
 
 Analysis of Closed Hashing
 --------------------------
@@ -114,6 +114,14 @@ probing is :math:`.5(1 + 1/(1-\alpha)^2)` for
 insertions or unsuccessful searches and
 :math:`.5(1 + 1/(1-\alpha))` for deletions or successful
 searches.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Text
+   Where did that last claim about the linear probing cost come from?
 
 .. _HashPlot:
 

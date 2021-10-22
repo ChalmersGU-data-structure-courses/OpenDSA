@@ -84,7 +84,11 @@ class DynamicArrayStack<E> implements Stack<E> {
 /* *** ODSAendTag: DynamicArrayStackIterator *** */
 /* *** ODSAendTag: DynamicArrayStack *** */
 
-    public void pPrint() {
+
+/***************************************************************************************/
+/** What comes below is purely for debugging and testing purposes - it can be removed **/
+
+    public void _printList() {
         System.out.print(internalArray.length + " [ ");
         for (int i=size(); i<internalArray.length; i++) System.out.print("- ");
         System.out.print("| ");
@@ -96,14 +100,14 @@ class DynamicArrayStack<E> implements Stack<E> {
         DynamicArrayStack<String> list = new DynamicArrayStack<>();
         for (int i=0; i<23; i++) {
             list.push(String.valueOf((char)(i+65)));
-            if (list.size() % 5 == 0) list.pPrint();
+            if (list.size() % 5 == 0) list._printList();
         }
-        list.pPrint();
+        list._printList();
         while (!list.isEmpty()) {
             if (list.peek() != list.pop()) throw new IndexOutOfBoundsException("ERROR!!!");
-            if (list.size() % 3 == 2) list.pPrint();
+            if (list.size() % 3 == 2) list._printList();
         }
-        list.pPrint();
+        list._printList();
     }
 /* *** ODSATag: DynamicArrayStack *** */
 }

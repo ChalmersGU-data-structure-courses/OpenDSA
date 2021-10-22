@@ -71,7 +71,10 @@ class DynamicArrayStackIterator(Iterator):
 #/* *** ODSAendTag: DynamicArrayStack *** */
 
 
-def _pprint(l):
+#######################################################################################
+## What comes below is purely for debugging and testing purposes - it can be removed ##
+
+def _printList(l):
     print(len(l._internalArray), "[", "- " * (len(l._internalArray) - l.size()) + "|",
                " ".join(str(e) for e in l), "]", l.size())
 
@@ -80,10 +83,10 @@ if __name__ == '__main__':
     for i in range(23):
         a.push(chr(i+65))
         if a.size() % 5 == 0:
-            _pprint(a)
-    _pprint(a)
+            _printList(a)
+    _printList(a)
     while not a.isEmpty():
         assert a.peek() == a.pop(), (a,)
         if a.size() % 3 == 2:
-            _pprint(a)
-    _pprint(a)
+            _printList(a)
+    _printList(a)
