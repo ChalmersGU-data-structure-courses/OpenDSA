@@ -4,17 +4,21 @@ from API import Queue, Iterator
 #/* *** ODSATag: DynamicArrayQueue *** */
 #/* *** ODSATag: DynamicArrayQueueInit *** */
 class DynamicArrayQueue(Queue):
+    _minCapacity = 8
+    _minLoadFactor = 0.5
+    _capacityMultiplier = 1.5
+
     def __init__(self):
-        self._internalArray = [None]   # Internal array containing the queue elements
-        self._queueSize = 0            # Size of queue, and index of the next free slot
-        self._front = 0                # Index of front element
-        self._rear = -1                # Index of rear element
+        self._internalArray = [None] * self._minCapacity   # Internal array containing the queue elements
+        self._queueSize = 0                                # Size of queue, and index of the next free slot
+        self._front = 0                                    # Index of front element
+        self._rear = -1                                    # Index of rear element
 #/* *** ODSAendTag: DynamicArrayQueueInit *** */
 
 #/* *** ODSATag: DynamicArrayQueueEnqueue *** */
     def enqueue(self, x):
         if self._queueSize >= len(self._internalArray):
-            self._resizeArray(2 * len(self._internalArray))
+            self._resizeArray(len(self._internalArray) * self._capacityMultiplier)
         self._rear = (self._rear + 1) % len(self._internalArray)   # Circular increment
         self._internalArray[self._rear] = x
         self._queueSize += 1
@@ -33,14 +37,15 @@ class DynamicArrayQueue(Queue):
         x = self._internalArray[self._front]
         self._internalArray[self._front] = None   # For garbage collection
         self._front = (self._front + 1) % len(self._internalArray)   # Circular increment
-        if self._queueSize <= len(self._internalArray) // 3:
-            self._resizeArray(len(self._internalArray) // 2)
+        if self._queueSize <= len(self._internalArray) * self._minLoadFactor:
+            self._resizeArray(len(self._internalArray) / self._capacityMultiplier)
         return x
 #/* *** ODSAendTag: DynamicArrayQueueDequeue *** */
 
 #/* *** ODSATag: DynamicArrayQueueResize *** */
     def _resizeArray(self, newCapacity):
-        newArray = [None] * newCapacity
+        if newCapacity < self._minCapacity: return
+        newArray = [None] * int(newCapacity)
         for i in range(self._queueSize):
             newArray[i] = self._internalArray[(i + self._front) % len(self._internalArray)]
         self._internalArray = newArray

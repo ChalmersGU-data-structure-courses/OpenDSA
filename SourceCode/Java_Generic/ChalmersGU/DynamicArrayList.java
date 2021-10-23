@@ -7,9 +7,13 @@ class DynamicArrayList<E> implements List<E> {
     private E[] internalArray;   // Internal array containing the list elements
     private int listSize;        // Size of list
 
+    static int MinCapacity = 8;
+    static double MinLoadFactor = 0.5;
+    static double CapacityMultiplier = 1.5;
+
     @SuppressWarnings("unchecked")
     public DynamicArrayList() {
-        internalArray = (E[]) new Object[1];
+        internalArray = (E[]) new Object[MinCapacity];
         listSize = 0;
     }
 /* *** ODSAendTag: DynamicArrayListInit *** */
@@ -31,13 +35,11 @@ class DynamicArrayList<E> implements List<E> {
 /* *** ODSATag: DynamicArrayListAdd *** */
     public void add(int i, E x) {
         if (!(0 <= i && i <= listSize)) throw new IndexOutOfBoundsException("list index out of range");
-        if (listSize >= internalArray.length) {
-            resizeArray(2 * internalArray.length);
-        }
+        if (listSize >= internalArray.length)
+            resizeArray((int) (internalArray.length * CapacityMultiplier));
         listSize++;
-        for (int k = listSize-1; k > i; k--) {
+        for (int k = listSize-1; k > i; k--)
             internalArray[k] = internalArray[k-1];
-        }
         internalArray[i] = x;
     }
 /* *** ODSAendTag: DynamicArrayListAdd *** */
@@ -46,25 +48,23 @@ class DynamicArrayList<E> implements List<E> {
     public E remove(int i) {
         if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E x = internalArray[i];
-        for (int k = i+1; k < listSize; k++) {
+        for (int k = i+1; k < listSize; k++)
             internalArray[k-1] = internalArray[k];
-        }
         listSize--;
         internalArray[listSize] = null;   // For garbage collection
-        if (listSize <= internalArray.length / 3) {
-            resizeArray(internalArray.length / 2);
-        }
+        if (listSize <= internalArray.length * MinLoadFactor)
+            resizeArray((int) (internalArray.length / CapacityMultiplier));
         return x;
     }
 /* *** ODSAendTag: DynamicArrayListRemove *** */
 
 /* *** ODSATag: DynamicArrayListResize *** */
     private void resizeArray(int newCapacity) {
+        if (newCapacity < MinCapacity) return;
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[newCapacity];
-        for (int i = 0; i < listSize; i++) {
+        for (int i = 0; i < listSize; i++)
             newArray[i] = internalArray[i];
-        }
         internalArray = newArray;
     }
 /* *** ODSAendTag: DynamicArrayListResize *** */

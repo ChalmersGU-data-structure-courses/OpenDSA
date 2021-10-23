@@ -4,9 +4,13 @@ from API import List, Iterator
 #/* *** ODSATag: DynamicArrayList *** */
 #/* *** ODSATag: DynamicArrayListInit *** */
 class DynamicArrayList(List):
+    _minCapacity = 8
+    _minLoadFactor = 0.5
+    _capacityMultiplier = 1.5
+
     def __init__(self):
-        self._internalArray = [None]   # Internal array containing the list elements
-        self._listSize = 0             # Size of list
+        self._internalArray = [None] * self._minCapacity   # Internal array containing the list elements
+        self._listSize = 0                                 # Size of list
 #/* *** ODSAendTag: DynamicArrayListInit *** */
 
 #/* *** ODSATag: DynamicArrayListGetSet *** */
@@ -25,7 +29,7 @@ class DynamicArrayList(List):
     def add(self, i, x):
         if not (0 <= i <= self._listSize): raise IndexError("list index out of range")
         if self._listSize >= len(self._internalArray):
-            self._resizeArray(2 * len(self._internalArray))
+            self._resizeArray(len(self._internalArray) * self._capacityMultiplier)
         self._listSize += 1
         for k in reversed(range(i+1, self._listSize)):
             self._internalArray[k] = self._internalArray[k-1]
@@ -40,14 +44,15 @@ class DynamicArrayList(List):
             self._internalArray[k-1] = self._internalArray[k]
         self._listSize -= 1
         self._internalArray[self._listSize] = None   # For garbage collection
-        if self._listSize <= len(self._internalArray) // 3:
-            self._resizeArray(len(self._internalArray) // 2)
+        if self._listSize <= len(self._internalArray) * self._minLoadFactor:
+            self._resizeArray(len(self._internalArray) / self._capacityMultiplier)
         return x
 #/* *** ODSAendTag: DynamicArrayListRemove *** */
 
 #/* *** ODSATag: DynamicArrayListResize *** */
     def _resizeArray(self, newCapacity):
-        newArray = [None] * newCapacity
+        if newCapacity < self._minCapacity: return
+        newArray = [None] * int(newCapacity)
         for i in range(self._listSize):
             newArray[i] = self._internalArray[i]
         self._internalArray = newArray

@@ -4,15 +4,19 @@ from API import Stack, Iterator
 #/* *** ODSATag: DynamicArrayStack *** */
 #/* *** ODSATag: DynamicArrayStackInit *** */
 class DynamicArrayStack(Stack):
+    _minCapacity = 8
+    _minLoadFactor = 0.5
+    _capacityMultiplier = 1.5
+
     def __init__(self):
-        self._internalArray = [None]   # Internal array containing the stack elements
-        self._stackSize = 0            # Size of stack, and index of the next free slot
+        self._internalArray = [None] * self._minCapacity   # Internal array containing the stack elements
+        self._stackSize = 0                                # Size of stack, and index of the next free slot
 #/* *** ODSAendTag: DynamicArrayStackInit *** */
 
 #/* *** ODSATag: DynamicArrayStackPush *** */
     def push(self, x):
         if self._stackSize >= len(self._internalArray):
-            self._resizeArray(2 * len(self._internalArray))
+            self._resizeArray(len(self._internalArray) * self._capacityMultiplier)
         self._internalArray[self._stackSize] = x
         self._stackSize += 1
 #/* *** ODSAendTag: DynamicArrayStackPush *** */
@@ -29,14 +33,15 @@ class DynamicArrayStack(Stack):
         self._stackSize -= 1
         x = self._internalArray[self._stackSize]
         self._internalArray[self._stackSize] = None   # For garbage collection
-        if self._stackSize <= len(self._internalArray) // 3:
-            self._resizeArray(len(self._internalArray) // 2)
+        if self._stackSize <= len(self._internalArray) * self._minLoadFactor:
+            self._resizeArray(len(self._internalArray) / self._capacityMultiplier)
         return x
 #/* *** ODSAendTag: DynamicArrayStackPop *** */
 
 #/* *** ODSATag: DynamicArrayStackResize *** */
     def _resizeArray(self, newCapacity):
-        newArray = [None] * newCapacity
+        if newCapacity < self._minCapacity: return
+        newArray = [None] * int(newCapacity)
         for i in range(self._stackSize):
             newArray[i] = self._internalArray[i]
         self._internalArray = newArray
