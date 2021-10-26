@@ -44,10 +44,9 @@
       },
       "Design/ADT": {},
       "Design/CourseAPI": {},
-      "Searching/SearchIntro": {},
+      "Design/SetsAndMaps": {},
       "Design/Comparison": {},
-      "Design/ComparingExample": {},
-      "Design/Dictionary": {}
+      "Design/ComparingExample": {}
     },
     "Arrays: Searching and Sorting": {
       "Searching/ArraysIntro": {},

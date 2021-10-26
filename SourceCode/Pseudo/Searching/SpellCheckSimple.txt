@@ -1,0 +1,17 @@
+/* *** ODSATag: SpellCheck *** */
+
+// The set of valid words
+dictionary: Set(string) = new Set()
+
+// We can add words to the dictionary
+dictionary.add("cat")
+dictionary.add("dog")
+dictionary.add("kat")
+
+// We can remove words from the dictionary
+dictionary.remove("kat")
+
+// We can check a word's spelling like so
+dictionary.contains("cat") // returns true
+dictionary.contains("kat") // returns false
+/* *** ODSAendTag: SpellCheck *** */
