@@ -32,12 +32,11 @@ Unfortunately, even though it is based on a simple concept,
 it is relatively difficult to implement in practice.
 Here is a pseudocode sketch of Mergesort::
 
-    List mergesort(List inlist) {
-      if (inlist.length() <= 1) return inlist;;
-      List L1 = half of the items from inlist;
-      List L2 = other half of the items from inlist;
-      return merge(mergesort(L1), mergesort(L2));
-    }
+    List mergesort(List inlist)
+      if length of inlist <= 1 then return inlist
+      List L1 = half of the items from inlist
+      List L2 = other half of the items from inlist
+      return merge(mergesort(L1), mergesort(L2))
 
 Here is a visualization that illustrates how Mergesort works.
 
@@ -55,28 +54,22 @@ output list until no more input records remain.
 
 Here is pseudocode for merge on lists::
 
-    List merge(List L1, List L2) {
-      List answer = new List();
-      while (L1 != NULL || L2 != NULL) {
-        if (L1 == NULL) { // Done L1
-          answer.append(L2);
-          L2 = NULL;
-        }
-        else if (L2 == NULL) { // Done L2
-          answer.append(L1);
-          L1 = NULL;
-        }
-        else if (L1.value() <= L2.value()) {
-          answer.append(L1.value());
-          L1 = L1.next();
-        }
-        else {
-          answer.append(L2.value());
-          L2 = L2.next();
-        }
-      }
-      return answer;
-    }
+    List merge(List L1, List L2)
+      List answer = new empty list
+      while L1 is not empty and L2 is not empty
+        x = first element of L1
+        y = first element of L2
+        if x <= y
+          append x to answer
+          remove first element from L1
+        else
+          append y to answer
+          remove first element from L2
+      // Now one of L1 and L2 is empty, so append
+      // all remaining elements
+      append all elements of L1 to answer
+      append all elements of L2 to answer
+      return answer
 
 Here is a visualization for the merge operation.
 
