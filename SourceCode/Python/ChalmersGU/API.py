@@ -58,10 +58,10 @@ class Set(Collection):
 class SortedSet(Set):
     def first(self):          """Returns the first (smallest) element. Raises an exception if the set is empty."""
     def last(self):           """Returns the last (largest) element. Raises an exception if the set is empty."""
-    def floor(self, x):       """Returns the closest element <= x, or null if there is no such element."""
-    def ceiling(self, x):     """Returns the closest element >= x, or null if there is no such element."""
-    def successor(self, x);   """Returns the closest element > x, or null if there is no such element."""
-    def predecessor(self, x): """Returns the closest element < x, or null if there is no such element."""
+    def floor(self, x):       """Returns the closest element <= x, or None if there is no such element."""
+    def ceiling(self, x):     """Returns the closest element >= x, or None if there is no such element."""
+    def successor(self, x);   """Returns the closest element > x, or None if there is no such element."""
+    def predecessor(self, x): """Returns the closest element < x, or None if there is no such element."""
     def between(self, x, y):  """Returns all elements between x and y."""
     # Note: __iter__() should yield the elements in order.
 #/* *** ODSAendTag: SortedSetADT *** */
@@ -69,9 +69,9 @@ class SortedSet(Set):
 
 #/* *** ODSATag: MapADT *** */
 class Map(Iterable):
-    def put(self, key, value):  """Sets the value of the given key. Returns the previous value, or null."""
-    def get(self, key):         """Returns the value associated with the given key, or null if the key is not there."""
-    def remove(self, key):      """Removes and returns the value associated with the given key, or null if there is no key."""
+    def put(self, key, value):  """Sets the value of the given key. Returns the previous value, or None."""
+    def get(self, key):         """Returns the value associated with the given key, or None if the key is not there."""
+    def remove(self, key):      """Removes and returns the value associated with the given key, or None if there is no key."""
     def containsKey(self, key): """Returns true if the key has an associated value."""
     def isEmpty(self):          """Returns true if there are no keys."""
     def size(self):             """Returns the number of keys (i.e., the number of key/value pairs)."""
@@ -83,10 +83,10 @@ class Map(Iterable):
 class SortedMap(Map):
     def firstKey(self):            """Returns the first (smallest) key. Raises an exception if the map is empty."""
     def lastKey(self):             """Returns the last (largest) key. Raises an exception if the map is empty."""
-    def floorKey(self, key):       """Returns the closest key <= k, or null if there is no key."""
-    def ceilingKey(self, key):     """Returns the closest key >= k, or null if there is no key."""
-    def successorKey(self, key);   """Returns the closest key > k, or null if there is no such element."""
-    def predecessorKey(self, key); """Returns the closest key < k, or null if there is no such element."""
+    def floorKey(self, key):       """Returns the closest key <= k, or None if there is no key."""
+    def ceilingKey(self, key):     """Returns the closest key >= k, or None if there is no key."""
+    def successorKey(self, key);   """Returns the closest key > k, or None if there is no such element."""
+    def predecessorKey(self, key); """Returns the closest key < k, or None if there is no such element."""
     def keysBetween(self, key1, key2): """Returns all keys between k1 and k2."""
     # Note: __iter__() should yield the keys in order.
 #/* *** ODSAendTag: SortedMapADT *** */
