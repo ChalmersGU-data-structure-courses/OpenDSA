@@ -74,10 +74,13 @@ interface Set<E> extends Collection<E> {
 // Note: This is a subset of java.util.SortedSet, where
 // `floor` and `ceiling` are borrowed from java.util.NavigableSet.
 interface SortedSet<E> extends Set<E> {
-    E first();       // Returns the first (smallest) element. Raises an exception if the set is empty.
-    E last();        // Returns the last (largest) element. Raises an exception if the set is empty.
-    E floor(E x);    // Returns the closest element <= x, or null if there is no such element.
-    E ceiling(E x);  // Returns the closest element >= x, or null if there is no such element.
+    E first();          // Returns the first (smallest) element. Raises an exception if the set is empty.
+    E last();           // Returns the last (largest) element. Raises an exception if the set is empty.
+    E floor(E x);       // Returns the closest element <= x, or null if there is no such element.
+    E ceiling(E x);     // Returns the closest element >= x, or null if there is no such element.
+    E successor(E x);   // Returns the closest element > x, or null if there is no such element.
+    E predecessor(E x); // Returns the closest element < x, or null if there is no such element.
+    Iterator<E> between(E x, E y); // Returns all elements between x and y.
     // Note: iterator() should yield the elements in order.
 }
 /* *** ODSAendTag: SortedSetADT *** */
@@ -106,6 +109,9 @@ interface SortedMap<K, V> extends Map<K, V> {
     K lastKey();           // Returns the last (largest) key. Raises an exception if the map is empty.
     K floorKey(K key);     // Returns the closest key <= k, or null if there is no key.
     K ceilingKey(K key);   // Returns the closest key >= k, or null if there is no key.
+    K successorKey(K k);   // Returns the closest key > k, or null if there is no such element.
+    K predecessorKey(K k); // Returns the closest key < k, or null if there is no such element.
+    Iterator<K> keysBetween(K k1, K k2); // Returns all keys between k1 and k2.
     // Note: iterator() should yield the keys in order.
 }
 /* *** ODSAendTag: SortedMapADT *** */
