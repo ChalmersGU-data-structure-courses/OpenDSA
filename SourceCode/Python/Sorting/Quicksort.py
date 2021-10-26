@@ -25,12 +25,11 @@ def findpivot(A, i, j):
 
 #/* *** ODSATag: Quicksort *** */
 def quicksort(A, i, j):
+  if i >= j: return                # Base case: array of size 0 or 1
   pivotindex = findpivot(A, i, j)  # Pick a pivot
   swap(A, pivotindex, j)           # Stick pivot at end
   k = partition(A, i, j-1, A[j])   # k will be the first position in the right subarray
   swap(A, k, j)                    # Put pivot in place
-  if k-i > 1:
-    quicksort(A, i, k-1)           # Sort left partition
-  if j-k > 1:
-    quicksort(A, k+1, j)           # Sort right partition
+  quicksort(A, i, k-1)             # Sort left partition
+  quicksort(A, k+1, j)             # Sort right partition
 #/* *** ODSAendTag: Quicksort *** */

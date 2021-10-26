@@ -26,8 +26,8 @@ So perhaps a different divide and conquer strategy might turn out to
 be more efficient?
 
 :term:`Quicksort` is aptly named because, when properly
-implemented, it is the fastest known general-purpose in-memory sorting
-algorithm in the average case.
+implemented, it is one of the fastest known general-purpose in-memory
+sorting algorithms in the average case.
 It does not require the extra array needed by Mergesort, so it is
 space efficient as well.
 Quicksort is widely used, and is typically the algorithm implemented
@@ -43,8 +43,9 @@ Assume that the input array contains :math:`k` records with key values
 less than the pivot.
 The records are then rearranged in such a way that the :math:`k`
 values less than the pivot are placed in the first, or leftmost,
-:math:`k` positions in the array, and the values greater than or equal
-to the pivot are placed in the last, or rightmost, :math:`n-k`
+:math:`k` positions in the array, the pivot itself is placed
+at index :math:`k`, and the values greater than or equal to the pivot
+are placed in the last, or rightmost, :math:`n-k-1`
 positions.
 This is called a :term:`partition` of the array.
 The values placed in a given partition need not (and typically will
@@ -90,16 +91,12 @@ Even if a bad pivot is selected, yielding a completely empty
 partition to one side of the pivot, the larger partition will contain
 at most :math:`n-1` records.
 
-Selecting a pivot can be done in many ways.
-The simplest is to use the first key.
-However, if the input is sorted or reverse sorted, this will produce a
-poor partitioning with all values to one side of the pivot.
-It is better to pick a value at random, thereby reducing the chance of
-a bad input order affecting the sort.
-Unfortunately, using a random number generator is relatively
-expensive, and we can do nearly as well by selecting the middle
-position in the array.
-Here is a simple ``findpivot`` function.
+Selecting a pivot can be done in many ways. The simplest is to use the
+first key. However, if the input is sorted or reverse sorted, this
+will produce a poor partitioning with all values to one side of the
+pivot. One simple way to avoid this problem is to select the middle
+position in the array. Here is a simple ``findpivot`` function
+implementing this idea.
 
 .. codeinclude:: Sorting/Quicksort
    :tag: findpivot
@@ -107,6 +104,27 @@ Here is a simple ``findpivot`` function.
 .. avembed:: Exercises/Sorting/QuicksortPivotPRO.html ka
    :long_name: Quicksort Pivot Proficiency Exercise
 
+Real-world quicksort implementations use a more sophisticated pivot
+selection strategy. One good approach is to pick a random element of
+the array as the pivot. This makes it somewhat unlikely to get a poor
+partitioning. What's more, if we do get a poor partitioning, it is
+likely that in the recursive call to ``qsort``, we will choose a
+different pivot and get a better partitioning.
+
+The most common approach is called *median-of-three*. The
+theoretically best choice of pivot is one that divides the array
+equally in two, i.e. the median element of the array. However, the
+median of an array is difficult to compute (unless you sort the array
+first!) Median-of-three is a compromise option that approximates the
+median. We pick elements from three positions in the array: the
+*first* position, the *middle* position and the *last* position.
+Then we place these three elements in order, and pick the one which is
+in the middle. For example, in the array ``3, 1, 4, 1, 5, 9, 2``,
+the median-of-three strategy picks out the elements ``3`` (first
+position), ``1`` (middle position) and ``2`` (last position).
+Putting them in order gives 1, 2, 3, so it picks 2 as the pivot.
+Median-of-three is cheap to implement and chooses good pivots in
+practice.
 
 Partition
 ---------
