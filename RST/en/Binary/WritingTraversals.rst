@@ -9,8 +9,8 @@
    :satisfies: mistakes in recursive tree traversal
    :topic: Binary Trees
 
-Implementing Tree Traversals (WORK IN PROGRESS)
-=================================================
+Implementing Tree Traversals
+============================
 
 Implementing Tree Traversals
 ----------------------------

@@ -9,8 +9,8 @@
    :satisfies: binary tree space requirements
    :topic: Binary Trees
 
-Binary Tree Space Requirements (WORK IN PROGRESS)
-==================================================
+Binary Tree Space Requirements (optional)
+=========================================
 
 Binary Tree Space Requirements
 ------------------------------

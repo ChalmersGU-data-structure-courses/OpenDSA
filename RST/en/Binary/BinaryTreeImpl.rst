@@ -12,9 +12,6 @@
 Binary Tree Node Implementations (WORK IN PROGRESS)
 ====================================================
 
-Binary Tree Node Implementations
---------------------------------
-
 In this module we examine various ways to implement binary tree
 nodes.
 By definition, all binary tree nodes have two children,

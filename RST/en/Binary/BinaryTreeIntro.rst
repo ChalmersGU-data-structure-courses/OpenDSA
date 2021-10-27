@@ -8,8 +8,8 @@
    :satisfies: binary tree intro
    :topic: Binary Trees
 
-Chapter Introduction: Binary Trees (WORK IN PROGRESS)
-======================================================
+Chapter Introduction: Binary Trees
+==================================
 
 :term:`Tree <tree>` structures enable efficient access and efficient
 update to large collections of data.

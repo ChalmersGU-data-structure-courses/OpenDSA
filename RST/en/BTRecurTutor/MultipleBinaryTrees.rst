@@ -9,8 +9,8 @@
    :topic: Multiple Binary Trees
 
 
-Multiple Binary Trees (WORK IN PROGRESS)
-=========================================
+Multiple Binary Trees (optional)
+================================
 
 Mirror Image Binary Trees Exercise
 ----------------------------------

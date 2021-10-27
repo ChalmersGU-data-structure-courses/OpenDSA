@@ -9,8 +9,8 @@
    :satisfies: full binary tree theorem
    :topic: Binary Trees
 
-The Full Binary Tree Theorem (WORK IN PROGRESS)
-===============================================
+The Full Binary Tree Theorem (optional)
+=======================================
 
 Some binary tree implementations store data only at the
 :term:`leaf nodes <leaf node>`,
