@@ -5,15 +5,15 @@
 
 .. avmetadata::
    :author: Cliff Shaffer
-   :satisfies:
-   :requires: BST
-   :topic: Binary Search Trees
+   :satisfies: 
+   :requires: complete tree; heap
+   :topic: Priority Queues
 
-Binary Search Tree Chapter Summary (WORK IN PROGRESS)
-=====================================================
+Priority Queues Chapter Summary (WORK IN PROGRESS)
+==================================================
 
 Summary Questions
 -----------------
 
-.. avembed:: Exercises/Binary/BSTChapSumm.html ka
-   :long_name: BSTChapSumm
+.. avembed:: Exercises/Binary/HeapChapSumm.html ka
+   :long_name: HeapChapSumm

@@ -6,7 +6,7 @@
 .. avmetadata::
    :author: Cliff Shaffer
    :satisfies: binary tree space requirements
-   :requires: binary tree terminology; binary tree space requirements; BST; complete tree; heap; Huffman coding tree
+   :requires: binary tree terminology; binary tree space requirements
    :topic: Binary Trees
 
 Binary Tree Chapter Summary (WORK IN PROGRESS)

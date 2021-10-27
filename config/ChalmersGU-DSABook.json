@@ -123,7 +123,6 @@
       "BTRecurTutor/BinaryTreeInfFlw": {},
       "Binary/BinaryTreeImpl": {},
       "Binary/BinaryTreeNodeSpace": {},
-      "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
       "BTRecurTutor/MultipleBinaryTrees": {},
       "BTRecurTutor/BSTCheck": {},
       "Binary/BinaryChapSumm": {}
@@ -140,6 +139,7 @@
         "BSTremovePRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTsearchPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}}
       },
+      "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
       "SearchStruct/Splay": {},
@@ -161,7 +161,8 @@
       },
       "Binary/Huffman": {},
       "Binary/TreeTrie": {},
-      "Binary/HuffProof": {}
+      "Binary/HuffProof": {},
+      "Binary/HeapChapSumm": {}
     },
     "Hash Tables": {
       "Hashing/HashIntro": {},
