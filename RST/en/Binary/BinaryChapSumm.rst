@@ -9,8 +9,8 @@
    :requires: binary tree terminology; binary tree space requirements
    :topic: Binary Trees
 
-Binary Tree Chapter Summary (WORK IN PROGRESS)
-=================================================
+Binary Tree Chapter Summary
+===========================
 
 Summary Questions
 -----------------
