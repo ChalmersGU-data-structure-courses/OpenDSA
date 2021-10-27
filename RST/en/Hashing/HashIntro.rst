@@ -10,7 +10,7 @@
 
 .. index:: ! hashing
 
-Chapter Introduction: Hashing (WORK IN PROGRESS)
+Chapter Introduction: Hashing
 =====================================================
 
 Introduction
@@ -23,9 +23,9 @@ When properly implemented, these operations can be performed
 in constant time.
 In fact, a properly tuned hash system typically looks at only
 one or two records for each search, insert, or delete operation.
-This is far better than the :math:`O(\log n)` average cost required
+This is better than the :math:`O(\log n)` cost required
 to do a binary search on a sorted array of :math:`n` records,
-or the :math:`O(\log n)` average cost required to do an operation
+or the :math:`O(\log n)` cost required to do an operation
 on a binary search tree.
 However, even though hashing is based on a very simple idea,
 it is surprisingly difficult to implement properly.
