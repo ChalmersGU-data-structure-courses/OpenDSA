@@ -13,27 +13,10 @@
   }
 
   function sfold(s) {
-    var intLength = Math.floor(s.length / 4);
     var sum = 0;
-    var j, k;
-    var curr = 0;
-    var mult;
-    for (j = 0; j < intLength; j++) {
-      mult = 1;
-      for (k = 0 ; k < 4; k++) {
-        sum += s.charCodeAt(curr) * mult;
-        curr++;
-        mult *= 256;
-      }
+    for (var i = 0; i < s.length; i++) {
+      sum = (31 * sum + s.charCodeAt(i)) % (2**32);
     }
-
-    mult = 1;
-    while (curr < s.length) {
-      sum += s.charCodeAt(curr) * mult;
-      curr++;
-      mult *= 256;
-    }
-
     return sum;
   }
 

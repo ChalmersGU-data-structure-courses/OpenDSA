@@ -8,20 +8,19 @@
    :requires: hash function
    :topic: Hashing
 
-Sample Hash Functions (WORK IN PROGRESS)
-===========================================
-
 Sample Hash Functions
----------------------
+=====================
+
+In this module we give some examples of simple hash functions.
 
 Simple Mod Function
-~~~~~~~~~~~~~~~~~~~
+-----------------------
 
 Consider the following hash function used to hash integers to a table
 of sixteen slots.
 
-.. codeinclude:: Hashing/Hash
-   :tag: Mod
+.. codeinclude:: ChalmersGU/HashcodeDemo
+   :tag: Mod16
 
 Here "%" is the symbol for the mod function.
 
@@ -46,7 +45,7 @@ function produces a number in the range 0 to :math:`M-1`.
 
 
 Binning
-~~~~~~~
+----------
 
 Say we are given keys in the range 0 to 999, and have a hash table of
 size 10.
@@ -131,7 +130,7 @@ Thus, each table slot is equally likely (roughly) to get a key value.
 
 
 The Mid-Square Method
-~~~~~~~~~~~~~~~~~~~~~
+--------------------------
 
 A good hash function to use with integer key values is the
 :term:`mid-square method`.
@@ -191,8 +190,8 @@ Now we will examine some hash functions suitable for storing strings
 of characters.
 We start with a simple summation function.
 
-.. codeinclude:: Hashing/Hash
-   :tag: sascii
+.. codeinclude:: ChalmersGU/HashcodeDemo
+   :tag: StringHashSimple
 
 This function sums the ASCII values of the letters in a string.
 If the hash table size :math:`M` is small compared to the
@@ -201,15 +200,6 @@ good job of distributing strings evenly among the hash table slots,
 because it gives equal weight to all characters in the string.
 This is an example of the :term:`folding method` to designing a hash
 function.
-Note that the order of the characters in the string has no effect on
-the result.
-A similar method for integers would add the digits of the key
-value, assuming that there are enough digits to
-
-1. keep any one or two digits with bad distribution from skewing the
-   results of the process and
-
-2. generate a sum much larger than :math:`M`.
 
 As with many other hash functions, the final step is to apply the
 modulus operator to the result, using table size :math:`M` to generate
@@ -226,56 +216,47 @@ only slots 650 to 900 can possibly be the home slot for some key
 value, and the values are not evenly distributed even within those
 slots.
 
+Another problem is that the order of the characters in the string
+has no effect on the result. E.g., all permutations of the string
+"*ABCDEFG*" will result in the same hash value.
+
 Now you can try it out with this calculator.
 
 .. avembed:: AV/Hashing/StringSimple.html pe
    :long_name: Simple String Folding Calculator
 
 
-String Folding
---------------
+Improved String Folding
+------------------------
 
-Here is a much better hash function for strings.
+If we instead multiply the hash with a prime number, before adding
+the next character, we get a much better distribution of the hash codes.
+This is Java's default hash code for strings, where the prime number is 31.
 
-.. codeinclude:: Hashing/Hash
-   :tag: sfold
-  
-This function takes a string as input.
-It processes the string four bytes at a time, and interprets each of
-the four-byte chunks as a single long integer value.
-The integer values for the four-byte chunks are added together.
-In the end, the resulting sum is converted to the range 0 to
-:math:`M-1` using the modulus operator.
+.. codeinclude:: ChalmersGU/HashcodeDemo
+   :tag: StringHashImproved
 
-For example, if the string "aaaabbbb" is passed to ``sfold``,
-then the first four bytes ("aaaa") will be interpreted as the
-integer value 1,633,771,873,
-and the next four bytes ("bbbb") will be
-interpreted as the integer value 1,650,614,882.
-Their sum is 3,284,386,755 (when treated as an unsigned integer).
+Mathematically, the hash function is
+:math:`s_0\cdot 31^{n-1} + s_1\cdot 31^{n-2} + ... + s_{n-2}\cdot 31^1 + s_{n-1}\cdot 31^0`.
+This number grows quite fast when the string gets longer, but that's not a problem
+because Java will do an implicit modulo :math:`2^{32}` on each iteration.
+
+For example, if the string "ABC" is passed to ``hashStringImproved``,
+the resulting hash value will be
+:math:`65\cdot 31^2 + 66\cdot 31 + 67 = 64,578`.
 If the table size is 101 then the modulus function will cause this key
-to hash to slot 75 in the table.
+to hash to slot 39 in the table.
 
 Now you can try it out with this calculator.
 
 .. avembed:: AV/Hashing/StringSfold.html pe
    :long_name: Improved String Folding Calculator
 
-For any sufficiently long string, the sum for the integer
-quantities will typically cause a 32-bit integer to overflow
+For any sufficiently long string, the sum
+will typically cause a 32-bit integer to overflow
 (thus losing some of the high-order bits) because the resulting
 values are so large.
 But this causes no problems when the goal is to compute a hash function.
-
-The reason that hashing by summing the integer representation of four
-letters at a time is superior to summing one letter at a time is because
-the resulting values being summed have a bigger range.
-This still only works well for strings long enough
-(say at least 7-12 letters), but the original method would not work
-well for short strings either.
-There is nothing special about using four characters at a time.
-Other choices could be made.
-Another alternative would be to fold two characters at a time.
 
 
 Hash Function Practice

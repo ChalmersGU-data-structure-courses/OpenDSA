@@ -12,7 +12,7 @@
       var i;
       var output = 0;
       for (i = 0; i < k.length; i++) {
-        output += k.charCodeAt(i);
+        output = (output + k.charCodeAt(i)) % (2**32);
       }
       return output % M;
     }
