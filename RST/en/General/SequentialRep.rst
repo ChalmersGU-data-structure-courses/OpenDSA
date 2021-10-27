@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: General Trees
 
-Sequential Tree Representations (optional) (WORK IN PROGRESS)
-==============================================================
+Sequential Tree Representations (optional)
+==========================================
 
 Sequential Tree Representations
 -------------------------------

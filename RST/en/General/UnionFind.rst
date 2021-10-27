@@ -9,8 +9,8 @@
    :satisfies: Union/Find
    :topic: Union/Find
 
-The Union/Find Algorithm (optional) (WORK IN PROGRESS)
-======================================================
+The Union/Find Algorithm (optional)
+===================================
 
 The Union/Find Problem
 ----------------------

@@ -8,8 +8,8 @@
    :satisfies: general trees
    :topic: General Trees
 
-General Trees (optional) (WORK IN PROGRESS)
-============================================
+General Trees (optional)
+========================
 
 General Trees
 -------------
