@@ -96,35 +96,14 @@ first key. However, if the input is sorted or reverse sorted, this
 will produce a poor partitioning with all values to one side of the
 pivot. One simple way to avoid this problem is to select the middle
 position in the array. Here is a simple ``findpivot`` function
-implementing this idea.
+implementing this idea. Note that later in the chapter we will switch
+to a better pivot selection strategy.
 
 .. codeinclude:: Sorting/Quicksort
    :tag: findpivot
 
 .. avembed:: Exercises/Sorting/QuicksortPivotPRO.html ka
    :long_name: Quicksort Pivot Proficiency Exercise
-
-Real-world quicksort implementations use a more sophisticated pivot
-selection strategy. One good approach is to pick a random element of
-the array as the pivot. This makes it somewhat unlikely to get a poor
-partitioning. What's more, if we do get a poor partitioning, it is
-likely that in the recursive call to ``qsort``, we will choose a
-different pivot and get a better partitioning.
-
-The most common approach is called *median-of-three*. The
-theoretically best choice of pivot is one that divides the array
-equally in two, i.e. the median element of the array. However, the
-median of an array is difficult to compute (unless you sort the array
-first!) Median-of-three is a compromise option that approximates the
-median. We pick elements from three positions in the array: the
-*first* position, the *middle* position and the *last* position.
-Then we place these three elements in order, and pick the one which is
-in the middle. For example, in the array ``3, 1, 4, 1, 5, 9, 2``,
-the median-of-three strategy picks out the elements ``3`` (first
-position), ``1`` (middle position) and ``2`` (last position).
-Putting them in order gives 1, 2, 3, so it picks 2 as the pivot.
-Median-of-three is cheap to implement and chooses good pivots in
-practice.
 
 Partition
 ---------
@@ -279,26 +258,59 @@ We can conclude that Quicksort will run fast if
 we can avoid those very few bad input permutations.
 This is why picking a good pivot is so important.
 
-The running time for Quicksort can be improved (by a constant factor),
-and much study has gone into optimizing this algorithm.
-Since Quicksort's worst case behavior arises when the pivot does a
-poor job of splitting the array into equal size subarrays,
-improving ``findpivot`` seems like a good place to start.
-If we are willing to do more work searching for a better pivot, the
-effects of a bad pivot can be decreased or even eliminated.
-Hopefully this will save more time than was added by the additional
-work needed to find the pivot.
-One widely-used choice is to use the "median of three" algorithm,
-which uses as a pivot the middle of three randomly selected values.
-Using a random number generator to choose the positions is relatively
-expensive, so a common compromise is to look at the first, middle, and
-last positions of the current subarray.
-However, our simple ``findpivot`` function that takes the
-middle value as its pivot has the virtue of making it highly unlikely
-to get a bad input by chance, and it is quite cheap to implement.
-This is in sharp contrast to selecting the first or last record as
-the pivot, which would yield bad performance for many permutations
-that are nearly sorted or nearly reverse sorted.
+Pivots in practice
+------------------
+
+Perhaps the most important choice in implementing quicksort is how to
+choose the pivot. Choosing a bad pivot can result in all elements of
+the array ending up in the same partition, in which case quicksort
+ends up taking quadratic time.
+
+Choosing the *first* or the *last* element of the array is a bad
+strategy. If the input array is sorted, then the first element of the
+array will also be the smallest element. Hence all elements of the
+array will end up in the "greater than pivot" partition. Worse, the
+exact same thing will happen in all the recursive calls to quicksort.
+Hence the partitioning will be as bad as possible, and quicksort will
+end up taking quadratic time. You sometimes see implementations of
+quicksort that use the first element as the pivot, but this is a bad
+idea!
+
+Above, we picked the *middle* element of the array, to avoid this
+problem. This works well enough, but in practice, more sophisticated
+strategies are used.
+
+The theoretically best choice of pivot is one that divides the array
+equally in two, i.e. the median element of the array. However, the
+median of an array is difficult to compute (unless you sort the array
+first!) Instead, many quicksort implementations use a strategy called
+*median-of-three*. In median-of-three, we pick elements from three
+positions in the array: the *first* position, the *middle* position
+and the *last* position. Then we take the median of these three
+elements. For example, given the array ``3, 1, 4, 1, 5, 9, 2``, we
+pick out the elements ``3`` (first position), ``1`` (middle position)
+and ``2`` (last position). The median of 3, 1 and 2 is 2, so we pick 2
+as the pivot.
+
+Median-of-three is not guaranteed to pick a good pivot: there are
+cases where it partitions the input array badly. However, these bad
+cases do not seem to occur in practice. In practice, median-of-three
+picks good pivots, and it is also cheap to implement. It is used by
+most real-world quicksort implementations.
+
+Another good approach is to pick a random element of the array as the
+pivot. This makes it somewhat unlikely to get a poor partitioning.
+What's more, if we do get a poor partitioning, it is likely that in
+the recursive call to ``qsort``, we will choose a different pivot and
+get a better partitioning. Unlike median-of-three, this approach is
+theoretically sound: there are no input arrays which make it work
+badly. Another way to get the same effect is to pick e.g. the first
+element as the pivot, but to *shuffle* the array before sorting,
+rearranging it into a random order. The array only needs to be
+shuffled once before quicksort begins, not in every recursive call.
+
+More practical improvements
+---------------------------
 
 A significant improvement can be gained by recognizing that
 Quicksort is relatively slow when :math:`n` is small.
@@ -312,7 +324,7 @@ This happens as a natural by-product of the divide and conquer
 approach.
 
 A simple improvement might then be to replace Quicksort with a faster
-sort for small numbers, say Insertion Sort or Selection Sort.
+sort for small subarrays, say Insertion Sort or Selection Sort.
 However, there is an even better---and still simpler---optimization.
 When Quicksort partitions are below a certain size, do nothing!
 The values within that partition will be out of order.
@@ -326,8 +338,9 @@ This is an ideal situation in which to take advantage of the best-case
 performance of Insertion Sort.
 The final step is a single call to Insertion Sort to process the
 entire array, putting the records into final sorted order.
-Empirical testing shows that the subarrays should be left unordered
-whenever they get down to nine or fewer records.
+At what size should we switch to Insertion Sort? The answer can only
+be determined by empirical testing, but on modern machines the answer
+is probably somewhere between 10 and 100.
 
 The last speedup to be considered reduces the cost of making
 recursive calls.
@@ -344,8 +357,8 @@ the order in which Quicksort's recursive calls are executed.
 We can also place the code for ``findpivot`` and
 ``partition`` inline to eliminate the remaining function
 calls.
-Note however that by not processing sublists of size nine or
-less as suggested above, about three quarters of the function calls
+Note however that by not processing smal sublists of size nine or
+less as suggested above, most of the function calls
 will already have been eliminated.
 Thus, eliminating the remaining function calls will yield only a
 modest speedup.
