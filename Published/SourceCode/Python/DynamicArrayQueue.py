@@ -1,16 +1,20 @@
 
-from API import Queue, Iterator
+from API import Queue
 
 class DynamicArrayQueue(Queue):
+    _minCapacity = 8
+    _minLoadFactor = 0.5
+    _capacityMultiplier = 1.5
+
     def __init__(self):
-        self._internalArray = [None]   # Internal array containing the queue elements
-        self._queueSize = 0            # Size of queue, and index of the next free slot
-        self._front = 0                # Index of front element
-        self._rear = -1                # Index of rear element
+        self._internalArray = [None] * self._minCapacity   # Internal array containing the queue elements
+        self._queueSize = 0                                # Size of queue, and index of the next free slot
+        self._front = 0                                    # Index of front element
+        self._rear = -1                                    # Index of rear element
 
     def enqueue(self, x):
         if self._queueSize >= len(self._internalArray):
-            self._resizeArray(2 * len(self._internalArray))
+            self._resizeArray(len(self._internalArray) * self._capacityMultiplier)
         self._rear = (self._rear + 1) % len(self._internalArray)   # Circular increment
         self._internalArray[self._rear] = x
         self._queueSize += 1
@@ -25,12 +29,13 @@ class DynamicArrayQueue(Queue):
         x = self._internalArray[self._front]
         self._internalArray[self._front] = None   # For garbage collection
         self._front = (self._front + 1) % len(self._internalArray)   # Circular increment
-        if self._queueSize <= len(self._internalArray) // 3:
-            self._resizeArray(len(self._internalArray) // 2)
+        if self._queueSize <= len(self._internalArray) * self._minLoadFactor:
+            self._resizeArray(len(self._internalArray) / self._capacityMultiplier)
         return x
 
     def _resizeArray(self, newCapacity):
-        newArray = [None] * newCapacity
+        if newCapacity < self._minCapacity: return
+        newArray = [None] * int(newCapacity)
         for i in range(self._queueSize):
             newArray[i] = self._internalArray[(i + self._front) % len(self._internalArray)]
         self._internalArray = newArray
@@ -44,24 +49,8 @@ class DynamicArrayQueue(Queue):
         return self._queueSize
 
     def __iter__(self):
-        return DynamicArrayQueueIterator(self._internalArray, self._front, self._queueSize)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DynamicArrayQueueIterator(Iterator):
-    def __init__(self, array, front, size):
-        self._array = array
-        self._front = front
-        self._size = size
-        self._index = -1
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self._index += 1
-        if self._index >= self._size:
-            raise StopIteration
-        return self._array[(self._index + self._front) % len(self._array)]
+        for i in range(self._front, self._front + self._queueSize):
+            yield self._internalArray[i % len(self._internalArray)]
 
 
 #######################################################################################

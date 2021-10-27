@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['deletion', 'hashing-deletion-summary-questions'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['deletion-in-an-open-addressing-hash-table', 'simple-implementation-of-deletion', 'two-load-factors', 'hashing-deletion-summary-questions'];</script>
 
 .. _HashDel:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashDel";ODSA.SETTINGS.MODULE_LONG_NAME = "Deletion (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashDel";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing, Deletion";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,11 +26,11 @@
    :satisfies: hash deletion
    :topic: Hashing
 
-Deletion (WORK IN PROGRESS)
+Open Addressing, Deletion
 ==============================
 
-Deletion
---------
+Deletion in an open addressing hash table
+------------------------------------------
 
 When deleting records from a hash table, there are two important
 considerations.
@@ -120,6 +120,51 @@ Two possible solutions to this problem are
    Not only will this remove the tombstones, but it also provides an
    opportunity to place the most frequently accessed records into their
    home positions.
+
+
+Note that since we are using a dynamic array when implementing hash tables,
+this can be viewed as a version of the second solution above
+(because all tombstones will be removed when the internal array is resized).
+
+Simple implementation of deletion
+---------------------------------
+
+Here is a simple implementation of deletion in a HashMap using tombstones.
+
+.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+   :tag: Remove
+
+Since we are using an internal array of ``KVPair``s, there are actually two possible
+empty entries, and we use this to encode the tombstones:
+
+* If the table cell is empty (``null``), then it is unoccupied.
+
+* If the cell contains a ``KVPair``, where the key is ``null``, then it is a tombstone.
+
+So, when we remove an entry, we do not remove the ``KVPair``, but instead
+set the key (and the value) to ``null``. This will make the cell a tombstone.
+
+The current code has one problem:
+Adding new entries will never make use of the tombstones, but will only insert into
+completely empty cells.
+It is possible to fix this by implementing a sligthly different version of ``hashAndProbe``,
+which will only be used by the ``put`` method.
+This is left as an exercise to the reader.
+
+
+Two load factors
+------------------
+
+When we have tombstones in our table, there are two possible ways of thinking about
+the load factor -- depending on if we want to include the deleted cells or not.
+And both variants are useful!
+
+* When adding elements, we need to know if there are too few completely empty slots left,
+  giving the load factor :math:`N + D / M`
+  (where :math:`N` is the number of occupied cells and :math:`D` the number of tombstones).
+
+* When deleting elements, we need to know if there are too few occupied slots,
+  giving the load factor :math:`N / M`.
 
 
 Hashing Deletion Summary Questions

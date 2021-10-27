@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-queues">
 <h1>4.<span class="section-number">12. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -255,11 +255,10 @@ in the queue, to be able to add new elements efficiently.</p>
 </div>
 </div><div id="LinkedQueue_LinkedQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">else</span>
             <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
         <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
@@ -340,9 +339,8 @@ in the queue, to be able to add new elements efficiently.</p>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
         <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
@@ -457,11 +455,10 @@ in the queue, to be able to add new elements efficiently.</p>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
-        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="k">else</span>
             <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
         <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
@@ -477,9 +474,8 @@ in the queue, to be able to add new elements efficiently.</p>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
         <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
         <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -548,22 +544,10 @@ in the queue, to be able to add new elements efficiently.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">LinkedQueueIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">)</span>
-
-<span class="c1"># Python does not have internal classes, so we have to make the iterator standalone.</span>
-<span class="k">class</span> <span class="nc">LinkedQueueIterator</span><span class="p">(</span><span class="n">Iterator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">front</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="n">front</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span><span class="o">.</span><span class="n">elem</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_current</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="n">x</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">elem</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
 
 
 <span class="c1"># Python does not have internal classes, so we have to make the queue node standalone.</span>

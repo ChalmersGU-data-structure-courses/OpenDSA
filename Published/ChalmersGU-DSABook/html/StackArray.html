@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-stacks">
 <h1>4.<span class="section-number">8. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stack-terminology-and-implementation">
@@ -227,8 +227,12 @@ which at the same time is the size of the stack.</p>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="n">stackSize</span>     <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of stack, and index of the next free slot</span>
 
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="n">DynamicArrayStack</span><span class="p">()</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
         <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span>
 </pre></div>
 </div>
@@ -236,17 +240,25 @@ which at the same time is the size of the stack.</p>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>       <span class="c1">// Size of stack, and index of the next free slot</span>
 
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayStack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">MinCapacity</span><span class="o">]</span><span class="p">;</span>
         <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStackInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>   <span class="c1"># Internal array containing the stack elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>            <span class="c1"># Size of stack, and index of the next free slot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the stack elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>                                <span class="c1"># Size of stack, and index of the next free slot</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayStack_DynamicArrayStackInit_code" ).tabs();});</script><p>The array-based stack implementation is essentially
@@ -292,15 +304,14 @@ array should represent the top of the stack.</p>
 <p></p>
 <div id="DynamicArrayStack_DynamicArrayStackPush_code"><ul><li><a href="#DynamicArrayStack_DynamicArrayStackPush_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayStack_DynamicArrayStackPush_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayStack_DynamicArrayStackPush_code_Python">Python</a></li></ul><div id="DynamicArrayStack_DynamicArrayStackPush_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
-            <span class="nf">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStackPush_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
         <span class="n">stackSize</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
@@ -308,7 +319,7 @@ array should represent the top of the stack.</p>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStackPush_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
@@ -360,8 +371,8 @@ array should represent the top of the stack.</p>
         <span class="n">stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">3</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">MinLoadFactor</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -370,9 +381,8 @@ array should represent the top of the stack.</p>
         <span class="n">stackSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">MinLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
@@ -382,8 +392,8 @@ array should represent the top of the stack.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 </pre></div>
 </div>
@@ -421,13 +431,17 @@ the (dynamic) array-based stack class.</p>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="n">stackSize</span>     <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of stack, and index of the next free slot</span>
 
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="n">DynamicArrayStack</span><span class="p">()</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
         <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span>
 
     <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
-            <span class="nf">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 
@@ -440,11 +454,12 @@ the (dynamic) array-based stack class.</p>
         <span class="n">stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">3</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">stackSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">MinLoadFactor</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="kd">private</span> <span class="nf">resizeArray</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span>
         <span class="n">newArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">newCapacity</span>
         <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">stackSize</span><span class="o">-</span><span class="mi">1</span>
             <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
@@ -464,16 +479,19 @@ the (dynamic) array-based stack class.</p>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>       <span class="c1">// Size of stack, and index of the next free slot</span>
 
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayStack</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">MinCapacity</span><span class="o">]</span><span class="p">;</span>
         <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
         <span class="n">stackSize</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
@@ -488,18 +506,17 @@ the (dynamic) array-based stack class.</p>
         <span class="n">stackSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">stackSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">MinLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
         <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
         <span class="n">E</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">newCapacity</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stackSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">stackSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
             <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">;</span>
     <span class="p">}</span>
 
@@ -532,13 +549,17 @@ the (dynamic) array-based stack class.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStack_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>   <span class="c1"># Internal array containing the stack elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>            <span class="c1"># Size of stack, and index of the next free slot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the stack elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">=</span> <span class="mi">0</span>                                <span class="c1"># Size of stack, and index of the next free slot</span>
 
     <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
 
@@ -551,12 +572,13 @@ the (dynamic) array-based stack class.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="k">def</span> <span class="nf">_resizeArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">):</span>
-        <span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">newCapacity</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">):</span>
             <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="n">newArray</span>
@@ -568,23 +590,8 @@ the (dynamic) array-based stack class.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">DynamicArrayStackIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">)</span>
-
-<span class="c1"># Python does not have internal classes, so we have to make the iterator standalone.</span>
-<span class="k">class</span> <span class="nc">DynamicArrayStackIterator</span><span class="p">(</span><span class="n">Iterator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_array</span> <span class="o">=</span> <span class="n">array</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="n">size</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_stackSize</span><span class="p">)):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayStack_DynamicArrayStack_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayStack-Top-CON.js"></script>

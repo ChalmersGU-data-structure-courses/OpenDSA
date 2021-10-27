@@ -1,5 +1,5 @@
 
-from API import Queue, Iterator
+from API import Queue
 
 class LinkedQueue(Queue):
     def __init__(self):
@@ -37,22 +37,10 @@ class LinkedQueue(Queue):
         return self._queueSize
 
     def __iter__(self):
-        return LinkedQueueIterator(self._front)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class LinkedQueueIterator(Iterator):
-    def __init__(self, front):
-        self._current = front
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self._current is None:
-            raise StopIteration
-        x = self._current.elem
-        self._current = self._current.next
-        return x
+        current = self._front
+        while current is not None:
+            yield current.elem
+            current = current.next
 
 
 # Python does not have internal classes, so we have to make the queue node standalone.

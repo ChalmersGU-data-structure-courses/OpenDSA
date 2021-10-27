@@ -170,11 +170,13 @@
       "Hashing/HashFunc": {},
       "Hashing/HashFuncExamp": {},
       "Hashing/OpenHash": {},
+      "Hashing/HashToIndex": {},
       "Hashing/BucketHash": {},
       "Hashing/HashCSimple": {},
       "Hashing/HashCImproved": {},
       "Hashing/HashAnal": {},
       "Hashing/HashDel": {},
+      "Hashing/RealLifeHashing": {},
       "Hashing/HashSumm": {}
     },
     "Graphs": {

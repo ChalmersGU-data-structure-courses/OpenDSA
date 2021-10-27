@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-function-principles'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
 
 .. _HashFunc:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFunc";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Function Principles (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFunc";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Function Principles";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
 
 .. index:: ! hashing function
 
-Hash Function Principles (WORK IN PROGRESS)
-==============================================
+Hash Function Principles
+========================
 
 Hash Function Principles
 ------------------------
@@ -39,7 +39,7 @@ large range and stores those records in a table
 with a relatively small number of slots.
 Collisions occur when two records hash to the same slot in the
 table.
-If we are careful |---| or lucky |---| when selecting a hash function,
+If we are careful – or lucky -- when selecting a hash function,
 then the actual number of collisions will be few.
 Unfortunately, even under the best of circumstances, collisions are
 nearly unavoidable.

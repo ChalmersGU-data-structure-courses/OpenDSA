@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="id1">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="id1">
 <h1>12.<span class="section-number">1. </span>Glossary<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary">
 <dt id="term-2-3-tree">2-3 tree</dt><dd><p>A specialized form of the <a class="reference internal" href="#term-1"><span class="xref std std-term">B-tree</span></a> where each internal
@@ -817,11 +817,11 @@ well-defined role or responsibility.</p>
 </dd>
 <dt id="term-collatz-sequence">Collatz sequence</dt><dd><p>For a given integer value <span class="math notranslate nohighlight">\(n\)</span>, the sequence of numbers
 that derives from performing the following computatin on <span class="math notranslate nohighlight">\(n\)</span></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ODD</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="k">else</span><span class="w"></span>
-<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">ODD</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="k">else</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This is famous because, while it terminates for any value of

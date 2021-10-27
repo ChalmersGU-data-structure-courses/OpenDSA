@@ -1,5 +1,5 @@
 
-from API import Stack, Iterator
+from API import Stack
 
 class LinkedStack(Stack):
     def __init__(self):
@@ -29,22 +29,10 @@ class LinkedStack(Stack):
         return self._stackSize
 
     def __iter__(self):
-        return LinkedStackIterator(self._top)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class LinkedStackIterator(Iterator):
-    def __init__(self, top):
-        self._current = top
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self._current is None:
-            raise StopIteration
-        x = self._current.elem
-        self._current = self._current.next
-        return x
+        current = self._top
+        while current is not None:
+            yield current.elem
+            current = current.next
 
 
 # Python does not have internal classes, so we have to make the stack node standalone.

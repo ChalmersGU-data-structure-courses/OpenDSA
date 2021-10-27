@@ -8,18 +8,21 @@ class DynamicArrayQueue<E> implements Queue<E> {
     private int front;           // Index of front element
     private int rear;            // Index of rear element
 
+    static int MinCapacity = 8;
+    static double MinLoadFactor = 0.5;
+    static double CapacityMultiplier = 1.5;
+
     @SuppressWarnings("unchecked")
     public DynamicArrayQueue() {
-        internalArray = (E[]) new Object[1];
+        internalArray = (E[]) new Object[MinCapacity];
         queueSize = 0;
         front = 0;
         rear = -1;
     }
 
     public void enqueue(E x) {
-        if (queueSize >= internalArray.length) {
-            resizeArray(2 * internalArray.length);
-        }
+        if (queueSize >= internalArray.length)
+            resizeArray((int) (internalArray.length * CapacityMultiplier));
         rear = (rear + 1) % internalArray.length;   // Circular increment
         internalArray[rear] = x;
         queueSize++;
@@ -36,18 +39,17 @@ class DynamicArrayQueue<E> implements Queue<E> {
         E x = internalArray[front];
         internalArray[front] = null;   // For garbage collection
         front = (front + 1) % internalArray.length;   // Circular increment
-        if (queueSize <= internalArray.length / 3) {
-            resizeArray(internalArray.length / 2);
-        }
+        if (queueSize <= internalArray.length * MinLoadFactor)
+            resizeArray((int) (internalArray.length / CapacityMultiplier));
         return x;
     }
 
     private void resizeArray(int newCapacity) {
+        if (newCapacity < MinCapacity) return;
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[newCapacity];
-        for (int i = 0; i < queueSize; i++) {
+        for (int i = 0; i < queueSize; i++)
             newArray[i] = internalArray[(i + front) % internalArray.length];
-        }
         internalArray = newArray;
         front = 0;
         rear = queueSize-1;

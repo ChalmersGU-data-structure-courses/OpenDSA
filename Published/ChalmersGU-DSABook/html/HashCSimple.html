@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.6. Collision Resolution (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>9.7. Open Addressing &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Improved Collision Resolution (WORK IN PROGRESS)" href="HashCImproved.html" />
-    <link rel="prev" title="5. Bucket Hashing (WORK IN PROGRESS)" href="BucketHash.html" />
+    <link rel="next" title="8. Improved Collision Resolution" href="HashCImproved.html" />
+    <link rel="prev" title="6. Bucket Hashing (optional)" href="BucketHash.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BucketHash.html">9.<span class="section-number">5. </span>Bucket Hashing (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="BucketHash.html">9.<span class="section-number">6. </span>Bucket Hashing (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="HashCImproved.html">9.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="HashCImproved.html">9.<span class="section-number">8. </span>Improved Collision Resolution</a>&#160;&#160;»
 
 
         </p>
@@ -162,17 +162,89 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['collision-resolution', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Collision Resolution (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="collision-resolution-work-in-progress">
-<span id="index-0"></span><h1>9.<span class="section-number">6. </span>Collision Resolution (WORK IN PROGRESS)<a class="headerlink" href="#collision-resolution-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="collision-resolution">
-<h2>9.<span class="section-number">6.1. </span>Collision Resolution<a class="headerlink" href="#collision-resolution" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="open-addressing">
+<span id="index-0"></span><h1>9.<span class="section-number">7. </span>Open Addressing<a class="headerlink" href="#open-addressing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hash-tables-without-bins">
+<h2>9.<span class="section-number">7.1. </span>Hash tables without bins<a class="headerlink" href="#hash-tables-without-bins" title="Permalink to this headline">¶</a></h2>
 <p>We now turn to the most commonly used form of hashing:
-<a class="reference internal" href="Glossary.html#term-closed-hash-system"><span class="xref std std-term">closed hashing</span></a> with no bucketing, and a
-<a class="reference internal" href="Glossary.html#term-collision-resolution-policy"><span class="xref std std-term">collision resolution policy</span></a> that can potentially use any slot
-in the hash table.</p>
-<p>During insertion, the goal of <a class="reference internal" href="Glossary.html#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> is to find
-a free slot in the hash table when the home position for the record is
+<a class="reference internal" href="Glossary.html#term-open-addressing"><span class="xref std std-term">open addressing</span></a> (also called <a class="reference internal" href="Glossary.html#term-closed-hash-system"><span class="xref std std-term">closed hashing</span></a>)
+with no bucketing, and a <a class="reference internal" href="Glossary.html#term-collision-resolution-policy"><span class="xref std std-term">collision resolution policy</span></a>
+that can potentially use any slot in the hash table.</p>
+<p>Compared to <a class="reference internal" href="OpenHash.html#openhash"><span class="std std-ref">separate chaining</span></a>,
+we will now have room for exactly one entry in each table cell.
+If we want to implement a <strong>HashMap</strong> (not a HashSet), we then need to be
+able to put both a key and a value in the same table cell.
+For this we need a class of key-value pairs.</p>
+<div id="OpenAddressingHashMap_KVPair_code"><ul><li><a href="#OpenAddressingHashMap_KVPair_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_KVPair_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">KVPair</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_KVPair_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python does not have internal classes, so we have to make the k/v pairs standalone.</span>
+<span class="k">class</span> <span class="nc">KVPair</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_KVPair_code" ).tabs();});</script><p>Now we can initialise our open addressing hash map.
+In addition to the array of key-value pairs, we need a counter of the size,
+and the number of deleted cells (which is explained in
+<a class="reference internal" href="HashDel.html#hashdel"><span class="std std-ref">later in this chapter</span></a>).</p>
+<div id="OpenAddressingHashMap_Header_code"><ul><li><a href="#OpenAddressingHashMap_Header_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Header_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Header_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">OpenAddressingHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">internalTable</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mapSize</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">numDeleted</span><span class="p">;</span>
+
+    <span class="n">OpenAddressingHashMap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">MinCapacity</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">numDeleted</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Header_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OpenAddressingHashMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">capacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numDeleted</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Header_code" ).tabs();});</script><p>We use the same constants as for the separate chaining map, but the values
+are different. Most importantly, the <code class="docutils literal notranslate"><span class="pre">MaxLoadFactor</span></code> must be smaller than 1,
+since there can only be one value per array slot.</p>
+<div id="OpenAddressingHashMap_Constants_code"><ul><li><a href="#OpenAddressingHashMap_Constants_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Constants_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Constants_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MaxLoadFactor</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Constants_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="n">_maxLoadFactor</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Constants_code" ).tabs();});</script></div>
+<div class="section" id="collision-resolution">
+<h2>9.<span class="section-number">7.2. </span>Collision Resolution<a class="headerlink" href="#collision-resolution" title="Permalink to this headline">¶</a></h2>
+<p>The goal of <a class="reference internal" href="Glossary.html#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> is to find
+a free slot in the hash table when the “home position” for the record is
 already occupied.
 We can view any collision resolution method as generating a sequence
 of hash table slots that can potentially hold the record.
@@ -183,93 +255,120 @@ If this is occupied as well, then another slot must be found, and
 so on.
 This sequence of slots is known as the
 <a class="reference internal" href="Glossary.html#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a>, and it is generated by some
-<a class="reference internal" href="Glossary.html#term-probe-function"><span class="xref std std-term">probe function</span></a> that we will call <strong>p</strong>.
-Insertion works as follows.</p>
-<div id="Hash_hashInsert_code"><ul><li><a href="#Hash_hashInsert_code_Java_Generic">Java</a></li><li><a href="#Hash_hashInsert_code_Python">Python</a></li></ul><div id="Hash_hashInsert_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="c1">// Insert e into hash table HT</span>
-   <span class="kt">void</span> <span class="nf">hashInsert</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="n">Elem</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-     <span class="kt">int</span> <span class="n">home</span><span class="p">;</span>                     <span class="c1">// Home position for e</span>
-     <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">home</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>        <span class="c1">// Init probe sequence</span>
-     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">EMPTYKEY</span> <span class="o">!=</span> <span class="p">(</span><span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">).</span><span class="na">key</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-       <span class="k">if</span> <span class="p">(</span><span class="n">k</span> <span class="o">==</span> <span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">())</span> <span class="p">{</span>
-         <span class="n">println</span><span class="p">(</span><span class="s">&quot;Duplicates not allowed&quot;</span><span class="p">);</span>
-         <span class="k">return</span><span class="p">;</span>
-       <span class="p">}</span>
-       <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span> <span class="c1">// probe</span>
-     <span class="p">}</span>
-     <span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span>
-   <span class="p">}</span>
+<a class="reference internal" href="Glossary.html#term-probe-function"><span class="xref std std-term">probe function</span></a> that we will call <strong>p</strong> (or <code class="docutils literal notranslate"><span class="pre">probe</span></code> in the source code).
+Probing works as follows.</p>
+<div id="OpenAddressingHashMap_HashIndex_code"><ul><li><a href="#OpenAddressingHashMap_HashIndex_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_HashIndex_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_HashIndex_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">hashAndProbe</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">home</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span><span class="p">;</span>   <span class="c1">// Turn the hash code into a positive integer</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">probe</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+            <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">elem</span><span class="p">.</span><span class="na">key</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;Hash table full&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Hash_hashInsert_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Insert e into hash table HT</span>
-<span class="k">def</span> <span class="nf">hashInsert</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-    <span class="nb">int</span> <span class="n">home</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>   <span class="c1"># Home position for e</span>
-    <span class="nb">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">home</span>    <span class="c1"># Init probe sequence</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">EMPTYKEY</span> <span class="o">!=</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">key</span><span class="p">():</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">key</span><span class="p">():</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Duplicates not allowed&quot;</span><span class="p">)</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">p</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span>  <span class="c1"># probe</span>
-        <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">e</span>
+</div><div id="OpenAddressingHashMap_HashIndex_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_hashAndProbe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">home</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span>   <span class="c1"># Turn the hash code into a positive integer</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)):</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_probe</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
+            <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="n">elem</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">pos</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Hash table full&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Hash_hashInsert_code" ).tabs();});</script><p>Method <code class="docutils literal notranslate"><span class="pre">hashInsert</span></code> first checks to see if the home slot for the
-key is empty.
-If the home slot is occupied, then we use the probe function
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_HashIndex_code" ).tabs();});</script><p>The method <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> first calculates the <em>home slot</em>,
+which is the hash code compressed to an index in the internal hash array.
+Then it uses the probe function
 <span class="math notranslate nohighlight">\(\textbf{p}(k, i)\)</span> to locate a free slot in the table.
 Function <strong>p</strong> has two parameters, the key <span class="math notranslate nohighlight">\(k\)</span> and a
 count <span class="math notranslate nohighlight">\(i\)</span> of where in the probe sequence we wish to be.
-That is, to get the first position in the probe sequence after the
-home slot for key <span class="math notranslate nohighlight">\(K\)</span>, we call <span class="math notranslate nohighlight">\(\textbf{p}(K, 1)\)</span>.
-For the next slot in the probe sequence, call <span class="math notranslate nohighlight">\(\textbf{p}(K, 2)\)</span>.
-Note that the probe function returns an offset from the original home
+That is, to get the first position in the probe sequence
+for key <span class="math notranslate nohighlight">\(K\)</span>, we call <span class="math notranslate nohighlight">\(\textbf{p}(K, 0)\)</span>.
+For the next slot in the probe sequence, call <span class="math notranslate nohighlight">\(\textbf{p}(K, 1)\)</span>,
+then <span class="math notranslate nohighlight">\(\textbf{p}(K, 2)\)</span>, etc.
+If the key is already in the table, <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> returns the position of that entry,
+otherwise it returns the position of the first unoccupied slot.</p>
+<p>Note that the probe function returns an offset from the original home
 position, rather than a slot in the hash table.
-Thus, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in <code class="docutils literal notranslate"><span class="pre">hashInsert</span></code> is computing positions
+Thus, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> is computing positions
 in the table at each iteration by adding the value returned from the
 probe function to the home position.
 The <span class="math notranslate nohighlight">\(i\)</span> th call to <strong>p</strong> returns the <span class="math notranslate nohighlight">\(i\)</span> th offset to be used.</p>
-<p>Searching in a hash table follows the same probe sequence that was
-followed when inserting records.
-In this way, a record not in its home position can be recovered.
-An implementation for the search procedure is as
-follows.</p>
-<div id="Hash_hashSearch_code"><ul><li><a href="#Hash_hashSearch_code_Java_Generic">Java</a></li><li><a href="#Hash_hashSearch_code_Python">Python</a></li></ul><div id="Hash_hashSearch_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="c1">// Search for the record with Key K</span>
-   <span class="n">bool</span> <span class="nf">hashSearch</span><span class="p">(</span><span class="n">Key</span> <span class="n">K</span><span class="p">,</span> <span class="n">Elem</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-     <span class="kt">int</span> <span class="n">home</span><span class="p">;</span>              <span class="c1">// Home position for K</span>
-     <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">home</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">K</span><span class="p">);</span> <span class="c1">// Initial position is the home slot</span>
-     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-          <span class="p">(</span><span class="n">K</span> <span class="o">!=</span> <span class="p">(</span><span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">).</span><span class="na">key</span><span class="p">())</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">EMPTYKEY</span> <span class="o">!=</span> <span class="p">(</span><span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">).</span><span class="na">key</span><span class="p">());</span>
-          <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-       <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">p</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span> <span class="c1">// Next on probe sequence</span>
-          <span class="p">}</span>
-     <span class="k">if</span> <span class="p">(</span><span class="n">K</span> <span class="o">==</span> <span class="p">(</span><span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">).</span><span class="na">key</span><span class="p">())</span> <span class="p">{</span>   <span class="c1">// Found it</span>
-       <span class="n">e</span> <span class="o">=</span> <span class="n">HT</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">;</span>
-       <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-     <span class="p">}</span>
-     <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">}</span>            <span class="c1">// K not in hash table</span>
-   <span class="p">}</span>
+</div>
+<div class="section" id="implementing-methods-of-the-hash-map">
+<h2>9.<span class="section-number">7.3. </span>Implementing methods of the hash map<a class="headerlink" href="#implementing-methods-of-the-hash-map" title="Permalink to this headline">¶</a></h2>
+<p>All main methods in the Map interface
+(<code class="docutils literal notranslate"><span class="pre">put</span></code>, <code class="docutils literal notranslate"><span class="pre">get</span></code> and <code class="docutils literal notranslate"><span class="pre">remove</span></code>)
+use the same probing function <strong>p</strong> to get the same probe sequence.
+In this way, a record not in its home position can be recovered.</p>
+<p>An implementation for the <code class="docutils literal notranslate"><span class="pre">get</span></code> method is as follows.</p>
+<div id="OpenAddressingHashMap_Get_code"><ul><li><a href="#OpenAddressingHashMap_Get_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Get_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="n">elem</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Hash_hashSearch_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Search for the record with Key K</span>
-<span class="k">def</span> <span class="nf">hashSearch</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-    <span class="n">home</span> <span class="o">=</span> <span class="n">h</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>   <span class="c1"># Home position for K</span>
-    <span class="n">pos</span> <span class="o">=</span> <span class="n">home</span>    <span class="c1"># Initial position is the home slot</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">K</span> <span class="o">!=</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span><span class="o">.</span><span class="n">key</span><span class="p">()</span> <span class="ow">and</span> <span class="n">EMPTYKEY</span> <span class="o">!=</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">])</span><span class="o">.</span><span class="n">key</span><span class="p">():</span>
-        <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">p</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">M</span>  <span class="c1"># Next on probe sequence</span>
-        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">if</span> <span class="n">K</span> <span class="o">==</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span><span class="o">.</span><span class="n">key</span><span class="p">()</span>  <span class="c1"># Found it</span>
-        <span class="n">e</span> <span class="o">=</span> <span class="n">HT</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span>  <span class="c1"># K not in hash table</span>
+</div><div id="OpenAddressingHashMap_Get_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Hash_hashSearch_code" ).tabs();});</script><p>Both the insert and the search routines assume that at least
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Get_code" ).tabs();});</script><p>Searching and inserting both assume that at least
 one slot on the probe sequence of every key will be empty.
 Otherwise they will continue in an infinite loop on unsuccessful
 searches.
 Thus, the hash system should keep a count of the number of records stored,
-and refuse to insert into a table that has only one free slot.</p>
+and make sure to resize the array when it becomes too full.</p>
+<p>Setting a value for a key into the hash map works like this.</p>
+<div id="OpenAddressingHashMap_Put_code"><ul><li><a href="#OpenAddressingHashMap_Put_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Put_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+            <span class="n">elem</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLoadFactor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Put_code" ).tabs();});</script><p>First we the next available slot for the given key.
+If the slot is empty (<code class="docutils literal notranslate"><span class="pre">null</span></code>), we create a new <code class="docutils literal notranslate"><span class="pre">KVPair</span></code>
+with the key and value and insert it into the table,
+and increase the map size.
+otherwise we update the value of the current entry,
+which doesn’t change the size of the table.
+Finally, we resize the table if the load factor becomes too large.</p>
+<p>Deleting from an open addressing hash table is explained in
+<a class="reference internal" href="HashDel.html#hashdel"><span class="std std-ref">a later module</span></a>.</p>
+</div>
+<div class="section" id="linear-probing">
+<h2>9.<span class="section-number">7.4. </span>Linear probing<a class="headerlink" href="#linear-probing" title="Permalink to this headline">¶</a></h2>
 <p>The simplest approach to collsion resolution is simply to move down
 the table from the home slot until a free slot is found.
 This is known as <a class="reference internal" href="Glossary.html#term-linear-probing"><span class="xref std std-term">linear probing</span></a>.
@@ -305,7 +404,7 @@ returns to the home position.</p>
 <p>Can you see any reason why this might not be the best approach
 to collision resolution?</p>
 <div class="section" id="the-problem-with-linear-probing">
-<h3>9.<span class="section-number">6.1.1. </span>The Problem with Linear Probing<a class="headerlink" href="#the-problem-with-linear-probing" title="Permalink to this headline">¶</a></h3>
+<h3>9.<span class="section-number">7.4.1. </span>The Problem with Linear Probing<a class="headerlink" href="#the-problem-with-linear-probing" title="Permalink to this headline">¶</a></h3>
 <p>While linear probing is probably
 the first idea that comes to mind when considering collision
 resolution policies, it is not the only one possible.
@@ -338,9 +437,11 @@ table has equal probability of being hashed to initially).
 This tendency of linear probing to cluster items together is known as
 <a class="reference internal" href="Glossary.html#term-primary-clustering"><span class="xref std std-term">primary clustering</span></a>.
 Small clusters tend to merge into big clusters, making the problem
-worse.
-The objection to primary clustering is that it leads to
-long probe sequences.</p>
+worse.</p>
+<p>The problem with primary clustering is that it leads to
+long probe sequences, which increases execution time.
+However, linear probing is still a very common probing method,
+because it is so simple and can be implemented efficiently.</p>
 <div
     id="HashLinearPPRO"
     class="embedContainer"
@@ -374,11 +475,11 @@ long probe sequences.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BucketHash.html">9.<span class="section-number">5. </span>Bucket Hashing (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="BucketHash.html">9.<span class="section-number">6. </span>Bucket Hashing (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="HashCImproved.html">9.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="HashCImproved.html">9.<span class="section-number">8. </span>Improved Collision Resolution</a>&#160;&#160;»
 
 </p>
       </div>

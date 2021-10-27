@@ -1,14 +1,18 @@
 
-from API import Stack, Iterator
+from API import Stack
 
 class DynamicArrayStack(Stack):
+    _minCapacity = 8
+    _minLoadFactor = 0.5
+    _capacityMultiplier = 1.5
+
     def __init__(self):
-        self._internalArray = [None]   # Internal array containing the stack elements
-        self._stackSize = 0            # Size of stack, and index of the next free slot
+        self._internalArray = [None] * self._minCapacity   # Internal array containing the stack elements
+        self._stackSize = 0                                # Size of stack, and index of the next free slot
 
     def push(self, x):
         if self._stackSize >= len(self._internalArray):
-            self._resizeArray(2 * len(self._internalArray))
+            self._resizeArray(len(self._internalArray) * self._capacityMultiplier)
         self._internalArray[self._stackSize] = x
         self._stackSize += 1
 
@@ -21,12 +25,13 @@ class DynamicArrayStack(Stack):
         self._stackSize -= 1
         x = self._internalArray[self._stackSize]
         self._internalArray[self._stackSize] = None   # For garbage collection
-        if self._stackSize <= len(self._internalArray) // 3:
-            self._resizeArray(len(self._internalArray) // 2)
+        if self._stackSize <= len(self._internalArray) * self._minLoadFactor:
+            self._resizeArray(len(self._internalArray) / self._capacityMultiplier)
         return x
 
     def _resizeArray(self, newCapacity):
-        newArray = [None] * newCapacity
+        if newCapacity < self._minCapacity: return
+        newArray = [None] * int(newCapacity)
         for i in range(self._stackSize):
             newArray[i] = self._internalArray[i]
         self._internalArray = newArray
@@ -38,23 +43,8 @@ class DynamicArrayStack(Stack):
         return self._stackSize
 
     def __iter__(self):
-        return DynamicArrayStackIterator(self._internalArray, self._stackSize)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DynamicArrayStackIterator(Iterator):
-    def __init__(self, array, size):
-        self._array = array
-        self._size = size
-        self._index = size
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self._index -= 1
-        if self._index < 0:
-            raise StopIteration
-        return self._array[self._index]
+        for i in reversed(range(self._stackSize)):
+            yield self._internalArray[i]
 
 
 #######################################################################################

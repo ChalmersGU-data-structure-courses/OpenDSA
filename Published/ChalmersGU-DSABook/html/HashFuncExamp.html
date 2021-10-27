@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.3. Sample Hash Functions (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>9.3. Sample Hash Functions &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="4. Open Hashing (WORK IN PROGRESS)" href="OpenHash.html" />
-    <link rel="prev" title="2. Hash Function Principles (WORK IN PROGRESS)" href="HashFunc.html" />
+    <link rel="next" title="4. Separate Chaining" href="OpenHash.html" />
+    <link rel="prev" title="2. Hash Function Principles" href="HashFunc.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="OpenHash.html">9.<span class="section-number">4. </span>Open Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="OpenHash.html">9.<span class="section-number">4. </span>Separate Chaining</a>&#160;&#160;»
 
 
         </p>
@@ -162,24 +162,23 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sample-hash-functions', 'simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions-work-in-progress">
-<h1>9.<span class="section-number">3. </span>Sample Hash Functions (WORK IN PROGRESS)<a class="headerlink" href="#sample-hash-functions-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="sample-hash-functions">
-<h2>9.<span class="section-number">3.1. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['simple-mod-function', 'binning', 'the-mid-square-method', 'a-simple-hash-function-for-strings', 'improved-string-folding', 'hash-function-practice', 'hash-function-review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashFuncExamp";ODSA.SETTINGS.MODULE_LONG_NAME = "Sample Hash Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="sample-hash-functions">
+<h1>9.<span class="section-number">3. </span>Sample Hash Functions<a class="headerlink" href="#sample-hash-functions" title="Permalink to this headline">¶</a></h1>
+<p>In this module we give some examples of simple hash functions.</p>
 <div class="section" id="simple-mod-function">
-<h3>9.<span class="section-number">3.1.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h3>
+<h2>9.<span class="section-number">3.1. </span>Simple Mod Function<a class="headerlink" href="#simple-mod-function" title="Permalink to this headline">¶</a></h2>
 <p>Consider the following hash function used to hash integers to a table
 of sixteen slots.</p>
-<div id="Hash_Mod_code"><ul><li><a href="#Hash_Mod_code_Java_Generic">Java</a></li><li><a href="#Hash_Mod_code_Python">Python</a></li></ul><div id="Hash_Mod_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kt">int</span> <span class="nf">h</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-     <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span><span class="p">;</span>
-   <span class="p">}</span>
+<div id="HashcodeDemo_Mod16_code"><ul><li><a href="#HashcodeDemo_Mod16_code_Java_Generic">Java</a></li><li><a href="#HashcodeDemo_Mod16_code_Python">Python</a></li></ul><div id="HashcodeDemo_Mod16_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kt">int</span> <span class="nf">hashInt</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Hash_Mod_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">h</span><span class="p">(</span><span class="nb">int</span> <span class="n">x</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span>
+</div><div id="HashcodeDemo_Mod16_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">hashInt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">16</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Hash_Mod_code" ).tabs();});</script><p>Here “%” is the symbol for the mod function.</p>
+</div></div><script>$(function() {$( "#HashcodeDemo_Mod16_code" ).tabs();});</script><p>Here “%” is the symbol for the mod function.</p>
 <div id="hashFuncExCON1" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="hashFuncExCON1" data-long-name="Hash Function Slideshow 1" data-exer-id="" alt="Hash Function Slideshow 1" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -211,7 +210,7 @@ is typically used as the modulus to ensure that the hash
 function produces a number in the range 0 to <span class="math notranslate nohighlight">\(M-1\)</span>.</p>
 </div>
 <div class="section" id="binning">
-<h3>9.<span class="section-number">3.1.2. </span>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h3>
+<h2>9.<span class="section-number">3.2. </span>Binning<a class="headerlink" href="#binning" title="Permalink to this headline">¶</a></h2>
 <p>Say we are given keys in the range 0 to 999, and have a hash table of
 size 10.
 In this case, a possible hash function might simply divide the key
@@ -294,7 +293,7 @@ Thus, each table slot is equally likely (roughly) to get a key value.</p>
 </div>
 </div>
 <div class="section" id="the-mid-square-method">
-<h3>9.<span class="section-number">3.1.3. </span>The Mid-Square Method<a class="headerlink" href="#the-mid-square-method" title="Permalink to this headline">¶</a></h3>
+<h2>9.<span class="section-number">3.3. </span>The Mid-Square Method<a class="headerlink" href="#the-mid-square-method" title="Permalink to this headline">¶</a></h2>
 <p>A good hash function to use with integer key values is the
 <a class="reference internal" href="Glossary.html#term-mid-square-method"><span class="xref std std-term">mid-square method</span></a>.
 The mid-square method squares the key value, and then takes out the middle
@@ -356,46 +355,33 @@ Start with ‘4567’ as an example.</p>
   </div>
 </div>
 </div>
-</div>
 <div class="section" id="a-simple-hash-function-for-strings">
-<h2>9.<span class="section-number">3.2. </span>A Simple Hash Function for Strings<a class="headerlink" href="#a-simple-hash-function-for-strings" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.4. </span>A Simple Hash Function for Strings<a class="headerlink" href="#a-simple-hash-function-for-strings" title="Permalink to this headline">¶</a></h2>
 <p>Now we will examine some hash functions suitable for storing strings
 of characters.
 We start with a simple summation function.</p>
-<div id="Hash_sascii_code"><ul><li><a href="#Hash_sascii_code_Java_Generic">Java</a></li><li><a href="#Hash_sascii_code_Python">Python</a></li></ul><div id="Hash_sascii_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>   <span class="kt">int</span> <span class="nf">sascii</span><span class="p">(</span><span class="n">String</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
-     <span class="kt">char</span> <span class="n">ch</span><span class="o">[]</span><span class="p">;</span>
-     <span class="n">ch</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">();</span>
-     <span class="kt">int</span> <span class="n">xlength</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
-
-     <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">sum</span><span class="p">;</span>
-     <span class="k">for</span> <span class="p">(</span><span class="n">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">x</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-       <span class="n">sum</span> <span class="o">+=</span> <span class="n">ch</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-     <span class="p">}</span>
-     <span class="k">return</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span>
-   <span class="p">}</span>
+<div id="HashcodeDemo_StringHashSimple_code"><ul><li><a href="#HashcodeDemo_StringHashSimple_code_Java_Generic">Java</a></li><li><a href="#HashcodeDemo_StringHashSimple_code_Python">Python</a></li></ul><div id="HashcodeDemo_StringHashSimple_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kt">int</span> <span class="nf">hashString</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">())</span>
+            <span class="n">sum</span> <span class="o">+=</span> <span class="n">c</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Hash_sascii_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sascii</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
-    <span class="nb">sum</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">x</span><span class="p">)</span>
-    <span class="k">return</span> <span class="nb">sum</span> <span class="o">%</span> <span class="n">M</span>
+</div><div id="HashcodeDemo_StringHashSimple_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">hashString</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span> <span class="o">%</span> <span class="n">M</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Hash_sascii_code" ).tabs();});</script><p>This function sums the ASCII values of the letters in a string.
+</div></div><script>$(function() {$( "#HashcodeDemo_StringHashSimple_code" ).tabs();});</script><p>This function sums the ASCII values of the letters in a string.
 If the hash table size <span class="math notranslate nohighlight">\(M\)</span> is small compared to the
 resulting summations, then this hash function should do a
 good job of distributing strings evenly among the hash table slots,
 because it gives equal weight to all characters in the string.
 This is an example of the <a class="reference internal" href="Glossary.html#term-folding-method"><span class="xref std std-term">folding method</span></a> to designing a hash
-function.
-Note that the order of the characters in the string has no effect on
-the result.
-A similar method for integers would add the digits of the key
-value, assuming that there are enough digits to</p>
-<ol class="arabic simple">
-<li><p>keep any one or two digits with bad distribution from skewing the
-results of the process and</p></li>
-<li><p>generate a sum much larger than <span class="math notranslate nohighlight">\(M\)</span>.</p></li>
-</ol>
+function.</p>
 <p>As with many other hash functions, the final step is to apply the
 modulus operator to the result, using table size <span class="math notranslate nohighlight">\(M\)</span> to generate
 a value within the table range.
@@ -410,6 +396,9 @@ For a hash table of size 1000, the distribution is terrible because
 only slots 650 to 900 can possibly be the home slot for some key
 value, and the values are not evenly distributed even within those
 slots.</p>
+<p>Another problem is that the order of the characters in the string
+has no effect on the result. E.g., all permutations of the string
+“<em>ABCDEFG</em>” will result in the same hash value.</p>
 <p>Now you can try it out with this calculator.</p>
 <div
     id="StringSimple"
@@ -434,44 +423,35 @@ slots.</p>
   </div>
 </div>
 </div>
-<div class="section" id="string-folding">
-<h2>9.<span class="section-number">3.3. </span>String Folding<a class="headerlink" href="#string-folding" title="Permalink to this headline">¶</a></h2>
-<p>Here is a much better hash function for strings.</p>
-<div id="Hash_sfold_code"><ul><li><a href="#Hash_sfold_code_Java_Generic">Java</a></li><li><a href="#Hash_sfold_code_Python">Python</a></li></ul><div id="Hash_sfold_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Use folding on a string, summed 4 bytes at a time</span>
-<span class="kt">int</span> <span class="nf">sfold</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">s</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">mul</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="mi">1</span> <span class="p">:</span> <span class="n">mul</span> <span class="o">*</span> <span class="mi">256</span><span class="p">;</span>
-    <span class="n">sum</span> <span class="o">+=</span> <span class="n">s</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">*</span> <span class="n">mul</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="p">(</span><span class="kt">int</span><span class="p">)(</span><span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">sum</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="section" id="improved-string-folding">
+<h2>9.<span class="section-number">3.5. </span>Improved String Folding<a class="headerlink" href="#improved-string-folding" title="Permalink to this headline">¶</a></h2>
+<p>If we instead multiply the hash with a prime number, before adding
+the next character, we get a much better distribution of the hash codes.
+This is Java’s default hash code for strings, where the prime number is 31.</p>
+<div id="HashcodeDemo_StringHashImproved_code"><ul><li><a href="#HashcodeDemo_StringHashImproved_code_Java_Generic">Java</a></li><li><a href="#HashcodeDemo_StringHashImproved_code_Python">Python</a></li></ul><div id="HashcodeDemo_StringHashImproved_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kt">int</span> <span class="nf">hashStringImproved</span><span class="p">(</span><span class="n">String</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">M</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">c</span> <span class="p">:</span> <span class="n">s</span><span class="p">.</span><span class="na">toCharArray</span><span class="p">)</span>
+            <span class="n">sum</span> <span class="o">=</span> <span class="mi">31</span> <span class="o">*</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">c</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">sum</span> <span class="o">%</span> <span class="n">M</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Hash_sfold_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Use folding on a string, summed 4 bytes at a time</span>
-<span class="k">def</span> <span class="nf">sfold</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
-    <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">length</span><span class="p">()):</span>
-        <span class="n">mul</span> <span class="o">=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">4</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">mul</span> <span class="o">*</span> <span class="mi">256</span>
-        <span class="nb">sum</span> <span class="o">+=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">mul</span>
-    <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span> <span class="o">%</span> <span class="n">M</span>
+</div><div id="HashcodeDemo_StringHashImproved_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">hashStringImproved</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">M</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+            <span class="nb">sum</span> <span class="o">=</span> <span class="mi">31</span> <span class="o">*</span> <span class="nb">sum</span> <span class="o">+</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">sum</span> <span class="o">%</span> <span class="n">M</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Hash_sfold_code" ).tabs();});</script><p>This function takes a string as input.
-It processes the string four bytes at a time, and interprets each of
-the four-byte chunks as a single long integer value.
-The integer values for the four-byte chunks are added together.
-In the end, the resulting sum is converted to the range 0 to
-<span class="math notranslate nohighlight">\(M-1\)</span> using the modulus operator.</p>
-<p>For example, if the string “aaaabbbb” is passed to <code class="docutils literal notranslate"><span class="pre">sfold</span></code>,
-then the first four bytes (“aaaa”) will be interpreted as the
-integer value 1,633,771,873,
-and the next four bytes (“bbbb”) will be
-interpreted as the integer value 1,650,614,882.
-Their sum is 3,284,386,755 (when treated as an unsigned integer).
+</div></div><script>$(function() {$( "#HashcodeDemo_StringHashImproved_code" ).tabs();});</script><p>Mathematically, the hash function is
+<span class="math notranslate nohighlight">\(s_0\cdot 31^{n-1} + s_1\cdot 31^{n-2} + ... + s_{n-2}\cdot 31^1 + s_{n-1}\cdot 31^0\)</span>.
+This number grows quite fast when the string gets longer, but that’s not a problem
+because Java will do an implicit modulo <span class="math notranslate nohighlight">\(2^{32}\)</span> on each iteration.</p>
+<p>For example, if the string “ABC” is passed to <code class="docutils literal notranslate"><span class="pre">hashStringImproved</span></code>,
+the resulting hash value will be
+<span class="math notranslate nohighlight">\(65\cdot 31^2 + 66\cdot 31 + 67 = 64,578\)</span>.
 If the table size is 101 then the modulus function will cause this key
-to hash to slot 75 in the table.</p>
+to hash to slot 39 in the table.</p>
 <p>Now you can try it out with this calculator.</p>
 <div
     id="StringSfold"
@@ -495,23 +475,14 @@ to hash to slot 75 in the table.</p>
     <div id="StringSfold_iframe"></div>
   </div>
 </div>
-<p>For any sufficiently long string, the sum for the integer
-quantities will typically cause a 32-bit integer to overflow
+<p>For any sufficiently long string, the sum
+will typically cause a 32-bit integer to overflow
 (thus losing some of the high-order bits) because the resulting
 values are so large.
 But this causes no problems when the goal is to compute a hash function.</p>
-<p>The reason that hashing by summing the integer representation of four
-letters at a time is superior to summing one letter at a time is because
-the resulting values being summed have a bigger range.
-This still only works well for strings long enough
-(say at least 7-12 letters), but the original method would not work
-well for short strings either.
-There is nothing special about using four characters at a time.
-Other choices could be made.
-Another alternative would be to fold two characters at a time.</p>
 </div>
 <div class="section" id="hash-function-practice">
-<h2>9.<span class="section-number">3.4. </span>Hash Function Practice<a class="headerlink" href="#hash-function-practice" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.6. </span>Hash Function Practice<a class="headerlink" href="#hash-function-practice" title="Permalink to this headline">¶</a></h2>
 <p>Now here is an exercise to let you practice these various hash
 functions.
 You should use the calculators above for the more complicated hash
@@ -540,7 +511,7 @@ functions.</p>
 </div>
 </div>
 <div class="section" id="hash-function-review-questions">
-<h2>9.<span class="section-number">3.5. </span>Hash Function Review Questions<a class="headerlink" href="#hash-function-review-questions" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">3.7. </span>Hash Function Review Questions<a class="headerlink" href="#hash-function-review-questions" title="Permalink to this headline">¶</a></h2>
 <p>Here are some review questions.</p>
 <div
     id="HashFuncSumm"
@@ -574,11 +545,11 @@ functions.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="OpenHash.html">9.<span class="section-number">4. </span>Open Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="OpenHash.html">9.<span class="section-number">4. </span>Separate Chaining</a>&#160;&#160;»
 
 </p>
       </div>

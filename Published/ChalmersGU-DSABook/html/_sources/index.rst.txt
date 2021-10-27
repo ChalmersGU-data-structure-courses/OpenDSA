@@ -22,7 +22,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -192,11 +192,13 @@ Hash Tables
    HashFunc
    HashFuncExamp
    OpenHash
+   HashToIndex
    BucketHash
    HashCSimple
    HashCImproved
    HashAnal
    HashDel
+   RealLifeHashing
    HashSumm
 
 Graphs

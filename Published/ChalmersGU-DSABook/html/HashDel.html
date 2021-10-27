@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.9. Deletion (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>9.10. Open Addressing, Deletion &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="10. Hashing Chapter Summary Exercises (WORK IN PROGRESS)" href="HashSumm.html" />
-    <link rel="prev" title="8. Analysis of Closed Hashing (WORK IN PROGRESS)" href="HashAnal.html" />
+    <link rel="next" title="11. Hash Tables in Real Life (optional)" href="RealLifeHashing.html" />
+    <link rel="prev" title="9. Analysis of Open Addressing" href="HashAnal.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashAnal.html">9.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="HashAnal.html">9.<span class="section-number">9. </span>Analysis of Open Addressing</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="HashSumm.html">9.<span class="section-number">10. </span>Hashing Chapter Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="RealLifeHashing.html">9.<span class="section-number">11. </span>Hash Tables in Real Life (optional)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['deletion', 'hashing-deletion-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashDel";ODSA.SETTINGS.MODULE_LONG_NAME = "Deletion (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="deletion-work-in-progress">
-<h1>9.<span class="section-number">9. </span>Deletion (WORK IN PROGRESS)<a class="headerlink" href="#deletion-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="deletion">
-<h2>9.<span class="section-number">9.1. </span>Deletion<a class="headerlink" href="#deletion" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['deletion-in-an-open-addressing-hash-table', 'simple-implementation-of-deletion', 'two-load-factors', 'hashing-deletion-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashDel";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing, Deletion";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="open-addressing-deletion">
+<h1>9.<span class="section-number">10. </span>Open Addressing, Deletion<a class="headerlink" href="#open-addressing-deletion" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="deletion-in-an-open-addressing-hash-table">
+<h2>9.<span class="section-number">10.1. </span>Deletion in an open addressing hash table<a class="headerlink" href="#deletion-in-an-open-addressing-hash-table" title="Permalink to this headline">¶</a></h2>
 <p>When deleting records from a hash table, there are two important
 considerations.</p>
 <ol class="arabic simple">
@@ -274,9 +274,74 @@ Not only will this remove the tombstones, but it also provides an
 opportunity to place the most frequently accessed records into their
 home positions.</p></li>
 </ol>
+<p>Note that since we are using a dynamic array when implementing hash tables,
+this can be viewed as a version of the second solution above
+(because all tombstones will be removed when the internal array is resized).</p>
+</div>
+<div class="section" id="simple-implementation-of-deletion">
+<h2>9.<span class="section-number">10.2. </span>Simple implementation of deletion<a class="headerlink" href="#simple-implementation-of-deletion" title="Permalink to this headline">¶</a></h2>
+<p>Here is a simple implementation of deletion in a HashMap using tombstones.</p>
+<div id="OpenAddressingHashMap_Remove_code"><ul><li><a href="#OpenAddressingHashMap_Remove_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Remove_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Remove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+        <span class="n">elem</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">elem</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">mapSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">numDeleted</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">mapSize</span> <span class="o">&lt;</span> <span class="n">MinLoadFactor</span> <span class="o">*</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> 
+            <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">;</span>
+    <span class="p">}</span>            
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Remove_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">elem</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numDeleted</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">removed</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Remove_code" ).tabs();});</script><p>Since we are using an internal array of <a href="#id1"><span class="problematic" id="id2">``</span></a>KVPair``s, there are actually two possible
+empty entries, and we use this to encode the tombstones:</p>
+<ul class="simple">
+<li><p>If the table cell is empty (<code class="docutils literal notranslate"><span class="pre">null</span></code>), then it is unoccupied.</p></li>
+<li><p>If the cell contains a <code class="docutils literal notranslate"><span class="pre">KVPair</span></code>, where the key is <code class="docutils literal notranslate"><span class="pre">null</span></code>, then it is a tombstone.</p></li>
+</ul>
+<p>So, when we remove an entry, we do not remove the <code class="docutils literal notranslate"><span class="pre">KVPair</span></code>, but instead
+set the key (and the value) to <code class="docutils literal notranslate"><span class="pre">null</span></code>. This will make the cell a tombstone.</p>
+<p>The current code has one problem:
+Adding new entries will never make use of the tombstones, but will only insert into
+completely empty cells.
+It is possible to fix this by implementing a sligthly different version of <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code>,
+which will only be used by the <code class="docutils literal notranslate"><span class="pre">put</span></code> method.
+This is left as an exercise to the reader.</p>
+</div>
+<div class="section" id="two-load-factors">
+<h2>9.<span class="section-number">10.3. </span>Two load factors<a class="headerlink" href="#two-load-factors" title="Permalink to this headline">¶</a></h2>
+<p>When we have tombstones in our table, there are two possible ways of thinking about
+the load factor – depending on if we want to include the deleted cells or not.
+And both variants are useful!</p>
+<ul class="simple">
+<li><p>When adding elements, we need to know if there are too few completely empty slots left,
+giving the load factor <span class="math notranslate nohighlight">\(N + D / M\)</span>
+(where <span class="math notranslate nohighlight">\(N\)</span> is the number of occupied cells and <span class="math notranslate nohighlight">\(D\)</span> the number of tombstones).</p></li>
+<li><p>When deleting elements, we need to know if there are too few occupied slots,
+giving the load factor <span class="math notranslate nohighlight">\(N / M\)</span>.</p></li>
+</ul>
 </div>
 <div class="section" id="hashing-deletion-summary-questions">
-<h2>9.<span class="section-number">9.2. </span>Hashing Deletion Summary Questions<a class="headerlink" href="#hashing-deletion-summary-questions" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">10.4. </span>Hashing Deletion Summary Questions<a class="headerlink" href="#hashing-deletion-summary-questions" title="Permalink to this headline">¶</a></h2>
 <p>Now here are some practice questions.</p>
 <div
     id="HashDelSumm"
@@ -317,11 +382,11 @@ or answering questions like
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashAnal.html">9.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="HashAnal.html">9.<span class="section-number">9. </span>Analysis of Open Addressing</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="HashSumm.html">9.<span class="section-number">10. </span>Hashing Chapter Summary Exercises (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="RealLifeHashing.html">9.<span class="section-number">11. </span>Hash Tables in Real Life (optional)</a>&#160;&#160;»
 
 </p>
       </div>

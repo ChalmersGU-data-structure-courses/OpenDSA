@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="array-based-queues">
 <h1>4.<span class="section-number">11. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
@@ -420,15 +420,19 @@ Implementation of all member functions is straightforward.</p>
     <span class="kd">private</span> <span class="n">front</span>         <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of front element</span>
     <span class="kd">private</span> <span class="n">rear</span>          <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of rear element</span>
 
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="n">DynamicArrayQueue</span><span class="p">()</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="mi">1</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
         <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
 
     <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
-            <span class="nf">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="n">rear</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="p">(</span><span class="n">modulo</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>   <span class="c1">// Circular increment</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="n">queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -443,11 +447,12 @@ Implementation of all member functions is straightforward.</p>
         <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
         <span class="n">front</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="p">(</span><span class="n">modulo</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>   <span class="c1">// Circular increment</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">3</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">MinLoadFactor</span>
+            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="kd">private</span> <span class="nf">resizeArray</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span>
         <span class="n">newArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">newCapacity</span>
         <span class="k">for</span> <span class="n">i</span> <span class="n">in</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">...,</span> <span class="n">queueSize</span><span class="o">-</span><span class="mi">1</span>
             <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span> <span class="o">+</span> <span class="n">front</span> <span class="p">(</span><span class="n">modulo</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span><span class="o">]</span>
@@ -471,18 +476,21 @@ Implementation of all member functions is straightforward.</p>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">front</span><span class="p">;</span>           <span class="c1">// Index of front element</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">rear</span><span class="p">;</span>            <span class="c1">// Index of rear element</span>
 
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayQueue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">MinCapacity</span><span class="o">]</span><span class="p">;</span>
         <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>   <span class="c1">// Circular increment</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
         <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
@@ -499,18 +507,17 @@ Implementation of all member functions is straightforward.</p>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
         <span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>   <span class="c1">// Circular increment</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">resizeArray</span><span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="mi">2</span><span class="p">);</span>
-        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">MinLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
         <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
         <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
         <span class="n">E</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">newCapacity</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">queueSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">queueSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
             <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">front</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
-        <span class="p">}</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="n">rear</span> <span class="o">=</span> <span class="n">queueSize</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
@@ -545,15 +552,19 @@ Implementation of all member functions is straightforward.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayQueue_DynamicArrayQueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span>   <span class="c1"># Internal array containing the queue elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>            <span class="c1"># Size of queue, and index of the next free slot</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="mi">0</span>                <span class="c1"># Index of front element</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>                <span class="c1"># Index of rear element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the queue elements</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>                                <span class="c1"># Size of queue, and index of the next free slot</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="mi">0</span>                                    <span class="c1"># Index of front element</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>                                    <span class="c1"># Index of rear element</span>
 
     <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">))</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span>   <span class="c1"># Circular increment</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -568,12 +579,13 @@ Implementation of all member functions is straightforward.</p>
         <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span>   <span class="c1"># Circular increment</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">x</span>
 
     <span class="k">def</span> <span class="nf">_resizeArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">):</span>
-        <span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">newCapacity</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span><span class="p">):</span>
             <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="n">newArray</span>
@@ -587,24 +599,8 @@ Implementation of all member functions is straightforward.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span>
 
     <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">DynamicArrayQueueIterator</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span><span class="p">)</span>
-
-<span class="c1"># Python does not have internal classes, so we have to make the iterator standalone.</span>
-<span class="k">class</span> <span class="nc">DynamicArrayQueueIterator</span><span class="p">(</span><span class="n">Iterator</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">array</span><span class="p">,</span> <span class="n">front</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_array</span> <span class="o">=</span> <span class="n">array</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">front</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_size</span> <span class="o">=</span> <span class="n">size</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span>
-
-    <span class="k">def</span> <span class="fm">__next__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_size</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">StopIteration</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_array</span><span class="p">)]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)]</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueue_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/List/aqueueFirstCON.js"></script>

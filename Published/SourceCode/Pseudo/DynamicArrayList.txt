@@ -3,8 +3,12 @@ class DynamicArrayList(E) implements List(E)
     private internalArray : E[]   // Internal array containing the list elements
     private listSize      : int   // Size of list
 
+    constant MinCapacity        : int    = 8
+    constant MinLoadFactor      : double = 0.5
+    constant CapacityMultiplier : double = 1.5
+
     DynamicArrayList()
-        internalArray = new array of size 1
+        internalArray = new array of size MinCapacity
         listSize = 0
 
     get(i:int) : E
@@ -20,7 +24,7 @@ class DynamicArrayList(E) implements List(E)
     add(i:int, x:E)
         // Precondition: 0 <= i <= listSize
         if listSize >= size of internalArray
-            resizeArray(2 * size of internalArray)
+            resizeArray(size of internalArray * CapacityMultiplier)
         listSize += 1
         for k in listSize-1, listSize-2, ..., i+1
             internalArray[k] = internalArray[k-1]
@@ -33,11 +37,12 @@ class DynamicArrayList(E) implements List(E)
             internalArray[k] = internalArray[k+1]
         listSize -= 1
         internalArray[listSize] = null   // For garbage collection
-        if listSize < size of internalArray / 3
-            resizeArray(size of internalArray / 2)
+        if listSize < size of internalArray * MinLoadFactor
+            resizeArray(size of internalArray / CapacityMultiplier)
         return x
 
     private resizeArray(newCapacity:int)
+        return if newCapacity < MinCapacity
         newArray : E[] = new array of size newCapacity
         for i in 0, 1, ..., listSize-1
             newArray[i] = internalArray[i]

@@ -3,13 +3,17 @@ class DynamicArrayStack(E) implements Stack(E)
     private internalArray : E[]   // Internal array containing the stack elements
     private stackSize     : int   // Size of stack, and index of the next free slot
 
+    constant MinCapacity        : int    = 8
+    constant MinLoadFactor      : double = 0.5
+    constant CapacityMultiplier : double = 1.5
+
     DynamicArrayStack()
-        internalArray = new array of size 1
+        internalArray = new array of size MinCapacity
         stackSize = 0
 
     push(x:E)
         if stackSize >= size of internalArray
-            resizeArray(2 * size of internalArray)
+            resizeArray(size of internalArray * CapacityMultiplier)
         internalArray[stackSize] = x
         stackSize += 1
 
@@ -22,11 +26,12 @@ class DynamicArrayStack(E) implements Stack(E)
         stackSize -= 1
         x : E = internalArray[stackSize]
         internalArray[stackSize] = null   // For garbage collection
-        if stackSize < size of internalArray / 3
-            resizeArray(size of internalArray / 2)
+        if stackSize < size of internalArray * MinLoadFactor
+            resizeArray(size of internalArray / CapacityMultiplier)
         return x
 
     private resizeArray(newCapacity:int)
+        return if newCapacity < MinCapacity
         newArray : E[] = new array of size newCapacity
         for i in 0, 1, ..., stackSize-1
             newArray[i] = internalArray[i]

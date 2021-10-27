@@ -2,71 +2,76 @@
 import java.util.Iterator;
 
 class SeparateChainingHashMap<K, V> implements Map<K, V> {
-    LinkedListMap<K, V>[] HT;
+    Map<K, V>[] internalTable;
     int mapSize;
 
-    static int minCapacity = 10;
-    static double minLoadFactor = 1.0;
-    static double maxLoadFactor = 2.0;
-    static double capacityMultiplier = 1.5;
-
-    // @SuppressWarnings("unchecked")
     SeparateChainingHashMap() {
-        initialiseTable(minCapacity);
+        initialiseTable(MinCapacity);
     }
 
+    @SuppressWarnings("unchecked")
+    private void initialiseTable(int capacity) {
+        internalTable = (Map<K, V>[]) new LinkedListMap[capacity];
+        mapSize = 0;
+    }
+
+    static int MinCapacity = 8;
+    static double MinLoadFactor = 0.5;
+    static double MaxLoadFactor = 2.0;
+    static double CapacityMultiplier = 1.5;
+
     private int hash(K key) {
-        return (key.hashCode() & 0x7fffffff) % HT.length;
+        return (key.hashCode() & 0x7fffffff) % internalTable.length;
     }
 
     public V put(K key, V value) {
-        int h = hash(key);
-        V old = HT[h].put(key, value);
+        int i = hash(key);
+        Map<K, V> bin = internalTable[i];
+        if (bin == null)
+            bin = internalTable[i] = new LinkedListMap<>();
+        V old = bin.put(key, value);
         if (old == null) {
             mapSize++;
-            if (loadFactor() > maxLoadFactor)
-                resizeTable((int) (HT.length * capacityMultiplier));
+            if (loadFactor() > MaxLoadFactor)
+                resizeTable((int) (internalTable.length * CapacityMultiplier));
         }
         return old;
     }
 
     public V get(K key) {
-        int h = hash(key);
-        return HT[h].get(key);
+        int i = hash(key);
+        Map<K, V> bin = internalTable[i];
+        return bin == null ? null : bin.get(key);
     }        
 
     public V remove(K key) {
-        int h = hash(key);
-        V removed = HT[h].remove(key);
+        int i = hash(key);
+        Map<K, V> bin = internalTable[i];
+        if (bin == null)
+            return null;
+        V removed = bin.remove(key);
         if (removed != null) {
             mapSize--;
-            if (loadFactor() < minLoadFactor) 
-                resizeTable((int) (HT.length / capacityMultiplier));
+            if (loadFactor() < MinLoadFactor) 
+                resizeTable((int) (internalTable.length / CapacityMultiplier));
         }
         return removed;
     }            
 
     public boolean containsKey(K key) {
-        int h = hash(key);
-        return HT[h].containsKey(key);
-    }
-
-    @SuppressWarnings("unchecked")
-    private void initialiseTable(int capacity) {
-        HT = (LinkedListMap<K, V>[]) new LinkedListMap[capacity];
-        for (int i = 0; i < capacity; i++)
-            HT[i] = new LinkedListMap<>();
-        mapSize = 0;
+        int i = hash(key);
+        Map<K, V> bin = internalTable[i];
+        return bin != null && bin.containsKey(key);
     }
 
     private void resizeTable(int newCapacity) {
-        if (newCapacity < minCapacity) return;
-        System.out.println("RESIZE " + HT.length + " -> " + newCapacity);
-        LinkedListMap<K, V>[] oldHT = HT;
+        if (newCapacity < MinCapacity) return;
+        Map<K, V>[] oldTable = internalTable;
         initialiseTable(newCapacity);
-        for (LinkedListMap<K, V> bucket : oldHT)
-            for (K k : bucket)
-                put(k, bucket.get(k));
+        for (Map<K, V> bin : oldTable)
+            if (bin != null)
+                for (K k : bin)
+                    put(k, bin.get(k));
     }
 
     public boolean isEmpty() {
@@ -78,7 +83,7 @@ class SeparateChainingHashMap<K, V> implements Map<K, V> {
     }
 
     public double loadFactor() {
-        return (double) mapSize / HT.length;
+        return (double) mapSize / internalTable.length;
     }
 
     public Iterator<K> iterator() {
@@ -86,17 +91,17 @@ class SeparateChainingHashMap<K, V> implements Map<K, V> {
     }
 
     private class HashMapIterator implements Iterator<K> {
-        private int currentIndex;
+        private int bucketIndex;
         private Iterator<K> bucketIterator;
         HashMapIterator() {
-            currentIndex = 0;
-            bucketIterator = HT[currentIndex].iterator();
+            bucketIndex = 0;
+            bucketIterator = internalTable[bucketIndex].iterator();
         }
         public boolean hasNext() {
             while (!bucketIterator.hasNext()) {
-                currentIndex++;
-                if (currentIndex >= HT.length) return false;
-                bucketIterator = HT[currentIndex].iterator();
+                bucketIndex++;
+                if (bucketIndex >= internalTable.length) return false;
+                bucketIterator = internalTable[bucketIndex].iterator();
             }
             return true;
         }
@@ -111,10 +116,13 @@ class SeparateChainingHashMap<K, V> implements Map<K, V> {
 /** What comes below is purely for debugging and testing purposes - it can be removed **/
 
     public void _printMap() {
-        System.out.print("[ ");
-        for (int i=0; i<HT.length; i++) {
+        System.out.print(internalTable.length + " [ ");
+        for (int i=0; i<internalTable.length; i++) {
             if (i > 0) System.out.print("| ");
-            for (K k : HT[i]) System.out.print(k + ":" + get(k) + " ");
+            Map<K, V> bin = internalTable[i];
+            if (bin == null) System.out.print("? ");
+            else if (bin.isEmpty()) System.out.print("- ");
+            else for (K k : bin) System.out.print(k + ":" + get(k) + " ");
         }
         System.out.println("] " + size() + " {" + loadFactor() + "}");
     }

@@ -39,24 +39,22 @@ class LinkedListMap<K, V> implements Map<K, V> {
     public V get(K key) {
         KVNode node = head;
         while (node != null) {
-            if (node.key.equals(key)) {
+            if (node.key.equals(key))
                 return node.value;
-            }
             node = node.next;
         }
         return null;
-    }        
+    }
 
     public V remove(K key) {
         KVNode prev = null;
         KVNode node = head;
         while (node != null) {
             if (node.key.equals(key)) {
-                if (prev == null) {
+                if (prev == null)
                     head = node.next;
-                } else {
+                else
                     prev.next = node.next;
-                }
                 node.next = null;   // For garbage collection
                 listSize--;
                 return node.value;
@@ -65,14 +63,13 @@ class LinkedListMap<K, V> implements Map<K, V> {
             node = node.next;
         }
         return null;
-    }            
+    }
 
     public boolean containsKey(K key) {
         KVNode node = head;
         while (node != null) {
-            if (node.key.equals(key)) {
+            if (node.key.equals(key))
                 return true;
-            }
             node = node.next;
         }
         return false;

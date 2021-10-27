@@ -27,18 +27,16 @@ class StaticArrayList<E> implements List<E> {
         if (!(listSize < internalArray.length)) throw new IndexOutOfBoundsException("list capacity exceeded");
         if (!(0 <= i && i <= listSize))         throw new IndexOutOfBoundsException("list index out of range");
         listSize++;
-        for (int k = listSize-1; k > i; k--) {
+        for (int k = listSize-1; k > i; k--)
             internalArray[k] = internalArray[k-1];
-        }
         internalArray[i] = x;
     }
 
     public E remove(int i) {
         if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         E x = internalArray[i];
-        for (int k = i+1; k < listSize; k++) {
+        for (int k = i+1; k < listSize; k++)
             internalArray[k-1] = internalArray[k];
-        }
         listSize--;
         internalArray[listSize] = null;   // For garbage collection
         return x;

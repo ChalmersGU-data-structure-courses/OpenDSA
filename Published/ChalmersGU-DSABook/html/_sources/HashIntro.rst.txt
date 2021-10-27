@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Hashing (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Hashing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -29,7 +29,7 @@
 
 .. index:: ! hashing
 
-Chapter Introduction: Hashing (WORK IN PROGRESS)
+Chapter Introduction: Hashing
 =====================================================
 
 Introduction
@@ -42,9 +42,9 @@ When properly implemented, these operations can be performed
 in constant time.
 In fact, a properly tuned hash system typically looks at only
 one or two records for each search, insert, or delete operation.
-This is far better than the :math:`O(\log n)` average cost required
+This is better than the :math:`O(\log n)` cost required
 to do a binary search on a sorted array of :math:`n` records,
-or the :math:`O(\log n)` average cost required to do an operation
+or the :math:`O(\log n)` cost required to do an operation
 on a binary search tree.
 However, even though hashing is based on a very simple idea,
 it is surprisingly difficult to implement properly.

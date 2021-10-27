@@ -5,15 +5,19 @@ class DynamicArrayQueue(E) implements Queue(E)
     private front         : int   // Index of front element
     private rear          : int   // Index of rear element
 
+    constant MinCapacity        : int    = 8
+    constant MinLoadFactor      : double = 0.5
+    constant CapacityMultiplier : double = 1.5
+
     DynamicArrayQueue()
-        internalArray = new array of size 1
+        internalArray = new array of size MinCapacity
         queueSize = 0
         front = 0
         rear = -1
 
     enqueue(x:E)
         if queueSize >= size of internalArray
-            resizeArray(2 * size of internalArray)
+            resizeArray(size of internalArray * CapacityMultiplier)
         rear += 1  (modulo size of internalArray)   // Circular increment
         internalArray[rear] = x
         queueSize += 1
@@ -28,11 +32,12 @@ class DynamicArrayQueue(E) implements Queue(E)
         x : E = internalArray[front]
         internalArray[front] = null   // For garbage collection
         front += 1  (modulo size of internalArray)   // Circular increment
-        if queueSize < size of internalArray / 3
-            resizeArray(size of internalArray / 2)
+        if queueSize < size of internalArray * MinLoadFactor
+            resizeArray(size of internalArray / CapacityMultiplier)
         return x
 
     private resizeArray(newCapacity:int)
+        return if newCapacity < MinCapacity
         newArray : E[] = new array of size newCapacity
         for i in 0, 1, ..., queueSize-1
             newArray[i] = internalArray[i + front (modulo size of internalArray)]

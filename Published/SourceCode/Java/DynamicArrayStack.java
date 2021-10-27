@@ -6,16 +6,19 @@ class DynamicArrayStack<E> implements Stack<E> {
     private E[] internalArray;   // Internal array containing the stack elements
     private int stackSize;       // Size of stack, and index of the next free slot
 
+    static int MinCapacity = 8;
+    static double MinLoadFactor = 0.5;
+    static double CapacityMultiplier = 1.5;
+
     @SuppressWarnings("unchecked")
     public DynamicArrayStack() {
-        internalArray = (E[]) new Object[1];
+        internalArray = (E[]) new Object[MinCapacity];
         stackSize = 0;
     }
 
     public void push(E x) {
-        if (stackSize >= internalArray.length) {
-            resizeArray(2 * internalArray.length);
-        }
+        if (stackSize >= internalArray.length)
+            resizeArray((int) (internalArray.length * CapacityMultiplier));
         internalArray[stackSize] = x;
         stackSize++;
     }
@@ -30,18 +33,17 @@ class DynamicArrayStack<E> implements Stack<E> {
         stackSize--;
         E x = internalArray[stackSize];
         internalArray[stackSize] = null;   // For garbage collection
-        if (stackSize <= internalArray.length / 3) {
-            resizeArray(internalArray.length / 2);
-        }
+        if (stackSize <= internalArray.length * MinLoadFactor)
+            resizeArray((int) (internalArray.length / CapacityMultiplier));
         return x;
     }
 
     private void resizeArray(int newCapacity) {
+        if (newCapacity < MinCapacity) return;
         @SuppressWarnings("unchecked")
         E[] newArray = (E[]) new Object[newCapacity];
-        for (int i = 0; i < stackSize; i++) {
+        for (int i = 0; i < stackSize; i++)
             newArray[i] = internalArray[i];
-        }
         internalArray = newArray;
     }
 

@@ -25,11 +25,10 @@ class LinkedQueue<E> implements Queue<E> {
 
     public void enqueue(E x) {
         Node newRear = new Node(x, null);
-        if (queueSize == 0) {
+        if (queueSize == 0)
             front = newRear;
-        } else {
+        else
             rear.next = newRear;
-        }
         rear = newRear;
         queueSize++;
     }
@@ -45,9 +44,8 @@ class LinkedQueue<E> implements Queue<E> {
         front = removed.next;
         removed.next = null;   // For garbage collection
         queueSize--;
-        if (queueSize == 0) {
+        if (queueSize == 0)
             rear = null;
-        }
         return removed.elem;
     }
 
