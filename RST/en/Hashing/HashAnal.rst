@@ -9,11 +9,11 @@
    :satisfies: hashing
    :topic: Hashing
 
-Analysis of Closed Hashing (WORK IN PROGRESS)
-===============================================
+Analysis of Open Addressing
+===========================
 
-Analysis of Closed Hashing
---------------------------
+Analysis of Open Addressing
+----------------------------
 
 How efficient is hashing?
 We can measure hashing performance in terms of the number of
@@ -152,4 +152,4 @@ waste a lot of space on the one hand, while making it big enough to
 keep performance good on the other.
 
 .. avembed:: Exercises/Hashing/HashAnalSumm.html ka
-   :long_name: Analysis of Closed Hashing Summary Exercise
+   :long_name: Analysis of Open Addressing Summary Exercise
