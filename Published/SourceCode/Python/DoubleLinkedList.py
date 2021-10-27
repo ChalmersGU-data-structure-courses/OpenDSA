@@ -1,4 +1,6 @@
 
+import java.util.NoSuchElementException;
+
 from API import List, Iterator
 
 class DoubleLinkedList(List):
@@ -8,14 +10,14 @@ class DoubleLinkedList(List):
         self._listSize = 0   # Size of list
 
     def get(self, i):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         current = self._head
         for _ in range(i):
             current = current.next
         return current.elem
 
     def set(self, i, x):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         current = self._head
         for _ in range(i):
             current = current.next
@@ -24,7 +26,7 @@ class DoubleLinkedList(List):
         return old
 
     def add(self, i, x):
-        if not (0 <= i <= self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i <= self._listSize): raise IndexError("list index out of range")
         if self._listSize == 0:
             self._head = self._tail = DoubleLinkedListNode(x, None, None)
         elif i == 0:
@@ -46,8 +48,7 @@ class DoubleLinkedList(List):
         self._listSize += 1
 
     def remove(self, i):
-        if not (self._listSize > 0):      raise IndexError("remove from empty array")
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         if i == 0:
             removed = self._head
             self._head = removed.next

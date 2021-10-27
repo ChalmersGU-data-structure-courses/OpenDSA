@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-stacks">
 <h1>4.<span class="section-number">8. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stack-terminology-and-implementation">
@@ -191,24 +191,24 @@ stack.
 Here is our <a class="reference internal" href="Glossary.html#term-adt"><span class="xref std std-term">ADT</span></a> for stacks:</p>
 <div id="API_StackADT_code"><ul><li><a href="#API_StackADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_StackADT_code_Java_Generic">Java</a></li><li><a href="#API_StackADT_code_Python">Python</a></li></ul><div id="API_StackADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Stack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>       <span class="c1">// Pushes x on top of the stack.</span>
-    <span class="n">pop</span><span class="p">()</span>     <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Pops the top of the stack and returns it.</span>
-    <span class="n">peek</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the top element of the stack, without removing it.</span>
+    <span class="n">pop</span><span class="p">()</span>     <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Pops the top of the stack and returns it. Raises an exception if the stack is empty.</span>
+    <span class="n">peek</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the top element, without removing it. Raises an exception if the stack is empty.</span>
     <span class="c1">// Note: iterator() should yield the elements starting from the top of the stack.</span>
 </pre></div>
 </div>
 </div><div id="API_StackADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is an interface, while java.util.Stack is a class!</span>
 <span class="kd">interface</span> <span class="nc">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Pushes x on top of the stack.</span>
-    <span class="n">E</span> <span class="nf">pop</span><span class="p">();</span>         <span class="c1">// Pops the top of the stack and returns it.</span>
-    <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>        <span class="c1">// Returns the top element of the stack, without removing it.</span>
+    <span class="n">E</span> <span class="nf">pop</span><span class="p">();</span>         <span class="c1">// Pops the top of the stack and returns it. Raises an exception if the stack is empty.</span>
+    <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>        <span class="c1">// Returns the top element, without removing it. Raises an exception if the stack is empty.</span>
     <span class="c1">// Note: iterator() should yield the elements starting from the top of the stack.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="API_StackADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Stack</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Pushes x on top of the stack.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Pops the top of the stack and returns it.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the top element of the stack, without removing it.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Pops the top of the stack and returns it. Raises an exception if the stack is empty.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Returns the top element, without removing it. Raises an exception if the stack is empty.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the elements starting from the top of the stack.</span>
 </pre></div>
 </div>
@@ -366,7 +366,7 @@ array should represent the top of the stack.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStackPop_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;pop from empty stack&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;pop from empty stack&quot;</span><span class="p">);</span>
         <span class="n">stackSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
@@ -479,12 +479,12 @@ the (dynamic) array-based stack class.</p>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">E</span> <span class="nf">peek</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;peek from empty stack&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;peek from empty stack&quot;</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">E</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;pop from empty stack&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;pop from empty stack&quot;</span><span class="p">);</span>
         <span class="n">stackSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">stackSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
@@ -617,7 +617,7 @@ the (dynamic) array-based stack class.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

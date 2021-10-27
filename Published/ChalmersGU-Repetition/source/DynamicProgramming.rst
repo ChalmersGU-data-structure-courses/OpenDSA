@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "DynamicProgramming";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Programming";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-10-18 22:12:02"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "DynamicProgramming";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Programming";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -129,6 +129,15 @@ two recursive calls.
 However, subsequent occurrences of such a call do
 not produce additional calls because they just read the contents of
 its corresponding cell.
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
+  type: Figure
+   Put the figure here that was specified in the original document
+   (top of the 3rd page), showing the recursion tree.
 
 A second technique is called :term:`tabulation`.
 The dependency graph must be analyzed to infer an alternative

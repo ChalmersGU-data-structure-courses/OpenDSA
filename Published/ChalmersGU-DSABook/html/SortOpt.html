@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning">
 <h1>2.<span class="section-number">9. </span>Optimizing Sort Algorithms with Code Tuning<a class="headerlink" href="#optimizing-sort-algorithms-with-code-tuning" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="code-tuning-for-simple-sorting-algorithms">
 <h2>2.<span class="section-number">9.1. </span>Code Tuning for Simple Sorting Algorithms<a class="headerlink" href="#code-tuning-for-simple-sorting-algorithms" title="Permalink to this headline">¶</a></h2>
@@ -214,7 +214,7 @@ If the list is already nearly sorted, then there will be few swaps
 anyway.
 Here is an implementation for Insertion Sort using this optimization.</p>
 <div id="Insertionsort_InsertionOpt_code"><ul><li><a href="#Insertionsort_InsertionOpt_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_InsertionOpt_code_Python">Python</a></li></ul><div id="Insertionsort_InsertionOpt_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Instead of swapping, &quot;shift&quot; the values down the array</span>
-<span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">inssortshift</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">insertionsortshift</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert i&#39;th record</span>
     <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
     <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
@@ -226,7 +226,7 @@ Here is an implementation for Insertion Sort using this optimization.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Insertionsort_InsertionOpt_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inssortshift</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+</div><div id="Insertionsort_InsertionOpt_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insertionsortshift</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span> <span class="c1"># Insert i&#39;th record</span>
     <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
     <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
@@ -405,7 +405,7 @@ Evidently, the cost to swap is high for Python.</p>
 to <code class="docutils literal notranslate"><span class="pre">swap</span></code> even if the current record is already in its correct
 location.
 For example, if the record with the largest value is already in the
-rightmost array position, then <code class="docutils literal notranslate"><span class="pre">selsort</span></code> will still call <code class="docutils literal notranslate"><span class="pre">swap</span></code>
+rightmost array position, then <code class="docutils literal notranslate"><span class="pre">selectionsort</span></code> will still call <code class="docutils literal notranslate"><span class="pre">swap</span></code>
 with the two position parameters being the same.
 The net effect is that the work done by <code class="docutils literal notranslate"><span class="pre">swap</span></code> will not change
 anything in the array, and this is a waste of time.
@@ -475,7 +475,7 @@ more than double over those shown in the table.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

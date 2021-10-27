@@ -39,7 +39,6 @@ class LinkedList(E) implements List(E)
         listSize += 1
 
     remove(i:int) : E
-        // Precondition: listSize > 0
         // Precondition: 0 <= i < listSize
         if i == 0
             removed : Node = head

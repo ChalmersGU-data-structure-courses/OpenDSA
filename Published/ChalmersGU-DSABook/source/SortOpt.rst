@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -227,7 +227,7 @@ Our original Selection Sort implementation is written to make a call
 to ``swap`` even if the current record is already in its correct
 location.
 For example, if the record with the largest value is already in the
-rightmost array position, then ``selsort`` will still call ``swap``
+rightmost array position, then ``selectionsort`` will still call ``swap``
 with the two position parameters being the same.
 The net effect is that the work done by ``swap`` will not change
 anything in the array, and this is a waste of time.

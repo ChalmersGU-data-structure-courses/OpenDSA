@@ -7,17 +7,17 @@ class DynamicArrayList(List):
         self._listSize = 0             # Size of list
 
     def get(self, i):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         return self._internalArray[i]
 
     def set(self, i, x):
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         old = self._internalArray[i]
         self._internalArray[i] = x
         return old
 
     def add(self, i, x):
-        if not (0 <= i <= self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i <= self._listSize): raise IndexError("list index out of range")
         if self._listSize >= len(self._internalArray):
             self._resizeArray(2 * len(self._internalArray))
         self._listSize += 1
@@ -26,8 +26,7 @@ class DynamicArrayList(List):
         self._internalArray[i] = x
 
     def remove(self, i):
-        if not (self._listSize > 0):      raise IndexError("remove from empty array")
-        if not (0 <= i < self._listSize): raise IndexError("array index out of range")
+        if not (0 <= i < self._listSize): raise IndexError("list index out of range")
         x = self._internalArray[i]
         for k in range(i+1, self._listSize):
             self._internalArray[k-1] = self._internalArray[k]

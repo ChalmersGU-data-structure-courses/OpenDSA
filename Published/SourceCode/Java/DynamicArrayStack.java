@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class DynamicArrayStack<E> implements Stack<E> {
     private E[] internalArray;   // Internal array containing the stack elements
@@ -20,12 +21,12 @@ class DynamicArrayStack<E> implements Stack<E> {
     }
 
     public E peek() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("peek from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("peek from empty stack");
         return internalArray[stackSize-1];
     }
 
     public E pop() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("pop from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("pop from empty stack");
         stackSize--;
         E x = internalArray[stackSize];
         internalArray[stackSize] = null;   // For garbage collection

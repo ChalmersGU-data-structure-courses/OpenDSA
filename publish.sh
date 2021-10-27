@@ -2,7 +2,8 @@
 
 # Publish compiled book(s) and source code to the directory Published/
 
-rm -rf Published/*
+rm -rf Published
+mkdir -p Published
 
 echo "Copying books:" Books/* "--> Published/"
 cp -r Books/* Published/

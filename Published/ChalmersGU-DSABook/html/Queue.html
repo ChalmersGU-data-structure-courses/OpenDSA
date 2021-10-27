@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="array-based-queues">
 <h1>4.<span class="section-number">11. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
@@ -188,24 +188,24 @@ This section presents two implementations for queues:
 the array-based queue and the linked queue.</p>
 <div id="API_QueueADT_code"><ul><li><a href="#API_QueueADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_QueueADT_code_Java_Generic">Java</a></li><li><a href="#API_QueueADT_code_Python">Python</a></li></ul><div id="API_QueueADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>       <span class="c1">// Enqueues x at the end of the queue.</span>
-    <span class="n">dequeue</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Dequeues the frontmost element.</span>
-    <span class="n">peek</span><span class="p">()</span>       <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the frontmost element, without removing it.</span>
+    <span class="n">dequeue</span><span class="p">()</span>    <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Dequeues the frontmost element. Raises an exception if the queue is empty.</span>
+    <span class="n">peek</span><span class="p">()</span>       <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the frontmost element, without removing it. Raises an exception if the queue is empty.</span>
     <span class="c1">// Note: iterator() should yield the elements starting from the frontmost element.</span>
 </pre></div>
 </div>
 </div><div id="API_QueueADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Queue; and it uses different method names.</span>
 <span class="kd">interface</span> <span class="nc">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Enqueues x at the end of the queue.</span>
-    <span class="n">E</span> <span class="nf">dequeue</span><span class="p">();</span>        <span class="c1">// Dequeues the frontmost element.</span>
-    <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>           <span class="c1">// Returns the frontmost element, without removing it.</span>
+    <span class="n">E</span> <span class="nf">dequeue</span><span class="p">();</span>        <span class="c1">// Dequeues the frontmost element. Raises an exception if the queue is empty.</span>
+    <span class="n">E</span> <span class="nf">peek</span><span class="p">();</span>           <span class="c1">// Returns the frontmost element, without removing it. Raises an exception if the queue is empty.</span>
     <span class="c1">// Note: iterator() should yield the elements starting from the frontmost element.</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="API_QueueADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Queue</span><span class="p">(</span><span class="n">Collection</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Enqueues x at the end of the queue.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Dequeues the frontmost element.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the frontmost element, without removing it.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>    <span class="s2">&quot;&quot;&quot;Dequeues the frontmost element. Raises an exception if the queue is empty.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the frontmost element, without removing it. Raises an exception if the queue is empty.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the elements starting from the frontmost element.</span>
 </pre></div>
 </div>
@@ -489,12 +489,12 @@ Implementation of all member functions is straightforward.</p>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">E</span> <span class="nf">peek</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;peek from empty queue&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;peek from empty queue&quot;</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
         <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
         <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
@@ -641,7 +641,7 @@ Implementation of all member functions is straightforward.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

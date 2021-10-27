@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-search-trees-work-in-progress">
 <h1>7.<span class="section-number">1. </span>Binary Search Trees (WORK IN PROGRESS)<a class="headerlink" href="#binary-search-trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
@@ -202,45 +202,6 @@ a special comparison method such as using the <code class="docutils literal notr
 and passing in a <a class="reference internal" href="Glossary.html#term-comparator"><span class="xref std std-term">comparator function</span></a>.
 Our BST implementation will require that records implement the
 <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary Search Tree implementation</span>
-<span class="kd">class</span> <span class="nc">BST</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">root</span><span class="p">;</span> <span class="c1">// Root of the BST</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">nodecount</span><span class="p">;</span> <span class="c1">// Number of nodes in the BST</span>
-
-  <span class="c1">// constructor</span>
-  <span class="n">BST</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Reinitialize tree</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Insert a record into the tree.</span>
-  <span class="c1">// Records can be anything, but they must be Comparable</span>
-  <span class="c1">// e: The record to insert.</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-    <span class="n">nodecount</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Remove a record from the tree</span>
-  <span class="c1">// key: The key value of record to remove</span>
-  <span class="c1">// Returns the record removed, null if there is none.</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">E</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// First find it</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">root</span> <span class="o">=</span> <span class="n">removehelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// Now remove it</span>
-      <span class="n">nodecount</span><span class="o">--</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Return the record with key value k, null if none exists</span>
-  <span class="c1">// key: The key value to find</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="p">}</span>
-
-  <span class="c1">// Return the number of records in the dictionary</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodecount</span><span class="p">;</span> <span class="p">}</span>
-</pre></div>
-</div>
 <div class="section" id="bst-search">
 <h3>7.<span class="section-number">1.1.1. </span>BST Search<a class="headerlink" href="#bst-search" title="Permalink to this headline">¶</a></h3>
 <p>The first operation that we will look at in detail will find the
@@ -401,13 +362,6 @@ the root has its right child pointer reassigned to the subtree
 resulting from its call to the <code class="docutils literal notranslate"><span class="pre">deletemax</span></code> method.</p>
 <p>A useful companion method is <code class="docutils literal notranslate"><span class="pre">getmax</span></code> which returns a
 pointer to the node containing the maximum value in the subtree.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Get the maximum valued element in a subtree</span>
-  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">getmax</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">return</span> <span class="n">getmax</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>
-  <span class="p">}</span>
-</pre></div>
-</div>
 <p>Now we are ready for the <code class="docutils literal notranslate"><span class="pre">removehelp</span></code> method.
 Removing a node with given key value <span class="math notranslate nohighlight">\(R\)</span> from the BST
 requires that we first find <span class="math notranslate nohighlight">\(R\)</span> and then remove it from the
@@ -533,14 +487,6 @@ is followed exactly once.</p>
 <p>Below is an example traversal, named <code class="docutils literal notranslate"><span class="pre">printhelp</span></code>.
 It performs an inorder traversal on the BST to print the node values
 in ascending order.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">printhelp</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
-    <span class="n">printhelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>
-    <span class="n">printVisit</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">value</span><span class="p">());</span>
-    <span class="n">printhelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>
-  <span class="p">}</span>
-</pre></div>
-</div>
 <p>While the BST is simple to implement and efficient when the tree is
 balanced, the possibility of its being unbalanced is a serious
 liability.
@@ -604,7 +550,7 @@ remain balanced, such as the <a class="reference internal" href="TwoThreeTree.ht
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

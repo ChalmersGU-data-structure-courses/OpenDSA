@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 class LinkedStack<E> implements Stack<E> {
     private Node top;        // Pointer to top of stack
@@ -26,12 +27,12 @@ class LinkedStack<E> implements Stack<E> {
     }
 
     public E peek() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("peek from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("peek from empty stack");
         return top.elem;
     }
 
     public E pop() {
-        if (!(stackSize > 0)) throw new IndexOutOfBoundsException("pop from empty stack");
+        if (!(stackSize > 0)) throw new NoSuchElementException("pop from empty stack");
         Node removed = top;
         top = removed.next;
         removed.next = null;   // For garbage collection

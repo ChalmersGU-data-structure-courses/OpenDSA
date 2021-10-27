@@ -52,8 +52,7 @@ class LinkedList<E> implements List<E> {
     }
 
     public E remove(int i) {
-        if (!(listSize > 0))           throw new IndexOutOfBoundsException("remove from empty array");
-        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("array index out of range");
+        if (!(0 <= i && i < listSize)) throw new IndexOutOfBoundsException("list index out of range");
         Node removed;
         if (i == 0) {
             removed = head;

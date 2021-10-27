@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="mergesort-concepts">
 <span id="index-0"></span><h1>2.<span class="section-number">10. </span>Mergesort Concepts<a class="headerlink" href="#mergesort-concepts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -180,12 +180,11 @@ sense and in empirical running time.
 Unfortunately, even though it is based on a simple concept,
 it is relatively difficult to implement in practice.
 Here is a pseudocode sketch of Mergesort:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List mergesort(List inlist) {
-  if (inlist.length() &lt;= 1) return inlist;;
-  List L1 = half of the items from inlist;
-  List L2 = other half of the items from inlist;
-  return merge(mergesort(L1), mergesort(L2));
-}
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List mergesort(List inlist)
+  if length of inlist &lt;= 1 then return inlist
+  List L1 = half of the items from inlist
+  List L2 = other half of the items from inlist
+  return merge(mergesort(L1), mergesort(L2))
 </pre></div>
 </div>
 <p>Here is a visualization that illustrates how Mergesort works.</p>
@@ -220,28 +219,22 @@ Merging continues in this way, comparing the front
 records of the sublists and continually appending the smaller to the
 output list until no more input records remain.</p>
 <p>Here is pseudocode for merge on lists:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List merge(List L1, List L2) {
-  List answer = new List();
-  while (L1 != NULL || L2 != NULL) {
-    if (L1 == NULL) { // Done L1
-      answer.append(L2);
-      L2 = NULL;
-    }
-    else if (L2 == NULL) { // Done L2
-      answer.append(L1);
-      L1 = NULL;
-    }
-    else if (L1.value() &lt;= L2.value()) {
-      answer.append(L1.value());
-      L1 = L1.next();
-    }
-    else {
-      answer.append(L2.value());
-      L2 = L2.next();
-    }
-  }
-  return answer;
-}
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List merge(List L1, List L2)
+  List answer = new empty list
+  while L1 is not empty and L2 is not empty
+    x = first element of L1
+    y = first element of L2
+    if x &lt;= y
+      append x to answer
+      remove first element from L1
+    else
+      append y to answer
+      remove first element from L2
+  // Now one of L1 and L2 is empty, so append
+  // all remaining elements
+  append all elements of L1 to answer
+  append all elements of L2 to answer
+  return answer
 </pre></div>
 </div>
 <p>Here is a visualization for the merge operation.</p>
@@ -358,7 +351,7 @@ output list until no more input records remain.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

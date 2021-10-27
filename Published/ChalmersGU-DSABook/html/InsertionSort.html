@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['insertion-sort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "InsertionSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Insertion Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/InsertionSortWorstCaseCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['insertion-sort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "InsertionSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Insertion Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/InsertionSortWorstCaseCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/InsertionSortBestCaseCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/InsertionSortAverageCaseCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="insertion-sort">
@@ -185,7 +185,7 @@ correct position within a sorted list composed of those records
 already processed.
 Here is an implementation.
 The input is an array named <code class="docutils literal notranslate"><span class="pre">A</span></code> that stores <span class="math notranslate nohighlight">\(n\)</span> records.</p>
-<div id="Insertionsort_Insertionsort_code"><ul><li><a href="#Insertionsort_Insertionsort_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_Insertionsort_code_Python">Python</a></li></ul><div id="Insertionsort_Insertionsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">inssort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+<div id="Insertionsort_Insertionsort_code"><ul><li><a href="#Insertionsort_Insertionsort_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_Insertionsort_code_Python">Python</a></li></ul><div id="Insertionsort_Insertionsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">insertionsort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert i&#39;th record</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
@@ -194,7 +194,7 @@ The input is an array named <code class="docutils literal notranslate"><span cla
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Insertionsort_Insertionsort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inssort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+</div><div id="Insertionsort_Insertionsort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insertionsort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
   <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>  <span class="c1"># Insert i&#39;th record</span>
     <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
     <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
@@ -237,7 +237,7 @@ Insertion Sort will move it to the left so
 long as its value is less than that of the record immediately
 preceding it.
 As soon as a key value less than or equal to <span class="math notranslate nohighlight">\(x\)</span> is
-encountered, <code class="docutils literal notranslate"><span class="pre">inssort</span></code> is done with that record because all
+encountered, <code class="docutils literal notranslate"><span class="pre">insertionsort</span></code> is done with that record because all
 records to its left in the array must have smaller keys.</p>
 <div
     id="insertionsortAV"
@@ -446,7 +446,7 @@ search and insert can affect what is the best sort algorithm to use.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

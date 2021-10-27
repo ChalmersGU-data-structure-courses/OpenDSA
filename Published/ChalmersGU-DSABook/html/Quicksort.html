@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'partition', 'putting-it-together', 'quicksort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/quicksortCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'partition', 'putting-it-together', 'quicksort-analysis', 'pivots-in-practice', 'more-practical-improvements'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Quicksort";ODSA.SETTINGS.MODULE_LONG_NAME = "Quicksort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/quicksortCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortPartitionAnalysisCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortWorstCaseCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Sorting/QuickSortBestCaseCON.css" rel="stylesheet" type="text/css" />
@@ -179,8 +179,8 @@ implementation is not so easy.
 So perhaps a different divide and conquer strategy might turn out to
 be more efficient?</p>
 <p><a class="reference internal" href="Glossary.html#term-quicksort"><span class="xref std std-term">Quicksort</span></a> is aptly named because, when properly
-implemented, it is the fastest known general-purpose in-memory sorting
-algorithm in the average case.
+implemented, it is one of the fastest known general-purpose in-memory
+sorting algorithms in the average case.
 It does not require the extra array needed by Mergesort, so it is
 space efficient as well.
 Quicksort is widely used, and is typically the algorithm implemented
@@ -193,8 +193,9 @@ Assume that the input array contains <span class="math notranslate nohighlight">
 less than the pivot.
 The records are then rearranged in such a way that the <span class="math notranslate nohighlight">\(k\)</span>
 values less than the pivot are placed in the first, or leftmost,
-<span class="math notranslate nohighlight">\(k\)</span> positions in the array, and the values greater than or equal
-to the pivot are placed in the last, or rightmost, <span class="math notranslate nohighlight">\(n-k\)</span>
+<span class="math notranslate nohighlight">\(k\)</span> positions in the array, the pivot itself is placed
+at index <span class="math notranslate nohighlight">\(k\)</span>, and the values greater than or equal to the pivot
+are placed in the last, or rightmost, <span class="math notranslate nohighlight">\(n-k-1\)</span>
 positions.
 This is called a <a class="reference internal" href="Glossary.html#term-partition"><span class="xref std std-term">partition</span></a> of the array.
 The values placed in a given partition need not (and typically will
@@ -221,28 +222,24 @@ indices, respectively, for the subarray being sorted.
 The initial call to <code class="docutils literal notranslate"><span class="pre">quicksort</span></code> would be
 <code class="docutils literal notranslate"><span class="pre">quicksort(array,</span> <span class="pre">0,</span> <span class="pre">n-1)</span></code>.</p>
 <div id="Quicksort_Quicksort_code"><ul><li><a href="#Quicksort_Quicksort_code_Java_Generic">Java</a></li><li><a href="#Quicksort_Quicksort_code_Python">Python</a></li></ul><div id="Quicksort_Quicksort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="o">&gt;=</span> <span class="n">j</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>                   <span class="c1">// Base case: array of length 0 or 1</span>
   <span class="kt">int</span> <span class="n">pivotindex</span> <span class="o">=</span> <span class="n">findpivot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>  <span class="c1">// Pick a pivot</span>
   <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">pivotindex</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>               <span class="c1">// Stick pivot at end</span>
   <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">);</span>   <span class="c1">// k will be the first position in the right subarray</span>
   <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>                        <span class="c1">// Put pivot in place</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="o">-</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>               <span class="c1">// Sort left partition</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">j</span><span class="o">-</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>               <span class="c1">// Sort right partition</span>
-  <span class="p">}</span>
+  <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>                 <span class="c1">// Sort left partition</span>
+  <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>                 <span class="c1">// Sort right partition</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="Quicksort_Quicksort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+  <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">j</span><span class="p">:</span> <span class="k">return</span>                <span class="c1"># Base case: array of size 0 or 1</span>
   <span class="n">pivotindex</span> <span class="o">=</span> <span class="n">findpivot</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>  <span class="c1"># Pick a pivot</span>
   <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">pivotindex</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>           <span class="c1"># Stick pivot at end</span>
   <span class="n">k</span> <span class="o">=</span> <span class="n">partition</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">])</span>   <span class="c1"># k will be the first position in the right subarray</span>
   <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>                    <span class="c1"># Put pivot in place</span>
-  <span class="k">if</span> <span class="n">k</span><span class="o">-</span><span class="n">i</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>           <span class="c1"># Sort left partition</span>
-  <span class="k">if</span> <span class="n">j</span><span class="o">-</span><span class="n">k</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
-    <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>           <span class="c1"># Sort right partition</span>
+  <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>             <span class="c1"># Sort left partition</span>
+  <span class="n">quicksort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>             <span class="c1"># Sort right partition</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#Quicksort_Quicksort_code" ).tabs();});</script><p>Function <code class="docutils literal notranslate"><span class="pre">partition</span></code> will move records to the
@@ -258,16 +255,13 @@ be processed in the recursive calls to <code class="docutils literal notranslate
 Even if a bad pivot is selected, yielding a completely empty
 partition to one side of the pivot, the larger partition will contain
 at most <span class="math notranslate nohighlight">\(n-1\)</span> records.</p>
-<p>Selecting a pivot can be done in many ways.
-The simplest is to use the first key.
-However, if the input is sorted or reverse sorted, this will produce a
-poor partitioning with all values to one side of the pivot.
-It is better to pick a value at random, thereby reducing the chance of
-a bad input order affecting the sort.
-Unfortunately, using a random number generator is relatively
-expensive, and we can do nearly as well by selecting the middle
-position in the array.
-Here is a simple <code class="docutils literal notranslate"><span class="pre">findpivot</span></code> function.</p>
+<p>Selecting a pivot can be done in many ways. The simplest is to use the
+first key. However, if the input is sorted or reverse sorted, this
+will produce a poor partitioning with all values to one side of the
+pivot. One simple way to avoid this problem is to select the middle
+position in the array. Here is a simple <code class="docutils literal notranslate"><span class="pre">findpivot</span></code> function
+implementing this idea. Note that later in the chapter we will switch
+to a better pivot selection strategy.</p>
 <div id="Quicksort_findpivot_code"><ul><li><a href="#Quicksort_findpivot_code_Java_Generic">Java</a></li><li><a href="#Quicksort_findpivot_code_Python">Python</a></li></ul><div id="Quicksort_findpivot_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">int</span> <span class="nf">findpivot</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">return</span> <span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
 <span class="p">}</span>
@@ -576,26 +570,54 @@ be going toward a limit of zero.
 We can conclude that Quicksort will run fast if
 we can avoid those very few bad input permutations.
 This is why picking a good pivot is so important.</p>
-<p>The running time for Quicksort can be improved (by a constant factor),
-and much study has gone into optimizing this algorithm.
-Since Quicksort’s worst case behavior arises when the pivot does a
-poor job of splitting the array into equal size subarrays,
-improving <code class="docutils literal notranslate"><span class="pre">findpivot</span></code> seems like a good place to start.
-If we are willing to do more work searching for a better pivot, the
-effects of a bad pivot can be decreased or even eliminated.
-Hopefully this will save more time than was added by the additional
-work needed to find the pivot.
-One widely-used choice is to use the “median of three” algorithm,
-which uses as a pivot the middle of three randomly selected values.
-Using a random number generator to choose the positions is relatively
-expensive, so a common compromise is to look at the first, middle, and
-last positions of the current subarray.
-However, our simple <code class="docutils literal notranslate"><span class="pre">findpivot</span></code> function that takes the
-middle value as its pivot has the virtue of making it highly unlikely
-to get a bad input by chance, and it is quite cheap to implement.
-This is in sharp contrast to selecting the first or last record as
-the pivot, which would yield bad performance for many permutations
-that are nearly sorted or nearly reverse sorted.</p>
+</div>
+<div class="section" id="pivots-in-practice">
+<h2>2.<span class="section-number">12.5. </span>Pivots in practice<a class="headerlink" href="#pivots-in-practice" title="Permalink to this headline">¶</a></h2>
+<p>Perhaps the most important choice in implementing quicksort is how to
+choose the pivot. Choosing a bad pivot can result in all elements of
+the array ending up in the same partition, in which case quicksort
+ends up taking quadratic time.</p>
+<p>Choosing the <em>first</em> or the <em>last</em> element of the array is a bad
+strategy. If the input array is sorted, then the first element of the
+array will also be the smallest element. Hence all elements of the
+array will end up in the “greater than pivot” partition. Worse, the
+exact same thing will happen in all the recursive calls to quicksort.
+Hence the partitioning will be as bad as possible, and quicksort will
+end up taking quadratic time. You sometimes see implementations of
+quicksort that use the first element as the pivot, but this is a bad
+idea!</p>
+<p>Above, we picked the <em>middle</em> element of the array, to avoid this
+problem. This works well enough, but in practice, more sophisticated
+strategies are used.</p>
+<p>The theoretically best choice of pivot is one that divides the array
+equally in two, i.e. the median element of the array. However, the
+median of an array is difficult to compute (unless you sort the array
+first!) Instead, many quicksort implementations use a strategy called
+<em>median-of-three</em>. In median-of-three, we pick elements from three
+positions in the array: the <em>first</em> position, the <em>middle</em> position
+and the <em>last</em> position. Then we take the median of these three
+elements. For example, given the array <code class="docutils literal notranslate"><span class="pre">3,</span> <span class="pre">1,</span> <span class="pre">4,</span> <span class="pre">1,</span> <span class="pre">5,</span> <span class="pre">9,</span> <span class="pre">2</span></code>, we
+pick out the elements <code class="docutils literal notranslate"><span class="pre">3</span></code> (first position), <code class="docutils literal notranslate"><span class="pre">1</span></code> (middle position)
+and <code class="docutils literal notranslate"><span class="pre">2</span></code> (last position). The median of 3, 1 and 2 is 2, so we pick 2
+as the pivot.</p>
+<p>Median-of-three is not guaranteed to pick a good pivot: there are
+cases where it partitions the input array badly. However, these bad
+cases do not seem to occur in practice. In practice, median-of-three
+picks good pivots, and it is also cheap to implement. It is used by
+most real-world quicksort implementations.</p>
+<p>Another good approach is to pick a random element of the array as the
+pivot. This makes it somewhat unlikely to get a poor partitioning.
+What’s more, if we do get a poor partitioning, it is likely that in
+the recursive call to <code class="docutils literal notranslate"><span class="pre">qsort</span></code>, we will choose a different pivot and
+get a better partitioning. Unlike median-of-three, this approach is
+theoretically sound: there are no input arrays which make it work
+badly. Another way to get the same effect is to pick e.g. the first
+element as the pivot, but to <em>shuffle</em> the array before sorting,
+rearranging it into a random order. The array only needs to be
+shuffled once before quicksort begins, not in every recursive call.</p>
+</div>
+<div class="section" id="more-practical-improvements">
+<h2>2.<span class="section-number">12.6. </span>More practical improvements<a class="headerlink" href="#more-practical-improvements" title="Permalink to this headline">¶</a></h2>
 <p>A significant improvement can be gained by recognizing that
 Quicksort is relatively slow when <span class="math notranslate nohighlight">\(n\)</span> is small.
 This might not seem to be relevant if most of the time we sort
@@ -607,7 +629,7 @@ arrays!
 This happens as a natural by-product of the divide and conquer
 approach.</p>
 <p>A simple improvement might then be to replace Quicksort with a faster
-sort for small numbers, say Insertion Sort or Selection Sort.
+sort for small subarrays, say Insertion Sort or Selection Sort.
 However, there is an even better—and still simpler—optimization.
 When Quicksort partitions are below a certain size, do nothing!
 The values within that partition will be out of order.
@@ -621,8 +643,9 @@ This is an ideal situation in which to take advantage of the best-case
 performance of Insertion Sort.
 The final step is a single call to Insertion Sort to process the
 entire array, putting the records into final sorted order.
-Empirical testing shows that the subarrays should be left unordered
-whenever they get down to nine or fewer records.</p>
+At what size should we switch to Insertion Sort? The answer can only
+be determined by empirical testing, but on modern machines the answer
+is probably somewhere between 10 and 100.</p>
 <p>The last speedup to be considered reduces the cost of making
 recursive calls.
 Quicksort is inherently recursive, because each Quicksort operation
@@ -638,8 +661,8 @@ the order in which Quicksort’s recursive calls are executed.
 We can also place the code for <code class="docutils literal notranslate"><span class="pre">findpivot</span></code> and
 <code class="docutils literal notranslate"><span class="pre">partition</span></code> inline to eliminate the remaining function
 calls.
-Note however that by not processing sublists of size nine or
-less as suggested above, about three quarters of the function calls
+Note however that by not processing smal sublists of size nine or
+less as suggested above, most of the function calls
 will already have been eliminated.
 Thus, eliminating the remaining function calls will yield only a
 modest speedup.</p>
@@ -712,7 +735,7 @@ partitions of size 6, 5, 4, 3, 2, then 1.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 21, 2021.
+      Last updated on Oct 27, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

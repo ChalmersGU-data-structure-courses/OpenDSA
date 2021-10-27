@@ -2,12 +2,12 @@
 
    <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script>
 
-.. _SearchIntro:
+.. _SetsAndMaps:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SearchIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-21 15:48:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Information retrieval: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -24,16 +24,17 @@
    :author: Cliff Shaffer, Nick Smallbone
    :requires:
    :satisfies:
-   :topic: Search
+   :topic: Design
 
-Searching: Sets and Maps
-===============================
+Information retrieval: Sets and Maps
+====================================
 
-Many tasks that we want to solve using a computer involve *searching*:
-We have some set of items, and we want to find the items that match
-some criteria. Here are some examples:
+Many programming tasks involve *finding the right piece of
+information* in a large dataset. That is, we have a collection of
+items, and we want to quickly retrieve the items matching certain
+criteria. Here are some examples of information retrieval problems:
 
-* *Spell-checking:*
+* *Spell-checking:**
   Given a set containing all valid English words, check if a given
   string is present in the set (i.e. is a valid word).
 * *Database lookup:*
@@ -45,7 +46,18 @@ some criteria. Here are some examples:
   Given a list of all Swedish towns and their populations, find
   the towns whose population is between 1,000 and 2,000.
 
-All of these problems can be solved using ADTs called *sets* and *maps*.
+All of these problems can be solved using two ADTs, the *set* and the
+*map*. Both ADTs can be used to maintain a collection of *records*.
+They provide operations for finding records, adding records, and
+removing records from the collection. In this section we will see what
+sets and maps are, and how to use them to solve the four problems
+above.
+
+You may have already used sets and maps in programming, because almost
+every programming language provides an implementation of them.
+For example, Java provides the HashSet_ and HashMap_ classes,
+and Python provides sets_ and dictionaries_ (another word for maps)
+as part of its standard library.
 
 Spell-checking: Sets
 ~~~~~~~~~~~~~~~~~~~~
@@ -58,10 +70,14 @@ already present, nothing happens, and the set is left unchanged.
 .. codeinclude:: ChalmersGU/API
    :tag: SetADT
 
-We can use a set for the spell-checking example. To create the
-spell-checking dictionary, we start with an initially empty set, and
-then call ``add`` repeatedly to add each valid word to the set.
-Then to spell-check a given word, we just call ``contains``.
+We can use a set for the spell-checking example:
+
+* Given a set containing all valid English words, check if a given
+  string is present in the set (i.e. is a valid word).
+
+To create the spell-checking dictionary, we start with an initially
+empty set, and then call ``add`` repeatedly to add each valid word to
+the set.  Then to spell-check a given word, we just call ``contains``.
 
 .. codeinclude:: Searching/SpellCheck
    :tag: SpellCheck
@@ -84,11 +100,15 @@ already present, then the value associated with ``k`` gets changed to
 ``v``. On the other hand, a map *can* contain duplicate *values*: two
 keys can have the same value.
 
-The map is a perfect match for our database example. Here, the key
-should be a personnummer, and the value should be a record containing
-information about that person. If the personnummer is stored in a
-field ``pnr``, then to add a person ``p`` we call ``add(p.pnr, p)``.
-To find the person with personnummer ``pnr`` we call ``lookup(pnr)``.
+The map is a perfect match for our database example:
+
+* Given a list of people, find the person with a given personnummer.
+
+Here, the key should be a personnummer, and the value should be a
+record containing information about that person. If the personnummer
+is stored in a field ``pnr``, then to add a person ``p`` we call
+``add(p.pnr, p)``.  To find the person with personnummer ``pnr`` we
+call ``lookup(pnr)``.
 
 .. codeinclude:: Searching/Database
    :tag: Database
@@ -103,10 +123,15 @@ can have multiple values associated with it. This structure is called
 a *multimap*.
 
 A multimap is the perfect data structure for our search engine
-example. We want to find all documents containing a given word. To do
-that, we will build a multimap, where the key is a word, and the
-values are all documents containing that word. Then, searching for a
-word will just mean looking it up in the multimap.
+example:
+
+* Given a collection of documents (e.g. web pages), find all web
+  pages containing a given word.
+
+To find all documents containing a given word, we will build a
+multimap, where the key is a word, and the values are all documents
+containing that word. Then, searching for a word will just mean
+looking it up in the multimap.
 
 Unfortunately, most programming languages do not provide a multimap
 data structure. Instead, we can implement it ourselves. The idea is to
@@ -119,8 +144,11 @@ but a *set* of documents.
 Between X and Y: Sorted Sets and Maps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Consider our problem: Given a list of all Swedish towns and their
-populations, find the towns whose population is between 1,000 and 2,000.
+Consider the final example problem:
+
+* Given a list of all Swedish towns and their populations, find
+  the towns whose population is between 1,000 and 2,000.
+
 One way to solve this problem would be to use a multimap. The key
 would be a population number, and the values would be all towns having
 that population. Then we could find the required towns by making a
@@ -139,19 +167,17 @@ to make ~1,000,000 calls.
 There is a better way. If the towns are stored in a array, and sorted
 by population, we can use the following algorithm:
 
-* Use a binary search to find the first town with a population of at
-  least 1,000, and remember what position it has in the array.
-* Use another binary search to find the *last* town with a population
-  of *at most* 2,000, and remember its position.
+* Find the position in the array of the first town that has a
+  population of at least 1,000. (We will see in Section
+  :chap:`???` that is is possible to find this position efficiently.)
+* Find the position in the array of the *last* town that has a
+  population of *at most* 2,000.
 * Now return all towns between those two positions in the array.
 
-The cost of finding the towns using this algorithm is only
-:math:`O(\log n)` (two calls to binary search).
-
 This is an example of a *range query*: given a map, finding all items
-whose key lies in a given range. Some map implementations (such as
-sorted arrays) support answering range queries efficiently; we say
-that these data structures implement *sorted maps*.
+whose key lies in a given range. Some map implementations support
+answering range queries efficiently; we say that these data structures
+implement *sorted maps*.
 
 Apart from range queries, sorted maps support several other operations
 that take advantage of the natural order of the keys:
@@ -199,34 +225,40 @@ having the key be a population number and the value be a list of towns.
 How to implement sets and maps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In Chapter :chap:`Arrays: Sorting and Searching`, we saw two ways to
-implement a set: using an array, or using a *sorted* array. We could
-implement a map using either an array of (key, value) tuples, or by
-storing the keys in one array and the values in another.
+Sets and maps are useful in a huge variety of computer programs, and
+are perhaps the most useful of all data structures. But how can we
+design a class that implements a set or a map, in such a way that
+adding, removing and searching can be done efficiently? In this book
+we will see several different ways of implementing sets and maps.
 
-An unsorted array is not a good implementation of a set (or a map),
-because the ``contains`` method must use *linear search*, which takes
-:math:`O(n)` time.
+In Chapter :chap:`Arrays: Sorting and Searching`, we will see how to
+implement a set using an array. By sorting the items in the array, it
+is possible to look up information efficiently. However, it turns out
+that adding and removing items is quite expensive. An array is a
+suitable way of storing a set or a map if its contents never changes.
 
-A sorted array is suitable for a set or a map that *never changes*,
-because the ``contains`` method can use *binary search*, which takes
-:math:`O(\log n)` time. Updating the set or map is slow, because
-``add`` and ``remove`` must keep the array in the correct order, which
-takes :math:`O(n)` time. However, if the set or map never changes, we
-can sort it once at the beginning (in :math:`O(n \log n)` time) and
-use binary search from then on.
+In Chapters :chap:`Binary Search Trees` and :chap:`Balanced BinarySearch Treees`, we learn about *balanced binary search trees (BSTs)*,
+a data structure for sets and maps where adding, removing and
+searching are all efficient. BSTs also support the *sorted map*
+operations that we used in our final example.
 
-In this chapter and the next one, we learn about *balanced binary
-search trees (BSTs)*, a data structure that implements the set and map
-ADTs, where ``add``, ``remove`` and ``contains`` all take
-:math:`O(\log n)` time. Balanced BSTs also support ordered operations
-such as :term:`range queries  <range query>`.
-
-In chapter :chap:`Indexing`, we learn about *hash tables*, another way
+In chapter :chap:`Hash Tables`, we learn about *hash tables*, another way
 to implement the set and map ADTs. In a hash table, ``add``,
-``remove`` and ``contains`` take *constant* time on average,
-but they are a little harder to use than BSTs, the performance
-guarantees are not as strong, and they do not support ordered operations.
+``remove`` and ``contains`` are even faster than in a BST, but hash
+tables are somewhat harder to use than BSTs, and do not support the
+*sorted map* operations. 
+
 Balanced BSTs and hash tables are the main ways that sets and maps are
-implemented in practice.
+implemented in practice. Almost every programming language provides sets
+and maps as a built-in feature, based on one of these technologies.
+For example, Java's HashSet_, HashMap_, TreeSet_ and TreeMap_, and
+Python's: sets_ and dictionaries_. By the end of this book you will
+understand how all of these work.
+
+.. _HashSet: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/HashSet.html
+.. _HashMap: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/HashMap.html
+.. _TreeSet: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/TreeSet.html
+.. _TreeMap: https://docs.oracle.com/javase/8/docs/api/index.html?java/util/TreeMap.html
+.. _sets: https://docs.python.org/3/tutorial/datastructures.html#sets
+.. _dictionaries: https://docs.python.org/3/tutorial/datastructures.html#dictionaries
 
