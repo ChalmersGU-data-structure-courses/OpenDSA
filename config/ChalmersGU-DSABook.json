@@ -176,6 +176,7 @@
       "Hashing/HashCImproved": {},
       "Hashing/HashAnal": {},
       "Hashing/HashDel": {},
+      "Hashing/RealLifeHashing": {},
       "Hashing/HashSumm": {}
     },
     "Graphs": {
