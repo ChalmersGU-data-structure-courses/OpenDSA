@@ -122,7 +122,11 @@
       "Binary/WritingTraversals": {},
       "BTRecurTutor/BinaryTreeInfFlw": {},
       "Binary/BinaryTreeImpl": {},
-      "Binary/BinaryTreeNodeSpace": {}
+      "Binary/BinaryTreeNodeSpace": {},
+      "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
+      "BTRecurTutor/MultipleBinaryTrees": {},
+      "BTRecurTutor/BSTCheck": {},
+      "Binary/BinaryChapSumm": {}
     },
     "General Trees and Union-Find (optional)": {
       "General/GenTreeIntro": {},
@@ -130,24 +134,19 @@
       "General/SequentialRep": {}
     },
     "Search Trees": {
+      "Binary/BSTIntro": {},
       "Binary/BST": {
         "BSTinsertPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTremovePRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}},
         "BSTsearchPRO": {"exer_options": {"JXOP-code": "none", "JXOP-feedback": "continuous", "JXOP-fixmode": "undo"}}
       },
-      "Binary/BSTDict": {},
-      "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
-      "BTRecurTutor/MultipleBinaryTrees": {},
-      "BTRecurTutor/BSTCheck": {},
-      "Binary/BinaryChapSumm": {}
-    },
-    "Balanced Search Trees": {
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
       "SearchStruct/Splay": {},
       "Indexing/TwoThreeTree": {},
       "SearchStruct/RedBlack": {},
-      "SearchStruct/SkipList": {}
+      "SearchStruct/SkipList": {},
+      "Binary/BSTChapSumm": {}
     },
     "Priority Queues": {
       "Binary/PriorityQueue": {},

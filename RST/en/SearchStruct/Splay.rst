@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Splay Trees
 
-The Splay Tree (WORK IN PROGRESS)
-===================================
+The Splay Tree (optional) (WORK IN PROGRESS)
+============================================
 
 Like the AVL tree, the splay tree is not actually a distinct data
 structure, but rather reimplements the BST insert, delete, and search
