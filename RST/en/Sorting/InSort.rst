@@ -12,6 +12,13 @@
 Chapter Introduction: Sorting
 =============================
 
+We have seen that, when an array is sorted in ascending order, *binary
+search* can be used to find items in it efficiently. But what about
+when we have a collection of data that is not in any order? If we will
+often need to search for items in the data, it makes sense to *sort
+the data* first. In this chapter we will study algorithms for sorting
+arrays in ascending order.
+
 We sort many things in our everyday lives:
 A handful of cards when playing Bridge;
 bills and other piles of paper; jars of spices; and so on.
