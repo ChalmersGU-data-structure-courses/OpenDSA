@@ -1,7 +1,5 @@
 
-import java.util.NoSuchElementException;
-
-from API import List, Iterator
+from API import List
 
 #/* *** ODSATag: DoubleLinkedList *** */
 #/* *** ODSATag: DoubleLinkedListHeader *** */
@@ -87,22 +85,10 @@ class DoubleLinkedList(List):
 
 #/* *** ODSATag: DoubleLinkedListIterator *** */
     def __iter__(self):
-        return DoubleLinkedListIterator(self._head)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DoubleLinkedListIterator(Iterator):
-    def __init__(self, head):
-        self._current = head
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self._current is None:
-            raise StopIteration
-        x = self._current.elem
-        self._current = self._current.next
-        return x
+        current = self._head
+        while current is not None:
+            yield current.elem
+            current = current.next
 #/* *** ODSAendTag: DoubleLinkedListIterator *** */
 
 #/* *** ODSATag: DoubleLinkedListHeader *** */

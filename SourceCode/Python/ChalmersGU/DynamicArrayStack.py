@@ -1,5 +1,5 @@
 
-from API import Stack, Iterator
+from API import Stack
 
 #/* *** ODSATag: DynamicArrayStack *** */
 #/* *** ODSATag: DynamicArrayStackInit *** */
@@ -55,23 +55,8 @@ class DynamicArrayStack(Stack):
 
 #/* *** ODSATag: DynamicArrayStackIterator *** */
     def __iter__(self):
-        return DynamicArrayStackIterator(self._internalArray, self._stackSize)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DynamicArrayStackIterator(Iterator):
-    def __init__(self, array, size):
-        self._array = array
-        self._size = size
-        self._index = size
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self._index -= 1
-        if self._index < 0:
-            raise StopIteration
-        return self._array[self._index]
+        for i in reversed(range(self._stackSize)):
+            yield self._internalArray[i]
 #/* *** ODSAendTag: DynamicArrayStackIterator *** */
 #/* *** ODSAendTag: DynamicArrayStack *** */
 

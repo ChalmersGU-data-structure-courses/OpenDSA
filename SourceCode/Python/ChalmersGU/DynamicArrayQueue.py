@@ -1,5 +1,5 @@
 
-from API import Queue, Iterator
+from API import Queue
 
 #/* *** ODSATag: DynamicArrayQueue *** */
 #/* *** ODSATag: DynamicArrayQueueInit *** */
@@ -61,24 +61,8 @@ class DynamicArrayQueue(Queue):
 
 #/* *** ODSATag: DynamicArrayQueueIterator *** */
     def __iter__(self):
-        return DynamicArrayQueueIterator(self._internalArray, self._front, self._queueSize)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DynamicArrayQueueIterator(Iterator):
-    def __init__(self, array, front, size):
-        self._array = array
-        self._front = front
-        self._size = size
-        self._index = -1
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self._index += 1
-        if self._index >= self._size:
-            raise StopIteration
-        return self._array[(self._index + self._front) % len(self._array)]
+        for i in range(self._front, self._front + self._queueSize):
+            yield self._internalArray[i % len(self._internalArray)]
 #/* *** ODSAendTag: DynamicArrayQueueIterator *** */
 #/* *** ODSAendTag: DynamicArrayQueue *** */
 

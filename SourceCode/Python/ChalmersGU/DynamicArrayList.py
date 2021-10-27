@@ -1,5 +1,5 @@
 
-from API import List, Iterator
+from API import List
 
 #/* *** ODSATag: DynamicArrayList *** */
 #/* *** ODSATag: DynamicArrayListInit *** */
@@ -66,23 +66,8 @@ class DynamicArrayList(List):
 
 #/* *** ODSATag: DynamicArrayListIterator *** */
     def __iter__(self):
-        return DynamicArrayListIterator(self._internalArray, self._listSize)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class DynamicArrayListIterator(Iterator):
-    def __init__(self, array, size):
-        self._array = array
-        self._size = size
-        self._index = -1
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        self._index += 1
-        if self._index >= self._size:
-            raise StopIteration
-        return self._array[self._index]
+        for i in range(self._listSize):
+            yield self._internalArray[i]
 #/* *** ODSAendTag: DynamicArrayListIterator *** */
 #/* *** ODSAendTag: DynamicArrayList *** */
 

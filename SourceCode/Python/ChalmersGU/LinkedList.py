@@ -1,5 +1,5 @@
 
-from API import List, Iterator
+from API import List
 
 #/* *** ODSATag: LinkedList *** */
 #/* *** ODSATag: LinkedListVars *** */
@@ -65,22 +65,10 @@ class LinkedList(List):
 
 #/* *** ODSATag: LinkedListIterator *** */
     def __iter__(self):
-        return LinkedListIterator(self._head)
-
-# Python does not have internal classes, so we have to make the iterator standalone.
-class LinkedListIterator(Iterator):
-    def __init__(self, head):
-        self._current = head
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        if self._current is None:
-            raise StopIteration
-        x = self._current.elem
-        self._current = self._current.next
-        return x
+        current = self._head
+        while current is not None:
+            yield current.elem
+            current = current.next
 #/* *** ODSAendTag: LinkedListIterator *** */
 
 
