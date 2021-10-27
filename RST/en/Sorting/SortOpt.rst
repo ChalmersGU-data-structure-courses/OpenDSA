@@ -202,7 +202,7 @@ Our original Selection Sort implementation is written to make a call
 to ``swap`` even if the current record is already in its correct
 location.
 For example, if the record with the largest value is already in the
-rightmost array position, then ``selsort`` will still call ``swap``
+rightmost array position, then ``selectionsort`` will still call ``swap``
 with the two position parameters being the same.
 The net effect is that the work done by ``swap`` will not change
 anything in the array, and this is a waste of time.

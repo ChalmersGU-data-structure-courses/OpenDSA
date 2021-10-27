@@ -10,14 +10,14 @@ static Boolean sorttest(int[] A) {
 static void shellsort(int[] A) {
   for (int i=A.length/2; i>2; i/=2) { // For each increment
     for (int j=0; j<i; j++) {         // Sort each sublist
-      inssort2(A, j, i);
+      insertionsort2(A, j, i);
     }
   }
-  inssort2(A, 0, 1);     // Could call regular inssort here
+  insertionsort2(A, 0, 1);     // Could call regular insertionsort here
 }
 
 /** Modified Insertion Sort for varying increments */
-static void inssort2(int[] A, int start, int incr) {
+static void insertionsort2(int[] A, int start, int incr) {
   for (int i=start+incr; i<A.length; i+=incr)
     for (int j=i; (j>=incr) && (A[j] < A[j-incr]); j-=incr)
       Swap.swap(A, j, j-incr);

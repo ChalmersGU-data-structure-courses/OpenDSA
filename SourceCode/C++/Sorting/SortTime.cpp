@@ -11,7 +11,7 @@ using std::ios;
 //    parameter means random values;
 // <array_size> sets the size of the array allocated to hold records.
 // <size_of_test> controls the size of an individual test out
-// of an array of size <array_size>.  For example, inssort 10 will run
+// of an array of size <array_size>.  For example, insertionsort 10 will run
 // a series of sorts on lists of size 10. If <array_size> is 100, then
 // this means that 10 sorts will be run. It is important to run many,
 // many runs for small lists to get a measurable timing result. See notes

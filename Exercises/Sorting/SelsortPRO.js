@@ -7,7 +7,7 @@
       jsavArr,        // The array that the user manipulates (JSAV object)
       selectedIndex;  // Position that has been selected by user for swap
 
-  var selsortPRO = {
+  var selectionsortPRO = {
     userInput: null,  // Boolean: Tells us if user ever did anything
 
     initJSAV: function(arrSize, sortPos) {
@@ -69,7 +69,7 @@
       jsavArr.css(selectedIndex, {"font-size": "100%"});
       selectedIndex = -1;  // Reset to nothing selected
     }
-    selsortPRO.userInput = true;
+    selectionsortPRO.userInput = true;
   }
 
   // reset function definition
@@ -85,7 +85,7 @@
     av.recorded();
 
     jsavArr.click(clickHandler); // (Re-)bind click handler
-    selsortPRO.userInput = false;
+    selectionsortPRO.userInput = false;
     selectedIndex = -1;
   }
 
@@ -96,5 +96,5 @@
     arr[j] = temp;
   }
 
-  window.selsortPRO = window.selsortPRO || selsortPRO;
+  window.selectionsortPRO = window.selectionsortPRO || selectionsortPRO;
 }());

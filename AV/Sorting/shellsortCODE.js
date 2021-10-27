@@ -3,7 +3,7 @@
 // TODO: This needs to be properly wrapped to protect the code from the global namespace
 
 // Insertion sort using increments
-function inssort(av, arr, start, incr, interpret) {
+function insertionsort(av, arr, start, incr, interpret) {
   var i, j;
   for (i = start + incr; i < arr.size(); i += incr) {
     for (j = i; j >= incr; j -= incr) {
@@ -53,7 +53,7 @@ function sweep(av, arr, incr, interpret) {
     }
     av.umsg(interpret("av_code6") + numElem + interpret("av_code7"));
     av.step();
-    inssort(av, arr, j, incr, interpret);
+    insertionsort(av, arr, j, incr, interpret);
     arr.removeClass(true, "processing");
     arr.unhighlight(highlightFunction);
   }

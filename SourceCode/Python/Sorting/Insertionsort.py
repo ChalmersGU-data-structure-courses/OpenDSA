@@ -9,7 +9,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    inssort(A)
+    insertionsort(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -20,7 +20,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    inssort2(A)
+    insertionsort2(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -31,7 +31,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    inssortshift(A)
+    insertionsortshift(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -42,7 +42,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    inssortshift(A)
+    insertionsortshift(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -53,7 +53,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    myinssort(A)
+    myinsertionsort(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -64,7 +64,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    inssortshiftpy(A)
+    insertionsortshiftpy(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -72,7 +72,7 @@ def sorttime(B):
 
 # Instead of swapping, "shift" the values down the array
 # /* *** ODSATag: InsertionOpt *** */
-def inssortshift(A):
+def insertionsortshift(A):
   for i in range(1, len(A)): # Insert i'th record
     temp = A[i]
     j = i
@@ -83,9 +83,9 @@ def inssortshift(A):
 # /* *** ODSAendTag: InsertionOpt *** */
 
 
-# Same as inssortshift, but try != instead of < for the zero test
+# Same as insertionsortshift, but try != instead of < for the zero test
 # This will only matter to JavaScript
-def inssortshift2(A):
+def insertionsortshift2(A):
   for i in range(1, len(A)-1): # Insert i'th record
     temp = A[i]
     j=i
@@ -96,7 +96,7 @@ def inssortshift2(A):
 
 # Same as standard insertion sort, except get rid of the swap
 # function call
-def inssort2(A):
+def insertionsort2(A):
   for i  in range(1, len(A)-1):  # Insert i'th record
     j = i;
     while (j != 0) and (A[j] < A[j-1]):
@@ -109,10 +109,10 @@ def success():
   print "Success! (Need to define this)"
 
 def sorttest(A):
-  inssort(A)
+  insertionsort(A)
 
 # /* *** ODSATag: Insertionsort *** */
-def inssort(A):
+def insertionsort(A):
   for i in range(len(A)):  # Insert i'th record
     j = i
     while j > 0 and A[j] < A[j-1]:
@@ -121,7 +121,7 @@ def inssort(A):
 # /* *** ODSAendTag: Insertionsort *** */
 
 # Chris Dusold's attempt to "pythonize" the sort
-def myinssort(A):
+def myinsertionsort(A):
   for i in range(len(A)):  # Insert i'th record
     for j in range(i,0,-1):
       if (A[j] >= A[j-1]):
@@ -131,7 +131,7 @@ def myinssort(A):
 # Instead of swapping, "shift" the values down the array
 # Try to make it more "native" python
 # SOLUTION BELOW NOT WORKING
-def inssortshiftpy(A):
+def insertionsortshiftpy(A):
   for i in range(1, len(A)-1): # Insert i'th record
     temp = A[i]
     for j in range(i,0,-1):

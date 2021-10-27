@@ -26,7 +26,7 @@ $(document).ready(function () {
         av.umsg(interpret("av_c1"));
         av.step();
       }
-      inssort(av, arr, j, incr);
+      insertionsort(av, arr, j, incr);
       arr.unhighlight(highlightFunction);
       modelmode.value("SELECTING");
       av.umsg(interpret("av_c2"));
@@ -36,7 +36,7 @@ $(document).ready(function () {
   }
 
   // Insertion sort using increments
-  function inssort(av, arr, start, incr) {
+  function insertionsort(av, arr, start, incr) {
     var i, j;
     for (i = start + incr; i < arr.size(); i += incr) {
       for (j = i; j >= incr; j -= incr) {

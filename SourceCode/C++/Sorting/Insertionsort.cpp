@@ -6,7 +6,7 @@
 
 // With KVPair
 /* *** ODSATag: Insertionsort *** */
-void inssort(Comparable* A[], int n) { // Insertion Sort
+void insertionsort(Comparable* A[], int n) { // Insertion Sort
   for (int i = 1; i < n; i++) // Insert i'th record
     for (int j = i; (j > 0) && (*A[j] < *A[j-1]); j--)
       swap(A, j, j-1);
@@ -15,7 +15,7 @@ void inssort(Comparable* A[], int n) { // Insertion Sort
 
 /* *** ODSATag: InsertionOpt *** */
 // Instead of swapping, "shift" the values down the array
-void inssortshift(Comparable* A[], int n) { // Insertion Sort
+void insertionsortshift(Comparable* A[], int n) { // Insertion Sort
   for (int i=1; i<n; i++) { // Insert i'th record
     int j;
     Comparable* temp = A[i];
@@ -40,7 +40,7 @@ bool sorttest(int array[], int n, int threshold) {
   //  }
   //  cout << std::endl;
   
-  inssort(A, n);
+  insertionsort(A, n);
 
   if (!checkorder(A, n)) return false;
 
@@ -54,7 +54,7 @@ bool sorttest(int array[], int n, int threshold) {
     A[i] = new KVPair(array[i], &array[i]);
   }
 
-  inssort(A, n);
+  insertionsort(A, n);
 
   if (!checkorder(A, n)) return false;
 
@@ -68,7 +68,7 @@ bool sorttest(int array[], int n, int threshold) {
     A[i] = new KVPair(array[i], &array[i]);
   }
 
-  inssortshift(A, n);
+  insertionsortshift(A, n);
 
   if (!checkorder(A, n)) return false;
 
@@ -91,7 +91,7 @@ bool sorttime(int array[], int arraysize, int listsize, int threshold) {
 
   Settime();
   for (i=0; i<arraysize; i+=listsize) {
-    inssort(&A[i], listsize);
+    insertionsort(&A[i], listsize);
   }
   cout << "Sort Int array with list size " << listsize
        << ", array size " << arraysize
@@ -115,7 +115,7 @@ bool sorttime(int array[], int arraysize, int listsize, int threshold) {
 
   Settime();
   for (i=0; i<arraysize; i+=listsize) {
-    inssort(&A[i], listsize);
+    insertionsort(&A[i], listsize);
   }
   cout << "Sort KVPair with list size " << listsize
        << ", array size " << arraysize
@@ -139,7 +139,7 @@ bool sorttime(int array[], int arraysize, int listsize, int threshold) {
 
   Settime();
   for (i=0; i<arraysize; i+=listsize) {
-    inssortshift(&A[i], listsize);
+    insertionsortshift(&A[i], listsize);
   }
   cout << "Sort KVPair shifting with list size " << listsize
        << ", array size " << arraysize

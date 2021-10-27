@@ -35,11 +35,11 @@ def mergesortOpt(A, temp, left, right):
   if mid-left >= THRESHOLD:
     mergesortOpt(A, temp, left, mid)
   else:
-    inssort(A, left, mid)
+    insertionsort(A, left, mid)
   if right-mid > THRESHOLD:
     mergesortOpt(A, temp, mid+1, right)
   else:
-    inssort(A, mid+1, right)
+    insertionsort(A, mid+1, right)
   # Do the merge operation.  First, copy 2 halves to temp.
   for i in range(left, mid+1):
     temp[i] = A[i]

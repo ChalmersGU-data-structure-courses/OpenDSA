@@ -9,7 +9,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) A[i] = B[i];
   time1 = new Date();
-  inssort(A);
+  insertionsort(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -20,7 +20,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) A[i] = B[i];
   time1 = new Date();
-  inssort2(A);
+  insertionsort2(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -31,7 +31,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) A[i] = B[i];
   time1 = new Date();
-  inssortshift(A);
+  insertionsortshift(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -42,7 +42,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) A[i] = B[i];
   time1 = new Date();
-  inssortshift2(A);
+  insertionsortshift2(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -52,7 +52,7 @@ totaltime += (time2-time1);
 
 
 // Instead of swapping, "shift" the values down the array
-function inssortshift(A) {
+function insertionsortshift(A) {
   for (var i = 1; i < A.length; i++) { // Insert i'th record
     var j;
     var temp = A[i];
@@ -62,9 +62,9 @@ function inssortshift(A) {
   }
 }
 
-// Same as inssortshift, but try != instead of < for the zero test
+// Same as insertionsortshift, but try != instead of < for the zero test
 // This will only matter to JavaScript
-function inssortshift2(A) {
+function insertionsortshift2(A) {
   for (var i = 1; i !== A.length; i++) { // Insert i'th record
     var j;
     var temp = A[i];
@@ -76,7 +76,7 @@ function inssortshift2(A) {
 
 // Same as standard insertion sort, except get rid of the swap
 // function call
-function inssort2(A) {
+function insertionsort2(A) {
   var temp;
   for (var i = 1; i < A.length; i++) // Insert i'th record
     for (var j = i; (j > 0) && (A[j] < A[j - 1]); j--) {
@@ -90,11 +90,11 @@ function success() {
 }
 
 function sorttest(A) {
-  inssort(A);
+  insertionsort(A);
 }
 
 /* *** ODSATag: Insertionsort *** */
-function inssort(A) {
+function insertionsort(A) {
   for (var i = 1; i < A.length; i++) // Insert i'th record
     for (var j = i; (j > 0) && (A[j] < A[j - 1]); j--)
       swap(A, j, j - 1);

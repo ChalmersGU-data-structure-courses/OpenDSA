@@ -1,5 +1,5 @@
-// Same as selsort, but check if the swap is necessary
-static void selsortcheck(int[] A,int startpos,int length) {
+// Same as selectionsort, but check if the swap is necessary
+static void selectionsortcheck(int[] A,int startpos,int length) {
 
      for (int i=startpos; i<startpos+length-1; i++) { // Select i'th biggest record
     int bigindex = 0;                // Current biggest index
@@ -11,8 +11,8 @@ static void selsortcheck(int[] A,int startpos,int length) {
   }
   }
 
-    // Same as selsort, but check if the swap is necessary
-    static void selsortcheckInteger(Integer[] A,int startpos,int length) {
+    // Same as selectionsort, but check if the swap is necessary
+    static void selectionsortcheckInteger(Integer[] A,int startpos,int length) {
                       for (int i=startpos; i<startpos+length-1; i++) { // Select i'th biggest record
                     int bigindex = 0;                // Current biggest index
                     for (int j=1+startpos; j<startpos+length-i; j++) // Find the max value
@@ -24,8 +24,8 @@ static void selsortcheck(int[] A,int startpos,int length) {
 
     }
 
-    // Same as selsort, but check if the swap is necessary
-    static void selsortcheckDouble(double[] A,int startpos,int length) {
+    // Same as selectionsort, but check if the swap is necessary
+    static void selectionsortcheckDouble(double[] A,int startpos,int length) {
              for (int i=startpos; i<startpos+length-1; i++) { // Select i'th biggest record
             int bigindex = 0;                // Current biggest index
             for (int j=1+startpos; j<startpos+length-i; j++) // Find the max value
@@ -44,19 +44,19 @@ static Boolean sorttest(int[] B,int length) {
   Integer[] A = new Integer[length];
   for (i=0; i<length; i++)
     A[i] = new Integer(B[i]);
-  selsort(A,length);
+  selectionsort(A,length);
   if (!checkorder(A)) return false;
 
   //  KVPair[] AKV = (KVPair[])new Object[B.length];
   //  for (i=0; i<B.length; i++)
   //    AKV[i] = new KVPair(new Integer(B[i]), new Integer(B[i]));
-  //  inssort(A);
+  //  insertionsort(A);
   //  if (!checkorder(A)) return false;
   return true;
 }
 */
 /* *** ODSATag: Selectionsort *** */
-static void selsort(Integer[] A,int startpos,int length) {
+static void selectionsort(Integer[] A,int startpos,int length) {
 
 
   for (int i=startpos; i<startpos+length-1; i++) {       // Select i'th biggest record
@@ -71,7 +71,7 @@ static void selsort(Integer[] A,int startpos,int length) {
 
 
 /* *** ODSATag: Selectionsort *** */
-static void selsortInt(int[] A,int startpos,int length) {
+static void selectionsortInt(int[] A,int startpos,int length) {
 
 for (int i=startpos; i<startpos+length-1; i++) {       // Select i'th biggest record
 int bigindex = 0;                      // Current biggest index
@@ -85,7 +85,7 @@ swap(A, bigindex,startpos+length-i-1);       // Put it into place
 
 
 /* *** ODSATag: Selectionsort *** */
-static void selsortDouble(double[] A,int startpos,int length) {
+static void selectionsortDouble(double[] A,int startpos,int length) {
 
 
 
@@ -100,7 +100,7 @@ swapDouble(A, bigindex,startpos+length-i-1);       // Put it into place
 /* *** ODSAendTag: Selectionsort *** */
 
 /* *** ODSATag: Selectionsort ***
-static void selsortString(String[] A,int length) {
+static void selectionsortString(String[] A,int length) {
 
 
 String[] B = new String[length];
@@ -140,18 +140,18 @@ System.out.println("Method Name,  Array Type, Array Size,Data Distribution,Time"
 
 if(dataType.equals("int"))
 {
-testsortallint("selsortcheck", testsize);
-testsortallint("selsortInt", testsize);
+testsortallint("selectionsortcheck", testsize);
+testsortallint("selectionsortInt", testsize);
 }
 else if(dataType.equals("Integer"))
 {
-testsortallInteger("selsortcheckInteger",testsize);
-testsortallInteger("selsort",testsize);
+testsortallInteger("selectionsortcheckInteger",testsize);
+testsortallInteger("selectionsort",testsize);
 }
 else if(dataType.equals("double"))
 {
-testsortallDouble("selsortcheckDouble",testsize);
-testsortallDouble("selsortDouble",testsize);
+testsortallDouble("selectionsortcheckDouble",testsize);
+testsortallDouble("selectionsortDouble",testsize);
 }
 
 }

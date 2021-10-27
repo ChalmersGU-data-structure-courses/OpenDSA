@@ -2,7 +2,7 @@
   "translations": {
     "en": {
       "sc1": "We first examine the worst case cost.",
-      "sc2": "The body of inssort contains two nested for loops.",
+      "sc2": "The body of insertionsort contains two nested for loops.",
       "sc3": "The outer for loop is executed $n-1$ times.",
       "sc4": "The inner loop is harder to analyze since it depends on how many records in positions $0$ to $i-1$ have a value less than that of the record in position $i$.",
       "sc5": "Let's consider now a worst case example of an array with 6 elements. Since it is the worst case, each iteration of the outer loop does the greatest possible number of comparisons.",

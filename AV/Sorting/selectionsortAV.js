@@ -32,7 +32,7 @@ $(document).ready(function() {
   }
 
   // Selection sort
-  function selsort() {
+  function selectionsort() {
     var i, j, bigindex;
     av.umsg(interpret("av_c3"));
     pseudo.setCurrentLine("sig");
@@ -99,7 +99,7 @@ $(document).ready(function() {
       pseudo = av.code(code);
       av.umsg(interpret("av_c1"));
       av.displayInit();
-      selsort();
+      selectionsort();
       av.recorded(); // mark the end
       ODSA.AV.sendResizeMsg();
     }

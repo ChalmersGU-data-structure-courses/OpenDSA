@@ -9,12 +9,12 @@
 void shellsort(Comparable* A[], int n) {
   for (int i = n/2; i > 2; i /= 2)  //For each increment
     for (int j = 0; j < i; j++)  //Sort each sublist
-      inssort2(A, j, i, n);
-    inssort2(A, 0, 1, n);
+      insertionsort2(A, j, i, n);
+    insertionsort2(A, 0, 1, n);
 }
 
 // Modified Insertion Sort for varying increments
-void inssort2(Comparable* A[], int start, int incr, int n) {
+void insertionsort2(Comparable* A[], int start, int incr, int n) {
   for (int i = start+incr; i < n; i += incr)
     for (int j = i; ((j >= incr) && (*A[j] < *A[j-incr])); j -= incr) 
       swap(A, j, j-incr);

@@ -123,7 +123,7 @@ static void sorttime(Comparable[] B) {
 
 // Insertion sort used by optimized quicksort
 // Instead of swapping, "shift" the values down the array
-static void inssortshift(Comparable[] A) {
+static void insertionsortshift(Comparable[] A) {
   for (int i=1; i<A.length; i++) { // Insert i'th record
     int j;
     Comparable temp = A[i];
@@ -136,7 +136,7 @@ static void inssortshift(Comparable[] A) {
 // Insertion sort used by optimized quicksort
 // Records are of type Integer
 // Instead of swapping, "shift" the values down the array
-static void inssortshiftInt(Integer[] A) {
+static void insertionsortshiftInt(Integer[] A) {
   for (int i=1; i<A.length; i++) { // Insert i'th record
     int j;
     Integer temp = A[i];
@@ -149,7 +149,7 @@ static void inssortshiftInt(Integer[] A) {
 // Insertion sort used by optimized quicksort
 // Integer-only version
 // Instead of swapping, "shift" the values down the array
-static void inssortshiftint(int[] A) {
+static void insertionsortshiftint(int[] A) {
   for (int i=1; i<A.length; i++) { // Insert i'th record
     int j;
     int temp = A[i];
@@ -203,7 +203,7 @@ static void quicksortOpt(Comparable[] A, int oi, int oj) { // Quicksort
       Stack[++top] = j;
     }
   }
-  inssortshift(A);             // Final Insertion Sort
+  insertionsortshift(A);             // Final Insertion Sort
 }
 
 // Optimized Quicksort: Not recursive, and uses Inssort for small lists
@@ -249,7 +249,7 @@ static void quicksortOptInt(Integer[] A, int oi, int oj) { // Quicksort
       Stack[++top] = j;
     }
   }
-  inssortshiftInt(A);             // Final Insertion Sort
+  insertionsortshiftInt(A);             // Final Insertion Sort
 }
 
 
@@ -297,5 +297,5 @@ static void quicksortOptint(int[] A, int oi, int oj) { // Quicksort
       Stack[++top] = j;
     }
   }
-  inssortshiftint(A);             // Final Insertion Sort
+  insertionsortshiftint(A);             // Final Insertion Sort
 }

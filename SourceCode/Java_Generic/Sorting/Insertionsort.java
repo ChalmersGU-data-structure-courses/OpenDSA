@@ -12,7 +12,7 @@ for (runs=0; runs<numruns; runs++) {
   for (i=0; i<B.length; i++)
     A[i] = new Integer(B[i]);
   time1 = millis();
-  inssort(A);
+  insertionsort(A);
   time2 = millis();
   checkorder(A);
 totaltime += (time2-time1);
@@ -24,7 +24,7 @@ for (runs=0; runs<numruns; runs++) {
   for (i=0; i<B.length; i++)
     Aint[i] = B[i];
   time1 = millis();
-  inssort2(Aint);
+  insertionsort2(Aint);
   time2 = millis();
   checkorder(Aint);
 totaltime += (time2-time1);
@@ -35,7 +35,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) Aint[i] = B[i];
   time1 = millis();
-  inssortshift(Aint);
+  insertionsortshift(Aint);
   time2 = millis();
   checkorder(Aint);
 totaltime += (time2-time1);
@@ -46,7 +46,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) Aint[i] = B[i];
   time1 = millis();
-  inssortshift2(Aint);
+  insertionsortshift2(Aint);
   time2 = millis();
   checkorder(Aint);
 totaltime += (time2-time1);
@@ -55,9 +55,9 @@ totaltime += (time2-time1);
 }
 
 
-// Same as inssortsuffle, but try != instead of < for the zero test
+// Same as insertionsortsuffle, but try != instead of < for the zero test
 // This will only matter to JavaScript
-static void inssortshift2(int[] A) {
+static void insertionsortshift2(int[] A) {
   for (int i=1; i!=A.length; i++) { // Insert i'th record
     int j;
     int temp = A[i];
@@ -70,7 +70,7 @@ static void inssortshift2(int[] A) {
 
 /* *** ODSATag: InsertionOpt *** */
 // Instead of swapping, "shift" the values down the array
-static <T extends Comparable<T>> void inssortshift(T[] A) {
+static <T extends Comparable<T>> void insertionsortshift(T[] A) {
   for (int i=1; i < A.length; i++) { // Insert i'th record
     int j;
     int temp = A[i];
@@ -84,7 +84,7 @@ static <T extends Comparable<T>> void inssortshift(T[] A) {
 
 // Same as standard insertion sort, except get rid of the swap
 // function call
-static void inssort2(int[] A) {
+static void insertionsort2(int[] A) {
   int temp;
   for (int i=1; i<A.length; i++) { // Insert i'th record
     for (int j=i; (j>0) && (A[j] < A[j-1]); j--) {
@@ -100,19 +100,19 @@ static Boolean sorttest(int[] B) {
   for (i=0; i<B.length; i++) {
     A[i] = new Integer(B[i]);
   }
-  inssort(A);
+  insertionsort(A);
   if (!checkorder(A)) { return false };
 
   //  KVPair[] AKV = (KVPair[])new Object[B.length];
   //  for (i=0; i<B.length; i++)
   //    AKV[i] = new KVPair(new Integer(B[i]), new Integer(B[i]));
-  //  inssort(A);
+  //  insertionsort(A);
   //  if (!checkorder(A)) return false;
   return true;
 }
 
 /* *** ODSATag: Insertionsort *** */
-static <T extends Comparable<T>> void inssort(T[] A) {
+static <T extends Comparable<T>> void insertionsort(T[] A) {
   for (int i=1; i < A.length; i++) { // Insert i'th record
     for (int j=i; j > 0 && A[j].compareTo(A[j-1]) < 0; j--) {
       swap(A, j, j-1);

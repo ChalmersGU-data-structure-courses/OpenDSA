@@ -16,7 +16,7 @@
       <div class="vars">
         <var id="arrSize">Khan.randRange(6, 10)</var>
         <var id="sortPos">Khan.randRange(2, arrSize-1)</var>
-        <var id="JSAV">inssortPRO.initJSAV(arrSize, sortPos)</var>
+        <var id="JSAV">insertionsortPRO.initJSAV(arrSize, sortPos)</var>
       </div>
       <div class="problems">
         <div id="InssortPROp"> <!-- Supresses answer box -->
@@ -35,12 +35,12 @@
             <div id="InssortPRO" class="jsavcanvas"></div>
           </div>
           <div class="solution" data-type="custom">
-            <div class="guess"> [inssortPRO.userInput] </div>
+            <div class="guess"> [insertionsortPRO.userInput] </div>
             <div class="validator-function">
-              if (!inssortPRO.checkAnswer(arrSize) && !guess[0]) {
+              if (!insertionsortPRO.checkAnswer(arrSize) && !guess[0]) {
               return ""; // User did not click, and correct answer is not
                          // initial array state
-              } else { return inssortPRO.checkAnswer(arrSize); }
+              } else { return insertionsortPRO.checkAnswer(arrSize); }
             </div>
           </div>
           <div class="hints">

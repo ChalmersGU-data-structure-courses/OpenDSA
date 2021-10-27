@@ -153,7 +153,7 @@ static Boolean sorttest(int[] B) {
   //  KVPair[] AKV = (KVPair[])new Object[B.length];
   //  for (i=0; i<B.length; i++)
   //    AKV[i] = new KVPair(new Integer(B[i]), new Integer(B[i]));
-  //  inssort(A);
+  //  insertionsort(A);
   //  if (!checkorder(A)) return false;
   return true;
 }

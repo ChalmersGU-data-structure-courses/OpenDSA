@@ -9,7 +9,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i = 0; i < B.length; i++) A[i] = B[i];
   time1 = new Date();
-  selsort(A);
+  selectionsort(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -20,7 +20,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i = 0; i < B.length; i++) A[i] = B[i];
   time1 = new Date();
-  selsortcheck(A);
+  selectionsortcheck(A);
   time2 = new Date();
   checkorder(A);
 totaltime += (time2-time1);
@@ -28,8 +28,8 @@ totaltime += (time2-time1);
   console.log("Selection Sort/Check swaps: Size " + testsize + ", Time: " + totaltime);
 }
 
-// Same as selsort, but check if the swap is necessary
-function selsortcheck(A) {
+// Same as selectionsort, but check if the swap is necessary
+function selectionsortcheck(A) {
   for (var i = 0; i < A.length - 1; i++) { // Select i'th biggest record
     var bigindex = 0;                // Current biggest index
     for (var j = 1; j < A.length - i; j++) // Find the max value
@@ -46,11 +46,11 @@ function success() {
 }
 
 function sorttest(A) {
-  selsort(A);
+  selectionsort(A);
 }
 
 /* *** ODSATag: Selectionsort *** */
-function selsort(A) {
+function selectionsort(A) {
   for (var i = 0; i < A.length - 1; i++) { // Select i'th biggest record
     var bigindex = 0;                // Current biggest index
     for (var j = 1; j < A.length - i; j++) // Find the max value

@@ -7,7 +7,7 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    selsort(A)
+    selectionsort(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
@@ -18,14 +18,14 @@ def sorttime(B):
     for i in range(len(B)):
       A[i] = B[i]
     time1 = datetime.now()
-    selsortcheck(A)
+    selectionsortcheck(A)
     time2 = datetime.now()
     checkorder(A)
     totaltime += millis(time2-time1)
   print "Selectionsort Sort/Check swaps: Size ", testsize, ", Time: ", totaltime
 
-# Same as selsort, but check if the swap is necessary
-def selsortcheck(A):
+# Same as selectionsort, but check if the swap is necessary
+def selectionsortcheck(A):
   for i in range(len(A)):                  # Select i'th biggest record
     bigindex = 0                           # Current biggest index
     for j in range(1, len(A) - i):         # Find the max value
@@ -38,10 +38,10 @@ def success():
   print "Success! (Need to define this)"
 
 def sorttest(A):
-  selsort(A)
+  selectionsort(A)
 
 # /* *** ODSATag: Selectionsort *** */
-def selsort(A):
+def selectionsort(A):
   for i in range(len(A)-1):            # Select i'th biggest record
     bigindex = 0                       # Current biggest index
     for j in range (1, len(A)-i):      # Find the max value

@@ -1,7 +1,7 @@
 // Various Insertionsort algorithms, followed by driver function named "sorttime"
 
 // Standard insertion sort (on int's)
-static void inssort(int[] A, int startpos, int length) {
+static void insertionsort(int[] A, int startpos, int length) {
   int temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j] < A[j-1]); j--) {
@@ -11,7 +11,7 @@ static void inssort(int[] A, int startpos, int length) {
 
 // Same as standard insertion sort, except get rid of the swap
 // function call
-static void inssort2(int[] A, int startpos, int length) {
+static void insertionsort2(int[] A, int startpos, int length) {
   int temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j] < A[j-1]); j--) {
@@ -20,7 +20,7 @@ static void inssort2(int[] A, int startpos, int length) {
 }
 
 // Standard insertion sort for Integer class
-static void inssortInteger(Integer[] A, int startpos, int length) {
+static void insertionsortInteger(Integer[] A, int startpos, int length) {
   int temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j].compareTo(A[j-1]) < 0); j--) {
@@ -29,7 +29,7 @@ static void inssortInteger(Integer[] A, int startpos, int length) {
 }
 
 // Standard insertion sort for double type array
-static void inssortDouble(double[] A,int startpos, int length) {
+static void insertionsortDouble(double[] A,int startpos, int length) {
   int temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j] < A[j-1]); j--) {
@@ -39,7 +39,7 @@ static void inssortDouble(double[] A,int startpos, int length) {
 
 // Same as standard insertion sort, except get rid of the swap
 // function call
-static void inssort2Integer(Integer[] A, int startpos, int length) {
+static void insertionsort2Integer(Integer[] A, int startpos, int length) {
   Integer temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j].compareTo(A[j-1]) < 0); j--) {
@@ -50,7 +50,7 @@ static void inssort2Integer(Integer[] A, int startpos, int length) {
 
 // Same as standard insertion sort, except get rid of the swap
 // function call
-static void inssort2Double(double[] A, int startpos, int length) {
+static void insertionsort2Double(double[] A, int startpos, int length) {
   double temp;
   for (int i = startpos + 1; i < startpos + length; i++) // Insert i'th record
     for (int j = i; (j>startpos) && (A[j] < A[j-1]); j--) {
@@ -69,20 +69,20 @@ int testsize = temporaryValue.intValue(); // Put this here so that we can easily
   System.out.println("Insertion Sort");
   System.out.println("Method Name,  Array Type, Array Size,Data Distribution,Time");
 
-  // inssort
+  // insertionsort
 if(dataType.equals("int"))
 {
-  testsortallint("inssort", testsize);
-  testsortallint("inssort2", testsize);
+  testsortallint("insertionsort", testsize);
+  testsortallint("insertionsort2", testsize);
 }
 else if(dataType.equals("Integer"))
 {
-  testsortallInteger("inssortInteger",testsize);
-  testsortallInteger("inssort2Integer",testsize);
+  testsortallInteger("insertionsortInteger",testsize);
+  testsortallInteger("insertionsort2Integer",testsize);
 }
 else if(dataType.equals("double"))
 {
-  testsortallDouble("inssortDouble",testsize);
-  testsortallDouble("inssort2Double",testsize);
+  testsortallDouble("insertionsortDouble",testsize);
+  testsortallDouble("insertionsort2Double",testsize);
 }
 }

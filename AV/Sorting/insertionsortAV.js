@@ -29,7 +29,7 @@ $(document).ready(function() {
   }
 
   // Insertion Sort
-  function inssort() {
+  function insertionsort() {
     var i, j;
     av.umsg(interpret("av_c3"));
     pseudo.setCurrentLine("sig");
@@ -81,7 +81,7 @@ $(document).ready(function() {
       pseudo = av.code(code);
       av.umsg(interpret("av_c1"));
       av.displayInit();
-      inssort();
+      insertionsort();
       arr.unhighlight();
       arr.removeClass(true, "processing");
       arr.removeClass(true, "whitetext");

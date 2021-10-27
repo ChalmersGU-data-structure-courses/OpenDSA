@@ -79,7 +79,7 @@ static <T extends Comparable<T>> void mergesort(T[] A, T[] temp, int left, int r
 }
 /* *** ODSAendTag: Mergesort *** */
 
-static void inssort(Comparable[] A, int left, int right) {
+static void insertionsort(Comparable[] A, int left, int right) {
   for (int i=left+1; i<=right; i++)        // Insert i'th record
     for (int j=i; (j>left) && (A[j].compareTo(A[j-1]) < 0); j--)
       Swap.swap(A, j, j-1);
@@ -94,11 +94,11 @@ static <T extends Comparable<T>> void mergesortOpt(T[] A, T[] temp, int left, in
   if (mid-left >= THRESHOLD)
     mergesortOpt(A, temp, left, mid);
   else
-    inssort(A, left, mid);
+    insertionsort(A, left, mid);
   if (right-mid > THRESHOLD)
     mergesortOpt(A, temp, mid+1, right);
   else
-    inssort(A, mid+1, right);
+    insertionsort(A, mid+1, right);
   // Do the merge operation.  First, copy 2 halves to temp.
   for (i=left; i<=mid; i++) {
     temp[i] = A[i];

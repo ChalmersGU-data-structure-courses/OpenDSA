@@ -8,13 +8,13 @@
       selectedIndex,
       currIndex; // Position that has been selected by user for swap
 
-  var inssortPRO = {
+  var insertionsortPRO = {
     userInput: null,      // Boolean: Tells us if user ever did anything
 
     // Initialise the exercise
     initJSAV: function(arrSize, sortPos) {
       var i, j;
-      inssortPRO.userInput = false;
+      insertionsortPRO.userInput = false;
 
       answerArr.length = 0; // Out with the old
       // Give random numbers in range 0..999
@@ -69,7 +69,7 @@
       jsavArr.css(selectedIndex, {"font-size": "100%"});
       selectedIndex = -1;  // Reset to nothing selected
     }
-    inssortPRO.userInput = true;
+    insertionsortPRO.userInput = true;
   }
 
   // reset function definition
@@ -86,7 +86,7 @@
     av.recorded();
 
     jsavArr.click(clickHandler); // (Re-)bind click handler
-    inssortPRO.userInput = false;
+    insertionsortPRO.userInput = false;
     selectedIndex = -1;
   }
 
@@ -97,5 +97,5 @@
     arr[j] = temp;
   }
 
-  window.inssortPRO = window.inssortPRO || inssortPRO;
+  window.insertionsortPRO = window.insertionsortPRO || insertionsortPRO;
 }());

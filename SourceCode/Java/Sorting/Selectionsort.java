@@ -12,7 +12,7 @@ for (runs=0; runs<numruns; runs++) {
   for (i=0; i<B.length; i++)
     Aint[i] = new Integer(B[i]);
   time1 = millis();
-  selsort(Aint);
+  selectionsort(Aint);
   time2 = millis();
   checkorder(Aint);
 totaltime += (time2-time1);
@@ -23,7 +23,7 @@ totaltime = 0;
 for (runs=0; runs<numruns; runs++) {
   for(i=0; i<B.length; i++) A[i] = B[i];
   time1 = millis();
-  selsortcheck(A);
+  selectionsortcheck(A);
   time2 = millis();
   checkorder(A);
 totaltime += (time2-time1);
@@ -31,8 +31,8 @@ totaltime += (time2-time1);
   println("Standard Selection Sort: Size " + testsize + ", Time: " + totaltime);
 }
 
-// Same as selsort, but check if the swap is necessary
-static void selsortcheck(int[] A) {
+// Same as selectionsort, but check if the swap is necessary
+static void selectionsortcheck(int[] A) {
   for (int i=0; i<A.length-1; i++) { // Select i'th biggest record
     int bigindex = 0;                // Current biggest index
     for (int j=1; j<A.length-i; j++) // Find the max value
@@ -49,19 +49,19 @@ static Boolean sorttest(int[] B) {
   Integer[] A = new Integer[B.length];
   for (i=0; i<B.length; i++)
     A[i] = new Integer(B[i]);
-  selsort(A);
+  selectionsort(A);
   if (!checkorder(A)) return false;
 
   //  KVPair[] AKV = (KVPair[])new Object[B.length];
   //  for (i=0; i<B.length; i++)
   //    AKV[i] = new KVPair(new Integer(B[i]), new Integer(B[i]));
-  //  inssort(A);
+  //  insertionsort(A);
   //  if (!checkorder(A)) return false;
   return true;
 }
 
 /* *** ODSATag: Selectionsort *** */
-static <T extends Comparable<T>> void selsort(T[] A) {
+static <T extends Comparable<T>> void selectionsort(T[] A) {
   for (int i=0; i<A.length-1; i++) {       // Select i'th biggest record
     int bigindex = 0;                      // Current biggest index
     for (int j=1; j<A.length-i; j++)       // Find the max value
