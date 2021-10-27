@@ -170,6 +170,7 @@
       "Hashing/HashFunc": {},
       "Hashing/HashFuncExamp": {},
       "Hashing/OpenHash": {},
+      "Hashing/HashToIndex": {},
       "Hashing/BucketHash": {},
       "Hashing/HashCSimple": {},
       "Hashing/HashCImproved": {},
