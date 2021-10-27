@@ -44,7 +44,7 @@ class LinkedListMap<K, V> implements Map<K, V> {
             node = node.next;
         }
         return null;
-    }        
+    }
 
     public V remove(K key) {
         KVNode prev = null;
@@ -63,7 +63,7 @@ class LinkedListMap<K, V> implements Map<K, V> {
             node = node.next;
         }
         return null;
-    }            
+    }
 
     public boolean containsKey(K key) {
         KVNode node = head;
