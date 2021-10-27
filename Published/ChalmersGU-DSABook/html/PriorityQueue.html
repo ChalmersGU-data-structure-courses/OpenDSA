@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9.1. Priority queues (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>8.1. Priority queues (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -45,7 +45,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
     <link rel="next" title="2. Array Implementation for Complete Binary Trees (WORK IN PROGRESS)" href="CompleteTree.html" />
-    <link rel="prev" title="6. Skip Lists (WORK IN PROGRESS)" href="SkipList.html" />
+    <link rel="prev" title="10. Binary Search Tree Chapter Summary (WORK IN PROGRESS)" href="BSTChapSumm.html" />
 
   </head>
 
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 9 Priority Queues</span></h2>
+              <h2 class="heading" ><span>Chapter 8 Priority Queues</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="BSTChapSumm.html">7.<span class="section-number">10. </span>Binary Search Tree Chapter Summary (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues-work-in-progress">
-<h1>9.<span class="section-number">1. </span>Priority queues (WORK IN PROGRESS)<a class="headerlink" href="#priority-queues-work-in-progress" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues-work-in-progress">
+<h1>8.<span class="section-number">1. </span>Priority queues (WORK IN PROGRESS)<a class="headerlink" href="#priority-queues-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="priority-queues">
-<h2>9.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
+<h2>8.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
 <p>So far we have seen two <a class="reference internal" href="Glossary.html#term-adt"><span class="xref std std-term">ADTs</span></a> that represent a collection
 of objects, and support adding and removing objects:</p>
 <ul class="simple">
@@ -228,7 +228,7 @@ both adding and removing the minimum take <span class="math notranslate nohighli
 <p>Now let’s look at a couple of applications of priority queues.</p>
 </div>
 <div class="section" id="sorting">
-<h2>9.<span class="section-number">1.2. </span>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
+<h2>8.<span class="section-number">1.2. </span>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
 <p>We can use a priority queue to make an efficient sorting algorithm. To
 sort a list of items:</p>
 <ul class="simple">
@@ -291,7 +291,7 @@ runtime is <span class="math notranslate nohighlight">\(O(n \log n)\)</span> –
 algorithms we have seen so far!</p>
 </div>
 <div class="section" id="finding-the-top-100-items">
-<h2>9.<span class="section-number">1.3. </span>Finding the top 100 items<a class="headerlink" href="#finding-the-top-100-items" title="Permalink to this headline">¶</a></h2>
+<h2>8.<span class="section-number">1.3. </span>Finding the top 100 items<a class="headerlink" href="#finding-the-top-100-items" title="Permalink to this headline">¶</a></h2>
 <p>Suppose that we are running a bank. Every day, every transaction that
 occurs at the bank is recorded in a list. When the bank closes at the
 end of the day, we would like to find the 100 highest-valued
@@ -405,11 +405,11 @@ elements. If we generalize this problem to keeping track of the top
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="SkipList.html">8.<span class="section-number">6. </span>Skip Lists (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="BSTChapSumm.html">7.<span class="section-number">10. </span>Binary Search Tree Chapter Summary (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="CompleteTree.html">9.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>

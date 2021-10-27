@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryChapSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Chapter Summary (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryChapSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Chapter Summary";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -23,11 +23,11 @@
 .. avmetadata::
    :author: Cliff Shaffer
    :satisfies: binary tree space requirements
-   :requires: binary tree terminology; binary tree space requirements; BST; complete tree; heap; Huffman coding tree
+   :requires: binary tree terminology; binary tree space requirements
    :topic: Binary Trees
 
-Binary Tree Chapter Summary (WORK IN PROGRESS)
-=================================================
+Binary Tree Chapter Summary
+===========================
 
 Summary Questions
 -----------------

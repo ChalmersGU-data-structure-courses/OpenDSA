@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :author: Sally Hamouda and Cliff Shaffer
    :topic: Advanced Recursion
 
-A Hard Information Flow Problem (WORK IN PROGRESS)
-=====================================================
+A Hard Information Flow Problem (optional)
+==========================================
 
 Sometimes, passing the right information up and down the tree to
 control a recursive function gets complicated.

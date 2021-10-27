@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "InSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "InSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Sorting";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,6 +28,13 @@
 
 Chapter Introduction: Sorting
 =============================
+
+We have seen that, when an array is sorted in ascending order, *binary
+search* can be used to find items in it efficiently. But what about
+when we have a collection of data that is not in any order? If we will
+often need to search for items in the data, it makes sense to *sort
+the data* first. In this chapter we will study algorithms for sorting
+arrays in ascending order.
 
 We sort many things in our everyday lives:
 A handful of cards when playing Bridge;

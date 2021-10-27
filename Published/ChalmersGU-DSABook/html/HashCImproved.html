@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.7. Improved Collision Resolution (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>9.7. Improved Collision Resolution (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -138,7 +138,7 @@
             <div class="title-content">
               <h1 class="heading" ><a href="index.html">
                 <span>Data Structures and Algorithms</span></a></h1>
-              <h2 class="heading" ><span>Chapter 10 Hash Tables</span></h2>
+              <h2 class="heading" ><span>Chapter 9 Hash Tables</span></h2>
             </div>
           </div>
         </div>
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="HashCSimple.html">10.<span class="section-number">6. </span>Collision Resolution (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="HashCSimple.html">9.<span class="section-number">6. </span>Collision Resolution (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="HashAnal.html">10.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="HashAnal.html">9.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linear-probing-by-steps', 'pseudo-random-probing', 'quadratic-probing', 'double-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:52"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/collisionCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linear-probing-by-steps', 'pseudo-random-probing', 'quadratic-probing', 'double-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:05:27"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/collisionCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="improved-collision-resolution-work-in-progress">
-<h1>10.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)<a class="headerlink" href="#improved-collision-resolution-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<h1>9.<span class="section-number">7. </span>Improved Collision Resolution (WORK IN PROGRESS)<a class="headerlink" href="#improved-collision-resolution-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="linear-probing-by-steps">
-<h2>10.<span class="section-number">7.1. </span>Linear Probing by Steps<a class="headerlink" href="#linear-probing-by-steps" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">7.1. </span>Linear Probing by Steps<a class="headerlink" href="#linear-probing-by-steps" title="Permalink to this headline">¶</a></h2>
 <p>How can we avoid primary clustering?
 One possible improvement might be to use linear probing,
 but to skip slots by some constant <span class="math notranslate nohighlight">\(c\)</span> other than 1.
@@ -265,7 +265,7 @@ probe sequence that visits all slots for every key.</p>
 </div>
 </div>
 <div class="section" id="pseudo-random-probing">
-<h2>10.<span class="section-number">7.2. </span>Pseudo-Random Probing<a class="headerlink" href="#pseudo-random-probing" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">7.2. </span>Pseudo-Random Probing<a class="headerlink" href="#pseudo-random-probing" title="Permalink to this headline">¶</a></h2>
 <p>Consider the situation where <span class="math notranslate nohighlight">\(c = 2\)</span> and we wish to insert a record
 with key <span class="math notranslate nohighlight">\(k_1\)</span> such that
 <span class="math notranslate nohighlight">\(\textbf{h}(k_1) = 3\)</span>.
@@ -362,7 +362,7 @@ function.</p>
 <p></p>
 </div>
 <div class="section" id="quadratic-probing">
-<h2>10.<span class="section-number">7.3. </span>Quadratic Probing<a class="headerlink" href="#quadratic-probing" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">7.3. </span>Quadratic Probing<a class="headerlink" href="#quadratic-probing" title="Permalink to this headline">¶</a></h2>
 <p>Another probe function that eliminates
 primary clustering is called
 <a class="reference internal" href="Glossary.html#term-quadratic-probing"><span class="xref std std-term">quadratic probing</span></a>.
@@ -458,7 +458,7 @@ function is <span class="math notranslate nohighlight">\(\textbf{p}(K, i) = (i^2
 then every slot in the table will be visited by the probe function.</p>
 </div>
 <div class="section" id="double-hashing">
-<h2>10.<span class="section-number">7.4. </span>Double Hashing<a class="headerlink" href="#double-hashing" title="Permalink to this headline">¶</a></h2>
+<h2>9.<span class="section-number">7.4. </span>Double Hashing<a class="headerlink" href="#double-hashing" title="Permalink to this headline">¶</a></h2>
 <p>Both pseudo-random probing and quadratic probing eliminate
 primary clustering, which is the name given to the the situation when
 keys share substantial segments of a probe sequence.
@@ -631,11 +631,11 @@ This is not a problem for typical hashing applications.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="HashCSimple.html">10.<span class="section-number">6. </span>Collision Resolution (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="HashCSimple.html">9.<span class="section-number">6. </span>Collision Resolution (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="HashAnal.html">10.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="HashAnal.html">9.<span class="section-number">8. </span>Analysis of Closed Hashing (WORK IN PROGRESS)</a>&#160;&#160;»
 
 </p>
       </div>
