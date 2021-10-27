@@ -2,7 +2,7 @@ Ordered sets and maps: All sets support the operation of checking if an item is 
 
 Some implementations of sets and maps support more operations besides these. In particular, binary search trees support many operations based on the *order* of the elements. In this section we will see some of these operations.
 
-Minimum and maximum: We can easily find the minimum or maximum element of a binary search tree. To find the minimum, we start at the root of the tree and @go as far left as possible@. That is, we descend into the root's left child, then into that node's left child, and so on. We stop once we find a node whose left child is null - that node contains the smallest element. For a map, this returns the smallest key. To find the maximum, we do the same algorithm, but going right instead of left.
+Minimum and maximum: We can easily find the minimum or maximum element of a binary search tree. To find the minimum, we start at the root of the tree and *go as far left as possibleG. That is, we descend into the root's left child, then into that node's left child, and so on. We stop once we find a node whose left child is null - that node contains the smallest element. For a map, this returns the smallest key. To find the maximum, we do the same algorithm, but going right instead of left.
 
 <<code>> - <<demo?>> - <<exercise?>>
 
@@ -27,22 +27,21 @@ As usual, we will start at the root node and recurse into one of the children. S
 
 By coding up these rules we get an algorithm for computing the successor. The algorithm returns null if the item has no successor.
 
-Item successor(Item x):
+successor(x : Key) : Key
   return successor(root, x)
 
-Item successor(Node node, Item x):
-  if node == null: return null
-  if node.value < x:
+successor(node : Node, x : Item) : Item
+  if node = null
+    return null
+  if node.key < x
     return successor(node.right, x)
-  elif node.value == x:
+  else if node.key = x
     return successor(node.left, x)
-  else: £ here node.value > x
-    £ the successor is either in the left subtree,
-    £ or else it's this node
-    Node succ = successor(node.left, x)
-    if succ == null: £ no successor in the left subtree
+  else // node.key > x
+    // the successor is either in the left subtree,
+    // or else it's this node
+    succ : Node = successor(node.left, x)
+    if succ = null // no successor in the left subtree
       return node
-    else: £ successor is in the left subtree
+    else // successor is in the left subtree
       return succ
-
-<<demo>>
