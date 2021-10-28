@@ -78,12 +78,16 @@ takes :math:`O(n)` time in the worst case. So, first we find the position
 (which takes :math:`O(n)` time), and then we remove it (which takes another :math:`O(n)` time).
 This is double the work than it should be, which is unnecessary.
 
-This would constitute no problem if the **Iterator** interface would include a method for
-removing the "current" element from a list, which our simple API doesn't have.
-However, in the "real" Java API, iterators have a "remove-the-current" method,
-so in "real life" it's not a problem to do this.
+.. codeinclude:: ChalmersGU/ListMap
+   :tag: Remove
 
-Implementing the ``remove`` method is left as an exercise to the reader.
+If the **Iterator** interface would include a method for
+removing the "current" element from a list, it would be possible to improve the method.
+Our simple API doesn't have that possibility, so we have to stick with the slightly slower version.
+However, in the "real" Java API, iterators have a "remove-the-current" method,
+so it is possible to optimise removal a little bit.
+Implementing the ``remove`` method using teh ``delete`` method of
+Java Iterators is left as an exercise to the reader.
 
 
 Using linked key-value nodes

@@ -95,5 +95,5 @@ unless items are always transferred directly from one queue to the other.
 Stack and Queue Summary Questions
 ----------------------------------
 
-.. avembed:: Exercises/List/StackQSumm.html ka
+.. avembed:: Exercises/ChalmersGU/StackQueue-Summary-QUIZ.html ka
    :long_name: Stack/Queue Summary Exercise

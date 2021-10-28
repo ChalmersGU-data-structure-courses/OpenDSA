@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.7. Doubly Linked Lists (optional) &mdash; Data Structures and Algorithms</title>
+    <title>4.8. Doubly Linked Lists (optional) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="8. Dynamic Array-Based Stacks" href="StackArray.html" />
-    <link rel="prev" title="6. Comparison of List Implementations" href="ListAnalysis.html" />
+    <link rel="next" title="9. Dynamic Array-Based Stacks" href="StackArray.html" />
+    <link rel="prev" title="7. Implementing Maps using Lists" href="ListMap.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListAnalysis.html">4.<span class="section-number">6. </span>Comparison of List Implementations</a>
+        «&#160;&#160;<a id="prevmod" href="ListMap.html">4.<span class="section-number">7. </span>Implementing Maps using Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="StackArray.html">4.<span class="section-number">8. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
+        <a  id="nextmod" href="StackArray.html">4.<span class="section-number">9. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['doubly-linked-lists', 'implementation-of-the-list-methods', 'addinginserting-elements', 'removing-elements', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/DoubleLinkList.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['doubly-linked-lists', 'implementation-of-the-list-methods', 'addinginserting-elements', 'removing-elements', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListDouble";ODSA.SETTINGS.MODULE_LONG_NAME = "Doubly Linked Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/DoubleLinkList.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="doubly-linked-lists-optional">
-<h1>4.<span class="section-number">7. </span>Doubly Linked Lists (optional)<a class="headerlink" href="#doubly-linked-lists-optional" title="Permalink to this headline">¶</a></h1>
+<h1>4.<span class="section-number">8. </span>Doubly Linked Lists (optional)<a class="headerlink" href="#doubly-linked-lists-optional" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="doubly-linked-lists">
-<h2>4.<span class="section-number">7.1. </span>Doubly Linked Lists<a class="headerlink" href="#doubly-linked-lists" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">8.1. </span>Doubly Linked Lists<a class="headerlink" href="#doubly-linked-lists" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="ListLinked.html#listlinked"><span class="std std-ref">singly linked list</span></a> allows
 for direct access from a list node only to the next node in the list.
 A <a class="reference internal" href="Glossary.html#term-doubly-linked-list"><span class="xref std std-term">doubly linked list</span></a> allows convenient access from a list node
@@ -249,10 +249,10 @@ to the previous node, and a pointer to the tail of the list.</p>
 In fact, Java’s standard <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a> is implemented as a doubly linked list.</p>
 </div>
 <div class="section" id="implementation-of-the-list-methods">
-<h2>4.<span class="section-number">7.2. </span>Implementation of the list methods<a class="headerlink" href="#implementation-of-the-list-methods" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">8.2. </span>Implementation of the list methods<a class="headerlink" href="#implementation-of-the-list-methods" title="Permalink to this headline">¶</a></h2>
 <p>Getting and setting are exactly the same as for normal linked lists, so we don’t show them here.</p>
 <div class="section" id="adding-inserting-elements">
-<h3>4.<span class="section-number">7.2.1. </span>Adding/inserting elements<a class="headerlink" href="#adding-inserting-elements" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">8.2.1. </span>Adding/inserting elements<a class="headerlink" href="#adding-inserting-elements" title="Permalink to this headline">¶</a></h3>
 <p>Adding elements becomes a bit trickier, because we have to make sure that all pointers are updated correctly.
 We get some special cases – when the list is empty, or when we add before the head or after the tail.</p>
 <div id="DoubleLinkedList_DoubleLinkedListAdd_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListAdd_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
@@ -328,7 +328,7 @@ We get some special cases – when the list is empty, or when we add before the 
 </div>
 </div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedListAdd_code" ).tabs();});</script></div>
 <div class="section" id="removing-elements">
-<h3>4.<span class="section-number">7.2.2. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h3>
+<h3>4.<span class="section-number">8.2.2. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h3>
 <p>The same goes for removing elements – we get special cases when we remove the head or the tail.</p>
 <div id="DoubleLinkedList_DoubleLinkedListRemove_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedListRemove_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
         <span class="c1">// Precondition: listSize &gt; 0</span>
@@ -403,7 +403,7 @@ We get some special cases – when the list is empty, or when we add before the 
 </div></div><script>$(function() {$( "#DoubleLinkedList_DoubleLinkedListRemove_code" ).tabs();});</script></div>
 </div>
 <div class="section" id="full-implementation">
-<h2>4.<span class="section-number">7.3. </span>Full implementation<a class="headerlink" href="#full-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">8.3. </span>Full implementation<a class="headerlink" href="#full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full implementation of doubly linked lists.</p>
 <div id="DoubleLinkedList_DoubleLinkedList_code"><ul><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Pseudo">Pseudo-Code</a></li><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Java_Generic">Java</a></li><li><a href="#DoubleLinkedList_DoubleLinkedList_code_Python">Python</a></li></ul><div id="DoubleLinkedList_DoubleLinkedList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DoubleLinkedList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">head</span>     <span class="p">:</span> <span class="n">DNode</span>   <span class="c1">// Pointer to list header</span>
@@ -705,11 +705,11 @@ We get some special cases – when the list is empty, or when we add before the 
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListAnalysis.html">4.<span class="section-number">6. </span>Comparison of List Implementations</a>
+        «&#160;&#160;<a id="prevmod1" href="ListMap.html">4.<span class="section-number">7. </span>Implementing Maps using Lists</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="StackArray.html">4.<span class="section-number">8. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
+        <a  id="nextmod1" href="StackArray.html">4.<span class="section-number">9. </span>Dynamic Array-Based Stacks</a>&#160;&#160;»
 
 </p>
       </div>
@@ -724,7 +724,7 @@ We get some special cases – when the list is empty, or when we add before the 
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

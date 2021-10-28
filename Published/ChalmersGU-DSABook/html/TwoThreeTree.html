@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.7. 2-3 Trees (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>7.7. 2-3 Trees &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,129 +162,74 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['2-3-trees'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Indexing/twoThreeTreeCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="trees-work-in-progress">
-<h1>7.<span class="section-number">7. </span>2-3 Trees (WORK IN PROGRESS)<a class="headerlink" href="#trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['searching', 'insertion', 'deletion-optional'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Indexing/twoThreeTreeCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="trees">
-<h2>7.<span class="section-number">7.1. </span>2-3 Trees<a class="headerlink" href="#trees" title="Permalink to this headline">¶</a></h2>
-<p>This section presents a data structure called the 2-3 tree.
-The 2-3 tree is not a binary tree, but instead its shape
-obeys the following definition:</p>
-<ol class="arabic simple">
-<li><p>A node contains one or two keys.</p></li>
-<li><p>Every internal node has either two children (if it contains one key)
-or three children (if it contains two keys).  Hence the name.</p></li>
-<li><p>All leaves are at the same level in the tree, so
-the tree is always height balanced.</p></li>
-</ol>
-<p>In addition to these shape properties, the 2-3 tree has a search tree
-property analogous to that of a BST.
-For every node, the values of all descendants in the left subtree are
-less than the value of the first key, while values in the center
-subtree are greater than or equal to the value of the first key.
-If there is a right subtree (equivalently, if the node stores two
-keys), then the values of all descendants in the center subtree are
-less than the value of the second key, while values in the right
-subtree are greater than or equal to the value of the second key.
-To maintain these shape and search properties requires that special
-action be taken when nodes are inserted and deleted.
-The 2-3 tree has the advantage over the BST in that the 2-3 tree can
-be kept height balanced at relatively low cost.
-Here is an example 2-3 tree.</p>
+<h1>7.<span class="section-number">7. </span>2-3 Trees<a class="headerlink" href="#trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>7.<span class="section-number">7.1. </span>2-3 Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>This section presents a data structure called the 2-3 tree. Recall
+that in a binary tree, every node has one key and two children.
+In a 2-3 tree, there are instead two different kinds of nodes, called
+<em>2-nodes</em> and <em>3-nodes</em>:</p>
+<ul class="simple">
+<li><p>A 2-node has one key and two children, just the same as a node in a
+binary tree.</p></li>
+<li><p>A 3-node has <em>two</em> keys and <em>three</em> children.</p></li>
+</ul>
+<p>Here is an example of a 2-3 tree. In this tree, the root is a 3-node:
+it has two keys (18 and 32) and three children. The left child of the
+root is a 2-node containing the key 12. (In practice, nodes might
+contain key-value pairs, but the figures will show only the keys.)</p>
 <div class="divdgm" id="ttexamp">
 <div id="twoThreedgmCON">
 </div>
 <p class="caption"><span class="caption-text"> Figure 7.8.1: An example of a 2-3 tree.</span></p>
 </div>
-<p>Nodes are shown as rectangular boxes with two key fields.
-(These nodes actually would contain complete records or pointers to
-complete records, but the figures will show only the keys.)
-Internal nodes with only two children have an empty right key field.
-Leaf nodes might contain either one or two keys.
-Here is an implementation for the 2-3 tree node class.</p>
-<div id="TTNode_code"><ul><li><a href="#TTNode_code_Java_Generic">Java</a></li><li><a href="#TTNode_code_Python">Python</a></li></ul><div id="TTNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// 2-3 tree node implementation</span>
-<span class="kd">class</span> <span class="nc">TTNode</span><span class="o">&lt;</span><span class="n">Key</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">E</span> <span class="n">lval</span><span class="p">;</span>        <span class="c1">// The left record</span>
-  <span class="kd">private</span> <span class="n">Key</span> <span class="n">lkey</span><span class="p">;</span>        <span class="c1">// The node&#39;s left key</span>
-  <span class="kd">private</span> <span class="n">E</span> <span class="n">rval</span><span class="p">;</span>        <span class="c1">// The right record</span>
-  <span class="kd">private</span> <span class="n">Key</span> <span class="n">rkey</span><span class="p">;</span>        <span class="c1">// The node&#39;s right key</span>
-  <span class="kd">private</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>   <span class="c1">// Pointer to left child</span>
-  <span class="kd">private</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">center</span><span class="p">;</span> <span class="c1">// Pointer to middle child</span>
-  <span class="kd">private</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span>  <span class="c1">// Pointer to right child</span>
-
-  <span class="kd">public</span> <span class="nf">TTNode</span><span class="p">()</span> <span class="p">{</span> <span class="n">center</span> <span class="o">=</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="nf">TTNode</span><span class="p">(</span><span class="n">Key</span> <span class="n">lk</span><span class="p">,</span> <span class="n">E</span> <span class="n">lv</span><span class="p">,</span> <span class="n">Key</span> <span class="n">rk</span><span class="p">,</span> <span class="n">E</span> <span class="n">rv</span><span class="p">,</span>
-                <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p2</span><span class="p">,</span>
-                <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">lkey</span> <span class="o">=</span> <span class="n">lk</span><span class="p">;</span> <span class="n">rkey</span> <span class="o">=</span> <span class="n">rk</span><span class="p">;</span>
-    <span class="n">lval</span> <span class="o">=</span> <span class="n">lv</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="n">rv</span><span class="p">;</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="n">p1</span><span class="p">;</span> <span class="n">center</span> <span class="o">=</span> <span class="n">p2</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">p3</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">lchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">rchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">cchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">center</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">Key</span> <span class="nf">lkey</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">lkey</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Left key</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">lval</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">lval</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Left value</span>
-  <span class="kd">public</span> <span class="n">Key</span> <span class="nf">rkey</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rkey</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Right key</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">rval</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rval</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Right value</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeft</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">lkey</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">lval</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRight</span><span class="p">(</span><span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span> <span class="n">rkey</span> <span class="o">=</span> <span class="n">k</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="n">e</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeftChild</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">it</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setCenterChild</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">)</span>
-    <span class="p">{</span> <span class="n">center</span> <span class="o">=</span> <span class="n">it</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRightChild</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">)</span>
-    <span class="p">{</span> <span class="n">right</span> <span class="o">=</span> <span class="n">it</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="TTNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 2-3 tree node implementation</span>
-<span class="k">class</span> <span class="nc">TTNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lkey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">lval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rkey</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">rval</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lkey</span> <span class="o">=</span> <span class="n">lkey</span>     <span class="c1"># The node&#39;s left key</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rkey</span> <span class="o">=</span> <span class="n">rkey</span>     <span class="c1"># The node&#39;s right key</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lval</span> <span class="o">=</span> <span class="n">lval</span>     <span class="c1"># The left record</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">rval</span> <span class="o">=</span> <span class="n">rval</span>     <span class="c1"># The right record</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>     <span class="c1"># Pointer to left child</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">center</span> <span class="c1"># Pointer to middle child</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>   <span class="c1"># Pointer to right child</span>
-
-    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span>
-    <span class="k">def</span> <span class="nf">lchild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span>
-    <span class="k">def</span> <span class="nf">rchild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span>
-    <span class="k">def</span> <span class="nf">cchild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span>
-    <span class="k">def</span> <span class="nf">lkey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lkey</span>  <span class="c1"># Left key</span>
-    <span class="k">def</span> <span class="nf">lval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lval</span>  <span class="c1"># Left value</span>
-    <span class="k">def</span> <span class="nf">rkey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rkey</span>  <span class="c1"># Right key</span>
-    <span class="k">def</span> <span class="nf">rval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>   <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rval</span>  <span class="c1"># Right value</span>
-
-    <span class="k">def</span> <span class="nf">setLeft</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>      <span class="bp">self</span><span class="o">.</span><span class="n">lkey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lval</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span>
-    <span class="k">def</span> <span class="nf">setRight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>     <span class="bp">self</span><span class="o">.</span><span class="n">rkey</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">rval</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span>
-    <span class="k">def</span> <span class="nf">setLeftChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">):</span>   <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">it</span>
-    <span class="k">def</span> <span class="nf">setCenterChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">):</span> <span class="bp">self</span><span class="o">.</span><span class="n">center</span> <span class="o">=</span> <span class="n">it</span>
-    <span class="k">def</span> <span class="nf">setRightChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">):</span>  <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">it</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#TTNode_code" ).tabs();});</script><p>Note that this sample declaration does not distinguish
-between leaf and internal nodes and so is space inefficient, because
-leaf nodes store three pointers each.
-We can use a <a class="reference internal" href="BinaryTreeImpl.html#binarytreeimpl"><span class="std std-ref">class hierarcy</span></a>
-to implement separate internal and leaf node types.</p>
-<p>From the defining rules for 2-3 trees we can derive relationships
-between the number of nodes in the tree and the depth of the tree.
-A 2-3 tree of height <span class="math notranslate nohighlight">\(k\)</span> has at least <span class="math notranslate nohighlight">\(2^{k-1}\)</span> leaves,
-because if every internal node has two children it degenerates to the
-shape of a complete binary tree.
-A 2-3 tree of height <span class="math notranslate nohighlight">\(k\)</span> has at most <span class="math notranslate nohighlight">\(3^{k-1}\)</span> leaves,
-because each internal node can have at most three children.</p>
-<p>Searching for a value in a 2-3 tree is similar to searching in a BST.
+<p>In order to be valid, a 2-3 tree must obey certain properties.
+Firstly, every node must obey a <em>search tree</em> property similar to
+BSTs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>For a 2-node with key <span class="math notranslate nohighlight">\(k\)</span>:</dt><dd><ul>
+<li><p>All keys in the left subtree must be less than <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+<li><p>All keys in the right subtree must be greater than <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>For a 3-node with keys <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>:</dt><dd><ul>
+<li><p>We must have <span class="math notranslate nohighlight">\(k_1 &lt; k_2\)</span>.</p></li>
+<li><p>All keys in the left subtree must be less than <span class="math notranslate nohighlight">\(k_1\)</span>.</p></li>
+<li><p>All keys in the middle subtree must be between <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span>.</p></li>
+<li><p>All keys in the right subtree must be greater than <span class="math notranslate nohighlight">\(k_2\)</span>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Secondly, all leaf nodes (<code class="docutils literal notranslate"><span class="pre">null</span></code>) must be at the same level in the
+tree. When a tree obeys this property, we say that it is <a class="reference internal" href="Glossary.html#term-height-balanced"><span class="xref std std-term">height
+balanced</span></a>. So a 2-3 tree is always height balanced.</p>
+<p>You can check that the tree above is a valid 2-3 tree: It is made of
+2-nodes and 3-nodes, obeys the search tree property and is height balanced.</p>
+<p>So far, it seems that we have just taken the idea of a BST and
+complicated it by adding another type of node. Why have we done this?
+The reason is the <span class="xref std std-term">height balance</span> property. Height balance
+ensures that the tree has logarithmic height <a class="footnote-reference brackets" href="#log" id="id2">1</a>, so that search
+takes logarithmic time. But also, the algorithms for insertion and
+deletion in a 2-3 tree keep the tree height balanced (and also take
+logarithmic time). It is not possible in general to keep a BST height
+balanced – we will see that adding 3-nodes is what allows us to do so.</p>
+<div class="section" id="searching">
+<h3>7.<span class="section-number">7.1.1. </span>Searching<a class="headerlink" href="#searching" title="Permalink to this headline">¶</a></h3>
+<p>Searching for a key in a 2-3 tree is similar to searching in a BST.
 Search begins at the root.
 If the root does not contain the search key <span class="math notranslate nohighlight">\(K\)</span>, then the search
 progresses to the only subtree that can possibly contain <span class="math notranslate nohighlight">\(K\)</span>.
-The value(s) stored in the root node determine which is the correct
+The key(s) stored in the root node determine which is the correct
 subtree.
-For example, if searching for the value 30 in the tree of
+For example, if searching for the key 30 in the tree of
 Figure <a href="TwoThreeTree.html#ttexamp">7.8.1</a>, we begin with the root node.
 Because 30 is between 18 and 33, it can only be in the middle
 subtree.
@@ -296,51 +241,17 @@ Because 15 is less than 18, the first (left) branch is taken.
 At the next level, we take the second branch to the leaf node
 containing 15.
 If the search key were 16, then upon encountering the leaf
-containing 15 we would find that the search key is not in the tree.
-Here is an implementation for the 2-3 tree search method.</p>
-<div id="TTfind_code"><ul><li><a href="#TTfind_code_Java_Generic">Java</a></li><li><a href="#TTfind_code_Python">Python</a></li></ul><div id="TTfind_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">E</span> <span class="nf">findhelp</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">root</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>          <span class="c1">// val not found</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">root</span><span class="p">.</span><span class="na">lval</span><span class="p">();</span> <span class="p">}</span>
-  <span class="k">if</span> <span class="p">((</span><span class="n">root</span><span class="p">.</span><span class="na">rkey</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">rkey</span><span class="p">())</span>
-       <span class="o">==</span> <span class="mi">0</span><span class="p">))</span>
-    <span class="p">{</span> <span class="k">return</span> <span class="n">root</span><span class="p">.</span><span class="na">rval</span><span class="p">();</span> <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>       <span class="c1">// Search left</span>
-    <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">lchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">rkey</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>           <span class="c1">// Search center</span>
-    <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">rkey</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Search center</span>
-    <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">rchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// Search right</span>
-<span class="p">}</span>
-</pre></div>
+containing 15 we would find that the search key is not in the tree.</p>
 </div>
-</div><div id="TTfind_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>   <span class="c1"># val not found</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">==</span> <span class="n">root</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">root</span><span class="o">.</span><span class="n">lval</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">root</span><span class="o">.</span><span class="n">rkey</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">==</span> <span class="n">root</span><span class="o">.</span><span class="n">rkey</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">root</span><span class="o">.</span><span class="n">rval</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>
-        <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">lchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Search left</span>
-    <span class="k">elif</span> <span class="n">root</span><span class="o">.</span><span class="n">rkey</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Search center</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">root</span><span class="o">.</span><span class="n">rkey</span><span class="p">()</span>
-        <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Search center</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">rchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">)</span>  <span class="c1"># Search right</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#TTfind_code" ).tabs();});</script><p>Insertion into a 2-3 tree is similar to insertion into a BST to the
+<div class="section" id="insertion">
+<h3>7.<span class="section-number">7.1.2. </span>Insertion<a class="headerlink" href="#insertion" title="Permalink to this headline">¶</a></h3>
+<p>Insertion into a 2-3 tree is similar to insertion into a BST to the
 extent that the new record is placed in the appropriate leaf node.
 Unlike BST insertion, a new child is not created to hold the record
 being inserted, that is, the 2-3 tree does not grow downward.
 The first step is to find the leaf node that would contain the record
 if it were in the tree.
-If this leaf node contains only one value, then the new record can be
+If this leaf node contains only one key, then the new record can be
 added to that node with no further modification to the tree, as
 illustrated in the following visualization.</p>
 <div id="simpleInsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="simpleInsertCON" data-long-name="2-3 Tree Insert Slideshow" data-exer-id="" alt="2-3 Tree Insert Slideshow" tabIndex="-1">
@@ -368,9 +279,9 @@ were already in <span class="math notranslate nohighlight">\(L\)</span> and whic
 The first step is to split <span class="math notranslate nohighlight">\(L\)</span> into two nodes.
 Thus, a new node—call it <span class="math notranslate nohighlight">\(L'\)</span>—must be created from
 free store.
-<span class="math notranslate nohighlight">\(L\)</span> receives the record with the least of the three key values.
+<span class="math notranslate nohighlight">\(L\)</span> receives the record with the least of the three keys.
 <span class="math notranslate nohighlight">\(L'\)</span> receives the greatest of the three.
-The record with the middle of the three key value is passed up to the
+The record with the middle of the three keys is passed up to the
 parent node along with a pointer to <span class="math notranslate nohighlight">\(L'\)</span>.
 This is called a <a class="reference internal" href="Glossary.html#term-promotion"><span class="xref std std-term">promotion</span></a>.
 The promoted key is then inserted into the parent.
@@ -416,151 +327,9 @@ Note that all leaf nodes continue to have equal depth.</p>
  </div>
 </div>
 <p></p>
-<p>Here is an implementation for the insertion process.</p>
-<div id="TTins_code"><ul><li><a href="#TTins_code_Java_Generic">Java</a></li><li><a href="#TTins_code_Python">Python</a></li></ul><div id="TTins_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">private</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">inserthelp</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">,</span> <span class="n">Key</span> <span class="n">k</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">retval</span><span class="p">;</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span><span class="c1">// Empty tree: create a leaf node for root</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// At leaf node: insert here</span>
-    <span class="k">return</span> <span class="n">rt</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">));</span>
-  <span class="p">}</span>
-  <span class="c1">// Add to internal node</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert left</span>
-    <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">lchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="p">.</span><span class="na">lchild</span><span class="p">())</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">retval</span><span class="p">);</span> <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span><span class="p">((</span><span class="n">rt</span><span class="p">.</span><span class="na">rkey</span><span class="p">()</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">rkey</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-    <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="p">.</span><span class="na">cchild</span><span class="p">())</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">retval</span><span class="p">);</span> <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span> <span class="c1">// Insert right</span>
-    <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">rchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="p">.</span><span class="na">rchild</span><span class="p">())</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="n">rt</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">retval</span><span class="p">);</span> <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// Add a new key/value pair to the node. There might be a subtree</span>
-<span class="c1">// associated with the record being added. This information comes</span>
-<span class="c1">// in the form of a 2-3 tree node with one key and a (possibly null)</span>
-<span class="c1">// subtree through the center pointer field.</span>
-<span class="kd">public</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">add</span><span class="p">(</span><span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rkey</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Only one key, add here</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">lkey</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">rkey</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">lkey</span><span class="p">();</span> <span class="n">rval</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">lval</span><span class="p">();</span>
-      <span class="n">center</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">lchild</span><span class="p">();</span> <span class="n">right</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">cchild</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">else</span> <span class="p">{</span>
-      <span class="n">rkey</span> <span class="o">=</span> <span class="n">lkey</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="n">lval</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">center</span><span class="p">;</span>
-      <span class="n">lkey</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">lkey</span><span class="p">();</span> <span class="n">lval</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">lval</span><span class="p">();</span>
-      <span class="n">center</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">cchild</span><span class="p">();</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="k">this</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">lkey</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Add left</span>
-    <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">N1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">lkey</span><span class="p">,</span> <span class="n">lval</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-    <span class="n">it</span><span class="p">.</span><span class="na">setLeftChild</span><span class="p">(</span><span class="n">left</span><span class="p">);</span>
-    <span class="n">left</span> <span class="o">=</span> <span class="n">center</span><span class="p">;</span> <span class="n">center</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="n">lkey</span> <span class="o">=</span> <span class="n">rkey</span><span class="p">;</span> <span class="n">lval</span> <span class="o">=</span> <span class="n">rval</span><span class="p">;</span> <span class="n">rkey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">N1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">rkey</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">lkey</span><span class="p">())</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Add center</span>
-    <span class="n">it</span><span class="p">.</span><span class="na">setCenterChild</span><span class="p">(</span><span class="k">new</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rkey</span><span class="p">,</span> <span class="n">rval</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">it</span><span class="p">.</span><span class="na">cchild</span><span class="p">(),</span> <span class="n">right</span><span class="p">,</span> <span class="kc">null</span><span class="p">));</span>
-    <span class="n">it</span><span class="p">.</span><span class="na">setLeftChild</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-    <span class="n">rkey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">it</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span> <span class="c1">// Add right</span>
-    <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">N1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">TTNode</span><span class="o">&lt;</span><span class="n">Key</span><span class="p">,</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">rkey</span><span class="p">,</span> <span class="n">rval</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="k">this</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
-    <span class="n">it</span><span class="p">.</span><span class="na">setLeftChild</span><span class="p">(</span><span class="n">right</span><span class="p">);</span>
-    <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">rkey</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">rval</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">return</span> <span class="n">N1</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
 </div>
-</div><div id="TTins_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">rt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Empty tree: create a leaf node for root</span>
-        <span class="k">return</span> <span class="n">TTNode</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">rt</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span>  <span class="c1"># At leaf node: insert here</span>
-        <span class="k">return</span> <span class="n">rt</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">TTNode</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-    <span class="k">elif</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rt</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>  <span class="c1"># Insert left</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">lchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="o">.</span><span class="n">lchild</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">rt</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">rt</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
-    <span class="k">elif</span> <span class="n">rt</span><span class="o">.</span><span class="n">rkey</span><span class="p">()</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">rt</span><span class="o">.</span><span class="n">rkey</span><span class="p">():</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">cchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="o">.</span><span class="n">cchild</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">rt</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">rt</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
-    <span class="k">else</span><span class="p">:</span> <span class="c1"># Insert right</span>
-        <span class="n">retval</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">rchild</span><span class="p">(),</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">retval</span> <span class="o">==</span> <span class="n">rt</span><span class="o">.</span><span class="n">rchild</span><span class="p">():</span>
-            <span class="k">return</span> <span class="n">rt</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">rt</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">retval</span><span class="p">)</span>
-
-<span class="c1"># Add a new key/value pair to the node. There might be a subtree</span>
-<span class="c1"># associated with the record being added. This information comes</span>
-<span class="c1"># in the form of a 2-3 tree node with one key and a (possibly null)</span>
-<span class="c1"># subtree through the center pointer field.</span>
-<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">it</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">rkey</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>  <span class="c1"># Only one key, add here</span>
-        <span class="k">if</span> <span class="n">lkey</span> <span class="o">&lt;</span> <span class="n">it</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>
-            <span class="n">rkey</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">lkey</span><span class="p">()</span>
-            <span class="n">rval</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">lval</span><span class="p">()</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">lchild</span><span class="p">()</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">cchild</span><span class="p">()</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">rkey</span> <span class="o">=</span> <span class="n">lkey</span>
-            <span class="n">rval</span> <span class="o">=</span> <span class="n">lval</span>
-            <span class="n">right</span> <span class="o">=</span> <span class="n">center</span>
-            <span class="n">lkey</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">lkey</span><span class="p">()</span>
-            <span class="n">lval</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">lval</span><span class="p">()</span>
-            <span class="n">center</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">cchild</span><span class="p">()</span>
-        <span class="k">return</span> <span class="bp">self</span>
-    <span class="k">elif</span> <span class="n">lkey</span> <span class="o">&gt;=</span> <span class="n">it</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>  <span class="c1"># Add left</span>
-        <span class="n">N1</span> <span class="o">=</span> <span class="n">TTNode</span><span class="p">(</span><span class="n">lkey</span><span class="p">,</span> <span class="n">lval</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">it</span><span class="o">.</span><span class="n">setLeftChild</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
-        <span class="n">left</span> <span class="o">=</span> <span class="n">center</span>
-        <span class="n">center</span> <span class="o">=</span> <span class="n">right</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">lkey</span> <span class="o">=</span> <span class="n">rkey</span>
-        <span class="n">lval</span> <span class="o">=</span> <span class="n">rval</span>
-        <span class="n">rkey</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">rval</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">N1</span>
-    <span class="k">elif</span> <span class="n">rkey</span> <span class="o">&gt;=</span> <span class="n">it</span><span class="o">.</span><span class="n">lkey</span><span class="p">():</span>  <span class="c1"># Add center</span>
-        <span class="n">it</span><span class="o">.</span><span class="n">setCenterChild</span><span class="p">(</span><span class="n">TTNode</span><span class="p">(</span><span class="n">rkey</span><span class="p">,</span> <span class="n">rval</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">it</span><span class="o">.</span><span class="n">cchild</span><span class="p">(),</span> <span class="n">right</span><span class="p">,</span> <span class="kc">None</span><span class="p">))</span>
-        <span class="n">it</span><span class="o">.</span><span class="n">setLeftChild</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
-        <span class="n">rkey</span> <span class="o">=</span> <span class="n">rval</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">it</span>
-    <span class="k">else</span><span class="p">:</span>  <span class="c1"># Add right</span>
-        <span class="n">N1</span> <span class="o">=</span> <span class="n">TTNode</span><span class="p">(</span><span class="n">rkey</span><span class="p">,</span> <span class="n">rval</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">it</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-        <span class="n">it</span><span class="o">.</span><span class="n">setLeftChild</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
-        <span class="n">right</span> <span class="o">=</span> <span class="n">rkey</span> <span class="o">=</span> <span class="n">rval</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">N1</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#TTins_code" ).tabs();});</script><p>Note that <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code> takes three parameters.
-The first is a pointer to the root of the current subtree, named
-<code class="docutils literal notranslate"><span class="pre">rt</span></code>.
-The second is the key for the record to be
-inserted, and the third is the record itself.
-The return value for <code class="docutils literal notranslate"><span class="pre">inserthelp</span></code> is a pointer to a 2-3 tree node.
-If <code class="docutils literal notranslate"><span class="pre">rt</span></code> is unchanged, then a pointer to <code class="docutils literal notranslate"><span class="pre">rt</span></code> is returned.
-If <code class="docutils literal notranslate"><span class="pre">rt</span></code> is changed (due to the insertion causing the node to
-split), then a pointer to the new subtree root is returned, with the
-key value and record value in the leftmost fields, and a pointer to
-the (single) subtree in the center pointer field.
-This revised node will then be added to the parent as illustrated by
-the splitting visualization above.</p>
+<div class="section" id="deletion-optional">
+<h3>7.<span class="section-number">7.1.3. </span>Deletion (optional)<a class="headerlink" href="#deletion-optional" title="Permalink to this headline">¶</a></h3>
 <p>When deleting a record from the 2-3 tree, there are three cases to
 consider.
 The simplest occurs when the record is to be removed from a leaf node
@@ -606,11 +375,23 @@ To see how a 2-3 would behave, be sure to use the “Max Degree = 3”
 setting.
 This visualization was written by David Galles of the University of
 San Francisco as part of his <a href="http://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank">Data Structure Visualizations</a> package.</p>
+<p class="rubric">Footnotes</p>
+<dl class="footnote brackets">
+<dt class="label" id="log"><span class="brackets"><a class="fn-backref" href="#id2">1</a></span></dt>
+<dd><p>A 2-3 tree of height <span class="math notranslate nohighlight">\(k\)</span> has at least <span class="math notranslate nohighlight">\(2^{k-1}\)</span>
+leaves, because if the tree only has 2-nodes, it degenerates to the
+shape of a complete binary tree. A 2-3 tree of height <span class="math notranslate nohighlight">\(k\)</span> has
+at most <span class="math notranslate nohighlight">\(3^{k-1}\)</span> leaves, because each internal node can have
+at most three children. This implies that the height of a 2-3 tree
+of size <span class="math notranslate nohighlight">\(n\)</span> is <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>.</p>
+</dd>
+</dl>
 <script type="text/javascript" src="../../../AV/Indexing/twoThreeTreeCON.js"></script>
 <script type="text/javascript" src="../../../AV/Indexing/twoThreedgmCON.js"></script>
 <script type="text/javascript" src="../../../AV/Indexing/simpleInsertCON.js"></script>
 <script type="text/javascript" src="../../../AV/Indexing/promoteCON.js"></script>
 <script type="text/javascript" src="../../../AV/Indexing/splitCON.js"></script>
+</div>
 </div>
 </div>
 
@@ -638,7 +419,7 @@ San Francisco as part of his <a href="http://www.cs.usfca.edu/~galles/visualizat
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

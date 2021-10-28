@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RealLifeHashing";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Tables in Real Life (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RealLifeHashing";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Tables in Real Life (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -29,7 +29,7 @@ Hash Tables in Real Life (optional)
 ====================================
 
 Here we will give some examples of problems with hashing,
-and how different programming languages and systems use hashing and hash tables.
+and how Java and Python implement hashing and hash tables internally.
 
 Algorithmic complexity attacks
 -------------------------------
@@ -60,7 +60,7 @@ Breaking hash functions
 
 Java's default algorithm for calculating a hash code from a string :math:`s` looks like this:
 :math:`s_0\cdot 31^{n-1} + s_1\cdot 31^{n-2} + ... + s_{n-2}\cdot 31^1 + s_{n-1}\cdot 31^0`.
-(Source: `hashCode() in StringUTF16.java <https://github.com/openjdk/jdk/blob/9f75d5ce500886b32175cc541939b7f0eee190ca/src/java.base/share/classes/java/lang/StringUTF16.java#L414-L420>`).
+(Source: `hashCode() in StringUTF16.java <https://github.com/openjdk/jdk/blob/9f75d5ce500886b32175cc541939b7f0eee190ca/src/java.base/share/classes/java/lang/StringUTF16.java#L414-L420>`_).
 
 This works well in practice, *if you assume that your data is normal*!
 But an attacker does not use normal data -- instead they deliberately create data that will
@@ -69,14 +69,14 @@ with the username as key. Then they can create lots of artifical usernames to pu
 to make searching in the database slow. That's a hashtable DoS attack!
 
 It's really easy to break Java's string hash function if you want to. It relies on the fact that
-the following two strings have the same hashcode:
+the following two strings have the same hashcode::
 
-* ``"Aa".hashCode() == "BB".hashCode() == 2112``
+    "Aa".hashCode() == "BB".hashCode() == 2112
 
-Therefore, all same-length repetitions of "Aa" and "BB" have the same hash code:
+Therefore, all same-length repetitions of "Aa" and "BB" have the same hash code::
 
-| "AaAaAaAaAa", "AaAaAaAaBB", "AaAaAaBBAa", "AaAaAaBBBB", ...,
-| "BBBBBBAaAa", "BBBBBBAaBB", "BBBBBBBBAa", "BBBBBBBBBB"
+    "AaAaAaAaAa", "AaAaAaAaBB", "AaAaAaBBAa", "AaAaAaBBBB", ...,
+    "BBBBBBAaAa", "BBBBBBAaBB", "BBBBBBBBAa", "BBBBBBBBBB"
 
 There are :math:`2^k` possible strings with :math:`k` repetitions of "Aa" resp. "BB",
 and all these strings have the same hash code!
@@ -102,7 +102,7 @@ The current version of Java HashMap (and HashSet and Hashtable and similar) has 
 * The size of the hash table is a power of two (:math:`n=2^k`) -- meaning that the resizing factor is 2.
 * The maximum load factor for resizing is 0.75.
 
-If you're interested you can read the comment on `lines 125--232 in HashMap.java <https://github.com/openjdk/jdk/blob/9e831bccd2fc90681b32d1504eca753462afc6f6/src/java.base/share/classes/java/util/HashMap.java#L145-L233>`,
+If you're interested you can read the comment on `lines 125--232 in HashMap.java <https://github.com/openjdk/jdk/blob/9e831bccd2fc90681b32d1504eca753462afc6f6/src/java.base/share/classes/java/util/HashMap.java#L145-L233>`_,
 where some implementation details are explained.
 
 Hash functions and hash tables in Python
@@ -111,10 +111,10 @@ Hash functions and hash tables in Python
 Python uses much more modern implementations than Java, of both hash functions and hash tables.
 Python hash functions uses a combination of the following techniques:
 
-* Strings are hashed using `SipHash <https://en.wikipedia.org/wiki/SipHash>`
-  (see `PEP-456 <https://www.python.org/dev/peps/pep-0456>`).
-* Tuples are hashed using "a slightly simplified version of the `xxHash non-cryptographic hash <http://cyan4973.github.io/xxHash/>`"
-  (see `lines 384--397 in tupleobject.c <https://github.com/python/cpython/blob/8f24b7dbcbd83311dad510863d8cb41f0e91b464/Objects/tupleobject.c#L384-L397>`).
+* Strings are hashed using `SipHash <https://en.wikipedia.org/wiki/SipHash>`_
+  (see `PEP-456 <https://www.python.org/dev/peps/pep-0456>`_).
+* Tuples are hashed using "a slightly simplified version of the `xxHash non-cryptographic hash <http://cyan4973.github.io/xxHash/>`_"
+  (see `lines 384--397 in tupleobject.c <https://github.com/python/cpython/blob/8f24b7dbcbd83311dad510863d8cb41f0e91b464/Objects/tupleobject.c#L384-L397>`_).
 * In addition, Python adds randomisation: Whenever you start a new Python interpreter,
   it creates a random constant which is combined with the hashes.
   This means that every new instance will generate new hashes for the same strings, tuples, and other built-in objeccts.
@@ -126,7 +126,7 @@ Python dictionaries are implemented as hash tables. Since version 3.6 they are b
   (the part about sharing several values in one table is only used for internal use in the Python interpreter)
 * And a blog post explaining the new implementation:
   https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html
-  (it was first implemented in PyPy, but then they did it in "standard" CPython too)
+  (it was first implemented in PyPy, but then they ported it to "standard" CPython too)
 
 Here's a summary of the internal implementation:
 
@@ -138,7 +138,7 @@ Here's a summary of the internal implementation:
 * It keeps the full hash value in the table (which improves the speed when resizing)
 * To get better memory efficiency, it is split into (1) a size :math:`2^k` integer array with indices,
   and (2) a compact array with tuples of the form (hash,key,value).
-  The (1) array indices point to locations in the (2) array.
+  The indices in array(1) point to locations in array(2).
 * This also has the effect that it can iterate over the insertion order of the elements.
 * Deletion is done using tombstones.
 * The maximum load factor for resizing is 0.66.

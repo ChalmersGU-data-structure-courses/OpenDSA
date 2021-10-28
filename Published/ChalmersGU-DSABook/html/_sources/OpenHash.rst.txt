@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -136,7 +136,7 @@ Implementing a hash set is very similar, and even simpler.
 
 A separate chaining hash map consists of an internal array of key-value maps.
 We don't have to specify what kind of maps just yet,
-but we will use a simple linked list map because the idea
+but we will use a simple :ref:`linked list map  <ListMap>` because the idea
 is that each bin will only contain a couple of entries.
 We also have to remember the collected size of the map,
 otherwise we would have to calculate a sum every time

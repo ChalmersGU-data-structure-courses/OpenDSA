@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -29,8 +29,8 @@
 Chapter Introduction: Lists
 ===========================
 
-If your program needs to store a few things |---| numbers,
-payroll records, or job descriptions for example |---| the simplest
+If your program needs to store a few things -- numbers,
+payroll records, or job descriptions for example -- the simplest
 and most effective approach might be to put them in a list.
 Only when you have to organize and search through a large number of
 things do more sophisticated data structures like
@@ -63,11 +63,11 @@ goals of the chapter are to:
    more sophisticated algorithms and data structures.
 
 We begin by defining an :ref:`ADT for lists <ListADT>`.
-Two implementations for the list ADT |---| the
+Two implementations for the list ADT -- the
 :ref:`array-based list <ListArray>` and the
-:ref:`linked list  <ListLinked>` |---| are covered in
+:ref:`linked list  <ListLinked>` -- are covered in
 detail and their relative merits discussed.
 The chapter finishes with implementations for
-:term:`stacks  <stack>` and
+:ref:`stacks  <StackArray>` and
 :ref:`queues  <Queue>`.
 

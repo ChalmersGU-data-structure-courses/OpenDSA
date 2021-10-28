@@ -98,10 +98,6 @@ insertions or unsuccessful searches and
 :math:`.5(1 + 1/(1-\alpha))` for deletions or successful
 searches.
 
-.. TODO::
-   :type: Text
-
-   Where did that last claim about the linear probing cost come from?
 
 .. _HashPlot:
 

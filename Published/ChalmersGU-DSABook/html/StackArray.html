@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.8. Dynamic Array-Based Stacks &mdash; Data Structures and Algorithms</title>
+    <title>4.9. Dynamic Array-Based Stacks &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Linked Stacks" href="StackLinked.html" />
-    <link rel="prev" title="7. Doubly Linked Lists (optional)" href="ListDouble.html" />
+    <link rel="next" title="10. Linked Stacks" href="StackLinked.html" />
+    <link rel="prev" title="8. Doubly Linked Lists (optional)" href="ListDouble.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>
+        «&#160;&#160;<a id="prevmod" href="ListDouble.html">4.<span class="section-number">8. </span>Doubly Linked Lists (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="StackLinked.html">4.<span class="section-number">9. </span>Linked Stacks</a>&#160;&#160;»
+        <a  id="nextmod" href="StackLinked.html">4.<span class="section-number">10. </span>Linked Stacks</a>&#160;&#160;»
 
 
         </p>
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-stacks">
-<h1>4.<span class="section-number">8. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
+<h1>4.<span class="section-number">9. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stack-terminology-and-implementation">
-<h2>4.<span class="section-number">8.1. </span>Stack Terminology and Implementation<a class="headerlink" href="#stack-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">9.1. </span>Stack Terminology and Implementation<a class="headerlink" href="#stack-terminology-and-implementation" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference internal" href="Glossary.html#term-stack"><span class="xref std std-term">stack</span></a> is a list-like structure
 in which elements may be inserted or removed from only one end.
 While this restriction makes stacks less flexible than lists,
@@ -218,7 +218,7 @@ and the <a class="reference internal" href="StackLinked.html#stacklinked"><span 
 which are analogous to array-based and linked lists, respectively.</p>
 </div>
 <div class="section" id="id1">
-<h2>4.<span class="section-number">8.2. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">9.2. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>The dynamic array-based stack contains an internal array (which will grow and shrink dynamically),
 and the index of the <strong>top</strong> of the stack.
 Or actually, the index is for the next free slot in the array,
@@ -284,7 +284,7 @@ array should represent the top of the stack.</p>
 <p></p>
 </div>
 <div class="section" id="pushing-to-the-stack">
-<h2>4.<span class="section-number">8.3. </span>Pushing to the Stack<a class="headerlink" href="#pushing-to-the-stack" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">9.3. </span>Pushing to the Stack<a class="headerlink" href="#pushing-to-the-stack" title="Permalink to this headline">¶</a></h2>
 <div id="DynamicArrayStack-Push-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DynamicArrayStack-Push-CON" data-long-name="Array stack push slideshow" data-exer-id="" alt="Array stack push slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -348,7 +348,7 @@ array should represent the top of the stack.</p>
 </div>
 </div>
 <div class="section" id="popping-from-the-stack">
-<h2>4.<span class="section-number">8.4. </span>Popping from the Stack<a class="headerlink" href="#popping-from-the-stack" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">9.4. </span>Popping from the Stack<a class="headerlink" href="#popping-from-the-stack" title="Permalink to this headline">¶</a></h2>
 <div id="DynamicArrayStack-Pop-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DynamicArrayStack-Pop-CON" data-long-name="Array stack pop slideshow" data-exer-id="" alt="Array stack pop slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -421,7 +421,7 @@ array should represent the top of the stack.</p>
 </div>
 </div>
 <div class="section" id="array-based-stacks-full-implementation">
-<h2>4.<span class="section-number">8.5. </span>Array-based stacks: Full implementation<a class="headerlink" href="#array-based-stacks-full-implementation" title="Permalink to this headline">¶</a></h2>
+<h2>4.<span class="section-number">9.5. </span>Array-based stacks: Full implementation<a class="headerlink" href="#array-based-stacks-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>As you hopefully have noticed, the code for stacks is very similar to the code for lists.
 E.g., the internal variables are exactly the same, and the resizing method doesn’t change at all.
 The main difference is that stacks are even simpler to implement than their list counterparts.</p>
@@ -605,11 +605,11 @@ the (dynamic) array-based stack class.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>
+        «&#160;&#160;<a id="prevmod1" href="ListDouble.html">4.<span class="section-number">8. </span>Doubly Linked Lists (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="StackLinked.html">4.<span class="section-number">9. </span>Linked Stacks</a>&#160;&#160;»
+        <a  id="nextmod1" href="StackLinked.html">4.<span class="section-number">10. </span>Linked Stacks</a>&#160;&#160;»
 
 </p>
       </div>
@@ -624,7 +624,7 @@ the (dynamic) array-based stack class.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

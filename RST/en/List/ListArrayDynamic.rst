@@ -9,8 +9,8 @@
    :satisfies: array-based list
    :topic: Lists
 
-Dynamic Array-Based Lists
-===============================
+Dynamic Array-Based Lists (NOT FINISHED)
+=========================================
 
 The problem with a static array-based list is that it has a limited capacity.
 If we try to add new elements when the internal array is full,

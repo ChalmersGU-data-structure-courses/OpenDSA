@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['2-3-trees'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['searching', 'insertion', 'deletion-optional'];</script>
 
 .. _TwoThreeTree:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,38 +27,25 @@
    :satisfies: 2-3 tree
    :topic: Indexing
 
-2-3 Trees (WORK IN PROGRESS)
-===============================
+2-3 Trees
+=========
 
 2-3 Trees
 ---------
 
-This section presents a data structure called the 2-3 tree.
-The 2-3 tree is not a binary tree, but instead its shape
-obeys the following definition:
+This section presents a data structure called the 2-3 tree. Recall
+that in a binary tree, every node has one key and two children.
+In a 2-3 tree, there are instead two different kinds of nodes, called
+*2-nodes* and *3-nodes*:
 
-#. A node contains one or two keys.
+* A 2-node has one key and two children, just the same as a node in a
+  binary tree.
+* A 3-node has *two* keys and *three* children.
 
-#. Every internal node has either two children (if it contains one key)
-   or three children (if it contains two keys).  Hence the name.
-
-#. All leaves are at the same level in the tree, so
-   the tree is always height balanced.
-
-In addition to these shape properties, the 2-3 tree has a search tree
-property analogous to that of a BST.
-For every node, the values of all descendants in the left subtree are
-less than the value of the first key, while values in the center
-subtree are greater than or equal to the value of the first key.
-If there is a right subtree (equivalently, if the node stores two
-keys), then the values of all descendants in the center subtree are
-less than the value of the second key, while values in the right
-subtree are greater than or equal to the value of the second key.
-To maintain these shape and search properties requires that special
-action be taken when nodes are inserted and deleted.
-The 2-3 tree has the advantage over the BST in that the 2-3 tree can
-be kept height balanced at relatively low cost.
-Here is an example 2-3 tree.
+Here is an example of a 2-3 tree. In this tree, the root is a 3-node:
+it has two keys (18 and 32) and three children. The left child of the
+root is a 2-node containing the key 12. (In practice, nodes might
+contain key-value pairs, but the figures will show only the keys.)
 
 .. _TTexamp:
 
@@ -67,36 +54,46 @@ Here is an example 2-3 tree.
 
    An example of a 2-3 tree.
 
-Nodes are shown as rectangular boxes with two key fields.
-(These nodes actually would contain complete records or pointers to
-complete records, but the figures will show only the keys.)
-Internal nodes with only two children have an empty right key field.
-Leaf nodes might contain either one or two keys.
-Here is an implementation for the 2-3 tree node class.
+In order to be valid, a 2-3 tree must obey certain properties.
+Firstly, every node must obey a *search tree* property similar to
+BSTs:
 
-.. codeinclude:: Indexing/TTNode
+* For a 2-node with key :math:`k`:
+    * All keys in the left subtree must be less than :math:`k`.
+    * All keys in the right subtree must be greater than :math:`k`.
 
-Note that this sample declaration does not distinguish
-between leaf and internal nodes and so is space inefficient, because
-leaf nodes store three pointers each.
-We can use a :ref:`class hierarcy  <BinaryTreeImpl>`
-to implement separate internal and leaf node types.
+* For a 3-node with keys :math:`k_1` and :math:`k_2`:
+    * We must have :math:`k_1 < k_2`.
+    * All keys in the left subtree must be less than :math:`k_1`.
+    * All keys in the middle subtree must be between :math:`k_1` and :math:`k_2`.
+    * All keys in the right subtree must be greater than :math:`k_2`.
 
-From the defining rules for 2-3 trees we can derive relationships
-between the number of nodes in the tree and the depth of the tree.
-A 2-3 tree of height :math:`k` has at least :math:`2^{k-1}` leaves,
-because if every internal node has two children it degenerates to the
-shape of a complete binary tree.
-A 2-3 tree of height :math:`k` has at most :math:`3^{k-1}` leaves,
-because each internal node can have at most three children.
+Secondly, all leaf nodes (``null``) must be at the same level in the
+tree. When a tree obeys this property, we say that it is :term:`height
+balanced`. So a 2-3 tree is always height balanced.
 
-Searching for a value in a 2-3 tree is similar to searching in a BST.
+You can check that the tree above is a valid 2-3 tree: It is made of
+2-nodes and 3-nodes, obeys the search tree property and is height balanced.
+
+So far, it seems that we have just taken the idea of a BST and
+complicated it by adding another type of node. Why have we done this?
+The reason is the :term:`height balance` property. Height balance
+ensures that the tree has logarithmic height [#log]_, so that search
+takes logarithmic time. But also, the algorithms for insertion and
+deletion in a 2-3 tree keep the tree height balanced (and also take
+logarithmic time). It is not possible in general to keep a BST height
+balanced -- we will see that adding 3-nodes is what allows us to do so.
+
+Searching
+~~~~~~~~~
+
+Searching for a key in a 2-3 tree is similar to searching in a BST.
 Search begins at the root.
 If the root does not contain the search key :math:`K`, then the search
 progresses to the only subtree that can possibly contain :math:`K`.
-The value(s) stored in the root node determine which is the correct
+The key(s) stored in the root node determine which is the correct
 subtree.
-For example, if searching for the value 30 in the tree of
+For example, if searching for the key 30 in the tree of
 Figure :num:`Figure #TTexamp`, we begin with the root node.
 Because 30 is between 18 and 33, it can only be in the middle
 subtree.
@@ -109,9 +106,9 @@ At the next level, we take the second branch to the leaf node
 containing 15.
 If the search key were 16, then upon encountering the leaf
 containing 15 we would find that the search key is not in the tree.
-Here is an implementation for the 2-3 tree search method.
 
-.. codeinclude:: Indexing/TTfind
+Insertion
+~~~~~~~~~
 
 Insertion into a 2-3 tree is similar to insertion into a BST to the
 extent that the new record is placed in the appropriate leaf node.
@@ -119,7 +116,7 @@ Unlike BST insertion, a new child is not created to hold the record
 being inserted, that is, the 2-3 tree does not grow downward.
 The first step is to find the leaf node that would contain the record
 if it were in the tree.
-If this leaf node contains only one value, then the new record can be
+If this leaf node contains only one key, then the new record can be
 added to that node with no further modification to the tree, as
 illustrated in the following visualization.
 
@@ -141,9 +138,9 @@ were already in :math:`L` and which is the new record.
 The first step is to split :math:`L` into two nodes.
 Thus, a new node |---| call it :math:`L'` |---| must be created from
 free store.
-:math:`L` receives the record with the least of the three key values.
+:math:`L` receives the record with the least of the three keys.
 :math:`L'` receives the greatest of the three.
-The record with the middle of the three key value is passed up to the
+The record with the middle of the three keys is passed up to the
 parent node along with a pointer to :math:`L'`.
 This is called a :term:`promotion`.
 The promoted key is then inserted into the parent.
@@ -175,23 +172,8 @@ Note that all leaf nodes continue to have equal depth.
    :long_name: 2-3 Tree Insert Split Slideshow
    :output: show
 
-Here is an implementation for the insertion process.
-
-.. codeinclude:: Indexing/TTins
-
-Note that ``inserthelp`` takes three parameters.
-The first is a pointer to the root of the current subtree, named
-``rt``.
-The second is the key for the record to be
-inserted, and the third is the record itself.
-The return value for ``inserthelp`` is a pointer to a 2-3 tree node.
-If ``rt`` is unchanged, then a pointer to ``rt`` is returned.
-If ``rt`` is changed (due to the insertion causing the node to
-split), then a pointer to the new subtree root is returned, with the
-key value and record value in the leftmost fields, and a pointer to
-the (single) subtree in the center pointer field.
-This revised node will then be added to the parent as illustrated by
-the splitting visualization above.
+Deletion (optional)
+~~~~~~~~~~~~~~~~~~~
 
 When deleting a record from the 2-3 tree, there are three cases to
 consider.
@@ -248,6 +230,15 @@ San Francisco as part of his |galles_AVs| package.
 .. |galles_AVs| raw:: html
 
    <a href="http://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank">Data Structure Visualizations</a>
+
+.. rubric:: Footnotes
+
+.. [#log] A 2-3 tree of height :math:`k` has at least :math:`2^{k-1}`
+   leaves, because if the tree only has 2-nodes, it degenerates to the
+   shape of a complete binary tree. A 2-3 tree of height :math:`k` has
+   at most :math:`3^{k-1}` leaves, because each internal node can have
+   at most three children. This implies that the height of a 2-3 tree
+   of size :math:`n` is :math:`\Theta(\log n)`.
 
 .. odsascript:: AV/Indexing/twoThreeTreeCON.js
 .. odsascript:: AV/Indexing/twoThreedgmCON.js

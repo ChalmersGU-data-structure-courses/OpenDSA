@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -129,21 +129,14 @@ which is part of Java's standard LinkedList_.
 .. _ListIterator: https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html
 .. _LinkedList: https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
 
-But these advanced list iterators are not part of this course, and in fact there are not very
+But these advanced list iterators are not part of this course, and in fact there are not many
 algorithms where list iterators are particularly useful.
 
 
 Practice Questions
 ~~~~~~~~~~~~~~~~~~
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-   Update this exercise
-
-.. avembed:: Exercises/List/LLSumm.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedList-Summary-QUIZ.html ka
    :module: ListAnalysis
    :points: 1.0
    :required: True

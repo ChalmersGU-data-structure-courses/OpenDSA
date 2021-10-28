@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['separate-chaining-or-open-hashing', 'alternatives-to-a-linked-list', 'resizing-is-important', 'implementing-separate-chaining', 'resizing-the-internal-table', 'exercise', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/openhashCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['separate-chaining-or-open-hashing', 'alternatives-to-a-linked-list', 'resizing-is-important', 'implementing-separate-chaining', 'resizing-the-internal-table', 'exercise', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/openhashCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="separate-chaining">
 <h1>9.<span class="section-number">4. </span>Separate Chaining<a class="headerlink" href="#separate-chaining" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="separate-chaining-or-open-hashing">
@@ -258,7 +258,7 @@ will be expected constant time.</p>
 Implementing a hash set is very similar, and even simpler.</p>
 <p>A separate chaining hash map consists of an internal array of key-value maps.
 We don’t have to specify what kind of maps just yet,
-but we will use a simple linked list map because the idea
+but we will use a simple <a class="reference internal" href="ListMap.html#listmap"><span class="std std-ref">linked list map</span></a> because the idea
 is that each bin will only contain a couple of entries.
 We also have to remember the collected size of the map,
 otherwise we would have to calculate a sum every time
@@ -655,7 +655,7 @@ simply insert them again into the new resized table.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

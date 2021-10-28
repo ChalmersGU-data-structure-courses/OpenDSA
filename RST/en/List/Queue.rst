@@ -130,14 +130,14 @@ Thus, ``enqueue`` increments the rear pointer (modulus ``maxSize``),
 and ``dequeue`` increments the front pointer.
 Implementation of all member functions is straightforward.
 
-.. avembed:: Exercises/List/AqueueEnqueuePRO.html ka
+.. avembed:: Exercises/ChalmersGU/AqueueEnqueuePRO.html ka
    :long_name: Array-based Queue Enqueue Exercise
 
 
 Array-based Dequeue Practice
 ----------------------------
 
-.. avembed:: Exercises/List/AqueueDequeuePRO.html ka
+.. avembed:: Exercises/ChalmersGU/AqueueDequeuePRO.html ka
    :long_name: Array-based Queue Dequeue Exercise
 
 

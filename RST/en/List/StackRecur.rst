@@ -62,12 +62,6 @@ address and the current value of ``n`` must be saved.
 Each return from ``fact`` pops the top activation record off the
 stack.
 
-.. TODO::
-   :type: Slideshow
-
-   The figure above and the following text should all be rolled into
-   a slideshow.
-
 Consider what happens when we call ``fact`` with the value 4.
 We use :math:`\beta` to indicate the address of the program
 instruction where the call to ``fact`` is made.
