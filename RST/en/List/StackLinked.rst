@@ -52,7 +52,7 @@ Linked Stack Push
 
 |
 
-.. avembed:: Exercises/List/LstackPushPRO.html ka
+.. avembed:: Exercises/ChalmersGU/LstackPushPRO.html ka
    :long_name: Linked Stack Push Exercise
 
 
@@ -72,7 +72,7 @@ Linked Stack Pop
 
 |
 
-.. avembed:: Exercises/List/LstackPopPRO.html ka
+.. avembed:: Exercises/ChalmersGU/LstackPopPRO.html ka
    :long_name: Linked Stack Pop Exercise
 
 

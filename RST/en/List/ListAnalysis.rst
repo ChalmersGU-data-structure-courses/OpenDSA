@@ -120,10 +120,7 @@ algorithms where list iterators are particularly useful.
 Practice Questions
 ~~~~~~~~~~~~~~~~~~
 
-.. TODO::
-   Update this exercise
-
-.. avembed:: Exercises/List/LLSumm.html ka
+.. avembed:: Exercises/ChalmersGU/LinkedList-Summary-QUIZ.html ka
    :long_name: Linked List Summary Exercise
 
 
