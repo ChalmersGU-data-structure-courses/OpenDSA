@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -46,6 +46,22 @@ TODO List
 
 .. raw:: html
 
+   <h2><a href="ListAnalysis.html#todo0">source: ListAnalysis</a></h2>
+
+.. TODO::
+
+   Update this exercise
+
+.. raw:: html
+
+   <h2><a href="ListSumm.html#todo0">source: ListSumm</a></h2>
+
+.. TODO::
+
+   Go through all questions
+
+.. raw:: html
+
    <h2><a href="PriorityQueue.html#todo0">source: PriorityQueue</a></h2>
 
 .. TODO::
@@ -72,6 +88,19 @@ TODO List
    with the constant values for both functions and see that this only
    changes the crossing point but doesn't change which function grows
    faster than the other.
+
+.. raw:: html
+
+   <h2><a href="HashCImproved.html#todo0">source: HashCImproved</a></h2>
+
+.. TODO::
+
+  type: AV
+
+   Fix and return hashAV.html to here.
+
+   The following visualization lets you test out different combinations
+   of hash function and collision resolution, on your own input data.
 
 .. raw:: html
 
@@ -299,6 +328,17 @@ TODO List
 
 .. raw:: html
 
+   <h2><a href="StackRecur.html#todo0">source: StackRecur</a></h2>
+
+.. TODO::
+
+  type: Slideshow
+
+   The figure above and the following text should all be rolled into
+   a slideshow.
+
+.. raw:: html
+
    <h2><a href="GraphTopsort.html#todo0">source: GraphTopsort</a></h2>
 
 .. TODO::
@@ -414,6 +454,20 @@ TODO List
   type: Summary Questions
 
    Provide a summary battery of questions.
+
+.. raw:: html
+
+   <hr /><h1>Text</h1><hr />
+
+.. raw:: html
+
+   <h2><a href="HashAnal.html#todo0">source: HashAnal</a></h2>
+
+.. TODO::
+
+  type: Text
+
+   Where did that last claim about the linear probing cost come from?
 
 .. raw:: html
 

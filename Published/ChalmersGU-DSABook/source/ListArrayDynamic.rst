@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists (NOT FINISHED)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,8 +32,8 @@
    :satisfies: array-based list
    :topic: Lists
 
-Dynamic Array-Based Lists (NOT FINISHED)
-=========================================
+Dynamic Array-Based Lists
+===============================
 
 The problem with a static array-based list is that it has a limited capacity.
 If we try to add new elements when the internal array is full,

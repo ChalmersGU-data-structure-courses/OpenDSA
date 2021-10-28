@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linear-probing-by-steps', 'pseudo-random-probing', 'quadratic-probing', 'double-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/collisionCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linear-probing-by-steps', 'pseudo-random-probing', 'quadratic-probing', 'double-hashing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCImproved";ODSA.SETTINGS.MODULE_LONG_NAME = "Improved Collision Resolution";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/collisionCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="improved-collision-resolution">
 <h1>9.<span class="section-number">8. </span>Improved Collision Resolution<a class="headerlink" href="#improved-collision-resolution" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="linear-probing-by-steps">
@@ -507,7 +507,7 @@ for some value <span class="math notranslate nohighlight">\(m\)</span> and have
 <span class="math notranslate nohighlight">\(\textbf{h}_2\)</span> return an odd value
 between 1 and <span class="math notranslate nohighlight">\(2^m\)</span>.
 We can get that result with this secondary hash function:
-<span class="math notranslate nohighlight">\(\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1\)</span>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<span class="math notranslate nohighlight">\(\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1\)</span>. <a class="footnote-reference brackets" href="#id3" id="id1">1</a></p>
 <div id="collisionCON7" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="collisionCON7" data-long-name="Double Hashing Slideshow 2" data-exer-id="" alt="Double Hashing Slideshow 2" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -568,8 +568,17 @@ We can get that result with this secondary hash function:
     <div id="HashDoublePPRO_iframe"></div>
   </div>
 </div>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl>
+<dt>type: AV</dt><dd><p>Fix and return hashAV.html to here.</p>
+<p>The following visualization lets you test out different combinations
+of hash function and collision resolution, on your own input data.</p>
+</dd>
+</dl>
+</div>
 <dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id3"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>The secondary hash function
 <span class="math notranslate nohighlight">\(\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1\)</span> might
 seem rather mysterious, so let’s break this down.

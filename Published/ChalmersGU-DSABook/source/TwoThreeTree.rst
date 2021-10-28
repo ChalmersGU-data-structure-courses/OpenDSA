@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TwoThreeTree";ODSA.SETTINGS.MODULE_LONG_NAME = "2-3 Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -78,7 +78,7 @@ You can check that the tree above is a valid 2-3 tree: It is made of
 So far, it seems that we have just taken the idea of a BST and
 complicated it by adding another type of node. Why have we done this?
 The reason is the :term:`height balance` property. Height balance
-ensures that the tree has logarithmic height [#log]_, so that search
+ensures that the tree has logarithmic height \[[#log]_], so that search
 takes logarithmic time. But also, the algorithms for insertion and
 deletion in a 2-3 tree keep the tree height balanced (and also take
 logarithmic time). It is not possible in general to keep a BST height
@@ -239,6 +239,7 @@ San Francisco as part of his |galles_AVs| package.
    at most :math:`3^{k-1}` leaves, because each internal node can have
    at most three children. This implies that the height of a 2-3 tree
    of size :math:`n` is :math:`\Theta(\log n)`.
+
 
 .. odsascript:: AV/Indexing/twoThreeTreeCON.js
 .. odsascript:: AV/Indexing/twoThreedgmCON.js

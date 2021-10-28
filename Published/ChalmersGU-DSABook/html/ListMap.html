@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['using-a-list-of-key-value-pairs', 'how-to-remove-keys-from-the-map', 'using-linked-key-value-nodes', 'removing-keys', 'linked-maps:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-maps-using-lists">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['using-a-list-of-key-value-pairs', 'how-to-remove-keys-from-the-map', 'using-linked-key-value-nodes', 'removing-keys', 'linked-maps:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-maps-using-lists">
 <h1>4.<span class="section-number">7. </span>Implementing Maps using Lists<a class="headerlink" href="#implementing-maps-using-lists" title="Permalink to this headline">¶</a></h1>
 <p>It is not difficult to implement a <strong>Map</strong> using a list.
 The problem is that all the operations – searching for a key,
@@ -197,7 +197,7 @@ requires an underlying simpler map implementation – and there a linked list wo
 </div>
 </div></div><script>$(function() {$( "#KVPair_KVPair_code" ).tabs();});</script><p>Now we can create a <strong>Map</strong> class that uses an underlying <strong>List</strong> of <strong>KVPair</strong>.
 So the only thing we need is really an internal variable referring to the underlying list.</p>
-<div id="ListMap_Header_code"><ul><li><a href="#ListMap_Header_code_Java_Generic">Java</a></li><li><a href="#ListMap_Header_code_Python">Python</a></li></ul><div id="ListMap_Header_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ListMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ListMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">internalList</span><span class="p">;</span>
 
     <span class="n">ListMap</span><span class="p">()</span> <span class="p">{</span>
@@ -206,15 +206,9 @@ So the only thing we need is really an internal variable referring to the underl
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListMap_Header_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># This could also be a DynamicArrayList.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span> <span class="o">=</span> <span class="n">LinkedList</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListMap_Header_code" ).tabs();});</script><p>Finding the value for a certain key is easy.
+<p>Finding the value for a certain key is easy.
 We just iterate through all entries and stop whenever we find a matching key.</p>
-<div id="ListMap_Get_code"><ul><li><a href="#ListMap_Get_code_Java_Generic">Java</a></li><li><a href="#ListMap_Get_code_Python">Python</a></li></ul><div id="ListMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="p">:</span> <span class="n">internalList</span><span class="p">)</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">key</span><span class="p">))</span>
                 <span class="k">return</span> <span class="n">entry</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
@@ -222,17 +216,10 @@ We just iterate through all entries and stop whenever we find a matching key.</p
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListMap_Get_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">entry</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">entry</span><span class="o">.</span><span class="n">value</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListMap_Get_code" ).tabs();});</script><p>Setting a value for a given key means to search the list
+<p>Setting a value for a given key means to search the list
 for a matching key, and then updating the value.
 If we cannot find the key, we add a new <strong>KVPair</strong> to the list.</p>
-<div id="ListMap_Put_code"><ul><li><a href="#ListMap_Put_code_Java_Generic">Java</a></li><li><a href="#ListMap_Put_code_Python">Python</a></li></ul><div id="ListMap_Put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">for</span> <span class="p">(</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="p">:</span> <span class="n">internalList</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">key</span><span class="p">))</span> <span class="p">{</span>
                 <span class="n">V</span> <span class="n">oldValue</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
@@ -246,24 +233,13 @@ If we cannot find the key, we add a new <strong>KVPair</strong> to the list.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListMap_Put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">entry</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">value</span>
-                <span class="n">entry</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-                <span class="k">return</span> <span class="n">oldValue</span>
-        <span class="c1"># If we&#39;re using a DynamicArrayList we should add at the end of the list instead.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListMap_Put_code" ).tabs();});</script><p>In this example we’re using a linked list, but we could equally well have used
+<p>In this example we’re using a linked list, but we could equally well have used
 a dynamic array list.
 The only thing we have to think about is that we add new pairs at the right location
 (beginning or end of the list) – because linked lists prefer adding at the front,
 while array lists rather add to the back of the list.</p>
 <p>Other methods can be deferred to the underlying list.</p>
-<div id="ListMap_EmptySize_code"><ul><li><a href="#ListMap_EmptySize_code_Java_Generic">Java</a></li><li><a href="#ListMap_EmptySize_code_Python">Python</a></li></ul><div id="ListMap_EmptySize_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">internalList</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">();</span>
     <span class="p">}</span>
 
@@ -272,14 +248,7 @@ while array lists rather add to the back of the list.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListMap_EmptySize_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="o">.</span><span class="n">size</span><span class="p">()</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListMap_EmptySize_code" ).tabs();});</script><div class="section" id="how-to-remove-keys-from-the-map">
+<div class="section" id="how-to-remove-keys-from-the-map">
 <h3>4.<span class="section-number">7.1.1. </span>How to remove keys from the map<a class="headerlink" href="#how-to-remove-keys-from-the-map" title="Permalink to this headline">¶</a></h3>
 <p>There is one problem with this simple map implementation – how to remove keys from it.
 One possibility would be to first search for the index where the key is located,
@@ -288,47 +257,18 @@ and then remove that index from the list.</p>
 takes <span class="math notranslate nohighlight">\(O(n)\)</span> time in the worst case. So, first we find the position
 (which takes <span class="math notranslate nohighlight">\(O(n)\)</span> time), and then we remove it (which takes another <span class="math notranslate nohighlight">\(O(n)\)</span> time).
 This is double the work than it should be, which is unnecessary.</p>
-<div id="ListMap_Remove_code"><ul><li><a href="#ListMap_Remove_code_Java_Generic">Java</a></li><li><a href="#ListMap_Remove_code_Python">Python</a></li></ul><div id="ListMap_Remove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// This method is sub-optimal, because it makes two passes:</span>
-    <span class="c1">// First a search to find the index, and then a loop delete that index.</span>
-    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">entry</span> <span class="p">:</span> <span class="n">internalList</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">entry</span><span class="p">.</span><span class="na">key</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">entry</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
-                <span class="n">internalList</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-                <span class="k">return</span> <span class="n">removed</span><span class="p">;</span>
-            <span class="p">}</span>
-            <span class="n">i</span><span class="o">++</span><span class="p">;</span>
-        <span class="p">}</span>
-        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="ListMap_Remove_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="c1"># This method is sub-optimal, because it makes two passes:</span>
-    <span class="c1"># First a search to find the index, and then a loop delete that index.</span>
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">entry</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">entry</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="n">removed</span> <span class="o">=</span> <span class="n">entry</span><span class="o">.</span><span class="n">value</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_internalList</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-                <span class="k">return</span> <span class="n">removed</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListMap_Remove_code" ).tabs();});</script><p>If the <strong>Iterator</strong> interface would include a method for
-removing the “current” element from a list, it would be possible to improve the method.
-Our simple API doesn’t have that possibility, so we have to stick with the slightly slower version.
+<p>This would constitute no problem if the <strong>Iterator</strong> interface would include a method for
+removing the “current” element from a list, which our simple API doesn’t have.
 However, in the “real” Java API, iterators have a “remove-the-current” method,
-so it is possible to optimise removal a little bit.
-Implementing the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method using teh <code class="docutils literal notranslate"><span class="pre">delete</span></code> method of
-Java Iterators is left as an exercise to the reader.</p>
+so in “real life” it’s not a problem to do this.</p>
+<p>Implementing the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method is left as an exercise to the reader.</p>
 </div>
 </div>
 <div class="section" id="using-linked-key-value-nodes">
 <h2>4.<span class="section-number">7.2. </span>Using linked key-value nodes<a class="headerlink" href="#using-linked-key-value-nodes" title="Permalink to this headline">¶</a></h2>
 <p>An alternative which is also very easy to implement, is to modify the implementation of linked lists just slightly.
 Instead of using nodes with just one value, we used key-value nodes.</p>
-<div id="LinkedMap_KVNode_code"><ul><li><a href="#LinkedMap_KVNode_code_Java_Generic">Java</a></li><li><a href="#LinkedMap_KVNode_code_Python">Python</a></li></ul><div id="LinkedMap_KVNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">KVNode</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">KVNode</span> <span class="p">{</span>
         <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
         <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
         <span class="n">KVNode</span> <span class="n">next</span><span class="p">;</span>
@@ -340,18 +280,10 @@ Instead of using nodes with just one value, we used key-value nodes.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LinkedMap_KVNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python does not have internal classes, so we have to make the list node standalone.</span>
-<span class="k">class</span> <span class="nc">KVNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>       <span class="c1"># Key for this node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>   <span class="c1"># Value for this node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>     <span class="c1"># Pointer to next node in list</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#LinkedMap_KVNode_code" ).tabs();});</script><p>Then the internal structure is very much like our previous
+<p>Then the internal structure is very much like our previous
 <a class="reference internal" href="ListLinked.html#listlinked"><span class="std std-ref">linked lists implementation</span></a>.
 The private variables are the same (except we use a <strong>KVNode</strong> instead of a <strong>Node</strong>).</p>
-<div id="LinkedMap_Header_code"><ul><li><a href="#LinkedMap_Header_code_Java_Generic">Java</a></li><li><a href="#LinkedMap_Header_code_Python">Python</a></li></ul><div id="LinkedMap_Header_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">KVNode</span> <span class="n">head</span><span class="p">;</span>    <span class="c1">// Pointer to list header</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>   <span class="c1">// Size of list</span>
 
@@ -361,15 +293,9 @@ The private variables are the same (except we use a <strong>KVNode</strong> inst
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LinkedMap_Header_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list header</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of list</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#LinkedMap_Header_code" ).tabs();});</script><p>Searching for a key simply means to iterating through the key-value node
+<p>Searching for a key simply means to iterating through the key-value node
 until we find a matching key.</p>
-<div id="LinkedMap_Get_code"><ul><li><a href="#LinkedMap_Get_code_Java_Generic">Java</a></li><li><a href="#LinkedMap_Get_code_Python">Python</a></li></ul><div id="LinkedMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">KVNode</span> <span class="n">current</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">current</span><span class="p">.</span><span class="na">key</span><span class="p">))</span>
@@ -380,16 +306,7 @@ until we find a matching key.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LinkedMap_Get_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">current</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#LinkedMap_Get_code" ).tabs();});</script><p>Setting a value for a key is similar:
+<p>Setting a value for a key is similar:
 If the key is in the list, we upate the associated value.
 If the key is not in the list, we add a new <strong>KVNode</strong> and increase the list size.</p>
 <div class="section" id="removing-keys">
@@ -400,7 +317,7 @@ This is to be able to reassign the pointers from the previous node to the follow
 <p>So, we use two nodes – the one to be removed, and the previous one.
 The loop searches through the nodes until the one to be removed is found,
 and then reassigns the pointer for the previous node to the following one.</p>
-<div id="LinkedMap_Remove_code"><ul><li><a href="#LinkedMap_Remove_code_Java_Generic">Java</a></li><li><a href="#LinkedMap_Remove_code_Python">Python</a></li></ul><div id="LinkedMap_Remove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">KVNode</span> <span class="n">prev</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
         <span class="n">KVNode</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">removed</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
@@ -420,29 +337,12 @@ and then reassigns the pointer for the previous node to the following one.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LinkedMap_Remove_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">removed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">removed</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">prev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-                <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
-                <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">prev</span> <span class="o">=</span> <span class="n">removed</span>
-            <span class="n">removed</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedMap_Remove_code" ).tabs();});</script></div>
 </div>
 <div class="section" id="linked-maps-full-code">
 <h2>4.<span class="section-number">7.3. </span>Linked Maps: Full code<a class="headerlink" href="#linked-maps-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <strong>LinkedMap</strong>.</p>
-<div id="LinkedMap_LinkedMap_code"><ul><li><a href="#LinkedMap_LinkedMap_code_Java_Generic">Java</a></li><li><a href="#LinkedMap_LinkedMap_code_Python">Python</a></li></ul><div id="LinkedMap_LinkedMap_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">KVNode</span> <span class="n">head</span><span class="p">;</span>    <span class="c1">// Pointer to list header</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>   <span class="c1">// Size of list</span>
 
@@ -539,72 +439,7 @@ and then reassigns the pointer for the previous node to the following one.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LinkedMap_LinkedMap_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to list header</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of list</span>
-
-    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">current</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">value</span>
-                <span class="n">current</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-                <span class="k">return</span> <span class="n">oldValue</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">KVNode</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">current</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">current</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">prev</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">removed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">key</span> <span class="o">==</span> <span class="n">removed</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">if</span> <span class="n">prev</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                    <span class="bp">self</span><span class="o">.</span><span class="n">_head</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-                <span class="k">else</span><span class="p">:</span>
-                    <span class="n">prev</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-                <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">-=</span> <span class="mi">1</span>
-                <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">prev</span> <span class="o">=</span> <span class="n">removed</span>
-            <span class="n">removed</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
-        <span class="k">return</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
-
-    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_listSize</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_head</span>
-        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">key</span>
-            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
-
-
-<span class="c1"># Python does not have internal classes, so we have to make the list node standalone.</span>
-<span class="k">class</span> <span class="nc">KVNode</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>       <span class="c1"># Key for this node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>   <span class="c1"># Value for this node</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>     <span class="c1"># Pointer to next node in list</span>
-</pre></div>
 </div>
-</div></div><script>$(function() {$( "#LinkedMap_LinkedMap_code" ).tabs();});</script></div>
 </div>
 
 

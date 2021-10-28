@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['unsolveable-problems', 'introduction', 'uncountability', 'the-halting-problem-is-unsolvable'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/SeniorAlgAnal/FuncBinCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['unsolveable-problems', 'introduction', 'uncountability', 'the-halting-problem-is-unsolvable'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Impossible";ODSA.SETTINGS.MODULE_LONG_NAME = "Unsolveable Problems (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/SeniorAlgAnal/FuncBinCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SeniorAlgAnal/FuncDiagCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="unsolveable-problems-optional-work-in-progress">
 <h1>11.<span class="section-number">21. </span>Unsolveable Problems (optional) (WORK IN PROGRESS)<a class="headerlink" href="#unsolveable-problems-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
@@ -426,29 +426,29 @@ Function <code class="docutils literal notranslate"><span class="pre">halt</span
 encapsulated into some fictitious function named <code class="docutils literal notranslate"><span class="pre">PROGRAM_HALTS</span></code>).
 Function <code class="docutils literal notranslate"><span class="pre">halt</span></code> then returns TRUE if the input program or
 function does halt on the given input, and FALSE otherwise.</p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="nf">halt</span><span class="p">(</span><span class="n">String</span> <span class="n">prog</span><span class="p">,</span> <span class="n">String</span> <span class="n">input</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">PROGRAM_HALTS</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">input</span><span class="p">))</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="nf">halt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">input</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PROGRAM_HALTS</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">input</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>We now will examine two simple functions that clearly can exist
 because the complete code for them is presented here.</p>
 <div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return true if &quot;prog&quot; halts when given itself as input</span>
-<span class="kt">bool</span> <span class="nf">selfhalt</span><span class="p">(</span><span class="n">String</span> <span class="n">prog</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">halt</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span> <span class="n">prog</span><span class="p">))</span>
-    <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="kt">bool</span><span class="w"> </span><span class="nf">selfhalt</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">prog</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">halt</span><span class="p">(</span><span class="n">prog</span><span class="p">,</span><span class="w"> </span><span class="n">prog</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nb">false</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
 <span class="c1">// Return the reverse of what selfhalt returns on &quot;prog&quot;</span>
-<span class="kt">void</span> <span class="nf">contrary</span><span class="p">(</span><span class="n">String</span> <span class="n">prog</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">selfhalt</span><span class="p">(</span><span class="n">prog</span><span class="p">))</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nb">true</span><span class="p">);</span> <span class="c1">// Go into an infinite loop</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">contrary</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">prog</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">selfhalt</span><span class="p">(</span><span class="n">prog</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">);</span><span class="w"> </span><span class="c1">// Go into an infinite loop</span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>What happens if we make a program whose sole purpose is to execute
