@@ -12,8 +12,8 @@
 Chapter Introduction: Lists
 ===========================
 
-If your program needs to store a few things |---| numbers,
-payroll records, or job descriptions for example |---| the simplest
+If your program needs to store a few things -- numbers,
+payroll records, or job descriptions for example -- the simplest
 and most effective approach might be to put them in a list.
 Only when you have to organize and search through a large number of
 things do more sophisticated data structures like
@@ -46,10 +46,10 @@ goals of the chapter are to:
    more sophisticated algorithms and data structures.
 
 We begin by defining an :ref:`ADT for lists <ListADT>`.
-Two implementations for the list ADT |---| the
+Two implementations for the list ADT -- the
 :ref:`array-based list <ListArray>` and the
-:ref:`linked list <linked list> <ListLinked>` |---| are covered in
+:ref:`linked list <linked list> <ListLinked>` -- are covered in
 detail and their relative merits discussed.
 The chapter finishes with implementations for
-:ref:`stacks <stack> <stack>` and
+:ref:`stacks <stack> <StackArray>` and
 :ref:`queues <queue> <Queue>`.

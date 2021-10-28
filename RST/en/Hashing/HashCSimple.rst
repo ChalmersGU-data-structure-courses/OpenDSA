@@ -28,7 +28,7 @@ If we want to implement a **HashMap** (not a HashSet), we then need to be
 able to put both a key and a value in the same table cell.
 For this we need a class of key-value pairs.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/KVPair
    :tag: KVPair
 
 Now we can initialise our open addressing hash map.

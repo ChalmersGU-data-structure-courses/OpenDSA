@@ -42,7 +42,7 @@ This is an example of finding only a
 
 The only tricky part to this algorithm is determining if two vertices
 belong to the same equivalence class.
-Fortunately, the ideal algorithm is available for the purpose ---
+Fortunately, the ideal algorithm is available for the purpose --
 the :ref:`UNION/FIND <UNION/FIND> <UnionFind>`.
 Here is an implementation for Kruskal's algorithm.
 Class ``KruskalElem`` is used to store the edges on the min-heap.
