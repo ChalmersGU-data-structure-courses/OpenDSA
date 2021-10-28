@@ -119,7 +119,7 @@ Implementing a hash set is very similar, and even simpler.
 
 A separate chaining hash map consists of an internal array of key-value maps.
 We don't have to specify what kind of maps just yet,
-but we will use a simple linked list map because the idea
+but we will use a simple :ref:`linked list map <ListMap> <ListMap>` because the idea
 is that each bin will only contain a couple of entries.
 We also have to remember the collected size of the map,
 otherwise we would have to calculate a sum every time
