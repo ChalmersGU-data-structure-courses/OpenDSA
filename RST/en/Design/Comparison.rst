@@ -4,7 +4,7 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
+   :author: Cliff Shaffer, Peter Ljunglöf
    :requires: relations
    :satisfies: comparison
    :topic: Sorting
@@ -14,8 +14,8 @@
    pair: searching; record comparison
 
 
-Comparing Records: Key-Value Pairs (WORK IN PROGRESS)
-========================================================
+Comparables, Comparators and Key-Value Pairs
+=============================================
 
 If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.
@@ -108,7 +108,7 @@ Comparators
 -----------------
 
 Another, more general approach is to supply a function or
-class |---| called a :term:`comparator` |---|
+class -- called a :term:`comparator` --
 whose job is to extract the key from the record.
 A comparator function can be passed in as a parameter, such as in a
 call to a sorting function.
@@ -123,32 +123,31 @@ parameter in Java.
 This comparator class would be responsible for dealing with the
 comparison of two records.
 
-Unfortunately, while flexible and able to handle nearly all
-situations, there are a few situations for which it is not possible to
-write a key extraction method.
-In that case, a comparator will not work. [#]_
 
-
-Implementing Key-Value Search
--------------------------------------
+Key-Value Pairs
+---------------
 
 One good general-purpose solution is to explicitly store
 :term:`key-value pairs <key-value pair>` in the data structure.
 For example, if we want to sort a bunch of records, we can store them
 in an array where every array entry contains both a key value for the
 record and a pointer to the record itself.
-This might seem like a lot of extra space required, but remember that
-we can then store pointers to the records in another array with
-another field as the key for another purpose.
-The records themselves do not need to be duplicated.
-A simple class for representing key-value pairs is shown here.
-
-.. codeinclude:: Utils/KVPair
-   :tag: KVPair
 
 The main places where we will need to be concerned with comparing
-records and extracting keys is for various :term:`dictionary`
+records and extracting keys is for various map
 implementations and sorting algorithms.
+A simple class for representing key-value pairs is shown here.
+
+.. codeinclude:: ChalmersGU/KVPair
+   :tag: KVPair
+
+Using this we can easily implement a **Map** from an underlying **List**,
+which we will discuss further in the
+:ref:`chapter about linear structures <LinkedListMap>`.
+
+Sorting using Comparables
+--------------------------
+
 To keep them clear and simple, visualizations for sorting algorithms
 will usually show them as operating on integer values stored in an
 array.
@@ -162,9 +161,6 @@ To illustrate, here is an example of
 :ref:`Insertion Sort <Insertion Sort> <InsertionSort>` implemented to
 work on an array that stores records that support the ``Comparable``
 interface.
-Note that since ``KVPair`` is implemented to implement the
-``Comparable`` interface, an array of ``KVPair`` could be used by this
-sort function.
 
 .. codeinclude:: Sorting/Insertionsort
    :tag: Insertionsort
@@ -174,18 +170,3 @@ Here are some review questions to test your knowledge from this module.
 .. avembed:: Exercises/Design/CompareSumm.html ka
    :long_name: Record Comparison Summary Exercise
 
-
-.. [#] One example of a situation where it is not possible to write a
-       function that extracts a key from a record is when we have a
-       collection of records that describe books in a library.
-       One of the fields for such a record might be a list of subject
-       keywords, where the typical record stores a few keywords.
-       Our dictionary might be implemented as a list of records sorted
-       by keyword.
-       If a book contains three keywords, it would appear three times
-       on the list, once for each associated keyword.
-       However, given the record, there is no simple way to determine
-       which keyword on the keyword list triggered this appearance of
-       the record.
-       Thus, we cannot write a function that extracts the key from
-       such a record.
