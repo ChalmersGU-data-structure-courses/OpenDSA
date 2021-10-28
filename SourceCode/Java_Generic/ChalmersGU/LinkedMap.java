@@ -1,7 +1,9 @@
 
 import java.util.Iterator;
 
-class LinkedListMap<K, V> implements Map<K, V> {
+/* *** ODSATag: LinkedMap *** */
+/* *** ODSATag: Header *** */
+class LinkedMap<K, V> implements Map<K, V> {
     private KVNode head;    // Pointer to list header
     private int listSize;   // Size of list
 
@@ -9,7 +11,9 @@ class LinkedListMap<K, V> implements Map<K, V> {
         head = null;
         listSize = 0;
     }
+/* *** ODSAendTag: Header *** */
 
+/* *** ODSATag: KVNode *** */
     private class KVNode {
         K key;
         V value;
@@ -20,61 +24,65 @@ class LinkedListMap<K, V> implements Map<K, V> {
             this.next = next;
         }
     }
+/* *** ODSAendTag: KVNode *** */
 
+/* *** ODSATag: Put *** */
     public V put(K key, V value) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key)) {
-                V oldValue = node.value;
-                node.value = value;
+        KVNode current = head;
+        while (current != null) {
+            if (key.equals(current.key)) {
+                V oldValue = current.value;
+                current.value = value;
                 return oldValue;
             }
-            node = node.next;
+            current = current.next;
         }
         head = new KVNode(key, value, head);
         listSize++;
         return null;
     }
+/* *** ODSAendTag: Put *** */
 
+/* *** ODSATag: Get *** */
     public V get(K key) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key))
-                return node.value;
-            node = node.next;
+        KVNode current = head;
+        while (current != null) {
+            if (key.equals(current.key))
+                return current.value;
+            current = current.next;
         }
         return null;
     }
+/* *** ODSAendTag: Get *** */
 
+/* *** ODSATag: Remove *** */
     public V remove(K key) {
         KVNode prev = null;
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key)) {
+        KVNode removed = head;
+        while (removed != null) {
+            if (key.equals(removed.key)) {
                 if (prev == null)
-                    head = node.next;
+                    head = removed.next;
                 else
-                    prev.next = node.next;
-                node.next = null;   // For garbage collection
+                    prev.next = removed.next;
+                removed.next = null;   // For garbage collection
                 listSize--;
-                return node.value;
+                return removed.value;
             }
-            prev = node;
-            node = node.next;
+            prev = removed;
+            removed = removed.next;
         }
         return null;
     }
+/* *** ODSAendTag: Remove *** */
 
+/* *** ODSATag: ContainsKey *** */
     public boolean containsKey(K key) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key))
-                return true;
-            node = node.next;
-        }
-        return false;
+        return get(key) != null;
     }
+/* *** ODSAendTag: ContainsKey *** */
 
+/* *** ODSATag: EmptySize *** */
     public boolean isEmpty() {
         return listSize == 0;
     }
@@ -82,7 +90,9 @@ class LinkedListMap<K, V> implements Map<K, V> {
     public int size() {
         return listSize;
     }
+/* *** ODSAendTag: EmptySize *** */
 
+/* *** ODSATag: Iterator *** */
     public Iterator<K> iterator() {
         return new LinkedMapIterator();
     }
@@ -101,6 +111,8 @@ class LinkedListMap<K, V> implements Map<K, V> {
             return k;
         }
     }
+/* *** ODSAendTag: Iterator *** */
+/* *** ODSAendTag: LinkedMap *** */
 
 
 /***************************************************************************************/
@@ -113,7 +125,7 @@ class LinkedListMap<K, V> implements Map<K, V> {
     }
 
     public static void main(String[] args) {
-        LinkedListMap<String, Integer> map = new LinkedListMap<>();
+        LinkedMap<String, Integer> map = new LinkedMap<>();
         map._printMap();
         System.out.println("Putting values");
         for (int i=0; i<40; i++) {
@@ -129,4 +141,6 @@ class LinkedListMap<K, V> implements Map<K, V> {
             if (map.size() % 5 == 0) map._printMap();
         }
     }
+/* *** ODSATag: LinkedMap *** */
 }
+/* *** ODSAendTag: LinkedMap *** */
