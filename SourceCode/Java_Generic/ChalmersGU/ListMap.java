@@ -37,17 +37,17 @@ class ListMap<K, V> implements Map<K, V> {
 /* *** ODSAendTag: Get *** */
 
 /* *** ODSATag: Remove *** */
-    // To be able to remove entries efficiently,
-    // the underlying list iterator has to implement the .remove() method.
+    // This method is sub-optimal, because it makes two passes:
+    // First a search to find the index, and then a loop delete that index.
     public V remove(K key) {
-        Iterator<KVPair<K,V>> iter = internalList.iterator();
-        while (iter.hasNext()) {
-            KVPair<K,V> entry = iter.next();
+        int i = 0;
+        for (KVPair<K,V> entry : internalList) {
             if (key.equals(entry.key)) {
                 V removed = entry.value;
-                iter.remove();   // Remove the last entry returned by the iterator.
+                internalList.remove(i);
                 return removed;
             }
+            i++;
         }
         return null;
     }

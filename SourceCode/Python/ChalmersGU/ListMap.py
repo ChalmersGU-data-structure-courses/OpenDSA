@@ -32,17 +32,15 @@ class LinkedMap(Map):
 #/* *** ODSAendTag: Get *** */
 
 #/* *** ODSATag: Remove *** */
-    # Python iterators do not have a .remove() method,
-    # so here is a slower version.
+    # This method is sub-optimal, because it makes two passes:
+    # First a search to find the index, and then a loop delete that index.
     def remove(self, key):
         for i, entry in enumerate(self._internalList):
             if key == entry.key:
-                break
-        else:
-            return None
-        removed = entry.value
-        self._internalList.remove(i)
-        return removed
+                removed = entry.value
+                self._internalList.remove(i)
+                return removed
+        return None
 #/* *** ODSAendTag: Remove *** */
 
 #/* *** ODSATag: ContainsKey *** */
