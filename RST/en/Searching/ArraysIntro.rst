@@ -13,7 +13,7 @@ Chapter Introduction: Arrays
 ============================
 
 *Arrays* are one of the fundamental data structures in programming
-[#python]_. This is because they are natively supported by the
+\[[#python]_]. This is because they are natively supported by the
 computer, and have good performance: reading or writing an element of
 the array takes very little time. Many important algorithms use arrays.
 
@@ -49,6 +49,8 @@ solve them efficiently using arrays:
 This chapter concentrates on *membership testing* and *natural
 sorting*, but all the algorithms in this chapter work just as well for
 *lookup* and *key-based sorting*.
+
+.. rubric:: Footnotes
 
 .. [#python] Note to Python programmers: in Python, arrays are called
    *lists*, and are written like this: ``[1,2,3]``. There is one

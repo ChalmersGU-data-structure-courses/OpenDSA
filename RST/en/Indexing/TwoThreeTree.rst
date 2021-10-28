@@ -61,7 +61,7 @@ You can check that the tree above is a valid 2-3 tree: It is made of
 So far, it seems that we have just taken the idea of a BST and
 complicated it by adding another type of node. Why have we done this?
 The reason is the :term:`height balance` property. Height balance
-ensures that the tree has logarithmic height [#log]_, so that search
+ensures that the tree has logarithmic height \[[#log]_], so that search
 takes logarithmic time. But also, the algorithms for insertion and
 deletion in a 2-3 tree keep the tree height balanced (and also take
 logarithmic time). It is not possible in general to keep a BST height
