@@ -274,13 +274,6 @@ Now you can try it.
 .. avembed:: Exercises/Hashing/HashDoublePPRO.html ka
    :long_name: Double Hashing Proficiency Exercise
 
-.. TODO::
-   :type: AV
-
-   Fix and return hashAV.html to here.
-
-   The following visualization lets you test out different combinations
-   of hash function and collision resolution, on your own input data.
 
 .. [#] The secondary hash function
        :math:`\textbf{h}_2(k) = (((k/M) \mod (M/2)) * 2) + 1` might
