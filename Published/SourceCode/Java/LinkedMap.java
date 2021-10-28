@@ -1,7 +1,7 @@
 
 import java.util.Iterator;
 
-class LinkedListMap<K, V> implements Map<K, V> {
+class LinkedMap<K, V> implements Map<K, V> {
     private KVNode head;    // Pointer to list header
     private int listSize;   // Size of list
 
@@ -22,14 +22,14 @@ class LinkedListMap<K, V> implements Map<K, V> {
     }
 
     public V put(K key, V value) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key)) {
-                V oldValue = node.value;
-                node.value = value;
+        KVNode current = head;
+        while (current != null) {
+            if (key.equals(current.key)) {
+                V oldValue = current.value;
+                current.value = value;
                 return oldValue;
             }
-            node = node.next;
+            current = current.next;
         }
         head = new KVNode(key, value, head);
         listSize++;
@@ -37,42 +37,36 @@ class LinkedListMap<K, V> implements Map<K, V> {
     }
 
     public V get(K key) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key))
-                return node.value;
-            node = node.next;
+        KVNode current = head;
+        while (current != null) {
+            if (key.equals(current.key))
+                return current.value;
+            current = current.next;
         }
         return null;
     }
 
     public V remove(K key) {
         KVNode prev = null;
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key)) {
+        KVNode removed = head;
+        while (removed != null) {
+            if (key.equals(removed.key)) {
                 if (prev == null)
-                    head = node.next;
+                    head = removed.next;
                 else
-                    prev.next = node.next;
-                node.next = null;   // For garbage collection
+                    prev.next = removed.next;
+                removed.next = null;   // For garbage collection
                 listSize--;
-                return node.value;
+                return removed.value;
             }
-            prev = node;
-            node = node.next;
+            prev = removed;
+            removed = removed.next;
         }
         return null;
     }
 
     public boolean containsKey(K key) {
-        KVNode node = head;
-        while (node != null) {
-            if (node.key.equals(key))
-                return true;
-            node = node.next;
-        }
-        return false;
+        return get(key) != null;
     }
 
     public boolean isEmpty() {
@@ -113,7 +107,7 @@ class LinkedListMap<K, V> implements Map<K, V> {
     }
 
     public static void main(String[] args) {
-        LinkedListMap<String, Integer> map = new LinkedListMap<>();
+        LinkedMap<String, Integer> map = new LinkedMap<>();
         map._printMap();
         System.out.println("Putting values");
         for (int i=0; i<40; i++) {

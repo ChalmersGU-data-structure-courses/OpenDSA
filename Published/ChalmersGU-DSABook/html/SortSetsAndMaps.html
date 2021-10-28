@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="arrays-as-sets-or-maps">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="arrays-as-sets-or-maps">
 <h1>2.<span class="section-number">15. </span>Arrays as Sets or Maps<a class="headerlink" href="#arrays-as-sets-or-maps" title="Permalink to this headline">¶</a></h1>
 <p>In Chapter  we learnt about <em>sets</em> and <em>maps</em>, two of the
 most important ADTs.</p>
@@ -284,7 +284,7 @@ operations:</p>
     <span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>           <span class="s2">&quot;&quot;&quot;Returns the last (largest) element. Raises an exception if the set is empty.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the closest element &lt;= x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceiling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Returns the closest element &gt;= x, or None if there is no such element.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">successor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &gt; x, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">successor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &gt; x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">predecessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest element &lt; x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="s2">&quot;&quot;&quot;Returns all elements between x and y.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the elements in order.</span>
@@ -320,8 +320,8 @@ operations:</p>
     <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>             <span class="s2">&quot;&quot;&quot;Returns the last (largest) key. Raises an exception if the map is empty.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the closest key &lt;= k, or None if there is no key.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Returns the closest key &gt;= k, or None if there is no key.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">successorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &gt; k, or None if there is no such element.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">predecessorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &lt; k, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">successorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &gt; k, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">predecessorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &lt; k, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">keysBetween</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns all keys between k1 and k2.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the keys in order.</span>
 </pre></div>
@@ -364,7 +364,7 @@ implementing sets and maps: binary search trees and hash tables.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

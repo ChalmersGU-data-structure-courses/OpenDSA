@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -62,7 +62,7 @@ This is an example of finding only a
 
 The only tricky part to this algorithm is determining if two vertices
 belong to the same equivalence class.
-Fortunately, the ideal algorithm is available for the purpose ---
+Fortunately, the ideal algorithm is available for the purpose --
 the :ref:`UNION/FIND  <UnionFind>`.
 Here is an implementation for Kruskal's algorithm.
 Class ``KruskalElem`` is used to store the edges on the min-heap.

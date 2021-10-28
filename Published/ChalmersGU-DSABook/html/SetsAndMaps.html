@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="5. Comparing Records: Key-Value Pairs (WORK IN PROGRESS)" href="Comparison.html" />
+    <link rel="next" title="5. Comparables, Comparators and Key-Value Pairs" href="Comparison.html" />
     <link rel="prev" title="3. All ADTs Used in This Book" href="CourseAPI.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="Comparison.html">1.<span class="section-number">5. </span>Comparables, Comparators and Key-Value Pairs</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Information retrieval: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="information-retrieval-sets-and-maps">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Information retrieval: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="information-retrieval-sets-and-maps">
 <h1>1.<span class="section-number">4. </span>Information retrieval: Sets and Maps<a class="headerlink" href="#information-retrieval-sets-and-maps" title="Permalink to this headline">¶</a></h1>
 <p>Many programming tasks involve <em>finding the right piece of
 information</em> in a large dataset. That is, we have a collection of
@@ -462,8 +462,8 @@ successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
     <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>             <span class="s2">&quot;&quot;&quot;Returns the last (largest) key. Raises an exception if the map is empty.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the closest key &lt;= k, or None if there is no key.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceilingKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Returns the closest key &gt;= k, or None if there is no key.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">successorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &gt; k, or None if there is no such element.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">predecessorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &lt; k, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">successorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest key &gt; k, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">predecessorKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest key &lt; k, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">keysBetween</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key1</span><span class="p">,</span> <span class="n">key2</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns all keys between k1 and k2.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the keys in order.</span>
 </pre></div>
@@ -499,7 +499,7 @@ successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
     <span class="k">def</span> <span class="nf">last</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>           <span class="s2">&quot;&quot;&quot;Returns the last (largest) element. Raises an exception if the set is empty.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">floor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>       <span class="s2">&quot;&quot;&quot;Returns the closest element &lt;= x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">ceiling</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>     <span class="s2">&quot;&quot;&quot;Returns the closest element &gt;= x, or None if there is no such element.&quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">successor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">);</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &gt; x, or None if there is no such element.&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">successor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>   <span class="s2">&quot;&quot;&quot;Returns the closest element &gt; x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">predecessor</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span> <span class="s2">&quot;&quot;&quot;Returns the closest element &lt; x, or None if there is no such element.&quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">between</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>  <span class="s2">&quot;&quot;&quot;Returns all elements between x and y.&quot;&quot;&quot;</span>
     <span class="c1"># Note: __iter__() should yield the elements in order.</span>
@@ -570,7 +570,7 @@ understand how all of these work.</p>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Comparison.html">1.<span class="section-number">5. </span>Comparing Records: Key-Value Pairs (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="Comparison.html">1.<span class="section-number">5. </span>Comparables, Comparators and Key-Value Pairs</a>&#160;&#160;»
 
 </p>
       </div>
@@ -585,7 +585,7 @@ understand how all of these work.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

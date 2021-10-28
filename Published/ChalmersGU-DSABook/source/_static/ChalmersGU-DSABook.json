@@ -102,6 +102,7 @@
       "List/ListArrayDynamic": {},
       "List/ListLinked": {},
       "List/ListAnalysis": {},
+      "List/ListMap": {},
       "List/ListDouble": {},
       "List/StackArray": {},
       "List/StackLinked": {},

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashAnal";ODSA.SETTINGS.MODULE_LONG_NAME = "Analysis of Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -115,13 +115,6 @@ insertions or unsuccessful searches and
 :math:`.5(1 + 1/(1-\alpha))` for deletions or successful
 searches.
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Text
-   Where did that last claim about the linear probing cost come from?
 
 .. _HashPlot:
 

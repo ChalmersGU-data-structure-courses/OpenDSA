@@ -22,15 +22,6 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
         numDeleted = 0;
     }
 
-    private class KVPair<K,V> {
-        K key;
-        V value;
-        KVPair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-
     private int probe(K key, int i) {
         return i;        // Linear probing
         // return i*i;   // Quadratic probing

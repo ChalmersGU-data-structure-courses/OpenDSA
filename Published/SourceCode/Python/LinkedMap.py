@@ -1,54 +1,49 @@
 
 from API import Map
 
-class LinkedListMap(Map):
+class LinkedMap(Map):
     def __init__(self):
         self._head = None    # Pointer to list header
         self._listSize = 0   # Size of list
 
     def put(self, key, value):
-        node = self._head
-        while node is not None:
-            if node.key == key:
-                oldValue = node.value
-                node.value = value
+        current = self._head
+        while current is not None:
+            if key == current.key:
+                oldValue = current.value
+                current.value = value
                 return oldValue
-            node = node.next
+            current = current.next
         self._head = KVNode(key, value, self._head)
         self._listSize += 1
         return None
 
     def get(self, key):
-        node = self._head
-        while node is not None:
-            if node.key == key:
-                return node.value
-            node = node.next
+        current = self._head
+        while current is not None:
+            if key == current.key:
+                return current.value
+            current = current.next
         return None
 
     def remove(self, key):
         prev = None
-        node = self._head
-        while node is not None:
-            if node.key == key:
+        removed = self._head
+        while removed is not None:
+            if key == removed.key:
                 if prev is None:
-                    self._head = node.next
+                    self._head = removed.next
                 else:
-                    prev.next = node.next
-                node.next = None   # For garbage collection
+                    prev.next = removed.next
+                removed.next = None   # For garbage collection
                 self._listSize -= 1
-                return node.value
-            prev = node;
-            node = node.next
+                return removed.value
+            prev = removed
+            removed = removed.next
         return None
 
     def containsKey(self, key):
-        node = self._head
-        while node is not None:
-            if node.key == key:
-                return True
-            node = node.next
-        return False
+        return self.get(key) is not None
 
     def isEmpty(self):
         return self._listSize == 0
@@ -78,7 +73,7 @@ def _printMap(m):
     print("[", " ".join(f"{k}:{m.get(k)}" for k in m), "]", m.size())
 
 if __name__ == '__main__':
-    m = LinkedListMap()
+    m = LinkedMap()
     _printMap(m)
     print("Putting values")
     for i in range(40):

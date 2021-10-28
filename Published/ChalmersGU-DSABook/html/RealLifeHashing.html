@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['algorithmic-complexity-attacks', 'breaking-hash-functions', 'how-java-s-hash-tables-are-implemented', 'hash-functions-and-hash-tables-in-python'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RealLifeHashing";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Tables in Real Life (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="hash-tables-in-real-life-optional">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['algorithmic-complexity-attacks', 'breaking-hash-functions', 'how-java-s-hash-tables-are-implemented', 'hash-functions-and-hash-tables-in-python'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RealLifeHashing";ODSA.SETTINGS.MODULE_LONG_NAME = "Hash Tables in Real Life (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="hash-tables-in-real-life-optional">
 <h1>9.<span class="section-number">11. </span>Hash Tables in Real Life (optional)<a class="headerlink" href="#hash-tables-in-real-life-optional" title="Permalink to this headline">¶</a></h1>
 <p>Here we will give some examples of problems with hashing,
-and how different programming languages and systems use hashing and hash tables.</p>
+and how Java and Python implement hashing and hash tables internally.</p>
 <div class="section" id="algorithmic-complexity-attacks">
 <h2>9.<span class="section-number">11.1. </span>Algorithmic complexity attacks<a class="headerlink" href="#algorithmic-complexity-attacks" title="Permalink to this headline">¶</a></h2>
 <p>As we wrote in the chapter introduction:</p>
@@ -188,7 +188,7 @@ but the same problem arises for open addressing.
 <h2>9.<span class="section-number">11.2. </span>Breaking hash functions<a class="headerlink" href="#breaking-hash-functions" title="Permalink to this headline">¶</a></h2>
 <p>Java’s default algorithm for calculating a hash code from a string <span class="math notranslate nohighlight">\(s\)</span> looks like this:
 <span class="math notranslate nohighlight">\(s_0\cdot 31^{n-1} + s_1\cdot 31^{n-2} + ... + s_{n-2}\cdot 31^1 + s_{n-1}\cdot 31^0\)</span>.
-(Source: <cite>hashCode() in StringUTF16.java &lt;https://github.com/openjdk/jdk/blob/9f75d5ce500886b32175cc541939b7f0eee190ca/src/java.base/share/classes/java/lang/StringUTF16.java#L414-L420&gt;</cite>).</p>
+(Source: <a class="reference external" href="https://github.com/openjdk/jdk/blob/9f75d5ce500886b32175cc541939b7f0eee190ca/src/java.base/share/classes/java/lang/StringUTF16.java#L414-L420">hashCode() in StringUTF16.java</a>).</p>
 <p>This works well in practice, <em>if you assume that your data is normal</em>!
 But an attacker does not use normal data – instead they deliberately create data that will
 break the system. For example, suppose the attacker knows that you store user data in a Java HashMap
@@ -196,13 +196,13 @@ with the username as key. Then they can create lots of artifical usernames to pu
 to make searching in the database slow. That’s a hashtable DoS attack!</p>
 <p>It’s really easy to break Java’s string hash function if you want to. It relies on the fact that
 the following two strings have the same hashcode:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">&quot;Aa&quot;.hashCode()</span> <span class="pre">==</span> <span class="pre">&quot;BB&quot;.hashCode()</span> <span class="pre">==</span> <span class="pre">2112</span></code></p></li>
-</ul>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&quot;Aa&quot;.hashCode() == &quot;BB&quot;.hashCode() == 2112
+</pre></div>
+</div>
 <p>Therefore, all same-length repetitions of “Aa” and “BB” have the same hash code:</p>
-<div class="line-block">
-<div class="line">“AaAaAaAaAa”, “AaAaAaAaBB”, “AaAaAaBBAa”, “AaAaAaBBBB”, …,</div>
-<div class="line">“BBBBBBAaAa”, “BBBBBBAaBB”, “BBBBBBBBAa”, “BBBBBBBBBB”</div>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>&quot;AaAaAaAaAa&quot;, &quot;AaAaAaAaBB&quot;, &quot;AaAaAaBBAa&quot;, &quot;AaAaAaBBBB&quot;, ...,
+&quot;BBBBBBAaAa&quot;, &quot;BBBBBBAaBB&quot;, &quot;BBBBBBBBAa&quot;, &quot;BBBBBBBBBB&quot;
+</pre></div>
 </div>
 <p>There are <span class="math notranslate nohighlight">\(2^k\)</span> possible strings with <span class="math notranslate nohighlight">\(k\)</span> repetitions of “Aa” resp. “BB”,
 and all these strings have the same hash code!
@@ -225,7 +225,7 @@ This ensures <span class="math notranslate nohighlight">\(O(n \log n)\)</span> w
 <li><p>The size of the hash table is a power of two (<span class="math notranslate nohighlight">\(n=2^k\)</span>) – meaning that the resizing factor is 2.</p></li>
 <li><p>The maximum load factor for resizing is 0.75.</p></li>
 </ul>
-<p>If you’re interested you can read the comment on <cite>lines 125–232 in HashMap.java &lt;https://github.com/openjdk/jdk/blob/9e831bccd2fc90681b32d1504eca753462afc6f6/src/java.base/share/classes/java/util/HashMap.java#L145-L233&gt;</cite>,
+<p>If you’re interested you can read the comment on <a class="reference external" href="https://github.com/openjdk/jdk/blob/9e831bccd2fc90681b32d1504eca753462afc6f6/src/java.base/share/classes/java/util/HashMap.java#L145-L233">lines 125–232 in HashMap.java</a>,
 where some implementation details are explained.</p>
 </div>
 <div class="section" id="hash-functions-and-hash-tables-in-python">
@@ -233,10 +233,10 @@ where some implementation details are explained.</p>
 <p>Python uses much more modern implementations than Java, of both hash functions and hash tables.
 Python hash functions uses a combination of the following techniques:</p>
 <ul class="simple">
-<li><p>Strings are hashed using <cite>SipHash &lt;https://en.wikipedia.org/wiki/SipHash&gt;</cite>
-(see <cite>PEP-456 &lt;https://www.python.org/dev/peps/pep-0456&gt;</cite>).</p></li>
-<li><p>Tuples are hashed using “a slightly simplified version of the <cite>xxHash non-cryptographic hash &lt;http://cyan4973.github.io/xxHash/&gt;</cite>”
-(see <cite>lines 384–397 in tupleobject.c &lt;https://github.com/python/cpython/blob/8f24b7dbcbd83311dad510863d8cb41f0e91b464/Objects/tupleobject.c#L384-L397&gt;</cite>).</p></li>
+<li><p>Strings are hashed using <a class="reference external" href="https://en.wikipedia.org/wiki/SipHash">SipHash</a>
+(see <a class="reference external" href="https://www.python.org/dev/peps/pep-0456">PEP-456</a>).</p></li>
+<li><p>Tuples are hashed using “a slightly simplified version of the <a class="reference external" href="http://cyan4973.github.io/xxHash/">xxHash non-cryptographic hash</a>”
+(see <a class="reference external" href="https://github.com/python/cpython/blob/8f24b7dbcbd83311dad510863d8cb41f0e91b464/Objects/tupleobject.c#L384-L397">lines 384–397 in tupleobject.c</a>).</p></li>
 <li><p>In addition, Python adds randomisation: Whenever you start a new Python interpreter,
 it creates a random constant which is combined with the hashes.
 This means that every new instance will generate new hashes for the same strings, tuples, and other built-in objeccts.</p></li>
@@ -248,7 +248,7 @@ This means that every new instance will generate new hashes for the same strings
 (the part about sharing several values in one table is only used for internal use in the Python interpreter)</p></li>
 <li><p>And a blog post explaining the new implementation:
 <a class="reference external" href="https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html">https://morepypy.blogspot.com/2015/01/faster-more-memory-efficient-and-more.html</a>
-(it was first implemented in PyPy, but then they did it in “standard” CPython too)</p></li>
+(it was first implemented in PyPy, but then they ported it to “standard” CPython too)</p></li>
 </ul>
 <p>Here’s a summary of the internal implementation:</p>
 <ul class="simple">
@@ -260,7 +260,7 @@ where <span class="math notranslate nohighlight">\(p\)</span> depends on the hig
 <li><p>It keeps the full hash value in the table (which improves the speed when resizing)</p></li>
 <li><p>To get better memory efficiency, it is split into (1) a size <span class="math notranslate nohighlight">\(2^k\)</span> integer array with indices,
 and (2) a compact array with tuples of the form (hash,key,value).
-The (1) array indices point to locations in the (2) array.</p></li>
+The indices in array(1) point to locations in array(2).</p></li>
 <li><p>This also has the effect that it can iterate over the insertion order of the elements.</p></li>
 <li><p>Deletion is done using tombstones.</p></li>
 <li><p>The maximum load factor for resizing is 0.66.</p></li>
@@ -293,7 +293,7 @@ The (1) array indices point to locations in the (2) array.</p></li>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

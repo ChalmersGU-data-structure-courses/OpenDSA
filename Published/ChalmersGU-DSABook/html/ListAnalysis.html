@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Doubly Linked Lists (optional)" href="ListDouble.html" />
+    <link rel="next" title="7. Implementing Maps using Lists" href="ListMap.html" />
     <link rel="prev" title="5. Linked Lists" href="ListLinked.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>&#160;&#160;»
+        <a  id="nextmod" href="ListMap.html">4.<span class="section-number">7. </span>Implementing Maps using Lists</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 17:33:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
 <h1>4.<span class="section-number">6. </span>Comparison of List Implementations<a class="headerlink" href="#comparison-of-list-implementations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="space-comparison">
 <h2>4.<span class="section-number">6.1. </span>Space Comparison<a class="headerlink" href="#space-comparison" title="Permalink to this headline">¶</a></h2>
@@ -245,22 +245,18 @@ If we instead could have a pointer to the “current” list node, and have meth
 moving forward and backward in the list, several of the operations can be constant time.
 In the Java standard API this is called a <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html">ListIterator</a>,
 which is part of Java’s standard <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">LinkedList</a>.</p>
-<p>But these advanced list iterators are not part of this course, and in fact there are not very
+<p>But these advanced list iterators are not part of this course, and in fact there are not many
 algorithms where list iterators are particularly useful.</p>
 </div>
 <div class="section" id="practice-questions">
 <h3>4.<span class="section-number">6.2.2. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h3>
-<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Update this exercise</p>
-</div>
 <div
-    id="LLSumm"
+    id="LinkedList-Summary-QUIZ"
     class="embedContainer"
-    data-exer-name="LLSumm"
+    data-exer-name="LinkedList-Summary-QUIZ"
     data-long-name="Linked List Summary Exercise"
-    data-short-name="LLSumm"
-    data-frame-src="../../../Exercises/List/LLSumm.html?localMode=true&amp;module=ListAnalysis&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-short-name="LinkedList-Summary-QUIZ"
+    data-frame-src="../../../Exercises/ChalmersGU/LinkedList-Summary-QUIZ.html?localMode=true&amp;module=ListAnalysis&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
     data-frame-width="950"
     data-frame-height="650"
     data-vertical-scrolling="no"
@@ -273,7 +269,7 @@ algorithms where list iterators are particularly useful.</p>
     data-exer-id="">
   
   <div class="center">
-    <div id="LLSumm_iframe"></div>
+    <div id="LinkedList-Summary-QUIZ_iframe"></div>
   </div>
 </div>
 </div>
@@ -316,7 +312,7 @@ It shrinks the array by 1/8 whenever less than half of the array is occupied.
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="ListDouble.html">4.<span class="section-number">7. </span>Doubly Linked Lists (optional)</a>&#160;&#160;»
+        <a  id="nextmod1" href="ListMap.html">4.<span class="section-number">7. </span>Implementing Maps using Lists</a>&#160;&#160;»
 
 </p>
       </div>
@@ -331,7 +327,7 @@ It shrinks the array by 1/8 whenever less than half of the array is occupied.
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Oct 28, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
