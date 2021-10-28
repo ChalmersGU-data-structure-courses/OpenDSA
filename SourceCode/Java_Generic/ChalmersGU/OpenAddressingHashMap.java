@@ -29,17 +29,6 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
     }
 /* *** ODSAendTag: Header *** */
 
-/* *** ODSATag: KVPair *** */
-    private class KVPair<K,V> {
-        K key;
-        V value;
-        KVPair(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-    }
-/* *** ODSAendTag: KVPair *** */
-
 /* *** ODSATag: Probe *** */
     private int probe(K key, int i) {
         return i;        // Linear probing

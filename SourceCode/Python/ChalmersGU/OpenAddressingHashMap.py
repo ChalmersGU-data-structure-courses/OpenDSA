@@ -1,5 +1,6 @@
 
 from API import Map
+from KVPair import KVPair
 
 #/* *** ODSATag: OpenAddressingHashMap *** */
 #/* *** ODSATag: Header *** */
@@ -107,15 +108,6 @@ class OpenAddressingHashMap(Map):
         for elem in self._internalTable:
             if elem is not None and elem.key is not None:
                 yield elem.key
-
-
-#/* *** ODSATag: KVPair *** */
-# Python does not have internal classes, so we have to make the k/v pairs standalone.
-class KVPair:
-    def __init__(self, key, value):
-        self.key = key
-        self.value = value
-#/* *** ODSAendTag: KVPair *** */
 #/* *** ODSAendTag: OpenAddressingHashMap *** */
 
 
