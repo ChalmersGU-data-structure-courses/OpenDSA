@@ -53,17 +53,7 @@ Here is an example 2-3 tree.
 Nodes are shown as rectangular boxes with two key fields.
 (These nodes actually would contain complete records or pointers to
 complete records, but the figures will show only the keys.)
-Internal nodes with only two children have an empty right key field.
 Leaf nodes might contain either one or two keys.
-Here is an implementation for the 2-3 tree node class.
-
-.. codeinclude:: Indexing/TTNode
-
-Note that this sample declaration does not distinguish
-between leaf and internal nodes and so is space inefficient, because
-leaf nodes store three pointers each.
-We can use a :ref:`class hierarcy <class hierarchy> <BinaryTreeImpl>`
-to implement separate internal and leaf node types.
 
 From the defining rules for 2-3 trees we can derive relationships
 between the number of nodes in the tree and the depth of the tree.
@@ -93,8 +83,6 @@ containing 15.
 If the search key were 16, then upon encountering the leaf
 containing 15 we would find that the search key is not in the tree.
 Here is an implementation for the 2-3 tree search method.
-
-.. codeinclude:: Indexing/TTfind
 
 Insertion into a 2-3 tree is similar to insertion into a BST to the
 extent that the new record is placed in the appropriate leaf node.
@@ -154,24 +142,6 @@ Note that all leaf nodes continue to have equal depth.
    :links: AV/Indexing/twoThreeTreeCON.css
    :scripts: AV/Indexing/twoThreeTreeCON.js AV/Indexing/splitCON.js
    :output: show
-
-Here is an implementation for the insertion process.
-
-.. codeinclude:: Indexing/TTins
-
-Note that ``inserthelp`` takes three parameters.
-The first is a pointer to the root of the current subtree, named
-``rt``.
-The second is the key for the record to be
-inserted, and the third is the record itself.
-The return value for ``inserthelp`` is a pointer to a 2-3 tree node.
-If ``rt`` is unchanged, then a pointer to ``rt`` is returned.
-If ``rt`` is changed (due to the insertion causing the node to
-split), then a pointer to the new subtree root is returned, with the
-key value and record value in the leftmost fields, and a pointer to
-the (single) subtree in the center pointer field.
-This revised node will then be added to the parent as illustrated by
-the splitting visualization above.
 
 When deleting a record from the 2-3 tree, there are three cases to
 consider.

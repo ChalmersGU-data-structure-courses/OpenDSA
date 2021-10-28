@@ -12,14 +12,14 @@
   function getArrayNodes(jsav) {
     var arrays = [];
     arrays.push(jsav.ds.array([18, 32]));
-    arrays.push(jsav.ds.array([12, ""]));
+    arrays.push(jsav.ds.array([12]));
     arrays.push(jsav.ds.array([23, 30]));
-    arrays.push(jsav.ds.array([48, ""]));
-    arrays.push(jsav.ds.array([10, ""]));
-    arrays.push(jsav.ds.array([15, ""]));
+    arrays.push(jsav.ds.array([48]));
+    arrays.push(jsav.ds.array([10]));
+    arrays.push(jsav.ds.array([15]));
     arrays.push(jsav.ds.array([20, 21]));
-    arrays.push(jsav.ds.array([24, ""]));
-    arrays.push(jsav.ds.array([31, ""]));
+    arrays.push(jsav.ds.array([24]));
+    arrays.push(jsav.ds.array([31]));
     arrays.push(jsav.ds.array([45, 47]));
     arrays.push(jsav.ds.array([50, 52]));
     return arrays;
@@ -35,16 +35,16 @@
    */
   function getArrayNodesEdges(jsav, array_nodes, array_node_length, edge_properties) {
     var lines = [];
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[1], 0, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[2], 1, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[3], 2, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[1], array_nodes[4], 0, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[1], array_nodes[5], 1, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[6], 0, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[7], 1, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[8], 2, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[3], array_nodes[9], 0, array_node_length));
-    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[3], array_nodes[10], 1, array_node_length));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[1], 0, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[2], 1, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[0], array_nodes[3], 2, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[1], array_nodes[4], 0, 1));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[1], array_nodes[5], 1, 1));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[6], 0, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[7], 1, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[2], array_nodes[8], 2, 2));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[3], array_nodes[9], 0, 1));
+    lines.push(window.twothreetree.drawEdge(jsav, edge_properties, array_nodes[3], array_nodes[10], 1, 1));
     return lines;
   }
 
@@ -68,7 +68,7 @@
     left = (container_width - row_width) / 2 + left_offset;
 
     for (i = 0; i < array_nodes.length; i += 1) {
-      array_nodes[i].css({"left": left + "px", "top": top + "px", "position": "absolute"});
+      array_nodes[i].css({"left": left + "px", "top": top + "px", "position": "absolute", "z-index": 120});
       left +=  node_width + offset;
     }
   }
@@ -90,11 +90,11 @@
     height = extractNumber(arrayFrom.css("height"));
     width = extractNumber(arrayFrom.css("width"));
     top = extractNumber(arrayFrom.css("top"));
-    left = extractNumber(arrayFrom.css("left"));
-    step = width / length;
+    left = extractNumber(arrayFrom.css("left")) + 2;
+    step = (width - 4) / length;
 
     x1 = left + (step * edgeIndex);
-    y1 = top + height;
+    y1 = top + height - 2;
 
     // Get coordinates for the x2 and y2 of the edge.
     height = extractNumber(arrayTo.css("height"));
@@ -102,8 +102,8 @@
     top = extractNumber(arrayTo.css("top"));
     left = extractNumber(arrayTo.css("left"));
 
-    x2 = left  + (width / 2);
-    y2 = top + 1;
+    x2 = left - 2 + (width / 2);
+    y2 = top + 2;
 
     // Create line and return object.
     return jsav.g.line(x1, y1, x2, y2, properties);

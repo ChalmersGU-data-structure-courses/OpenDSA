@@ -64,8 +64,16 @@ $(document).ready(function() {
 
   /* 5th Slide *************************************************************/
   jsav.umsg(messages.shift());
-  arrays[5].swap(0, 1, {arrow: false});
+  arrays[5].hide();
+  arrays[5] = jsav.ds.array(["", "15"], {visible: false});
+  window.twothreetree.toggleArrayHiglight(arrays[5]);
+  window.twothreetree.positionRow(arrays.slice(4), topoffset + 160, width, 560);
+  arrays[5].show();
+
+//  var old_animation_mode = jsav.options.animationMode;
+//  jsav.options.animationMode = "none";
   jsav.step();
+//  jsav.options.animationMode = old_animation_mode;
 
   /* 5th Slide *************************************************************/
   jsav.umsg(messages.shift());
