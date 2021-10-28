@@ -8,7 +8,7 @@
    :requires: comparison
 
 
-Comparables and comparators: An example
+Comparables and Comparators: An Example
 =======================================
 
 *Note*: This example treats comparables and comparators, as they work in Java.

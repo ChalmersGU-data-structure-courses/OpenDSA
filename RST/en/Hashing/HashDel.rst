@@ -111,14 +111,14 @@ Here is a simple implementation of deletion in a HashMap using tombstones.
 .. codeinclude:: ChalmersGU/OpenAddressingHashMap
    :tag: Remove
 
-Since we are using an internal array of ``KVPair``s, there are actually two possible
+Since we are using an internal array of **KVPair**, there are actually two possible
 empty entries, and we use this to encode the tombstones:
 
 * If the table cell is empty (``null``), then it is unoccupied.
 
-* If the cell contains a ``KVPair``, where the key is ``null``, then it is a tombstone.
+* If the cell contains a **KVPair**, where the key is ``null``, then it is a tombstone.
 
-So, when we remove an entry, we do not remove the ``KVPair``, but instead
+So, when we remove an entry, we do not remove the **KVPair**, but instead
 set the key (and the value) to ``null``. This will make the cell a tombstone.
 
 The current code has one problem:

@@ -113,7 +113,7 @@ which is part of Java's standard LinkedList_.
 .. _ListIterator: https://docs.oracle.com/javase/8/docs/api/java/util/ListIterator.html
 .. _LinkedList: https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html
 
-But these advanced list iterators are not part of this course, and in fact there are not very
+But these advanced list iterators are not part of this course, and in fact there are not many
 algorithms where list iterators are particularly useful.
 
 
