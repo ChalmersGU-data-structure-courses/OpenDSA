@@ -60,23 +60,23 @@ $(document).ready(function() {
   window.twothreetree.toggleArrayHiglight(arrays[1]);
   window.twothreetree.toggleEdgeHiglight(lines[4]);
   arrays[1].unhighlight(0);
+  arrays[5].highlight(0);
   jsav.step();
 
   /* 5th Slide *************************************************************/
   jsav.umsg(messages.shift());
+  window.twothreetree.toggleArrayHiglight(arrays[5]);
   arrays[5].hide();
   arrays[5] = jsav.ds.array(["", "15"], {visible: false});
+  arrays[5].highlight(1);
   window.twothreetree.toggleArrayHiglight(arrays[5]);
   window.twothreetree.positionRow(arrays.slice(4), topoffset + 160, width, 560);
   arrays[5].show();
-
-//  var old_animation_mode = jsav.options.animationMode;
-//  jsav.options.animationMode = "none";
   jsav.step();
-//  jsav.options.animationMode = old_animation_mode;
 
-  /* 5th Slide *************************************************************/
+  /* 6th Slide *************************************************************/
   jsav.umsg(messages.shift());
+  arrays[5].unhighlight(0);
   window.twothreetree.toggleArrayHiglight(arrays[5]);
   jsav.effects.moveValue(insert, 0, arrays[5], 0);
   jsav.step();
