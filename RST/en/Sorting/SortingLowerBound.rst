@@ -11,8 +11,8 @@
 
 .. index:: ! sorting; lower bounds proof
 
-Lower Bounds for Sorting
-========================
+Lower Bounds for Sorting (optional)
+===================================
 
 Lower Bounds for Sorting
 ------------------------

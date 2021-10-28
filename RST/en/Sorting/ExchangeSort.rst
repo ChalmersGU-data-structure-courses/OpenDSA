@@ -12,20 +12,11 @@
 .. index:: ! exchange sorting
 .. index:: sorting; exchange
 
-The Cost of Exchange Sorting
-============================
+The Cost of Exchange Sorting (optional)
+=======================================
 
 The Cost of Exchange Sorting
 ----------------------------
-
-.. TODO::
-   :type: Revision
-
-   Rewrite along these lines: Here are two measures of "out of order":
-   inversions and min-swaps. Selection sort (especially w/
-   optimization) meets min-swaps, but that's not a useful measure in
-   general. Insertion sort tracks inversions, it is I + n. Now, if we
-   had an exchange sort, what would cost be? Go on to the proof.
 
 Here is a summary for the cost of Insertion Sort,
 Bubble Sort, and Selection Sort in terms of their required number of
