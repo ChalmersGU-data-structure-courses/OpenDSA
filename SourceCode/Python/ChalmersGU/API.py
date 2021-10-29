@@ -56,13 +56,13 @@ class Set(Collection):
 
 #/* *** ODSATag: SortedSetADT *** */
 class SortedSet(Set):
-    def first(self):          """Returns the first (smallest) element. Raises an exception if the set is empty."""
-    def last(self):           """Returns the last (largest) element. Raises an exception if the set is empty."""
-    def floor(self, x):       """Returns the closest element <= x, or None if there is no such element."""
-    def ceiling(self, x):     """Returns the closest element >= x, or None if there is no such element."""
-    def successor(self, x):   """Returns the closest element > x, or None if there is no such element."""
-    def predecessor(self, x): """Returns the closest element < x, or None if there is no such element."""
-    def between(self, x, y):  """Returns all elements between x and y."""
+    def first(self):            """Returns the first (smallest) element. Raises an exception if the set is empty."""
+    def last(self):             """Returns the last (largest) element. Raises an exception if the set is empty."""
+    def floor(self, x):         """Returns the closest element <= x, or None if there is no such element."""
+    def ceiling(self, x):       """Returns the closest element >= x, or None if there is no such element."""
+    def lower(self, x):         """Returns the closest element < x, or None if there is no such element."""
+    def higher(self, x):        """Returns the closest element > x, or None if there is no such element."""
+    def between(self, x1, x2):  """Returns all elements x such that x1 <= x <= x2."""
     # Note: __iter__() should yield the elements in order.
 #/* *** ODSAendTag: SortedSetADT *** */
 
@@ -85,9 +85,9 @@ class SortedMap(Map):
     def lastKey(self):                 """Returns the last (largest) key. Raises an exception if the map is empty."""
     def floorKey(self, key):           """Returns the closest key <= k, or None if there is no key."""
     def ceilingKey(self, key):         """Returns the closest key >= k, or None if there is no key."""
-    def successorKey(self, key):       """Returns the closest key > k, or None if there is no such element."""
-    def predecessorKey(self, key):     """Returns the closest key < k, or None if there is no such element."""
-    def keysBetween(self, key1, key2): """Returns all keys between k1 and k2."""
+    def lowerKey(self, key):           """Returns the closest key < k, or None if there is no such element."""
+    def higherKey(self, key):          """Returns the closest key > k, or None if there is no such element."""
+    def keysBetween(self, key1, key2): """Returns all keys k such that k1 <= k <= k2."""
     # Note: __iter__() should yield the keys in order.
 #/* *** ODSAendTag: SortedMapADT *** */
 

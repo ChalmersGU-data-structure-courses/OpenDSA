@@ -54,13 +54,13 @@ interface Set(E) extends Collection(E)
 
 /* *** ODSATag: SortedSetADT *** */
 interface SortedSet(E) extends Set(E)
-    first()           : E            // Returns the first (smallest) element. Raises an exception if the set is empty.
-    last()            : E            // Returns the last (largest) element. Raises an exception if the set is empty.
-    floor(x:E)        : E            // Returns the closest element <= x, or null if there is no such element.
-    ceiling(x:E)      : E            // Returns the closest element >= x, or null if there is no such element.
-    successor(x:E)    : E            // Returns the closest element > x, or null if there is no such element.
-    predecessor(x:E)  : E            // Returns the closest element < x, or null if there is no such element.
-    between(x:E, y:E) : Iterator(E)  // Returns all elements between x and y.
+    first()             : E            // Returns the first (smallest) element. Raises an exception if the set is empty.
+    last()              : E            // Returns the last (largest) element. Raises an exception if the set is empty.
+    floor(x:E)          : E            // Returns the closest element <= x, or null if there is no such element.
+    ceiling(x:E)        : E            // Returns the closest element >= x, or null if there is no such element.
+    lower(x:E)          : E            // Returns the closest element < x, or null if there is no such element.
+    higher(x:E)         : E            // Returns the closest element > x, or null if there is no such element.
+    between(x1:E, x2:E) : Iterator(E)  // Returns all elements x such that x1 <= x <= x2.
     // Note: iterator() should yield the elements in order.
 /* *** ODSAendTag: SortedSetADT *** */
 
@@ -83,9 +83,9 @@ interface SortedMap(K,V) extends Map(K,V)
     lastKey()               : K            // Returns the last (largest) key. Raises an exception if the map is empty.
     floorKey(k:K)           : K            // Returns the closest key <= k, or null if there is no key.
     ceilingKey(k:K)         : K            // Returns the closest key >= k, or null if there is no key.
-    successorKey(k:K)       : K            // Returns the closest key > k, or null if there is no such element.
-    predecessorKey(k:K)     : K            // Returns the closest key < k, or null if there is no such element.
-    keysBetween(k1:K, k2:K) : Iterator(K)  // Returns all keys between k1 and k2.
+    lowerKey(k:K)           : K            // Returns the closest key < k, or null if there is no such element.
+    higherKey(k:K)          : K            // Returns the closest key > k, or null if there is no such element.
+    keysBetween(k1:K, k2:K) : Iterator(K)  // Returns all keys k such that k1 <= k <= k2.
     // Note: iterator() should yield the keys in order.
 /* *** ODSAendTag: SortedMapADT *** */
 
