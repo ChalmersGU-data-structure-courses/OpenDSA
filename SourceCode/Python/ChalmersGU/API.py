@@ -81,12 +81,12 @@ class Map(Iterable):
 
 #/* *** ODSATag: SortedMapADT *** */
 class SortedMap(Map):
-    def firstKey(self):            """Returns the first (smallest) key. Raises an exception if the map is empty."""
-    def lastKey(self):             """Returns the last (largest) key. Raises an exception if the map is empty."""
-    def floorKey(self, key):       """Returns the closest key <= k, or None if there is no key."""
-    def ceilingKey(self, key):     """Returns the closest key >= k, or None if there is no key."""
-    def successorKey(self, key):   """Returns the closest key > k, or None if there is no such element."""
-    def predecessorKey(self, key): """Returns the closest key < k, or None if there is no such element."""
+    def firstKey(self):                """Returns the first (smallest) key. Raises an exception if the map is empty."""
+    def lastKey(self):                 """Returns the last (largest) key. Raises an exception if the map is empty."""
+    def floorKey(self, key):           """Returns the closest key <= k, or None if there is no key."""
+    def ceilingKey(self, key):         """Returns the closest key >= k, or None if there is no key."""
+    def successorKey(self, key):       """Returns the closest key > k, or None if there is no such element."""
+    def predecessorKey(self, key):     """Returns the closest key < k, or None if there is no such element."""
     def keysBetween(self, key1, key2): """Returns all keys between k1 and k2."""
     # Note: __iter__() should yield the keys in order.
 #/* *** ODSAendTag: SortedMapADT *** */
