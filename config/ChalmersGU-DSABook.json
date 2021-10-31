@@ -145,8 +145,6 @@
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
       "SearchStruct/Splay": {},
-      "Indexing/TwoThreeTree": {},
-      "SearchStruct/RedBlack": {},
       "SearchStruct/SkipList": {},
       "Binary/BSTChapSumm": {}
     },
