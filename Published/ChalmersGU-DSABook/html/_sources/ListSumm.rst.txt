@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Linear Structure Summary Exercises (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Linear Structure Summary Exercises (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-01 09:39:23"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -35,7 +35,7 @@ Practice Questions
 Here are some general practice questions about various data structures
 in this chapter.
 
-.. avembed:: Exercises/List/ListdsSumm.html ka
+.. avembed:: Exercises/ChalmersGU/List-DS-Summary-QUIZ.html ka
    :module: ListSumm
    :points: 1.0
    :required: True
@@ -46,16 +46,9 @@ in this chapter.
 Chapter Review Questions
 ------------------------
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-   Go through all questions
-
 Here is a summary exercise with questions from everything in this chapter.
 
-.. avembed:: Exercises/List/ListChapterSumm.html ka
+.. avembed:: Exercises/ChalmersGU/List-Chapter-Summary-QUIZ.html ka
    :module: ListSumm
    :points: 1.0
    :required: True

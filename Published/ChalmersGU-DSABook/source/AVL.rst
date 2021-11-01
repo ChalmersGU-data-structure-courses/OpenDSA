@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-01 09:39:23"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -149,4 +149,9 @@ begin at the level of the `deletemin` operation.
    This requires a double rotation to fix.
    After the rotation, 5 becomes the left child of 24, 2 becomes the
    left child of 5, and 7 becomes the right child of 5.
+
+Here is an implementation of AVL trees:
+
+.. codeinclude:: Binary/AVL
+   :tag: AVLTree
 

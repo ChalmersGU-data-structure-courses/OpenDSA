@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-01 09:39:24"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -46,22 +46,6 @@ TODO List
 
 .. raw:: html
 
-   <h2><a href="ListAnalysis.html#todo0">source: ListAnalysis</a></h2>
-
-.. TODO::
-
-   Update this exercise
-
-.. raw:: html
-
-   <h2><a href="ListSumm.html#todo0">source: ListSumm</a></h2>
-
-.. TODO::
-
-   Go through all questions
-
-.. raw:: html
-
    <h2><a href="PriorityQueue.html#todo0">source: PriorityQueue</a></h2>
 
 .. TODO::
@@ -88,19 +72,6 @@ TODO List
    with the constant values for both functions and see that this only
    changes the crossing point but doesn't change which function grows
    faster than the other.
-
-.. raw:: html
-
-   <h2><a href="HashCImproved.html#todo0">source: HashCImproved</a></h2>
-
-.. TODO::
-
-  type: AV
-
-   Fix and return hashAV.html to here.
-
-   The following visualization lets you test out different combinations
-   of hash function and collision resolution, on your own input data.
 
 .. raw:: html
 
@@ -171,24 +142,6 @@ TODO List
 .. raw:: html
 
    <hr /><h1>Exercise</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="Quicksort.html#todo0">source: Quicksort</a></h2>
-
-.. TODO::
-
-  type: Exercise
-
-   Consider the Quicksort implementation for this module, where the
-   pivot is selected as the middle value of the partition.
-   Give a permutation for the values 0 through 7 that will cause
-   Quicksort to have its worst-case behavior.
-
-   There are a number of possible correct answers. To assess the
-   answer, will need to run Quicksort over student's
-   partition, and verify that at each step it will generate new
-   partitions of size 6, 5, 4, 3, 2, then 1.
 
 .. raw:: html
 
@@ -280,38 +233,6 @@ TODO List
 
 .. raw:: html
 
-   <hr /><h1>Revision</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="ExchangeSort.html#todo0">source: ExchangeSort</a></h2>
-
-.. TODO::
-
-  type: Revision
-
-   Rewrite along these lines: Here are two measures of "out of order":
-   inversions and min-swaps. Selection sort (especially w/
-   optimization) meets min-swaps, but that's not a useful measure in
-   general. Insertion sort tracks inversions, it is I + n. Now, if we
-   had an exchange sort, what would cost be? Go on to the proof.
-
-.. raw:: html
-
-   <h2><a href="SortOpt.html#todo0">source: SortOpt</a></h2>
-
-.. TODO::
-
-  type: Revision
-
-   Rewrite along these lines: A classic form of code tuning is "test
-   to save work". For each of our three sorting algorithms, we have a
-   potential "test to save work" "optimization". The question is: When
-   is the cost of test worth the work saved? Let's look at each of the
-   three.
-
-.. raw:: html
-
    <hr /><h1>Slideshow</h1><hr />
 
 .. raw:: html
@@ -325,17 +246,6 @@ TODO List
    We need to think about a technique for visualizing the running time
    of some loop constructs. This can be very similar to how we
    visualize reaching the closed form solution of summations.
-
-.. raw:: html
-
-   <h2><a href="StackRecur.html#todo0">source: StackRecur</a></h2>
-
-.. TODO::
-
-  type: Slideshow
-
-   The figure above and the following text should all be rolled into
-   a slideshow.
 
 .. raw:: html
 
@@ -454,20 +364,6 @@ TODO List
   type: Summary Questions
 
    Provide a summary battery of questions.
-
-.. raw:: html
-
-   <hr /><h1>Text</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="HashAnal.html#todo0">source: HashAnal</a></h2>
-
-.. TODO::
-
-  type: Text
-
-   Where did that last claim about the linear probing cost come from?
 
 .. raw:: html
 

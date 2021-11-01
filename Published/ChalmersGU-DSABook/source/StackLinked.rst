@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 14:18:00"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-01 09:39:23"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -70,7 +70,7 @@ Linked Stack Push
 
 |
 
-.. avembed:: Exercises/List/LstackPushPRO.html ka
+.. avembed:: Exercises/ChalmersGU/LstackPushPRO.html ka
    :module: StackLinked
    :points: 1.0
    :required: True
@@ -96,7 +96,7 @@ Linked Stack Pop
 
 |
 
-.. avembed:: Exercises/List/LstackPopPRO.html ka
+.. avembed:: Exercises/ChalmersGU/LstackPopPRO.html ka
    :module: StackLinked
    :points: 1.0
    :required: True
