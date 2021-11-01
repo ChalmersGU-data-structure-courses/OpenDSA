@@ -132,3 +132,8 @@ begin at the level of the `deletemin` operation.
    This requires a double rotation to fix.
    After the rotation, 5 becomes the left child of 24, 2 becomes the
    left child of 5, and 7 becomes the right child of 5.
+
+Here is an implementation of AVL trees:
+
+.. codeinclude:: Binary/AVL
+   :tag: AVLTree

@@ -1,3 +1,4 @@
+#/* *** ODSATag: BST *** */
 class Node:
     """A node in a binary search tree."""
 
@@ -184,6 +185,7 @@ class BST:
 
         return repr({key: self[key] for key in self})
 
+# Some code to check that the BST is working
 if __name__ == '__main__':
     bst = BST()
     keys = [3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6]
@@ -200,3 +202,4 @@ if __name__ == '__main__':
         del bst[keys[i]]
         print(bst)
         bst.check_invariant()
+#/* *** ODSAendTag: BST *** */

@@ -1,3 +1,4 @@
+#/* *** ODSATag: RedBlackTree *** */
 class Node:
     """A node in a red-black tree."""
 
@@ -243,6 +244,7 @@ class RedBlackTree:
 
         return repr({key: self[key] for key in self})
 
+# Some code to test that the tree is working
 if __name__ == '__main__':
     bst = RedBlackTree()
     keys = [3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6]
@@ -255,3 +257,4 @@ if __name__ == '__main__':
     for i in range(len(keys)):
         print(bst[keys[i]])
         bst.check_invariant()
+#/* *** ODSAendTag: RedBlackTree *** */

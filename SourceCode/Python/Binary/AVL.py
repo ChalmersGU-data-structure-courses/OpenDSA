@@ -1,41 +1,31 @@
+#/* *** ODSATag: AVLTree *** */
 class Node:
     """A node in an AVL tree."""
 
     def __init__(self, key, value, left = None, right = None):
         self.key = key
         self.value = value
-        self._left = left
-        self._right = right
-        self.update_height()
-
-    @property
-    def left(self):
-        return self._left
-
-    @property
-    def right(self):
-        return self._right
-
-    @left.setter
-    def left(self, value):
-        self._left = value
-        self.update_height()
-
-    @right.setter
-    def right(self, value):
-        self._right = value
+        self.left = left
+        self.right = right
         self.update_height()
 
     def height(self):
+        """Return the height of a tree. Also works for None."""
+
         if self is None:
             return 0
         else:
             return self._height
 
     def height_diff(self):
+        """Return the height difference, left height - right height."""
+
         return Node.height(self.left) - Node.height(self.right)
 
     def update_height(self):
+        """Recompute the value of the height field.
+        Must be called every time the height of the tree could change."""
+
         self._height = max(Node.height(self.left), Node.height(self.right))+1
 
 class AVL:
@@ -89,8 +79,10 @@ class AVL:
             return Node(key, value, None, None)
         elif key < node.key:
             node.left = AVL.add_recursive(node.left, key, value)
+            node.update_height()
         elif key > node.key:
             node.right = AVL.add_recursive(node.right, key, value)
+            node.update_height()
         else:
             node.value = value
         return AVL.rebalance(node)
@@ -126,9 +118,11 @@ class AVL:
             return None
         elif key < node.key:
             node.left = AVL.delete_recursive(node.left, key)
+            node.update_height()
             return AVL.rebalance(node)
         elif key > node.key:
             node.right = AVL.delete_recursive(node.right, key)
+            node.update_height()
             return AVL.rebalance(node)
         else: # key == node.key
             if node.left is None:
@@ -140,6 +134,7 @@ class AVL:
                 node.left = AVL.delete_recursive(node.left, maxkey)
                 node.key = maxkey
                 node.value = maxval
+                node.update_height()
                 return AVL.rebalance(node)
 
     def max(self):
@@ -168,11 +163,13 @@ class AVL:
             left_diff = node.left.height_diff()
             if left_diff == -1:
                 node.left = AVL.rotate_left(node.left)
+                node.left.update_height()
             return AVL.rotate_right(node)
         elif diff == -2:
             right_diff = node.right.height_diff()
             if right_diff == 1:
                 node.right = AVL.rotate_right(node.right)
+                node.right.update_height()
             return AVL.rotate_left(node)
         else:
             return node
@@ -287,6 +284,7 @@ class AVL:
 
         return repr({key: self[key] for key in self})
 
+# Some code to test that the AVL tree is working
 if __name__ == '__main__':
     bst = AVL()
     keys = [3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6]
@@ -303,3 +301,4 @@ if __name__ == '__main__':
         del bst[keys[i]]
         print(Node.height(bst.root), bst)
         bst.check_invariant()
+#/* *** ODSAendTag: AVLTree *** */
