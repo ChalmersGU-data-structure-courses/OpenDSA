@@ -162,39 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HarderWrite";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing More Sophisticated Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="writing-more-sophisticated-recursive-functions">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HarderWrite";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing More Sophisticated Recursive Functions";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="writing-more-sophisticated-recursive-functions">
 <h1>4.<span class="section-number">4. </span>Writing More Sophisticated Recursive Functions<a class="headerlink" href="#writing-more-sophisticated-recursive-functions" title="Permalink to this headline">¶</a></h1>
 <p>Some recursive functions have only one base case and one recursive
 call.
 But it is common for there to be more than one of either or both.</p>
 <p>The following is the general structure for a recursive function.</p>
-<div id="RecMultBcRc_code"><ul><li><a href="#RecMultBcRc_code_Java_Generic">Java (Generic)</a></li><li><a href="#RecMultBcRc_code_Java">Java</a></li></ul><div id="RecMultBcRc_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// return some simple expression</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// return some simple expression</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">3</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// return some simple expression</span>
-<span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// some work before </span>
-  <span class="c1">// recursive call </span>
-  <span class="c1">// some work after </span>
- <span class="p">}</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">recursive</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span> <span class="p">{</span>
-  <span class="c1">// some work before </span>
-  <span class="c1">// recursive call </span>
-  <span class="c1">// some work after </span>
- <span class="p">}</span>
-<span class="k">else</span> <span class="p">{</span> <span class="c1">// recursive case 3 </span>
-  <span class="c1">// some work before </span>
-  <span class="c1">// recursive call </span>
-  <span class="c1">// some work after </span>
- <span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="RecMultBcRc_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">1</span> <span class="p">)</span>
   <span class="c1">// return some simple expression</span>
 <span class="k">else</span> <span class="k">if</span> <span class="p">(</span> <span class="n">base</span> <span class="k">case</span> <span class="mi">2</span> <span class="p">)</span>
   <span class="c1">// return some simple expression</span>
@@ -217,26 +191,13 @@ But it is common for there to be more than one of either or both.</p>
  <span class="p">}</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#RecMultBcRc_code" ).tabs();});</script><div class="topic">
+<div class="topic">
 <p class="topic-title">Example 4.5.1 </p>
 <p>Consider a rather simple function to determine if an integer <code class="docutils literal notranslate"><span class="pre">X</span></code> is
 prime or not.
 <code class="docutils literal notranslate"><span class="pre">Y</span></code> is a helper variable that is used as the devisor.
 When calling the function initially, <code class="docutils literal notranslate"><span class="pre">Y</span> <span class="pre">=</span> <span class="pre">X</span> <span class="pre">-</span> <span class="pre">1</span></code></p>
-<div id="Prime_code"><ul><li><a href="#Prime_code_Java_Generic">Java (Generic)</a></li><li><a href="#Prime_code_Java">Java</a></li></ul><div id="Prime_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>	
-  <span class="p">}</span>
-  <span class="k">else</span><span class="p">{</span>
-    <span class="k">return</span> <span class="n">prime</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="Prime_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">prime</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="n">y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
@@ -246,7 +207,7 @@ When calling the function initially, <code class="docutils literal notranslate">
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Prime_code" ).tabs();});</script><p>We see that <code class="docutils literal notranslate"><span class="pre">Prime</span></code> has two base cases and one recursive call.</p>
+<p>We see that <code class="docutils literal notranslate"><span class="pre">Prime</span></code> has two base cases and one recursive call.</p>
 </div>
 <div class="topic">
 <p class="topic-title">Example 4.5.2 </p>
@@ -264,21 +225,7 @@ In this code, variable <code class="docutils literal notranslate"><span class="p
 at.
 We don’t want to just use <code class="docutils literal notranslate"><span class="pre">set.length</span></code> because the recursive
 calls need to limit their work to part of the array.</p>
-<div id="IsSubsetSum_code"><ul><li><a href="#IsSubsetSum_code_Java_Generic">Java (Generic)</a></li><li><a href="#IsSubsetSum_code_Java">Java</a></li></ul><div id="IsSubsetSum_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">isSubsetSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">set</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">((</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">);</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span><span class="p">)</span> <span class="o">||</span> <span class="n">isSubsetSum</span><span class="p">(</span><span class="n">set</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">sum</span> <span class="o">-</span> <span class="n">set</span><span class="o">[</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">);</span>	
-<span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="IsSubsetSum_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">isSubsetSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">set</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">boolean</span> <span class="nf">isSubsetSum</span><span class="p">(</span><span class="kt">int</span> <span class="n">set</span><span class="o">[]</span><span class="p">,</span> <span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sum</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">((</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">sum</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span>
@@ -289,7 +236,7 @@ calls need to limit their work to part of the array.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#IsSubsetSum_code" ).tabs();});</script><p>This example has two base cases and two recursive calls.</p>
+<p>This example has two base cases and two recursive calls.</p>
 </div>
 <div class="topic">
 <p class="topic-title">Example 4.5.3 </p>
@@ -301,21 +248,7 @@ Recall that in Basketball, it is possible to get points in
 increments of 1, 2, or 3.
 So if <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">=</span> <span class="pre">3</span></code>, then <code class="docutils literal notranslate"><span class="pre">paths</span></code> will return 4, since there are four
 different ways to accumulate 3 points: <span class="math notranslate nohighlight">\(1+1+1, 1+2, 2+1,\)</span> and 3.</p>
-<div id="Paths_code"><ul><li><a href="#Paths_code_Java_Generic">Java (Generic)</a></li><li><a href="#Paths_code_Java">Java</a></li></ul><div id="Paths_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">paths</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">3</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="mi">4</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="k">return</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">paths</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">3</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="Paths_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">paths</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">paths</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
     <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span>
@@ -326,7 +259,7 @@ different ways to accumulate 3 points: <span class="math notranslate nohighlight
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Paths_code" ).tabs();});</script><p>This function has three base cases and three recursive calls.</p>
+<p>This function has three base cases and three recursive calls.</p>
 </div>
 </div>
 
@@ -354,7 +287,7 @@ different ways to accumulate 3 points: <span class="math notranslate nohighlight
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Nov 02, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

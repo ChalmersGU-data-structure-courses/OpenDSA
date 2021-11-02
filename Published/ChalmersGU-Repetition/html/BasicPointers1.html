@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['pointers-and-references', 'what-is-a-pointer', 'what-is-a-reference', 'data-types-in-java', 'referencing-and-dereferencing', 'changepointeedatadirect', 'the-employee-class', 'reference-assignments', 'circularlist1'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers1";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 1";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/primativeVsRefCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['pointers-and-references', 'what-is-a-pointer', 'what-is-a-reference', 'data-types-in-java', 'referencing-and-dereferencing', 'changepointeedatadirect', 'the-employee-class', 'reference-assignments', 'circularlist1'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers1";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 1";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/primativeVsRefCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/empRefnullCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/empRefsecondCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="basic-references-part-1">
@@ -309,7 +309,7 @@ line between the corners of the reference variable’s box.</p>
 <p>We are going to use the <code class="docutils literal notranslate"><span class="pre">Employee</span></code> object for a lot of our examples,
 so let’s make a formal introduction now.
 Meet the <code class="docutils literal notranslate"><span class="pre">Employee</span></code> class.</p>
-<div id="PointerExample_EmployeeClass_code"><ul><li><a href="#PointerExample_EmployeeClass_code_Java_Generic">Java (Generic)</a></li><li><a href="#PointerExample_EmployeeClass_code_Java">Java</a></li></ul><div id="PointerExample_EmployeeClass_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
 <span class="cm"> * Employee is a class used in this tutorial to explain various pointer concepts</span>
 <span class="cm"> */</span>
 <span class="kd">class</span> <span class="nc">Employee</span> <span class="p">{</span>
@@ -365,63 +365,7 @@ Meet the <code class="docutils literal notranslate"><span class="pre">Employee</
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="PointerExample_EmployeeClass_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/**</span>
-<span class="cm"> * Employee is a class used in this tutorial to explain various pointer concepts</span>
-<span class="cm"> */</span>
-<span class="kd">class</span> <span class="nc">Employee</span> <span class="p">{</span>
-  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">salary</span><span class="p">;</span>
-
-  <span class="cm">/**</span>
-<span class="cm">   * class constructor to initialize name and salary fields</span>
-<span class="cm">   * @param name: employee name</span>
-<span class="cm">   * @param salary: employee salary</span>
-<span class="cm">   */</span>
-  <span class="kd">public</span> <span class="nf">Employee</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="kt">int</span> <span class="n">salary</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">salary</span> <span class="o">=</span> <span class="n">salary</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="cm">/**</span>
-<span class="cm">   * getter method for the name field</span>
-<span class="cm">   * @return the value of name field</span>
-<span class="cm">   */</span>
-  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getName</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="n">name</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="cm">/**</span>
-<span class="cm">   * setter method for the name field</span>
-<span class="cm">   * @param newName the value to be assigned to name field</span>
-<span class="cm">   */</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setName</span><span class="p">(</span><span class="n">String</span> <span class="n">newName</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="n">newName</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="cm">/**</span>
-<span class="cm">   * getter method for the salary field</span>
-<span class="cm">   * @return the value of salary field</span>
-<span class="cm">   */</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">getSalary</span><span class="p">()</span>
-  <span class="p">{</span>
-    <span class="k">return</span> <span class="n">salary</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="cm">/**</span>
-<span class="cm">   * setter method for the salary field</span>
-<span class="cm">   * @param newSalary the value to be assigned to salary field</span>
-<span class="cm">   */</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setSalary</span><span class="p">(</span><span class="kt">int</span> <span class="n">newSalary</span><span class="p">)</span>
-  <span class="p">{</span>
-    <span class="n">salary</span> <span class="o">=</span> <span class="n">newSalary</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
 </div>
-</div></div><script>$(function() {$( "#PointerExample_EmployeeClass_code" ).tabs();});</script></div>
 <div class="section" id="reference-assignments">
 <h2>2.<span class="section-number">2.6. </span>Reference Assignments<a class="headerlink" href="#reference-assignments" title="Permalink to this headline">¶</a></h2>
 <p>An assignment (<code class="docutils literal notranslate"><span class="pre">=</span></code>) of one reference to another makes them point to
@@ -505,7 +449,7 @@ You should too.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Nov 02, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

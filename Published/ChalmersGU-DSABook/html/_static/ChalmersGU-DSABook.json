@@ -144,8 +144,9 @@
       "BTRecurTutor/BinaryTreeGuidedInfFlw": {},
       "SearchStruct/BalancedTree": {},
       "SearchStruct/AVL": {},
-      "SearchStruct/RedBlackCode": {},
       "SearchStruct/Splay": {},
+      "Indexing/TwoThreeTree": {},
+      "SearchStruct/RedBlack": {},
       "SearchStruct/SkipList": {},
       "Binary/BSTChapSumm": {}
     },

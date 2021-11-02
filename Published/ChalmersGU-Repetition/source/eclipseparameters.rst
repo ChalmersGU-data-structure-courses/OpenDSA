@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "eclipseparameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Using Parameters in Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "eclipseparameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Using Parameters in Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -33,7 +33,7 @@ Using Parameters in Eclipse
 Using Parameters in Eclipse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes your projects developed Eclipse need to use command line parameters.
+Sometimes your projects developed in Eclipse need to use command line parameters.
 You can |external_link2| of the material.
 
 .. |external_link2| raw:: html
@@ -64,7 +64,7 @@ right click on ``new``.
    :figwidth: 90%
    :alt: Step 2
 
-3. You will now have a profile inside the Java Application window. Select the
+3. You will now have a profile inside the ``Java Application`` window. Select the
 ``arguments`` tab and add the command line arguments that you would like to run
 (in this case I am adding the -h argument).
 

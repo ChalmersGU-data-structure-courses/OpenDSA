@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Example2";ODSA.SETTINGS.MODULE_LONG_NAME = "Another Example";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Example2";ODSA.SETTINGS.MODULE_LONG_NAME = "Another Example";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -46,6 +46,6 @@ Try to get at least 75% code coverage.
    :points: 1.0
    :required: True
    :threshold: 0.9
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Bowling Testing Without Code
 

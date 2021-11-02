@@ -5,11 +5,6 @@
   "code_dir": "SourceCode/",
   "lang": "en",
   "code_lang": {
-    "Java_Generic": {
-      "ext": ["java"],
-      "label": "Java (Generic)",
-      "lang": "java"
-    },
     "Java": {
       "ext": ["java"],
       "label": "Java",

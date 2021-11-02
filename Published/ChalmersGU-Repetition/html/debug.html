@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-debugger', 'debugging-terms', 'debugging-a-memory-pool', 'the-eclipse-console', 'conditional-breakpoints'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debug";ODSA.SETTINGS.MODULE_LONG_NAME = "Debugging In Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="debugging-in-eclipse">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-debugger', 'debugging-terms', 'debugging-a-memory-pool', 'the-eclipse-console', 'conditional-breakpoints'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debug";ODSA.SETTINGS.MODULE_LONG_NAME = "Debugging In Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="debugging-in-eclipse">
 <h1>1.<span class="section-number">5. </span>Debugging In Eclipse<a class="headerlink" href="#debugging-in-eclipse" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>1.<span class="section-number">5.1. </span>Debugging In Eclipse<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -210,30 +210,25 @@ what information does it contain?
 Doing so can be difficult due to a combination of factors.
 So how do we meaningfully analyze a chunk of bytes?
 Consider the following code.</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>import java.util.Random;
-public class Main {
-
-   /**
-    * @param args
-    */
-   public static void main(String[] args) {     
-      Random rdn = new Random();
-      String alpha = &quot;Zabcdefghijklmnopqrstuvwxyz&quot;; 
-      byte[] letters = new byte[1000];
-       int min = 0; int max = 999;
-       int amin = 0; int amax = 26;
-       String loc = &quot;&quot;;
-      for(int i=0; i&lt;40; i++) {
-         int ind = rdn.nextInt(max - min + 1) + min;
-         int wind = rdn.nextInt(amax - amin + 1) + amin;
-         char chr = alpha.charAt(wind);
-         letters[ind] = (byte) chr;
-         loc += ind+&quot; &quot;;
-      }
-      System.out.println(loc);
-   }
-
-}
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>     
+        <span class="n">Random</span> <span class="n">rdn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">alpha</span> <span class="o">=</span> <span class="s">&quot;Zabcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">;</span> 
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">letters</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1000</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">amin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">amax</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">loc</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">40</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">rdn</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">max</span> <span class="o">-</span> <span class="n">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">min</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">wind</span> <span class="o">=</span> <span class="n">rdn</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">amax</span> <span class="o">-</span> <span class="n">amin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">amin</span><span class="p">;</span>
+            <span class="kt">char</span> <span class="n">chr</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">wind</span><span class="p">);</span>
+            <span class="n">letters</span><span class="o">[</span><span class="n">ind</span><span class="o">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">byte</span><span class="p">)</span> <span class="n">chr</span><span class="p">;</span>
+            <span class="n">loc</span> <span class="o">+=</span> <span class="n">ind</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">loc</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This program spawns a 1000 byte array and then places 1 of
@@ -361,7 +356,7 @@ check out <a href="https://wiki.eclipse.org/FAQ_How_do_I_set_a_conditional_break
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Nov 02, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
