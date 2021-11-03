@@ -104,12 +104,6 @@ However, subsequent occurrences of such a call do
 not produce additional calls because they just read the contents of
 its corresponding cell.
 
-.. TODO::
-   :type: Figure
-
-   Put the figure here that was specified in the original document
-   (top of the 3rd page), showing the recursion tree.
-
 A second technique is called :term:`tabulation`.
 The dependency graph must be analyzed to infer an alternative
 computation order for the subproblems.
