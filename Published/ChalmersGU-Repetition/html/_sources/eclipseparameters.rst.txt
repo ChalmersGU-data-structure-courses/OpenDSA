@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "eclipseparameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Using Parameters in Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "eclipseparameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Using Parameters in Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -85,6 +85,6 @@ provided. The Console window will display any output from your program.
    :figwidth: 90%
    :alt: Step 4
 
-5. To change the parameters you can either create a new profile or edit an
-existing profile.
+5. To change the parameters you can either create a new profile by starting from step one,
+   or edit an existing profile.
 

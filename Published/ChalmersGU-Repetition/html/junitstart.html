@@ -162,17 +162,17 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-started', 'design-considerations', 'meaningful-tests', 'more-information'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "junitstart";ODSA.SETTINGS.MODULE_LONG_NAME = "JUnit Testing And You";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-02 12:04:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="junit-testing-and-you">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-started', 'design-considerations', 'meaningful-tests', 'more-information'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "junitstart";ODSA.SETTINGS.MODULE_LONG_NAME = "JUnit Testing And You";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="junit-testing-and-you">
 <h1>1.<span class="section-number">7. </span>JUnit Testing And You<a class="headerlink" href="#junit-testing-and-you" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="getting-started">
 <h2>1.<span class="section-number">7.1. </span>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p><em>To err is human, to correct is divine.</em></p>
 <p>When writing code we often make mistakes.
-So it is important that we test our code frequently and often in order
-to help spot, fix and remove bugs.
+So it is important that we test our code frequently in order
+to spot, fix and remove bugs.
 Thankfully Java comes with a wonderful suite of tools to help test
-code.
-In addition to this, various parties develop and release extensions on
+our code.
+In addition to this, various 3rd parties develop and release extensions on
 the standard JUnit suite and release them for students to make use of.
 One such example is <a href="http://web-cat.org/eclstats/junit-quickstart/" target = "_blank">here</a>.</p>
 <div class="section" id="design-considerations">
@@ -186,16 +186,16 @@ relatively bug free.
 For this design we should try to keep our test cases as modular as
 possible.
 As such it is generally recommended that for every method in your
-class you design a test method corresponding to it.
-Consider a <code class="docutils literal notranslate"><span class="pre">Human</span></code> class with the methods
+class you design a test method corresponding to it.</p>
+<p>Consider a <code class="docutils literal notranslate"><span class="pre">Human</span></code> class with the methods
 <code class="docutils literal notranslate"><span class="pre">setName,</span> <span class="pre">getName,</span> <span class="pre">setWeight,</span> <span class="pre">getWeight,</span> <span class="pre">walk,</span> <span class="pre">jump</span></code>.
 There are two sets of getters and setters and two independent methods.
-Thus it would be wise to create a test method called testName() which tests the
-getter/setter for name, and a test method called testWeight() which tests the
+Thus it would be wise to create a test method called <code class="docutils literal notranslate"><span class="pre">testName()</span></code> which tests the
+getter/setter for name, and a test method called <code class="docutils literal notranslate"><span class="pre">testWeight()</span></code> which tests the
 getter/setter for weight.
 Things a coder might wish to consider when testing these methods could
 include what happens when you cast a data type to fit inside a setter
-(i.e. if your weight is represented integers, will the system
+(i.e. if your weight is represented as integers, will the system
 round as expected or should you regear your data choice).
 Additionally, be sure to consider any issues that arise from abusing
 the  setter
@@ -203,13 +203,13 @@ the  setter
 As you test your code, try to consider any way in which you can break
 your program.
 Finally, we have two methods left untested: The <code class="docutils literal notranslate"><span class="pre">walk</span></code> and <code class="docutils literal notranslate"><span class="pre">jump</span></code> methods.
-In order to keep them modular, simply create two seperate test methods:
+In order to keep them modular, simply create two separate test methods:
 <code class="docutils literal notranslate"><span class="pre">testJump</span></code> and <code class="docutils literal notranslate"><span class="pre">testWalk</span></code>.</p>
 </div>
 <div class="section" id="meaningful-tests">
 <h3>1.<span class="section-number">7.1.2. </span>Meaningful Tests<a class="headerlink" href="#meaningful-tests" title="Permalink to this headline">¶</a></h3>
 <p>When writing your test cases it is important not to just run the code with
-random tests. All the tests should be designed to test common runtime conditions
+random tests. All the tests should be designed to test common runtime conditions,
 as well as possible edge conditions that may change the behavior. Additionally
 try to develop test cases that are independent of each other. If a segment of
 code has already been properly tested, testing the same chunks of code over
@@ -248,7 +248,7 @@ is an excellent resource to read and learn from.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 02, 2021.
+      Last updated on Nov 03, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
