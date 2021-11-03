@@ -68,5 +68,5 @@ provided. The Console window will display any output from your program.
    :figwidth: 90%
    :alt: Step 4
 
-5. To change the parameters you can either create a new profile or edit an
-existing profile.
+5. To change the parameters you can either create a new profile by starting from step one,
+   or edit an existing profile.
