@@ -196,7 +196,7 @@ these steps.
 This three-step approach to selecting a data structure operationalizes
 a data-centered view of the design process.
 The first concern is for the data and the operations to be performed
-on them, the next concern is the representation for those data, and
+on them, the next concern is the representation of those data, and
 the final concern is the implementation of that representation.
 
 Resource constraints on certain key operations, such as search,
@@ -217,7 +217,7 @@ yourself whenever you must choose a data structure.
    If so, this will probably make the implementation more complicated.
 
 #. Are all data items processed in some well-defined order,
-   or is search for specific data items allowed?
+   or is searching for specific data items allowed?
    "Random access" search generally requires more complex data
    structures.
 

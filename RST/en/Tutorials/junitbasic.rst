@@ -15,7 +15,7 @@ Writing JUnit Tests
 Writing JUnit Tests
 -------------------
 
-We have reviewed good design for test code and how to design modular and
+We have reviewed good design practices for test code and how to design modular and
 meaningful test code. This tutorial will show a basic series of tests on a
 binary search tree.
 
@@ -29,12 +29,12 @@ Before you start, be sure you have familiarized yourself with the basics of the
 .. |external_link| raw:: html
 
    <a
-   href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/code/BST.java" target = "_blank">Here is the full BST source code</a>
+   href="https://viterbi-web.usc.edu/~adamchik/15-121/lectures/Trees/code/BST.java" target = "_blank">Here is the full BST source code</a>
 
 
 While this class contains many methods this tutorial will only be testing a few.
 
-.. codeinclude:: Java/Tutorials/TestBST.java
+.. codeinclude:: Tutorials/TestBST
 
 The above source code shows a possible approach to testing the BST class add and
 delete methods. Given that a binary search tree is a well documented data

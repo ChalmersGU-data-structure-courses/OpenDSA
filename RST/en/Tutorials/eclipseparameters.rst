@@ -16,7 +16,7 @@ Using Parameters in Eclipse
 Using Parameters in Eclipse
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Sometimes your projects developed Eclipse need to use command line parameters.
+Sometimes your projects developed in Eclipse need to use command line parameters.
 You can |external_link2| of the material.
 
 .. |external_link2| raw:: html
@@ -47,7 +47,7 @@ right click on ``new``.
    :figwidth: 90%
    :alt: Step 2
 
-3. You will now have a profile inside the Java Application window. Select the
+3. You will now have a profile inside the ``Java Application`` window. Select the
 ``arguments`` tab and add the command line arguments that you would like to run
 (in this case I am adding the -h argument).
 
@@ -68,5 +68,5 @@ provided. The Console window will display any output from your program.
    :figwidth: 90%
    :alt: Step 4
 
-5. To change the parameters you can either create a new profile or edit an
-existing profile.
+5. To change the parameters you can either create a new profile by starting from step one,
+   or edit an existing profile.

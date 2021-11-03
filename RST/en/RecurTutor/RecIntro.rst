@@ -8,8 +8,8 @@
    :satisfies: recursion intro
    :topic: Recursion
 
-Introduction
-============
+Chapter Introduction: Recursion
+================================
 
 Introduction
 ------------

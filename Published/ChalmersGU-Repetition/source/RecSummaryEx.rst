@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RecSummaryEx";ODSA.SETTINGS.MODULE_LONG_NAME = "Summary Exercises";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RecSummaryEx";ODSA.SETTINGS.MODULE_LONG_NAME = "Summary Exercises";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -37,6 +37,6 @@ Summary Questions
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Summary Exercise
 

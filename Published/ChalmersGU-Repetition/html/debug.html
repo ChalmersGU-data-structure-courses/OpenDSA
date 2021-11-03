@@ -162,20 +162,19 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-debugger', 'debugging-terms', 'debugging-a-memory-pool', 'the-eclipse-console', 'conditional-breakpoints'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debug";ODSA.SETTINGS.MODULE_LONG_NAME = "Debugging In Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="debugging-in-eclipse">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-debugger', 'debugging-terms', 'debugging-a-memory-pool', 'the-eclipse-console', 'conditional-breakpoints'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debug";ODSA.SETTINGS.MODULE_LONG_NAME = "Debugging In Eclipse";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="debugging-in-eclipse">
 <h1>1.<span class="section-number">5. </span>Debugging In Eclipse<a class="headerlink" href="#debugging-in-eclipse" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>1.<span class="section-number">5.1. </span>Debugging In Eclipse<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>In this tutorial we will show basic debugging steps. To begin debugging a
 program, select the Debug mode by clicking the icon circled in blue below.</p>
-<div class="figure align-center" id="id2" style="width: 90%">
+<div class="figure align-center" style="width: 90%">
 <a class="reference internal image-reference" href="_images/Debug1.png"><img alt="Debug view" src="_images/Debug1.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 1.6.1: Figure 1</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <div class="section" id="what-is-a-debugger">
 <h3>1.<span class="section-number">5.1.1. </span>What Is A Debugger?<a class="headerlink" href="#what-is-a-debugger" title="Permalink to this headline">¶</a></h3>
 <p>A debugger is a piece of software that allows a programmer to run their code
-as if it is executing normally, but allowing stops and pauses at any point to
+as if it were executing normally, while allowing stops and pauses at any point to
 dump information from the program. It gives unprecendented knowledge to what
 happens in each step of the program.
 For more information about debuggers, refer to the <a href="http://en.wikipedia.org/wiki/Debugger" target = "_blank">Wikipedia entry</a>.</p>
@@ -183,21 +182,20 @@ For more information about debuggers, refer to the <a href="http://en.wikipedia.
 <div class="section" id="debugging-terms">
 <h3>1.<span class="section-number">5.1.2. </span>Debugging Terms<a class="headerlink" href="#debugging-terms" title="Permalink to this headline">¶</a></h3>
 <p>1. Resume - Resuming will run the code until another breakpoint is hit or until
-the program finishes (see Figure 2 for icon).</p>
+the program finishes (see the figure below for icon).</p>
 <p>2. Step Into - Stepping into will drop you into the next function called. For
-example, stepping into the bst.add() call in the above image will take you to
-the bst class and inside the add method (see Figure 2 for icon).</p>
+example, stepping into the <code class="docutils literal notranslate"><span class="pre">bst.add()</span></code> call in the image above will take you to
+the bst class and inside the add method (see the figure below for icon).</p>
 <p>3. Step Over - Stepping Over will execute the current line of code and progress
-to the next line of code, stopping there (see Figure 2 for icon).</p>
-<p>4. Step Return - Code will be executed until the next return statement (see
-Figure 2 for icon).</p>
+to the next line of code, stopping there (see the figure below for icon).</p>
+<p>4. Step Return - Code will be executed until the next return statement
+(see the figure below for icon).</p>
 <p>5. Breakpoint - A breakpoint is a stopping point in your code. When you set a
 breakpoint, the debugger will stop execution anytime it reaches there. You may
 add a breakpoint by clicking on the left hand side bar of the Eclipse code
-window (see Figure 1).</p>
-<div class="figure align-center" id="id3" style="width: 90%">
+window (see the figure above).</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="Debug Steps" src="_images/DebugList.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.2: Figure 2</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
 <p><em>*Note - There are a few more step functions not documented here, you can
 learn more about them</em> <a href="http://help.eclipse.org/luna/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-stepping.htm" target = "_blank">here</a>.</p>
@@ -210,126 +208,121 @@ what information does it contain?
 Doing so can be difficult due to a combination of factors.
 So how do we meaningfully analyze a chunk of bytes?
 Consider the following code.</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>import java.util.Random;
-public class Main {
-
-   /**
-    * @param args
-    */
-   public static void main(String[] args) {     
-      Random rdn = new Random();
-      String alpha = &quot;Zabcdefghijklmnopqrstuvwxyz&quot;; 
-      byte[] letters = new byte[1000];
-       int min = 0; int max = 999;
-       int amin = 0; int amax = 26;
-       String loc = &quot;&quot;;
-      for(int i=0; i&lt;40; i++) {
-         int ind = rdn.nextInt(max - min + 1) + min;
-         int wind = rdn.nextInt(amax - amin + 1) + amin;
-         char chr = alpha.charAt(wind);
-         letters[ind] = (byte) chr;
-         loc += ind+&quot; &quot;;
-      }
-      System.out.println(loc);
-   }
-
-}
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.Random</span><span class="p">;</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>     
+        <span class="n">Random</span> <span class="n">rdn</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span>
+        <span class="n">String</span> <span class="n">alpha</span> <span class="o">=</span> <span class="s">&quot;Zabcdefghijklmnopqrstuvwxyz&quot;</span><span class="p">;</span> 
+        <span class="kt">byte</span><span class="o">[]</span> <span class="n">letters</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">byte</span><span class="o">[</span><span class="mi">1000</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">min</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">max</span> <span class="o">=</span> <span class="mi">999</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">amin</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="kt">int</span> <span class="n">amax</span> <span class="o">=</span> <span class="mi">26</span><span class="p">;</span>
+        <span class="n">String</span> <span class="n">loc</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">;</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">40</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">ind</span> <span class="o">=</span> <span class="n">rdn</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">max</span> <span class="o">-</span> <span class="n">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">min</span><span class="p">;</span>
+            <span class="kt">int</span> <span class="n">wind</span> <span class="o">=</span> <span class="n">rdn</span><span class="p">.</span><span class="na">nextInt</span><span class="p">(</span><span class="n">amax</span> <span class="o">-</span> <span class="n">amin</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">amin</span><span class="p">;</span>
+            <span class="kt">char</span> <span class="n">chr</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">.</span><span class="na">charAt</span><span class="p">(</span><span class="n">wind</span><span class="p">);</span>
+            <span class="n">letters</span><span class="o">[</span><span class="n">ind</span><span class="o">]</span> <span class="o">=</span> <span class="p">(</span><span class="kt">byte</span><span class="p">)</span> <span class="n">chr</span><span class="p">;</span>
+            <span class="n">loc</span> <span class="o">+=</span> <span class="n">ind</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">loc</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This program spawns a 1000 byte array and then places 1 of
 27 characters chosen randomly in a position randomly chosen in one of the 1000
 places. Suppose you wanted to look at the contents of the byte array. How would
 you do this?
-Eclipse let’s do it with a memory dump in the variable window
-(shown in Figure 1).</p>
-<div class="figure align-center" id="id4" style="width: 90%">
+Eclipse lets us do it with a memory dump in the <strong>Variables</strong> window.</p>
+<div class="figure align-center" style="width: 90%">
 <a class="reference internal image-reference" href="_images/DebugMemoryPool1.png"><img alt="Debug Steps" src="_images/DebugMemoryPool1.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 1.6.3: Figure 3</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>By default Eclipse will interpret a byte as an integer.</p>
-<div class="figure align-center" id="id5" style="width: 90%">
+<div class="figure align-center" style="width: 90%">
 <img alt="Debug Steps" src="_images/DebugMemoryPoolRaw1.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.4: Figure 4</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </div>
-<p>However there are a number of other ways to interpret byte values the information. You
-can open the Preferences window by selecting Window-&gt;Preferences (see Figure 5).
+<p>However there are a number of other ways to interpret the byte values. You
+can open the Preferences window by selecting <strong>Window</strong> → <strong>Preferences</strong>.
 Then you will be able to select the raw dump information. In this case I
 chose ASCII text so I can see the byte values interpreted as ASCII characters.</p>
-<div class="figure align-center" id="id6" style="width: 90%">
+<div class="figure align-center" style="width: 90%">
 <a class="reference internal image-reference" href="_images/DebugMemoryPoolPreferences.png"><img alt="Debug Steps" src="_images/DebugMemoryPoolPreferences.png" style="width: 300px; height: 350px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 1.6.5: Figure 5</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </div>
 <p>Now when we view the memory location we can see the character stored there. We
 can also change our display preferences to see the hex value or the
 unsigned value as well.</p>
-<div class="figure align-center" id="id7" style="width: 90%">
+<ul>
+<li><p>ASCII Text View Enabled:</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="ASCII View" src="_images/DebugValue1.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.6: Figure 6: ASCII Text View Enabled</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id8" style="width: 90%">
+</li>
+<li><p>Hex View Enabled:</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="Hex View" src="_images/DebugValue2.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.7: Figure 7: Hex View Enabled</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id9" style="width: 90%">
+</li>
+<li><p>Unsigned View Enabled:</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="Unsiged View" src="_images/DebugValue3.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.8: Figure 8: Unsigned View Enabled</span><a class="headerlink" href="#id9" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id10" style="width: 90%">
+</li>
+<li><p>All Three Views Enabled:</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="All Three Views" src="_images/DebugValue4.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.9: Figure 9: All Three Views Enabled</span><a class="headerlink" href="#id10" title="Permalink to this image">¶</a></p>
 </div>
+</li>
+</ul>
 </div>
 <div class="section" id="the-eclipse-console">
 <h3>1.<span class="section-number">5.1.4. </span>The Eclipse Console<a class="headerlink" href="#the-eclipse-console" title="Permalink to this headline">¶</a></h3>
 <p>So you can now view memory, set breakpoints and even step through functions to
-the points you care about. gdb’s command line interface is very handy for dumping
-information quickly and programmatically when debugging C programs.
-Eclipse has a similar functionality. Eclipse’s Display
-window is a debug terminal. If the Display window is not visible you can
-enable it using <code class="docutils literal notranslate"><span class="pre">Window-&gt;Show</span> <span class="pre">View-&gt;Display</span></code>. Once the Display window is open
-you can turn on autocomplete by right clicking and selecting Content Assist, or
-by hitting CTRL-SPACE (similar to the completion assist Eclipse provides for coding).
-The Display window allows you to write Java code and then execute it. It is a live
+the points you care about. Eclipse’s <strong>Display</strong>
+window is a debug terminal. If the <strong>Display</strong> window is not visible you can
+enable it using <strong>Window</strong> → <strong>Show View</strong> → <strong>Display</strong>. Once the <strong>Display</strong> window is open
+you can turn on autocomplete by right clicking and selecting <strong>Content Assist</strong>, or
+by hitting CTRL-SPACE (similar to the completion assist Eclipse provides for coding).</p>
+<p>The <strong>Display</strong> window allows you to write Java code and then execute it. It is a live
 window where you can write code, execute methods and demo code without having to
 recompile.  Anytime you pause your program, you may access local variables,
-change them, and print information out about them. In the below example
-I have chosen to print the String <code class="docutils literal notranslate"><span class="pre">loc</span></code> (from the byte array sample code)
+change them, and print out information about them. In the below example
+I have chosen to print the String <em>loc</em> (from the byte array sample code)
 out to the output. While this particular example may not appear useful
-(as the program will print <code class="docutils literal notranslate"><span class="pre">loc</span></code> anyway), imagine you are debugging a program.
+(as the program will print <em>loc</em> anyway), imagine you are debugging a program.
 You know a bug occurs, now instead of stopping and
 recompiling your program with bug changes, you can rapidly prototype
-your replacement code and test it on the spot to insure success.</p>
-<div class="figure align-center" id="id11" style="width: 90%">
+your replacement code and test it on the spot to ensure success.</p>
+<div class="figure align-center" style="width: 90%">
 <img alt="Result Of Running Display" src="_images/DebugDisplay1.png" />
-<p class="caption"><span class="caption-text"> Figure 1.6.10: Figure 9: The Display</span><a class="headerlink" href="#id11" title="Permalink to this image">¶</a></p>
 </div>
 </div>
 <div class="section" id="conditional-breakpoints">
 <h3>1.<span class="section-number">5.1.5. </span>Conditional Breakpoints<a class="headerlink" href="#conditional-breakpoints" title="Permalink to this headline">¶</a></h3>
-<p>Sometimes your bug might appear after a lot of processing. you cannot just set a
+<p>Sometimes your bug might appear after a lot of processing. You cannot just set a
 breakpoint to a line of code, because that line is executed 10,000 times before
 the bug occurs. What you really want is to stop at a line only when some other
-condition (i.e. a variable being a certain value, or after X amount of times)
-is true. However adding in additional code to catch those specified conditions
-can lead to issues later if you forget to remove the additional code.
-Fortunately many debuggers have the functionality to only stop at breakpoints
+condition (i.e., a variable being a certain value, or after X amount of times)
+is true. However, extending your code with additional instructions to catch
+those conditions may lead to issues later if you forget to remove them.</p>
+<p>Fortunately many debuggers have the functionality to only stop at breakpoints
 when needed.</p>
 <p>Step 1: Create a breakpoint. For this example I will be using the source code
 from the memory pool that is randomly filled with characters. I want to hit my
-breakpoint if and only if the value of ind is 10.</p>
+breakpoint if and only if the value of the randomly generated index (<em>ind</em>) is 10.</p>
 <div class="figure align-center" style="width: 90%">
 <img alt="Breakpoint set" src="_images/DebugConditionalBreakpoint.png" />
 </div>
-<p>Step 2: Right click on the breakpoint and select Breakpoint Properties</p>
-<p>Step 3: You will then be presented with a screen similar to the picture below.
-There are two option to halt at a breakpoint: by hitcount and when a condition
+<p>Step 2: Right click on the breakpoint and select <strong>Breakpoint Properties</strong>.</p>
+<p>Step 3: You will then be presented with a screen similar to the one in the picture below.
+There are two options to halt at a breakpoint: by hitcount and when a condition
 is satisfied. For this example I have chosen to stop my program only when the
 randomly generated index is equal to 10. Choose the option you would like, if
-you choose conditional, create an arbitrary boolean expression to satisfy.</p>
+you choose conditional, create an arbitrary boolean expression to satisfy it.</p>
 <div class="figure align-center" style="width: 90%">
 <a class="reference internal image-reference" href="_images/DebugConditional.png"><img alt="Breakpoint condition" src="_images/DebugConditional.png" style="width: 364.5px; height: 347.0px;" /></a>
 </div>
-<p>By making use of conditional breakpoints you can speed up debugging and eliminate
+<p><em>Conclusion</em>:
+By making use of conditional breakpoints you can speed up debugging and eliminate
 the chance of accidentally progressing too far.
 For more information on using breakpoints,
 check out <a href="https://wiki.eclipse.org/FAQ_How_do_I_set_a_conditional_breakpoint%3F" target = "_blank">Eclipse's official documentation</a>.</p>
@@ -361,7 +354,7 @@ check out <a href="https://wiki.eclipse.org/FAQ_How_do_I_set_a_conditional_break
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Oct 27, 2021.
+      Last updated on Nov 03, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

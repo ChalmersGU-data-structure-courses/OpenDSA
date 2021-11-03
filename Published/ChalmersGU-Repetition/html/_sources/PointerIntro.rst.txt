@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PointerIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Pointers Chapter Introduction";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PointerIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Pointers/References";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies:
    :topic: Pointers
 
-Pointers Chapter Introduction
-=============================
+Chapter Introduction: Pointers/References
+==========================================
 
 The prose and images in this version originally came from 
 a document written by Nick Parlante of Stanford University, and used

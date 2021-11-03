@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RandomNums";ODSA.SETTINGS.MODULE_LONG_NAME = "Random Numbers";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-10-27 13:12:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RandomNums";ODSA.SETTINGS.MODULE_LONG_NAME = "Random Numbers";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -101,20 +101,11 @@ To see why, consider the following example.
    depending on the :math:`b` value that we pick, in ways that are
    hard to predict.
 
-   .. math::
+   :math:`r(i) = 6r(i-1) \bmod 13 \quad = \quad ..., 1, 6, 10, 8, 9, 2, 12, 7, 3, 5, 4, 11, 1, ...`
 
-      r(i) = 6r(i-1) \bmod 13 =
-      \quad ..., 1, 6, 10, 8, 9, 2, 12, 7, 3, 5, 4, 11, 1, ...\\
+   :math:`r(i) = 7r(i-1) \bmod 13 \quad = \quad ..., 1, 7, 10, 5, 9, 11, 12, 6, 3, 8, 4, 2, 1, ...`
 
-      r(i) = 7r(i-1) \bmod 13 =
-      \quad ..., 1, 7, 10, 5, 9, 11, 12, 6, 3, 8, 4, 2, 1, ...\\
-
-      \begin{eqnarray}
-      r(i) = 5r(i-1) \bmod 13 &=& ..., 1, 5, 12, 8, 1, ...\\
-      && ..., 2, 10, 11, 3, 2, ...\\
-      && ..., 4, 7, 9, 6, 4, ...\\
-      && ..., 0, 0, ...\\
-      \end{eqnarray}
+   :math:`r(i) = 5r(i-1) \bmod 13 \quad = \quad ..., 1, 5, 12, 8, 1, ...`
 
    In the case of :math:`b=5`, the generator goes through only a short
    sequence before repeating, with the series depending on the seed value
