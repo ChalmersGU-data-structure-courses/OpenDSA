@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:24:08"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -145,24 +145,6 @@ TODO List
 
 .. raw:: html
 
-   <h2><a href="Quicksort.html#todo0">source: Quicksort</a></h2>
-
-.. TODO::
-
-  type: Exercise
-
-   Consider the Quicksort implementation for this module, where the
-   pivot is selected as the middle value of the partition.
-   Give a permutation for the values 0 through 7 that will cause
-   Quicksort to have its worst-case behavior.
-
-   There are a number of possible correct answers. To assess the
-   answer, will need to run Quicksort over student's
-   partition, and verify that at each step it will generate new
-   partitions of size 6, 5, 4, 3, 2, then 1.
-
-.. raw:: html
-
    <h2><a href="HuffProof.html#todo0">source: HuffProof</a></h2>
 
 .. TODO::
@@ -248,38 +230,6 @@ TODO List
    proficiency for DFS-based and queue-based Topsort.
    The bare beginnings of an exercise can be found in
    ``AV/Development/TopSort/topSortDFSPE.*``
-
-.. raw:: html
-
-   <hr /><h1>Revision</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="ExchangeSort.html#todo0">source: ExchangeSort</a></h2>
-
-.. TODO::
-
-  type: Revision
-
-   Rewrite along these lines: Here are two measures of "out of order":
-   inversions and min-swaps. Selection sort (especially w/
-   optimization) meets min-swaps, but that's not a useful measure in
-   general. Insertion sort tracks inversions, it is I + n. Now, if we
-   had an exchange sort, what would cost be? Go on to the proof.
-
-.. raw:: html
-
-   <h2><a href="SortOpt.html#todo0">source: SortOpt</a></h2>
-
-.. TODO::
-
-  type: Revision
-
-   Rewrite along these lines: A classic form of code tuning is "test
-   to save work". For each of our three sorting algorithms, we have a
-   potential "test to save work" "optimization". The question is: When
-   is the cost of test worth the work saved? Let's look at each of the
-   three.
 
 .. raw:: html
 

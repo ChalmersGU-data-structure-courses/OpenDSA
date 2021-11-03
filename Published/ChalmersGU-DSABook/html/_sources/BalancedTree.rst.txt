@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BalancedTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Balanced Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-10-28 16:21:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BalancedTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Balanced Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:24:08"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -44,7 +44,7 @@ only be :math:`\Theta(\log n)`, a huge improvement.
 One solution to this problem is to adopt another search
 tree structure instead of using a BST at all.
 An example of such an alternative tree structure is the
-:ref:`2-3 Tree  <TwoThreeTree>`
+:term:`2-3 Tree  <2-3 Tree>`
 or the :term:`B-Tree  <B-tree>`.
 But another alternative would be to modify the BST access functions in
 some way to guarantee that the tree performs well.
@@ -90,6 +90,6 @@ This is a little like the idea of path compression used by the
 One example of such a compromise is called the
 :ref:`splay tree  <Splay>`.
 
-The :ref:`Red-Black Tree  <RedBlack>` is also a binary
+The :term:`Red-Black Tree  <Red-Black Tree>` is also a binary
 tree, but it uses a different balancing mechanism.
 
