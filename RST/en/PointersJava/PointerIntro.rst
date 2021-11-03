@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Pointers
 
-Pointers Chapter Introduction
-=============================
+Chapter Introduction: Pointers/References
+==========================================
 
 The prose and images in this version originally came from 
 a document written by Nick Parlante of Stanford University, and used

@@ -8,8 +8,8 @@
    :satisfies: math introduction
    :topic: Math Background
 
-Chapter Introduction
-====================
+Chapter Introduction: Mathematical Background
+==============================================
 
 This chapter presents mathematical notation,
 background, and techniques used throughout the modules.
