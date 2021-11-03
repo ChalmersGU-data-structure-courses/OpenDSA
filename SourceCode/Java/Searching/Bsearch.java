@@ -7,7 +7,7 @@ static boolean SUCCESS = true;
 
 /* *** ODSATag: BinarySearch *** */
 // Return the position of an element in sorted array A with value K.
-// If K is not in A, return A.length.
+// If K is not in A, return -1.
 public static int binarySearch(int[] A, int K) {
   int low = 0;
   int high = A.length - 1;
@@ -17,7 +17,7 @@ public static int binarySearch(int[] A, int K) {
     else if(A[mid] > K) high = mid - 1; // In left half
     else return mid;                    // Found it
   }
-  return A.length;                      // Search value not in A
+  return -1;                            // Search value not in A
 }
 /* *** ODSAendTag: BinarySearch *** */
 
