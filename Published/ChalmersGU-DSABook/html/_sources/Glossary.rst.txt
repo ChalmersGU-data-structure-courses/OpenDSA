@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:24:08"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -334,7 +334,7 @@ Glossary
       :term:`children <child>` per :term:`internal node`),
       causing the tree to be very shallow.
       When stored on disk, the node size is selected to be same as the
-      desired unit of I/O (hence some multiple of the disk :term:`sector`
+      desired unit of I/O (so some multiple of the disk :term:`sector`
       size).
       This makes it easy to gain access to the record associated with
       a given :term:`search key` stored in the tree with few
@@ -2089,7 +2089,7 @@ Glossary
       In a properly implemented :term:`hash system`, that position in
       the table will have high probability of containing the record
       that matches the key value.
-      Sometimes, the hash function will return a position that does
+      Sometimes, the hash function will return an position that does
       not store the desired key, due to a process called
       :term:`collision`.
       In that case, the desired record is found through a process
@@ -2654,7 +2654,7 @@ Glossary
       It allows for efficient search (including for
       :term:`range queries <range query>`), but it is not good for
       inserting and deleting entries in the array.
-      Therefore, it is an ideal indexing structure for when the system
+      Therefore, it is an ideal indexing structure when the system
       needs to do range queries but the collection of records never
       changes once the linear index has been created.
 
@@ -3848,7 +3848,7 @@ Glossary
       The set of possible outputs for a function.
 
    range query
-      Records are returned if their relevant key value falls within a
+      Records are returned if their relevant key value falls with a
       specified range.
 
    read/write head
@@ -4337,7 +4337,7 @@ Glossary
    singly linked list
 
       A :term:`linked list` implementation variant where each list
-      node contains access a pointer only to the next element in the list.
+      node contains access an pointer only to the next element in the list.
 
    skip list
       A form of :term:`linked list` that adds additional links to

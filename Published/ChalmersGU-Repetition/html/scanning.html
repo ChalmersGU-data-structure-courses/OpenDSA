@@ -162,161 +162,170 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['', 'the-scanner-class'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "scanning";ODSA.SETTINGS.MODULE_LONG_NAME = "Reading Input (from Files or Otherwise)";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="reading-input-from-files-or-otherwise">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['', 'the-scanner-class'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "scanning";ODSA.SETTINGS.MODULE_LONG_NAME = "Reading Input (from Files or Otherwise)";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="reading-input-from-files-or-otherwise">
 <h1>1.<span class="section-number">6. </span>Reading Input (from Files or Otherwise)<a class="headerlink" href="#reading-input-from-files-or-otherwise" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-scanner-class">
 <h2>1.<span class="section-number">6.1. </span>The Scanner Class<a class="headerlink" href="#the-scanner-class" title="Permalink to this headline">¶</a></h2>
-<p>There are a number of ways in Java for properly reading in a file.
-The Scanner class is an excellent class for this purpose as it provides a quickly parse through a String.
-See the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html" target = "_blank">Scanner class API</a>.
+<p>Java has an excellent class for reading in text.
+The Scanner class is useful to quickly parse through a String.
+See the <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Scanner.html" target = "_blank">Scanner class API</a>.
 So how do we properly read in a file?
 There are a number of ways.
 This page shows a simple demonstration of how to use the Scanner class to read
-in a command file.</p>
-<p>In this project we are given four commands that our program must handle:</p>
+in a command file.
+In this project we are given four commands that our program must handle:
+debug, search, add, and delete.
+Take a look at the <a href="http://courses.cs.vt.edu/~cs3114/Fall13/watcherP4.txt" target = "_blank">input file</a>.</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code> – prints information about the tree in the program</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">search</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> <code class="docutils literal notranslate"><span class="pre">{radius}</span></code> – searches a region based off coordinates given</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">add</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> <code class="docutils literal notranslate"><span class="pre">{name}</span></code> – adds a node at the coordinates given</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">delete</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> – deletes a node at the specific point</p></li>
+<li><p>debug - prints information about the tree in the program</p></li>
+<li><p>search - searches a region based off coordinates given</p></li>
+<li><p>add - adds a node at the coordinates given</p></li>
+<li><p>delete - deletes a node at the specific point</p></li>
 </ol>
-<p>See <a href="http://courses.cs.vt.edu/~cs3114/Fall13/watcherP4.txt" target = "_blank">input file</a> for some example input. Consider the following code snippet.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.File</span><span class="p">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="p">;</span>
+<p>*Every command except debug takes additional parameters*</p>
+<p>Consider the following code snippet.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>import java.io.File;
+import java.util.Scanner;
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>     
-        <span class="n">String</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Pass the function a full filepath.</span>
-        <span class="n">beginParsing</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span> <span class="c1">// Call the parsing function.</span>
-    <span class="p">}</span>
+
+public class Main {
+
+   /**
+    * @param args
+    */
+   public static void main(String[] args) {     
+      String filename = args[0];//Pass the function a full filepath
+      beginParsing(filename);//call the parsing function
+   }
    
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">beginParsing</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">try</span> <span class="p">{</span>
-            <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span> <span class="c1">// Create our new scanner.</span>
-            <span class="k">while</span> <span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// While the scanner has information to read.</span>
-                <span class="n">String</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Read the next term.</span>
-                <span class="kt">double</span> <span class="n">x</span><span class="p">;</span> <span class="kt">double</span> <span class="n">y</span><span class="p">;</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
-                <span class="k">switch</span> <span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">case</span> <span class="s">&quot;debug&quot;</span> <span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;debug cmd activated&quot;</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;add&quot;</span><span class="p">:</span> <span class="c1">// Found an add command.</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Insert node at &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="s">&quot; with name &quot;</span><span class="o">+</span><span class="n">name</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;delete&quot;</span><span class="p">:</span> <span class="c1">// Found a delete command.</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Remove node at &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;search&quot;</span><span class="p">:</span> <span class="c1">// Found a search command.</span>
-                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">radius</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Search for node near &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="s">&quot; within radius of &quot;</span><span class="o">+</span><span class="n">radius</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">default</span><span class="p">:</span> <span class="c1">// Found an unrecognized command.</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized input &quot;</span><span class="o">+</span><span class="n">cmd</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-            <span class="p">}</span>
-        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+   public static void beginParsing(String filename) {
+      try {
+         Scanner sc = new Scanner(new File(filename));//Create our new scanner
+         while(sc.hasNext()) {//While the scanner has information to read
+            String cmd = sc.next();//Read the next term
+            double x; double y; double radius;
+            switch(cmd) {
+               case &quot;debug&quot; :
+                  System.out.println(&quot;debug cmd activated&quot;);
+               break;
+               case &quot;add&quot; ://Found an add command
+                  x = sc.nextDouble();
+                  y = sc.nextDouble();
+                  String name = sc.next();
+                  System.out.println(&quot;Insert node at &quot;+x+&quot; &quot;+y+&quot; with name &quot;+name);
+               break;
+               case &quot;delete&quot; ://Found a delete command
+                  x = sc.nextDouble();
+                  y = sc.nextDouble();
+                  System.out.println(&quot;Remove node at &quot;+x+&quot; &quot;+y);
+               break;
+               case &quot;search&quot; ://Found a search command
+                  x = sc.nextDouble();
+                  y = sc.nextDouble();
+                  radius = sc.nextDouble();
+                  System.out.println(&quot;Search for node near &quot;+x+&quot; &quot;+y+&quot; within radius of &quot;+radius);
+               break;
+               default ://Found an unrecognized command
+                  System.out.println(&quot;Unrecognized input &quot;+cmd);
+               break;
+            }
+         }
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
+   }
+
+}
 </pre></div>
 </div>
 <p>This code will parse through a command file, read in each command and each of
-their parameters (if it has any). It is important to note, however,
+their parameters (if the command has one). It is important to note, however,
 that this code is not necessarily safe. It assumes that the command file
 given is properly formatted, and as such if a user decides to give the program
 a malformed file the program will behave in a possibly unknown way.</p>
-<p>Depending on the structure of your file you may wish to simply do the token
+<p>Depending on the structure of your file you may not wish to simply do the token
 method. Another approach would be to read in an entire line and then work from
 there.
 Consider <a href="http://courses.cs.vt.edu/~cs3114/Fall14/P1sampleInput.txt" target = "_blank">this input file</a>.
 We now have 3 commands that we must support.</p>
-<p>1. <code class="docutils literal notranslate"><span class="pre">insert</span></code> <code class="docutils literal notranslate"><span class="pre">{artist-name}&lt;SEP&gt;{song-name}</span></code> – inserts a song using the information
+<p>1. insert {artist-name}&lt;SEP&gt;{song-name} - inserts a song using the information
 provided in the fields</p>
 <ol class="arabic simple" start="2">
-<li><p><code class="docutils literal notranslate"><span class="pre">remove</span></code> <code class="docutils literal notranslate"><span class="pre">{artist|song}</span></code> <code class="docutils literal notranslate"><span class="pre">{name}</span></code> – removes a song given a song name or artist name</p></li>
+<li><p>remove {artist|song} {name} - removes a song given a song name or artist name</p></li>
 </ol>
-<p>3. <code class="docutils literal notranslate"><span class="pre">print</span></code> <code class="docutils literal notranslate"><span class="pre">{artist|song|blocks}</span></code> – depending on the parameter value, you will print
+<p>3. print {artist|song|blocks} - depending on the parameter value, you will print
 out either a complete listing of the artists contained in the database, or the
 songs, or else the free block list for the memory manager</p>
-<p>So this time we have less commands to support, but more options for each command.
-No worries! We simply need to change our code just a little bit. We see this
+<p>So this time we have less commands to support, but more options for each command
+, no worries! We simply need to change our code just a little bit. We see this
 time that the insert command has no spacing between artist/song tokens. Rather it
-uses the separator <code class="docutils literal notranslate"><span class="pre">&lt;SEP&gt;</span></code>.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">beginParsingByLine</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">try</span> <span class="p">{</span>
-        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span>
-        <span class="n">Scanner</span> <span class="n">scancmd</span><span class="p">;</span> <span class="c1">// Declare two scanners one to read the file and one to read the text pulled from the file.</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">hasNextLine</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// While we have text to read.</span>
-            <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span> <span class="c1">// Get our next line.</span>
-            <span class="n">scancmd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">line</span><span class="p">);</span> <span class="c1">// Create a scanner from this line.</span>
-            <span class="n">String</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the first word (the command) on each line.</span>
-            <span class="n">String</span> <span class="n">type</span><span class="p">;</span>
-            <span class="k">switch</span> <span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="s">&quot;insert&quot;</span><span class="p">:</span> <span class="c1">// In the case of insert change our delimiter from white space to &lt;SEP&gt;.</span>
-                <span class="n">scancmd</span><span class="p">.</span><span class="na">useDelimiter</span><span class="p">(</span><span class="s">&quot;&lt;SEP&gt;&quot;</span><span class="p">);</span>
-                <span class="n">String</span> <span class="n">artist</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the artist since it is before &lt;SEP&gt;.</span>
-                <span class="n">String</span> <span class="n">song</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the song title that follows &lt;SEP&gt;.</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Insert &quot;</span> <span class="o">+</span> <span class="n">artist</span> <span class="o">+</span> <span class="s">&quot; \\ &quot;</span> <span class="o">+</span> <span class="n">song</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="s">&quot;remove&quot;</span><span class="p">:</span>
-                <span class="n">type</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the mode of deletion artist/song.</span>
-                <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
-                <span class="c1">// Since both artist titles and song titles have spaces</span>
-                <span class="c1">// get the rest of the line for the song/artist name.</span>
-                <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">case</span> <span class="s">&quot;artist&quot;</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Artist Delete: &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;song&quot;</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Song Delete: &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">default</span><span class="p">:</span> <span class="c1">// Error: bad token.</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error bad remove type &quot;</span> <span class="o">+</span> <span class="n">type</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="s">&quot;print&quot;</span><span class="p">:</span> <span class="c1">// Print command.</span>
-                <span class="n">type</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the type of print command.</span>
-                <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">case</span> <span class="s">&quot;artist&quot;</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print artist mode&quot;</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;song&quot;</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print song mode&quot;</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">case</span> <span class="s">&quot;blocks&quot;</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print block mode&quot;</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="k">default</span><span class="p">:</span>
-                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error bad print type&quot;</span> <span class="o">+</span> <span class="n">type</span><span class="p">);</span>
-                    <span class="k">break</span><span class="p">;</span>
-                <span class="p">}</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">default</span> <span class="p">:</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized input&quot;</span><span class="p">);</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+uses the seperator &lt;SEP&gt;.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>public static void beginParsingByLine(String filename) {
+   try {
+      Scanner sc = new Scanner(new File(filename));
+      Scanner scancmd;//Declare two scanners one to read the file and one to read the text pulled from the file
+      while(sc.hasNextLine()) {//While we have text to read
+         String line = sc.nextLine();//Get our next line
+         scancmd = new Scanner(line);//Create a scanner from this line
+         String cmd = scancmd.next();//Get the first word (the command) on each line
+         String type;
+         switch(cmd) {
+            case &quot;insert&quot;://In the case of insert change our delimiter from white space to &lt;SEP&gt; 
+               scancmd.useDelimiter(&quot;&lt;SEP&gt;&quot;);
+               String artist = scancmd.next();//Get the artist since it is before &lt;SEP&gt;
+               String song = scancmd.next();//Get the song title that follows &lt;SEP&gt;
+               System.out.println(&quot;Insert &quot;+artist+&quot; \\ &quot;+song);
+            break;
+            case &quot;remove&quot;:
+               type = scancmd.next();//Get the mode of deletion artist/song
+               String token = scancmd.nextLine();
+               //Since both artist titles and song titles have spaces
+               //get the rest of the line for the song/artist name
+               switch(type) {
+                  case &quot;artist&quot;:
+                     System.out.println(&quot;Artist Delete: &quot;+token);
+                  break;
+                  case &quot;song&quot;:
+                     System.out.println(&quot;Song Delete: &quot;+token);
+                  break;
+                  default ://Error bad token
+                     System.out.println(&quot;Error bad remove type &quot; + type);
+                  break;
+               }
+            break;
+            case &quot;print&quot;://Print command
+               type = scancmd.next();//get the type of print command
+               switch(type) {
+                  case &quot;artist&quot;:
+                     System.out.println(&quot;Print artist mode&quot;);
+                  break;
+                  case &quot;song&quot;:
+                     System.out.println(&quot;Print song mode&quot;);
+                  break;
+                  case &quot;blocks&quot;:
+                     System.out.println(&quot;Print block mode&quot;);
+                  break;
+                  default:
+                     System.out.println(&quot;Error bad print type&quot; + type);
+                  break;
+               }
+            break;
+            default :
+               System.out.println(&quot;Unrecognized input&quot;);
+            break;
+         }
+      }
+   } catch (Exception e) {
+      e.printStackTrace();
+   }
+}
 </pre></div>
 </div>
-<p>Separating artists and song names on the same line can prove to be rather difficult
-due to the fact that names might include a space or other
-traditional delimiters.
-By separating these fields using <code class="docutils literal notranslate"><span class="pre">&lt;SEP&gt;</span></code>, we drastically
-reduce the possibilty of a valid name containing the delimiter.</p>
+<p>Seperating artists and song name on the same line can prove to be rather difficult
+due to the fact that either name might include a space or other
+traditional deliminator.
+By seperating these fields using &lt;SEP&gt;, we drastically
+reduce the possibilty of a valid name containing the delimeter.</p>
 </div>
 </div>
 

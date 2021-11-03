@@ -45,7 +45,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
     <link rel="next" title="3. Code Completion Practice Exercises" href="CodeCompletionEx.html" />
-    <link rel="prev" title="1. Chapter Introduction: Recursion" href="RecIntro.html" />
+    <link rel="prev" title="1. Introduction" href="RecIntro.html" />
 
   </head>
 
@@ -150,7 +150,7 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="RecIntro.html">4.<span class="section-number">1. </span>Chapter Introduction: Recursion</a>
+        «&#160;&#160;<a id="prevmod" href="RecIntro.html">4.<span class="section-number">1. </span>Introduction</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Write";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing a recursive function";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/RecurTutor/recurWriteCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Write";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing a recursive function";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/RecurTutor/recurWriteCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="writing-a-recursive-function">
 <h1>4.<span class="section-number">2. </span>Writing a recursive function<a class="headerlink" href="#writing-a-recursive-function" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -227,7 +227,7 @@ Any number in the sequence is found by adding up the two numbers
 before it.
 The base cases are that <code class="docutils literal notranslate"><span class="pre">Fibonacci(0)</span> <span class="pre">=</span> <span class="pre">1</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Fibonacci(1)</span> <span class="pre">=</span> <span class="pre">1</span></code>.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="nf">Fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+<div id="Fibonacci_code"><ul><li><a href="#Fibonacci_code_Java_Generic">Java (Generic)</a></li><li><a href="#Fibonacci_code_Java">Java</a></li></ul><div id="Fibonacci_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="nf">Fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>   
   <span class="p">}</span>
@@ -235,7 +235,15 @@ The base cases are that <code class="docutils literal notranslate"><span class="
 <span class="p">}</span> 
 </pre></div>
 </div>
+</div><div id="Fibonacci_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">long</span> <span class="nf">Fibonacci</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>   
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">Fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">Fibonacci</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span> 
+</pre></div>
 </div>
+</div></div><script>$(function() {$( "#Fibonacci_code" ).tabs();});</script></div>
 <script type="text/javascript" src="../../../AV/RecurTutor/recurWriteStepsCON.js"></script>
 <script type="text/javascript" src="../../../AV/RecurTutor/recurWriteSumCON.js"></script>
 </div>
@@ -246,7 +254,7 @@ The base cases are that <code class="docutils literal notranslate"><span class="
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="RecIntro.html">4.<span class="section-number">1. </span>Chapter Introduction: Recursion</a>
+        «&#160;&#160;<a id="prevmod1" href="RecIntro.html">4.<span class="section-number">1. </span>Introduction</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;

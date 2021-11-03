@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:24:08"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="id1">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="id1">
 <h1>12.<span class="section-number">1. </span>Glossary<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary">
 <dt id="term-2-3-tree">2-3 tree</dt><dd><p>A specialized form of the <a class="reference internal" href="#term-1"><span class="xref std std-term">B-tree</span></a> where each internal
@@ -405,7 +405,7 @@ branching factor (commonly as much as 100
 <a class="reference internal" href="#term-child"><span class="xref std std-term">children</span></a> per <a class="reference internal" href="#term-internal-node"><span class="xref std std-term">internal node</span></a>),
 causing the tree to be very shallow.
 When stored on disk, the node size is selected to be same as the
-desired unit of I/O (hence some multiple of the disk <a class="reference internal" href="#term-sector"><span class="xref std std-term">sector</span></a>
+desired unit of I/O (so some multiple of the disk <a class="reference internal" href="#term-sector"><span class="xref std std-term">sector</span></a>
 size).
 This makes it easy to gain access to the record associated with
 a given <a class="reference internal" href="#term-search-key"><span class="xref std std-term">search key</span></a> stored in the tree with few
@@ -817,11 +817,11 @@ well-defined role or responsibility.</p>
 </dd>
 <dt id="term-collatz-sequence">Collatz sequence</dt><dd><p>For a given integer value <span class="math notranslate nohighlight">\(n\)</span>, the sequence of numbers
 that derives from performing the following computatin on <span class="math notranslate nohighlight">\(n\)</span></p>
-<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">ODD</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="k">else</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">n</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ODD</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="k">else</span><span class="w"></span>
+<span class="w">    </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>This is famous because, while it terminates for any value of
@@ -1866,7 +1866,7 @@ records for lookup using <a class="reference internal" href="#term-hashing"><spa
 In a properly implemented <a class="reference internal" href="#term-hash-system"><span class="xref std std-term">hash system</span></a>, that position in
 the table will have high probability of containing the record
 that matches the key value.
-Sometimes, the hash function will return a position that does
+Sometimes, the hash function will return an position that does
 not store the desired key, due to a process called
 <a class="reference internal" href="#term-collision"><span class="xref std std-term">collision</span></a>.
 In that case, the desired record is found through a process
@@ -2338,7 +2338,7 @@ on disk or in <a class="reference internal" href="#term-main-memory"><span class
 It allows for efficient search (including for
 <a class="reference internal" href="#term-range-query"><span class="xref std std-term">range queries</span></a>), but it is not good for
 inserting and deleting entries in the array.
-Therefore, it is an ideal indexing structure for when the system
+Therefore, it is an ideal indexing structure when the system
 needs to do range queries but the collection of records never
 changes once the linear index has been created.</p>
 </dd>
@@ -3328,7 +3328,7 @@ a correct result, but will return a result relatively quickly.</p>
 </dd>
 <dt id="term-range">range</dt><dd><p>The set of possible outputs for a function.</p>
 </dd>
-<dt id="term-range-query">range query</dt><dd><p>Records are returned if their relevant key value falls within a
+<dt id="term-range-query">range query</dt><dd><p>Records are returned if their relevant key value falls with a
 specified range.</p>
 </dd>
 <dt id="term-read-write-head">read/write head</dt><dd><p>Synonym for <a class="reference internal" href="#term-i-o-head"><span class="xref std std-term">I/O head</span></a>.</p>
@@ -3727,7 +3727,7 @@ to every other vertex in the graph.
 One algorithm to solve this problem is <a class="reference internal" href="#term-dijkstra-s-algorithm"><span class="xref std std-term">Dijkstra’s algorithm</span></a>.</p>
 </dd>
 <dt id="term-singly-linked-list">singly linked list</dt><dd><p>A <a class="reference internal" href="#term-linked-list"><span class="xref std std-term">linked list</span></a> implementation variant where each list
-node contains access a pointer only to the next element in the list.</p>
+node contains access an pointer only to the next element in the list.</p>
 </dd>
 <dt id="term-skip-list">skip list</dt><dd><p>A form of <a class="reference internal" href="#term-linked-list"><span class="xref std std-term">linked list</span></a> that adds additional links to
 improve the cost of fundamental operations like insert, delete,
