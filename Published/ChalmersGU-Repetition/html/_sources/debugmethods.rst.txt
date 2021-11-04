@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debugmethods";ODSA.SETTINGS.MODULE_LONG_NAME = "Common Debugging Methods";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "debugmethods";ODSA.SETTINGS.MODULE_LONG_NAME = "Common Debugging Methods";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -43,16 +43,16 @@ Print Debugging
 ~~~~~~~~~~~~~~~
 
 I frequently use this method to help me track down bugs in my code. The main
-idea is simple. Print out as much information as poissible in every stage of
+idea is simple. Print out as much information as possible in every stage of
 your program. By doing so we can see at every stage of the program how our
 data changes and if it changes in the way that we planned. It should be noted
 that this method comes with a few disadvantages as well.
 
 1. It requires print statements throughout the code and this means that
-it will have to be removed later on
+it will have to be removed later on.
 
 2. Depending on how much data the program prints, it may be flooded with so much
-information that it becomes difficult to gain any meaning from it
+information that it becomes difficult to gain any meaning from it.
 
 
 Rubber Duck Debugging

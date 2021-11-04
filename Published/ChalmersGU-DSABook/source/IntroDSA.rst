@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "IntroDSA";ODSA.SETTINGS.MODULE_LONG_NAME = "Data Structures and Algorithms";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "IntroDSA";ODSA.SETTINGS.MODULE_LONG_NAME = "Data Structures and Algorithms";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -213,7 +213,7 @@ these steps.
 This three-step approach to selecting a data structure operationalizes
 a data-centered view of the design process.
 The first concern is for the data and the operations to be performed
-on them, the next concern is the representation for those data, and
+on them, the next concern is the representation of those data, and
 the final concern is the implementation of that representation.
 
 Resource constraints on certain key operations, such as search,
@@ -234,7 +234,7 @@ yourself whenever you must choose a data structure.
    If so, this will probably make the implementation more complicated.
 
 #. Are all data items processed in some well-defined order,
-   or is search for specific data items allowed?
+   or is searching for specific data items allowed?
    "Random access" search generally requires more complex data
    structures.
 

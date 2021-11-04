@@ -9,8 +9,8 @@
    :satisfies: sort code tuning
    :topic: Sorting, Code Tuning
 
-Optimizing Sort Algorithms with Code Tuning
-===========================================
+Optimizing Sort Algorithms with Code Tuning (optional)
+=======================================================
 
 Code Tuning for Simple Sorting Algorithms
 -----------------------------------------

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetDef";ODSA.SETTINGS.MODULE_LONG_NAME = "Sets and Relations";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetDef";ODSA.SETTINGS.MODULE_LONG_NAME = "Sets and Relations";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -241,7 +241,7 @@ it is not reflexive.
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Relations Exercise
 
 
@@ -317,7 +317,7 @@ computing a :term:`minimal cost spanning tree  <MCST>`.
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Equivalence Exercise
 
 
@@ -364,6 +364,6 @@ then the order is called a :term:`total order` or :term:`linear order`.
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: PartialOrder Exercise
 
