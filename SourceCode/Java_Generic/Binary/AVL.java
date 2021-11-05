@@ -46,7 +46,7 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
     //
     // Checks that the node is the root of a valid AVL tree, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
-    // if lo is None, and k < hi is skipped if hi is None."""
+    // if lo is None, and k < hi is skipped if hi is None.
     void checkInvariantHelper(Node node, Key lo, Key hi) {
         if (node == null) return;
 

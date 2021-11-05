@@ -163,13 +163,13 @@ class AVL:
             left_diff = node.left.height_diff()
             if left_diff == -1:
                 node.left = AVL.rotate_left(node.left)
-                node.left.update_height()
+                node.update_height()
             return AVL.rotate_right(node)
         elif diff == -2:
             right_diff = node.right.height_diff()
             if right_diff == 1:
                 node.right = AVL.rotate_right(node.right)
-                node.right.update_height()
+                node.update_height()
             return AVL.rotate_left(node)
         else:
             return node
