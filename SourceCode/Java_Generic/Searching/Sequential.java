@@ -1,45 +1,28 @@
 import java.io.*;
 
 // Tester for binary search function
-public class Sequential {
-
-static boolean SUCCESS = true;
+class SequentialSearch {
 
 /* *** ODSATag: Sequential *** */
-// Return the position of the element `e` in array `elements`.
-// If `e` is not found, return -1.
-static E sequentialSearch(E[] elements, E e) {
+// Return the position of an element in a list.
+// If the element is not found, return -1.
+public static<E> int sequentialSearch(E[] elements, E e) {
     for (int i = 0; i < elements.length; i++) { // For each element
-        if (elements[i].equals(e)) {            // if we found it
-            return i;                           // return this position
-        }
+        if (elements[i].equals(e))              // if we found it
+            return i;                           // return its position
     }
     return -1;                                  // Otherwise, return -1
 }
 /* *** ODSAendTag: Sequential *** */
-
-public static void main(String args[]) throws IOException {
-  int[] A = {2, 3, 4, 5, 7, 10};
-
-  int pos = sequential(A, 4);
-  if (pos != 2) {
-    SUCCESS = false;
-  }
-
-  pos = sequential(A, 6);
-  if (pos != 6) {
-    SUCCESS = false;
-  }
-
-  if (SUCCESS) {
-    PrintWriter output = new PrintWriter("success");
-    output.println("Success");
-    output.flush();
-    output.close();
-    System.out.println("Success!");
-  } else {
-    System.out.println("Binary Search Testing failed");
-  }
 }
 
+class Sequential {
+    public static void main(String args[]) throws IOException {
+        Integer[] A = {2, 3, 4, 5, 7, 10};
+        Integer[] searchKeys = {4, 6, 10};
+        for (Integer key : searchKeys) {
+            int pos = SequentialSearch.sequentialSearch(A, key);
+            System.out.println("Search for " + key + " --> position " + pos);
+        }
+    }
 }

@@ -1,0 +1,16 @@
+/* *** ODSATag: BinarySearch *** */
+// Return the position of an element in a list.
+// If the element is not found, return -1.
+binarySearch(elements:E[], e:E) : integer
+    low  : integer = 0
+    high : integer = size of elements - 1
+    while low <= high                      // Stop when low and high meet
+        mid : integer = (low + high) / 2   // Check middle of subarray
+        if elements[mid] < e
+            low = mid + 1                  // In right half
+        else if elements[mid] > e
+            high = mid - 1                 // In left half
+        else
+            return mid                     // Found it
+    return -1                              // Search value not in array
+/* *** ODSAendTag: BinarySearch *** */
