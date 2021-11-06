@@ -125,7 +125,7 @@ as a disk drive or CD.
 
    #. Insert a new integer at a particular position in the list.
 
-   #. Return ``True`` if the list is empty.
+   #. Return ``true`` if the list is empty.
 
    #. Reinitialize the list.
 
@@ -151,14 +151,6 @@ for small datasets (thousands of elements), while another implementation
 is more efficient for large datasets (millions of elements). 
 Therefore there is usually a need for several different 
 implementations of the same ADT. 
-
-REMOVE:
-One application that makes use of some ADT might use particular
-member functions of that ADT more than a second application, or the
-two applications might have different time requirements for the
-various operations.
-These differences in the requirements of applications are the reason
-why a given ADT might be supported by more than one implementation.
 
 .. topic:: Example
 
