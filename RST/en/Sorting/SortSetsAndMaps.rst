@@ -11,7 +11,7 @@
 Arrays as Sets or Maps
 ======================
 
-In Chapter :chap:`???` we learnt about *sets* and *maps*, two of the
+In Chapter :chap:`Introduction` we learnt about *sets* and *maps*, two of the
 most important ADTs.
 
 .. codeinclude:: ChalmersGU/API

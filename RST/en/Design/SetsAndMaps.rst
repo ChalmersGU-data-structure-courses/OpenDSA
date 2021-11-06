@@ -151,8 +151,10 @@ There is a better way. If the towns are stored in a array, and sorted
 by population, we can use the following algorithm:
 
 * Find the position in the array of the first town that has a
-  population of at least 1,000. (We will see in Section
-  :chap:`???` that is is possible to find this position efficiently.)
+  population of at least 1,000. (We will see in Chapter
+  :chap:`Arrays: Searching and Sorting` that it is possible to find
+  this position efficiently, using an algorithm called *binary
+  search*.)
 * Find the position in the array of the *last* town that has a
   population of *at most* 2,000.
 * Now return all towns between those two positions in the array.
@@ -214,17 +216,16 @@ design a class that implements a set or a map, in such a way that
 adding, removing and searching can be done efficiently? In this book
 we will see several different ways of implementing sets and maps.
 
-In Chapter :chap:`Arrays: Sorting and Searching`, we will see how to
+In Chapter :chap:`Arrays: Searching and Sorting`, we will see how to
 implement a set using an array. By sorting the items in the array, it
 is possible to look up information efficiently. However, it turns out
 that adding and removing items is quite expensive. An array is a
 suitable way of storing a set or a map if its contents never changes.
 
-In Chapters :chap:`Binary Search Trees` and :chap:`Balanced Binary
-Search Treees`, we learn about *balanced binary search trees (BSTs)*,
-a data structure for sets and maps where adding, removing and
-searching are all efficient. BSTs also support the *sorted map*
-operations that we used in our final example.
+In Chapter :chap:`Search Trees`, we learn about *balanced binary
+search trees (BSTs)*, a data structure for sets and maps where adding,
+removing and searching are all efficient. BSTs also support the
+*sorted map* operations that we used in our final example.
 
 In chapter :chap:`Hash Tables`, we learn about *hash tables*, another way
 to implement the set and map ADTs. In a hash table, ``add``,
