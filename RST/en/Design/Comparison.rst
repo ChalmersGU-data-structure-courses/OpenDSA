@@ -32,7 +32,7 @@ multiple values, such as a name, an address, and a phone number.
 In that case, how can we "compare" records to decide which one is
 "smaller"?
 We cannot just use "<" to compare the records!
-Nearly always in this situation, we actually are interested in sorting
+Nearly always in this situation, we are actually interested in sorting
 the records based on the values of one particular field used to
 represent the record,
 which itself is something simple like an integer.
@@ -136,14 +136,14 @@ record and a pointer to the record itself.
 The main places where we will need to be concerned with comparing
 records and extracting keys is for various map
 implementations and sorting algorithms.
-A simple class for representing key-value pairs is shown here.
+Here is a simple class for representing key-value pairs:
 
 .. codeinclude:: ChalmersGU/KVPair
    :tag: KVPair
 
 Using this we can easily implement a **Map** from an underlying **List**,
 which we will discuss further in the
-:ref:`chapter about linear structures <LinkedListMap>`.
+:ref:`chapter about linear structures <ListMap>`.
 
 Sorting using Comparables
 --------------------------
@@ -160,12 +160,13 @@ comparison problem.
 To illustrate, here is an example of
 :ref:`Insertion Sort <Insertion Sort> <InsertionSort>` implemented to
 work on an array that stores records that support the ``Comparable``
-interface.
+interface:
 
 .. codeinclude:: Sorting/Insertionsort
    :tag: Insertionsort
 
-Here are some review questions to test your knowledge from this module.
+Review questions
+------------------
 
 .. avembed:: Exercises/Design/CompareSumm.html ka
    :long_name: Record Comparison Summary Exercise
