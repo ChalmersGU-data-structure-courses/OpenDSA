@@ -62,6 +62,7 @@ class BST:
 
         return self.get(key) is not None
 
+/* *** ODSATag: get *** */
     def get(self, key):
         """Look up a key."""
 
@@ -79,7 +80,9 @@ class BST:
             return BST.get_helper(node.right, key)
         else:
             return node.value
+/* *** ODSAendTag: get *** */
 
+/* *** ODSATag: put *** */
     def put(self, key, value):
         """Add a key-value pair, or update the value associated with
         an existing key."""
@@ -99,6 +102,7 @@ class BST:
         else:
             node.value = value
         return node
+/* *** ODSAendTag: put *** */
 
     def remove(self, key):
         """Delete a key."""
@@ -170,6 +174,17 @@ class BST:
             yield node.key
             for key in BST.iter_helper(node.right):
                 yield key
+
+/* *** ODSATag: printHelper *** */
+    // An example inorder traversal.
+    // Prints all node keys, in sorted order.
+    @staticmethod
+    def print_helper(node):
+        if node is None: return
+        BST.print_helper(node.left)
+        print(node.key)
+        BST.print_helper(node.right)
+/* *** ODSAendTag: printHelper *** */
 
     def __getitem__(self, key):
         """This is called when the user writes 'x = bst[key]'."""

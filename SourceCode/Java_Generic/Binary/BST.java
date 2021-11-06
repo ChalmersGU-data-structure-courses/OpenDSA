@@ -68,6 +68,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         return get(key) != null;
     }
 
+/* *** ODSATag: get *** */
     // Look up a key.
     public Value get(Key key) {
         return getHelper(root, key);
@@ -87,7 +88,9 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         else
             return node.value;
     }
+/* *** ODSAendTag: get *** */
 
+/* *** ODSATag: put *** */
     // Add a key-value pair, or update the value associated with an existing key.
     public void put(Key key, Value value) {
         root = putHelper(root, key, value);
@@ -109,6 +112,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
         return node;
     }
+/* *** ODSAendTag: put *** */
 
     // Delete a key.
     public void remove(Key key) {
@@ -170,6 +174,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         return keys.iterator();
     }
 
+/* *** ODSATag: iteratorHelper *** */
     // Helper method for 'iterator'
     void iteratorHelper(Node node, ArrayList<Key> keys) {
         if (node == null) return;
@@ -177,6 +182,18 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         keys.add(node.key);
         iteratorHelper(node.right, keys);
     }
+/* *** ODSATag: iteratorHelper *** */
+
+/* *** ODSATag: printHelper *** */
+    // An example inorder traversal.
+    // Prints all node keys, in sorted order.
+    void printHelper(Node node) {
+        if (node == null) return;
+        printHelper(node.left);
+        System.out.println(node.key);
+        printHelper(node.right);
+    }
+/* *** ODSATag: printHelper *** */
 
     // Override 'toString' to print the contents of the BST.
     public String toString() {
