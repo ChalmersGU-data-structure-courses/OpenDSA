@@ -162,12 +162,244 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 10:21:02"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
 <h1>7.<span class="section-number">6. </span>Red-Black Trees (code only)<a class="headerlink" href="#red-black-trees-code-only" title="Permalink to this headline">¶</a></h1>
 <p>For information about red-black trees, see the lecture handout
 “2-3 trees and red-black trees” under Theme 4 (Search trees).</p>
 <p>Here is an implementation of red-black trees:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+<div id="RedBlackTree_RedBlackTree_code"><ul><li><a href="#RedBlackTree_RedBlackTree_code_Java_Generic">Java</a></li><li><a href="#RedBlackTree_RedBlackTree_code_Python">Python</a></li></ul><div id="RedBlackTree_RedBlackTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// A dictionary implemented using an red-black tree.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">RedBlackTree</span><span class="o">&lt;</span><span class="n">Key</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Value</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// A node in an red-black tree.</span>
+    <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="n">Key</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">Value</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">right</span><span class="p">;</span>
+        <span class="kt">boolean</span> <span class="n">isRed</span><span class="p">;</span>
+
+        <span class="n">Node</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">isRed</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">,</span> <span class="n">Node</span> <span class="n">left</span><span class="p">,</span> <span class="n">Node</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="n">isRed</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Check if a node is red. &#39;null&#39; is always black.</span>
+    <span class="kt">boolean</span> <span class="nf">isRed</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">isRed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// The root of the binary search tree.</span>
+    <span class="n">Node</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="c1">// Check that the invariant holds.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariant</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">root</span><span class="p">))</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;red root&quot;</span><span class="p">);</span>
+
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;check_invariant&#39;.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Checks that the node is the root of a valid red-black tree, and that</span>
+    <span class="c1">// all keys k satisfy lo &lt; k &lt; hi. The test lo &lt; k is skipped</span>
+    <span class="c1">// if lo is None, and k &lt; hi is skipped if hi is None.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Returns the &quot;black height&quot; of the tree.</span>
+    <span class="kt">int</span> <span class="nf">checkInvariantHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">lo</span><span class="p">,</span> <span class="n">Key</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">))</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;red right child&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">))</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;red node with red left child&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">lo</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">lo</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too small&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">hi</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">hi</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too big&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Keys in the left subtree should be &lt; node.key</span>
+        <span class="kt">int</span> <span class="n">h1</span> <span class="o">=</span> <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="c1">// Keys in the right subtree should be &gt; node.key</span>
+        <span class="kt">int</span> <span class="n">h2</span> <span class="o">=</span> <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">hi</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">h1</span> <span class="o">!=</span> <span class="n">h2</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;unbalanced tree&quot;</span><span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">h1</span> <span class="o">+</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">root</span><span class="p">))</span> <span class="n">root</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;add&#39;.</span>
+    <span class="n">Node</span> <span class="nf">addHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+
+        <span class="k">else</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Look up a key.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">get</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;get&#39;.</span>
+    <span class="n">Value</span> <span class="nf">getHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Repair the red-black invariant by rebalancing the node.</span>
+    <span class="n">Node</span> <span class="nf">rebalance</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+
+        <span class="c1">// Skew</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">))</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+        <span class="c1">// Split part 1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">.</span><span class="na">left</span><span class="p">))</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+
+        <span class="c1">// Split part 2</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">isRed</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="nf">rotateLeft</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Left rotation.</span>
+
+        <span class="c1">//    x                y</span>
+        <span class="c1">//   / \              / \</span>
+        <span class="c1">//  A  y      ===&gt;   x  C</span>
+        <span class="c1">//    / \           / \</span>
+        <span class="c1">//   B  C          A  B</span>
+        <span class="c1">// &quot;&quot;&quot;</span>
+
+        <span class="c1">// Variables are named according to the picture above.</span>
+        <span class="n">Node</span> <span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">A</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">C</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="c1">// We also swap x&#39;s and y&#39;s colours</span>
+        <span class="c1">// (e.g. if x was black before, then y will be black afterwards).</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">isRed</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="na">isRed</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="n">C</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="nf">rotateRight</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Right rotation.</span>
+        <span class="c1">// </span>
+        <span class="c1">//      x             y</span>
+        <span class="c1">//     / \           / \</span>
+        <span class="c1">//    y  C    ===&gt;  A  x</span>
+        <span class="c1">//   / \              / \</span>
+        <span class="c1">//  A  B             B  C</span>
+
+        <span class="c1">// Variables are named according to the picture above.</span>
+        <span class="n">Node</span> <span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">A</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">C</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="c1">// We also swap x&#39;s and y&#39;s colours</span>
+        <span class="c1">// (e.g. if x was black before, then y will be black afterwards).</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">isRed</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="na">isRed</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Iterate through all keys.</span>
+    <span class="c1">// This is called when the user writes &#39;for (Key key: bst) { ... }.&#39;</span>
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// The easiest way to solve this is to add all keys to an</span>
+        <span class="c1">// ArrayList, then iterate through that.</span>
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">keys</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;iterator&#39;</span>
+    <span class="kt">void</span> <span class="nf">iteratorHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="n">keys</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Override &#39;toString&#39; to print the contents of the red-black tree.</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">StringBuilder</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="kt">boolean</span> <span class="n">firstKey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">:</span> <span class="k">this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Value</span> <span class="n">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">firstKey</span><span class="p">)</span> <span class="n">str</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">);</span>
+            <span class="n">str</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;-&gt;&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+            <span class="n">firstKey</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="s">&quot;{&quot;</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Some test code to check that the red-black tree is working</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">RedBlackTree</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">RedBlackTree</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">values</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">values</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">);</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="RedBlackTree_RedBlackTree_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;A node in a red-black tree.&quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">is_red</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
@@ -427,7 +659,7 @@
         <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
+</div></div><script>$(function() {$( "#RedBlackTree_RedBlackTree_code" ).tabs();});</script></div>
 
 
       </div>
@@ -453,7 +685,7 @@
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 04, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

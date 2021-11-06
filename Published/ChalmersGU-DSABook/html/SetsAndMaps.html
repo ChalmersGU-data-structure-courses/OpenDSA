@@ -162,18 +162,18 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Information retrieval: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="information-retrieval-sets-and-maps">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['spell-checking:-sets', 'database-lookup:-maps', 'search-engine:-multimaps', 'between-x-and-y:-sorted-sets-and-maps', 'how-to-implement-sets-and-maps'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Information retrieval: Sets and Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 10:21:02"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="information-retrieval-sets-and-maps">
 <h1>1.<span class="section-number">4. </span>Information retrieval: Sets and Maps<a class="headerlink" href="#information-retrieval-sets-and-maps" title="Permalink to this headline">¶</a></h1>
 <p>Many programming tasks involve <em>finding the right piece of
 information</em> in a large dataset. That is, we have a collection of
 items, and we want to quickly retrieve the items matching certain
 criteria. Here are some examples of information retrieval problems:</p>
 <ul class="simple">
-<li><p><em>Spell-checking:*</em>
+<li><p><em>Spell-checking:</em>
 Given a set containing all valid English words, check if a given
 string is present in the set (i.e. is a valid word).</p></li>
 <li><p><em>Database lookup:</em>
-Given a list of people, find the person with a given personnummer.</p></li>
+Given a list of people, find the person with a given <em>personnummer</em>.</p></li>
 <li><p><em>Search engine:</em>
 Given a collection of documents (e.g. web pages), find all web
 pages containing a given word.</p></li>
@@ -188,7 +188,7 @@ removing records from the collection. In this section we will see what
 sets and maps are, and how to use them to solve the four problems
 above.</p>
 <p>You may have already used sets and maps in programming, because almost
-every programming language provides an implementation of them.
+every programming language provides an implementation for them.
 For example, Java provides the <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/HashSet.html">HashSet</a> and <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/index.html?java/util/HashMap.html">HashMap</a> classes,
 and Python provides <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#sets">sets</a> and <a class="reference external" href="https://docs.python.org/3/tutorial/datastructures.html#dictionaries">dictionaries</a> (another word for maps)
 as part of its standard library.</p>
@@ -197,7 +197,8 @@ as part of its standard library.</p>
 <p>A <em>set</em> represents a collection of items, where we can <em>add</em> and
 <em>remove</em> items, and <em>check</em> if a given item is present in the set.
 A set cannot contain duplicate items: if we try to add an item that is
-already present, nothing happens, and the set is left unchanged.</p>
+already present, nothing happens, and the set is left unchanged.
+Recall the interface for sets from <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">the course API</span></a>:</p>
 <div id="API_SetADT_code"><ul><li><a href="#API_SetADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SetADT_code_Java_Generic">Java</a></li><li><a href="#API_SetADT_code_Python">Python</a></li></ul><div id="API_SetADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Set</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>      <span class="p">:</span> <span class="kt">boolean</span>   <span class="c1">// Adds x to the set. Returns true if the element wasn&#39;t already in the set.</span>
     <span class="n">remove</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>   <span class="p">:</span> <span class="kt">boolean</span>   <span class="c1">// Removes x from the set. Returns true if the element was in the set.</span>
@@ -229,23 +230,95 @@ string is present in the set (i.e. is a valid word).</p></li>
 <p>To create the spell-checking dictionary, we start with an initially
 empty set, and then call <code class="docutils literal notranslate"><span class="pre">add</span></code> repeatedly to add each valid word to
 the set.  Then to spell-check a given word, we just call <code class="docutils literal notranslate"><span class="pre">contains</span></code>.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="nl">list_of_valid_words:</span> <span class="n">list</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;cat&quot;</span><span class="p">,</span> <span class="s">&quot;dog&quot;</span><span class="o">]</span>
-<span class="nl">list_of_words_to_check:</span> <span class="n">list</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;dog&quot;</span><span class="p">,</span> <span class="s">&quot;kat&quot;</span><span class="o">]</span>
+<div id="SpellCheck_SpellCheck_code"><ul><li><a href="#SpellCheck_SpellCheck_code_Pseudo">Pseudo-Code</a></li><li><a href="#SpellCheck_SpellCheck_code_Java_Generic">Java</a></li><li><a href="#SpellCheck_SpellCheck_code_Python">Python</a></li></ul><div id="SpellCheck_SpellCheck_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SpellChecker</span>
+    <span class="n">set_of_valid_words</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">String</span><span class="p">)</span>
 
-<span class="c1">// Convert the list of words into a set.</span>
-<span class="nl">set_of_valid_words:</span> <span class="n">Set</span><span class="p">(</span><span class="n">string</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
-<span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">list_of_words</span>
-  <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+    <span class="n">SpellChecker</span><span class="p">(</span><span class="n">list_of_valid_words</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">))</span>
+        <span class="c1">// Convert the list of words into a set.</span>
+        <span class="n">set_of_valid_words</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">list_of_valid_words</span>
+            <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="n">is_valid_word</span><span class="p">(</span><span class="n">word</span> <span class="p">:</span> <span class="n">String</span><span class="p">)</span> <span class="p">:</span> <span class="kt">boolean</span>
+        <span class="k">return</span> <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+
+<span class="c1">// Create a new spell checker.</span>
+<span class="n">checker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpellChecker</span><span class="p">(</span><span class="o">[</span><span class="s">&quot;cat&quot;</span><span class="p">,</span> <span class="s">&quot;dog&quot;</span><span class="o">]</span><span class="p">)</span>
+
+<span class="c1">// Select some words to spell check. </span>
+<span class="n">list_of_words_to_check</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">String</span><span class="p">)</span> <span class="o">=</span> <span class="o">[</span><span class="s">&quot;dog&quot;</span><span class="p">,</span> <span class="s">&quot;kat&quot;</span><span class="o">]</span>
 
 <span class="c1">// Now we can spell-check a word easily.</span>
 <span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">list_of_words_to_check</span>
-  <span class="k">if</span> <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="n">print</span> <span class="n">word</span><span class="p">,</span> <span class="s">&quot;is valid&quot;</span>
-  <span class="k">else</span>
-    <span class="n">print</span> <span class="n">word</span><span class="p">,</span> <span class="s">&quot;is invalid&quot;</span>
+    <span class="k">if</span> <span class="n">checker</span><span class="p">.</span><span class="na">is_valid_word</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">&quot;is valid&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s">&quot;is INVALID&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</div><div id="SpellCheck_SpellCheck_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SpellChecker</span> <span class="p">{</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">set_of_valid_words</span><span class="p">;</span>
+
+    <span class="n">SpellChecker</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">list_of_valid_words</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Convert the list of words into a set.</span>
+        <span class="n">set_of_valid_words</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">word</span> <span class="p">:</span> <span class="n">list_of_valid_words</span><span class="p">)</span>
+            <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">is_valid_word</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">set_of_valid_words</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span> <span class="n">args</span><span class="o">[]</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Create a new spell checker.</span>
+        <span class="n">SpellChecker</span> <span class="n">checker</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SpellChecker</span><span class="p">(</span><span class="k">new</span> <span class="n">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&quot;cat&quot;</span><span class="p">,</span> <span class="s">&quot;dog&quot;</span><span class="p">});</span>
+
+        <span class="c1">// Select some words to spell check. </span>
+        <span class="c1">// If there are no command-line arguments, default to testing &quot;dog&quot; and &quot;kat&quot;.</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">list_of_words_to_check</span> <span class="o">=</span> <span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">?</span> <span class="n">args</span> <span class="p">:</span> <span class="k">new</span> <span class="n">String</span><span class="o">[]</span><span class="p">{</span><span class="s">&quot;dog&quot;</span><span class="p">,</span> <span class="s">&quot;kat&quot;</span><span class="p">};</span>  
+
+        <span class="c1">// Now we can spell-check a word easily.</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">word</span> <span class="p">:</span> <span class="n">list_of_words_to_check</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">checker</span><span class="p">.</span><span class="na">is_valid_word</span><span class="p">(</span><span class="n">word</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s">&quot; is valid&quot;</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">word</span> <span class="o">+</span> <span class="s">&quot; is INVALID&quot;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div><div id="SpellCheck_SpellCheck_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SpellChecker</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_of_valid_words</span><span class="p">):</span>
+        <span class="c1"># Convert the list of words into a set.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_of_valid_words</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">list_of_valid_words</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_of_valid_words</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">is_valid_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_of_valid_words</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c1"># Create a new spell checker.</span>
+    <span class="n">checker</span> <span class="o">=</span> <span class="n">SpellChecker</span><span class="p">([</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">])</span>
+
+    <span class="c1"># Select some words to spell check. </span>
+    <span class="c1"># If there are no command-line arguments, default to testing &quot;dog&quot; and &quot;kat&quot;.</span>
+    <span class="n">list_of_words_to_check</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="k">else</span> <span class="p">[</span><span class="s2">&quot;dog&quot;</span><span class="p">,</span> <span class="s2">&quot;kat&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Now we can spell-check a word easily.</span>
+    <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">list_of_words_to_check</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">checker</span><span class="o">.</span><span class="n">is_valid_word</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s2">&quot;is valid&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s2">&quot;is INVALID&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SpellCheck_SpellCheck_code" ).tabs();});</script></div>
 <div class="section" id="database-lookup-maps">
 <h2>1.<span class="section-number">4.2. </span>Database lookup: Maps<a class="headerlink" href="#database-lookup-maps" title="Permalink to this headline">¶</a></h2>
 <p>A <em>map</em> represents a set of <em>keys</em>, where each key has an associated
@@ -253,6 +326,12 @@ the set.  Then to spell-check a given word, we just call <code class="docutils l
 specify what <em>value</em> we want to associated with it. We can <em>check</em> if
 a given key is present in the map. We can also <em>look up</em> a key to find
 the associated value.</p>
+<p>A map cannot contain duplicate <em>keys</em>, so each key is associated with
+exactly one value. If we call <code class="docutils literal notranslate"><span class="pre">put(k,v)</span></code>, but the key <code class="docutils literal notranslate"><span class="pre">k</span></code> is
+already present, then the value associated with <code class="docutils literal notranslate"><span class="pre">k</span></code> gets changed to
+<code class="docutils literal notranslate"><span class="pre">v</span></code>. On the other hand, a map <em>can</em> contain duplicate <em>values</em>: two
+keys can have the same value.
+Recall the interface for maps from <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">the course API</span></a>:</p>
 <div id="API_MapADT_code"><ul><li><a href="#API_MapADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_MapADT_code_Java_Generic">Java</a></li><li><a href="#API_MapADT_code_Python">Python</a></li></ul><div id="API_MapADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Map</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Iterable</span><span class="p">(</span><span class="n">K</span><span class="p">)</span>
     <span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">,</span> <span class="n">v</span><span class="p">:</span><span class="n">V</span><span class="p">)</span>    <span class="p">:</span> <span class="n">V</span>            <span class="c1">// Sets the value of the given key. Returns the previous value, or null.</span>
     <span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">:</span><span class="n">K</span><span class="p">)</span>         <span class="p">:</span> <span class="n">V</span>            <span class="c1">// Returns the value associated with the given key, or null if the key is not there.</span>
@@ -286,40 +365,91 @@ the associated value.</p>
     <span class="c1"># Note: __iter__() can yield the keys in any order.</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#API_MapADT_code" ).tabs();});</script><p>A map cannot contain duplicate <em>keys</em>, so each key is associated with
-exactly one value. If we call <code class="docutils literal notranslate"><span class="pre">add(k,v)</span></code>, but the key <code class="docutils literal notranslate"><span class="pre">k</span></code> is
-already present, then the value associated with <code class="docutils literal notranslate"><span class="pre">k</span></code> gets changed to
-<code class="docutils literal notranslate"><span class="pre">v</span></code>. On the other hand, a map <em>can</em> contain duplicate <em>values</em>: two
-keys can have the same value.</p>
-<p>The map is a perfect match for our database example:</p>
+</div></div><script>$(function() {$( "#API_MapADT_code" ).tabs();});</script><p>The map is a perfect match for our database example:</p>
 <ul class="simple">
-<li><p>Given a list of people, find the person with a given personnummer.</p></li>
+<li><p>Given a list of people, find the person with a given <em>personnummer</em>.</p></li>
 </ul>
 <p>Here, the key should be a personnummer, and the value should be a
 record containing information about that person. If the personnummer
-is stored in a field <code class="docutils literal notranslate"><span class="pre">pnr</span></code>, then to add a person <code class="docutils literal notranslate"><span class="pre">p</span></code> we call
-<code class="docutils literal notranslate"><span class="pre">add(p.pnr,</span> <span class="pre">p)</span></code>.  To find the person with personnummer <code class="docutils literal notranslate"><span class="pre">pnr</span></code> we
-call <code class="docutils literal notranslate"><span class="pre">lookup(pnr)</span></code>.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span>
-  <span class="kd">public</span> <span class="n">pnr</span><span class="p">:</span>  <span class="n">string</span> <span class="c1">// personnummer</span>
-  <span class="kd">public</span> <span class="n">name</span><span class="p">:</span> <span class="n">string</span> <span class="c1">// person&#39;s name</span>
+is stored in a field <code class="docutils literal notranslate"><span class="pre">pnr</span></code>, then to put a person <code class="docutils literal notranslate"><span class="pre">p</span></code> in the database we call
+<code class="docutils literal notranslate"><span class="pre">database.put(p.pnr,</span> <span class="pre">p)</span></code>.  To find the person with personnummer <code class="docutils literal notranslate"><span class="pre">pnr</span></code> we
+call <code class="docutils literal notranslate"><span class="pre">database.get(pnr)</span></code>.</p>
+<div id="Database_Database_code"><ul><li><a href="#Database_Database_code_Pseudo">Pseudo-Code</a></li><li><a href="#Database_Database_code_Java_Generic">Java</a></li><li><a href="#Database_Database_code_Python">Python</a></li></ul><div id="Database_Database_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span>
+    <span class="kd">public</span> <span class="n">pnr</span>  <span class="p">:</span> <span class="n">string</span>   <span class="c1">// personnummer</span>
+    <span class="kd">public</span> <span class="n">name</span> <span class="p">:</span> <span class="n">string</span>   <span class="c1">// person&#39;s name</span>
 
-<span class="nl">database:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Map</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nc">PersonDatabase</span>
+    <span class="n">database</span> <span class="p">:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Person</span><span class="p">)</span>
 
-<span class="n">add</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span>
-  <span class="c1">// Add the person to the database</span>
-  <span class="n">database</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+    <span class="c1">// Put the person in the database.</span>
+    <span class="n">put</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
 
-<span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">:</span> <span class="n">Person</span><span class="p">)</span>
-  <span class="c1">// Remove a person from the database</span>
-  <span class="n">database</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">)</span>
+    <span class="c1">// Remove a person from the database.</span>
+    <span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">)</span>
 
-<span class="n">find</span><span class="p">(</span><span class="n">pnr</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">Person</span>
-  <span class="c1">// Find the person who has a given personnummer</span>
-  <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="n">pnr</span><span class="p">)</span>
+    <span class="c1">// Find the person who has a given personnummer.</span>
+    <span class="n">find</span><span class="p">(</span><span class="n">pnr</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">Person</span>
+        <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">pnr</span><span class="p">)</span>
 </pre></div>
 </div>
+</div><div id="Database_Database_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">pnr</span><span class="p">;</span>    <span class="c1">// personnummer</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>   <span class="c1">// person&#39;s name</span>
+
+    <span class="n">Person</span><span class="p">(</span><span class="n">String</span> <span class="n">pnr</span><span class="p">,</span> <span class="n">String</span> <span class="n">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">pnr</span> <span class="o">=</span> <span class="n">pnr</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">PersonDatabase</span> <span class="p">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Person</span><span class="o">&gt;</span> <span class="n">database</span><span class="p">;</span>
+    <span class="n">PersonDatabase</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Put the person in the database.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Person</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">,</span> <span class="n">p</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Remove a person from the database.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Person</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">database</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="na">pnr</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Find the person who has a given personnummer.</span>
+    <span class="kd">public</span> <span class="n">Person</span> <span class="nf">find</span><span class="p">(</span><span class="n">String</span> <span class="n">pnr</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">pnr</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div><div id="Database_Database_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pnr</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pnr</span>  <span class="o">=</span> <span class="n">pnr</span>    <span class="c1"># personnummer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>   <span class="c1"># person&#39;s name</span>
+
+<span class="k">class</span> <span class="nc">PersonDatabase</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">Map</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Put the person in the database.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">pnr</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove a person from the database.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">pnr</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pnr</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the person who has a given personnummer.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">pnr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Database_Database_code" ).tabs();});</script></div>
 <div class="section" id="search-engine-multimaps">
 <h2>1.<span class="section-number">4.3. </span>Search engine: Multimaps<a class="headerlink" href="#search-engine-multimaps" title="Permalink to this headline">¶</a></h2>
 <p>Maps have the restriction that each key has only one value. However,
@@ -327,6 +457,10 @@ sometimes we want to store a list of records, where some records might
 have the same key. Then we want something like a map, but where a key
 can have multiple values associated with it. This structure is called
 a <em>multimap</em>.</p>
+<p>Unfortunately, most programming languages do not provide a multimap
+data structure. Instead, we can implement it ourselves. The idea is to
+use a map, where the key is a word, and the value is not a document
+but a <em>set</em> of documents.</p>
 <p>A multimap is the perfect data structure for our search engine
 example:</p>
 <ul class="simple">
@@ -337,39 +471,107 @@ pages containing a given word.</p></li>
 multimap, where the key is a word, and the values are all documents
 containing that word. Then, searching for a word will just mean
 looking it up in the multimap.</p>
-<p>Unfortunately, most programming languages do not provide a multimap
-data structure. Instead, we can implement it ourselves. The idea is to
-use a map, where the key is a word, and the value is not a document
-but a <em>set</em> of documents.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// We model a document as a list of words</span>
+<div id="SearchEngine_SearchEngine_code"><ul><li><a href="#SearchEngine_SearchEngine_code_Pseudo">Pseudo-Code</a></li><li><a href="#SearchEngine_SearchEngine_code_Java_Generic">Java</a></li><li><a href="#SearchEngine_SearchEngine_code_Python">Python</a></li></ul><div id="SearchEngine_SearchEngine_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// We model a document as a list of words.</span>
 <span class="kd">class</span> <span class="nc">Document</span>
-  <span class="kd">public</span> <span class="n">contents</span><span class="p">:</span> <span class="n">string</span><span class="o">[]</span>
+    <span class="kd">public</span> <span class="n">contents</span> <span class="p">:</span> <span class="n">string</span><span class="o">[]</span>
 
-<span class="nl">database:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">))</span>
+<span class="kd">class</span> <span class="nc">SearchEngine</span>
+    <span class="n">database</span> <span class="p">:</span> <span class="n">Map</span><span class="p">(</span><span class="n">string</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">))</span>
 
-<span class="c1">// Add a new document to the database</span>
-<span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span> <span class="n">Document</span><span class="p">)</span>
-  <span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">doc</span><span class="p">.</span><span class="na">contents</span>
-    <span class="c1">// Get the set of documents containing this word</span>
-    <span class="n">set</span><span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">set</span> <span class="n">is</span> <span class="kc">null</span>
-      <span class="c1">// This is the first document containing this word</span>
-      <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+    <span class="c1">// Add a new document to the database.</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="p">:</span><span class="n">Document</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="n">in</span> <span class="n">doc</span><span class="p">.</span><span class="na">contents</span>
+            <span class="c1">// Get the set of documents containing this word.</span>
+            <span class="n">set</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">set</span> <span class="n">is</span> <span class="kc">null</span>
+                <span class="c1">// This is the first document containing this word.</span>
+                <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
 
-    <span class="c1">// Add the document to the set</span>
-    <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
-    <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+            <span class="c1">// Add the document to the set.</span>
+            <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">set</span><span class="p">)</span>
 
-<span class="c1">// Find all documents containing a given word</span>
-<span class="n">find</span><span class="p">(</span><span class="n">word</span><span class="p">:</span> <span class="n">string</span><span class="p">):</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span>
-  <span class="k">if</span> <span class="n">database</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-  <span class="k">else</span>
-    <span class="c1">// If the word is not found, return an empty set rather than null</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+    <span class="c1">// Find all documents containing a given word.</span>
+    <span class="n">find</span><span class="p">(</span><span class="n">word</span><span class="p">:</span><span class="n">string</span><span class="p">)</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">Document</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">database</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">else</span>
+            <span class="c1">// If the word is not found, return an empty set rather than null.</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
 </pre></div>
 </div>
+</div><div id="SearchEngine_SearchEngine_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// We model a document as a list of words.</span>
+<span class="kd">class</span> <span class="nc">Document</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">String</span><span class="o">[]</span> <span class="n">contents</span><span class="p">;</span>
+    <span class="n">Document</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">contents</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">contents</span> <span class="o">=</span> <span class="n">contents</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">SearchEngine</span> <span class="p">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">String</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;&gt;</span> <span class="n">database</span><span class="p">;</span>
+    <span class="n">SearchEngine</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">database</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Add a new document to the database.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Document</span> <span class="n">doc</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">String</span> <span class="n">word</span> <span class="p">:</span> <span class="n">doc</span><span class="p">.</span><span class="na">contents</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// Get the set of documents containing this word.</span>
+            <span class="n">Set</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> 
+                <span class="c1">// This is the first document containing this word.</span>
+                <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+            <span class="c1">// Add the document to the set.</span>
+            <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">doc</span><span class="p">);</span>
+            <span class="n">database</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="n">set</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Find all documents containing a given word.</span>
+    <span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">Document</span><span class="o">&gt;</span> <span class="nf">find</span><span class="p">(</span><span class="n">String</span> <span class="n">word</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">database</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">word</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">database</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">word</span><span class="p">);</span>
+        <span class="k">else</span>
+            <span class="c1">// If the word is not found, return an empty set rather than null.</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div><div id="SearchEngine_SearchEngine_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># We model a document as a list of words.</span>
+<span class="k">class</span> <span class="nc">Document</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contents</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">contents</span> <span class="o">=</span> <span class="n">contents</span>
+
+<span class="k">class</span> <span class="nc">SearchEngine</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">Map</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">doc</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new document to the database.&quot;&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">doc</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+            <span class="c1"># Get the set of documents containing this word.</span>
+            <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">set</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="c1"># This is the first document containing this word.</span>
+                <span class="nb">set</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+
+            <span class="c1"># Add the document to the set.</span>
+            <span class="nb">set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">doc</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find all documents containing a given word.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># If the word is not found, return an empty set rather than None.</span>
+            <span class="k">return</span> <span class="n">Set</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SearchEngine_SearchEngine_code" ).tabs();});</script></div>
 <div class="section" id="between-x-and-y-sorted-sets-and-maps">
 <h2>1.<span class="section-number">4.4. </span>Between X and Y: Sorted Sets and Maps<a class="headerlink" href="#between-x-and-y-sorted-sets-and-maps" title="Permalink to this headline">¶</a></h2>
 <p>Consider the final example problem:</p>
@@ -391,12 +593,13 @@ sequence of calls to <code class="docutils literal notranslate"><span class="pre
 calls to <code class="docutils literal notranslate"><span class="pre">contains</span></code>, and if we wanted to instead find all cities in
 the USA having a population of between 1 and 2 million, we would need
 to make ~1,000,000 calls.</p>
-<p>There is a better way. If the towns are stored in a array, and sorted
+<p>There is a better way. If the towns are stored in an array, and sorted
 by population, we can use the following algorithm:</p>
 <ul class="simple">
-<li><p>Find the position in the array of the first town that has a
-population of at least 1,000. (We will see in Section
- that is is possible to find this position efficiently.)</p></li>
+<li><p>Find the position in the array of the <em>first</em> town that has a
+population of <em>at least</em> 1,000. (We will see in the section about
+<a class="reference internal" href="BinarySearch.html#binarysearch"><span class="std std-ref">binary search</span></a>
+that it is possible to find this position efficiently.)</p></li>
 <li><p>Find the position in the array of the <em>last</em> town that has a
 population of <em>at most</em> 2,000.</p></li>
 <li><p>Now return all towns between those two positions in the array.</p></li>
@@ -432,6 +635,7 @@ successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 </ul>
 </li>
 </ul>
+<p>Recall the interface for sorted maps from <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">the course API</span></a>:</p>
 <div id="API_SortedMapADT_code"><ul><li><a href="#API_SortedMapADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SortedMapADT_code_Java_Generic">Java</a></li><li><a href="#API_SortedMapADT_code_Python">Python</a></li></ul><div id="API_SortedMapADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">SortedMap</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Map</span><span class="p">(</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="p">)</span>
     <span class="n">firstKey</span><span class="p">()</span>              <span class="p">:</span> <span class="n">K</span>            <span class="c1">// Returns the first (smallest) key. Raises an exception if the map is empty.</span>
     <span class="n">lastKey</span><span class="p">()</span>               <span class="p">:</span> <span class="n">K</span>            <span class="c1">// Returns the last (largest) key. Raises an exception if the map is empty.</span>
@@ -468,7 +672,8 @@ successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
     <span class="c1"># Note: __iter__() should yield the keys in order.</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#API_SortedMapADT_code" ).tabs();});</script><p>As well as a sorted map, it is also possible to have a <em>sorted set</em>:</p>
+</div></div><script>$(function() {$( "#API_SortedMapADT_code" ).tabs();});</script><p>As well as a sorted map, it is also possible to have a <em>sorted set</em>.
+Recall the interface for sorted sets from <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">the course API</span></a>:</p>
 <div id="API_SortedSetADT_code"><ul><li><a href="#API_SortedSetADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_SortedSetADT_code_Java_Generic">Java</a></li><li><a href="#API_SortedSetADT_code_Python">Python</a></li></ul><div id="API_SortedSetADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">SortedSet</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Set</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="n">first</span><span class="p">()</span>             <span class="p">:</span> <span class="n">E</span>            <span class="c1">// Returns the first (smallest) element. Raises an exception if the set is empty.</span>
     <span class="n">last</span><span class="p">()</span>              <span class="p">:</span> <span class="n">E</span>            <span class="c1">// Returns the last (largest) element. Raises an exception if the set is empty.</span>
@@ -508,29 +713,118 @@ successor of <span class="math notranslate nohighlight">\(k\)</span>.</p></li>
 </div></div><script>$(function() {$( "#API_SortedSetADT_code" ).tabs();});</script><p>Here is how to use a sorted map ADT to find all Swedish towns having
 between 1,000 and 2,000 population. As there may be towns that have
 the same population, we need a <em>multimap</em>. As before, we solve this by
-having the key be a population number and the value be a list of towns.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">City</span><span class="p">:</span>
-  <span class="kd">public</span> <span class="n">name</span><span class="p">:</span> <span class="n">string</span>
-  <span class="kd">public</span> <span class="n">population</span><span class="p">:</span> <span class="kt">int</span>
+having the key be a population number and the value be a set of towns.</p>
+<div id="Between_Between_code"><ul><li><a href="#Between_Between_code_Pseudo">Pseudo-Code</a></li><li><a href="#Between_Between_code_Java_Generic">Java</a></li><li><a href="#Between_Between_code_Python">Python</a></li></ul><div id="Between_Between_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">City</span>
+    <span class="kd">public</span> <span class="n">name</span> <span class="p">:</span> <span class="n">string</span>
+    <span class="kd">public</span> <span class="n">population</span> <span class="p">:</span> <span class="kt">int</span>
 
-<span class="c1">// Similar to the search engine, use a map where the value is a list of cities</span>
-<span class="nl">cities:</span> <span class="n">SortedMap</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">))</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SortedMap</span><span class="p">()</span>
+<span class="kd">class</span> <span class="nc">CityPopulations</span>
+    <span class="c1">// Similar to the search engine, use a map where the value is a list of cities.</span>
+    <span class="n">cities</span> <span class="p">:</span> <span class="n">SortedMap</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">))</span>
 
-<span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">:</span> <span class="n">City</span><span class="p">)</span>
-  <span class="c1">// This is the same code as for the search engine</span>
+    <span class="c1">// Add a new city to the database.</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">:</span><span class="n">City</span><span class="p">)</span>
+        <span class="c1">// Get the set of documents containing this city</span>
+        <span class="n">set</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">)</span> <span class="o">=</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">city</span><span class="p">.</span><span class="na">population</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">set</span> <span class="n">is</span> <span class="kc">null</span>
+            <span class="c1">// This is the first city with this population</span>
+            <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
 
-<span class="c1">// Call findBetween(1000, 2000) to solve the example problem</span>
-<span class="n">findBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">:</span> <span class="kt">int</span><span class="p">):</span> <span class="n">List</span><span class="p">(</span><span class="n">City</span><span class="p">)</span>
-  <span class="n">result</span><span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">City</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">List</span><span class="p">()</span>
-  <span class="c1">// The range query returns a set of keys, i.e. populations</span>
-  <span class="k">for</span> <span class="n">population</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
-    <span class="c1">// cities.get(population) returns the list of cities with that population</span>
-    <span class="k">for</span> <span class="n">city</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">population</span><span class="p">):</span>
-      <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
-  <span class="k">return</span> <span class="n">result</span>
+        <span class="c1">// Add the city to the set</span>
+        <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+        <span class="n">cities</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">city</span><span class="p">.</span><span class="na">population</span><span class="p">,</span> <span class="n">set</span><span class="p">)</span>
+
+    <span class="c1">// Find all cities with a population between lower and upper.</span>
+    <span class="c1">// Call findBetween(1000, 2000) to solve the example problem.</span>
+    <span class="n">findBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span> <span class="p">:</span> <span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">)</span>
+        <span class="n">result</span> <span class="p">:</span> <span class="n">Set</span><span class="p">(</span><span class="n">City</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="p">()</span>
+        <span class="c1">// The range query returns a set of keys, i.e. populations.</span>
+        <span class="k">for</span> <span class="n">population</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">keysBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">)</span>
+            <span class="c1">// cities.get(population) returns the list of cities with that population.</span>
+            <span class="k">for</span> <span class="n">city</span> <span class="n">in</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">population</span><span class="p">)</span>
+                <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
 </pre></div>
 </div>
+</div><div id="Between_Between_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">City</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="n">Integer</span> <span class="n">population</span><span class="p">;</span>
+    <span class="n">City</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">population</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">population</span> <span class="o">=</span> <span class="n">population</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="nc">CityPopulations</span> <span class="p">{</span>
+    <span class="c1">// Similar to the search engine, use a map where the value is a list of cities.</span>
+    <span class="n">SortedMap</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">City</span><span class="o">&gt;&gt;</span> <span class="n">cities</span><span class="p">;</span>
+    <span class="n">CityPopulations</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">cities</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SortedTreeMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Add a new city to the database.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">City</span> <span class="n">city</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Get the set of documents containing this city.</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">City</span><span class="o">&gt;</span> <span class="n">set</span> <span class="o">=</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">city</span><span class="p">.</span><span class="na">population</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">set</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="c1">// This is the first city with this population</span>
+            <span class="n">set</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+
+        <span class="c1">// Add the city to the set</span>
+        <span class="n">set</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+        <span class="n">cities</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">city</span><span class="p">.</span><span class="na">population</span><span class="p">,</span> <span class="n">set</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Find all cities with a population between lower and upper.</span>
+    <span class="kd">public</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">City</span><span class="o">&gt;</span> <span class="nf">findBetween</span><span class="p">(</span><span class="n">Integer</span> <span class="n">lower</span><span class="p">,</span> <span class="n">Integer</span> <span class="n">upper</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Set</span><span class="o">&lt;</span><span class="n">City</span><span class="o">&gt;</span> <span class="n">result</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="c1">// The range query returns a set of keys, i.e. populations.</span>
+        <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">cities</span><span class="p">.</span><span class="na">keysBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">);</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">Integer</span> <span class="n">population</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+            <span class="c1">// cities.get(population) returns the list of cities with that population.</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">City</span> <span class="n">city</span> <span class="p">:</span> <span class="n">cities</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">population</span><span class="p">))</span>
+                <span class="n">result</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">city</span><span class="p">);</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+</div><div id="Between_Between_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">City</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">population</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">population</span> <span class="o">=</span> <span class="n">population</span>
+
+<span class="k">class</span> <span class="nc">CityPopulations</span><span class="p">:</span>
+    <span class="c1"># Similar to the search engine, use a map where the value is a list of cities.</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cities</span> <span class="o">=</span> <span class="n">SortedMap</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">city</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a new city to the database.&quot;&quot;&quot;</span>
+        <span class="c1"># Get the set of documents containing this city</span>
+        <span class="nb">set</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cities</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">city</span><span class="o">.</span><span class="n">population</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">set</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># This is the first city with this population</span>
+            <span class="nb">set</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+
+        <span class="c1"># Add the city to the set</span>
+        <span class="nb">set</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cities</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">city</span><span class="o">.</span><span class="n">population</span><span class="p">,</span> <span class="nb">set</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">findBetween</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find all cities with a population between lower and upper&quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">Set</span><span class="p">()</span>
+        <span class="c1"># The range query returns a set of keys, i.e. populations.</span>
+        <span class="k">for</span> <span class="n">population</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cities</span><span class="o">.</span><span class="n">keysBetween</span><span class="p">(</span><span class="n">lower</span><span class="p">,</span> <span class="n">upper</span><span class="p">):</span>
+            <span class="c1"># cities.get(population) returns the list of cities with that population.</span>
+            <span class="k">for</span> <span class="n">city</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cities</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">population</span><span class="p">):</span>
+                <span class="n">result</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Between_Between_code" ).tabs();});</script></div>
 <div class="section" id="how-to-implement-sets-and-maps">
 <h2>1.<span class="section-number">4.5. </span>How to implement sets and maps<a class="headerlink" href="#how-to-implement-sets-and-maps" title="Permalink to this headline">¶</a></h2>
 <p>Sets and maps are useful in a huge variety of computer programs, and
@@ -538,16 +832,17 @@ are perhaps the most useful of all data structures. But how can we
 design a class that implements a set or a map, in such a way that
 adding, removing and searching can be done efficiently? In this book
 we will see several different ways of implementing sets and maps.</p>
-<p>In Chapter , we will see how to
+<p>In Chapter <a href="ArraysIntro.html">Arrays: Searching and Sorting</a>, we will see how to
 implement a set using an array. By sorting the items in the array, it
 is possible to look up information efficiently. However, it turns out
 that adding and removing items is quite expensive. An array is a
 suitable way of storing a set or a map if its contents never changes.</p>
-<p>In Chapters  and , we learn about <em>balanced binary search trees (BSTs)</em>,
+<p>In Chapter <a href="BSTIntro.html">Search Trees</a>,
+we learn about <em>balanced binary search trees (BSTs)</em>,
 a data structure for sets and maps where adding, removing and
 searching are all efficient. BSTs also support the <em>sorted map</em>
 operations that we used in our final example.</p>
-<p>In chapter <a href="HashIntro.html">Hash Tables</a>, we learn about <em>hash tables</em>, another way
+<p>In Chapter <a href="HashIntro.html">Hash Tables</a>, we learn about <em>hash tables</em>, another way
 to implement the set and map ADTs. In a hash table, <code class="docutils literal notranslate"><span class="pre">add</span></code>,
 <code class="docutils literal notranslate"><span class="pre">remove</span></code> and <code class="docutils literal notranslate"><span class="pre">contains</span></code> are even faster than in a BST, but hash
 tables are somewhat harder to use than BSTs, and do not support the
@@ -585,7 +880,7 @@ understand how all of these work.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 04, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

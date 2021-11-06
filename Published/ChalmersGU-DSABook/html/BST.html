@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 10:21:02"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-search-trees-work-in-progress">
 <h1>7.<span class="section-number">2. </span>Binary Search Trees (WORK IN PROGRESS)<a class="headerlink" href="#binary-search-trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
@@ -202,43 +202,202 @@ a special comparison method such as using the <code class="docutils literal notr
 and passing in a <a class="reference internal" href="Glossary.html#term-comparator"><span class="xref std std-term">comparator function</span></a>.
 Our BST implementation will require that records implement the
 <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface.</p>
-<div id="BST_BST_code"><ul><li><a href="#BST_BST_code_Java_Generic">Java</a></li><li><a href="#BST_BST_code_Python">Python</a></li></ul><div id="BST_BST_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary Search Tree implementation</span>
-<span class="kd">class</span> <span class="nc">BST</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">root</span><span class="p">;</span> <span class="c1">// Root of the BST</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">nodecount</span><span class="p">;</span> <span class="c1">// Number of nodes in the BST</span>
+<div id="BST_BST_code"><ul><li><a href="#BST_BST_code_Java_Generic">Java</a></li><li><a href="#BST_BST_code_Python">Python</a></li></ul><div id="BST_BST_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// A dictionary implemented using a binary search tree.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">BST</span><span class="o">&lt;</span><span class="n">Key</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Value</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// A node in a binary search tree.</span>
+    <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="n">Key</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">Value</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">right</span><span class="p">;</span>
 
-  <span class="c1">// constructor</span>
-  <span class="n">BST</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Reinitialize tree</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">nodecount</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Insert a record into the tree.</span>
-  <span class="c1">// Records can be anything, but they must be Comparable</span>
-  <span class="c1">// e: The record to insert.</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">root</span> <span class="o">=</span> <span class="n">inserthelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
-    <span class="n">nodecount</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Remove a record from the tree</span>
-  <span class="c1">// key: The key value of record to remove</span>
-  <span class="c1">// Returns the record removed, null if there is none.</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">E</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// First find it</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">root</span> <span class="o">=</span> <span class="n">removehelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="c1">// Now remove it</span>
-      <span class="n">nodecount</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">Node</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">,</span> <span class="n">Node</span> <span class="n">left</span><span class="p">,</span> <span class="n">Node</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
-  <span class="p">}</span>
 
-  <span class="c1">// Return the record with key value k, null if none exists</span>
-  <span class="c1">// key: The key value to find</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">E</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">findhelp</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span> <span class="p">}</span>
+    <span class="c1">// The root of the binary search tree.</span>
+    <span class="n">Node</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 
-  <span class="c1">// Return the number of records in the dictionary</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">nodecount</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">// Check that the invariant holds.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariant</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;check_invariant&#39;.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Checks that the node is the root of a valid BST, and that</span>
+    <span class="c1">// all keys k satisfy lo &lt; k &lt; hi. The test lo &lt; k is skipped</span>
+    <span class="c1">// if lo is None, and k &lt; hi is skipped if hi is None.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariantHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">lo</span><span class="p">,</span> <span class="n">Key</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">lo</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">lo</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too small&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">hi</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">hi</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too big&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Keys in the left subtree should be &lt; node.key</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="c1">// Keys in the right subtree should be &gt; node.key</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">hi</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;add&#39;.</span>
+    <span class="n">Node</span> <span class="nf">addHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">addHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+
+        <span class="k">else</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Look up a key.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">get</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;get&#39;.</span>
+    <span class="n">Value</span> <span class="nf">getHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Delete a key.</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">deleteHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;delete&#39;.</span>
+    <span class="n">Node</span> <span class="nf">deleteHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">deleteHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">deleteHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// key == node.key</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+            <span class="k">else</span> <span class="p">{</span>
+                <span class="n">Node</span> <span class="n">maxNode</span> <span class="o">=</span> <span class="n">maxHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+                <span class="n">Key</span> <span class="n">maxKey</span> <span class="o">=</span> <span class="n">maxNode</span><span class="p">.</span><span class="na">key</span><span class="p">;</span>
+                <span class="n">Value</span> <span class="n">maxValue</span> <span class="o">=</span> <span class="n">maxNode</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">deleteHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">maxKey</span><span class="p">);</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">maxKey</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">maxValue</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Find the largest key.</span>
+    <span class="kd">public</span> <span class="n">Key</span> <span class="nf">max</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">maxHelper</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">key</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;max&#39;.</span>
+    <span class="c1">// Returns the node instead, as that&#39;s useful in &#39;deleteHelper&#39;.</span>
+    <span class="n">Node</span> <span class="nf">maxHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// This one is maybe easier to implement non-recursively :)</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Iterate through all keys.</span>
+    <span class="c1">// This is called when the user writes &#39;for (Key key: bst) { ... }.&#39;</span>
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// The easiest way to solve this is to add all keys to an</span>
+        <span class="c1">// ArrayList, then iterate through that.</span>
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">keys</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;iterator&#39;</span>
+    <span class="kt">void</span> <span class="nf">iteratorHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="n">keys</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Override &#39;toString&#39; to print the contents of the BST.</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">StringBuilder</span> <span class="n">str</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringBuilder</span><span class="p">();</span>
+        <span class="kt">boolean</span> <span class="n">firstKey</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">:</span> <span class="k">this</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">Value</span> <span class="n">value</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">firstKey</span><span class="p">)</span> <span class="n">str</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">);</span>
+            <span class="n">str</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">toString</span><span class="p">()</span> <span class="o">+</span> <span class="s">&quot;-&gt;&quot;</span> <span class="o">+</span> <span class="n">value</span><span class="p">.</span><span class="na">toString</span><span class="p">());</span>
+            <span class="n">firstKey</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="s">&quot;{&quot;</span> <span class="o">+</span> <span class="n">str</span> <span class="o">+</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Some test code to check that the BST is working</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">BST</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BST</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">values</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">values</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">);</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">delete</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">);</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="BST_BST_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
@@ -794,7 +953,7 @@ remain balanced, such as the <a class="reference internal" href="Glossary.html#t
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 04, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
