@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove-work-in-progress', 'bst-analysis'];</script>
 
 .. _BST:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 19:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -84,15 +84,18 @@ BST Search
 The first operation that we will look at in detail will find the
 record that matches a given key.
 Notice that in the BST class, public member function
-``find`` calls private member function ``findhelp``.
-Method ``find`` takes the search key as an explicit parameter
+``get`` calls private member function ``getHelper``.
+Method ``get`` takes the search key as an explicit parameter
 and its BST as an implicit parameter, and returns the record that
 matches the key.
 However, the find operation is most easily implemented as a
 recursive function whose parameters are the root of a
 subtree and the search key.
-Member ``findhelp`` has the desired form for this recursive
+Member ``getHelper`` has the desired form for this recursive
 subroutine and is implemented as follows.
+
+.. codeinclude:: Binary/BST
+   :tag: get
 
 .. inlineav:: BSTsearchCON ss
    :points: 0.0
@@ -115,6 +118,9 @@ BST Insert
 
 Now we look at how to insert a new node into the BST.
 
+.. codeinclude:: Binary/BST
+   :tag: put
+
 .. inlineav:: BSTinsertCON ss
    :points: 0.0
    :required: False
@@ -122,7 +128,7 @@ Now we look at how to insert a new node into the BST.
    :long_name: BST Insert Slideshow
    :output: show
 
-Note that, except for the last node in the path, ``inserthelp``
+Note that, except for the last node in the path, ``putHelp``
 will not actually change the child pointer for any of the nodes that
 are visited.
 In that sense, many of the assignments seem redundant.
@@ -163,8 +169,8 @@ This keeps the average cost of a BST operation low.
    :long_name: BST Insert Proficiency Exercise
 
 
-BST Remove
-----------
+BST Remove (work in progress)
+-----------------------------
 
 Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered
@@ -259,9 +265,9 @@ Tree Property if equal values appear in the left subtree.
 BST Analysis
 ------------
 
-The cost for ``findhelp`` and ``inserthelp`` is the depth of
+The cost for ``getHelper`` and ``putHelper`` is the depth of
 the node found or inserted.
-The cost for ``removehelp`` is the depth of the node being
+The cost for ``removeHelper`` is the depth of the node being
 removed, or in the case when this node has two children,
 the depth of the node with smallest value in its right subtree.
 Thus, in the worst case, the cost for any one of these operations is
@@ -294,12 +300,12 @@ the tree.
 Each node is visited exactly once, and each child pointer
 is followed exactly once.
 
-Below is an example traversal, named ``printhelp``.
-It performs an inorder traversal on the BST to print the node values
-in ascending order.
+Below is an example traversal, named ``printHelper``.
+It performs an inorder traversal on the BST to print the node keys, in
+sorted order.
 
 .. codeinclude:: Binary/BST
-   :tag: printhelp
+   :tag: printHelper
 
 While the BST is simple to implement and efficient when the tree is
 balanced, the possibility of its being unbalanced is a serious

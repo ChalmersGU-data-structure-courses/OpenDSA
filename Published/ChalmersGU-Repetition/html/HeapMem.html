@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['allocation', 'deallocation', 'programming-the-heap', 'a-heap-example', 'arrays'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HeapMem";ODSA.SETTINGS.MODULE_LONG_NAME = "Heap Memory";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/garbageDisposalCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['allocation', 'deallocation', 'programming-the-heap', 'a-heap-example', 'arrays'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HeapMem";ODSA.SETTINGS.MODULE_LONG_NAME = "Heap Memory";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/garbageDisposalCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/LocalHeapaloc.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/LocalHeapdealoc.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/LocalHeapintptr42.css" rel="stylesheet" type="text/css" />
@@ -261,7 +261,7 @@ When excecution of that block is complete, the local variables are
 destroyed automatically, leaving the object in heap memory without
 any references. (So this is really a special case of rule (1).)
 Here is an example</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">found</span><span class="p">)</span>
+<div id="Scoop_code"><ul><li><a href="#Scoop_code_Java_Generic">Java (Generic)</a></li><li><a href="#Scoop_code_Java">Java</a></li></ul><div id="Scoop_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">found</span><span class="p">)</span>
 <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">found</span><span class="p">)</span>
   <span class="p">{</span>
@@ -278,7 +278,24 @@ Here is an example</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</li>
+</div><div id="Scoop_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">test</span><span class="p">(</span><span class="kt">boolean</span> <span class="n">found</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">found</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// employee1 is a variable local to this if statement</span>
+    <span class="c1">// but the Employee object is in heap memory.</span>
+    <span class="n">Employee</span> <span class="n">employee1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="c1">// We can do things here with employee1, and its associated object</span>
+    <span class="n">Printout</span><span class="p">(</span><span class="n">employee1</span><span class="p">.</span><span class="na">name</span><span class="p">());</span>
+  <span class="p">}</span>
+
+  <span class="c1">// At this point, the only reference to the created object is out of scope</span>
+  <span class="c1">// since employee1 was local to the if statement block.</span>
+  <span class="c1">// So the Employee object will be eligible for garbage collection.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Scoop_code" ).tabs();});</script></li>
 <li><p>Assume an object <code class="docutils literal notranslate"><span class="pre">A</span></code> contains a reference to another object
 <code class="docutils literal notranslate"><span class="pre">B</span></code>, and <code class="docutils literal notranslate"><span class="pre">A</span></code> contains the only such reference to <code class="docutils literal notranslate"><span class="pre">B</span></code>.
 Object <code class="docutils literal notranslate"><span class="pre">B</span></code> will be eligible for garbage collection if <code class="docutils literal notranslate"><span class="pre">A</span></code> is
@@ -286,7 +303,7 @@ also eligible for garbage collection.
 Here is an example.</p></li>
 </ol>
 <blockquote>
-<div><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Date class to represent dates</span>
+<div><div id="Date_code"><ul><li><a href="#Date_code_Java_Generic">Java (Generic)</a></li><li><a href="#Date_code_Java">Java</a></li></ul><div id="Date_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Date class to represent dates</span>
 <span class="kd">class</span> <span class="nc">Date</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
@@ -326,7 +343,47 @@ Here is an example.</p></li>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div></blockquote>
+</div><div id="Date_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Date class to represent dates</span>
+<span class="kd">class</span> <span class="nc">Date</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">day</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">month</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">year</span><span class="p">;</span>
+
+  <span class="c1">// Date constructor</span>
+  <span class="kd">public</span> <span class="nf">Date</span><span class="p">(</span><span class="kt">int</span> <span class="n">d</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">d</span><span class="p">;</span> <span class="n">month</span> <span class="o">=</span> <span class="n">m</span><span class="p">;</span> <span class="n">year</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// An Employee class that includes a Date</span>
+<span class="kd">class</span> <span class="nc">Employee</span> <span class="p">{</span>
+  <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="n">Date</span> <span class="n">dateOfBirth</span><span class="p">;</span>
+
+  <span class="c1">// Employee constructor to initialize both name and date</span>
+  <span class="kd">public</span> <span class="nf">Employee</span><span class="p">(</span><span class="n">String</span> <span class="n">name</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">d</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="na">name</span> <span class="o">=</span> <span class="n">name</span><span class="p">;</span>
+    <span class="n">dateOfBirth</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Date</span><span class="p">(</span><span class="n">d</span><span class="p">,</span> <span class="n">m</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Now let&#39;s test this code</span>
+<span class="kd">class</span> <span class="nc">Test</span> <span class="p">{</span>
+
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Employee</span> <span class="n">empPtr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Employee</span><span class="p">(</span><span class="s">&quot;Sam&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">1983</span><span class="p">);</span>
+    <span class="c1">// Now empPtr references an object that contains a reference to a Date object</span>
+
+    <span class="n">empPtr</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Now the Employee object is eligible for garbage collection.</span>
+    <span class="c1">// So its Date object will also be eligible for garbage collection</span>
+    <span class="c1">// because nothing else points to it.</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Date_code" ).tabs();});</script></div></blockquote>
 <div id="garbageDisposalCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="garbageDisposalCON" data-long-name="garbageDisposalCON" data-exer-id="" alt="garbageDisposalCON" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -494,7 +551,38 @@ multiplied by the number of elements.
 So the following code heap allocates an array of 100 <code class="docutils literal notranslate"><span class="pre">Fraction</span></code>
 objects in the heap, sets them all to 22/7, and deallocates the heap
 array.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fraction class</span>
+<div id="Fraction_code"><ul><li><a href="#Fraction_code_Java_Generic">Java (Generic)</a></li><li><a href="#Fraction_code_Java">Java</a></li></ul><div id="Fraction_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fraction class</span>
+<span class="kd">class</span> <span class="nc">Fraction</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span><span class="p">;</span>
+
+  <span class="c1">// Fraction constructor</span>
+  <span class="kd">public</span> <span class="nf">Fraction</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">den</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="n">den</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Test class</span>
+<span class="kd">class</span> <span class="nc">TestHeapArray</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Fraction</span><span class="o">[]</span> <span class="n">fracts</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">length</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+    
+    <span class="c1">// allocate the array</span>
+    <span class="n">fracts</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Fraction</span><span class="o">[</span><span class="n">length</span><span class="o">]</span><span class="p">;</span>
+    <span class="c1">// use it like an array -- in this case set them all to 22/7</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">fracts</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Fraction</span><span class="p">(</span><span class="mi">22</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="c1">// Remove access to the array, making it garbage.</span>
+    <span class="c1">// If the Fraction objects that were created are also garbage now.</span>
+    <span class="n">fracts</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Fraction_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Fraction class</span>
 <span class="kd">class</span> <span class="nc">Fraction</span> 
   <span class="kt">int</span> <span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span><span class="p">;</span>
 
@@ -525,7 +613,7 @@ array.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In this example the array is dynamically allocated memory in
+</div></div><script>$(function() {$( "#Fraction_code" ).tabs();});</script><p>In this example the array is dynamically allocated memory in
 two steps:</p>
 <ul class="simple">
 <li><p>The first step when the array is created using

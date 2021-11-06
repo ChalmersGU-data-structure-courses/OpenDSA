@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 19:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,7 +28,7 @@
 Arrays as Sets or Maps
 ======================
 
-In Chapter :chap:`???` we learnt about *sets* and *maps*, two of the
+In Chapter :chap:`Introduction` we learnt about *sets* and *maps*, two of the
 most important ADTs.
 
 .. codeinclude:: ChalmersGU/API
