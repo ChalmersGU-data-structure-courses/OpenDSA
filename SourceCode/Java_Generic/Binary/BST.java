@@ -46,27 +46,26 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         // Keys in the right subtree should be > node.key
         checkInvariantHelper(node.right, node.key, hi);
     }
-
-    // Add a key-value pair, or update the value associated with an existing key.
-    public void add(Key key, Value value) {
-        root = addHelper(root, key, value);
+    
+    // Return true if there are no keys.
+    public boolean isEmpty() {
+        return root == null;
     }
 
-    // Helper method for 'add'.
-    Node addHelper(Node node, Key key, Value value) {
-        if (node == null)
-            return new Node(key, value, null, null);
+    // Return the number of keys.
+    public int size() {
+        return sizeHelper(root);
+    }
 
-        else if (key.compareTo(node.key) < 0)
-            node.left = addHelper(node.left, key, value);
+    // Helper method for 'size'.
+    int sizeHelper(Node node) {
+        if (node == null) return 0;
+        else return 1 + sizeHelper(node.left) + sizeHelper(node.right);
+    }
 
-        else if (key.compareTo(node.key) > 0)
-            node.right = addHelper(node.right, key, value);
-
-        else
-            node.value = value;
-
-        return node;
+    // Return true if the key has an associated value.
+    public boolean containsKey(Key key) {
+        return get(key) != null;
     }
 
     // Look up a key.
@@ -89,20 +88,42 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             return node.value;
     }
 
-    // Delete a key.
-    public void delete(Key key) {
-        root = deleteHelper(root, key);
+    // Add a key-value pair, or update the value associated with an existing key.
+    public void put(Key key, Value value) {
+        root = putHelper(root, key, value);
     }
 
-    // Helper method for 'delete'.
-    Node deleteHelper(Node node, Key key) {
+    // Helper method for 'put'.
+    Node putHelper(Node node, Key key, Value value) {
+        if (node == null)
+            return new Node(key, value, null, null);
+
+        else if (key.compareTo(node.key) < 0)
+            node.left = putHelper(node.left, key, value);
+
+        else if (key.compareTo(node.key) > 0)
+            node.right = putHelper(node.right, key, value);
+
+        else
+            node.value = value;
+
+        return node;
+    }
+
+    // Delete a key.
+    public void remove(Key key) {
+        root = removeHelper(root, key);
+    }
+
+    // Helper method for 'remove'.
+    Node removeHelper(Node node, Key key) {
         if (node == null)
             return null;
         else if (key.compareTo(node.key) < 0) {
-            node.left = deleteHelper(node.left, key);
+            node.left = removeHelper(node.left, key);
             return node;
         } else if (key.compareTo(node.key) > 0) {
-            node.right = deleteHelper(node.right, key);
+            node.right = removeHelper(node.right, key);
             return node;
         } else { // key == node.key
             if (node.left == null)
@@ -110,28 +131,28 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             else if (node.right == null)
                 return node.left;
             else {
-                Node maxNode = maxHelper(node.left);
-                Key maxKey = maxNode.key;
-                Value maxValue = maxNode.value;
-                node.left = deleteHelper(node.left, maxKey);
-                node.key = maxKey;
-                node.value = maxValue;
+                Node lastNode = lastNodeHelper(node.left);
+                Key lastKey = lastNode.key;
+                Value lastValue = lastNode.value;
+                node.left = removeHelper(node.left, lastKey);
+                node.key = lastKey;
+                node.value = lastValue;
                 return node;
             }
         }
     }
 
     // Find the largest key.
-    public Key max() {
+    public Key lastKey() {
         if (root == null)
             return null;
         else
-            return maxHelper(root).key;
+            return lastNodeHelper(root).key;
     }
 
-    // Helper method for 'max'.
-    // Returns the node instead, as that's useful in 'deleteHelper'.
-    Node maxHelper(Node node) {
+    // Helper method for 'lastKey'.
+    // Returns the node instead, as that's useful in 'removeHelper'.
+    Node lastNodeHelper(Node node) {
         // This one is maybe easier to implement non-recursively :)
         while (node.right != null)
             node = node.right;
@@ -181,7 +202,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         for (int i = 0; i < values.length; i++) values[i] = i;
 
         for (int i = 0; i < keys.length; i++) {
-            bst.add(keys[i], values[i]);
+            bst.put(keys[i], values[i]);
             System.out.println(bst);
             bst.checkInvariant();
         }
@@ -192,7 +213,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         }
 
         for (int i = 0; i < keys.length; i++) {
-            bst.delete(keys[i]);
+            bst.remove(keys[i]);
             System.out.println(bst);
             bst.checkInvariant();
         }

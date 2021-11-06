@@ -34,10 +34,10 @@ class RedBlackTree:
         if Node.is_red(self.root):
             raise AssertionError("red root")
 
-        self.check_invariant_recursive(self.root, None, None)
+        self.check_invariant_helper(self.root, None, None)
 
     @staticmethod
-    def check_invariant_recursive(node, lo, hi):
+    def check_invariant_helper(node, lo, hi):
         """Helper method for 'check_invariant'.
 
         Checks that the node is the root of a valid red-black tree, and that
@@ -61,54 +61,76 @@ class RedBlackTree:
             raise AssertionError("key too big", node.key, lo, hi)
 
         # Keys in the left subtree should be < node.key
-        h1 = RedBlackTree.check_invariant_recursive(node.left, lo, node.key)
+        h1 = RedBlackTree.check_invariant_helper(node.left, lo, node.key)
         # Keys in the right subtree should be > node.key
-        h2 = RedBlackTree.check_invariant_recursive(node.right, node.key, hi)
+        h2 = RedBlackTree.check_invariant_helper(node.right, node.key, hi)
 
         if h1 != h2:
             raise AssertionError("unbalanced tree")
 
         return h1 + (1 if Node.is_black(node) else 0)
 
-    def add(self, key, value):
-        """Add a key-value pair, or update the value associated with
-        an existing key."""
+    def isEmpty(self):
+        """Return true if there are no keys."""
 
-        self.root = self.add_recursive(self.root, key, value)
-        if Node.is_red(self.root):
-            self.root._is_red = False
+        return self.root is not None
+    
+    def size(self):
+        """Return the number of keys."""
+
+        return self.size_helper(self.root)
 
     @staticmethod
-    def add_recursive(node, key, value):
-        """Helper method for 'add'."""
+    def size_helper(node):
+        """Helper method for 'size'."""
 
-        if node is None:
-            return Node(True, key, value, None, None)
-        elif key < node.key:
-            node.left = RedBlackTree.add_recursive(node.left, key, value)
-        elif key > node.key:
-            node.right = RedBlackTree.add_recursive(node.right, key, value)
-        else:
-            node.value = value
-        return RedBlackTree.rebalance(node)
+        if node is None: return 0
+        else: return 1 + size_helper(node.left) + size_helper(node.right)
+
+    def containsKey(self, key):
+        """Return true if the key has an associated value."""
+
+        return self.get(key) is not None
 
     def get(self, key):
         """Look up a key."""
 
-        return self.get_recursive(self.root, key)
+        return self.get_helper(self.root, key)
 
     @staticmethod
-    def get_recursive(node, key):
+    def get_helper(node, key):
         """Helper method for 'get'."""
 
         if node is None:
             return None
         elif key < node.key:
-            return RedBlackTree.get_recursive(node.left, key)
+            return RedBlackTree.get_helper(node.left, key)
         elif key > node.key:
-            return RedBlackTree.get_recursive(node.right, key)
+            return RedBlackTree.get_helper(node.right, key)
         else:
             return node.value
+
+    def put(self, key, value):
+        """Add a key-value pair, or update the value associated with
+        an existing key."""
+
+        self.root = self.put_helper(self.root, key, value)
+        if Node.is_red(self.root):
+            self.root._is_red = False
+
+    @staticmethod
+    def put_helper(node, key, value):
+        """Helper method for 'put'."""
+
+        if node is None:
+            return Node(True, key, value, None, None)
+        elif key < node.key:
+            node.left = RedBlackTree.put_helper(node.left, key, value)
+        elif key > node.key:
+            node.right = RedBlackTree.put_helper(node.right, key, value)
+        else:
+            node.value = value
+        return RedBlackTree.rebalance(node)
 
     @staticmethod
     def rebalance(node):
@@ -189,10 +211,10 @@ class RedBlackTree:
 
         This is called when the user writes 'for key in bst: ...'."""
 
-        return self.iter_recursive(self.root)
+        return self.iter_helper(self.root)
 
     @staticmethod
-    def iter_recursive(node):
+    def iter_helper(node):
         """Helper method for '__iter__'."""
 
         # This method is a generator:
@@ -202,10 +224,10 @@ class RedBlackTree:
         if node is None:
             return
         else:
-            for key in RedBlackTree.iter_recursive(node.left):
+            for key in RedBlackTree.iter_helper(node.left):
                 yield key
             yield node.key
-            for key in RedBlackTree.iter_recursive(node.right):
+            for key in RedBlackTree.iter_helper(node.right):
                 yield key
 
     def __getitem__(self, key):
@@ -216,12 +238,12 @@ class RedBlackTree:
     def __setitem__(self, key, value):
         """This is called when the user writes 'bst[key] = value'."""
 
-        self.add(key, value)
+        self.put(key, value)
 
     def __delitem__(self, key):
         """This is called when the user writes 'del bst[key]'."""
 
-        self.delete(key)
+        self.remove(key)
 
     def __str__(self):
         """This is called to show the red-black tree as a string."""

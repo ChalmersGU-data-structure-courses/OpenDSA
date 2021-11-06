@@ -37,10 +37,10 @@ class AVL:
     def check_invariant(self):
         """Check that the invariant holds."""
 
-        self.check_invariant_recursive(self.root, None, None)
+        self.check_invariant_helper(self.root, None, None)
 
     @staticmethod
-    def check_invariant_recursive(node, lo, hi):
+    def check_invariant_helper(node, lo, hi):
         """Helper method for 'check_invariant'.
 
         Checks that the node is the root of a valid AVL tree, and that
@@ -61,67 +61,89 @@ class AVL:
             raise AssertionError("key too big", node.key, lo, hi)
 
         # Keys in the left subtree should be < node.key
-        AVL.check_invariant_recursive(node.left, lo, node.key)
+        AVL.check_invariant_helper(node.left, lo, node.key)
         # Keys in the right subtree should be > node.key
-        AVL.check_invariant_recursive(node.right, node.key, hi)
+        AVL.check_invariant_helper(node.right, node.key, hi)
 
-    def add(self, key, value):
-        """Add a key-value pair, or update the value associated with
-        an existing key."""
+    def isEmpty(self):
+        """Return true if there are no keys."""
 
-        self.root = self.add_recursive(self.root, key, value)
+        return self.root is not None
+    
+    def size(self):
+        """Return the number of keys."""
+
+        return self.size_helper(self.root)
 
     @staticmethod
-    def add_recursive(node, key, value):
-        """Helper method for 'add'."""
+    def size_helper(node):
+        """Helper method for 'size'."""
 
-        if node is None:
-            return Node(key, value, None, None)
-        elif key < node.key:
-            node.left = AVL.add_recursive(node.left, key, value)
-            node.update_height()
-        elif key > node.key:
-            node.right = AVL.add_recursive(node.right, key, value)
-            node.update_height()
-        else:
-            node.value = value
-        return AVL.rebalance(node)
+        if node is None: return 0
+        else: return 1 + size_helper(node.left) + size_helper(node.right)
+
+    def containsKey(self, key):
+        """Return true if the key has an associated value."""
+
+        return self.get(key) is not None
 
     def get(self, key):
         """Look up a key."""
 
-        return self.get_recursive(self.root, key)
+        return self.get_helper(self.root, key)
 
     @staticmethod
-    def get_recursive(node, key):
+    def get_helper(node, key):
         """Helper method for 'get'."""
 
         if node is None:
             return None
         elif key < node.key:
-            return AVL.get_recursive(node.left, key)
+            return AVL.get_helper(node.left, key)
         elif key > node.key:
-            return AVL.get_recursive(node.right, key)
+            return AVL.get_helper(node.right, key)
         else:
             return node.value
 
-    def delete(self, key):
-        """Delete a key."""
+    def put(self, key, value):
+        """Add a key-value pair, or update the value associated with
+        an existing key."""
 
-        self.root = self.delete_recursive(self.root, key)
+        self.root = self.put_helper(self.root, key, value)
 
     @staticmethod
-    def delete_recursive(node, key):
-        """Helper method for 'delete'."""
+    def put_helper(node, key, value):
+        """Helper method for 'put'."""
+
+        if node is None:
+            return Node(key, value, None, None)
+        elif key < node.key:
+            node.left = AVL.put_helper(node.left, key, value)
+            node.update_height()
+        elif key > node.key:
+            node.right = AVL.put_helper(node.right, key, value)
+            node.update_height()
+        else:
+            node.value = value
+        return AVL.rebalance(node)
+
+    def remove(self, key):
+        """Delete a key."""
+
+        self.root = self.remove_helper(self.root, key)
+
+    @staticmethod
+    def remove_helper(node, key):
+        """Helper method for 'remove'."""
 
         if node is None:
             return None
         elif key < node.key:
-            node.left = AVL.delete_recursive(node.left, key)
+            node.left = AVL.remove_helper(node.left, key)
             node.update_height()
             return AVL.rebalance(node)
         elif key > node.key:
-            node.right = AVL.delete_recursive(node.right, key)
+            node.right = AVL.remove_helper(node.right, key)
             node.update_height()
             return AVL.rebalance(node)
         else: # key == node.key
@@ -130,24 +152,24 @@ class AVL:
             elif node.right is None:
                 return node.left
             else:
-                maxkey, maxval = AVL.max_recursive(node.left)
-                node.left = AVL.delete_recursive(node.left, maxkey)
-                node.key = maxkey
-                node.value = maxval
+                last_key, last_val = AVL.lastKey_helper(node.left)
+                node.left = AVL.remove_helper(node.left, last_key)
+                node.key = last_key
+                node.value = last_val
                 node.update_height()
                 return AVL.rebalance(node)
 
-    def max(self):
+    def lastKey(self):
         """Find the largest key."""
 
         if self.root is None:
             return None
         else:
-            return self.max_recursive(self.root)
+            return self.lastKey_helper(self.root)
 
     @staticmethod
-    def max_recursive(node):
-        """Helper method for 'max'."""
+    def lastKey_helper(node):
+        """Helper method for 'lastKey'."""
 
         # This one is maybe easier to implement non-recursively :)
         while node.right is not None:
@@ -229,10 +251,10 @@ class AVL:
 
         This is called when the user writes 'for key in bst: ...'."""
 
-        return self.iter_recursive(self.root)
+        return self.iter_helper(self.root)
 
     @staticmethod
-    def iter_recursive(node):
+    def iter_helper(node):
         """Helper method for '__iter__'."""
 
         # This method is a generator:
@@ -242,10 +264,10 @@ class AVL:
         if node is None:
             return
         else:
-            for key in AVL.iter_recursive(node.left):
+            for key in AVL.iter_helper(node.left):
                 yield key
             yield node.key
-            for key in AVL.iter_recursive(node.right):
+            for key in AVL.iter_helper(node.right):
                 yield key
 
     def __getitem__(self, key):
@@ -256,12 +278,12 @@ class AVL:
     def __setitem__(self, key, value):
         """This is called when the user writes 'bst[key] = value'."""
 
-        self.add(key, value)
+        self.put(key, value)
 
     def __delitem__(self, key):
         """This is called when the user writes 'del bst[key]'."""
 
-        self.delete(key)
+        self.remove(key)
 
     def __str__(self):
         """This is called to show the AVL as a string."""

@@ -71,27 +71,25 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         return h1 + (isRed(node) ? 0 : 1);
     }
 
-    // Add a key-value pair, or update the value associated with an existing key.
-    public void add(Key key, Value value) {
-        root = addHelper(root, key, value);
-        if (isRed(root)) root.isRed = false;
+    // Return true if there are no keys.
+    public boolean isEmpty() {
+        return root == null;
     }
 
-    // Helper method for 'add'.
-    Node addHelper(Node node, Key key, Value value) {
-        if (node == null)
-            return new Node(true, key, value, null, null);
+    // Return the number of keys.
+    public int size() {
+        return sizeHelper(root);
+    }
 
-        else if (key.compareTo(node.key) < 0)
-            node.left = addHelper(node.left, key, value);
+    // Helper method for 'size'.
+    int sizeHelper(Node node) {
+        if (node == null) return 0;
+        else return 1 + sizeHelper(node.left) + sizeHelper(node.right);
+    }
 
-        else if (key.compareTo(node.key) > 0)
-            node.right = addHelper(node.right, key, value);
-
-        else
-            node.value = value;
-
-        return rebalance(node);
+    // Return true if the key has an associated value.
+    public boolean containsKey(Key key) {
+        return get(key) != null;
     }
 
     // Look up a key.
@@ -112,6 +110,29 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
 
         else
             return node.value;
+    }
+
+    // Add a key-value pair, or update the value associated with an existing key.
+    public void put(Key key, Value value) {
+        root = putHelper(root, key, value);
+        if (isRed(root)) root.isRed = false;
+    }
+
+    // Helper method for 'put'.
+    Node putHelper(Node node, Key key, Value value) {
+        if (node == null)
+            return new Node(true, key, value, null, null);
+
+        else if (key.compareTo(node.key) < 0)
+            node.left = putHelper(node.left, key, value);
+
+        else if (key.compareTo(node.key) > 0)
+            node.right = putHelper(node.right, key, value);
+
+        else
+            node.value = value;
+
+        return rebalance(node);
     }
 
     // Repair the red-black invariant by rebalancing the node.
@@ -221,7 +242,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         for (int i = 0; i < values.length; i++) values[i] = i;
 
         for (int i = 0; i < keys.length; i++) {
-            bst.add(keys[i], values[i]);
+            bst.put(keys[i], values[i]);
             System.out.println(bst);
             bst.checkInvariant();
         }
