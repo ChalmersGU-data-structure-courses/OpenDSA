@@ -9,7 +9,9 @@
 /* *** ODSATag: ComparableADT *** */ /*
 // Note: This is the same as the java.lang.Comparable interface
 interface Comparable<E> {
-    int compareTo(E other);  // Returns <0 if this<other, 0 if this==other, >0 if this>other.
+    int compareTo(E other);  // Returns <0  if  this < other,
+                             //      or  0  if  this == other,
+                             //      or >0  if  this > other.
 }
 /* *** ODSAendTag: ComparableADT *** */
 
@@ -17,7 +19,9 @@ interface Comparable<E> {
 /* *** ODSATag: ComparatorADT *** */ /*
 // Note: This is a subset of the java.util.Comparator interface
 interface Comparator<E> {
-    int compare(E one, E other);  // Returns <0 if one<other, 0 if one==other, >0 if one>other.
+    int compare(E one, E other);  // Returns <0  if  one < other,
+                                  //      or  0  if  one == other,
+                                  //      or >0  if  one > other.
 }
 /* *** ODSAendTag: ComparatorADT *** */
 
