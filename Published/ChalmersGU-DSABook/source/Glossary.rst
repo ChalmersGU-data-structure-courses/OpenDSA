@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 19:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -872,11 +872,11 @@ Glossary
       To be reliably compared for a greater/lesser relationship,
       the values being compared must belong to a :term:`total order`.
       In programming, the property of a data type such that two
-      elements of the type can be compared to determine if they the
+      elements of the type can be compared to determine if they are the
       same (a weaker version), or which of the two is larger (a
       stronger version).
       ``Comparable`` is also the name of an :term:`interface` in Java that
-      asserts a comparable relationship between objects with a class,
+      asserts a comparable relationship between objects within a class,
       and ``.compareTo()`` is the ``Comparable`` interface method that
       implements the actual comparison between two objects of the class.
 
@@ -885,11 +885,11 @@ Glossary
       (or alternatively, a parameter for a C++ template or a Java
       generic).
       The comparator function concept provides a generic way
-      encapulates the process of performing a comparison between two
+      to encapulate the process of performing a comparison between two
       objects of a specific type.
       For example, if we want to write a generic sorting routine, that
       can handle any record type, we can require that the user of the
-      sorting routine pass in a comparator function
+      sorting routine passes in a comparator function
       to define how records in the collection are to be compared.
 
    comparison
@@ -3417,7 +3417,7 @@ Glossary
 
    physical form
       The implementation of a data type as a data structure.
-      Contrast to the :term:`physical form` for the data type.
+      Contrast to the :term:`logical form` for the data type.
 
    Pigeonhole Principle
       A commonly used lemma in Mathematics. A typical variant states:
@@ -4729,7 +4729,7 @@ Glossary
    total order
       A binary relation on a set where every pair of distinct elements
       in the set are :term:`comparable` (that is, one can determine
-      which of the pair is greater than the other).
+      which of the two is greater than the other).
 
    total path length
       In a :term:`tree`, the sum of the :term:`levels <level>` for

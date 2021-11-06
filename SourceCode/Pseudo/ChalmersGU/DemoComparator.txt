@@ -5,7 +5,7 @@
 class Person implements Comparable(Person)
 /* *** ODSAendTag: PersonCompareTo *** */
     givenName  : String
-    familyName : int
+    familyName : String
     birthYear  : int
 
     toString() : String
@@ -56,104 +56,103 @@ getPeople() : List(Person)
 /* *** ODSAendTag: GetPeople *** */
 
 
-main()
-    // No order
+// No order
 /* *** ODSATag: PrintPeople *** */
-    people : List(Person) = getPeople()
-    print each person in people
+people : List(Person) = getPeople()
+print each person in people
 /* *** ODSAendTag: PrintPeople *** */
 
-    // Natural ordering
+// Natural ordering
 /* *** ODSATag: SortNatural *** */
-    people = getPeople()  // reset the people list
-    sort people (using the natural ordering)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using the natural ordering)
+print each person in people
 /* *** ODSAendTag: SortNatural *** */
 
-    // Ordered by birth year (pre-Java-8 solution)
+// Ordered by birth year (pre-Java-8 solution)
 /* *** ODSATag: SortByBirthYear *** */
-    byBirthYear : Comparator(Person) = new BirthYearComparator()
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+byBirthYear : Comparator(Person) = new BirthYearComparator()
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 /* *** ODSAendTag: SortByBirthYear *** */
 
-    // Ordered by birth year (functional solution)
+// Ordered by birth year (functional solution)
 /* *** ODSATag: ByBirthYearFunctional *** */
-    byBirthYear = (one, other) -> one.birthYear <=> other.birthYear
+byBirthYear = (one, other) -> one.birthYear <=> other.birthYear
 /* *** ODSAendTag: ByBirthYearFunctional *** */
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 
-    // Ordered by birth year (using a key extractor)
+// Ordered by birth year (using a key extractor)
 /* *** ODSATag: ByBirthYearKeyExtractor *** */
-    byBirthYear = comparing(Person.birthYear)
+byBirthYear = comparing(Person.birthYear)
 /* *** ODSAendTag: ByBirthYearKeyExtractor *** */
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 
-    // Ordered by given name (pre-Java-8 solution)
+// Ordered by given name (pre-Java-8 solution)
 /* *** ODSATag: SortByGivenName *** */
-    byGivenName : Comparator(Person) = new GivenNameComparator()
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+byGivenName : Comparator(Person) = new GivenNameComparator()
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 /* *** ODSAendTag: SortByGivenName *** */
 
-    // Ordered by given name (functional solution)
+// Ordered by given name (functional solution)
 /* *** ODSATag: ByGivenNameFunctional *** */
-    byGivenName = (one, other) -> one.givenName <=> other.givenName
+byGivenName = (one, other) -> one.givenName <=> other.givenName
 /* *** ODSAendTag: ByGivenNameFunctional *** */
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 
-    // Ordered by given name (using a key extractor)
+// Ordered by given name (using a key extractor)
 /* *** ODSATag: ByGivenNameKeyExtractor *** */
-    byGivenName = comparing(Person.givenName)
+byGivenName = comparing(Person.givenName)
 /* *** ODSAendTag: ByGivenNameKeyExtractor *** */
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 
-    // Ordered by full name: family name + given name (pre-Java-8 solution)
+// Ordered by full name: family name + given name (pre-Java-8 solution)
 /* *** ODSATag: ByFullName *** */
-    byFullName : Comparator(Person) = new FullNameComparator()
+byFullName : Comparator(Person) = new FullNameComparator()
 /* *** ODSAendTag: ByFullName *** */
-    people = getPeople()  // reset the people list
-    sort people (using byFullName)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byFullName)
+print each person in people
 
-    // Ordered by full name: family name + given name (using key extractors and thenComparing)
+// Ordered by full name: family name + given name (using key extractors and thenComparing)
 /* *** ODSATag: ByFullNameThenComparing *** */
-    byFullName = comparing(Person.familyName), then comparing(Person.givenName)
+byFullName = comparing(Person.familyName), then comparing(Person.givenName)
 /* *** ODSAendTag: ByFullNameThenComparing *** */
 /* *** ODSATag: SortByFullName *** */
-    people = getPeople()  // reset the people list
-    sort people (using byFullName)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using byFullName)
+print each person in people
 /* *** ODSAendTag: SortByFullName *** */
 
-    // Ordered by Swedish locale, case-insensitive
+// Ordered by Swedish locale, case-insensitive
 /* *** ODSATag: BySwedishLocale *** */
-    swedishLocale : Collator = get instance from Locale "sv/SE"
-    bySwedishLocale : Comparator(Person) =
-            comparing(Person.familyName using swedishLocale), then
-            comparing(Person.givenName using swedishLocale)
+swedishLocale : Collator = get instance from Locale "sv/SE"
+bySwedishLocale : Comparator(Person) =
+        comparing(Person.familyName using swedishLocale), then
+        comparing(Person.givenName using swedishLocale)
 /* *** ODSAendTag: BySwedishLocale *** */
 /* *** ODSATag: SortBySwedishLocale *** */
-    people = getPeople()  // reset the people list
-    sort people (using bySwedishLocale)
-    print each person in people
+people = getPeople()  // reset the people list
+sort people (using bySwedishLocale)
+print each person in people
 /* *** ODSAendTag: SortBySwedishLocale *** */
 
-    // Ordered by Swedish locale, given name first
-    bySwedishGivenName : Comparator(Person) = 
-        comparing(Person.givenName using swedishLocale), then
-        comparing(Person.familyName using swedishLocale)
-    people = getPeople()  // reset the people list
-    sort people (using bySwedishGivenName)
-    print each person in people
+// Ordered by Swedish locale, given name first
+bySwedishGivenName : Comparator(Person) = 
+    comparing(Person.givenName using swedishLocale), then
+    comparing(Person.familyName using swedishLocale)
+people = getPeople()  // reset the people list
+sort people (using bySwedishGivenName)
+print each person in people
 /* *** ODSAendTag: ComparatorDemo *** */

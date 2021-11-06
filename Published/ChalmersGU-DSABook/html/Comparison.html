@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'key-value-pairs', 'sorting-using-comparables'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-04 17:34:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-comparators-and-key-value-pairs">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'key-value-pairs', 'sorting-using-comparables', 'review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 19:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-comparators-and-key-value-pairs">
 <span id="index-0"></span><h1>1.<span class="section-number">5. </span>Comparables, Comparators and Key-Value Pairs<a class="headerlink" href="#comparables-comparators-and-key-value-pairs" title="Permalink to this headline">¶</a></h1>
 <p>If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.
@@ -179,7 +179,7 @@ multiple values, such as a name, an address, and a phone number.
 In that case, how can we “compare” records to decide which one is
 “smaller”?
 We cannot just use “&lt;” to compare the records!
-Nearly always in this situation, we actually are interested in sorting
+Nearly always in this situation, we are actually interested in sorting
 the records based on the values of one particular field used to
 represent the record,
 which itself is something simple like an integer.
@@ -267,7 +267,7 @@ record and a pointer to the record itself.</p>
 <p>The main places where we will need to be concerned with comparing
 records and extracting keys is for various map
 implementations and sorting algorithms.
-A simple class for representing key-value pairs is shown here.</p>
+Here is a simple class for representing key-value pairs:</p>
 <div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
     <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
@@ -286,7 +286,7 @@ A simple class for representing key-value pairs is shown here.</p>
 </div>
 </div></div><script>$(function() {$( "#KVPair_KVPair_code" ).tabs();});</script><p>Using this we can easily implement a <strong>Map</strong> from an underlying <strong>List</strong>,
 which we will discuss further in the
-chapter about linear structures .</p>
+<a class="reference internal" href="ListMap.html#listmap"><span class="std std-ref">chapter about linear structures</span></a>.</p>
 </div>
 <div class="section" id="sorting-using-comparables">
 <h2>1.<span class="section-number">5.4. </span>Sorting using Comparables<a class="headerlink" href="#sorting-using-comparables" title="Permalink to this headline">¶</a></h2>
@@ -302,7 +302,7 @@ comparison problem.
 To illustrate, here is an example of
 <a class="reference internal" href="InsertionSort.html#insertionsort"><span class="std std-ref">Insertion Sort</span></a> implemented to
 work on an array that stores records that support the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code>
-interface.</p>
+interface:</p>
 <div id="Insertionsort_Insertionsort_code"><ul><li><a href="#Insertionsort_Insertionsort_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_Insertionsort_code_Python">Python</a></li></ul><div id="Insertionsort_Insertionsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">insertionsort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert i&#39;th record</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
@@ -320,7 +320,9 @@ interface.</p>
       <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Insertionsort_Insertionsort_code" ).tabs();});</script><p>Here are some review questions to test your knowledge from this module.</p>
+</div></div><script>$(function() {$( "#Insertionsort_Insertionsort_code" ).tabs();});</script></div>
+<div class="section" id="review-questions">
+<h2>1.<span class="section-number">5.5. </span>Review questions<a class="headerlink" href="#review-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="CompareSumm"
     class="embedContainer"
@@ -370,7 +372,7 @@ interface.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 04, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

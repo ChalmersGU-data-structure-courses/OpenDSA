@@ -64,107 +64,106 @@ def getPeople():
             ]
 #/* *** ODSAendTag: GetPeople *** */
 
-if __name__ == '__main__':
-    print("\n### No order");
+print("\n### No order");
 #/* *** ODSATag: PrintPeople *** */
-    people = getPeople()
-    for p in people: print(p)
+people = getPeople()
+for p in people: print(p)
 #/* *** ODSAendTag: PrintPeople *** */
 
-    print("\n### Natural ordering")
+print("\n### Natural ordering")
 #/* *** ODSATag: SortNatural *** */
-    people = getPeople()  # reset the people list
-    people.sort()
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort()
+for p in people: print(p)
 #/* *** ODSAendTag: SortNatural *** */
 
-    print("\n### Ordered by birth year (pre-Java-8 solution)")
+print("\n### Ordered by birth year (pre-Java-8 solution)")
 #/* *** ODSATag: SortByBirthYear *** */
-    byBirthYear = functools.cmp_to_key(birthYearComparator)
-    people = getPeople()  # reset the people list
-    people.sort(key=byBirthYear)
-    for p in people: print(p)
+byBirthYear = functools.cmp_to_key(birthYearComparator)
+people = getPeople()  # reset the people list
+people.sort(key=byBirthYear)
+for p in people: print(p)
 #/* *** ODSAendTag: SortByBirthYear *** */
 
-    print("\n### Ordered by birth year (functional solution)")
+print("\n### Ordered by birth year (functional solution)")
 #/* *** ODSATag: ByBirthYearFunctional *** */
-    byBirthYear = lambda person: person.birthYear
+byBirthYear = lambda person: person.birthYear
 #/* *** ODSAendTag: ByBirthYearFunctional *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byBirthYear)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byBirthYear)
+for p in people: print(p)
 
-    print("\n### Ordered by birth year (using a key extractor)")
+print("\n### Ordered by birth year (using a key extractor)")
 #/* *** ODSATag: ByBirthYearKeyExtractor *** */
-    byBirthYear = operator.attrgetter('birthYear')
+byBirthYear = operator.attrgetter('birthYear')
 #/* *** ODSAendTag: ByBirthYearKeyExtractor *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byBirthYear)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byBirthYear)
+for p in people: print(p)
 
-    print("\n### Ordered by given name (pre-Java-8 solution)")
+print("\n### Ordered by given name (pre-Java-8 solution)")
 #/* *** ODSATag: SortByGivenName *** */
-    byGivenName = functools.cmp_to_key(givenNameComparator)
-    people = getPeople()  # reset the people list
-    people.sort(key=byGivenName)
-    for p in people: print(p)
+byGivenName = functools.cmp_to_key(givenNameComparator)
+people = getPeople()  # reset the people list
+people.sort(key=byGivenName)
+for p in people: print(p)
 #/* *** ODSAendTag: SortByGivenName *** */
 
-    print("\n### Ordered by given name (functional solution)")
+print("\n### Ordered by given name (functional solution)")
 #/* *** ODSATag: ByGivenNameFunctional *** */
-    byGivenName = lambda person: person.givenName
+byGivenName = lambda person: person.givenName
 #/* *** ODSAendTag: ByGivenNameFunctional *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byGivenName)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byGivenName)
+for p in people: print(p)
 
-    print("\n### Ordered by given name (using a key extractor)")
+print("\n### Ordered by given name (using a key extractor)")
 #/* *** ODSATag: ByGivenNameKeyExtractor *** */
-    byGivenName = operator.attrgetter('givenName')
+byGivenName = operator.attrgetter('givenName')
 #/* *** ODSAendTag: ByGivenNameKeyExtractor *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byGivenName)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byGivenName)
+for p in people: print(p)
 
-    print("\n### Ordered by full name: family name + given name (pre-Java-8 solution)")
+print("\n### Ordered by full name: family name + given name (pre-Java-8 solution)")
 #/* *** ODSATag: ByFullName *** */
-    byFullName = functools.cmp_to_key(fullNameComparator)
+byFullName = functools.cmp_to_key(fullNameComparator)
 #/* *** ODSAendTag: ByFullName *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byFullName)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byFullName)
+for p in people: print(p)
 
-    print("\n### Ordered by full name: family name + given name (functional solution and tuples)")
+print("\n### Ordered by full name: family name + given name (functional solution and tuples)")
 #/* *** ODSATag: ByFullNameThenComparing *** */
-    # In Python we can simply create a tuple, and it will sort the way we want
-    byFullName = lambda person: (person.familyName, person.givenName)
+# In Python we can simply create a tuple, and it will sort the way we want
+byFullName = lambda person: (person.familyName, person.givenName)
 #/* *** ODSAendTag: ByFullNameThenComparing *** */
 #/* *** ODSATag: SortByFullName *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=byFullName)
-    for p in people: print(p)
+people = getPeople()  # reset the people list
+people.sort(key=byFullName)
+for p in people: print(p)
 #/* *** ODSAendTag: SortByFullName *** */
 
-    print("\n### Ordered by Swedish locale, case-insensitive")
-    print("# Note: There's a bug in Python's Swedish locale, so Č comes after all other letters")
+print("\n### Ordered by Swedish locale, case-insensitive")
+print("# Note: There's a bug in Python's Swedish locale, so Č comes after all other letters")
 #/* *** ODSATag: BySwedishLocale *** */
-    import locale
-    locale.setlocale(locale.LC_COLLATE, 'sv_SE')
-    bySwedishLocale = lambda person: (locale.strxfrm(person.familyName.casefold()),
+import locale
+locale.setlocale(locale.LC_COLLATE, 'sv_SE')
+bySwedishLocale = lambda person: (locale.strxfrm(person.familyName.casefold()),
                                       locale.strxfrm(person.givenName.casefold()))
-    # Note: There's a bug in Python's Swedish locale, so Č comes after all other letters
+# Note: There's a bug in Python's Swedish locale, so Č comes after all other letters
 #/* *** ODSAendTag: BySwedishLocale *** */
 #/* *** ODSATag: SortBySwedishLocale *** */
-    people = getPeople()  # reset the people list
-    people.sort(key=bySwedishLocale)
-    for p in people: print(p)
-    # Note: Because of a bug in Python's Swedish locale, Diana Čemerytė is still printed last
+people = getPeople()  # reset the people list
+people.sort(key=bySwedishLocale)
+for p in people: print(p)
+# Note: Because of a bug in Python's Swedish locale, Diana Čemerytė is still printed last
 #/* *** ODSAendTag: SortBySwedishLocale *** */
 
-    print("\n### Ordered by Swedish locale, given name first")
-    bySwedishLocale = lambda person: (locale.strxfrm(person.givenName.casefold()),
-                                      locale.strxfrm(person.familyName.casefold()))
-    people = getPeople()  # reset the people list
-    people.sort(key=bySwedishLocale)
-    for p in people: print(p)
+print("\n### Ordered by Swedish locale, given name first")
+bySwedishLocale = lambda person: (locale.strxfrm(person.givenName.casefold()),
+                                  locale.strxfrm(person.familyName.casefold()))
+people = getPeople()  # reset the people list
+people.sort(key=bySwedishLocale)
+for p in people: print(p)
 #/* *** ODSAendTag: ComparatorDemo *** */

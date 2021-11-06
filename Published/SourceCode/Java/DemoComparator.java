@@ -3,21 +3,21 @@ import java.util.*;
 import java.text.Collator;
 
 class Person implements Comparable<Person> {
-    String givenName_;
-    String familyName_;
-    int birthYear_;
+    private String givenName;
+    private String familyName;
+    private int birthYear;
 
     // Constructor
     Person(String given, String family, int birth) {
-        givenName_  = given;
-        familyName_ = family;
-        birthYear_  = birth;
+        givenName  = given;
+        familyName = family;
+        birthYear  = birth;
     }
 
     // Getters
-    public String givenName()  { return givenName_  ; }
-    public String familyName() { return familyName_ ; }
-    public int    birthYear()  { return birthYear_  ; }
+    public String givenName()  { return givenName  ; }
+    public String familyName() { return familyName ; }
+    public int    birthYear()  { return birthYear  ; }
 
     // Pretty-printing
     public String toString() {
@@ -70,80 +70,80 @@ static ArrayList<Person> getPeople() {
 }
     
 public static void main(String[] args) {
-    System.out.println("\n### No order");
-    ArrayList<Person> people = getPeople();
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### No order");
+ArrayList<Person> people = getPeople();
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Natural ordering");
-    people = getPeople(); // reset the people list
-    Collections.sort(people);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Natural ordering");
+people = getPeople(); // reset the people list
+Collections.sort(people);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by birth year (pre-Java-8 solution)");
-    Comparator<Person> byBirthYear = new BirthYearComparator();
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byBirthYear);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by birth year (pre-Java-8 solution)");
+Comparator<Person> byBirthYear = new BirthYearComparator();
+people = getPeople(); // reset the people list
+Collections.sort(people, byBirthYear);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by birth year (functional solution)");
-    byBirthYear = (one, other) -> Integer.compare(one.birthYear(), other.birthYear());
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byBirthYear);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by birth year (functional solution)");
+byBirthYear = (one, other) -> Integer.compare(one.birthYear(), other.birthYear());
+people = getPeople(); // reset the people list
+Collections.sort(people, byBirthYear);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by birth year (using a key extractor)");
-    byBirthYear = Comparator.comparingInt(Person::birthYear);
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byBirthYear);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by birth year (using a key extractor)");
+byBirthYear = Comparator.comparingInt(Person::birthYear);
+people = getPeople(); // reset the people list
+Collections.sort(people, byBirthYear);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by given name (pre-Java-8 solution)");
-    Comparator<Person> byGivenName = new GivenNameComparator();
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byGivenName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by given name (pre-Java-8 solution)");
+Comparator<Person> byGivenName = new GivenNameComparator();
+people = getPeople(); // reset the people list
+Collections.sort(people, byGivenName);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by given name (functional solution)");
-    byGivenName = (one, other) -> one.givenName().compareTo(other.givenName());
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byGivenName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by given name (functional solution)");
+byGivenName = (one, other) -> one.givenName().compareTo(other.givenName());
+people = getPeople(); // reset the people list
+Collections.sort(people, byGivenName);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by given name (using a key extractor)");
-    byGivenName = Comparator.comparing(Person::givenName);
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byGivenName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by given name (using a key extractor)");
+byGivenName = Comparator.comparing(Person::givenName);
+people = getPeople(); // reset the people list
+Collections.sort(people, byGivenName);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by full name: family name + given name (pre-Java-8 solution)");
-    Comparator<Person> byFullName = new FullNameComparator();
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byFullName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by full name: family name + given name (pre-Java-8 solution)");
+Comparator<Person> byFullName = new FullNameComparator();
+people = getPeople(); // reset the people list
+Collections.sort(people, byFullName);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by full name: family name + given name (using key extractors and thenComparing)");
-    byFullName = Comparator.comparing(Person::familyName)
-        .thenComparing(Person::givenName);
-    people = getPeople(); // reset the people list
-    Collections.sort(people, byFullName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by full name: family name + given name (using key extractors and thenComparing)");
+byFullName = Comparator.comparing(Person::familyName)
+    .thenComparing(Person::givenName);
+people = getPeople(); // reset the people list
+Collections.sort(people, byFullName);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by Swedish locale, case-insensitive");
-    Collator swedishLocale = Collator.getInstance(new Locale("sv", "SE"));
-    swedishLocale.setStrength(Collator.PRIMARY);
-    Comparator<Person> bySwedishLocale = 
-        Comparator.comparing(Person::familyName, swedishLocale)
-        .thenComparing(Person::givenName, swedishLocale);
-    people = getPeople(); // reset the people list
-    Collections.sort(people, bySwedishLocale);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by Swedish locale, case-insensitive");
+Collator swedishLocale = Collator.getInstance(new Locale("sv", "SE"));
+swedishLocale.setStrength(Collator.PRIMARY);
+Comparator<Person> bySwedishLocale = 
+    Comparator.comparing(Person::familyName, swedishLocale)
+    .thenComparing(Person::givenName, swedishLocale);
+people = getPeople(); // reset the people list
+Collections.sort(people, bySwedishLocale);
+for (Person p : people) System.out.println(p);
 
-    System.out.println("\n### Ordered by Swedish locale, given name first");
-    Comparator<Person> bySwedishGivenName = 
-        Comparator.comparing(Person::givenName, swedishLocale)
-        .thenComparing(Person::familyName, swedishLocale);
-    people = getPeople(); // reset the people list
-    Collections.sort(people, bySwedishGivenName);
-    for (Person p : people) System.out.println(p);
+System.out.println("\n### Ordered by Swedish locale, given name first");
+Comparator<Person> bySwedishGivenName = 
+    Comparator.comparing(Person::givenName, swedishLocale)
+    .thenComparing(Person::familyName, swedishLocale);
+people = getPeople(); // reset the people list
+Collections.sort(people, bySwedishGivenName);
+for (Person p : people) System.out.println(p);
 }
 }

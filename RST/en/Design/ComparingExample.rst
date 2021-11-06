@@ -49,7 +49,8 @@ Which results in:
 Comparables
 ----------------
 
-With the Comparable interface we can define “natural ordering” for a class (`Java 8 Comparable`_):
+With the **Comparable** interface we can define the “natural ordering” for a class (`Java 8 Comparable`_).
+Recall the interface for comparables from :ref:`the course API <CourseAPI>`:
 
 .. _`Java 8 Comparable`: https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html
 
@@ -79,8 +80,8 @@ Resulting in:
 
 Two things to note, which we address later: 
 
-1. Guy d’Hardelot and Diana Čemerytė come last – this is because ``.compareTo(…)`` gives a case-sensitive ordering and doesn’t care ignore diacritics
-2. Nadia Boulanger comes before Lili, even though L comes before N in the alphabet
+1. Guy d’Hardelot and Diana Čemerytė come last – this is because ``.compareTo(…)`` gives a case-sensitive ordering and doesn’t care ignore diacritics.
+2. Nadia Boulanger comes before Lili, even though L comes before N in the alphabet.
 
 Comparators, the old way
 ----------------------------
@@ -92,7 +93,7 @@ What if we sometimes want to sort the list according to some other ordering, e.g
 .. codeinclude:: ChalmersGU/BaseAPI
    :tag: ComparatorADT
 
-To use this we have to implement a separate class for each ordering we want to use. Here's one for comparing birth year:
+To use this we have to implement a separate class for each ordering we want to use. Here's one for comparing by birth year:
 
 .. codeinclude:: ChalmersGU/DemoComparator
    :tag: BirthYearComparator
@@ -143,7 +144,7 @@ Result:
 Comparators, the new functional interface in Java 8
 ----------------------------------------------------------
 
-Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similar to we would do in Python or Haskell:
+Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similarly to we would do in Python or Haskell:
 
 .. codeinclude:: ChalmersGU/DemoComparator
    :tag: ByBirthYearFunctional, ByGivenNameFunctional
@@ -164,7 +165,7 @@ In many cases (including our example case), we only want to compare some fields 
 Comparing several fields
 ---------------------------
 
-Remember the natural ordering? The problem with only comparing the family name is that if two persons have the same they keep their internal order. So, Nadia Boulanger comes before Lili Boulanger even though L precedes N in the alphabet. 
+Remember the natural ordering? The problem with only comparing the family name is that if two persons have the same name they keep their internal order. So, Nadia Boulanger comes before Lili Boulanger even though L precedes N in the alphabet. 
 
 What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:
 
@@ -202,7 +203,7 @@ As you can see, Lili now comes before Nadia. But there’s still the problem wit
 Case-insensitive and language-specific comparisons
 -------------------------------------------------------
 
-The Java String class has a method ``.compareToIgnoringCase(…)`` which is what it sounds like.
+The Java **String** class has a method ``.compareToIgnoringCase(…)`` which is what it sounds like.
 
 But you shouldn’t use it if you’re serious about handling text correctly. This is because strings are no longer ASCII, but Unicode. And Unicode is a beast of its own – it knows how to write hundreds of different alphabets with diacritics and other special characters. (Unicode even knows about bidirectional text (left-to-right vs right-to-left), but we won’t discuss that here).
 

@@ -1,19 +1,20 @@
 /* *** ODSATag: Database *** */
 class Person
-  public pnr:  string // personnummer
-  public name: string // person's name
+    public pnr  : string   // personnummer
+    public name : string   // person's name
 
-database: Map(string, Person) = new Map()
+class PersonDatabase
+    database : Map(string, Person)
 
-add(p: Person)
-  // Add the person to the database
-  database.add(p.pnr, p)
+    // Put the person in the database.
+    put(p:Person)
+        database.put(p.pnr, p)
 
-remove(p: Person)
-  // Remove a person from the database
-  database.remove(p.pnr)
+    // Remove a person from the database.
+    remove(p:Person)
+        database.remove(p.pnr)
 
-find(pnr: string): Person
-  // Find the person who has a given personnummer
-  return database.lookup(pnr)
+    // Find the person who has a given personnummer.
+    find(pnr:string) : Person
+        return database.get(pnr)
 /* *** ODSAendTag: Database *** */

@@ -1,16 +1,18 @@
 /* *** ODSATag: Sequential *** */
-Sequential(A: array, k: integer)
-  for i = 1 to arraySize(A) do
-    if A[i] == k
-      return i
-  return arraySize(A)
+// Return the position of an element in a list.
+// If the element is not found, return -1.
+sequentialSearch(elements:E[], e:E) : integer
+    for i = 1, 2, ..., size of elements - 1 // For each element
+        if elements[i] == e                 // if we found it
+            return i                        // return its position
+    return -1                               // Otherwise, return -1
 /* *** ODSAendTag: Sequential *** */
 
 /* *** ODSATag: SequentialLargest *** */
-Sequential(A: array)
-  maxIndex = 1;
-  for i = 2 to arraySize(A) do
-    if A[i] > A[maxIndex]
-      maxIndex = i
-  return maxIndex
+Sequential(elements:E[]) : integer
+    maxIndex = 1
+    for i = 2, 3, ..., size of elements-1
+        if elements[i] > elements[maxIndex]
+            maxIndex = i
+    return maxIndex
 /* *** ODSAendTag: SequentialLargest *** */

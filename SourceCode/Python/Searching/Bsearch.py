@@ -1,7 +1,7 @@
 
 #/* *** ODSATag: BinarySearch *** */
-# Return the position of the element `e` in the sorted array `elements`.
-# If `e` is not found, return -1.
+# Return the position of an element in a list.
+# If the element is not found, return -1.
 def binarySearch(elements, e):
     low = 0
     high = len(elements) - 1
@@ -15,3 +15,10 @@ def binarySearch(elements, e):
             return mid             # Found it
     return -1                      # Search value not in array
 # /* *** ODSAendTag: BinarySearch *** */
+
+if __name__ == '__main__':
+    arr = [2, 3, 4, 5, 7, 10]
+    print(arr)
+    for key in [4, 6, 10]:
+        pos = binarySearch(arr, key)
+        print(f"Search for {key} --> position {pos}")

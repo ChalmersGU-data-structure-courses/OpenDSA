@@ -17,11 +17,11 @@ information* in a large dataset. That is, we have a collection of
 items, and we want to quickly retrieve the items matching certain
 criteria. Here are some examples of information retrieval problems:
 
-* *Spell-checking:**
+* *Spell-checking:*
   Given a set containing all valid English words, check if a given
   string is present in the set (i.e. is a valid word).
 * *Database lookup:*
-  Given a list of people, find the person with a given personnummer.
+  Given a list of people, find the person with a given *personnummer*.
 * *Search engine:*
   Given a collection of documents (e.g. web pages), find all web
   pages containing a given word.
@@ -37,7 +37,7 @@ sets and maps are, and how to use them to solve the four problems
 above.
 
 You may have already used sets and maps in programming, because almost
-every programming language provides an implementation of them.
+every programming language provides an implementation for them.
 For example, Java provides the HashSet_ and HashMap_ classes,
 and Python provides sets_ and dictionaries_ (another word for maps)
 as part of its standard library.
@@ -49,6 +49,7 @@ A *set* represents a collection of items, where we can *add* and
 *remove* items, and *check* if a given item is present in the set.
 A set cannot contain duplicate items: if we try to add an item that is
 already present, nothing happens, and the set is left unchanged.
+Recall the interface for sets from :ref:`the course API <CourseAPI>`:
 
 .. codeinclude:: ChalmersGU/API
    :tag: SetADT
@@ -74,24 +75,25 @@ specify what *value* we want to associated with it. We can *check* if
 a given key is present in the map. We can also *look up* a key to find
 the associated value.
 
-.. codeinclude:: ChalmersGU/API
-   :tag: MapADT
-
 A map cannot contain duplicate *keys*, so each key is associated with
-exactly one value. If we call ``add(k,v)``, but the key ``k`` is
+exactly one value. If we call ``put(k,v)``, but the key ``k`` is
 already present, then the value associated with ``k`` gets changed to
 ``v``. On the other hand, a map *can* contain duplicate *values*: two
 keys can have the same value.
+Recall the interface for maps from :ref:`the course API <CourseAPI>`:
+
+.. codeinclude:: ChalmersGU/API
+   :tag: MapADT
 
 The map is a perfect match for our database example:
 
-* Given a list of people, find the person with a given personnummer.
+* Given a list of people, find the person with a given *personnummer*.
 
 Here, the key should be a personnummer, and the value should be a
 record containing information about that person. If the personnummer
-is stored in a field ``pnr``, then to add a person ``p`` we call
-``add(p.pnr, p)``.  To find the person with personnummer ``pnr`` we
-call ``lookup(pnr)``.
+is stored in a field ``pnr``, then to put a person ``p`` in the database we call
+``database.put(p.pnr, p)``.  To find the person with personnummer ``pnr`` we
+call ``database.get(pnr)``.
 
 .. codeinclude:: Searching/Database
    :tag: Database
@@ -105,6 +107,11 @@ have the same key. Then we want something like a map, but where a key
 can have multiple values associated with it. This structure is called
 a *multimap*.
 
+Unfortunately, most programming languages do not provide a multimap
+data structure. Instead, we can implement it ourselves. The idea is to
+use a map, where the key is a word, and the value is not a document
+but a *set* of documents.
+
 A multimap is the perfect data structure for our search engine
 example:
 
@@ -115,11 +122,6 @@ To find all documents containing a given word, we will build a
 multimap, where the key is a word, and the values are all documents
 containing that word. Then, searching for a word will just mean
 looking it up in the multimap.
-
-Unfortunately, most programming languages do not provide a multimap
-data structure. Instead, we can implement it ourselves. The idea is to
-use a map, where the key is a word, and the value is not a document
-but a *set* of documents.
 
 .. codeinclude:: Searching/SearchEngine
    :tag: SearchEngine
@@ -147,14 +149,13 @@ calls to ``contains``, and if we wanted to instead find all cities in
 the USA having a population of between 1 and 2 million, we would need
 to make ~1,000,000 calls.
 
-There is a better way. If the towns are stored in a array, and sorted
+There is a better way. If the towns are stored in an array, and sorted
 by population, we can use the following algorithm:
 
-* Find the position in the array of the first town that has a
-  population of at least 1,000. (We will see in Chapter
-  :chap:`Arrays: Searching and Sorting` that it is possible to find
-  this position efficiently, using an algorithm called *binary
-  search*.)
+* Find the position in the array of the *first* town that has a
+  population of *at least* 1,000. (We will see in the section about
+  :ref:`binary search <BinarySearch>`
+  that it is possible to find this position efficiently.)
 * Find the position in the array of the *last* town that has a
   population of *at most* 2,000.
 * Now return all towns between those two positions in the array.
@@ -191,10 +192,13 @@ that take advantage of the natural order of the keys:
     then the ceiling of :math:`k` is just :math:`k`; otherwise it is the
     successor of :math:`k`.
 
+Recall the interface for sorted maps from :ref:`the course API <CourseAPI>`:
+
 .. codeinclude:: ChalmersGU/API
    :tag: SortedMapADT
 
-As well as a sorted map, it is also possible to have a *sorted set*:
+As well as a sorted map, it is also possible to have a *sorted set*.
+Recall the interface for sorted sets from :ref:`the course API <CourseAPI>`:
 
 .. codeinclude:: ChalmersGU/API
    :tag: SortedSetADT
@@ -202,7 +206,7 @@ As well as a sorted map, it is also possible to have a *sorted set*:
 Here is how to use a sorted map ADT to find all Swedish towns having
 between 1,000 and 2,000 population. As there may be towns that have
 the same population, we need a *multimap*. As before, we solve this by
-having the key be a population number and the value be a list of towns.
+having the key be a population number and the value be a set of towns.
 
 .. codeinclude:: Searching/Between
    :tag: Between
@@ -222,12 +226,13 @@ is possible to look up information efficiently. However, it turns out
 that adding and removing items is quite expensive. An array is a
 suitable way of storing a set or a map if its contents never changes.
 
-In Chapter :chap:`Search Trees`, we learn about *balanced binary
-search trees (BSTs)*, a data structure for sets and maps where adding,
-removing and searching are all efficient. BSTs also support the
-*sorted map* operations that we used in our final example.
+In Chapter :chap:`Search Trees`,
+we learn about *balanced binary search trees (BSTs)*,
+a data structure for sets and maps where adding, removing and
+searching are all efficient. BSTs also support the *sorted map*
+operations that we used in our final example.
 
-In chapter :chap:`Hash Tables`, we learn about *hash tables*, another way
+In Chapter :chap:`Hash Tables`, we learn about *hash tables*, another way
 to implement the set and map ADTs. In a hash table, ``add``,
 ``remove`` and ``contains`` are even faster than in a BST, but hash
 tables are somewhat harder to use than BSTs, and do not support the
