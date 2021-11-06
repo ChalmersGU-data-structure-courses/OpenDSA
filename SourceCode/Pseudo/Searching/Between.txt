@@ -1,21 +1,32 @@
 /* *** ODSATag: Between *** */
-class City:
-  public name: string
-  public population: int
+class City
+    public name : string
+    public population : int
 
-// Similar to the search engine, use a map where the value is a list of cities
-cities: SortedMap(int, Set(City)) = new SortedMap()
+class CityPopulations
+    // Similar to the search engine, use a map where the value is a list of cities.
+    cities : SortedMap(int, Set(City))
 
-add(city: City)
-  // This is the same code as for the search engine
+    // Add a new city to the database.
+    add(city:City)
+        // Get the set of documents containing this city
+        set : Set(City) = cities.get(city.population)
+        if set is null
+            // This is the first city with this population
+            set = new Set()
 
-// Call findBetween(1000, 2000) to solve the example problem
-findBetween(lower, upper: int): List(City)
-  result: List(City) = new List()
-  // The range query returns a set of keys, i.e. populations
-  for population in cities.between(lower, upper)
-    // cities.get(population) returns the list of cities with that population
-    for city in cities.get(population):
-      result.add(city)
-  return result
+        // Add the city to the set
+        set.add(city)
+        cities.put(city.population, set)
+
+    // Find all cities with a population between lower and upper.
+    // Call findBetween(1000, 2000) to solve the example problem.
+    findBetween(lower, upper : int) : Set(City)
+        result : Set(City) = new Set()
+        // The range query returns a set of keys, i.e. populations.
+        for population in cities.keysBetween(lower, upper)
+            // cities.get(population) returns the list of cities with that population.
+            for city in cities.get(population)
+                result.add(city)
+        return result
 /* *** ODSAendTag: Between *** */
