@@ -139,6 +139,20 @@ as a disk drive or CD.
    be clear, but the implementation for lists has not been
    specified.
 
+There are often several possible implementations of the same ADT. 
+The reason for this is that it is usually not possible to implement 
+all operations efficiently, and often there is a trade off:
+As an example, it could be the case that you can make operation 
+A or B efficient, but not both.
+And some applications might use A more often than B,
+while other applications use B more often. 
+Another example is that one implementation could be efficient
+for small datasets (thousands of elements), while another implementation 
+is more efficient for large datasets (millions of elements). 
+Therefore there is usually a need for several different 
+implementations of the same ADT. 
+
+REMOVE:
 One application that makes use of some ADT might use particular
 member functions of that ADT more than a second application, or the
 two applications might have different time requirements for the
@@ -197,7 +211,7 @@ Humans deal with complexity by assigning a label to an assembly of
 objects or concepts and then manipulating the label in place of the
 assembly.
 Cognitive psychologists call such a label a
-:term:`metaphor`.
+*metaphor*.
 A particular label might be related to other pieces of information or
 other labels.
 This collection can in turn be given a label,
@@ -283,15 +297,15 @@ context of a higher-level task.
    The relationship between data items, abstract data types, and data
    structures.
 
-The ADT defines the logical form of the data type.
-The data structure implements the physical form of the data type.
+As we saw, the ADT defines the logical form of the data type,
+while the data structure implements the physical form of the data type.
 Users of an ADT are typically programmers working in the same language
 as the implementer of the ADT.
 Typically, these programmers want to use the ADT as a component
 in another application.
 The interface to an ADT is also commonly referred to as the 
 Application Programmer Interface, or API, for the ADT.
-The interface becomes a form of communication between the two programmers.
+The interface becomes a form of communication between two programmers.
 
 .. topic:: Example
 
