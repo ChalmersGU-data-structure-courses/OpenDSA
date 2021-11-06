@@ -1,11 +1,15 @@
 
 interface Comparable(E)
-    compareTo(other:E) : int   // Returns <0 if this<other, 0 if this==other, >0 if this>other.
+    compareTo(other:E) : int   // Returns <0  if  this < other,
+                               //      or  0  if  this == other,
+                               //      or >0  if  this > other.
     // Note: Python uses a range of basic comparisons instead.
 
 
 interface Comparator(E)
-    compareTo(one:E, other) : int   // Returns <0 if one<other, 0 if one==other, >0 if one>other.
+    compareTo(one:E, other) : int  // Returns <0  if  one < other,
+                                   //      or  0  if  one == other,
+                                   //      or >0  if  one > other.
     // Note: Python prefers to use a key extraction function instead.
 
 

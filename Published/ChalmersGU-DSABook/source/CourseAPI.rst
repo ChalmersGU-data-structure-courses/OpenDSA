@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 10:21:02"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CourseAPI";ODSA.SETTINGS.MODULE_LONG_NAME = "All ADTs Used in This Book";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 19:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -131,7 +131,7 @@ Comparison with the standard Java API
 The standard Java API can be found here (this is Java SE 8):
 https://docs.oracle.com/javase/8/docs/api/.
 Here is a quick comparison beteween the interfaces we have defined above,
-and the most similar ones that are defined the standard Java API:
+and the most similar ones that are defined in the standard Java API:
 
 - **Iterable, Collection, List**: These interfaces are the same as
   Iterable_, Collection_ and List_ in the standard Java API, but with fewer methods.

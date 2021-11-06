@@ -1,7 +1,7 @@
 
 class Person implements Comparable(Person)
     givenName  : String
-    familyName : int
+    familyName : String
     birthYear  : int
 
     toString() : String
@@ -41,77 +41,76 @@ getPeople() : List(Person)
             ]
 
 
-main()
-    // No order
-    people : List(Person) = getPeople()
-    print each person in people
+// No order
+people : List(Person) = getPeople()
+print each person in people
 
-    // Natural ordering
-    people = getPeople()  // reset the people list
-    sort people (using the natural ordering)
-    print each person in people
+// Natural ordering
+people = getPeople()  // reset the people list
+sort people (using the natural ordering)
+print each person in people
 
-    // Ordered by birth year (pre-Java-8 solution)
-    byBirthYear : Comparator(Person) = new BirthYearComparator()
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+// Ordered by birth year (pre-Java-8 solution)
+byBirthYear : Comparator(Person) = new BirthYearComparator()
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 
-    // Ordered by birth year (functional solution)
-    byBirthYear = (one, other) -> one.birthYear <=> other.birthYear
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+// Ordered by birth year (functional solution)
+byBirthYear = (one, other) -> one.birthYear <=> other.birthYear
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 
-    // Ordered by birth year (using a key extractor)
-    byBirthYear = comparing(Person.birthYear)
-    people = getPeople()  // reset the people list
-    sort people (using byBirthYear)
-    print each person in people
+// Ordered by birth year (using a key extractor)
+byBirthYear = comparing(Person.birthYear)
+people = getPeople()  // reset the people list
+sort people (using byBirthYear)
+print each person in people
 
-    // Ordered by given name (pre-Java-8 solution)
-    byGivenName : Comparator(Person) = new GivenNameComparator()
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+// Ordered by given name (pre-Java-8 solution)
+byGivenName : Comparator(Person) = new GivenNameComparator()
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 
-    // Ordered by given name (functional solution)
-    byGivenName = (one, other) -> one.givenName <=> other.givenName
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+// Ordered by given name (functional solution)
+byGivenName = (one, other) -> one.givenName <=> other.givenName
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 
-    // Ordered by given name (using a key extractor)
-    byGivenName = comparing(Person.givenName)
-    people = getPeople()  // reset the people list
-    sort people (using byGivenName)
-    print each person in people
+// Ordered by given name (using a key extractor)
+byGivenName = comparing(Person.givenName)
+people = getPeople()  // reset the people list
+sort people (using byGivenName)
+print each person in people
 
-    // Ordered by full name: family name + given name (pre-Java-8 solution)
-    byFullName : Comparator(Person) = new FullNameComparator()
-    people = getPeople()  // reset the people list
-    sort people (using byFullName)
-    print each person in people
+// Ordered by full name: family name + given name (pre-Java-8 solution)
+byFullName : Comparator(Person) = new FullNameComparator()
+people = getPeople()  // reset the people list
+sort people (using byFullName)
+print each person in people
 
-    // Ordered by full name: family name + given name (using key extractors and thenComparing)
-    byFullName = comparing(Person.familyName), then comparing(Person.givenName)
-    people = getPeople()  // reset the people list
-    sort people (using byFullName)
-    print each person in people
+// Ordered by full name: family name + given name (using key extractors and thenComparing)
+byFullName = comparing(Person.familyName), then comparing(Person.givenName)
+people = getPeople()  // reset the people list
+sort people (using byFullName)
+print each person in people
 
-    // Ordered by Swedish locale, case-insensitive
-    swedishLocale : Collator = get instance from Locale "sv/SE"
-    bySwedishLocale : Comparator(Person) =
-            comparing(Person.familyName using swedishLocale), then
-            comparing(Person.givenName using swedishLocale)
-    people = getPeople()  // reset the people list
-    sort people (using bySwedishLocale)
-    print each person in people
+// Ordered by Swedish locale, case-insensitive
+swedishLocale : Collator = get instance from Locale "sv/SE"
+bySwedishLocale : Comparator(Person) =
+        comparing(Person.familyName using swedishLocale), then
+        comparing(Person.givenName using swedishLocale)
+people = getPeople()  // reset the people list
+sort people (using bySwedishLocale)
+print each person in people
 
-    // Ordered by Swedish locale, given name first
-    bySwedishGivenName : Comparator(Person) = 
-        comparing(Person.givenName using swedishLocale), then
-        comparing(Person.familyName using swedishLocale)
-    people = getPeople()  // reset the people list
-    sort people (using bySwedishGivenName)
-    print each person in people
+// Ordered by Swedish locale, given name first
+bySwedishGivenName : Comparator(Person) = 
+    comparing(Person.givenName using swedishLocale), then
+    comparing(Person.familyName using swedishLocale)
+people = getPeople()  // reset the people list
+sort people (using bySwedishGivenName)
+print each person in people
