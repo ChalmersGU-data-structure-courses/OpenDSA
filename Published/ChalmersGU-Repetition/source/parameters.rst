@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "parameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Parsing Command Line Parameters In Your Progam";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "parameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Parsing Command Line Parameters In Your Program";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,17 +27,17 @@
    :topic:
 
 
-Parsing Command Line Parameters In Your Progam
-==============================================
+Parsing Command Line Parameters In Your Program
+================================================
 
 Parameters In Programming
 -------------------------
 
-You probably understand the concept of arameters for a function.
-But how does a Program itself have parameters?
-This comes in the Main function that every Java program has.
+You probably understand the concept of parameters for a function.
+But how does a program itself have parameters?
+This comes in the ``main`` function that every Java program has.
 Consider this the "launch" function.
-Usually the "main" function is named Main and takes an array of
+Usually the "main" function is named ``main`` and takes an array of
 strings as its parameter, like this.
 
 ::
@@ -70,15 +70,10 @@ your array in C would be::
 Java however, removes the command name and only provides parameters.
 
 I have created a main function skeleton for you to use in your projects. It is
-set up simply and makes use of switch cases. You can |external_link1|.
+set up simply and makes use of switch cases. 
 Let's see how it works.
 
-.. |external_link1| raw:: html
-
-   <a href="http://pastebin.com/gwSH2cEa" target="_blank">download it</a>
-
-
-.. codeinclude:: Java/Tutorials/MainParameters.java
+.. codeinclude:: Tutorials/MainParameters
 
 We have our main function take an array of Strings (named args).
 If that array is empty then we may or may not want to exit as we have
@@ -95,12 +90,13 @@ In this example I choose to exit after printing the unrecognized
 string.
 In the future you may wish to change this to something else.
 You can learn more about |external_link2|.
+
 It is also important to note that this function will possibly throw an
-exception or behave in an unexpected way if you use "-f" but do not
+exception or behave in an unexpected way if you use  ``-f`` but do not
 give a file name.
-For example if you call the program with {"-f", "-v"}, this will set
-the filename to -v.
-Or if you call the program with {"-f"}, you will get an exception for
+For example if you call the program with ``{"-f", "-v"}``, this will set
+the filename to "-v".
+Or if you call the program with ``{"-f"}``, you will get an exception for
 trying to access outside the array bounds.
 You can prevent this by using a try-catch, but I chose to keep this
 example very simple.

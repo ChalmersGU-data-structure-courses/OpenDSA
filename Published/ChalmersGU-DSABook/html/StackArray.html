@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-stacks">
 <h1>4.<span class="section-number">9. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stack-terminology-and-implementation">
@@ -227,9 +227,9 @@ which at the same time is the size of the stack.</p>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="n">stackSize</span>     <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of stack, and index of the next free slot</span>
 
-    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
-    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>     <span class="c1">// Minimum capacity of internalArray</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
 
     <span class="n">DynamicArrayStack</span><span class="p">()</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
@@ -240,9 +240,9 @@ which at the same time is the size of the stack.</p>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>       <span class="c1">// Size of stack, and index of the next free slot</span>
 
-    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of internalArray</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayStack</span><span class="p">()</span> <span class="p">{</span>
@@ -252,9 +252,9 @@ which at the same time is the size of the stack.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStackInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
-    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
-    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Minimum capacity of internalArray</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>        <span class="c1"># Must be smaller than 1/CapacityMultiplier</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># Factor to grow/shrink the capacity</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the stack elements</span>
@@ -431,9 +431,9 @@ the (dynamic) array-based stack class.</p>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="n">stackSize</span>     <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of stack, and index of the next free slot</span>
 
-    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
-    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>     <span class="c1">// Minimum capacity of internalArray</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
 
     <span class="n">DynamicArrayStack</span><span class="p">()</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
@@ -479,9 +479,9 @@ the (dynamic) array-based stack class.</p>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the stack elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>       <span class="c1">// Size of stack, and index of the next free slot</span>
 
-    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of internalArray</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayStack</span><span class="p">()</span> <span class="p">{</span>
@@ -549,9 +549,9 @@ the (dynamic) array-based stack class.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayStack_DynamicArrayStack_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayStack</span><span class="p">(</span><span class="n">Stack</span><span class="p">):</span>
-    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
-    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
-    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Minimum capacity of internalArray</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>        <span class="c1"># Must be smaller than 1/CapacityMultiplier</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># Factor to grow/shrink the capacity</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the stack elements</span>
@@ -624,7 +624,7 @@ the (dynamic) array-based stack class.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 06, 2021.
+      Last updated on Nov 07, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

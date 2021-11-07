@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -19,30 +19,6 @@ TODO List
 .. raw:: html
 
    <hr /><h1>No Category</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="ListArrayDynamic.html#todo0">source: ListArrayDynamic</a></h2>
-
-.. TODO::
-
-   Exercise for dynamic addition
-
-.. raw:: html
-
-   <h2><a href="ListArrayDynamic.html#todo1">source: ListArrayDynamic</a></h2>
-
-.. TODO::
-
-   Complexity analysis
-
-.. raw:: html
-
-   <h2><a href="ListArrayDynamic.html#todo2">source: ListArrayDynamic</a></h2>
-
-.. TODO::
-
-   Exercise for dynamic addition
 
 .. raw:: html
 

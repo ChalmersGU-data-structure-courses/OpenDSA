@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Links1";ODSA.SETTINGS.MODULE_LONG_NAME = "Link Nodes";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/linkNodes1CON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Links1";ODSA.SETTINGS.MODULE_LONG_NAME = "Link Nodes";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/linkNodes1CON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/linkNodes2CON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="link-nodes">
 <h1>2.<span class="section-number">7. </span>Link Nodes<a class="headerlink" href="#link-nodes" title="Permalink to this headline">¶</a></h1>
@@ -180,7 +180,7 @@ Note that, while the <code class="docutils literal notranslate"><span class="pre
 object, the <code class="docutils literal notranslate"><span class="pre">data</span></code> field is of type <code class="docutils literal notranslate"><span class="pre">Object</span></code>.
 This denotes that we don’t really care what sort of thing one stores
 in a <code class="docutils literal notranslate"><span class="pre">link</span></code> node’s data field.</p>
-<div id="Link_Link_code"><ul><li><a href="#Link_Link_code_Java_Generic">Java (Generic)</a></li><li><a href="#Link_Link_code_Java">Java</a></li></ul><div id="Link_Link_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Link</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Link</span> <span class="p">{</span>
   <span class="kd">public</span> <span class="n">Link</span> <span class="n">next</span><span class="p">;</span> <span class="c1">//Point to next node in list</span>
   <span class="kd">public</span> <span class="n">Object</span> <span class="n">data</span><span class="p">;</span> <span class="c1">//Value for this node</span>
 
@@ -213,40 +213,7 @@ in a <code class="docutils literal notranslate"><span class="pre">link</span></c
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Link_Link_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Link</span> <span class="p">{</span>
-  <span class="kd">public</span> <span class="n">Link</span> <span class="n">next</span><span class="p">;</span> <span class="c1">//Point to next node in list</span>
-  <span class="kd">public</span> <span class="n">Object</span> <span class="n">data</span><span class="p">;</span> <span class="c1">//Value for this node</span>
-
-  <span class="c1">//Constructors</span>
-  <span class="kd">public</span> <span class="nf">Link</span><span class="p">(</span><span class="n">Object</span> <span class="n">dataIn</span><span class="p">,</span> <span class="n">Link</span> <span class="n">nextIn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">data</span> <span class="o">=</span> <span class="n">dataIn</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">nextIn</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="kd">public</span> <span class="nf">Link</span><span class="p">(</span><span class="n">Link</span> <span class="n">nextIn</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">data</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">nextIn</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="n">Object</span> <span class="nf">getData</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// Return the data field</span>
-    <span class="k">return</span> <span class="n">data</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="kt">void</span> <span class="nf">setData</span><span class="p">(</span><span class="n">Object</span> <span class="n">newData</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Set the data field</span>
-    <span class="n">data</span> <span class="o">=</span> <span class="n">newData</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="n">Link</span> <span class="nf">getNext</span><span class="p">()</span> <span class="p">{</span> <span class="c1">// Return the next field</span>
-    <span class="k">return</span> <span class="n">next</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="kt">void</span> <span class="nf">setNext</span><span class="p">(</span><span class="n">Link</span> <span class="n">newNext</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Set the next field</span>
-    <span class="n">next</span> <span class="o">=</span> <span class="n">newNext</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#Link_Link_code" ).tabs();});</script><p>Now we’ll see some examples for how to use <code class="docutils literal notranslate"><span class="pre">link</span></code> nodes to put
+<p>Now we’ll see some examples for how to use <code class="docutils literal notranslate"><span class="pre">link</span></code> nodes to put
 chains together.</p>
 <div id="linkNodes1CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="linkNodes1CON" data-long-name="linkNodes1CON" data-exer-id="" alt="linkNodes1CON" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -290,7 +257,7 @@ chains together.</p>
     data-exer-name="PointerEX3PRO"
     data-long-name="PointerEX3PRO"
     data-short-name="PointerEX3PRO"
-    data-frame-src="../../../Exercises/Pointers/PointerEX3PRO.html?localMode=true&amp;module=Links1&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic"
+    data-frame-src="../../../Exercises/Pointers/PointerEX3PRO.html?localMode=true&amp;module=Links1&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
     data-frame-width="950"
     data-frame-height="900"
     data-vertical-scrolling="no"

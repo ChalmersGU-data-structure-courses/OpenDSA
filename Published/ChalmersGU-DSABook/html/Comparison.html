@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'key-value-pairs', 'sorting-using-comparables', 'review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-comparators-and-key-value-pairs">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables', 'comparators', 'key-value-pairs', 'sorting-using-comparables', 'review-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:32"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-comparators-and-key-value-pairs">
 <span id="index-0"></span><h1>1.<span class="section-number">5. </span>Comparables, Comparators and Key-Value Pairs<a class="headerlink" href="#comparables-comparators-and-key-value-pairs" title="Permalink to this headline">¶</a></h1>
 <p>If we want to sort some things, we have to be able to compare them, to
 decide which one is bigger.
@@ -268,7 +268,12 @@ record and a pointer to the record itself.</p>
 records and extracting keys is for various map
 implementations and sorting algorithms.
 Here is a simple class for representing key-value pairs:</p>
-<div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Pseudo">Pseudo-Code</a></li><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">KVPair</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+    <span class="n">key</span>   <span class="p">:</span> <span class="n">K</span>
+    <span class="n">value</span> <span class="p">:</span> <span class="n">V</span>
+</pre></div>
+</div>
+</div><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
     <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
     <span class="n">KVPair</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
@@ -372,7 +377,7 @@ interface:</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 06, 2021.
+      Last updated on Nov 07, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
