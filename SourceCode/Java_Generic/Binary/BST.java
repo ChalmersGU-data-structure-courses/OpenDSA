@@ -154,6 +154,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             return lastNodeHelper(root).key;
     }
 
+/* *** ODSATag: lastNodeHelper *** */
     // Helper method for 'lastKey'.
     // Returns the node instead, as that's useful in 'removeHelper'.
     Node lastNodeHelper(Node node) {
@@ -163,6 +164,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
         return node;
     }
+/* *** ODSAendTag: lastNodeHelper *** */
 
     // Iterate through all keys.
     // This is called when the user writes 'for (Key key: bst) { ... }.'
