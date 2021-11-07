@@ -1,0 +1,80 @@
+
+/* *** ODSATag: LinkedMap *** */
+/* *** ODSATag: Header *** */
+class LinkedMap(K, V) implements Map(K, V)
+    private head     : KVNode   // Pointer to list header
+    private listSize : int      // Size of list
+
+    LinkedMap()
+        head = null
+        listSize = 0
+/* *** ODSAendTag: Header *** */
+
+/* *** ODSATag: KVNode *** */
+    private class KVNode
+        key   : K
+        value : V
+        next  : KVNode
+/* *** ODSAendTag: KVNode *** */
+
+/* *** ODSATag: Put *** */
+    put(key:K, value:V) : V
+        current : KVNode = head
+        while current != null
+            if key == current.key
+                oldValue : V = current.value
+                current.value = value
+                return oldValue
+            current = current.next
+        head = new KVNode(key, value, head)
+        listSize += 1
+        return null
+/* *** ODSAendTag: Put *** */
+
+/* *** ODSATag: Get *** */
+    get(key:V) : V
+        current : KVNode = head
+        while current != null
+            if key == current.key
+                return current.value
+            current = current.next
+        return null
+/* *** ODSAendTag: Get *** */
+
+/* *** ODSATag: Remove *** */
+    remove(key:K) : V
+        prev    : KVNode = null
+        removed : KVNode = head
+        while removed != null
+            if key == removed.key
+                if prev == null
+                    head = removed.next
+                else
+                    prev.next = removed.next
+                removed.next = null   // For garbage collection
+                listSize -= 1
+                return removed.value
+            prev = removed
+            removed = removed.next
+        return null
+/* *** ODSAendTag: Remove *** */
+
+/* *** ODSATag: ContainsKey *** */
+    containsKey(key:K) : boolean
+        return get(key) != null
+/* *** ODSAendTag: ContainsKey *** */
+
+/* *** ODSATag: EmptySize *** */
+    isEmpty() : boolean
+        return listSize == 0
+
+    size() : int
+        return listSize
+/* *** ODSAendTag: EmptySize *** */
+
+/* *** ODSATag: Iterator *** */
+    iterator() : Iterator(K)
+        return an iterator over the keys, starting from the head
+/* *** ODSAendTag: Iterator *** */
+/* *** ODSAendTag: LinkedMap *** */
+

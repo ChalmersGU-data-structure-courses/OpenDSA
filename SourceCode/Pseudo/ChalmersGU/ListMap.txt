@@ -1,0 +1,63 @@
+
+/* *** ODSATag: ListMap *** */
+/* *** ODSATag: Header *** */
+class ListMap(K, V) implements Map(K, V)
+    private internalList : List(KVPair(K,V))
+
+    ListMap()
+        // This could also be a DynamicArrayList.
+        internalList = new LinkedList()
+/* *** ODSAendTag: Header *** */
+
+/* *** ODSATag: Put *** */
+    put(key:K, value:V) : V
+        for entry : KVPair(K,V) in internalList
+            if key == entry.key
+                oldValue : V = entry.value
+                entry.value = value
+                return oldValue
+        // If we're using a DynamicArrayList we should add at the end of the list instead.
+        internalList.add(0, new KVPair(key, value))
+        return null
+/* *** ODSAendTag: Put *** */
+
+/* *** ODSATag: Get *** */
+    get(key:K) : V
+        for entry : KVPair(K,V) in internalList
+            if key == entry.key
+                return entry.value
+        return null
+/* *** ODSAendTag: Get *** */
+
+/* *** ODSATag: Remove *** */
+    // This method is sub-optimal, because it makes two passes:
+    // First a search to find the index, and then a loop delete that index.
+    remove(key:K) : V
+        int i = 0
+        for entry : KVPair(K,V) in internalList
+            if key == entry.key
+                removed : V = entry.value
+                internalList.remove(i)
+                return removed
+            i += 1
+        return null
+/* *** ODSAendTag: Remove *** */
+
+/* *** ODSATag: ContainsKey *** */
+    containsKey(key:K) : boolean
+        return get(key) ≠ null
+/* *** ODSAendTag: ContainsKey *** */
+
+/* *** ODSATag: EmptySize *** */
+    isEmpty() : boolean
+        return internalList.isEmpty()
+
+    size() : int
+        return internalList.size()
+/* *** ODSAendTag: EmptySize *** */
+
+/* *** ODSATag: Iterator *** */
+    iterator() : Iterator(K)
+        convert the KVPair iterator of internalList to an iterator over the keys
+/* *** ODSAendTag: Iterator *** */
+/* *** ODSAendTag: ListMap *** */
