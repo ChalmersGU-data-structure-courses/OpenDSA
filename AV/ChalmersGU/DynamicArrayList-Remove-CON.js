@@ -67,7 +67,7 @@ We copy the the value to be removed, and decrease <code>listSize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
-  pseudo.highlight([4,5,6,7,8]);
+  pseudo.highlight([3,4,5,6,7]);
   labelRem.show();
   arrRem.show();
   av.effects.copyValue(arr, listSize-1, arrRem, 0);
@@ -82,14 +82,14 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrRem.unhighlight(0);
   arrLS.unhighlight(0);
   av.umsg("The internal array now contains 3 elements, which is larger than 8/3, so we don't have to shrink it.");
-  pseudo.unhighlight([4,5,6,7,8]);
-  pseudo.highlight(9);
+  pseudo.unhighlight([3,4,5,6,7]);
+  pseudo.highlight(8);
   av.step();
 
   // Slide
   av.umsg("Now we can return the removed value.");
-  pseudo.unhighlight(9);
-  pseudo.highlight(11);
+  pseudo.unhighlight(8);
+  pseudo.highlight(10);
   arrRem.highlight(0);
   av.step();
 
@@ -99,7 +99,7 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrRem.hide();
   arrRem.value(0, "");
   arrRem.unhighlight(0);
-  pseudo.unhighlight(11);
+  pseudo.unhighlight(10);
   av.umsg("This was easy... but what if we remove another element?");
   av.step();
 
@@ -115,7 +115,7 @@ We copy the the value to be removed, and decrease <code>listSize</code>.
 We don't have to move any elements, since we're deleting from the end of the list.
 `);
   pseudo.unhighlight(1);
-  pseudo.highlight([4,5,6,7,8]);
+  pseudo.highlight([3,4,5,6,7]);
   labelRem.show();
   arrRem.show();
   av.effects.copyValue(arr, listSize-2, arrRem, 0);
@@ -130,14 +130,14 @@ We don't have to move any elements, since we're deleting from the end of the lis
   arrRem.unhighlight(0);
   arrLS.unhighlight(0);
   av.umsg("But now the internal array contains only 2 elements, which is fewer than 8/3, so we have to shrink it.");
-  pseudo.unhighlight([4,5,6,7,8]);
-  pseudo.highlight(9);
+  pseudo.unhighlight([3,4,5,6,7]);
+  pseudo.highlight(8);
   av.step();
 
   // Slide
   av.umsg("Let's make it half the size.");
-  pseudo.unhighlight(9);
-  pseudo.highlight(10);
+  pseudo.unhighlight(8);
+  pseudo.highlight(9);
   av.step();
 
   // Slide
@@ -162,8 +162,8 @@ We don't have to move any elements, since we're deleting from the end of the lis
 
   // Slide
   av.umsg("Finally we can return the removed value.");
-  pseudo.unhighlight(10);
-  pseudo.highlight(11);
+  pseudo.unhighlight(9);
+  pseudo.highlight(10);
   arrRem.highlight(0);
   av.step();
 
@@ -176,6 +176,6 @@ But now and then we have to resize the array, and then it is linear in the numbe
   labelRem.hide();
   arrRem.hide();
   arrRem.unhighlight(0);
-  pseudo.unhighlight(11);
+  pseudo.unhighlight(10);
   av.recorded();
 });

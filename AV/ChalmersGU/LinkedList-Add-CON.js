@@ -40,13 +40,13 @@ $(document).ready(function() {
 Here is an example showing how to add the value ${addValue} at position ${addPos}, 
 i.e., between the values ${l.get(addPos-1).value()} and ${l.get(addPos).value()}.
 `);
-  pseudo.highlight(2);
+  pseudo.highlight(1);
   av.displayInit();
 
   // Slide
   av.umsg(`First we move the <code>prev</code> pointer to the node before position ${addPos}.`);
   prevP.show();
-  pseudo.unhighlight(2);
+  pseudo.unhighlight(1);
   pseudo.highlight([6,7,8]);
   for (let i=0; i<addPos; i++) {
     prevP.target(l.get(i));

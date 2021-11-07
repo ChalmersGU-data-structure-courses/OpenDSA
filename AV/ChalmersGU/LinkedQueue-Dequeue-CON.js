@@ -49,7 +49,7 @@ $(document).ready(function() {
   av.umsg("Remove the next pointer of the removed node.");
   list.get(0).edgeToNext().hide();
   list.layout();
-  pseudo.setCurrentLine(4);
+  pseudo.setCurrentLine(5);
   av.step();
 
   // Slide

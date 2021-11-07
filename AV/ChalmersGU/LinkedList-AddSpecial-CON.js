@@ -32,7 +32,7 @@ $(document).ready(function() {
 Inserting at the beginning of the list works a bit differently. 
 In this example we want to insert the value ${addValueFirst}.
 `);
-  pseudo.highlight(2);
+  pseudo.highlight(1);
   var newNode = l.newNode(addValueFirst);
   newNode.css({top: 50});  // Set the position for the new node
   l.addFirst(newNode);
@@ -43,7 +43,7 @@ In this example we want to insert the value ${addValueFirst}.
 
   // Slide
   av.umsg(`The beginning of the list is position 0, so this is a special case.`);
-  pseudo.unhighlight(2);
+  pseudo.unhighlight(1);
   pseudo.highlight(3);
   av.step();
 
@@ -85,13 +85,13 @@ We want to append the value ${addValueLast}.
 `);
   listSizeArr.unhighlight(0);
   pseudo.unhighlight(10);
-  pseudo.highlight(2);
+  pseudo.highlight(1);
   av.step();
 
   // Slide
   av.umsg(`First we move the <code>prev</code> pointer to the final node.`);
   var prevP = av.pointer("prev", l.get(0));
-  pseudo.unhighlight(2);
+  pseudo.unhighlight(1);
   pseudo.highlight([6,7,8]);
   prevP.target(l.get(listSize));
   av.step();

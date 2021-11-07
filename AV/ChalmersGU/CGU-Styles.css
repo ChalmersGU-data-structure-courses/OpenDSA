@@ -93,12 +93,13 @@
 /*********************************************************/
 
 #DynamicArrayList-Append-CON {
-  height: 320px;
+    height: 320px;
+    width: 900px;
 }
 
 #DynamicArrayList-Append-CON .jsavcode {
   margin-left: 300px;
-  width: 500px;
+  width: 580px;
 }
 
 #DynamicArrayList-Append-CON .jsavoutput.jsavline {
@@ -108,12 +109,13 @@
 /*********************************************************/
 
 #DynamicArrayList-Remove-CON {
-  height: 380px;
+    height: 360px;
+    width: 870px;
 }
 
 #DynamicArrayList-Remove-CON .jsavcode {
   margin-left: 280px;
-  width: 560px;
+  width: 580px;
 }
 
 #DynamicArrayList-Remove-CON .jsavoutput.jsavline {
@@ -209,7 +211,8 @@
 /*********************************************************/
 
 #DynamicArrayStack-Push-CON {
-  height: 225px;
+    height: 225px;
+    width: 900px;
 }
 
 #DynamicArrayStack-Push-CON .jsavoutput.jsavline {
@@ -219,14 +222,15 @@
 #DynamicArrayStack-Push-CON .jsavcode{
   position: relative;
   top: -5px;
-  left: 175px;
-  width: 450px;
+  left: 135px;
+  width: 580px;
 }
 
 /*********************************************************/
 
 #DynamicArrayStack-Pop-CON {
-  height: 320px;
+  height: 280px;
+  width: 900px;
 }
 
 #DynamicArrayStack-Pop-CON .jsavoutput.jsavline {
@@ -235,9 +239,9 @@
 
 #DynamicArrayStack-Pop-CON .jsavcode{
   position: relative;
-  top: 35px;
-  left: 175px;
-  width: 500px;
+  top: 5px;
+  left: 135px;
+  width: 580px;
 }
 
 /*********************************************************/
@@ -277,7 +281,7 @@
   position: relative;
   top: -20px;
   left: 195px;
-  width: 450px;
+  width: 500px;
 }
 
 /*********************************************************/
