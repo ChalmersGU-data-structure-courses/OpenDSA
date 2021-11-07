@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ArraysIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Arrays";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:32"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ArraysIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Arrays";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -49,10 +49,9 @@ solve them efficiently using arrays:
   - *Lookup:* 
     The items are typically objects, and each object has a field
     called the *key*. The search algorithm is given a key, and should
-    return the item having that key (or a reference to the item,
-    such as the position in the list). For example, a
+    return the item having that key, if one exists. For example, a
     database: given a list of people, find the person having a given
-    personal identity number.
+    personnummer.
 
 * *Sorting*: Given a list of items, put them in ascending order.
   Again, there are two kinds of sorting problems:
@@ -63,15 +62,6 @@ solve them efficiently using arrays:
   - *Key-based sorting:* Here, each item has a *key*, and we want to
     sort the items so that the keys come in ascending order. For
     example, sorting a list of towns by population.
-
-Note that if we search or sort according to a *key*, it doesn't have to be
-explicitly stored in the object, but can instead be calculated on demand.
-E.g., if we want to sort a list of words case-insensitively, we can
-use a lower-case transformation when doing the comparisons.
-This is usually done by a :ref:`comparator  <Comparison>`
-(in Java), or by a `key function`_ (in Python).
-
-.. _key function: https://docs.python.org/3/howto/sorting.html#key-functions
 
 This chapter concentrates on *membership testing* and *natural
 sorting*, but all the algorithms in this chapter work just as well for

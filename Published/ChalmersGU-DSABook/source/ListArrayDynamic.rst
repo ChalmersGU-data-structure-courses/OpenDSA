@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script>
 
 .. _ListArrayDynamic:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists (NOT FINISHED)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,8 +32,8 @@
    :satisfies: array-based list
    :topic: Lists
 
-Dynamic Array-Based Lists
-=========================
+Dynamic Array-Based Lists (NOT FINISHED)
+=========================================
 
 The problem with a static array-based list is that it has a limited capacity.
 If we try to add new elements when the internal array is full,
@@ -56,19 +56,16 @@ which means that we add the following if-clause to the ``add`` method:
 ::
 
         if listSize >= size of internalArray
-            resizeArray(size of internalArray * 2)
+            resizeArray(2 * size of internalArray)
 
 
-That's the only difference from the ``add`` method from **StaticArrayList**.
+That's the only difference from the ``StaticArrayList.add`` method.
 So the dynamic ``add`` method will look like this.
-
 
 .. codeinclude:: ChalmersGU/DynamicArrayList
    :tag: DynamicArrayListAdd
 
-As explained below, we don't have to double the size, but we can multiply by 3 or 1.5 or 1.1.
-The important thing is that we don't add a constant number, but increase the size by a factor.
-This factor is the ``CapacityMultiplier`` in the code above.
+|
 
 .. inlineav:: DynamicArrayList-Append-CON ss
    :points: 0.0
@@ -100,8 +97,8 @@ We will explore these tradeoffs by looking at the performance of the
 following small program under different resizing strategies::
 
   list = new dynamic array list
-  for i in 1...n:
-      list.add(i)
+  for i in 1..n:
+    list.add(i)
 
 The program builds a list of length `n` by repeatedly calling :math:`add`.
 In this case, we could have used a static array-based list of capacity
@@ -117,7 +114,7 @@ What happens if we only grow the internal array by 1 element when we resize it?
 ::
 
         if listSize >= size of internalArray
-            resizeArray(size of internalArray + 1)
+            resizeArray(size of internalArray+1)
 
 Every time we call ``add``, the internal array will be resized.
 Resizing the array takes linear time, because if the internal array
@@ -276,14 +273,21 @@ the "growing by 10000" strategy takes quadratic time: if we do 10 times as many
 calls to ``add``, it takes 100 times as long. Quadratic algorithms
 always lose to linear algorithms eventually!
 
-.. TODO:
+Practice Exercise
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+   <a id="todo0"></a>
+
+.. TODO::
    Exercise for dynamic addition
 
 
 Shrinking the internal array
 --------------------------------
 
-We don't have to change anything else in the code from **StaticArrayList**
+We don't have to change anything else in the code from ``StaticArrayList``
 to have a working dynamic array list that has room for any number of elements.
 
 But the problem is that if we first build a large list with 1000's of elements,
@@ -292,7 +296,7 @@ almost all cells are unused.
 So, let's resize the array also when removing elements!
 When the array contains too many unused cells, we shrink it to half the size.
 
-Now, it's important that we *don't* shrink the array when it's half full.
+Now, it's important that we **dont'** shrink the array when it's half full.
 Why is that? Let's consider the following sequence of additions and deletions:
 
 - append an element to the end
@@ -316,15 +320,11 @@ So we can add the following lines to the end of the ``remove`` method:
 
 ::
 
-        if listSize <= size of internalArray * 1/3
-            resizeArray(size of internalArray * 1/2)
+        if listSize <= size of internalArray / 3
+            resizeArray(size of internalArray / 2)
 
 
 That's the only difference from the ``StaticArrayList.remove`` method.
-
-Note that the factors 1/3 and 1/2 are not important, as explained before.
-The only thing that matters is that the minimum load factor (1/3) is smaller
-than the shrinking factor (1/2). 
 So the dynamic ``remove`` method will look like this.
 
 .. codeinclude:: ChalmersGU/DynamicArrayList
@@ -340,9 +340,26 @@ So the dynamic ``remove`` method will look like this.
    :output: show
 
 
+Complexity analysis
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. TODO:
-   Exercise for dynamic deletion
+.. raw:: html
+
+   <a id="todo1"></a>
+
+.. TODO::
+   Complexity analysis
+
+
+Practice Exercise
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. raw:: html
+
+   <a id="todo2"></a>
+
+.. TODO::
+   Exercise for dynamic addition
 
 
 Dynamic Array-based List: Full code
@@ -351,12 +368,6 @@ Dynamic Array-based List: Full code
 Finally, here is the full source code for the class ``DynamicArrayList``.
 Note that now the constructor doesn't take any capacity argument,
 since the internal array will automatically grow when needed.
-
-In this example, we set the capacity multiplier to 1.5,
-meaning that we grow by 50% and shrink by 33% on every resize.
-The minimum load factor is set to 50% (which is smaller than 1/1.5 = 67%),
-and the minimum array capacity is 8.
-All these constants can be changed at will.
 
 .. codeinclude:: ChalmersGU/DynamicArrayList
    :tag: DynamicArrayList

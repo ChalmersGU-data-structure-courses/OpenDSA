@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'enqueueing-an-element', 'dequeueing-an-element', 'resizing-the-internal-array', 'array-based-queue-practice-exercises', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="array-based-queues">
 <h1>4.<span class="section-number">12. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
@@ -339,142 +339,30 @@ to our list and stack implementations.</p>
 </div>
 <div class="section" id="array-based-queue-implementation">
 <h2>4.<span class="section-number">12.4. </span>Array-based Queue Implementation<a class="headerlink" href="#array-based-queue-implementation" title="Permalink to this headline">¶</a></h2>
+<div id="aqueueVarCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="aqueueVarCON" data-long-name="Array-based Queue Variables Slideshow" data-exer-id="" alt="Array-based Queue Variables Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="aqueueVarCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="aqueueVarCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="aqueueVarCON_cm_error_msg" class="cm_error_msg">
+   <img id="aqueueVarCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
 <p>In this implementation, the front of the queue is defined to be toward
 the lower numbered positions in the array (in the counter-clockwise
 direction in the circular array), and the rear is
 defined to be toward the higher-numbered positions.
-Thus, <code class="docutils literal notranslate"><span class="pre">enqueue</span></code> increments the rear pointer (modulus the size of the internal array),
-and <code class="docutils literal notranslate"><span class="pre">dequeue</span></code> increments the front pointer.</p>
-<div id="DynamicArrayQueue_DynamicArrayQueueInit_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueueInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueInit_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueInit_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueueInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DynamicArrayQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the queue elements</span>
-    <span class="kd">private</span> <span class="n">queueSize</span>     <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of queue, and index of the next free slot</span>
-    <span class="kd">private</span> <span class="n">front</span>         <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of front element</span>
-    <span class="kd">private</span> <span class="n">rear</span>          <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of rear element</span>
-
-    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>     <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
-
-    <span class="n">DynamicArrayQueue</span><span class="p">()</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
-        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">DynamicArrayQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the queue elements</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>       <span class="c1">// Size of queue, and index of the next free slot</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">front</span><span class="p">;</span>           <span class="c1">// Index of front element</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">rear</span><span class="p">;</span>            <span class="c1">// Index of rear element</span>
-
-    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
-
-    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
-    <span class="kd">public</span> <span class="nf">DynamicArrayQueue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">MinCapacity</span><span class="o">]</span><span class="p">;</span>
-        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
-    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Minimum capacity of internalArray</span>
-    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>        <span class="c1"># Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># Factor to grow/shrink the capacity</span>
-
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the queue elements</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>                                <span class="c1"># Size of queue, and index of the next free slot</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="mi">0</span>                                    <span class="c1"># Index of front element</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>                                    <span class="c1"># Index of rear element</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueueInit_code" ).tabs();});</script><p>Implemening the member functions is mostly straightforward.</p>
-<div class="section" id="enqueueing-an-element">
-<h3>4.<span class="section-number">12.4.1. </span>Enqueueing an element<a class="headerlink" href="#enqueueing-an-element" title="Permalink to this headline">¶</a></h3>
-<p>When enqueueing, we increase the <code class="docutils literal notranslate"><span class="pre">rear</span></code> pointer
-(modulo the size of the internal array to make it circular).</p>
-<div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span>
-            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
-        <span class="n">rear</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="p">(</span><span class="n">modulo</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>   <span class="c1">// Circular increment</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="n">queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
-            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>   <span class="c1">// Circular increment</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-        <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span>   <span class="c1"># Circular increment</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueueEnqueue_code" ).tabs();});</script></div>
-<div class="section" id="dequeueing-an-element">
-<h3>4.<span class="section-number">12.4.2. </span>Dequeueing an element<a class="headerlink" href="#dequeueing-an-element" title="Permalink to this headline">¶</a></h3>
-<p>When dequeueing, we increase the <code class="docutils literal notranslate"><span class="pre">front</span></code> pointer
-(modulo the size of the internal array).</p>
-<div id="DynamicArrayQueue_DynamicArrayQueueDequeue_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueueDequeue_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueDequeue_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueDequeue_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueueDequeue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: queueSize &gt; 0</span>
-        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">front</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="p">(</span><span class="n">modulo</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span><span class="p">)</span>   <span class="c1">// Circular increment</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">&lt;</span> <span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">*</span> <span class="n">MinLoadFactor</span>
-            <span class="nf">resizeArray</span><span class="p">(</span><span class="n">size</span> <span class="n">of</span> <span class="n">internalArray</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
-        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
-        <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span><span class="p">;</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">front</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="p">(</span><span class="n">front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>   <span class="c1">// Circular increment</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&lt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">MinLoadFactor</span><span class="p">)</span>
-            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
-        <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueDequeue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span>   <span class="c1"># Circular increment</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueueDequeue_code" ).tabs();});</script></div>
-<div class="section" id="resizing-the-internal-array">
-<h3>4.<span class="section-number">12.4.3. </span>Resizing the internal array<a class="headerlink" href="#resizing-the-internal-array" title="Permalink to this headline">¶</a></h3>
-<p>When we resize the internal array, we cannot keep the positions of the elements.
-If the queue is wrapped around (i.e., if <code class="docutils literal notranslate"><span class="pre">rear</span> <span class="pre">&lt;</span> <span class="pre">front</span></code>) then
-we might end up in a large gap in the middle of the queue.</p>
-<p>Instead we reset the <code class="docutils literal notranslate"><span class="pre">front</span></code> and <code class="docutils literal notranslate"><span class="pre">rear</span></code> pointers so that we copy the first
-queue element to position 0 of the new array, the second to position 1, etc.
-Apart from that, the implementation is similar to the one for lists and queues.</p>
-</div>
-</div>
-<div class="section" id="array-based-queue-practice-exercises">
-<h2>4.<span class="section-number">12.5. </span>Array-based Queue Practice Exercises<a class="headerlink" href="#array-based-queue-practice-exercises" title="Permalink to this headline">¶</a></h2>
+Thus, <code class="docutils literal notranslate"><span class="pre">enqueue</span></code> increments the rear pointer (modulus <code class="docutils literal notranslate"><span class="pre">maxSize</span></code>),
+and <code class="docutils literal notranslate"><span class="pre">dequeue</span></code> increments the front pointer.
+Implementation of all member functions is straightforward.</p>
 <div
     id="AqueueEnqueuePRO"
     class="embedContainer"
@@ -497,6 +385,9 @@ Apart from that, the implementation is similar to the one for lists and queues.<
     <div id="AqueueEnqueuePRO_iframe"></div>
   </div>
 </div>
+</div>
+<div class="section" id="array-based-dequeue-practice">
+<h2>4.<span class="section-number">12.5. </span>Array-based Dequeue Practice<a class="headerlink" href="#array-based-dequeue-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="AqueueDequeuePRO"
     class="embedContainer"
@@ -529,9 +420,9 @@ Apart from that, the implementation is similar to the one for lists and queues.<
     <span class="kd">private</span> <span class="n">front</span>         <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of front element</span>
     <span class="kd">private</span> <span class="n">rear</span>          <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Index of rear element</span>
 
-    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>     <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
 
     <span class="n">DynamicArrayQueue</span><span class="p">()</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
@@ -585,9 +476,9 @@ Apart from that, the implementation is similar to the one for lists and queues.<
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">front</span><span class="p">;</span>           <span class="c1">// Index of front element</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">rear</span><span class="p">;</span>            <span class="c1">// Index of rear element</span>
 
-    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayQueue</span><span class="p">()</span> <span class="p">{</span>
@@ -661,9 +552,9 @@ Apart from that, the implementation is similar to the one for lists and queues.<
 </pre></div>
 </div>
 </div><div id="DynamicArrayQueue_DynamicArrayQueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
-    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Minimum capacity of internalArray</span>
-    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>        <span class="c1"># Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># Factor to grow/shrink the capacity</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the queue elements</span>
@@ -718,6 +609,7 @@ Apart from that, the implementation is similar to the one for lists and queues.<
 <script type="text/javascript" src="../../../DataStructures/CircularQueue.js"></script>
 <script type="text/javascript" src="../../../AV/List/aqueueCircularCON.js"></script>
 <script type="text/javascript" src="../../../AV/List/aqueueEmptyCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/aqueueVarCON.js"></script>
 </div>
 </div>
 
@@ -745,7 +637,7 @@ Apart from that, the implementation is similar to the one for lists and queues.<
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 07, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
 <h1>5.<span class="section-number">6. </span>Implementing Tree Traversals<a class="headerlink" href="#implementing-tree-traversals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>5.<span class="section-number">6.1. </span>Implementing Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -201,7 +201,7 @@ recursive call is made only on non-empty children.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>At first, it might appear that <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is more efficient
+<p>At first it might appear that <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is more efficient
 than <code class="docutils literal notranslate"><span class="pre">preorder</span></code>, because it makes only half as many recursive
 calls (since it won’t try to call on a null pointer).
 On the other hand, <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> must access the left and right
@@ -211,7 +211,7 @@ The net result is that there is no performance improvement.</p>
 where the root is <code class="docutils literal notranslate"><span class="pre">null</span></code>.
 But <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> has an error.
 While <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> insures that no recursive
-calls will be made on empty subtrees, it will fail if the original call
+calls will be made on empty subtrees, it will fail if the orignal call
 from outside passes in a null pointer.
 This would occur if the original tree is empty.
 Since an empty tree is a legitimate input to the initial call on the
@@ -249,14 +249,14 @@ You should only look at the values of your children if you need to
 know those values in order to compute some property of the current
 node.
 Child values should not be used to decide whether to call them
-recursively.
+recursviely.
 Make the call, and let their own base case handle it.</p>
 <div class="topic">
 <p class="topic-title">Example 5.7.1 </p>
 <p>Consider the problem of incrementing the value for each node in a
 binary tree.
 The following solution has an error, since it does redundant
-manipulation to the left and the right children of each node.</p>
+manipulation to left and the right children of each node.</p>
 <div id="RecTutor_IneffbtInc_code"><ul><li><a href="#RecTutor_IneffbtInc_code_Java_Generic">Java</a></li><li><a href="#RecTutor_IneffbtInc_code_Python">Python</a></li></ul><div id="RecTutor_IneffbtInc_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">ineff_BTinc</span><span class="p">(</span><span class="n">BinNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">root</span><span class="p">.</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
@@ -283,18 +283,18 @@ manipulation to the left and the right children of each node.</p>
             <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">()</span><span class="o">.</span><span class="n">right</span><span class="p">())</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#RecTutor_IneffbtInc_code" ).tabs();});</script><p>The efficient solution should not explicitly set the child
+</div></div><script>$(function() {$( "#RecTutor_IneffbtInc_code" ).tabs();});</script><p>The efficient solution should not explicitly set the children
 values that way.
 Changing the value of a node does not depend on the child values.
 So the function should simply increment the root value, and make
 recursive calls on the children.</p>
 </div>
 <p>In rare problems, you might need to explicitly check if the children
-are null or access the child values for each node.
+are null or access the children values for each node.
 For example, you might need to check if all nodes in a tree satisfy
 the property that each node stores the sum of its left and right
 children.
-In this situation, you must look at the values of the children to
+In this situation you must look at the values of the children to
 decide something about the current node.
 You do <strong>not</strong> look at the children to decide whether to make a recursive
 call.</p>
@@ -346,7 +346,7 @@ call.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 07, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

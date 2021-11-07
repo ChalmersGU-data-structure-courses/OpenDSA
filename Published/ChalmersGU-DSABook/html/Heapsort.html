@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heapsort', 'heapsort-proficiency-practice', 'heapsort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/HeapSortAnalysisCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heapsort', 'heapsort-proficiency-practice', 'heapsort-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/HeapSortAnalysisCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="heapsort-work-in-progress">
 <span id="index-0"></span><h1>8.<span class="section-number">4. </span>Heapsort (WORK IN PROGRESS)<a class="headerlink" href="#heapsort-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -223,24 +223,27 @@ used when sorting data sets too large to fit in main memory.</p>
 </div>
 <p></p>
 <p>A complete implementation is as follows.</p>
-<div id="Heapsort_Heapsort_code"><ul><li><a href="#Heapsort_Heapsort_code_Pseudo">Pseudo-Code</a></li><li><a href="#Heapsort_Heapsort_code_Java_Generic">Java</a></li><li><a href="#Heapsort_Heapsort_code_Python">Python</a></li></ul><div id="Heapsort_Heapsort_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Algorithm</span> <span class="mi">1</span> <span class="n">Heapsort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
-    <span class="k">while</span> <span class="n">heap</span><span class="o">-</span><span class="n">size</span><span class="o">[</span><span class="n">A</span><span class="o">]</span> <span class="o">&gt;</span> <span class="mi">0</span> 
-        <span class="n">Swap</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="n">A</span><span class="o">[</span><span class="n">heap</span><span class="o">-</span><span class="n">size</span><span class="o">[</span><span class="n">A</span><span class="o">]</span> <span class="o">-</span> <span class="mi">1</span><span class="o">]</span><span class="p">)</span>
-        <span class="n">heap</span><span class="o">-</span><span class="n">size</span><span class="o">[</span><span class="n">A</span><span class="o">]</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">Max</span><span class="o">-</span><span class="n">Heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<div id="Heapsort_Heapsort_code"><ul><li><a href="#Heapsort_Heapsort_code_Pseudo">Pseudo-Code</a></li><li><a href="#Heapsort_Heapsort_code_Java_Generic">Java</a></li><li><a href="#Heapsort_Heapsort_code_Python">Python</a></li></ul><div id="Heapsort_Heapsort_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>Algorithm 1 Heapsort(A)
+    while heap-size[A] &gt; 0 do
+        Swap(A[0], A[heap-size[A] - 1])
+        heap-size[A] ← heap-size[A] - 1
+        Max-Heapify(A, 0)
 
-<span class="n">Algorithm</span> <span class="mi">2</span> <span class="n">Max</span><span class="o">-</span><span class="n">Heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-    <span class="n">l</span> <span class="o">=</span> <span class="n">Left</span><span class="o">-</span><span class="n">child</span><span class="o">-</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">r</span> <span class="o">=</span> <span class="n">Right</span><span class="o">-</span><span class="n">child</span><span class="o">-</span><span class="n">index</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">l</span> <span class="o">&lt;</span> <span class="n">heap</span><span class="o">-</span><span class="n">size</span><span class="o">[</span><span class="n">A</span><span class="o">]</span> <span class="n">and</span> <span class="n">A</span><span class="o">[</span><span class="n">l</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-        <span class="n">largest</span> <span class="o">=</span> <span class="n">l</span>
-    <span class="k">else</span>
-        <span class="n">largest</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">heap</span><span class="o">-</span><span class="n">size</span><span class="o">[</span><span class="n">A</span><span class="o">]</span> <span class="n">and</span> <span class="n">A</span><span class="o">[</span><span class="n">r</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">A</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span>
-        <span class="n">largest</span> <span class="o">=</span> <span class="n">r</span>
-    <span class="k">if</span> <span class="n">largest</span> <span class="o">!=</span> <span class="n">i</span>
-        <span class="nf">Swap</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">A</span><span class="o">[</span><span class="n">largest</span><span class="o">]</span><span class="p">)</span>
-        <span class="n">Max</span><span class="o">-</span><span class="n">Heapify</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">largest</span><span class="p">)</span>
+Algorithm 2 Max-Heapify(A, i)
+    l ← Left-child-index(i)
+    r ← Right-child-index(i)
+    if l &lt; heap-size[A] and A[l] &gt; A[i] then
+        largest ← l
+    else
+        largest ← i
+    end if
+    if r &lt; heap-size[A] and A[r] &gt; A[largest] then
+        largest ← r
+    end if
+    if largest ≠ i then
+        Swap(A[i], A[largest])
+        Max-Heapify(A, largest)
+    end if
 </pre></div>
 </div>
 </div><div id="Heapsort_Heapsort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">heapsort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
@@ -413,7 +416,7 @@ heap.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 07, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -33,7 +33,7 @@ extensions = ['sphinx.ext.autodoc', 'sphinx.ext.doctest', 'sphinx.ext.todo', 'sp
 
 ourCustoms = ['avembed', 'avmetadata', 'extrtoolembed', 'codeinclude', 'numref', 'chapnum', 'odsalink', 'odsascript', 'inlineav', 'html5', 'odsafig', 'odsatable', 'chapref', 'odsatoctree', 'showhidecontent', 'iframe']
 
-customsDir = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/RST/ODSAextensions/odsa/'
+customsDir = '/home/nick/prog/OpenDSA/RST/ODSAextensions/odsa/'
 for c in ourCustoms:
 	sys.path.append(os.path.abspath(customsDir + c))
 	extensions.append(c)
@@ -104,7 +104,7 @@ exclude_patterns = []
 #show_authors = False
 
 #language to highlight source code in
-highlight_language = 'guess' #'{"Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
+highlight_language = 'guess' #'{"Java_Generic": {"ext": ["java"], "label": "Java (Generic)", "lang": "java"}, "Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx' #'sphinx'
@@ -113,8 +113,8 @@ pygments_style = 'sphinx' #'sphinx'
 #modindex_common_prefix = []
 
 # -- Options for HTML Slide output ---------------------------------------------------
-sys.path.append('/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/RST/_themes')
-slide_theme_path = ['/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/RST/_themes']
+sys.path.append('/home/nick/prog/OpenDSA/RST/_themes')
+slide_theme_path = ['/home/nick/prog/OpenDSA/RST/_themes']
 
 # Themes that are defined by hieroglyph; using them breaks some custom ODSA content
 # slide_theme = 'single-level' # basic theme
@@ -143,8 +143,8 @@ html_translator_class = 'html5.HTMLTranslator'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-sys.path.append('/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/RST/_themes')
-html_theme_path = ['/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/RST/_themes']
+sys.path.append('/home/nick/prog/OpenDSA/RST/_themes')
+html_theme_path = ['/home/nick/prog/OpenDSA/RST/_themes']
 if on_slides:
    html_theme = 'slides'
 else:
@@ -293,25 +293,25 @@ local_mode = True
 
 
 #Absolute path to OpenDSA directory
-odsa_path = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/'
+odsa_path = '/home/nick/prog/OpenDSA/'
 
 #Absolute path of eTextbook (build) directory
-ebook_path = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/Books/ChalmersGU-Repetition/html/'
+ebook_path = '/home/nick/prog/OpenDSA/Books/ChalmersGU-Repetition/html/'
 
 #path (from the RST home) to the sourcecode directory that I want to use
-sourcecode_path = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/SourceCode/'
+sourcecode_path = '/home/nick/prog/OpenDSA/SourceCode/'
 
 # Dictionary containing code_lang to extension mapping
-code_lang = '{"Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
+code_lang = '{"Java_Generic": {"ext": ["java"], "label": "Java (Generic)", "lang": "java"}, "Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
 
 # Boolean that controls whether or not code is displayed in tabs if more than one language is available
 tabbed_codeinc = True
 
 # Path to AV/ directory (local or remote)
-av_dir = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/'
+av_dir = '/home/nick/prog/OpenDSA/'
 
 # Path to Exercises/ directory (local or remote)
-exercises_dir = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/'
+exercises_dir = '/home/nick/prog/OpenDSA/'
 
 # Path to translation json file
-translation_file = '/Users/peter/Undervisning/Datastrukturer/Repositories/OpenDSA/tools/language_msg.json'
+translation_file = '/home/nick/prog/OpenDSA/tools/language_msg.json'

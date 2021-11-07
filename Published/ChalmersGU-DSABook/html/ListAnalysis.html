@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['space-comparison', 'time-comparison', 'when-to-use-linked-lists', 'practice-questions', 'how-are-lists-implemented-in-the-standard-libraries'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparison-of-list-implementations">
 <h1>4.<span class="section-number">6. </span>Comparison of List Implementations<a class="headerlink" href="#comparison-of-list-implementations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="space-comparison">
 <h2>4.<span class="section-number">6.1. </span>Space Comparison<a class="headerlink" href="#space-comparison" title="Permalink to this headline">¶</a></h2>
@@ -290,10 +290,10 @@ However, the ArrayList will never shrink automatically, but instead it’s up to
 to decide when to shrink it.</p></li>
 <li><p>Java’s
 <a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html">java.util.LinkedList</a>
-implements <a class="reference internal" href="ListDouble.html#listdouble"><span class="std std-ref">doubly-linked lists</span></a>, so that the iterator can move forward and backward through the list.
+implements doubly-linked lists, so that the iterator can move forward and backward through the list.
 [<a class="reference external" href="https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/LinkedList.java#L974-L984">Source: LinkedList.java</a>]</p></li>
 <li><p>Python’s standard lists are dynamic.
-In fact, Python doesn’t even support fixed-length lists, so our code in this chapter is a bit of a hack.
+In fact, Python doesn’t even support fixed-length lists, so our code in this module is a bit of a hack.
 Python lists both grow and shrink the lists automatically,
 and the growth factor is 1/8 (12.5%), meaning that if the array has size 1024,
 it will grow with another 128 elements.
@@ -327,7 +327,7 @@ It shrinks the array by 1/8 whenever less than half of the array is occupied.
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 07, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListAnalysis";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparison of List Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -163,11 +163,11 @@ Here are how they are implemented in Java and Python:
 
 - Java's
   `java.util.LinkedList <https://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html>`_
-  implements :ref:`doubly-linked lists <ListDouble>`, so that the iterator can move forward and backward through the list.
+  implements doubly-linked lists, so that the iterator can move forward and backward through the list.
   [`Source: LinkedList.java <https://github.com/openjdk/jdk/blob/961dcffc862a4830fbf26791835a98c12d4b513e/src/java.base/share/classes/java/util/LinkedList.java#L974-L984>`_]
 
 - Python's standard lists are dynamic.
-  In fact, Python doesn't even support fixed-length lists, so our code in this chapter is a bit of a hack.
+  In fact, Python doesn't even support fixed-length lists, so our code in this module is a bit of a hack.
   Python lists both grow and shrink the lists automatically,
   and the growth factor is 1/8 (12.5%), meaning that if the array has size 1024,
   it will grow with another 128 elements.

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4.4. Dynamic Array-Based Lists &mdash; Data Structures and Algorithms</title>
+    <title>4.4. Dynamic Array-Based Lists (NOT FINISHED) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'practice-exercise', 'shrinking-the-internal-array', 'complexity-analysis', 'practice-exercise', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists (NOT FINISHED)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="dynamic-array-based-lists">
-<h1>4.<span class="section-number">4. </span>Dynamic Array-Based Lists<a class="headerlink" href="#dynamic-array-based-lists" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="dynamic-array-based-lists-not-finished">
+<h1>4.<span class="section-number">4. </span>Dynamic Array-Based Lists (NOT FINISHED)<a class="headerlink" href="#dynamic-array-based-lists-not-finished" title="Permalink to this headline">¶</a></h1>
 <p>The problem with a static array-based list is that it has a limited capacity.
 If we try to add new elements when the internal array is full,
 the method will throw an exception.</p>
@@ -205,10 +205,10 @@ and copy over all elements to the new one.</p>
 <strong>double the size of the internal array</strong> when we need to resize,
 which means that we add the following if-clause to the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
-    resizeArray(size of internalArray * 2)
+    resizeArray(2 * size of internalArray)
 </pre></div>
 </div>
-<p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">add</span></code> method from <strong>StaticArrayList</strong>.
+<p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.add</span></code> method.
 So the dynamic <code class="docutils literal notranslate"><span class="pre">add</span></code> method will look like this.</p>
 <div id="DynamicArrayList_DynamicArrayListAdd_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListAdd_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
         <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
@@ -241,9 +241,9 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">add<
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListAdd_code" ).tabs();});</script><p>As explained below, we don’t have to double the size, but we can multiply by 3 or 1.5 or 1.1.
-The important thing is that we don’t add a constant number, but increase the size by a factor.
-This factor is the <code class="docutils literal notranslate"><span class="pre">CapacityMultiplier</span></code> in the code above.</p>
+</div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListAdd_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
 <div id="DynamicArrayList-Append-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DynamicArrayList-Append-CON" data-long-name="Dynamic Array-based List Addition Slideshow" data-exer-id="" alt="Dynamic Array-based List Addition Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -281,8 +281,8 @@ resize it more often.</p>
 <p>We will explore these tradeoffs by looking at the performance of the
 following small program under different resizing strategies:</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>list = new dynamic array list
-for i in 1...n:
-    list.add(i)
+for i in 1..n:
+  list.add(i)
 </pre></div>
 </div>
 <p>The program builds a list of length <cite>n</cite> by repeatedly calling <span class="math notranslate nohighlight">\(add\)</span>.
@@ -294,7 +294,7 @@ the program ought to take <cite>linear time</cite>.</p>
 <h3>4.<span class="section-number">4.2.1. </span>Growing by a constant amount<a class="headerlink" href="#growing-by-a-constant-amount" title="Permalink to this headline">¶</a></h3>
 <p>What happens if we only grow the internal array by 1 element when we resize it?</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
-    resizeArray(size of internalArray + 1)
+    resizeArray(size of internalArray+1)
 </pre></div>
 </div>
 <p>Every time we call <code class="docutils literal notranslate"><span class="pre">add</span></code>, the internal array will be resized.
@@ -329,7 +329,7 @@ just resizing the array!</p>
 You can try the calculation yourself, for say <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>.
 What happens is that <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> gets called 100 times less
 often – so there 100 times fewer elements copied. But the runtime is
-still quadratic <a class="footnote-reference brackets" href="#id2" id="id1">1</a>. When <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>, the total number of
+still quadratic <a class="footnote-reference brackets" href="#id6" id="id1">1</a>. When <span class="math notranslate nohighlight">\(n = 1,000,000\)</span>, the total number of
 elements copied is about <span class="math notranslate nohighlight">\(5,000,000,000\)</span>, still far too many.</p>
 <p>In short, <strong>growing the array size by a constant amount is bad</strong>,
 because a loop that repeatedly adds to the array will take quadratic time.</p>
@@ -434,17 +434,24 @@ the “growing by 10000” strategy takes quadratic time: if we do 10 times as m
 calls to <code class="docutils literal notranslate"><span class="pre">add</span></code>, it takes 100 times as long. Quadratic algorithms
 always lose to linear algorithms eventually!</p>
 </div>
+<div class="section" id="practice-exercise">
+<h3>4.<span class="section-number">4.2.4. </span>Practice Exercise<a class="headerlink" href="#practice-exercise" title="Permalink to this headline">¶</a></h3>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<p>Exercise for dynamic addition</p>
+</div>
+</div>
 </div>
 <div class="section" id="shrinking-the-internal-array">
 <h2>4.<span class="section-number">4.3. </span>Shrinking the internal array<a class="headerlink" href="#shrinking-the-internal-array" title="Permalink to this headline">¶</a></h2>
-<p>We don’t have to change anything else in the code from <strong>StaticArrayList</strong>
+<p>We don’t have to change anything else in the code from <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>
 to have a working dynamic array list that has room for any number of elements.</p>
 <p>But the problem is that if we first build a large list with 1000’s of elements,
 and then remove most of them, we will still have a large internal array where
 almost all cells are unused.
 So, let’s resize the array also when removing elements!
 When the array contains too many unused cells, we shrink it to half the size.</p>
-<p>Now, it’s important that we <em>don’t</em> shrink the array when it’s half full.
+<p>Now, it’s important that we <strong>dont’</strong> shrink the array when it’s half full.
 Why is that? Let’s consider the following sequence of additions and deletions:</p>
 <ul class="simple">
 <li><p>append an element to the end</p></li>
@@ -464,14 +471,11 @@ the final complexity will be linear (per operation). Which is not what we want.<
 The solution is to wait even longer until we shrink the internal array!
 E.g., we can shrink the array (i.e., halve it), when it is only 1/3 full.
 So we can add the following lines to the end of the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &lt;= size of internalArray * 1/3
-    resizeArray(size of internalArray * 1/2)
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &lt;= size of internalArray / 3
+    resizeArray(size of internalArray / 2)
 </pre></div>
 </div>
-<p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.remove</span></code> method.</p>
-<p>Note that the factors 1/3 and 1/2 are not important, as explained before.
-The only thing that matters is that the minimum load factor (1/3) is smaller
-than the shrinking factor (1/2).
+<p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.remove</span></code> method.
 So the dynamic <code class="docutils literal notranslate"><span class="pre">remove</span></code> method will look like this.</p>
 <div id="DynamicArrayList_DynamicArrayListRemove_code"><ul><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayListRemove_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
         <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
@@ -530,24 +534,33 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">remo
  </div>
 </div>
 <p></p>
+<div class="section" id="complexity-analysis">
+<h3>4.<span class="section-number">4.3.1. </span>Complexity analysis<a class="headerlink" href="#complexity-analysis" title="Permalink to this headline">¶</a></h3>
+<a id="todo1"></a><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<p>Complexity analysis</p>
+</div>
+</div>
+<div class="section" id="id4">
+<h3>4.<span class="section-number">4.3.2. </span>Practice Exercise<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<a id="todo2"></a><div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<p>Exercise for dynamic addition</p>
+</div>
+</div>
 </div>
 <div class="section" id="dynamic-array-based-list-full-code">
 <h2>4.<span class="section-number">4.4. </span>Dynamic Array-based List: Full code<a class="headerlink" href="#dynamic-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <code class="docutils literal notranslate"><span class="pre">DynamicArrayList</span></code>.
 Note that now the constructor doesn’t take any capacity argument,
 since the internal array will automatically grow when needed.</p>
-<p>In this example, we set the capacity multiplier to 1.5,
-meaning that we grow by 50% and shrink by 33% on every resize.
-The minimum load factor is set to 50% (which is smaller than 1/1.5 = 67%),
-and the minimum array capacity is 8.
-All these constants can be changed at will.</p>
 <div id="DynamicArrayList_DynamicArrayList_code"><ul><li><a href="#DynamicArrayList_DynamicArrayList_code_Pseudo">Pseudo-Code</a></li><li><a href="#DynamicArrayList_DynamicArrayList_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayList_DynamicArrayList_code_Python">Python</a></li></ul><div id="DynamicArrayList_DynamicArrayList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">DynamicArrayList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
     <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the list elements</span>
     <span class="kd">private</span> <span class="n">listSize</span>      <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of list</span>
 
-    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>     <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>   <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
+    <span class="n">constant</span> <span class="n">MinCapacity</span>        <span class="p">:</span> <span class="kt">int</span>    <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">constant</span> <span class="n">MinLoadFactor</span>      <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">constant</span> <span class="n">CapacityMultiplier</span> <span class="p">:</span> <span class="kt">double</span> <span class="o">=</span> <span class="mf">1.5</span>
 
     <span class="n">DynamicArrayList</span><span class="p">()</span>
         <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">MinCapacity</span>
@@ -604,9 +617,9 @@ All these constants can be changed at will.</p>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the list elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>        <span class="c1">// Size of list</span>
 
-    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of internalArray</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
-    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">public</span> <span class="nf">DynamicArrayList</span><span class="p">()</span> <span class="p">{</span>
@@ -686,9 +699,9 @@ All these constants can be changed at will.</p>
 </pre></div>
 </div>
 </div><div id="DynamicArrayList_DynamicArrayList_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DynamicArrayList</span><span class="p">(</span><span class="n">List</span><span class="p">):</span>
-    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>            <span class="c1"># Minimum capacity of internalArray</span>
-    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>        <span class="c1"># Must be smaller than 1/CapacityMultiplier</span>
-    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>   <span class="c1"># Factor to grow/shrink the capacity</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span>   <span class="c1"># Internal array containing the list elements</span>
@@ -743,7 +756,7 @@ All these constants can be changed at will.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayList_code" ).tabs();});</script><dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dt class="label" id="id6"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
 <dd><p>You can get a precise number by using the formula for an
 <a class="reference external" href="https://en.wikipedia.org/wiki/Arithmetic_progression">arithmetic progression</a>.</p>
 </dd>
@@ -780,7 +793,7 @@ All these constants can be changed at will.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 07, 2021.
+      Last updated on Nov 06, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
