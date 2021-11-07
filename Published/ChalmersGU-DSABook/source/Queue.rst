@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 23:59:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -183,7 +183,7 @@ queue element to position 0 of the new array, the second to position 1, etc.
 Apart from that, the implementation is similar to the one for lists and queues.
 
 .. codeinclude:: ChalmersGU/DynamicArrayQueue
-   :tag: DynamicArrayQueueEdequeue
+   :tag: DynamicArrayQueueEnqueue
 
 
 Array-based Queue Practice Exercises
