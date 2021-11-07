@@ -43,7 +43,7 @@ class DynamicArrayQueue(E) implements Queue(E)
         if queueSize < size of internalArray * MinLoadFactor
             resizeArray(size of internalArray / CapacityMultiplier)
         return x
-/* *** ODSAendTag: DynamicArrayQueuePop *** */
+/* *** ODSAendTag: DynamicArrayQueueDequeue *** */
 
 /* *** ODSATag: DynamicArrayQueueResize *** */
     private resizeArray(newCapacity:int)
