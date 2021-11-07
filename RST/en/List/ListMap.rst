@@ -31,7 +31,7 @@ requires an underlying simpler map implementation -- and there a linked list wor
 Using a list of key-value pairs
 ---------------------------------
 
-A very simple way of implementing a **Map** using a list, is to use key-value pairs.
+A very simple way of implementing a **Map** using a list, is to use :ref:`key-value pairs <Comparison>`.
 
 .. codeinclude:: ChalmersGU/KVPair
    :tag: KVPair
@@ -93,7 +93,10 @@ Java Iterators is left as an exercise to the reader.
 Using linked key-value nodes
 -----------------------------
 
-An alternative which is also very easy to implement, is to modify the implementation of linked lists just slightly.
+An alternative to using an underlying list of key-value pairs,
+which is also very easy to implement, is to modify the implementation of linked lists just slightly.
+The advantage of this solution is that deletion becomes more efficient.
+
 Instead of using nodes with just one value, we used key-value nodes.
 
 .. codeinclude:: ChalmersGU/LinkedMap

@@ -13,7 +13,7 @@ Static Array-Based Lists
 ===============================
 
 First we give a static implementation for array-based lists,
-named ``StaticArrayList``.
+named **StaticArrayList**.
 This inherits from the :ref:`List ADT <CourseAPI>`,
 and so must implement all of the member functions of ``List``.
 
