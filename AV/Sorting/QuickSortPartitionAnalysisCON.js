@@ -42,16 +42,16 @@ $(document).ready(function() {
 
   // Slide 4
   av.umsg(interpret("Slide 4"));
-  left = av.ds.array([0], {left: 550, top: -10, indexed: false});
+  left = av.ds.array([1], {left: 550, top: -10, indexed: false});
   av.label(interpret("lab2"), {left: 590, top: -8, indexed: false});
-  arr.addClass(0, "greenbg");
+  arr.addClass(1, "greenbg");
   left.addClass(0, "greenbg");
-  right = av.ds.array([7], {left: 550, top: 70, indexed: false});
+  right = av.ds.array([8], {left: 550, top: 70, indexed: false});
   av.label(interpret("lab3"), {left: 590, top: 72, indexed: false});
-  arr.addClass(7, "redbg");
+  arr.addClass(8, "redbg");
   right.addClass(0, "redbg");
-  arr.highlight(8);
-  pivot.value(0, 8);
+  arr.highlight(0);
+  pivot.value(0, 0);
   pivot.show();
   pivotLabel.show();
   av.step();
@@ -69,10 +69,10 @@ $(document).ready(function() {
 
   // Slide 7
   av.umsg(interpret("Slide 7"));
-  arr.removeClass(0, "greenbg");
+  arr.removeClass(1, "greenbg");
   left.value(0, 8);
   arr.addClass(8, "greenbg");
-  arr.unhighlight(8);
+  arr.removeClass(8, "redbg");
   pseudo.unhighlight("if");
   pseudo.highlight("loop2");
   av.step();
@@ -80,19 +80,19 @@ $(document).ready(function() {
   // Slide 8
   av.umsg(interpret("Slide 8"));
   arr.removeClass(8, "greenbg");
-  left.value(0, 0);
-  arr.addClass(0, "greenbg");
-  right.value(0, -1);
-  arr.removeClass(7, "redbg");
-  arr.highlight(8);
+  left.value(0, 1);
+  right.value(0, 1);
+  arr.addClass(1, "redbg");
   pseudo.unhighlight("loop2");
   pseudo.highlight("loop3");
   av.step();
 
   // Slide 9
   av.umsg(interpret("Slide 9"));
-  right.value(0, 7);
-  arr.addClass(7, "redbg");
+  right.value(0, 8);
+  arr.removeClass(1, "redbg");
+  arr.addClass(8, "redbg");
+  arr.addClass(1, "greenbg");
   pseudo.highlight("loop2");
   av.step();
 

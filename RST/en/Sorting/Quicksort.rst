@@ -69,7 +69,7 @@ different from our experiences with sorting a relatively few physical
 objects.
 
 Here is an implementation for Quicksort.
-Parameters ``i`` and ``j`` define the left and right
+Parameters ``left`` and ``right`` define the left and right
 indices, respectively, for the subarray being sorted.
 The initial call to ``quicksort`` would be
 ``quicksort(array, 0, n-1)``.
@@ -78,13 +78,8 @@ The initial call to ``quicksort`` would be
    :tag: Quicksort
 
 Function ``partition`` will move records to the
-appropriate partition and then return ``k``, the first
-position in the right partition.
-Note that the pivot value is initially placed at the end of the array
-(position ``j``).
-Thus, ``partition`` must not affect the value of array position ``j``.
-After partitioning, the pivot value is placed in position ``k``,
-which is its correct position in the final, sorted array.
+appropriate partition and then return the final position of the pivot.
+This is the correct position of the pivot in the final, sorted array.
 By doing so, we guarantee that at least one value (the pivot) will not
 be processed in the recursive calls to ``qsort``.
 Even if a bad pivot is selected, yielding a completely empty
@@ -118,19 +113,29 @@ the pivot,
 we use a clever algorithm that moves indices inwards from the
 ends of the subarray, swapping values as necessary until the two
 indices meet.
-Here is an implementation for the partition step.
+
+Since quicksort is a recursive algorithm, we will not only partition
+the whole array, but also part of the array. Therefore ``partition``
+needs the positions of the leftmost and rightmost elements in the
+subarray that we will partition.
 
 .. codeinclude:: Sorting/Quicksort
    :tag: partition
 
-Note the check that ``right >= left`` in the second inner
-``while`` loop.
-This ensures that ``right`` does not run off the low end of the
-partition in the case where the pivot is the least value in that
-partition.
-Function ``partition`` returns the first index of the right
-partition (the place where ``left`` ends at) so that the subarray
-bound for the recursive calls to ``qsort`` can be determined.
+The function ``partition`` first puts the pivot at the leftmost position
+in the subarray, and increases ``left`` by one
+(so that the pivot is not included in the partitioning loop).
+
+Then it moves ``left`` to the right until it finds a value which
+is larger than (or equal to) the pivot;
+and then it moves ``right`` to the left until it finds a value
+which is smaller than (or equal to) the pivot.
+
+It breaks out of the loop if ``left`` and ``right`` passed each other;
+otherwise it swaps the ``left`` and ``right`` elements, moves the
+indices one step and continues with the loop.
+
+Finally, it puts the pivot at its correct position, by swapping with ``right``.
 
 .. inlineav:: quicksortCON ss
    :long_name: Quicksort Partition Slideshow

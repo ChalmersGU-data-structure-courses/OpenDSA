@@ -99,8 +99,8 @@ $(document).ready(function() {
 
     // Move the pivot to the end of the list being sorted
     av.umsg(interpret("av_c3"));
-    arr.swapWithStyle(pIndex, j);
-    msPivotIndex.value(j);
+    arr.swapWithStyle(pIndex, i);
+    msPivotIndex.value(i);
     msPivotMoved.value(true);
     av.stepOption("grade", true);
     av.step();
@@ -108,23 +108,23 @@ $(document).ready(function() {
     // Partition the array
     // k will be the first position in the right subarray
     av.umsg(interpret("av_c4"));
-    var k = partition(arr, i, j - 1, arr.value(j));
-    arr.setLeftArrow(i);
-    arr.setRightArrow(j - 1);
-    msLeft.value(i);
-    msRight.value(j - 1);
+    var k = partition(arr, i+1, j, arr.value(i));
+    arr.setLeftArrow(i+1);
+    arr.setRightArrow(j);
+    msLeft.value(i+1);
+    msRight.value(j);
     msPartitioned.value(true);
     msPivotMoved.value(false);
     av.stepOption("grade", true);
     av.step();
 
-    arr.clearLeftArrow(i);
-    arr.clearRightArrow(j - 1);
+    arr.clearLeftArrow(i+1);
+    arr.clearRightArrow(j);
 
     av.umsg(interpret("av_c5"));
     // If the pivot is already in its final location, don't need to swap it
-    if (k !== j) {
-      arr.swapWithStyle(j, k);
+    if (k !== i) {
+      arr.swapWithStyle(i, k);
       msPivotMoved.value(true);
       msPivotIndex.value(k);
       av.stepOption("grade", true);
@@ -188,7 +188,7 @@ $(document).ready(function() {
       }
     }
     // Return first position in right partition
-    return l;
+    return r;
   }
 
   // Fixstate function called if continuous feedback/fix mode is used
@@ -243,10 +243,10 @@ $(document).ready(function() {
         // Select the pivot
         pivotIndex.value(index);
         arr.highlightBlue(index);
-      } else if (pivotIndex.value() === index && !pivotMoved.value()) {
-        // Deselect the pivot unless it has already been moved
-        pivotIndex.value(-1);
-        arr.unhighlightBlue(index);
+      // } else if (pivotIndex.value() === index && !pivotMoved.value()) {
+      //   // Deselect the pivot unless it has already been moved
+      //   pivotIndex.value(-1);
+      //   arr.unhighlightBlue(index);
       } else if (!pivotMoved.value()) {
         // Move the selected pivot to the specified index
         swapPivot(pivotIndex.value(), index);

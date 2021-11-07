@@ -53,22 +53,22 @@ $(document).ready(function() {
     av.step();
 
     av.umsg(interpret("av_c3"));
-    arr.swapWithStyle(pivotIndex, right);
+    arr.swapWithStyle(pivotIndex, left);
     av.step();
 
     av.umsg(interpret("av_c4"));
-    arr.setLeftArrow(left);
-    arr.setRightArrow(right - 1);
+    arr.setLeftArrow(left+1);
+    arr.setRightArrow(right);
     av.step();
     // finalPivotIndex will be the final position of the pivot
-    var finalPivotIndex = partition(arr, left, right - 1, arr.value(right));
+    var finalPivotIndex = partition(arr, left+1, right, arr.value(left));
 
     av.umsg(interpret("av_c5"));
     av.step();
 
     av.umsg(interpret("av_c6"));
     arr.toggleArrow(finalPivotIndex);
-    arr.swapWithStyle(right, finalPivotIndex);
+    arr.swapWithStyle(left, finalPivotIndex);
     arr.removeClass(finalPivotIndex, "processing");
     arr.addClass(finalPivotIndex, "deemph");
     av.step();
@@ -125,7 +125,7 @@ $(document).ready(function() {
       av.umsg(interpret("av_c14"));
       av.step();
       // If its desirable to have the right bound continue into sorted sections, replace origLeft with 0
-      while ((right > origLeft) && (right >= left) && (arr.value(right) >= pivotVal)) {
+      while ((right > 0) && (right >= left) && (arr.value(right) >= pivotVal)) {
         av.umsg(interpret("av_c15"));
         arr.clearRightArrow(right);
         right--;
@@ -153,10 +153,10 @@ $(document).ready(function() {
     // Clear the arrows and mark the final position of the pivot
     arr.clearLeftArrow(left);
     arr.clearRightArrow(right);
-    arr.toggleArrow(left);
+    arr.toggleArrow(right);
 
     // Return first position in right partition
-    return left;
+    return right;
   }
 
   // Connect action callbacks to the HTML entities

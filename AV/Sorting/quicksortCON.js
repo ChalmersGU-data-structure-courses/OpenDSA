@@ -4,20 +4,20 @@ $(document).ready(function() {
   var av_name = "quicksortCON";
   var interpret = ODSA.UTILS.loadConfig({av_name: av_name}).interpreter;
 
-  var theArray = [76, 6, 57, 88, 85, 42, 83, 73, 48, 60];
+  var theArray = [60, 76, 6, 57, 88, 85, 42, 83, 73, 48];
   var av = new JSAV(av_name);
   // Create an array object under control of JSAV library
   var arr = av.ds.array(theArray, {indexed: true});
 
   // Slide 1
   av.umsg(interpret("av_c1"));
-  arr.addClass(9, "processing");
+  arr.addClass(0, "processing");
   av.displayInit();
 
   // Slide 2
-  arr.removeClass(9, "processing");
-  arr.setLeftArrow(0);
-  arr.setRightArrow(8);
+  arr.removeClass(0, "processing");
+  arr.setLeftArrow(1);
+  arr.setRightArrow(9);
   av.umsg(interpret("av_c2"));
   av.step();
 
@@ -30,7 +30,7 @@ $(document).ready(function() {
   av.step();
 
   // Slide 5
-  arr.swap(0, 8);
+  arr.swap(1, 9);
   av.umsg(interpret("av_c5"));
   av.step();
 
@@ -40,19 +40,19 @@ $(document).ready(function() {
 
   // Slide 7
   av.umsg(interpret("av_c7"));
-  arr.clearLeftArrow(0);
-  arr.setLeftArrow(1);
-  av.step();
-
-  // Slide 8
-  av.umsg(interpret("av_c7"));
   arr.clearLeftArrow(1);
   arr.setLeftArrow(2);
   av.step();
 
-  // Slide 9
+  // Slide 8
+  av.umsg(interpret("av_c7"));
   arr.clearLeftArrow(2);
   arr.setLeftArrow(3);
+  av.step();
+
+  // Slide 9
+  arr.clearLeftArrow(3);
+  arr.setLeftArrow(4);
   av.umsg(interpret("av_c8"));
   av.step();
 
@@ -62,25 +62,25 @@ $(document).ready(function() {
 
   // Slide 11
   av.umsg(interpret("av_c7"));
-  arr.clearRightArrow(8);
-  arr.setRightArrow(7);
+  arr.clearRightArrow(9);
+  arr.setRightArrow(8);
   av.step();
 
   // Slide 12
   av.umsg(interpret("av_c7"));
-  arr.clearRightArrow(7);
-  arr.setRightArrow(6);
+  arr.clearRightArrow(8);
+  arr.setRightArrow(7);
   av.step();
 
   // Slide 13
-  arr.clearRightArrow(6);
-  arr.setRightArrow(5);
+  arr.clearRightArrow(7);
+  arr.setRightArrow(6);
   av.umsg(interpret("av_c10"));
   av.step();
 
   // Slide 14
   av.umsg(interpret("av_c11"));
-  arr.swap(3, 5);
+  arr.swap(4, 6);
   av.step();
 
   // Slide 15
@@ -88,8 +88,8 @@ $(document).ready(function() {
   av.step();
 
   // Slide 16
-  arr.clearLeftArrow(3);
-  arr.setLeftArrow(4);
+  arr.clearLeftArrow(4);
+  arr.setLeftArrow(5);
   av.umsg(interpret("av_c13"));
   av.step();
 
@@ -99,14 +99,19 @@ $(document).ready(function() {
 
   // Slide 18
   av.umsg(interpret("av_c7"));
-  arr.clearRightArrow(5);
-  arr.setRightArrow(4);
+  arr.clearRightArrow(6);
+  arr.setRightArrow(5);
   av.step();
 
   // Slide 19
-  arr.clearRightArrow(4);
-  arr.setRightArrow(3);
+  arr.clearRightArrow(5);
+  arr.setRightArrow(4);
   av.umsg(interpret("av_c15"));
+  av.step();
+
+  // Slide 19
+  av.umsg(interpret("av_c15b"));
+  arr.swap(4, 0);
   av.step();
 
   // Slide 20

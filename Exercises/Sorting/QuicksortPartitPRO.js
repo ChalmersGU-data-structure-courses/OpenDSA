@@ -15,13 +15,13 @@
       // Set up the problem
       answerArr = JSAV.utils.rand.numKeys(0, 999, alength);
       var pivotIndex = Math.floor(alength / 2);
-      swap(answerArr, pivotIndex, alength - 1);
-      var pivot = answerArr[alength - 1];
+      swap(answerArr, pivotIndex, 0);
+      var pivot = answerArr[0];
       // Now, make a copy
       cloneArr = answerArr.slice(0);
 
       // Make the answer (do partition)
-      var left = 0;
+      var left = 1;
       var right = alength - 1;
       while (left <= right) { // Move bounds inward until they meet
         while (answerArr[left] < pivot) { left++; }
@@ -30,7 +30,6 @@
       }
 
       reset(alength);
-
       $("#reset").click(function() { reset(alength); }); // clickHandler for reset button
     },
 
@@ -77,7 +76,7 @@
     av = new JSAV("QuicksortPartitPRO");
     quicksortPartitPRO.userInput = false;
     jsavArr = av.ds.array(cloneArr, {indexed: true, center: false});
-    jsavArr.highlight(alength - 1);
+    jsavArr.highlight(0);
     jsavArr.click(clickHandler);   // bind clickHandler for the array
     av.displayInit();
     av.recorded();
