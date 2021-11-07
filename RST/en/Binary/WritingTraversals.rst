@@ -44,7 +44,7 @@ recursive call is made only on non-empty children.
 .. codeinclude:: Binary/Preorder
    :tag: preorder2
 
-At first it might appear that ``preorder2`` is more efficient
+At first, it might appear that ``preorder2`` is more efficient
 than ``preorder``, because it makes only half as many recursive
 calls (since it won't try to call on a null pointer).
 On the other hand, ``preorder2`` must access the left and right
@@ -55,7 +55,7 @@ Perhaps the writer of ``preorder2`` wants to protect against the case
 where the root is ``null``.
 But ``preorder2`` has an error.
 While ``preorder2`` insures that no recursive
-calls will be made on empty subtrees, it will fail if the orignal call
+calls will be made on empty subtrees, it will fail if the original call
 from outside passes in a null pointer.
 This would occur if the original tree is empty.
 Since an empty tree is a legitimate input to the initial call on the
@@ -96,7 +96,7 @@ You should only look at the values of your children if you need to
 know those values in order to compute some property of the current
 node.
 Child values should not be used to decide whether to call them
-recursviely.
+recursively.
 Make the call, and let their own base case handle it.
 
 .. topic:: Example
@@ -104,23 +104,23 @@ Make the call, and let their own base case handle it.
    Consider the problem of incrementing the value for each node in a
    binary tree.
    The following solution has an error, since it does redundant
-   manipulation to left and the right children of each node.
+   manipulation to the left and the right children of each node.
   
    .. codeinclude:: Binary/RecTutor
       :tag: IneffbtInc
 	
-   The efficient solution should not explicitly set the children
+   The efficient solution should not explicitly set the child
    values that way.
    Changing the value of a node does not depend on the child values.
    So the function should simply increment the root value, and make
    recursive calls on the children.
 
 In rare problems, you might need to explicitly check if the children
-are null or access the children values for each node.
+are null or access the child values for each node.
 For example, you might need to check if all nodes in a tree satisfy
 the property that each node stores the sum of its left and right
 children.
-In this situation you must look at the values of the children to
+In this situation, you must look at the values of the children to
 decide something about the current node.
 You do **not** look at the children to decide whether to make a recursive
 call.

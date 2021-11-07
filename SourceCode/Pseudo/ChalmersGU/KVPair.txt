@@ -1,0 +1,6 @@
+
+/* *** ODSATag: KVPair *** */
+class KVPair(K, V)
+    key   : K
+    value : V
+/* *** ODSAendTag: KVPair *** */

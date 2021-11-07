@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   // Slide
   av.umsg("Now we look at the <code>remove</code> method.");
-  pseudo.highlight(2);
+  pseudo.highlight(1);
   av.displayInit();
 
   // Slide
@@ -41,7 +41,7 @@ $(document).ready(function() {
   // Slide
   av.umsg(`First we move the <code>prev</code> pointer to the node before.`);
   var prevP = av.pointer("prev", l.get(0));
-  pseudo.unhighlight(2);
+  pseudo.unhighlight(1);
   pseudo.highlight([7,8,9]);
   prevP.target(prevNode);
   av.step();

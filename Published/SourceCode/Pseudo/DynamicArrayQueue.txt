@@ -5,9 +5,9 @@ class DynamicArrayQueue(E) implements Queue(E)
     private front         : int   // Index of front element
     private rear          : int   // Index of rear element
 
-    constant MinCapacity        : int    = 8
-    constant MinLoadFactor      : double = 0.5
-    constant CapacityMultiplier : double = 1.5
+    constant MinCapacity        : int    = 8     // Minimum capacity of internalArray
+    constant MinLoadFactor      : double = 0.5   // Must be smaller than 1/CapacityMultiplier
+    constant CapacityMultiplier : double = 1.5   // Factor to grow/shrink the capacity
 
     DynamicArrayQueue()
         internalArray = new array of size MinCapacity

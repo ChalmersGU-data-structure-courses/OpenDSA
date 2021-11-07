@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 14:11:33"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="open-addressing">
 <span id="index-0"></span><h1>9.<span class="section-number">7. </span>Open Addressing<a class="headerlink" href="#open-addressing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="hash-tables-without-bins">
@@ -176,7 +176,12 @@ we will now have room for exactly one entry in each table cell.
 If we want to implement a <strong>HashMap</strong> (not a HashSet), we then need to be
 able to put both a key and a value in the same table cell.
 For this we need a class of key-value pairs.</p>
-<div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Pseudo">Pseudo-Code</a></li><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">KVPair</span><span class="p">(</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+    <span class="n">key</span>   <span class="p">:</span> <span class="n">K</span>
+    <span class="n">value</span> <span class="p">:</span> <span class="n">V</span>
+</pre></div>
+</div>
+</div><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
     <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
     <span class="n">KVPair</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
@@ -493,7 +498,7 @@ because it is so simple and can be implemented efficiently.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 06, 2021.
+      Last updated on Nov 07, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

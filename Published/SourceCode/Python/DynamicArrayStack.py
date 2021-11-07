@@ -2,9 +2,9 @@
 from API import Stack
 
 class DynamicArrayStack(Stack):
-    _minCapacity = 8
-    _minLoadFactor = 0.5
-    _capacityMultiplier = 1.5
+    _minCapacity = 8            # Minimum capacity of internalArray
+    _minLoadFactor = 0.5        # Must be smaller than 1/CapacityMultiplier
+    _capacityMultiplier = 1.5   # Factor to grow/shrink the capacity
 
     def __init__(self):
         self._internalArray = [None] * self._minCapacity   # Internal array containing the stack elements

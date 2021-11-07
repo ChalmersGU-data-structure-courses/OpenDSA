@@ -1,7 +1,7 @@
 /* *** ODSATag: SpellCheck *** */
 
 // The set of valid words
-dictionary: Set(string) = new Set()
+dictionary : Set(string) = new Set()
 
 // We can add words to the dictionary
 dictionary.add("cat")

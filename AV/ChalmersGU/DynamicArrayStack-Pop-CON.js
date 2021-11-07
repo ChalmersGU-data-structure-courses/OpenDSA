@@ -31,7 +31,7 @@ $(document).ready(function() {
   // Slide
   av.umsg("Now, for the implementation of <code>pop</code>. <code>top</code> is at the first free position, which is index 4 on the array.");
   arr.highlight(4);
-  pseudo.setCurrentLine(2);
+  pseudo.setCurrentLine(1);
   av.displayInit();
 
   // Slide
@@ -64,6 +64,7 @@ $(document).ready(function() {
 
   // Slide
   av.umsg("There is no need for resizing.");
+  pseudo.setCurrentLine(6);
   av.step();
 
   // Slide

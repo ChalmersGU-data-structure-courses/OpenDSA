@@ -1,16 +1,16 @@
 /* *** ODSATag: Database *** */
 // A class representing a person.
 class Person
-  public pnr:  string // personnummer
-  public name: string // person's name
+    public pnr  : string // personnummer
+    public name : string // person's name
 
 // Here are some people
-kalle: Person = Person("123456-7890", "Kalle Anka")
-pippi: Person = Person("234567-8901", "Pippi Långstrump")
+kalle : Person = Person("123456-7890", "Kalle Anka")
+pippi : Person = Person("234567-8901", "Pippi Långstrump")
 
 // A map where the key is the personnummer
 // and the value is the record for that person.
-people: Map(string, Person) = new Map()
+people : Map(string, Person) = new Map()
 
 // We can add a person to the map like so.
 people.add(kalle.pnr, kalle)

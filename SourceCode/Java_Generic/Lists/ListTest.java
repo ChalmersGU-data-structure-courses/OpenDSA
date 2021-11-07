@@ -52,12 +52,11 @@ for (E elem : L) {
   }
 
 /* *** ODSATag: listfind *** */
-// Return true if k is in list L, false otherwise
+// Return true if k is in list L, false otherwise.
 static boolean find(List<E> L, E k) {
     for (E n : L) {
-        if (k.equals(n)) {
+        if (k.equals(n))
             return true;  // Found k
-        }
     }
     return false;         // k not found
 }

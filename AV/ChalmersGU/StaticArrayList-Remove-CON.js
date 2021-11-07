@@ -77,7 +77,7 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   labelIt.show();
   av.effects.copyValue(arr, removeIndex, arrIt, 0);
   pseudo.unhighlight(1);
-  pseudo.highlight(4);
+  pseudo.highlight(3);
   av.step();
 
   // Slide
@@ -86,8 +86,8 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   av.umsg("Shift all elements after current element one position to the left.");
   arrow2.show();
   arrIt.unhighlight(0);
-  pseudo.unhighlight(4);
-  pseudo.highlight([5,6]);
+  pseudo.unhighlight(3);
+  pseudo.highlight([4,5]);
   // for (let i = removeIndex+1; i < listSize; i++) arr.highlight(i);
   av.step();
 
@@ -102,8 +102,8 @@ We will remove the value ${arrValues[removeIndex]} in position ${removeIndex} of
   av.umsg(`
 Decrease the list size by 1, from ${listSize} to ${listSize-1}.
 `);
-  pseudo.unhighlight([5,6]);
-  pseudo.highlight(7);
+  pseudo.unhighlight([4,5]);
+  pseudo.highlight(6);
   arr.addClass(listSize-1, "unused");
   arrSize.value(0, listSize-1);
   arrSize.highlight(0);
@@ -113,8 +113,8 @@ Decrease the list size by 1, from ${listSize} to ${listSize-1}.
   av.umsg("To allow the interpreter to garbage collect, we have to set the previously final element to null.");
   arrow2.hide();
   arr.value(listSize-1, "");
-  pseudo.unhighlight(7);
-  pseudo.highlight(8);
+  pseudo.unhighlight(6);
+  pseudo.highlight(7);
   arrSize.unhighlight(0);
   av.step();
 
@@ -122,13 +122,13 @@ Decrease the list size by 1, from ${listSize} to ${listSize-1}.
   av.umsg("Return the deleted element.");
   arrSize.unhighlight(0);
   arrIt.highlight(0);
-  pseudo.unhighlight(8);
-  pseudo.highlight(9);
+  pseudo.unhighlight(7);
+  pseudo.highlight(8);
   av.step();
 
   // Slide 6
   av.umsg("Since we might have to shift all of the remaining elements, deletion from an array-based list is $\\Theta(n)$ in the worst case if there are $n$ elements in the list.");
   arrIt.unhighlight(0);
-  pseudo.unhighlight(9);
+  pseudo.unhighlight(8);
   av.recorded();
 });

@@ -49,7 +49,7 @@ $(document).ready(function() {
   av.step();
 
   // Slide
-  av.umsg("When the queue is nonempty, <code>front</code> will always point to the header node while rear points to the true last node in the queue.");
+  av.umsg("When the queue is nonempty, <code>front</code> will always point to the header node while rear points to the last node in the queue.");
   pseudo.unhighlight([7,8]);
   listInit.hide();
   frontIP.hide();

@@ -26,8 +26,8 @@ for elem in L:
 
 
 #/* *** ODSATag: listfind *** */
-# Return true if k is in list L, false otherwise
 def find(L, k):
+    """Return true if k is in list L, false otherwise."""
     for n in L:
         if k == n:
             return true  # Found k

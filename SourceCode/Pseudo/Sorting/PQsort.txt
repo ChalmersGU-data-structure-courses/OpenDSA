@@ -1,15 +1,15 @@
 /* *** ODSATag: PQsort *** */
-pqsort(array: T[]): T[]
-  pq = MinHeap()
-    // MinHeap is a class that implements the
-    //  priority queue ADT; we will see how it works
-    // in the next section.
-  for item in array
-    pq.add(item)
+pqsort(array:T[]) : T[]
+    pq = MinHeap()
+        // MinHeap is a class that implements the
+        //  priority queue ADT; we will see how it works
+        // in the next section.
+    for item in array
+        pq.add(item)
 
-  result = new array of length "array.length"
-  for i in 0..result.length-1
-    result[i] = pq.removeMin()
+    result = new array of the same length as array
+    for i = 0, 1, ..., length of result - 1
+        result[i] = pq.removeMin()
     
-  return result
+    return result
 /* *** ODSAendTag: PQsort *** */

@@ -132,7 +132,7 @@ or indicate whether the node is a leaf.
 A traversal routine is naturally written as a recursive
 function.
 Its input parameter is a pointer to a node which we will call
-``rt`` because each node can be viewed as the root of a some
+``rt`` because each node can be viewed as the root of some
 subtree.
 The initial call to the traversal function passes in a pointer to the
 root node of the tree.

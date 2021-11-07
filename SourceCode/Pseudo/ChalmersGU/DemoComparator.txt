@@ -36,9 +36,9 @@ class GivenNameComparator implements Comparator(Person)
 class FullNameComparator implements Comparator(Person)
     compare(one:Person, other:Person) : int
         cmp : int = one.familyName <=> other.familyName
-        if cmp ≠ 0: return cmp
+        if cmp != 0: return cmp
         cmp = one.givenName <=> other.givenName
-        if cmp ≠ 0: return cmp
+        if cmp != 0: return cmp
         return 0
 /* *** ODSAendTag: FullNameComparator *** */
 

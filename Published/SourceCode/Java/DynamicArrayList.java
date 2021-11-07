@@ -5,9 +5,9 @@ class DynamicArrayList<E> implements List<E> {
     private E[] internalArray;   // Internal array containing the list elements
     private int listSize;        // Size of list
 
-    static int MinCapacity = 8;
-    static double MinLoadFactor = 0.5;
-    static double CapacityMultiplier = 1.5;
+    static int MinCapacity = 8;               // Minimum capacity of internalArray
+    static double MinLoadFactor = 0.5;        // Must be smaller than 1/CapacityMultiplier
+    static double CapacityMultiplier = 1.5;   // Factor to grow/shrink the capacity
 
     @SuppressWarnings("unchecked")
     public DynamicArrayList() {

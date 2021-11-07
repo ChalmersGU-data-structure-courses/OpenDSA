@@ -5,7 +5,7 @@ class LinkedMap<K, V> implements Map<K, V> {
     private KVNode head;    // Pointer to list header
     private int listSize;   // Size of list
 
-    LinkedListMap() {
+    LinkedMap() {
         head = null;
         listSize = 0;
     }
