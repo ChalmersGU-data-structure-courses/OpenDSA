@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and Comparators: An Example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and Comparators: An Example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 21:13:21"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
 <h1>1.<span class="section-number">6. </span>Comparables and Comparators: An Example<a class="headerlink" href="#comparables-and-comparators-an-example" title="Permalink to this headline">¶</a></h1>
 <p><em>Note</em>: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,
@@ -538,13 +538,13 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <h2>1.<span class="section-number">6.6. </span>Comparing several fields<a class="headerlink" href="#comparing-several-fields" title="Permalink to this headline">¶</a></h2>
 <p>Remember the natural ordering? The problem with only comparing the family name is that if two persons have the same name they keep their internal order. So, Nadia Boulanger comes before Lili Boulanger even though L precedes N in the alphabet.</p>
 <p>What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:</p>
-<div id="DemoComparator_FullNameComparator_code"><ul><li><a href="#DemoComparator_FullNameComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_FullNameComparator_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_FullNameComparator_code_Python">Python</a></li></ul><div id="DemoComparator_FullNameComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>class FullNameComparator implements Comparator(Person)
-    compare(one:Person, other:Person) : int
-        cmp : int = one.familyName &lt;=&gt; other.familyName
-        if cmp ≠ 0: return cmp
-        cmp = one.givenName &lt;=&gt; other.givenName
-        if cmp ≠ 0: return cmp
-        return 0
+<div id="DemoComparator_FullNameComparator_code"><ul><li><a href="#DemoComparator_FullNameComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_FullNameComparator_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_FullNameComparator_code_Python">Python</a></li></ul><div id="DemoComparator_FullNameComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="n">cmp</span> <span class="p">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
+        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
+        <span class="n">cmp</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
+        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
+        <span class="k">return</span> <span class="mi">0</span>
 </pre></div>
 </div>
 </div><div id="DemoComparator_FullNameComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -683,121 +683,121 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <div class="section" id="running-the-program">
 <h2>1.<span class="section-number">6.9. </span>Running the program<a class="headerlink" href="#running-the-program" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full source code. Just compile and run it without any arguments:</p>
-<div id="DemoComparator_ComparatorDemo_code"><ul><li><a href="#DemoComparator_ComparatorDemo_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Python">Python</a></li></ul><div id="DemoComparator_ComparatorDemo_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>class Person implements Comparable(Person)
-    givenName  : String
-    familyName : String
-    birthYear  : int
+<div id="DemoComparator_ComparatorDemo_code"><ul><li><a href="#DemoComparator_ComparatorDemo_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Python">Python</a></li></ul><div id="DemoComparator_ComparatorDemo_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="n">givenName</span>  <span class="p">:</span> <span class="n">String</span>
+    <span class="n">familyName</span> <span class="p">:</span> <span class="n">String</span>
+    <span class="n">birthYear</span>  <span class="p">:</span> <span class="kt">int</span>
 
-    toString() : String
-        return givenName + &quot; &quot; + familyName + &quot; (&quot; + birthYear + &quot;)&quot;
+    <span class="nf">toString</span><span class="p">()</span> <span class="p">:</span> <span class="n">String</span>
+        <span class="k">return</span> <span class="n">givenName</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">familyName</span> <span class="o">+</span> <span class="s">&quot; (&quot;</span> <span class="o">+</span> <span class="n">birthYear</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span>
 
-    // ...as above...
-    compareTo(other:Person) : int
-        return this.familyName &lt;=&gt; other.familyName
-
-
-class BirthYearComparator implements Comparator(Person)
-    compare(one:Person, other:Person) : int
-        return one.birthYear &lt;=&gt; other.birthYear
+    <span class="c1">// ...as above...</span>
+    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
 
 
-class GivenNameComparator implements Comparator(Person)
-    compare(one:Person, other:Person) : int
-        return one.givenName &lt;=&gt; other.givenName
-
-class FullNameComparator implements Comparator(Person)
-    compare(one:Person, other:Person) : int
-        cmp : int = one.familyName &lt;=&gt; other.familyName
-        if cmp ≠ 0: return cmp
-        cmp = one.givenName &lt;=&gt; other.givenName
-        if cmp ≠ 0: return cmp
-        return 0
-
-getPeople() : List(Person)
-    return [new Person(&quot;Unsuk&quot;, &quot;Chin&quot;, 1961),
-            new Person(&quot;Anna&quot;, &quot;Thorvaldsdóttir&quot;, 1977),
-            new Person(&quot;Andrea&quot;, &quot;Tarrodi&quot;, 1981),
-            new Person(&quot;Diana&quot;, &quot;Čemerytė&quot;, 1974),
-            new Person(&quot;Elfrida&quot;, &quot;Andrée&quot;, 1841),
-            new Person(&quot;Guy&quot;, &quot;d’Hardelot&quot;, 1858),
-            new Person(&quot;Nadia&quot;, &quot;Boulanger&quot;, 1887),
-            new Person(&quot;Lili&quot;, &quot;Boulanger&quot;, 1893),
-            ]
+<span class="kd">class</span> <span class="nc">BirthYearComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
 
 
-// No order
-people : List(Person) = getPeople()
-print each person in people
+<span class="kd">class</span> <span class="nc">GivenNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
 
-// Natural ordering
-people = getPeople()  // reset the people list
-sort people (using the natural ordering)
-print each person in people
+<span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
+        <span class="n">cmp</span> <span class="p">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
+        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
+        <span class="n">cmp</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
+        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
+        <span class="k">return</span> <span class="mi">0</span>
 
-// Ordered by birth year (pre-Java-8 solution)
-byBirthYear : Comparator(Person) = new BirthYearComparator()
-people = getPeople()  // reset the people list
-sort people (using byBirthYear)
-print each person in people
+<span class="n">getPeople</span><span class="p">()</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
+    <span class="k">return</span> <span class="o">[</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Anna&quot;</span><span class="p">,</span> <span class="s">&quot;Thorvaldsdóttir&quot;</span><span class="p">,</span> <span class="mi">1977</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Andrea&quot;</span><span class="p">,</span> <span class="s">&quot;Tarrodi&quot;</span><span class="p">,</span> <span class="mi">1981</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Diana&quot;</span><span class="p">,</span> <span class="s">&quot;Čemerytė&quot;</span><span class="p">,</span> <span class="mi">1974</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Elfrida&quot;</span><span class="p">,</span> <span class="s">&quot;Andrée&quot;</span><span class="p">,</span> <span class="mi">1841</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Guy&quot;</span><span class="p">,</span> <span class="s">&quot;d’Hardelot&quot;</span><span class="p">,</span> <span class="mi">1858</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Nadia&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1887</span><span class="p">),</span>
+            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Lili&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1893</span><span class="p">),</span>
+            <span class="o">]</span>
 
-// Ordered by birth year (functional solution)
-byBirthYear = (one, other) -&gt; one.birthYear &lt;=&gt; other.birthYear
-people = getPeople()  // reset the people list
-sort people (using byBirthYear)
-print each person in people
 
-// Ordered by birth year (using a key extractor)
-byBirthYear = comparing(Person.birthYear)
-people = getPeople()  // reset the people list
-sort people (using byBirthYear)
-print each person in people
+<span class="c1">// No order</span>
+<span class="n">people</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by given name (pre-Java-8 solution)
-byGivenName : Comparator(Person) = new GivenNameComparator()
-people = getPeople()  // reset the people list
-sort people (using byGivenName)
-print each person in people
+<span class="c1">// Natural ordering</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">the</span> <span class="n">natural</span> <span class="n">ordering</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by given name (functional solution)
-byGivenName = (one, other) -&gt; one.givenName &lt;=&gt; other.givenName
-people = getPeople()  // reset the people list
-sort people (using byGivenName)
-print each person in people
+<span class="c1">// Ordered by birth year (pre-Java-8 solution)</span>
+<span class="n">byBirthYear</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BirthYearComparator</span><span class="p">()</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by given name (using a key extractor)
-byGivenName = comparing(Person.givenName)
-people = getPeople()  // reset the people list
-sort people (using byGivenName)
-print each person in people
+<span class="c1">// Ordered by birth year (functional solution)</span>
+<span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by full name: family name + given name (pre-Java-8 solution)
-byFullName : Comparator(Person) = new FullNameComparator()
-people = getPeople()  // reset the people list
-sort people (using byFullName)
-print each person in people
+<span class="c1">// Ordered by birth year (using a key extractor)</span>
+<span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">birthYear</span><span class="p">)</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by full name: family name + given name (using key extractors and thenComparing)
-byFullName = comparing(Person.familyName), then comparing(Person.givenName)
-people = getPeople()  // reset the people list
-sort people (using byFullName)
-print each person in people
+<span class="c1">// Ordered by given name (pre-Java-8 solution)</span>
+<span class="n">byGivenName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GivenNameComparator</span><span class="p">()</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by Swedish locale, case-insensitive
-swedishLocale : Collator = get instance from Locale &quot;sv/SE&quot;
-bySwedishLocale : Comparator(Person) =
-        comparing(Person.familyName using swedishLocale), then
-        comparing(Person.givenName using swedishLocale)
-people = getPeople()  // reset the people list
-sort people (using bySwedishLocale)
-print each person in people
+<span class="c1">// Ordered by given name (functional solution)</span>
+<span class="n">byGivenName</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 
-// Ordered by Swedish locale, given name first
-bySwedishGivenName : Comparator(Person) = 
-    comparing(Person.givenName using swedishLocale), then
-    comparing(Person.familyName using swedishLocale)
-people = getPeople()  // reset the people list
-sort people (using bySwedishGivenName)
-print each person in people
+<span class="c1">// Ordered by given name (using a key extractor)</span>
+<span class="n">byGivenName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
+
+<span class="c1">// Ordered by full name: family name + given name (pre-Java-8 solution)</span>
+<span class="n">byFullName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullNameComparator</span><span class="p">()</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byFullName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
+
+<span class="c1">// Ordered by full name: family name + given name (using key extractors and thenComparing)</span>
+<span class="n">byFullName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span><span class="p">),</span> <span class="n">then</span> <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byFullName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
+
+<span class="c1">// Ordered by Swedish locale, case-insensitive</span>
+<span class="n">swedishLocale</span> <span class="p">:</span> <span class="n">Collator</span> <span class="o">=</span> <span class="n">get</span> <span class="n">instance</span> <span class="n">from</span> <span class="n">Locale</span> <span class="s">&quot;sv/SE&quot;</span>
+<span class="n">bySwedishLocale</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span>
+        <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">),</span> <span class="n">then</span>
+        <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">)</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">bySwedishLocale</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
+
+<span class="c1">// Ordered by Swedish locale, given name first</span>
+<span class="n">bySwedishGivenName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> 
+    <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">),</span> <span class="n">then</span>
+    <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">)</span>
+<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
+<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">bySwedishGivenName</span><span class="p">)</span>
+<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
 </pre></div>
 </div>
 </div><div id="DemoComparator_ComparatorDemo_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
@@ -1105,7 +1105,7 @@ print each person in people
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 06, 2021.
+      Last updated on Nov 07, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

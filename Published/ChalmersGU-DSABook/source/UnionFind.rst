@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 21:13:21"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -352,6 +352,14 @@ covers many aspects of the equivalence class problem.
    :threshold: 0.9
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Union/Find Proficiency Exercise
+
+.. [Tarjan75] Robert E. Tarjan,
+   "On the efficiency of a good but not linear set merging algorithm",
+   *Journal of the ACM 22*, 2(April 1975), 215-225.
+
+.. [GalilItaliano91] Zvi Galil and Giuseppe F. Italiano,
+   "Data Structures and Algorithms for Disjoint Set Union Problems",
+   *Computing Surveys 23*, 3(September 1991), 319-344.
 
 .. odsascript:: AV/General/UFfigCON.js
 .. odsascript:: AV/General/UFconcomCON.js

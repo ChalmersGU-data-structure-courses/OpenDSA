@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'array-based-dequeue-practice', 'array-based-queues-full-implementation'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'enqueueing-an-element', 'dequeueing-an-element', 'resizing-the-internal-array', 'array-based-queue-practice-exercises', 'array-based-queues-full-implementation'];</script>
 
 .. _Queue:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 21:13:21"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -140,20 +140,54 @@ to our list and stack implementations.
 Array-based Queue Implementation
 -------------------------------------
 
-.. inlineav:: aqueueVarCON ss
-   :points: 0.0
-   :required: False
-   :threshold: 1.0
-   :long_name: Array-based Queue Variables Slideshow
-   :output: show
-
 In this implementation, the front of the queue is defined to be toward
 the lower numbered positions in the array (in the counter-clockwise
 direction in the circular array), and the rear is
 defined to be toward the higher-numbered positions.
-Thus, ``enqueue`` increments the rear pointer (modulus ``maxSize``),
+Thus, ``enqueue`` increments the rear pointer (modulus the size of the internal array),
 and ``dequeue`` increments the front pointer.
-Implementation of all member functions is straightforward.
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueueInit
+
+Implemening the member functions is mostly straightforward.
+
+Enqueueing an element
+~~~~~~~~~~~~~~~~~~~~~~
+
+When enqueueing, we increase the ``rear`` pointer
+(modulo the size of the internal array to make it circular).
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueueEnqueue
+
+
+Dequeueing an element
+~~~~~~~~~~~~~~~~~~~~~~
+
+When dequeueing, we increase the ``front`` pointer
+(modulo the size of the internal array).
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueueDequeue
+
+Resizing the internal array
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+When we resize the internal array, we cannot keep the positions of the elements.
+If the queue is wrapped around (i.e., if ``rear < front``) then
+we might end up in a large gap in the middle of the queue.
+
+Instead we reset the ``front`` and ``rear`` pointers so that we copy the first
+queue element to position 0 of the new array, the second to position 1, etc.
+Apart from that, the implementation is similar to the one for lists and queues.
+
+.. codeinclude:: ChalmersGU/DynamicArrayQueue
+   :tag: DynamicArrayQueueEdequeue
+
+
+Array-based Queue Practice Exercises
+--------------------------------------
 
 .. avembed:: Exercises/ChalmersGU/AqueueEnqueuePRO.html ka
    :module: Queue
@@ -163,9 +197,6 @@ Implementation of all member functions is straightforward.
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Array-based Queue Enqueue Exercise
 
-
-Array-based Dequeue Practice
-----------------------------
 
 .. avembed:: Exercises/ChalmersGU/AqueueDequeuePRO.html ka
    :module: Queue
@@ -190,4 +221,3 @@ Here is an array-based queue implementation.
 .. odsascript:: DataStructures/CircularQueue.js
 .. odsascript:: AV/List/aqueueCircularCON.js
 .. odsascript:: AV/List/aqueueEmptyCON.js
-.. odsascript:: AV/List/aqueueVarCON.js

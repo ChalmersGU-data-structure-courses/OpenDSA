@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Linear Structure Summary Exercises (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListSumm";ODSA.SETTINGS.MODULE_LONG_NAME = "Linear Structure Summary Exercises";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 21:13:21"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :requires: array-based list; linked list; array-based stack; linked stack; array-based queue; linked queue;
    :topic: Linear structures
 
-Linear Structure Summary Exercises (WORK IN PROGRESS)
-======================================================
+Linear Structure Summary Exercises
+===================================
 
 Practice Questions
 ------------------

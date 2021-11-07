@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-06 20:22:01"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-07 21:13:21"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -46,7 +46,7 @@ requires an underlying simpler map implementation -- and there a linked list wor
 Using a list of key-value pairs
 ---------------------------------
 
-A very simple way of implementing a **Map** using a list, is to use key-value pairs.
+A very simple way of implementing a **Map** using a list, is to use :ref:`key-value pairs <Comparison>`.
 
 .. codeinclude:: ChalmersGU/KVPair
    :tag: KVPair
@@ -108,7 +108,10 @@ Java Iterators is left as an exercise to the reader.
 Using linked key-value nodes
 -----------------------------
 
-An alternative which is also very easy to implement, is to modify the implementation of linked lists just slightly.
+An alternative to using an underlying list of key-value pairs,
+which is also very easy to implement, is to modify the implementation of linked lists just slightly.
+The advantage of this solution is that deletion becomes more efficient.
+
 Instead of using nodes with just one value, we used key-value nodes.
 
 .. codeinclude:: ChalmersGU/LinkedMap
