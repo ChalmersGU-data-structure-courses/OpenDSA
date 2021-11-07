@@ -32,9 +32,10 @@ solve them efficiently using arrays:
   - *Lookup:* 
     The items are typically objects, and each object has a field
     called the *key*. The search algorithm is given a key, and should
-    return the item having that key, if one exists. For example, a
+    return the item having that key (or a reference to the item,
+    such as the position in the list). For example, a
     database: given a list of people, find the person having a given
-    personnummer.
+    personal identity number.
 
 * *Sorting*: Given a list of items, put them in ascending order.
   Again, there are two kinds of sorting problems:
@@ -45,6 +46,15 @@ solve them efficiently using arrays:
   - *Key-based sorting:* Here, each item has a *key*, and we want to
     sort the items so that the keys come in ascending order. For
     example, sorting a list of towns by population.
+
+Note that if we search or sort according to a *key*, it doesn't have to be
+explicitly stored in the object, but can instead be calculated on demand.
+E.g., if we want to sort a list of words case-insensitively, we can
+use a lower-case transformation when doing the comparisons.
+This is usually done by a :ref:`comparator <comparator> <Comparison>`
+(in Java), or by a `key function`_ (in Python).
+
+.. _key function: https://docs.python.org/3/howto/sorting.html#key-functions
 
 This chapter concentrates on *membership testing* and *natural
 sorting*, but all the algorithms in this chapter work just as well for
