@@ -5,9 +5,9 @@ class DynamicArrayStack(E) implements Stack(E)
     private internalArray : E[]   // Internal array containing the stack elements
     private stackSize     : int   // Size of stack, and index of the next free slot
 
-    constant MinCapacity        : int    = 8
-    constant MinLoadFactor      : double = 0.5
-    constant CapacityMultiplier : double = 1.5
+    constant MinCapacity        : int    = 8     // Minimum capacity of internalArray
+    constant MinLoadFactor      : double = 0.5   // Must be smaller than 1/CapacityMultiplier
+    constant CapacityMultiplier : double = 1.5   // Factor to grow/shrink the capacity
 
     DynamicArrayStack()
         internalArray = new array of size MinCapacity
