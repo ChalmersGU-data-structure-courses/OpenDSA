@@ -16,10 +16,10 @@ static boolean sorttest(int[] B) {
 static <T extends Comparable<T>> int partition(T[] A, int left, int right, T pivot) {
   while (left <= right) {
     // Move bounds inward until they meet
-    while (A[left].compareTo(pivot) < 0) {
+    while (right >= left && A[left].compareTo(pivot) < 0) {
       left++;
     }
-    while (right >= left && A[right].compareTo(pivot) >= 0) {
+    while (right >= left && A[right].compareTo(pivot) > 0) {
       right--;
     }
     // Swap out-of-place values

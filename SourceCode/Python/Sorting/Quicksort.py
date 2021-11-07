@@ -7,9 +7,9 @@
 def partition(A, left, right, pivot):
   # Move bounds inward until they meet
   while left <= right:
-    while A[left] < pivot:
+    while right >= left && A[left] < pivot:
       left += 1
-    while right >= left && A[right] >= pivot:
+    while right >= left && A[right] > pivot:
       right -= 1
     # Swap out-of-place values
     if right > left:
