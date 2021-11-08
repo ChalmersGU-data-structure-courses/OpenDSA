@@ -4,18 +4,28 @@ $(document).ready(function() {
   var av_name = "quicksortCON";
   var interpret = ODSA.UTILS.loadConfig({av_name: av_name}).interpreter;
 
-  var theArray = [60, 76, 6, 57, 88, 85, 42, 83, 73, 48];
+  var theArray = [80, 76, 6, 57, 60, 85, 42, 83, 73, 48];
   var av = new JSAV(av_name);
   // Create an array object under control of JSAV library
   var arr = av.ds.array(theArray, {indexed: true});
 
-  // Slide 1
-  av.umsg(interpret("av_c1"));
-  arr.addClass(0, "processing");
+  // Slide 1a
+  av.umsg(interpret("av_c1a"));
+  arr.addClass(4, "processing");
   av.displayInit();
 
+  // Slide 1b
+  av.umsg(interpret("av_c1b"));
+  arr.removeClass(4, "processing");
+  arr.addClass(0, "processing");
+  arr.swap(4, 0);
+  av.step();
+
+  // Slide 1
+  av.umsg(interpret("av_c1"));
+  av.step();
+
   // Slide 2
-  arr.removeClass(0, "processing");
   arr.setLeftArrow(1);
   arr.setRightArrow(9);
   av.umsg(interpret("av_c2"));
@@ -109,8 +119,17 @@ $(document).ready(function() {
   av.umsg(interpret("av_c15"));
   av.step();
 
-  // Slide 19
+  // Slide 19a
+  arr.clearLeftArrow(5);
+  arr.clearRightArrow(4);
+  arr.toggleArrow(4);
+  av.umsg(interpret("av_c15a"));
+  av.step();
+
+  // Slide 19b
   av.umsg(interpret("av_c15b"));
+  arr.removeClass(0, "processing");
+  arr.addClass(4, "processing");
   arr.swap(4, 0);
   av.step();
 

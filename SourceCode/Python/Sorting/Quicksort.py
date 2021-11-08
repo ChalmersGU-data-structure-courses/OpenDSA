@@ -15,8 +15,8 @@ def partition(A, left, right, pivot):
     pivotValue = A[pivot]
     while True:
         # Move `left` right as far as possible. Stop if equal to pivot!
-        # Also stop if `left` moves past `right` – important, so that
-        # `left` stops if it moves past the end of the array
+        # Also stop if `left` moves past `right` – this is important, 
+        # so that `left` stops if it moves past the end of the array.
         while left <= right and A[left] < pivotValue:
             left += 1
 
@@ -30,7 +30,7 @@ def partition(A, left, right, pivot):
         if left > right:
             break
 
-        # Otherwise, swap the elements and move `left` and `right` on by 1
+        # Otherwise, swap the elements and move `left` and `right` on by 1.
         swap(A, left, right)
         left += 1; right -= 1
 
@@ -40,12 +40,14 @@ def partition(A, left, right, pivot):
 
 #/* *** ODSATag: findpivot *** */
 def findpivot(A, i, j):
+    """Not-so-good pivot selection: always choose the middle element."""
     return (i + j) // 2
 #/* *** ODSAendTag: findpivot *** */
 
 #/* *** ODSATag: Quicksort *** */
 def quicksort(A, left, right):
-    if left >= right: return                   # Base case: Subarray length is <= 1
+    if left >= right:                          # Base case: Subarray length is <= 1
+        return
     pivot = findpivot(A, left, right)          # Pick a pivot index
     pivot = partition(A, left, right, pivot)   # Partition the subarray; update pivot with its new position
     quicksort(A, left, pivot-1)                # Sort left partition

@@ -1,7 +1,9 @@
 {
   "translations" :{
     "en": {
-      "av_c1": "When we start the partition function, pivot value 60 has been moved to the leftmost position.",
+      "av_c1a": "When we start the partition function, we know that the pivot is in position 4 (the middle value).",
+      "av_c1b": "First we swap the pivot (60) with the leftmost value (80).",
+      "av_c1": "Now the pivot value 60 has been moved to the leftmost position, and we are ready to start the partitioning.",
       "av_c2": "The left and right bounds are set to positions 1 and 9, respectively",
       "av_c3": "Now move left bound rightward as long as it is at a value less than 60. Since it starts on 76 which is greater than 60, there is no movement of the left bound at this time.",
       "av_c4": "Likewise, the right bound starts at a value less than 60, so it does not move.",
@@ -16,7 +18,8 @@
       "av_c13": "Left bound is at 85, which is bigger than the pivot value.",
       "av_c14": "Move the right bound to the left until we reach a value that is smaller than 60.",
       "av_c15": "Note that the right bound has crossed over the left bound. So we break the loop.",
-      "av_c15b": "We put the pivot in its correct position by swapping it with the right bound.",
+      "av_c15a": "The right bound is now the correct position of the pivot.",
+      "av_c15b": "We swap the pivot with the right bound.",
       "av_c16": "Now we can return the final position of the pivot, which is 4."
     }
   }

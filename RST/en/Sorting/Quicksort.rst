@@ -189,7 +189,7 @@ This visualization explains the worst-case running time of Quick Sort
    :scripts: AV/Sorting/QuickSortWorstCaseCON.js
    :output: show
 
-This is terrible, no better than Bubble Sort.
+This is terrible, no better than Insertion or Selection Sort.
 When will this worst case occur?
 Only when each pivot yields a bad partitioning of the array.
 If the pivot values are selected at random, then this is extremely

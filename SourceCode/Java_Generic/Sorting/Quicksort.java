@@ -63,8 +63,8 @@ static <T extends Comparable<T>> int partition(T[] A, int left, int right, int p
     T pivotValue = A[pivot];
     while (true) {
         // Move `left` right as far as possible. Stop if equal to pivot!
-        // Also stop if `left` moves past `right` – important, so that
-        // `left` stops if it moves past the end of the array
+        // Also stop if `left` moves past `right` – this is important,
+        // so that `left` stops if it moves past the end of the array.
         while (left <= right && A[left].compareTo(pivotValue) < 0) 
             left++;
 
@@ -78,7 +78,7 @@ static <T extends Comparable<T>> int partition(T[] A, int left, int right, int p
         if (left > right)
             break;
 
-        // Otherwise, swap the elements and move `left` and `right` on by 1
+        // Otherwise, swap the elements and move `left` and `right` on by 1.
         swap(A, left, right);
         left++; right--;
     }
@@ -90,13 +90,15 @@ static <T extends Comparable<T>> int partition(T[] A, int left, int right, int p
 
 /* *** ODSATag: findpivot *** */
 static <T extends Comparable<T>> int findpivot(T[] A, int i, int j) {
-    return (i+j)/2;
+    // Not-so-good pivot selection: always choose the middle element.
+    return (i + j) / 2;
 }
 /* *** ODSAendTag: findpivot *** */
 
 /* *** ODSATag: Quicksort *** */
 static <T extends Comparable<T>> void quicksort(T[] A, int left, int right) {
-    if (left >= right) return;                  // Base case: Subarray length is <= 1
+    if (left >= right)                          // Base case: Subarray length is <= 1
+        return;
     int pivot = findpivot(A, left, right);      // Pick a pivot index
     pivot = partition(A, left, right, pivot);   // Partition the subarray; update pivot with its new position
     quicksort(A, left, pivot-1);                // Sort left partition
