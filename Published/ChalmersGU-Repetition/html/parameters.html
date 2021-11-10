@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1.2. Parsing Command Line Parameters In Your Program &mdash; Programming Basics: Background and Repetition</title>
+    <title>1.2. Parsing Command Line Parameters In Your Progam &mdash; Programming Basics: Background and Repetition</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,15 +162,15 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['parameters-in-programming'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "parameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Parsing Command Line Parameters In Your Program";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="parsing-command-line-parameters-in-your-program">
-<h1>1.<span class="section-number">2. </span>Parsing Command Line Parameters In Your Program<a class="headerlink" href="#parsing-command-line-parameters-in-your-program" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['parameters-in-programming'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "parameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Parsing Command Line Parameters In Your Progam";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="parsing-command-line-parameters-in-your-progam">
+<h1>1.<span class="section-number">2. </span>Parsing Command Line Parameters In Your Progam<a class="headerlink" href="#parsing-command-line-parameters-in-your-progam" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="parameters-in-programming">
 <h2>1.<span class="section-number">2.1. </span>Parameters In Programming<a class="headerlink" href="#parameters-in-programming" title="Permalink to this headline">¶</a></h2>
-<p>You probably understand the concept of parameters for a function.
-But how does a program itself have parameters?
-This comes in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function that every Java program has.
+<p>You probably understand the concept of arameters for a function.
+But how does a Program itself have parameters?
+This comes in the Main function that every Java program has.
 Consider this the “launch” function.
-Usually the “main” function is named <code class="docutils literal notranslate"><span class="pre">main</span></code> and takes an array of
+Usually the “main” function is named Main and takes an array of
 strings as its parameter, like this.</p>
 <div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>public static void main(String[] args)
 </pre></div>
@@ -193,43 +193,47 @@ your array in C would be:</p>
 </div>
 <p>Java however, removes the command name and only provides parameters.</p>
 <p>I have created a main function skeleton for you to use in your projects. It is
-set up simply and makes use of switch cases.
+set up simply and makes use of switch cases. You can <a href="http://pastebin.com/gwSH2cEa" target="_blank">download it</a>.
 Let’s see how it works.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Set our counter</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// No parameters: is this a problem?</span>
-        <span class="p">}</span>
-        <span class="k">while</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
-            <span class="c1">// While we have not reached the end of our arguments keep going.</span>
-            <span class="k">switch</span> <span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="s">&quot;-h&quot;</span><span class="p">:</span> <span class="c1">// Display help info</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;This is the help message. Proper command syntax:&quot;</span><span class="p">);</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -v: Displays version information&quot;</span><span class="p">);</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -h: Displays this help message&quot;</span><span class="p">);</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -f [file]: Sets file to file provided&quot;</span><span class="p">);</span>
-                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-                <span class="k">break</span><span class="p">;</span>            
-            <span class="k">case</span> <span class="s">&quot;-v&quot;</span><span class="p">:</span> <span class="c1">// Display version information</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Cmdline parse sample version 1.0.0&quot;</span><span class="p">);</span>
-                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">case</span> <span class="s">&quot;-f&quot;</span><span class="p">:</span> <span class="c1">// This is an example to show you how to handle when you have a parameter that takes info</span>
-                <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span> <span class="c1">// We are getting the filename so set it to the string after -f</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Input file is &quot;</span> <span class="o">+</span> <span class="n">fileName</span><span class="p">);</span> <span class="c1">// Print out info</span>
-                <span class="n">count</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// Increment counter to next item (skipping filename).</span>
-                <span class="c1">// Note this provides no bounds checking so if you pass the parameter without file info it may bomb if at the end</span>
-                <span class="c1">// You may also surround it in a try/catch for safety.</span>
-                <span class="k">break</span><span class="p">;</span>
-            <span class="k">default</span><span class="p">:</span> <span class="c1">// If none of your cases match then this is an unrecognized parameter and we will exit.</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized parameter &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\nExiting.&quot;</span><span class="p">);</span>
-                <span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>              
-                <span class="k">break</span><span class="p">;</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>public class Main {
+
+   /**
+    * @param args
+    */
+   public static void main(String[] args) {
+      int count = 0;//Set our counter
+      if(args.length &lt; 1) {
+         //No parameters is this a problem?
+      }
+      while(count &lt; args.length) {//While we have not reached the end of our arguments keep going.
+         switch(args[count]) {
+            case &quot;-h&quot;://Display help info
+               System.out.println(&quot;This is the help message. Proper command syntax:&quot;);
+               System.out.println(&quot;cmdline -v: Displays version information&quot;);
+               System.out.println(&quot;cmdline -h: Displays this help message&quot;);
+               System.out.println(&quot;cmdline -f [file]: Sets file to file provided&quot;);
+               count++;
+            break;            
+            case &quot;-v&quot;://Display version information
+               System.out.println(&quot;Cmdline parse sample version 1.0.0&quot;);
+               count++;
+            break;
+            case &quot;-f&quot;://This is an example to show you how to handle when you have a parameter that takes info
+               String fileName = args[count+1];//We are getting the filename so set it to the string after -f
+               System.out.println(&quot;Input file is &quot;+fileName);//Print out info
+               count = count+2;//Increment counter to next item (skipping filename).
+               //Note this provides no bounds checking so if you pass the parameter without file info it may bomb if at the end
+               //You may also surround it in a try/catch for safety.
+            break;
+            default://If none of your cases match then this is an unrecognized parameter and we will exit.
+               System.out.println(&quot;Unrecognized parameter &quot;+args[count]+&quot;\nExiting.&quot;);
+               System.exit(-1);              
+            break;
+         }
+      }
+   }
+
+}
 </pre></div>
 </div>
 <p>We have our main function take an array of Strings (named args).
@@ -246,13 +250,13 @@ for any non matching parameters.
 In this example I choose to exit after printing the unrecognized
 string.
 In the future you may wish to change this to something else.
-You can learn more about <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html" target="_blank">switch statements</a>.</p>
-<p>It is also important to note that this function will possibly throw an
-exception or behave in an unexpected way if you use  <code class="docutils literal notranslate"><span class="pre">-f</span></code> but do not
+You can learn more about <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html" target="_blank">switch statements</a>.
+It is also important to note that this function will possibly throw an
+exception or behave in an unexpected way if you use “-f” but do not
 give a file name.
-For example if you call the program with <code class="docutils literal notranslate"><span class="pre">{&quot;-f&quot;,</span> <span class="pre">&quot;-v&quot;}</span></code>, this will set
-the filename to “-v”.
-Or if you call the program with <code class="docutils literal notranslate"><span class="pre">{&quot;-f&quot;}</span></code>, you will get an exception for
+For example if you call the program with {“-f”, “-v”}, this will set
+the filename to -v.
+Or if you call the program with {“-f”}, you will get an exception for
 trying to access outside the array bounds.
 You can prevent this by using a try-catch, but I chose to keep this
 example very simple.

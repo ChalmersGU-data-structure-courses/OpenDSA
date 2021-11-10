@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-08 09:26:08"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
-<link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-lists">
 <h1>4.<span class="section-number">4. </span>Dynamic Array-Based Lists<a class="headerlink" href="#dynamic-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>The problem with a static array-based list is that it has a limited capacity.
@@ -365,11 +365,11 @@ is always a power of two. So to calculate the total number of elements
 copied, instead of adding up all the terms by hand, we can use the
 formula <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^n = 2^{n+1}-1\)</span> (with <span class="math notranslate nohighlight">\(512=2^9\)</span>).</p>
 <p>Suppose that we now choose <span class="math notranslate nohighlight">\(n=1,000,000\)</span>. How many elements get
-copied? In this case the final array size will be <span class="math notranslate nohighlight">\(2^20 = 1,048,576\)</span>.
-The array size will eventually grow from <span class="math notranslate nohighlight">\(2^18\)</span> to <span class="math notranslate nohighlight">\(2^19\)</span>
-to <span class="math notranslate nohighlight">\(2^20\)</span> elements, with the final call to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code>
-copying <span class="math notranslate nohighlight">\(2^19\)</span> elements. Using the formula above, the total number
-of elements copied is <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^19 = 2^20-1 = 1,048,575\)</span>.</p>
+copied? In this case the final array size will be <span class="math notranslate nohighlight">\(2^{20} = 1,048,576\)</span>.
+The array size will eventually grow from <span class="math notranslate nohighlight">\(2^{18}\)</span> to <span class="math notranslate nohighlight">\(2^{19}\)</span>
+to <span class="math notranslate nohighlight">\(2^{20}\)</span> elements, with the final call to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code>
+copying <span class="math notranslate nohighlight">\(2^{19}\)</span> elements. Using the formula above, the total number
+of elements copied is <span class="math notranslate nohighlight">\(2^0+2^1+2^2+...+2^{19} = 2^{20}-1 = 1,048,575\)</span>.</p>
 <p>Compared to when we grew the array by a fixed size of 1 element, this is
 <span class="math notranslate nohighlight">\(500,000\)</span> times fewer! So this in fact seems to be nice and efficient.</p>
 <p>Let us now generalise to an arbitrary <span class="math notranslate nohighlight">\(n\)</span>. The worst case is when
@@ -417,7 +417,7 @@ amount, and scaling it by a constant factor. The graph plots how many
 elements need to be copied, as a function of how many elements we add
 to the list.</p>
 <div class="divdgm" id="listgrowthgraph">
-<div id="ListArrayDynamicCON">
+<div id="ListArrayDynamicZoomCON">
 </div>
 </div>
 <p>Notice that although growing by 10000 seems pretty good at first, for
@@ -425,7 +425,7 @@ largest lists it’s worse than growing by 10%. We can see this more
 clearly if we zoom out the graph, making the <em>x</em>-axis go up to
 <span class="math notranslate nohighlight">\(10,000,000\)</span> instead of <span class="math notranslate nohighlight">\(1,000,000\)</span>:</p>
 <div class="divdgm">
-<div id="ListArrayDynamicZoomCON">
+<div id="ListArrayDynamicCON">
 </div>
 </div>
 <p>Though you can’t see it in the graph, at <span class="math notranslate nohighlight">\(x=10,000,000\)</span>, growing
@@ -750,8 +750,8 @@ All these constants can be changed at will.</p>
 </dl>
 <script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayList-Append-CON.js"></script>
 <script type="text/javascript" src="../../../DataStructures/Plot.js"></script>
-<script type="text/javascript" src="../../../AV/List/ListArrayDynamicCON.js"></script>
 <script type="text/javascript" src="../../../AV/List/ListArrayDynamicZoomCON.js"></script>
+<script type="text/javascript" src="../../../AV/List/ListArrayDynamicCON.js"></script>
 <script type="text/javascript" src="../../../AV/ChalmersGU/DynamicArrayList-Remove-CON.js"></script>
 </div>
 </div>
@@ -780,7 +780,7 @@ All these constants can be changed at will.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 08, 2021.
+      Last updated on Nov 10, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

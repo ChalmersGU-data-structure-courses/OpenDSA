@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-08 09:26:08"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -18,9 +18,9 @@
 
 .. odsalink:: AV/ChalmersGU/CGU-Styles.css
 
-.. odsalink:: AV/List/ListArrayDynamicCON.css
-
 .. odsalink:: AV/List/ListArrayDynamicZoomCON.css
+
+.. odsalink:: AV/List/ListArrayDynamicCON.css
 .. This file is part of the OpenDSA eTextbook project. See
 .. http://opendsa.org for more details.
 .. Copyright (c) 2012-2020 by the OpenDSA Project Contributors, and
@@ -196,11 +196,11 @@ copied, instead of adding up all the terms by hand, we can use the
 formula :math:`2^0+2^1+2^2+...+2^n = 2^{n+1}-1` (with :math:`512=2^9`).
 
 Suppose that we now choose :math:`n=1,000,000`. How many elements get
-copied? In this case the final array size will be :math:`2^20 = 1,048,576`.
-The array size will eventually grow from :math:`2^18` to :math:`2^19`
-to :math:`2^20` elements, with the final call to ``resizeArray``
-copying :math:`2^19` elements. Using the formula above, the total number
-of elements copied is :math:`2^0+2^1+2^2+...+2^19 = 2^20-1 = 1,048,575`.
+copied? In this case the final array size will be :math:`2^{20} = 1,048,576`.
+The array size will eventually grow from :math:`2^{18}` to :math:`2^{19}`
+to :math:`2^{20}` elements, with the final call to ``resizeArray``
+copying :math:`2^{19}` elements. Using the formula above, the total number
+of elements copied is :math:`2^0+2^1+2^2+...+2^{19} = 2^{20}-1 = 1,048,575`.
 
 Compared to when we grew the array by a fixed size of 1 element, this is
 :math:`500,000` times fewer! So this in fact seems to be nice and efficient.
@@ -259,7 +259,7 @@ to the list.
 
 .. _ListGrowthGraph:
 
-.. inlineav:: ListArrayDynamicCON dgm
+.. inlineav:: ListArrayDynamicZoomCON dgm
     :align: center
 
 Notice that although growing by 10000 seems pretty good at first, for
@@ -267,7 +267,7 @@ largest lists it's worse than growing by 10%. We can see this more
 clearly if we zoom out the graph, making the *x*-axis go up to
 :math:`10,000,000` instead of :math:`1,000,000`:
 
-.. inlineav:: ListArrayDynamicZoomCON dgm
+.. inlineav:: ListArrayDynamicCON dgm
     :align: center
 
 Though you can't see it in the graph, at :math:`x=10,000,000`, growing
@@ -369,6 +369,6 @@ All these constants can be changed at will.
 
 .. odsascript:: AV/ChalmersGU/DynamicArrayList-Append-CON.js
 .. odsascript:: DataStructures/Plot.js
-.. odsascript:: AV/List/ListArrayDynamicCON.js
 .. odsascript:: AV/List/ListArrayDynamicZoomCON.js
+.. odsascript:: AV/List/ListArrayDynamicCON.js
 .. odsascript:: AV/ChalmersGU/DynamicArrayList-Remove-CON.js
