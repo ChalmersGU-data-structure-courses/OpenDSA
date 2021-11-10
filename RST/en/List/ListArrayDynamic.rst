@@ -235,9 +235,9 @@ to the list.
 
 .. _ListGrowthGraph:
 
-.. inlineav:: ListArrayDynamicCON dgm
-    :links: AV/List/ListArrayDynamicCON.css
-    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicCON.js
+.. inlineav:: ListArrayDynamicZoomCON dgm
+    :links: AV/List/ListArrayDynamicZoomCON.css
+    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicZoomCON.js
     :align: center
 
 Notice that although growing by 10000 seems pretty good at first, for
@@ -245,9 +245,9 @@ largest lists it's worse than growing by 10%. We can see this more
 clearly if we zoom out the graph, making the *x*-axis go up to
 :math:`10,000,000` instead of :math:`1,000,000`:
 
-.. inlineav:: ListArrayDynamicZoomCON dgm
-    :links: AV/List/ListArrayDynamicZoomCON.css
-    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicZoomCON.js
+.. inlineav:: ListArrayDynamicCON dgm
+    :links: AV/List/ListArrayDynamicCON.css
+    :scripts: DataStructures/Plot.js AV/List/ListArrayDynamicCON.js
     :align: center
 
 Though you can't see it in the graph, at :math:`x=10,000,000`, growing
