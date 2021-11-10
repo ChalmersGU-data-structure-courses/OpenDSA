@@ -172,11 +172,11 @@ copied, instead of adding up all the terms by hand, we can use the
 formula :math:`2^0+2^1+2^2+...+2^n = 2^{n+1}-1` (with :math:`512=2^9`).
 
 Suppose that we now choose :math:`n=1,000,000`. How many elements get
-copied? In this case the final array size will be :math:`2^20 = 1,048,576`.
-The array size will eventually grow from :math:`2^18` to :math:`2^19`
-to :math:`2^20` elements, with the final call to ``resizeArray``
-copying :math:`2^19` elements. Using the formula above, the total number
-of elements copied is :math:`2^0+2^1+2^2+...+2^19 = 2^20-1 = 1,048,575`.
+copied? In this case the final array size will be :math:`2^{20} = 1,048,576`.
+The array size will eventually grow from :math:`2^{18}` to :math:`2^{19}`
+to :math:`2^{20}` elements, with the final call to ``resizeArray``
+copying :math:`2^{19}` elements. Using the formula above, the total number
+of elements copied is :math:`2^0+2^1+2^2+...+2^{19} = 2^{20}-1 = 1,048,575`.
 
 Compared to when we grew the array by a fixed size of 1 element, this is
 :math:`500,000` times fewer! So this in fact seems to be nice and efficient.
