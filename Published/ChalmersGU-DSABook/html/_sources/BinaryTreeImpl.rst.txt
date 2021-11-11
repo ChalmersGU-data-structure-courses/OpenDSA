@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -35,8 +35,7 @@
 Binary Tree Node Implementations (WORK IN PROGRESS)
 ====================================================
 
-In this module we examine various ways to implement binary tree
-nodes.
+In this module we examine one way to implement binary tree nodes.
 By definition, all binary tree nodes have two children,
 though one or both children can be empty.
 Binary tree nodes typically contain a value field,
@@ -44,9 +43,7 @@ with the type of the field depending on the application.
 The most common node implementation includes a value field and
 pointers to the two children.
 
-Here is a simple implementation for the
-``BinNode`` interface, which we will name ``BSTNode``.
-Its element type is an Object.
+Here is a simple implementation for binary tree nodes.
 When we need to support search structures such as the
 :ref:`Binary Search Tree  <BST>`,
 the node will typically store a
@@ -56,6 +53,15 @@ one to its left child and another to its right child.
 
 .. codeinclude:: Binary/BSTNode
    :tag: BSTNode
+
+Sometimes, we will treat binary tree nodes as an *abstract data type*.
+In those cases, instead of using the class above, we will use the
+following ``BinNode`` ADT. It provides operations that set and return
+the element value, return a pointer to the left or right child, and
+indicate whether a node is a leaf.
+
+.. codeinclude:: Binary/BinNode
+   :tag: BinNode
 
 |
 

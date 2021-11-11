@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.1. Chapter Introduction: Binary Search Trees (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>7.1. Chapter Introduction: Binary Search Trees &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Binary Search Trees (WORK IN PROGRESS)" href="BST.html" />
+    <link rel="next" title="2. Binary Search Trees" href="BST.html" />
     <link rel="prev" title="3. Sequential Tree Representations (optional)" href="SequentialRep.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BST.html">7.<span class="section-number">2. </span>Binary Search Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="BST.html">7.<span class="section-number">2. </span>Binary Search Trees</a>&#160;&#160;»
 
 
         </p>
@@ -162,22 +162,13 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="chapter-introduction-binary-search-trees-work-in-progress">
-<h1>7.<span class="section-number">1. </span>Chapter Introduction: Binary Search Trees (WORK IN PROGRESS)<a class="headerlink" href="#chapter-introduction-binary-search-trees-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference internal" href="Glossary.html#term-tree"><span class="xref std std-term">Tree</span></a> structures enable efficient access and efficient
-update to large collections of data.
-<a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">Binary trees</span></a> in particular are widely used and
-relatively easy to implement.
-But binary trees are useful for many things besides searching.
-Just a few examples of applications that trees can speed up include
-<a class="reference internal" href="Heaps.html#heaps"><span class="std std-ref">prioritizing jobs</span></a>,
-<a class="reference internal" href="BinaryTreeImpl.html#binarytreeimpl"><span class="std std-ref">describing mathematical expressions</span></a>
-and the syntactic elements of computer programs,
-or organizing the information needed to drive
-<a class="reference internal" href="Huffman.html#huffman"><span class="std std-ref">data compression algorithms</span></a>.</p>
-<p>This chapter covers terminology used for discussing binary trees,
-<a class="reference internal" href="Glossary.html#term-tree-traversal"><span class="xref std std-term">tree traversals</span></a>, approaches to implementing
-tree <a class="reference internal" href="Glossary.html#term-node"><span class="xref std std-term">nodes</span></a>, and various examples of binary trees.</p>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="chapter-introduction-binary-search-trees">
+<h1>7.<span class="section-number">1. </span>Chapter Introduction: Binary Search Trees<a class="headerlink" href="#chapter-introduction-binary-search-trees" title="Permalink to this headline">¶</a></h1>
+<p>This chapter covers <em>balanced binary search trees (BSTs)</em>, a data
+structure that uses a binary tree to implement a set or a map.
+Balanced BSTs are the first data structure we see that implements the
+set and map operations efficiently. In a balanced BST, insertion,
+deletion and lookup all take <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.</p>
 </div>
 
 
@@ -189,7 +180,7 @@ tree <a class="reference internal" href="Glossary.html#term-node"><span class="x
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BST.html">7.<span class="section-number">2. </span>Binary Search Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="BST.html">7.<span class="section-number">2. </span>Binary Search Trees</a>&#160;&#160;»
 
 </p>
       </div>
@@ -204,7 +195,7 @@ tree <a class="reference internal" href="Glossary.html#term-node"><span class="x
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 11, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

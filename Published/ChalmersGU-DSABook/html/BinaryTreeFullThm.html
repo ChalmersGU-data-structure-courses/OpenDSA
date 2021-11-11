@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.4. The Full Binary Tree Theorem (optional) &mdash; Data Structures and Algorithms</title>
+    <title>5.5. The Full Binary Tree Theorem (optional) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="5. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
-    <link rel="prev" title="3. Binary Tree as a Recursive Data Structure" href="RecursiveDS.html" />
+    <link rel="next" title="6. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
+    <link rel="prev" title="4. Binary Tree Node Implementations (WORK IN PROGRESS)" href="BinaryTreeImpl.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeImpl.html">5.<span class="section-number">4. </span>Binary Tree Node Implementations (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryTreeTraversal.html">5.<span class="section-number">5. </span>Binary Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>&#160;&#160;»
 
 
         </p>
@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeFullThm";ODSA.SETTINGS.MODULE_LONG_NAME = "The Full Binary Tree Theorem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/UnaryTreeExampleCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeFullThm";ODSA.SETTINGS.MODULE_LONG_NAME = "The Full Binary Tree Theorem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/UnaryTreeExampleCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="the-full-binary-tree-theorem-optional">
-<h1>5.<span class="section-number">4. </span>The Full Binary Tree Theorem (optional)<a class="headerlink" href="#the-full-binary-tree-theorem-optional" title="Permalink to this headline">¶</a></h1>
+<h1>5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)<a class="headerlink" href="#the-full-binary-tree-theorem-optional" title="Permalink to this headline">¶</a></h1>
 <p>Some binary tree implementations store data only at the
 <a class="reference internal" href="Glossary.html#term-leaf-node"><span class="xref std std-term">leaf nodes</span></a>,
 using the <a class="reference internal" href="Glossary.html#term-internal-node"><span class="xref std std-term">internal nodes</span></a> to provide structure
@@ -179,7 +179,7 @@ leaves in a tree containing <span class="math notranslate nohighlight">\(n\)</sp
 <p>Unfortunately, this fraction is not fixed.
 A binary tree of <span class="math notranslate nohighlight">\(n\)</span> internal nodes might have only one leaf.
 This occurs when the internal nodes are arranged in a chain ending
-in a single leaf as shown in Figure <a href="BinaryTreeFullThm.html#oneleaf">5.5.1</a>.
+in a single leaf as shown in Figure <a href="BinaryTreeFullThm.html#oneleaf">5.6.1</a>.
 In this example, the number of leaves is low because each
 internal node has only one non-empty child.
 To find an upper bound on the number of leaves for a tree of <span class="math notranslate nohighlight">\(n\)</span>
@@ -196,10 +196,10 @@ space from its internal nodes.</p>
 <div class="divdgm" id="oneleaf">
 <div id="UnaryTreeExampleCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 5.5.1: A tree containing many internal nodes and a single leaf.</span></p>
+<p class="caption"><span class="caption-text"> Figure 5.6.1: A tree containing many internal nodes and a single leaf.</span></p>
 </div>
 <div class="topic" id="fulltree">
-<p class="topic-title">Theorem 5.5.1  </p>
+<p class="topic-title">Theorem 5.6.1  </p>
 <p><strong>Full Binary Tree Theorem:</strong>
 The number of leaves in a non-empty full binary tree is one
 more than the number of internal nodes.</p>
@@ -251,7 +251,7 @@ full or not.
 Here are two approaches to proving the following theorem, and
 each suggests a useful way of thinking about binary trees.</p>
 <div class="topic" id="subtreethrm">
-<p class="topic-title">Theorem 5.5.2  </p>
+<p class="topic-title">Theorem 5.6.2  </p>
 <p>The number of empty subtrees in a non-empty binary tree is one
 more than the number of nodes in the tree.</p>
 <p><strong>Proof 1:</strong>
@@ -294,11 +294,11 @@ Because the total number of children is <span class="math notranslate nohighligh
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeImpl.html">5.<span class="section-number">4. </span>Binary Tree Node Implementations (WORK IN PROGRESS)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryTreeTraversal.html">5.<span class="section-number">5. </span>Binary Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>&#160;&#160;»
 
 </p>
       </div>
@@ -313,7 +313,7 @@ Because the total number of children is <span class="math notranslate nohighligh
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 11, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

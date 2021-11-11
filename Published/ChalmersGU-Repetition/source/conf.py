@@ -104,7 +104,7 @@ exclude_patterns = []
 #show_authors = False
 
 #language to highlight source code in
-highlight_language = 'guess' #'{"Java_Generic": {"ext": ["java"], "label": "Java (Generic)", "lang": "java"}, "Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
+highlight_language = 'guess' #'{"Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx' #'sphinx'
@@ -302,7 +302,7 @@ ebook_path = '/home/nick/prog/OpenDSA/Books/ChalmersGU-Repetition/html/'
 sourcecode_path = '/home/nick/prog/OpenDSA/SourceCode/'
 
 # Dictionary containing code_lang to extension mapping
-code_lang = '{"Java_Generic": {"ext": ["java"], "label": "Java (Generic)", "lang": "java"}, "Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
+code_lang = '{"Java": {"ext": ["java"], "label": "Java", "lang": "java"}, "Python": {"ext": ["py"], "label": "Python", "lang": "python"}}'
 
 # Boolean that controls whether or not code is displayed in tabs if more than one language is available
 tabbed_codeinc = True

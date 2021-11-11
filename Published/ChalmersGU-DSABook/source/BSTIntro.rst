@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -21,26 +21,16 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
-   :satisfies: binary tree intro
-   :topic: Binary Trees
+   :author: Nick Smallbone
+   :satisfies: 
+   :topic: Binary Search Trees
 
-Chapter Introduction: Binary Search Trees (WORK IN PROGRESS)
-============================================================
+Chapter Introduction: Binary Search Trees
+=========================================
 
-:term:`Tree <tree>` structures enable efficient access and efficient
-update to large collections of data.
-:term:`Binary trees <binary tree>` in particular are widely used and
-relatively easy to implement.
-But binary trees are useful for many things besides searching.
-Just a few examples of applications that trees can speed up include
-:ref:`prioritizing jobs  <Heaps>`,
-:ref:`describing mathematical expressions  <BinaryTreeImpl>`
-and the syntactic elements of computer programs,
-or organizing the information needed to drive
-:ref:`data compression algorithms  <Huffman>`.
-
-This chapter covers terminology used for discussing binary trees,
-:term:`tree traversals <tree traversal>`, approaches to implementing
-tree :term:`nodes <node>`, and various examples of binary trees.
+This chapter covers *balanced binary search trees (BSTs)*, a data
+structure that uses a binary tree to implement a set or a map.
+Balanced BSTs are the first data structure we see that implements the
+set and map operations efficiently. In a balanced BST, insertion,
+deletion and lookup all take :math:`O(\log n)` time.
 

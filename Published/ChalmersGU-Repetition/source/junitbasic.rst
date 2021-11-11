@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "junitbasic";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing JUnit Tests";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "junitbasic";ODSA.SETTINGS.MODULE_LONG_NAME = "Writing JUnit Tests";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,7 +32,7 @@ Writing JUnit Tests
 Writing JUnit Tests
 -------------------
 
-We have reviewed good design for test code and how to design modular and
+We have reviewed good design practices for test code and how to design modular and
 meaningful test code. This tutorial will show a basic series of tests on a
 binary search tree.
 
@@ -46,12 +46,12 @@ Before you start, be sure you have familiarized yourself with the basics of the
 .. |external_link| raw:: html
 
    <a
-   href="https://www.cs.cmu.edu/~adamchik/15-121/lectures/Trees/code/BST.java" target = "_blank">Here is the full BST source code</a>
+   href="https://viterbi-web.usc.edu/~adamchik/15-121/lectures/Trees/code/BST.java" target = "_blank">Here is the full BST source code</a>
 
 
 While this class contains many methods this tutorial will only be testing a few.
 
-.. codeinclude:: Java/Tutorials/TestBST.java
+.. codeinclude:: Tutorials/TestBST
 
 The above source code shows a possible approach to testing the BST class add and
 delete methods. Given that a binary search tree is a well documented data

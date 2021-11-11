@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove-work-in-progress', 'bst-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script>
 
 .. _BST:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:18"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :satisfies: BST
    :topic: Binary Trees
 
-Binary Search Trees (WORK IN PROGRESS)
-=======================================
+Binary Search Trees
+===================
 
 Binary Search Tree Definition
 -----------------------------
@@ -169,8 +169,8 @@ This keeps the average cost of a BST operation low.
    :long_name: BST Insert Proficiency Exercise
 
 
-BST Remove (work in progress)
------------------------------
+BST Remove
+----------
 
 Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered

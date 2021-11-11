@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sharing', 'shallow-and-deep-copying', 'what-does-it-mean-to-copy', 'shallow-and-deep-comparing', 'bad-references', 'why-are-bad-reference-bugs-so-common'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers2";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 2";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/shallowdeepCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sharing', 'shallow-and-deep-copying', 'what-does-it-mean-to-copy', 'shallow-and-deep-comparing', 'bad-references', 'why-are-bad-reference-bugs-so-common'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers2";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 2";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/shallowdeepCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/shallowdeepExampleCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/empRefnullCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/badPointerPowCON.css" rel="stylesheet" type="text/css" />
@@ -188,7 +188,7 @@ communication between parts of a program.</p>
     data-exer-name="PointerEX1PRO"
     data-long-name="PointerEX1PRO"
     data-short-name="PointerEX1PRO"
-    data-frame-src="../../../Exercises/Pointers/PointerEX1PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic"
+    data-frame-src="../../../Exercises/Pointers/PointerEX1PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
     data-frame-width="950"
     data-frame-height="800"
     data-vertical-scrolling="no"
@@ -264,7 +264,7 @@ their own.</p>
     data-exer-name="PointerEX2PRO"
     data-long-name="PointerEX2PRO"
     data-short-name="PointerEX2PRO"
-    data-frame-src="../../../Exercises/Pointers/PointerEX2PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic"
+    data-frame-src="../../../Exercises/Pointers/PointerEX2PRO.html?localMode=true&amp;module=BasicPointers2&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
     data-frame-width="950"
     data-frame-height="800"
     data-vertical-scrolling="no"
@@ -396,17 +396,12 @@ It is up to you to ensure that each reference is assigned a pointee
 before it is used.
 Here is a simple example of bad code, and a
 visualization of how memory would react if this code were executed.</p>
-<div id="badPointers_badPointers_code"><ul><li><a href="#badPointers_badPointers_code_Java_Generic">Java (Generic)</a></li><li><a href="#badPointers_badPointers_code_Java">Java</a></li></ul><div id="badPointers_badPointers_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>        <span class="n">Employee</span> <span class="n">badPointer</span><span class="p">;</span> <span class="c1">// Allocate the reference ...</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>        <span class="n">Employee</span> <span class="n">badPointer</span><span class="p">;</span> <span class="c1">// Allocate the reference ...</span>
         <span class="c1">// badPointer = new Employee(&quot;Sam&quot;, 1000); ... but forget the pointee</span>
         <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">badPointer</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>  <span class="c1">// This line causes a NullPointerException</span>
 </pre></div>
 </div>
-</div><div id="badPointers_badPointers_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>        <span class="n">Employee</span> <span class="n">badPointer</span><span class="p">;</span> <span class="c1">// Allocate the reference ...</span>
-        <span class="c1">// badPointer = new Employee(&quot;Sam&quot;, 1000); ... but forget the pointee</span>
-        <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">badPointer</span><span class="p">.</span><span class="na">getName</span><span class="p">());</span>  <span class="c1">// This line causes a NullPointerException</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#badPointers_badPointers_code" ).tabs();});</script><div class="line-block">
+<div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div id="badPointerPowCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="badPointerPowCON" data-long-name="badPointerPowCON" data-exer-id="" alt="badPointerPowCON" tabIndex="-1">
@@ -484,7 +479,7 @@ But don’t be surprised when it happens, and your program breaks.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 03, 2021.
+      Last updated on Nov 11, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
