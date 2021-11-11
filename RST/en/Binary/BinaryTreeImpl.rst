@@ -9,8 +9,8 @@
    :satisfies: binary tree node implementation; expression tree
    :topic: Binary Trees
 
-Binary Tree Node Implementations (WORK IN PROGRESS)
-====================================================
+Binary Tree Node Implementations
+================================
 
 In this module we examine one way to implement binary tree nodes.
 By definition, all binary tree nodes have two children,
