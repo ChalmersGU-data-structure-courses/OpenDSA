@@ -8,8 +8,8 @@
    :satisfies: information flow in a binary tree
    :topic: Information Flow in a Binary
 
-Binary Tree Guided Information Flow (WORK IN PROGRESS)
-=========================================================
+Binary Tree Guided Information Flow
+===================================
 
 Binary Tree Guided Information Flow
 -----------------------------------

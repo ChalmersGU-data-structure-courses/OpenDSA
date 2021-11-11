@@ -44,7 +44,7 @@ class BST {
 
   // Return a record that matches the key value
 /* *** ODSATag: findhelp *** */
-  private Key getHelper(BSTNode rt, Key key) {
+  private Value getHelper(Node rt, Key key) {
     if (rt == null) return null;
     if (rt.key.compareTo(key) > 0)
       return getHelper(rt.left, key);
@@ -58,21 +58,21 @@ class BST {
   // Return the current subtree,
   // modified to contain the new item
 /* *** ODSATag: inserthelp *** */
-  private BSTNode putHelper(BSTNode rt, Key key) {
-    if (rt == null) return new BSTNode(e);
+  private Node putHelper(Node rt, Key key, Value value) {
+    if (rt == null) return new Node(key, value);
     if (rt.key.compareTo(key) >= 0)
-      rt.left = putHelper(rt.left, e);
+      rt.left = putHelper(rt.left, key, value);
     else
-      rt.right = putHelper(rt.right, e);
+      rt.right = putHelper(rt.right, key, value);
     return rt;
   }
 /* *** ODSAendTag: inserthelp *** */
 
 /* *** ODSATag: deletemax *** */
   // Delete the maximum valued element in a subtree
-  private BSTNode deletemax(BSTNode rt) {
-    if (rt.right() == null) return rt.left();
-    rt.setRight(deletemax(rt.right()));
+  private Node deletemax(Node rt) {
+    if (rt.right == null) return rt.left();
+    rt.right = deletemax(rt.right);
     return rt;
   }
 /* *** ODSAendTag: deletemax *** */
@@ -88,19 +88,19 @@ class BST {
   // Remove a node with the key value
   // Return the tree with the node removed
 /* *** ODSATag: removehelp *** */
-  private BSTNode removehelp(BSTNode rt, Key key) {
+  private Node removeHelper(Node rt, Key key) {
     if (rt == null) return null;
-    if (rt.value().compareTo(key) > 0)
-      rt.setLeft(removehelp(rt.left(), key));
-    else if (rt.value().compareTo(key) < 0)
-      rt.setRight(removehelp(rt.right(), key));
+    if (rt.key.compareTo(key) > 0)
+      rt.left = removeHelper(rt.left, key);
+    else if (rt.key.compareTo(key) < 0)
+      rt.right = removeHelper(rt.right, key);
     else { // Found it
-      if (rt.left() == null) return rt.right();
-      else if (rt.right() == null) return rt.left();
+      if (rt.left == null) return rt.right;
+      else if (rt.right == null) return rt.left;
       else { // Two children
-        BSTNode temp = getmax(rt.left());
-        rt.setValue(temp.value());
-        rt.setLeft(deletemax(rt.left()));
+        Node temp = lastNode(rt.left);
+        rt.key = temp.key; rt.value = temp.value;
+        rt.left = deletemax(rt.left);
       }
     }
     return rt;
