@@ -12,8 +12,7 @@
 Binary Tree Node Implementations (WORK IN PROGRESS)
 ====================================================
 
-In this module we examine various ways to implement binary tree
-nodes.
+In this module we examine one way to implement binary tree nodes.
 By definition, all binary tree nodes have two children,
 though one or both children can be empty.
 Binary tree nodes typically contain a value field,
@@ -21,9 +20,7 @@ with the type of the field depending on the application.
 The most common node implementation includes a value field and
 pointers to the two children.
 
-Here is a simple implementation for the
-``BinNode`` interface, which we will name ``BSTNode``.
-Its element type is an Object.
+Here is a simple implementation for BST nodes.
 When we need to support search structures such as the
 :ref:`Binary Search Tree <binary search tree> <BST>`,
 the node will typically store a
