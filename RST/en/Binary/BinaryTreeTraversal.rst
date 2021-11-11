@@ -114,21 +114,6 @@ this traversal to print all nodes in ascending order of value.
 Implementation
 ~~~~~~~~~~~~~~
 
-Now we will discuss some implementations for the traversals, but we
-need to define a node ADT to work with.
-Just as a linked list is composed of a collection of link objects, a
-tree is composed of a collection of node objects.
-Here is an ADT for binary tree nodes, called ``BinNode``.
-This class will be used by some of the binary tree structures
-presented later.
-Member functions are provided that set or return the element value,
-return a pointer to the left child,
-return a pointer to the right child,
-or indicate whether the node is a leaf.
-
-.. codeinclude:: Binary/BinNode
-   :tag: BinNode
-
 A traversal routine is naturally written as a recursive
 function.
 Its input parameter is a pointer to a node which we will call

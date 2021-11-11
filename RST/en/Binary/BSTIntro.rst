@@ -4,25 +4,15 @@
 .. distributed under an MIT open source license.
 
 .. avmetadata::
-   :author: Cliff Shaffer
-   :satisfies: binary tree intro
-   :topic: Binary Trees
+   :author: Nick Smallbone
+   :satisfies: 
+   :topic: Binary Search Trees
 
-Chapter Introduction: Binary Search Trees (WORK IN PROGRESS)
-============================================================
+Chapter Introduction: Binary Search Trees
+=========================================
 
-:term:`Tree <tree>` structures enable efficient access and efficient
-update to large collections of data.
-:term:`Binary trees <binary tree>` in particular are widely used and
-relatively easy to implement.
-But binary trees are useful for many things besides searching.
-Just a few examples of applications that trees can speed up include
-:ref:`prioritizing jobs <priority queue> <Heaps>`,
-:ref:`describing mathematical expressions <expression tree> <BinaryTreeImpl>`
-and the syntactic elements of computer programs,
-or organizing the information needed to drive
-:ref:`data compression algorithms <Huffman codes> <Huffman>`.
-
-This chapter covers terminology used for discussing binary trees,
-:term:`tree traversals <tree traversal>`, approaches to implementing
-tree :term:`nodes <node>`, and various examples of binary trees.
+This chapter covers *balanced binary search trees (BSTs)*, a data
+structure that uses a binary tree to implement a set or a map.
+Balanced BSTs are the first data structure we see that implements the
+set and map operations efficiently. In a balanced BST, insertion,
+deletion and lookup all take :math:`O(\log n)` time.

@@ -1,7 +1,7 @@
 {
   "translations": {
     "en": {
-      "sc1": "Consider searching for the record with key value 32 in this tree. We call the findhelp method with a pointer to the BST root (the node with key value 37).",
+      "sc1": "Consider searching for the record with key value 32 in this tree. We call the getHelper method with a pointer to the BST root (the node with key value 37).",
       "sc2": "Check what rt is pointing to. It is not null.",
       "sc3": "Check the value at the root. We find that it is greater than what we are looking for.",
       "sc4": "So we want to visit the left child.",
@@ -12,7 +12,7 @@
       "sc12": "Now we will start unwinding the recursion, passing the record with key value 32 back up to the caller.",
       "sc13": "Pop the recursion, now rt is back to the node with value 24.",
       "sc14": "Pop the recursion, now rt is back to the node with value 37.",
-      "sc15": "Pop the recursion one final time to return the record with value 32 back to the original caller of findhelp.",
+      "sc15": "Pop the recursion one final time to return the record with value 32 back to the original caller of getHelper.",
       "sc16": "Check the value at the root. We find that it is not greater than what we are looking for.",
       "sc17": "Check the value at the root. We find that it is not equal to what we are looking for."
     }

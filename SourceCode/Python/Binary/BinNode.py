@@ -1,5 +1,5 @@
 # /* *** ODSATag: BinNode *** */
-class BinNode: # // Binary tree node ADT
+class BinNode: # Binary tree node ADT
   # Get and set the element value
   def value(self): ...
   def setValue(self, value): ...

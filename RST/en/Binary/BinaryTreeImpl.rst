@@ -20,7 +20,7 @@ with the type of the field depending on the application.
 The most common node implementation includes a value field and
 pointers to the two children.
 
-Here is a simple implementation for BST nodes.
+Here is a simple implementation for binary tree nodes.
 When we need to support search structures such as the
 :ref:`Binary Search Tree <binary search tree> <BST>`,
 the node will typically store a
@@ -30,6 +30,15 @@ one to its left child and another to its right child.
 
 .. codeinclude:: Binary/BSTNode
    :tag: BSTNode
+
+Sometimes, we will treat binary tree nodes as an *abstract data type*.
+In those cases, instead of using the class above, we will use the
+following ``BinNode`` ADT. It provides operations that set and return
+the element value, return a pointer to the left or right child, and
+indicate whether a node is a leaf.
+
+.. codeinclude:: Binary/BinNode
+   :tag: BinNode
 
 |
 
