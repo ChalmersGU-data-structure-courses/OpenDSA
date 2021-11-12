@@ -4,7 +4,7 @@ modules.json
 modules.csv
 *.bak
 \#*#
-.#*#
+.#*
 
 # For MAC users
 *.DS_Store
