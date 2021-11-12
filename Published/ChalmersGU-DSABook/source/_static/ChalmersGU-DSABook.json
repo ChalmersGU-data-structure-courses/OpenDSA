@@ -115,6 +115,7 @@
       "Binary/BinaryTreeIntro": {},
       "Binary/BinaryTree": {},
       "Binary/RecursiveDS": {},
+      "Binary/BinaryTreeImpl": {},
       "Binary/BinaryTreeFullThm": {},
       "Binary/BinaryTreeTraversal": {
         "btTravPreorderPRO": {"exer_options": {"JXOP-code": "none"}},
@@ -123,7 +124,6 @@
       },
       "Binary/WritingTraversals": {},
       "BTRecurTutor/BinaryTreeInfFlw": {},
-      "Binary/BinaryTreeImpl": {},
       "Binary/BinaryTreeNodeSpace": {},
       "BTRecurTutor/MultipleBinaryTrees": {},
       "BTRecurTutor/BSTCheck": {},

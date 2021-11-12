@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.5. Binary Tree Traversals &mdash; Data Structures and Algorithms</title>
+    <title>5.6. Binary Tree Traversals &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="6. Implementing Tree Traversals" href="WritingTraversals.html" />
-    <link rel="prev" title="4. The Full Binary Tree Theorem (optional)" href="BinaryTreeFullThm.html" />
+    <link rel="next" title="7. Implementing Tree Traversals" href="WritingTraversals.html" />
+    <link rel="prev" title="5. The Full Binary Tree Theorem (optional)" href="BinaryTreeFullThm.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeFullThm.html">5.<span class="section-number">4. </span>The Full Binary Tree Theorem (optional)</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeFullThm.html">5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="WritingTraversals.html">5.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod" href="WritingTraversals.html">5.<span class="section-number">7. </span>Implementing Tree Traversals</a>&#160;&#160;»
 
 
         </p>
@@ -162,12 +162,12 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['preorder-traversal', 'postorder-traversal', 'inorder-traversal', 'implementation', 'postorder-traversal-practice', 'inorder-traversal-practice', 'summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['preorder-traversal', 'postorder-traversal', 'inorder-traversal', 'implementation', 'postorder-traversal-practice', 'inorder-traversal-practice', 'summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-tree-traversals">
-<h1>5.<span class="section-number">5. </span>Binary Tree Traversals<a class="headerlink" href="#binary-tree-traversals" title="Permalink to this headline">¶</a></h1>
+<h1>5.<span class="section-number">6. </span>Binary Tree Traversals<a class="headerlink" href="#binary-tree-traversals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>5.<span class="section-number">5.1. </span>Binary Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">6.1. </span>Binary Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Often we wish to process a binary tree by “visiting” each of its
 nodes, each time performing a specific action such as printing the
 contents of the node.
@@ -180,19 +180,19 @@ particular order as long as each node is visited precisely once.
 For other applications, nodes must be visited in an order that
 preserves some relationship.</p>
 <div class="section" id="preorder-traversal">
-<h3>5.<span class="section-number">5.1.1. </span>Preorder Traversal<a class="headerlink" href="#preorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">6.1.1. </span>Preorder Traversal<a class="headerlink" href="#preorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>For example, we might wish to make sure that we visit any given node
 <em>before</em> we visit its children.
 This is called a <a class="reference internal" href="Glossary.html#term-preorder-traversal"><span class="xref std std-term">preorder traversal</span></a>.</p>
 <div class="divdgm" id="bintravexample">
 <div id="BinExampCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 5.6.1: A binary tree for traversal examples.</span></p>
+<p class="caption"><span class="caption-text"> Figure 5.7.1: A binary tree for traversal examples.</span></p>
 </div>
 <div class="topic">
-<p class="topic-title">Example 5.6.1 </p>
+<p class="topic-title">Example 5.7.1 </p>
 <p>The preorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">5.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">5.7.1</a> is
 <strong>A B D C E G F H I</strong>.</p>
 <p>The first node printed is the root.
 Then all nodes of the left subtree are printed (in preorder) before
@@ -217,7 +217,7 @@ any node of the right subtree.</p>
 <p></p>
 </div>
 <div class="section" id="postorder-traversal">
-<h3>5.<span class="section-number">5.1.2. </span>Postorder Traversal<a class="headerlink" href="#postorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">6.1.2. </span>Postorder Traversal<a class="headerlink" href="#postorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>Alternatively, we might wish to visit each node only
 <em>after</em> we visit its children (and their subtrees).
 For example, this would be necessary if we wish to return all nodes
@@ -228,9 +228,9 @@ But to do that requires that the children’s children be deleted
 first, and so on.
 This is called a <a class="reference internal" href="Glossary.html#term-postorder-traversal"><span class="xref std std-term">postorder traversal</span></a>.</p>
 <div class="topic">
-<p class="topic-title">Example 5.6.2 </p>
+<p class="topic-title">Example 5.7.2 </p>
 <p>The postorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">5.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">5.7.1</a> is
 <strong>D B G E H I F C A</strong>.</p>
 </div>
 <div id="postorderCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="postorderCON" data-long-name="Postorder Traversal Slideshow" data-exer-id="" alt="Postorder Traversal Slideshow" tabIndex="-1">
@@ -252,7 +252,7 @@ Figure <a href="BinaryTreeTraversal.html#bintravexample">5.6.1</a> is
 <p></p>
 </div>
 <div class="section" id="inorder-traversal">
-<h3>5.<span class="section-number">5.1.3. </span>Inorder Traversal<a class="headerlink" href="#inorder-traversal" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">6.1.3. </span>Inorder Traversal<a class="headerlink" href="#inorder-traversal" title="Permalink to this headline">¶</a></h3>
 <p>An <a class="reference internal" href="Glossary.html#term-inorder-traversal"><span class="xref std std-term">inorder traversal</span></a> first visits the left child
 (including its entire subtree), then visits the node, and finally
 visits the right child (including its entire
@@ -260,9 +260,9 @@ subtree).
 The <a class="reference internal" href="BST.html#bst"><span class="std std-ref">binary search tree</span></a> makes use of
 this traversal to print all nodes in ascending order of value.</p>
 <div class="topic">
-<p class="topic-title">Example 5.6.3 </p>
+<p class="topic-title">Example 5.7.3 </p>
 <p>The inorder enumeration for the tree of
-Figure <a href="BinaryTreeTraversal.html#bintravexample">5.6.1</a> is
+Figure <a href="BinaryTreeTraversal.html#bintravexample">5.7.1</a> is
 <strong>B D A G E C H F I</strong>.</p>
 </div>
 <div id="inorderCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="inorderCON" data-long-name="Inorder Traversal Slideshow" data-exer-id="" alt="Inorder Traversal Slideshow" tabIndex="-1">
@@ -284,32 +284,7 @@ Figure <a href="BinaryTreeTraversal.html#bintravexample">5.6.1</a> is
 <p></p>
 </div>
 <div class="section" id="implementation">
-<h3>5.<span class="section-number">5.1.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
-<p>Now we will discuss some implementations for the traversals, but we
-need to define a node ADT to work with.
-Just as a linked list is composed of a collection of link objects, a
-tree is composed of a collection of node objects.
-Here is an ADT for binary tree nodes, called <code class="docutils literal notranslate"><span class="pre">BinNode</span></code>.
-This class will be used by some of the binary tree structures
-presented later.
-Member functions are provided that set or return the element value,
-return a pointer to the left child,
-return a pointer to the right child,
-or indicate whether the node is a leaf.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// Binary tree node ADT</span>
-  <span class="c1">// Get and set the element value</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">();</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">);</span>
-
-  <span class="c1">// return the children</span>
-  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">();</span>
-  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">();</span>
-
-  <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<h3>5.<span class="section-number">6.1.4. </span>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h3>
 <p>A traversal routine is naturally written as a recursive
 function.
 Its input parameter is a pointer to a node which we will call
@@ -322,7 +297,7 @@ in the desired order.
 For example, a preorder traversal specifies that <code class="docutils literal notranslate"><span class="pre">rt</span></code> be
 visited before its children.
 This can easily be implemented as follows.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+<div id="Preorder_preorder_code"><ul><li><a href="#Preorder_preorder_code_Java_Generic">Java</a></li><li><a href="#Preorder_preorder_code_Python">Python</a></li></ul><div id="Preorder_preorder_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree - do nothing</span>
   <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>              <span class="c1">// Process root node</span>
   <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>    <span class="c1">// Process all nodes in left</span>
@@ -330,7 +305,14 @@ This can easily be implemented as follows.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Function <code class="docutils literal notranslate"><span class="pre">preorder</span></code> first checks that the tree is not
+</div><div id="Preorder_preorder_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="c1"># Empty subtree - do nothing</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>               <span class="c1"># Visit root node</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">())</span>   <span class="c1"># Process all nodes in left</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">())</span>  <span class="c1"># Process all nodes in right</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Preorder_preorder_code" ).tabs();});</script><p>Function <code class="docutils literal notranslate"><span class="pre">preorder</span></code> first checks that the tree is not
 empty (if it is, then the traversal is done and <code class="docutils literal notranslate"><span class="pre">preorder</span></code>
 simply returns).
 Otherwise, <code class="docutils literal notranslate"><span class="pre">preorder</span></code> makes  a call to <code class="docutils literal notranslate"><span class="pre">visit</span></code>,
@@ -368,7 +350,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="postorder-traversal-practice">
-<h2>5.<span class="section-number">5.2. </span>Postorder Traversal Practice<a class="headerlink" href="#postorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">6.2. </span>Postorder Traversal Practice<a class="headerlink" href="#postorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="btTravPostorderPRO"
     class="embedContainer"
@@ -393,7 +375,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="inorder-traversal-practice">
-<h2>5.<span class="section-number">5.3. </span>Inorder Traversal Practice<a class="headerlink" href="#inorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">6.3. </span>Inorder Traversal Practice<a class="headerlink" href="#inorder-traversal-practice" title="Permalink to this headline">¶</a></h2>
 <div
     id="btTravInorderPRO"
     class="embedContainer"
@@ -418,7 +400,7 @@ visited, as appropriate.</p>
 </div>
 </div>
 <div class="section" id="summary-questions">
-<h2>5.<span class="section-number">5.4. </span>Summary Questions<a class="headerlink" href="#summary-questions" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">6.4. </span>Summary Questions<a class="headerlink" href="#summary-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="TravSumm"
     class="embedContainer"
@@ -453,11 +435,11 @@ visited, as appropriate.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeFullThm.html">5.<span class="section-number">4. </span>The Full Binary Tree Theorem (optional)</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeFullThm.html">5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="WritingTraversals.html">5.<span class="section-number">6. </span>Implementing Tree Traversals</a>&#160;&#160;»
+        <a  id="nextmod1" href="WritingTraversals.html">5.<span class="section-number">7. </span>Implementing Tree Traversals</a>&#160;&#160;»
 
 </p>
       </div>
@@ -472,7 +454,7 @@ visited, as appropriate.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

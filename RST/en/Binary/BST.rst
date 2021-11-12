@@ -9,8 +9,8 @@
    :satisfies: BST
    :topic: Binary Trees
 
-Binary Search Trees (WORK IN PROGRESS)
-=======================================
+Binary Search Trees
+===================
 
 Binary Search Tree Definition
 -----------------------------
@@ -138,8 +138,8 @@ This keeps the average cost of a BST operation low.
    :long_name: BST Insert Proficiency Exercise
 
 
-BST Remove (work in progress)
------------------------------
+BST Remove
+----------
 
 Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered

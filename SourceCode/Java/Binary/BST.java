@@ -12,10 +12,10 @@ class BST {
   public void clear() { root = null; nodecount = 0; }
 
   // Insert a record into the tree.
-  // Records can be anything, but they must be Comparable
+  // Records can be anything, but they must be Key
   // e: The record to insert.
-  public void insert(Comparable e) {
-    root = inserthelp(root, e);
+  public void insert(Key e) {
+    root = putHelper(root, e);
     nodecount++;
   }
 /* *** ODSAendTag: BSTa *** */
@@ -24,8 +24,8 @@ class BST {
   // Remove a record from the tree
   // key: The key value of record to remove
   // Returns the record removed, null if there is none.
-  public Comparable remove(Comparable key) {
-    Comparable temp = findhelp(root, key); // First find it
+  public Key remove(Key key) {
+    Key temp = getHelper(root, key); // First find it
     if (temp != null) {
       root = removehelp(root, key); // Now remove it
       nodecount--;
@@ -35,7 +35,7 @@ class BST {
 
   // Return the record with key value k, null if none exists
   // key: The key value to find
-  public Comparable find(Comparable key) { return findhelp(root, key); }
+  public Key find(Key key) { return getHelper(root, key); }
 
   // Return the number of records in the dictionary
   public int size() { return nodecount; }
@@ -44,13 +44,13 @@ class BST {
 
   // Return a record that matches the key value
 /* *** ODSATag: findhelp *** */
-  private Comparable findhelp(BSTNode rt, Comparable key) {
+  private Value getHelper(Node rt, Key key) {
     if (rt == null) return null;
-    if (rt.value().compareTo(key) > 0)
-      return findhelp(rt.left(), key);
-    else if (rt.value().compareTo(key) == 0)
-      return rt.value();
-    else return findhelp(rt.right(), key);
+    if (rt.key.compareTo(key) > 0)
+      return getHelper(rt.left, key);
+    else if (rt.key.compareTo(key) == 0)
+      return rt.value;
+    else return getHelper(rt.right, key);
   }
 /* *** ODSAendTag: findhelp *** */
 
@@ -58,21 +58,21 @@ class BST {
   // Return the current subtree,
   // modified to contain the new item
 /* *** ODSATag: inserthelp *** */
-  private BSTNode inserthelp(BSTNode rt, Comparable e) {
-    if (rt == null) return new BSTNode(e);
-    if (rt.value().compareTo(e) >= 0)
-      rt.setLeft(inserthelp(rt.left(), e));
+  private Node putHelper(Node rt, Key key, Value value) {
+    if (rt == null) return new Node(key, value);
+    if (rt.key.compareTo(key) >= 0)
+      rt.left = putHelper(rt.left, key, value);
     else
-      rt.setRight(inserthelp(rt.right(), e));
+      rt.right = putHelper(rt.right, key, value);
     return rt;
   }
 /* *** ODSAendTag: inserthelp *** */
 
 /* *** ODSATag: deletemax *** */
   // Delete the maximum valued element in a subtree
-  private BSTNode deletemax(BSTNode rt) {
-    if (rt.right() == null) return rt.left();
-    rt.setRight(deletemax(rt.right()));
+  private Node deletemax(Node rt) {
+    if (rt.right == null) return rt.left();
+    rt.right = deletemax(rt.right);
     return rt;
   }
 /* *** ODSAendTag: deletemax *** */
@@ -88,19 +88,19 @@ class BST {
   // Remove a node with the key value
   // Return the tree with the node removed
 /* *** ODSATag: removehelp *** */
-  private BSTNode removehelp(BSTNode rt, Comparable key) {
+  private Node removeHelper(Node rt, Key key) {
     if (rt == null) return null;
-    if (rt.value().compareTo(key) > 0)
-      rt.setLeft(removehelp(rt.left(), key));
-    else if (rt.value().compareTo(key) < 0)
-      rt.setRight(removehelp(rt.right(), key));
+    if (rt.key.compareTo(key) > 0)
+      rt.left = removeHelper(rt.left, key);
+    else if (rt.key.compareTo(key) < 0)
+      rt.right = removeHelper(rt.right, key);
     else { // Found it
-      if (rt.left() == null) return rt.right();
-      else if (rt.right() == null) return rt.left();
+      if (rt.left == null) return rt.right;
+      else if (rt.right == null) return rt.left;
       else { // Two children
-        BSTNode temp = getmax(rt.left());
-        rt.setValue(temp.value());
-        rt.setLeft(deletemax(rt.left()));
+        Node temp = lastNode(rt.left);
+        rt.key = temp.key; rt.value = temp.value;
+        rt.left = deletemax(rt.left);
       }
     }
     return rt;
@@ -117,7 +117,7 @@ class BST {
 /* *** ODSAendTag: printhelp *** */
 
 // Used for testing
-  private void printVisit(Comparable e) { System.out.print(e + " "); }
+  private void printVisit(Key e) { System.out.print(e + " "); }
 
 // Used for testing
 public BSTNode root() {

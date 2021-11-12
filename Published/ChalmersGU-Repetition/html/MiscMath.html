@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MiscMath";ODSA.SETTINGS.MODULE_LONG_NAME = "Miscellaneous Notation";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><div class="section" id="miscellaneous-notation">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MiscMath";ODSA.SETTINGS.MODULE_LONG_NAME = "Miscellaneous Notation";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:57:06"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="miscellaneous-notation">
 <h1>3.<span class="section-number">3. </span>Miscellaneous Notation<a class="headerlink" href="#miscellaneous-notation" title="Permalink to this headline">¶</a></h1>
 <p>This module collects together definitions for a number of mathematical
 terms and concepts, as a place for reference when needed.</p>
@@ -225,22 +225,14 @@ function <code class="docutils literal notranslate"><span class="pre">swap(A,</s
 exchanges elements <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> in array <code class="docutils literal notranslate"><span class="pre">A</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">Random(n)</span></code> returns an integer value in the range 0 to
 <span class="math notranslate nohighlight">\(n-1\)</span>.</p>
-<div id="Permute_Permute_code"><ul><li><a href="#Permute_Permute_code_Java_Generic">Java (Generic)</a></li><li><a href="#Permute_Permute_code_Java">Java</a></li></ul><div id="Permute_Permute_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Randomly permute the values in array A</span>
-<span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">permute</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// for each i</span>
-    <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>         <span class="c1">//   swap A[i-1] with a random</span>
-  <span class="p">}</span>
-<span class="p">}</span>                                    <span class="c1">//   position in the range 0 to i-1.</span>
-</pre></div>
-</div>
-</div><div id="Permute_Permute_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Randomly permute the values in array A</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Randomly permute the values in array A</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">permute</span><span class="p">(</span><span class="n">Object</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// for each i</span>
     <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>         <span class="c1">//   swap A[i-1] with a random</span>
 <span class="p">}</span>                                    <span class="c1">//   position in the range 0 to i-1.</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Permute_Permute_code" ).tabs();});</script><p><strong>Boolean variables:</strong>
+<p><strong>Boolean variables:</strong>
 A <a class="reference internal" href="Glossary.html#term-boolean-variable"><span class="xref std std-term">Boolean variable</span></a>
 is a variable that takes on one of the two values <code class="docutils literal notranslate"><span class="pre">True</span></code> and
 <code class="docutils literal notranslate"><span class="pre">False</span></code>.
@@ -342,7 +334,7 @@ negative.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 03, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TracingEx";ODSA.SETTINGS.MODULE_LONG_NAME = "Tracing Practice Exercises";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "TracingEx";ODSA.SETTINGS.MODULE_LONG_NAME = "Tracing Practice Exercises";ODSA.SETTINGS.MODULE_CHAPTER = "Recursion"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:57:06"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -36,7 +36,7 @@ Forward Flow Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 1
 
 
@@ -48,7 +48,7 @@ Backward Flow Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 2
 
 
@@ -60,7 +60,7 @@ Find Error Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 3
 
 
@@ -72,7 +72,7 @@ Two Recursive Calls Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 4
 
 
@@ -84,7 +84,7 @@ How Many Times Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 5
 
 
@@ -96,6 +96,6 @@ Harder Tracing Exercises
    :points: 1.0
    :required: True
    :threshold: 5
-   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java_generic
+   :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java
    :long_name: Recursion Tracing Exercises Set 6
 

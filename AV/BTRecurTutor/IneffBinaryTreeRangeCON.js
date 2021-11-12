@@ -62,7 +62,7 @@ $(document).ready(function () {
   av.step();
    
   // Slide 7
-  av.umsg("The code is not effecient because it does not avoid vsiting un-needed nodes. The code will visit the whole right sub-tree even though it is not needed.");
+  av.umsg("The code is not efficient because it does not avoid vsiting un-needed nodes. The code will visit the whole right sub-tree even though it is not needed.");
   var label3 = av.label("The range function should be written in a way that avoid traversing this side for the given range.", {left: 550, top: btTop + 50}); 
   var el1= av.g.ellipse(442, btTop + 108, 50 , 50).css({fill: "red", opacity: 0.4});
   av.step();

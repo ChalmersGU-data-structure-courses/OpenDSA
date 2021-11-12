@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['thanks-for-the-memory:-allocation-and-deallocation', 'local-parameters', 'advantages-of-locals', 'disadvantages-of-locals', 'synonyms-for-"local"', 'local-memory-summary', 'how-does-the-function-call-stack-work'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "LocalMem";ODSA.SETTINGS.MODULE_LONG_NAME = "Local Memory";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 17:21:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java_generic';</script><link href="../../../AV/Pointers/simpleLifetimeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['thanks-for-the-memory:-allocation-and-deallocation', 'local-parameters', 'advantages-of-locals', 'disadvantages-of-locals', 'synonyms-for-"local"', 'local-memory-summary', 'how-does-the-function-call-stack-work'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "LocalMem";ODSA.SETTINGS.MODULE_LONG_NAME = "Local Memory";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:57:06"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/simpleLifetimeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/T1-T5CON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="local-memory">
 <h1>2.<span class="section-number">5. </span>Local Memory<a class="headerlink" href="#local-memory" title="Permalink to this headline">¶</a></h1>
@@ -205,7 +205,7 @@ functions such as the variables <code class="docutils literal notranslate"><span
 following function.
 All of the local variables and parameters taken together are called
 its <a class="reference internal" href="Glossary.html#term-local-storage"><span class="xref std std-term">local storage</span></a> or just its “locals”.</p>
-<div id="LocalMemory_code"><ul><li><a href="#LocalMemory_code_Java_Generic">Java (Generic)</a></li><li><a href="#LocalMemory_code_Java">Java</a></li></ul><div id="LocalMemory_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Local storage example</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Local storage example</span>
 <span class="kt">int</span> <span class="nf">Square</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
   <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
   <span class="n">result</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">;</span>
@@ -213,15 +213,7 @@ its <a class="reference internal" href="Glossary.html#term-local-storage"><span 
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="LocalMemory_code_Java"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Local storage example</span>
-<span class="kt">int</span> <span class="nf">Square</span><span class="p">(</span><span class="kt">int</span> <span class="n">num</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">result</span><span class="p">;</span>
-  <span class="n">result</span> <span class="o">=</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">;</span>
-  <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#LocalMemory_code" ).tabs();});</script><p>The variables are called “local” to capture the idea that their lifetime is tied
+<p>The variables are called “local” to capture the idea that their lifetime is tied
 to the function where they are declared.
 Whenever the function runs, its local variables are allocated.
 When the function exits, its locals are deallocated.
@@ -485,7 +477,7 @@ always follow the “stack” model presented here.</p></li>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 03, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

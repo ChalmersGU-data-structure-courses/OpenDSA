@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/BTRecurTutor/BSTCheckCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BSTCheck";ODSA.SETTINGS.MODULE_LONG_NAME = "A Hard Information Flow Problem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/BTRecurTutor/BSTCheckCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="a-hard-information-flow-problem-optional">
 <h1>5.<span class="section-number">11. </span>A Hard Information Flow Problem (optional)<a class="headerlink" href="#a-hard-information-flow-problem-optional" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes, passing the right information up and down the tree to
@@ -195,20 +195,30 @@ legal for a given node.
 That information might come from any of the node’s ancestors.
 Thus, relevant range information must be passed down the tree.
 We can implement this function as follows.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kt">boolean</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">,</span> <span class="n">E</span> <span class="n">low</span><span class="p">,</span> <span class="n">E</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree</span>
-  <span class="n">E</span> <span class="n">rootval</span> <span class="o">=</span> <span class="n">rt</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
-  <span class="k">if</span> <span class="p">((</span><span class="n">rootval</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">rootval</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">high</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
+<div id="checkBST_checkBST_code"><ul><li><a href="#checkBST_checkBST_code_Java_Generic">Java</a></li><li><a href="#checkBST_checkBST_code_Python">Python</a></li></ul><div id="checkBST_checkBST_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kt">boolean</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">node</span><span class="p">,</span> <span class="n">E</span> <span class="n">low</span><span class="p">,</span> <span class="n">E</span> <span class="n">high</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree</span>
+  <span class="n">E</span> <span class="n">rootval</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">rootval</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">low</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">rootval</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">high</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Out of range</span>
   <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">checkBST</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">(),</span> <span class="n">low</span><span class="p">,</span> <span class="n">rootval</span><span class="p">))</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">checkBST</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">(),</span> <span class="n">low</span><span class="p">,</span> <span class="n">rootval</span><span class="p">))</span> <span class="p">{</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="c1">// Left side failed</span>
   <span class="p">}</span>
-  <span class="k">return</span> <span class="n">checkBST</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">(),</span> <span class="n">rootval</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
+  <span class="k">return</span> <span class="n">checkBST</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">(),</span> <span class="n">rootval</span><span class="p">,</span> <span class="n">high</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<script type="text/javascript" src="../../../AV/BTRecurTutor/BSTCheckCON.js"></script>
+</div><div id="checkBST_checkBST_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">checkBST</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">low</span><span class="p">,</span> <span class="n">high</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="kc">True</span> <span class="c1"># Empty subtree</span>
+    <span class="n">rootval</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">rootval</span> <span class="o">&lt;=</span> <span class="n">low</span> <span class="o">||</span> <span class="n">rootval</span> <span class="o">&gt;=</span> <span class="n">high</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">False</span> <span class="c1"># Out of range</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">checkBST</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">(),</span> <span class="n">low</span><span class="p">,</span> <span class="n">rootval</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">False</span> <span class="c1"># Left side failed</span>
+    <span class="k">return</span> <span class="n">checkBST</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">(),</span> <span class="n">rootval</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#checkBST_checkBST_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/BTRecurTutor/BSTCheckCON.js"></script>
 </div>
 
 
@@ -235,7 +245,7 @@ We can implement this function as follows.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

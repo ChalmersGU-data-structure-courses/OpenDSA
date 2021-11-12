@@ -1,14 +1,14 @@
-// Assumes that equal values go to the left
+// Assumes that the tree is not allowed to contain duplicates
 /* *** ODSATag: checkBST *** */
-static <E extends Comparable<E>> boolean checkBST(BSTNode<E> rt, E low, E high) {
-  if (rt == null) { return true; } // Empty subtree
-  E rootval = rt.value();
-  if ((rootval.compareTo(low) <= 0) || (rootval.compareTo(high) > 0)) {
+static <E extends Comparable<E>> boolean checkBST(BSTNode<E> node, E low, E high) {
+  if (node == null) { return true; } // Empty subtree
+  E rootval = node.value();
+  if ((rootval.compareTo(low) <= 0) || (rootval.compareTo(high) >= 0)) {
     return false; // Out of range
   }
-  if (!checkBST(rt.left(), low, rootval)) {
+  if (!checkBST(node.left(), low, rootval)) {
     return false; // Left side failed
   }
-  return checkBST(rt.right(), rootval, high);
+  return checkBST(node.right(), rootval, high);
 }
 /* *** ODSAendTag: checkBST *** */

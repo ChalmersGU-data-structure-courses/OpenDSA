@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.6. Implementing Tree Traversals &mdash; Data Structures and Algorithms</title>
+    <title>5.7. Implementing Tree Traversals &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
-    <link rel="prev" title="5. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
+    <link rel="next" title="8. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
+    <link rel="prev" title="6. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeTraversal.html">5.<span class="section-number">5. </span>Binary Tree Traversals</a>
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryTreeInfFlw.html">5.<span class="section-number">8. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
-<h1>5.<span class="section-number">6. </span>Implementing Tree Traversals<a class="headerlink" href="#implementing-tree-traversals" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
+<h1>5.<span class="section-number">7. </span>Implementing Tree Traversals<a class="headerlink" href="#implementing-tree-traversals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
-<h2>5.<span class="section-number">6.1. </span>Implementing Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">7.1. </span>Implementing Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Recall that any recursive function requires the following:</p>
 <blockquote>
 <div><ol class="arabic simple">
@@ -176,13 +176,13 @@
 <p>In this module, we will talk about some details related to correctly
 and clearly implementing recursive tree traversals.</p>
 <div class="section" id="base-case">
-<h3>5.<span class="section-number">6.1.1. </span>Base Case<a class="headerlink" href="#base-case" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">7.1.1. </span>Base Case<a class="headerlink" href="#base-case" title="Permalink to this headline">¶</a></h3>
 <p>In binary tree traversals, most often the base case is to check if we
 have an empty tree.
 A common mistake is to check the child pointers of the current node,
 and only make the recursive call for a non-null child.</p>
 <p>Recall the basic preorder traversal function.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
+<div id="Preorder_preorder_code"><ul><li><a href="#Preorder_preorder_code_Java_Generic">Java</a></li><li><a href="#Preorder_preorder_code_Python">Python</a></li></ul><div id="Preorder_preorder_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree - do nothing</span>
   <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>              <span class="c1">// Process root node</span>
   <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>    <span class="c1">// Process all nodes in left</span>
@@ -190,10 +190,17 @@ and only make the recursive call for a non-null child.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here is an alternate design for the preorder traversal, in which the
+</div><div id="Preorder_preorder_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="c1"># Empty subtree - do nothing</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>               <span class="c1"># Visit root node</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">())</span>   <span class="c1"># Process all nodes in left</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">())</span>  <span class="c1"># Process all nodes in right</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Preorder_preorder_code" ).tabs();});</script><p>Here is an alternate design for the preorder traversal, in which the
 left and right pointers of the current node are checked so that the
 recursive call is made only on non-empty children.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a bad idea</span>
+<div id="Preorder_preorder2_code"><ul><li><a href="#Preorder_preorder2_code_Java_Generic">Java</a></li><li><a href="#Preorder_preorder2_code_Python">Python</a></li></ul><div id="Preorder_preorder2_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a bad idea</span>
 <span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder2</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
   <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span> <span class="p">}</span>
@@ -201,7 +208,14 @@ recursive call is made only on non-empty children.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>At first, it might appear that <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is more efficient
+</div><div id="Preorder_preorder2_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># This is a bad idea</span>
+<span class="k">def</span> <span class="nf">preorder2</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">left</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">left</span><span class="p">())</span>
+    <span class="k">if</span> <span class="n">rt</span><span class="o">.</span><span class="n">right</span><span class="p">()</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="o">.</span><span class="n">right</span><span class="p">())</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Preorder_preorder2_code" ).tabs();});</script><p>At first, it might appear that <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> is more efficient
 than <code class="docutils literal notranslate"><span class="pre">preorder</span></code>, because it makes only half as many recursive
 calls (since it won’t try to call on a null pointer).
 On the other hand, <code class="docutils literal notranslate"><span class="pre">preorder2</span></code> must access the left and right
@@ -239,7 +253,7 @@ about how to invoke the recursion on the children, but we do <strong>not</strong
 have to care about how or when that is done.</p>
 </div>
 <div class="section" id="the-recursive-call">
-<h3>5.<span class="section-number">6.1.2. </span>The Recursive Call<a class="headerlink" href="#the-recursive-call" title="Permalink to this headline">¶</a></h3>
+<h3>5.<span class="section-number">7.1.2. </span>The Recursive Call<a class="headerlink" href="#the-recursive-call" title="Permalink to this headline">¶</a></h3>
 <p>The secret to success when writing a recursive function is to not
 worry about how the recursive call works.
 Just accept that it will work correctly.
@@ -252,7 +266,7 @@ Child values should not be used to decide whether to call them
 recursively.
 Make the call, and let their own base case handle it.</p>
 <div class="topic">
-<p class="topic-title">Example 5.7.1 </p>
+<p class="topic-title">Example 5.8.1 </p>
 <p>Consider the problem of incrementing the value for each node in a
 binary tree.
 The following solution has an error, since it does redundant
@@ -301,7 +315,7 @@ call.</p>
 </div>
 </div>
 <div class="section" id="binary-tree-increment-by-one-exercise">
-<h2>5.<span class="section-number">6.2. </span>Binary Tree Increment By One Exercise<a class="headerlink" href="#binary-tree-increment-by-one-exercise" title="Permalink to this headline">¶</a></h2>
+<h2>5.<span class="section-number">7.2. </span>Binary Tree Increment By One Exercise<a class="headerlink" href="#binary-tree-increment-by-one-exercise" title="Permalink to this headline">¶</a></h2>
 <div
     id="Binary_Tree_Increment_By_One_Exercise"
     class="embedContainer"
@@ -327,11 +341,11 @@ call.</p>
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeTraversal.html">5.<span class="section-number">5. </span>Binary Tree Traversals</a>
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryTreeInfFlw.html">5.<span class="section-number">8. </span>Information Flow in Recursive Functions</a>&#160;&#160;»
 
 </p>
       </div>
@@ -346,7 +360,7 @@ call.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -152,7 +152,9 @@ class AVL:
             elif node.right is None:
                 return node.left
             else:
-                last_key, last_val = AVL.lastKey_helper(node.left)
+                last_node = AVL.lastNode(node.left)
+                last_key = last_node.key
+                last_val = last_node.value
                 node.left = AVL.remove_helper(node.left, last_key)
                 node.key = last_key
                 node.value = last_val
@@ -165,17 +167,17 @@ class AVL:
         if self.root is None:
             return None
         else:
-            return self.lastKey_helper(self.root)
+            last_node = self.lastNode(self.root)
+            return last_node.key
 
     @staticmethod
-    def lastKey_helper(node):
-        """Helper method for 'lastKey'."""
+    def lastNode(node):
+        """Find the node having the largest key."""
 
-        # This one is maybe easier to implement non-recursively :)
         while node.right is not None:
             node = node.right
 
-        return node.key, node.value
+        return node
 
     @staticmethod
     def rebalance(node):

@@ -135,9 +135,11 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             else if (node.right == null)
                 return node.left;
             else {
-                Node lastNode = lastNodeHelper(node.left);
+                Node lastNode = largestNode(node.left);
                 Key lastKey = lastNode.key;
                 Value lastValue = lastNode.value;
+                // We can either use 'deletemax' (as in the next)
+                // or just recursively call removeHelper here
                 node.left = removeHelper(node.left, lastKey);
                 node.key = lastKey;
                 node.value = lastValue;
@@ -151,20 +153,18 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         if (root == null)
             return null;
         else
-            return lastNodeHelper(root).key;
+            return largestNode(root).key;
     }
 
-/* *** ODSATag: lastNodeHelper *** */
-    // Helper method for 'lastKey'.
-    // Returns the node instead, as that's useful in 'removeHelper'.
-    Node lastNodeHelper(Node node) {
-        // This one is maybe easier to implement non-recursively :)
+/* *** ODSATag: largestNode *** */
+    // Find the node having the largest key.
+    Node largestNode(Node node) {
         while (node.right != null)
             node = node.right;
 
         return node;
     }
-/* *** ODSAendTag: lastNodeHelper *** */
+/* *** ODSAendTag: largestNode *** */
 
     // Iterate through all keys.
     // This is called when the user writes 'for (Key key: bst) { ... }.'
@@ -195,7 +195,7 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         System.out.println(node.key);
         printHelper(node.right);
     }
-/* *** ODSATag: printHelper *** */
+/* *** ODSAendTag: printHelper *** */
 
     // Override 'toString' to print the contents of the BST.
     public String toString() {

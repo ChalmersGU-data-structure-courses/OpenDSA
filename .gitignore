@@ -3,6 +3,8 @@
 modules.json
 modules.csv
 *.bak
+\#*#
+.#*
 
 # For MAC users
 *.DS_Store
@@ -34,8 +36,10 @@ StandaloneModules
 # Ignore the copy we make of khan-site.html
 lib/khan-exercises/exercises/khan-site.html
 
-# Ignore compiled Python files
-*pyc
+# Ignore cached and compiled Python files
+__pycache__/
+*.py[cod]
+*$py.class
 
 # Ignore Java .class files
 *.class

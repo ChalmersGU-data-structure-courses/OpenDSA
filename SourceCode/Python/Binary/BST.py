@@ -62,7 +62,7 @@ class BST:
 
         return self.get(key) is not None
 
-/* *** ODSATag: get *** */
+# /* *** ODSATag: get *** */
     def get(self, key):
         """Look up a key."""
 
@@ -80,9 +80,9 @@ class BST:
             return BST.get_helper(node.right, key)
         else:
             return node.value
-/* *** ODSAendTag: get *** */
+# /* *** ODSAendTag: get *** */
 
-/* *** ODSATag: put *** */
+# /* *** ODSATag: put *** */
     def put(self, key, value):
         """Add a key-value pair, or update the value associated with
         an existing key."""
@@ -102,7 +102,7 @@ class BST:
         else:
             node.value = value
         return node
-/* *** ODSAendTag: put *** */
+# /* *** ODSAendTag: put *** */
 
     def remove(self, key):
         """Delete a key."""
@@ -127,7 +127,11 @@ class BST:
             elif node.right is None:
                 return node.left
             else:
-                last_key, last_val = BST.lastKey_helper(node.left)
+                last_node = BST.lastNode(node.left)
+                last_key = last_node.key
+                last_val = last_node.value
+                # We can either use 'deletemax' (as in the next)
+                # or just recursively call removeHelper here
                 node.left = BST.remove_helper(node.left, last_key)
                 node.key = last_key
                 node.value = last_val
@@ -139,18 +143,18 @@ class BST:
         if self.root is None:
             return None
         else:
-            return self.lastKey_helper(self.root)
+            last_node = self.lastNode(self.root)
+            return last_node.key
 
 #/* *** ODSATag: lastNodeHelper *** */
     @staticmethod
-    def lastKey_helper(node):
-        """Helper method for 'lastKey'."""
+    def lastNode(node):
+        """Find the node having the largest key."""
 
-        # This one is maybe easier to implement non-recursively :)
         while node.right is not None:
             node = node.right
 
-        return node.key, node.value
+        return node
 #/* *** ODSATag: lastNodeHelper *** */
 
     def __iter__(self):
@@ -177,16 +181,17 @@ class BST:
             for key in BST.iter_helper(node.right):
                 yield key
 
-/* *** ODSATag: printHelper *** */
-    // An example inorder traversal.
-    // Prints all node keys, in sorted order.
+# /* *** ODSATag: printHelper *** */
     @staticmethod
     def print_helper(node):
+        """An example inorder traversal.
+        Prints all node keys, in sorted order."""
+
         if node is None: return
         BST.print_helper(node.left)
         print(node.key)
         BST.print_helper(node.right)
-/* *** ODSAendTag: printHelper *** */
+# /* *** ODSAendTag: printHelper *** */
 
     def __getitem__(self, key):
         """This is called when the user writes 'x = bst[key]'."""

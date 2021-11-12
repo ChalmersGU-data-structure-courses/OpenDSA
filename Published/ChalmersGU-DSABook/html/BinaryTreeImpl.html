@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5.8. Binary Tree Node Implementations (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>5.4. Binary Tree Node Implementations &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Binary Tree Space Requirements (optional)" href="BinaryTreeNodeSpace.html" />
-    <link rel="prev" title="7. Information Flow in Recursive Functions" href="BinaryTreeInfFlw.html" />
+    <link rel="next" title="5. The Full Binary Tree Theorem (optional)" href="BinaryTreeFullThm.html" />
+    <link rel="prev" title="3. Binary Tree as a Recursive Data Structure" href="RecursiveDS.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        «&#160;&#160;<a id="prevmod" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (optional)</a>&#160;&#160;»
+        <a  id="nextmod" href="BinaryTreeFullThm.html">5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)</a>&#160;&#160;»
 
 
         </p>
@@ -162,64 +162,99 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BTnullpointerCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/expressionTreeCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="binary-tree-node-implementations-work-in-progress">
-<h1>5.<span class="section-number">8. </span>Binary Tree Node Implementations (WORK IN PROGRESS)<a class="headerlink" href="#binary-tree-node-implementations-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<p>In this module we examine various ways to implement binary tree
-nodes.
+<div class="section" id="binary-tree-node-implementations">
+<h1>5.<span class="section-number">4. </span>Binary Tree Node Implementations<a class="headerlink" href="#binary-tree-node-implementations" title="Permalink to this headline">¶</a></h1>
+<p>In this module we examine one way to implement binary tree nodes.
 By definition, all binary tree nodes have two children,
 though one or both children can be empty.
 Binary tree nodes typically contain a value field,
 with the type of the field depending on the application.
 The most common node implementation includes a value field and
 pointers to the two children.</p>
-<p>Here is a simple implementation for the
-<code class="docutils literal notranslate"><span class="pre">BinNode</span></code> interface, which we will name <code class="docutils literal notranslate"><span class="pre">BSTNode</span></code>.
-Its element type is an Object.
+<p>Here is a simple implementation for binary tree nodes.
 When we need to support search structures such as the
 <a class="reference internal" href="BST.html#bst"><span class="std std-ref">Binary Search Tree</span></a>,
 the node will typically store a
 <a class="reference internal" href="Glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pair</span></a>.
 Every <code class="docutils literal notranslate"><span class="pre">BSTNode</span></code> object also has two pointers,
 one to its left child and another to its right child.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary tree node implementation: supports comparable objects</span>
-<span class="kd">class</span> <span class="nc">BSTNode</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;?</span> <span class="kd">super</span> <span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kd">implements</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">E</span> <span class="n">element</span><span class="p">;</span>           <span class="c1">// Element for this node</span>
-  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>     <span class="c1">// Pointer to left child</span>
-  <span class="kd">private</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span>    <span class="c1">// Pointer to right child</span>
+<div id="BSTNode_BSTNode_code"><ul><li><a href="#BSTNode_BSTNode_code_Java_Generic">Java</a></li><li><a href="#BSTNode_BSTNode_code_Python">Python</a></li></ul><div id="BSTNode_BSTNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary tree node implementation</span>
+<span class="kd">class</span> <span class="nc">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="n">element</span><span class="p">;</span>           <span class="c1">// Element for this node</span>
+  <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>     <span class="c1">// Pointer to left child</span>
+  <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span>    <span class="c1">// Pointer to right child</span>
 
   <span class="c1">// Constructors</span>
-  <span class="n">BSTNode</span><span class="p">()</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">BSTNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">BSTNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">,</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span>
+  <span class="n">BinaryTreeNode</span><span class="p">()</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span>
     <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Get and set the element value</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">element</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">)</span> <span class="p">{</span> <span class="n">element</span> <span class="o">=</span> <span class="n">v</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Get and set the left child</span>
-  <span class="kd">public</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setLeft</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Get and set the right child</span>
-  <span class="kd">public</span> <span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setRight</span><span class="p">(</span><span class="n">BSTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span> <span class="n">right</span> <span class="o">=</span> <span class="n">p</span><span class="p">;</span> <span class="p">}</span>
 
   <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
   <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span> <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<div class="line-block">
+</div><div id="BSTNode_BSTNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Binary tree node implementation</span>
+<span class="k">class</span> <span class="nc">BinaryTreeNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="c1"># Element for this node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">element</span> <span class="o">=</span> <span class="n">element</span>
+
+        <span class="c1"># Pointer to left child</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+
+        <span class="c1"># Pointer to right child</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+
+    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return True if a leaf node, False otherwise.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#BSTNode_BSTNode_code" ).tabs();});</script><p>Sometimes, we will treat binary tree nodes as an <em>abstract data type</em>.
+In those cases, instead of using the class above, we will use the
+following <code class="docutils literal notranslate"><span class="pre">BinNode</span></code> ADT. It provides operations that set and return
+the element value, return a pointer to the left or right child, and
+indicate whether a node is a leaf.</p>
+<div id="BinNode_BinNode_code"><ul><li><a href="#BinNode_BinNode_code_Java_Generic">Java</a></li><li><a href="#BinNode_BinNode_code_Python">Python</a></li></ul><div id="BinNode_BinNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// Binary tree node ADT</span>
+  <span class="c1">// Get and set the element value</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">();</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">);</span>
+
+  <span class="c1">// return the children</span>
+  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">();</span>
+  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">();</span>
+
+  <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
+  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="BinNode_BinNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">BinNode</span><span class="p">:</span> <span class="c1"># Binary tree node ADT</span>
+  <span class="c1"># Get and set the element value</span>
+  <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+  <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="o">...</span>
+
+  <span class="c1"># Return the children</span>
+  <span class="k">def</span> <span class="nf">left</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span> <span class="c1"># returns a BinNode</span>
+  <span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span> <span class="c1"># returns a BinNode</span>
+
+  <span class="c1"># return True if a leaf node, False otherwise</span>
+  <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="o">...</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#BinNode_BinNode_code" ).tabs();});</script><div class="line-block">
 <div class="line"><br /></div>
 </div>
 <div class="divdgm" id="binlink">
 <div id="BTnullpointerCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 5.9.1: Illustration of a typical pointer-based binary tree implementation,
+<p class="caption"><span class="caption-text"> Figure 5.5.1: Illustration of a typical pointer-based binary tree implementation,
 where each node stores two child pointers and a value.</span></p>
 </div>
 <p>Some programmers find it convenient to add a pointer to the
@@ -245,7 +280,7 @@ Other applications require one type of value for the leaves and
 another for the internal nodes.
 Examples include the <a class="reference internal" href="Glossary.html#term-binary-trie"><span class="xref std std-term">binary trie</span></a>, the <a class="reference internal" href="Glossary.html#term-pr-quadtree"><span class="xref std std-term">PR Quadtree</span></a>,
 the <a class="reference internal" href="Glossary.html#term-huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, and the <a class="reference internal" href="Glossary.html#term-expression-tree"><span class="xref std std-term">expression tree</span></a>
-illustrated by Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a>.
+illustrated by Figure <a href="BinaryTreeImpl.html#diffnodes">5.5.2</a>.
 By definition, only internal nodes have non-empty children.
 If we use the same node implementation for both internal and leaf
 nodes, then both must store the child pointers.
@@ -255,16 +290,16 @@ implementations for internal and leaf nodes.</p>
 <div class="divdgm" id="diffnodes">
 <div id="expressionTreeCON">
 </div>
-<p class="caption"><span class="caption-text"> Figure 5.9.2: An expression tree for <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.</span></p>
+<p class="caption"><span class="caption-text"> Figure 5.5.2: An expression tree for <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.</span></p>
 </div>
 <p>As an example of a tree that stores different information at the leaf
 and internal nodes, consider the expression tree illustrated by
-Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a>.
+Figure <a href="BinaryTreeImpl.html#diffnodes">5.5.2</a>.
 The expression tree represents an algebraic expression
 composed of binary operators such as addition, subtraction,
 multiplication, and division.
 Internal nodes store operators, while the leaves store operands.
-The tree of Figure <a href="BinaryTreeImpl.html#diffnodes">5.9.2</a> represents the expression
+The tree of Figure <a href="BinaryTreeImpl.html#diffnodes">5.5.2</a> represents the expression
 <span class="math notranslate nohighlight">\(4x(2x + a) - c\)</span>.
 The storage requirements for a leaf in an expression tree are quite
 different from those of an internal node.
@@ -418,11 +453,11 @@ function <code class="docutils literal notranslate"><span class="pre">traverse</
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BinaryTreeInfFlw.html">5.<span class="section-number">7. </span>Information Flow in Recursive Functions</a>
+        «&#160;&#160;<a id="prevmod1" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="BinaryTreeNodeSpace.html">5.<span class="section-number">9. </span>Binary Tree Space Requirements (optional)</a>&#160;&#160;»
+        <a  id="nextmod1" href="BinaryTreeFullThm.html">5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -437,7 +472,7 @@ function <code class="docutils literal notranslate"><span class="pre">traverse</
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 10, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -22,7 +22,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-10 13:19:54"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = false;ODSA.SETTINGS.MODULE_NAME = "index";ODSA.SETTINGS.MODULE_LONG_NAME = "Contents";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -127,11 +127,11 @@ Binary Trees
    BinaryTreeIntro
    BinaryTree
    RecursiveDS
+   BinaryTreeImpl
    BinaryTreeFullThm
    BinaryTreeTraversal
    WritingTraversals
    BinaryTreeInfFlw
-   BinaryTreeImpl
    BinaryTreeNodeSpace
    MultipleBinaryTrees
    BSTCheck
