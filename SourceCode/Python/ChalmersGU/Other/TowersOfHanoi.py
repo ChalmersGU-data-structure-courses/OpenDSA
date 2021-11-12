@@ -12,7 +12,7 @@ from LinkedStack import LinkedStack
 #  - temp: The other pole
 #/* *** ODSATag: TOHshort *** */
 def TOH_recursive(n, start, goal, temp):
-    if n == 0:                              # Base case
+    if n == 0:                             # Base case
         return
     TOH_recursive(n-1, start, temp, goal)  # Recursive call: n-1 rings
     move(start, goal)                      # Move bottom disk to goal

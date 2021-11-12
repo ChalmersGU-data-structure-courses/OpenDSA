@@ -74,7 +74,7 @@ class FullNameComparator implements Comparator<Person> {
 }
 /* *** ODSAendTag: FullNameComparator *** */
 
-public class DemoComparator {
+public class ComparatorExample {
 /* *** ODSATag: GetPeople *** */
 static ArrayList<Person> getPeople() {
     ArrayList<Person> people = new ArrayList<>();

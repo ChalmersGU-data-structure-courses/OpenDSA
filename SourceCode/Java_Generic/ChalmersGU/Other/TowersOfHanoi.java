@@ -1,6 +1,6 @@
 
-// Tester for TOH code
-public class DemoTowersOfHanoi {
+// Tester for Towers of Hanoi code
+public class TowersOfHanoi {
     static int counter;
 
     // Fake an "enum" -- a Processing deficiency
@@ -77,21 +77,21 @@ static class TOH_object {
 }
 /* *** ODSAendTag: TOHstack *** */
 
-  public static void main(String args[]) {
-    int n = 4;
-    if (args.length == 1) {
-        n = Integer.parseInt(args[0]);
-    }
-    Pole start = new Pole(1);
-    Pole goal = new Pole(2);
-    Pole temp = new Pole(3);
+    public static void main(String args[]) {
+        int n = 4;
+        if (args.length == 1) {
+            n = Integer.parseInt(args[0]);
+        }
+        Pole start = new Pole(1);
+        Pole goal = new Pole(2);
+        Pole temp = new Pole(3);
 
-    System.out.println("Recursive solution");
-    counter = 1;
-    TOH_recursive(n, start, goal, temp);
-    System.out.println();
-    System.out.println("Stack solution");
-    counter = 1;
-    TOH_stack(n, start, goal, temp);
-  }
+        System.out.println("Recursive solution");
+        counter = 1;
+        TOH_recursive(n, start, goal, temp);
+        System.out.println();
+        System.out.println("Stack solution");
+        counter = 1;
+        TOH_stack(n, start, goal, temp);
+    }
 }

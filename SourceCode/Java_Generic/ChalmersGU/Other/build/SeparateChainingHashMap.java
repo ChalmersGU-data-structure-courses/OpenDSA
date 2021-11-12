@@ -13,7 +13,7 @@ class SeparateChainingHashMap<K, V> implements Map<K, V> {
 
     @SuppressWarnings("unchecked")
     private void initialiseTable(int capacity) {
-        internalTable = (Map<K, V>[]) new LinkedListMap[capacity];
+        internalTable = (Map<K, V>[]) new LinkedMap[capacity];
         mapSize = 0;
     }
 /* *** ODSAendTag: Header *** */
@@ -36,7 +36,7 @@ class SeparateChainingHashMap<K, V> implements Map<K, V> {
         int i = hash(key);
         Map<K, V> bin = internalTable[i];
         if (bin == null)
-            bin = internalTable[i] = new LinkedListMap<>();
+            bin = internalTable[i] = new LinkedMap<>();
         V old = bin.put(key, value);
         if (old == null) {
             mapSize++;

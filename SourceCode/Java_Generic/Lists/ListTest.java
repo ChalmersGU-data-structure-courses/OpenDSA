@@ -1,6 +1,3 @@
-import java.io.*;
-import java.util.LinkedList;
-import java.util.NoSuchElementException;
 
 /**
  * This program checks if all the methods in AList, LList and DList classes work

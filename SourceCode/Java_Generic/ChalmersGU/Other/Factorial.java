@@ -1,6 +1,6 @@
 
 // Tester for factorial code
-public class DemoFactorial {
+public class Factorial {
 
 /* *** ODSATag: RFact *** */
 // Recursively compute and return n!
