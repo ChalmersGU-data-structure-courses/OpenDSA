@@ -150,6 +150,14 @@ Glossary
       :term:`asymptotic algorithm analysis`, generally used as a
       synonym for :term:`asymptotic analysis`.
 
+   asymptotic complexity
+      The :term:`growth rate` or :term:`order of growth` of the :term:`complexity` of an algorithm or problem.
+      There are several independent categories of qualifiers for (asymptotic) complexity:
+
+      - :term:`time complexity` (default), :term:`space complexity`, complexity in some other cost,
+      - :term:`worst case` (default), :term:`average case`, :term:`best case`,
+      - :term: whether to use :term:`amortized complexity<amortized analysis>`.
+
    alias
       Another name for something. In programming, this usually refers
       to two :term:`references <reference>` that refer to the same
@@ -189,11 +197,13 @@ Glossary
    amortized analysis
       :to-term: algorithm analysis :label: is
 
-      An :term:`algorithm analysis` techique that looks at the total
+      An :term:`algorithm analysis` techique that does not look at the cost
+      of a single run of an operation, but at the average cost over
+looks at the total
       cost for a series of operations and amortizes this total cost
       over the full series.
       This is as opposed to considering every individual operation to
-      independently have the :term:`worst case` cost, which might lead
+      independently have the :term:`worst-case<worst case>` cost, which might lead
       to an overestimate for the total cost of the series.
 
    amortized cost
@@ -272,7 +282,8 @@ Glossary
       :to-term: asymptotic algorithm analysis :label: formal synonym
 
       A method for estimating the efficiency of an algorithm or
-      computer program by identifying its :term:`growth rate`.
+      computer program by identifying its :term:`asymptotic complexity`,
+      the :term:`growth rate` of its complexity function.
       Asymptotic analysis also gives a way to
       define the inherent difficulty of a :term:`problem`.
       We frequently use the term :term:`algorithm analysis` to mean
@@ -292,11 +303,14 @@ Glossary
       automatically.
 
    average case
-      In :term:`algorithm analysis`, the average of the costs for all
-      :term:`problem instances <problem instance>` of a given input
-      size :math:`n`. If not all problem
-      instances have equal probability of occurring, then average case
-      must be calculated using a weighted average.
+      In :term:`algorithm analysis`, specifically :term:`complexity` of an
+      algorithm, the average of the costs for all :term:`problem instances
+      <problem instance>` of a given input size :math:`n`.
+      If not all problem instances have equal probability of occurring, then the
+      average case must be calculated using a weighted average that is specified
+      with the problem (for example, every input may be equally likely).
+      Every input size :math:`n` has its own average case.
+      We **never** consider the average case as removed from input size.
 
    average seek time
       Expected (average) time to perform a :term:`seek` operation on a
@@ -419,11 +433,11 @@ Glossary
       data structure, and finding a specified :term:`data item`.
 
    best case
-      In algorithm analysis, the :term:`problem instance` from among
-      all problem instances for a given input size :math:`n` that has
-      least cost. Note that the best case is **not** when :math:`n` is
-      small, since we are referring to the best from a class of inputs
-      (i.e, we want the best of those inputs of size :math:`n`).
+      In :term:`algorithm analysis`, specifically :term:`complexity` of an
+      algorithm, the :term:`problem instance` from among all problem instances
+      for a given input size :math:`n` that has least cost.
+      Every input size :math:`n` has its own best case.
+      We **never** consider the best case as removed from input size.
 
    best fit
       In a :term:`memory manager`, best fit is a :term:`heuristic`
@@ -442,9 +456,10 @@ Glossary
       Abbreviation for :term:`breadth-first search`.
 
    big-Oh notation
-      In :term:`algorithm analysis`, a shorthand notation for
-      describing the :term:`upper bound` for an :term:`algorithm` or
-      :term:`problem`.
+      For :term:`growth rates<growth rate>` :math:`f` and :math:`g`,
+      we write :math:`f \in O(g)` to say that :math:`g` is an :term:`upper bound` for :math:`f`.
+      The notation can be made sense of by defining `O(g)` as the set of functions with growth rate less than or equal to that of `g`.
+      The notation is often somewhat imprecisely used as :math:`f(n) \in O(g(n))` or even :math:`f(n) = O(g(n))`.
 
    binary insert sort
       A variation on :term:`insertion sort` where the position of the
@@ -985,6 +1000,19 @@ Glossary
       In mathematics, an imaginary number, that is, a number with a
       real component and an imaginary component.
 
+   complexity
+      After fixing a :term:`cost model` for a problem,
+      we can calculate the complexity function of an algorithm.
+      This sends an input size :math:`n` to the cost of running the algorithm on input of that size.
+      For each fixed `n`, we consider only the :term:`worst-case<worst case>` input of size :math:`n`.
+      This defines the worst-case complexity of the algorithm.
+      There is also the :term:`average-case<average case>` and :term:`best-case<best case>` complexity,
+      which are defined similarly.
+
+      We speak of time complexity, space complexity, etc. depending on what kind of cost our cost model captures.
+      Here, time refers to runtime and space refers to memory/storage.
+      The case of time complexity is the default, so we omit the word "time".
+
    Composite design pattern
       Given a class hierarchy representing a set of objects, and a
       container for a collection of objects, the composite
@@ -1113,7 +1141,7 @@ Glossary
       the set to the set of integers.
 
    cost
-      The amount of resources that the solution consumes.
+      The amount of resources that given run of an algorithm consumes.
 
    cost model
       In :term:`algorithm analysis`, a definition for the cost of each
@@ -1121,7 +1149,15 @@ Glossary
       along with a definition for the size of the input.
       Having these definitions allows us to calculate the :term:`cost`
       to run the algorithm on a given input, and from there determine
-      the :term:`growth rate` of the algorithm.
+      the :term:`complexity` of the algorithm.
+
+      By default, the cost model approximates the runtime of the program.
+      To stress this, we also speak of time complexity.
+      It is also possible to model other kinds of costs.
+      In the case of memory/storage, we speak of space complexity.
+
+      Looking at the :term:`growth rate` of the complexity function
+      tells us the :term:`asymptotic complexity` of the algorithm.
       A cost model would be considered "good" if it yields predictions
       that conform to our understanding of reality.
 
@@ -2087,11 +2123,26 @@ Glossary
       An algorithm that makes locally optimal choices at each step.
 
    growth rate
+      :to-term: order of growth :label: synonym
       :to-term: lower bound :label: type
       :to-term: upper bound :label: type
+      :to-term: linear growth rate :label: example
+      :to-term: quadratic growth rate :label: example
+      :to-term: exponential growth rate :label: example
 
-      In :term:`algorithm analysis`, the rate at which the cost
-      of the :term:`algorithm` grows as the size of its input grows.
+      The rate at which a function grows.
+      How quickly the function grows when its input grows.
+      Also called its `order of growth`.
+
+      A function :math:`f` has growth rate bounded by a function :math:`g` if the values of :math:`f` are eventually bounded by those of :math:`g` up to some constant factor.
+      Formally, there are constants :math:`n_0 \geq 0` and :math:`c > 0` such that :math:`f(n) \leq c g(n)` for all :math:`n \geq n_0`.
+      We then say that :math:`f` has growth rate less or equal that of :math:`g` and write :math:`f \in O(g)` (big-Oh notation).
+      This defines the preorder of growth rates.
+
+      In :term:`algorithm analysis`, we sometimes speak of the growth rate of an :term:`algorithm`.
+      By that, we mean the :term:`growth rate` of the :term:`complexity` of the algorithm,
+      the rate at which the cost of the :term:`algorithm` grows as the size of its input grows.
+      This is also called the :term:`asymptotic complexity` of that algorithm.
 
    guess-and-test
       A technique used when trying to determine the
@@ -2900,16 +2951,20 @@ Glossary
       :term:`space/time tradeoff`.
 
    lower bound
-      In :term:`algorithm analysis`, a :term:`growth rate` that is
-      always less than or equal to the growth rate of the
-      :term:`algorithm` in question.
-      In practice, this is the fastest-growing function that we know
-      grows no faster than all but a constant number of inputs.
-      It could be a gross under-estimate of the truth.
-      Since the lower bound for the algorithm can be very different
-      for different situations (such as the :term:`best case` or
-      :term:`worst case`), we typically have to specify which
-      situation we are referring to.
+      An lower bound for a :term:`growth rate` :math:`f` is any
+      growth rate :math:`g` that is less than or equal to it.
+      Formally, there are constants :math:`n_0 \geq 0` and :math:`c > 0`
+      such that :math:`f(n) \geq c g(n)` for all :math:`n \geq n_0`.
+      We also write :math:`f \in \Omega(g)` or slightly imprecisely :math:`f(n) \in \Omega(g(n))`
+      (this is :term:`Omega notation`).
+
+      Usually, we are interested in finding a lower bound :math:`g` that has a
+      simple expression compared to :math:`f`, but is still sharp (there is not
+      much room for improvement).
+
+      In :term:`algorithm analysis`, a lower bound for an algorithm is
+      a lower bound for the :term:`asymptotic complexity` of the algorithm,
+      the growth rate of its :term:`complexity`.
 
    lower bounds proof
       :to-term: adversary argument :label: example
@@ -3383,10 +3438,10 @@ Glossary
       be a tree with :math:`2^3` or eight branches.
 
    Omega notation
-      In :term:`algorithm analysis`,
-      :math:`\Omega` notation is used to describe a :term:`lower bound`.
-      Roughly (but not completely) analogous to
-      :term:`big-Oh notation` used to define an :term:`upper bound`.
+      For :term:`growth rates<growth rate>` :math:`f` and :math:`g`,
+      we write :math:`f \in \Omega(g)` to say that :math:`g` is a :term:`lower bound` for :math:`f`.
+      The notation can be made sense of by defining `Omega(g)` as the set of functions with growth rate greater than or equal to that of `g`.
+      The notation is often somewhat imprecisely used as :math:`f(n) \in \Omega(g(n))` or even :math:`f(n) = \Omega(g(n))`.
 
    one-way list
       A synonym for a :term:`singly linked list`.
@@ -3421,6 +3476,13 @@ Glossary
       An example is the Traveling Salesman Problem, where
       visiting :math:`n` cities in some order has a cost, and the goal
       is to visit in the cheapest order.
+
+   order of growth
+      :to-term: growth rate :label: synonym
+      :to-term: lower bound :label: type
+      :to-term: upper bound :label: type
+
+      A synonym for `growth rate`.
 
    out degree
       In :term:`graph` terminology, the out degree for a :term:`vertex` is
@@ -4280,8 +4342,8 @@ Glossary
       For a sorted array, it is :math:`\Omega(\log n)` in the worst
       case, typically proved using an argument similar to the
       :term:`sorting lower bound` proof.
-      However, it is possible to search a sorted array in the average
-      case in :math:`O(\log \log n)` time.
+      Indeed, it is possible to search a sorted array in the average
+      case in :math:`O(\log n)` time.
 
    search problem
       Given a particular key value :math:`K`, the search problem is to
@@ -5188,10 +5250,28 @@ Glossary
       :term:`mark array`.
 
    upper bound
-      In :term:`algorithm analysis`, a :term:`growth rate` that is
-      always greater than or equal to the growth rate of the
-      :term:`algorithm` in question.
-      In practice, this is the slowest-growing function that we know
+      An upper bound for a :term:`growth rate` :math:`f` is any
+      growth rate :math:`g` that is greater than or equal to it.
+      Formally, there are constants :math:`n_0 \geq 0` and :math:`C > 0`
+      such that :math:`f(n) \leq C g(n)` for all :math:`n \geq n_0`.
+      We also write :math:`f \in O(g)` or slightly imprecisely :math:`f(n) \in O(g(n))`
+      (this is :term:`big-Oh notation`).
+
+      Usually, we are interested in finding an upper bound :math:`g` that has a
+      simple expression compared to :math:`f`, but is still sharp (there is not
+      much room for improvement).
+
+      In :term:`algorithm analysis`, an upper bound for an algorithm is
+      an upper bound for the :term:`asymptotic complexity` of the algorithm,
+      the growth rate of its :term:`complexity`.
+      In practice, we are looking for the best possible upper bound that has
+      a simple mathematical expression.
+      For example, we may write :math:`T(n) \in O(n^2)` if :math:`T` is the
+      (time) complexity of the algorithm to say that the complexity is
+      quadratic, i.e. the asymptoptic complexity of the algorithm has the growth
+      rate given by squaring as as upper bound.
+
+slowest-growing function that we know
       grows at least as fast as all but a constant number of inputs.
       It could be a gross over-estimate of the truth.
       Since the upper bound for the algorithm can be very different
@@ -5302,12 +5382,12 @@ Glossary
       that can hold some subset of the total data being processed.
 
    worst case
-      In algorithm analysis, the :term:`problem instance` from among
-      all problem instances for a given input size :math:`n` that has
-      the greatest cost. Note that the worst case is **not** when
-      :math:`n` is big, since we are referring to the wrost from a
-      class of inputs (i.e, we want the worst of those inputs of size
-      :math:`n`).
+      In :term:`algorithm analysis`, specifically :term:`complexity` of an
+      algorithm, the :term:`problem instance` from among all problem instances
+      for a given input size :math:`n` that has the greatest cost.
+
+      Every input size :math:`n` has its own worst case.
+      We **never** consider the worst case as removed from input size.
 
    worst fit
       In a :term:`memory manager`, worst fit is a :term:`heuristic`
