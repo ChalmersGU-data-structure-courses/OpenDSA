@@ -1,0 +1,455 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>General Tree Implementations &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span></span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/GenTreeImplement.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        <a  class="uplink" href="index.html">Contents</a>
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction', 'list-of-children', 'the-left-childright-sibling-implementation', 'dynamic-node-implementations', 'dynamic-left-childright-sibling-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeImplement";ODSA.SETTINGS.MODULE_LONG_NAME = "General Tree Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees (misc stuff)"; ODSA.SETTINGS.BUILD_DATE = "2021-09-24 12:54:10"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="general-tree-implementations">
+<h1>General Tree Implementations<a class="headerlink" href="#general-tree-implementations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>General Tree Implementations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h3>
+<p>We now tackle the problem of devising an implementation for general
+trees that allows efficient processing for all member functions of the
+ADTs of <a class="reference internal" href="GenTreeIntro.html#gentreeintro"><span class="std std-ref">the general tree introduction</span></a>.
+This section presents several approaches to implementing general
+trees.
+Each implementation yields  advantages and disadvantages in the amount
+of space required to store a node and the relative ease with which
+key operations can be performed.
+General tree implementations should place no restriction on how many
+children a node may have.
+In some applications, once a node is created the number of children
+never changes.
+In such cases, a fixed amount of space can be allocated for the
+node when it is created, based on the number of children for the node.
+Matters become more complicated if children can be added to or deleted
+from a node, requiring that the node’s space allocation be adjusted
+accordingly.</p>
+</div>
+<div class="section" id="list-of-children">
+<h3>List of Children<a class="headerlink" href="#list-of-children" title="Permalink to this headline">¶</a></h3>
+<p>Our first attempt to create a general tree implementation is called
+the “list of children” implementation for general trees.
+It simply stores with each internal node a
+linked list of its children.
+This is illustrated by Figure .</p>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="childlist"></span><a class="reference internal image-reference" href="_images/ChildLst.png"><img alt="The &quot;list of children&quot; implementation for general trees." src="_images/ChildLst.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: The “list of children” implementation for general trees.
+The column of numbers to the left of the node array labels the
+array indices.
+The column labeled “Val” stores node values.
+The column labeled “Par” stores indices (or pointers) to the
+parents.
+The last column stores pointers to the linked list of children for
+each internal node.
+Each element of the linked list stores a pointer to
+one of the node’s children (shown as the array index of the target
+node).</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>The “list of children” implementation stores the tree nodes in an
+array.
+Each node contains a value, a pointer (or index) to its parent, and a
+pointer to a linked list of the node’s children, stored in order from
+left to right.
+Each linked list element contains a pointer to one child.
+Thus, the leftmost child of a node can be found directly because it is
+the first element in the linked list.
+However, to find the right sibling for a node is more difficult.
+Consider the case of a node <span class="math notranslate nohighlight">\(M\)</span> and its parent <span class="math notranslate nohighlight">\(P\)</span>.
+To find <span class="math notranslate nohighlight">\(M\)</span> ‘s right sibling, we must move down the child list
+of <span class="math notranslate nohighlight">\(P\)</span> until the linked list element storing the pointer
+to <span class="math notranslate nohighlight">\(M\)</span> has been found.
+Going one step further takes us to the linked list element that stores
+a pointer to <span class="math notranslate nohighlight">\(M\)</span> ‘sright sibling.
+Thus, in the worst case, to find <span class="math notranslate nohighlight">\(M\)</span> ‘s right sibling requires
+that all children of <span class="math notranslate nohighlight">\(M\)</span> ‘s parent be searched.</p>
+<p>Combining trees using this representation is difficult if each tree
+is stored in a separate node array.
+If the nodes of both trees are stored in a single node array, then
+adding tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> as a subtree of node <span class="math notranslate nohighlight">\(R\)</span> is done
+by simply adding the root of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> to <span class="math notranslate nohighlight">\(R\)</span> ‘s list
+of children.</p>
+</div>
+<div class="section" id="the-left-child-right-sibling-implementation">
+<h3>The Left-Child/Right-Sibling Implementation<a class="headerlink" href="#the-left-child-right-sibling-implementation" title="Permalink to this headline">¶</a></h3>
+<p>With the “list of children” implementation, it is difficult to
+access a node’s right sibling.
+Figure  presents an improvement.
+Here, each node stores its value and pointers to its parent, leftmost
+child, and right sibling.
+Thus, each of the basic ADT operations can be implemented by reading a
+value directly from the node.
+If two trees are stored within the same node array, then adding one
+as the subtree of the other simply requires setting three pointers.
+Combining trees in this way is illustrated by
+Figure .
+This implementation is more space efficient than the
+“list of children” implementation, and each node requires a fixed
+amount of space in the node array.</p>
+<div class="figure align-center" id="id3" style="width: 90%">
+<span id="explicit"></span><a class="reference internal image-reference" href="_images/Explicit.png"><img alt="The left-child/right-sibling implementation" src="_images/Explicit.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: The “left-child/right-sibling” implementation.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4" style="width: 90%">
+<span id="addexplicit"></span><a class="reference internal image-reference" href="_images/ExpliAdd.png"><img alt="Combining two trees" src="_images/ExpliAdd.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: Combining two trees that use the “left-child/right-sibling”
+implementation.
+The subtree rooted at <span class="math notranslate nohighlight">\(R\)</span> in Figure 
+now becomes the first child of <span class="math notranslate nohighlight">\(R'\)</span>.
+Three pointers are adjusted in the node array:
+The left-child field of <span class="math notranslate nohighlight">\(R'\)</span> now points to node <span class="math notranslate nohighlight">\(R\)</span>,
+while the right-sibling field for <span class="math notranslate nohighlight">\(R\)</span> points to node
+<span class="math notranslate nohighlight">\(X\)</span>.
+The parent field of node <span class="math notranslate nohighlight">\(R\)</span> points to
+node <span class="math notranslate nohighlight">\(R'\)</span>.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="dynamic-node-implementations">
+<h3>Dynamic Node Implementations<a class="headerlink" href="#dynamic-node-implementations" title="Permalink to this headline">¶</a></h3>
+<p>The two general tree implementations just described use an
+array to store the collection of nodes.
+In contrast, our standard implementation for binary trees stores each
+node as a separate dynamic object containing its value and pointers to
+its two children.
+Unfortunately, nodes of a general tree can have any number of
+children, and this number may change during the life of the node.
+A general tree node implementation must support these properties.
+One solution is simply to limit the number of children permitted for
+any node and allocate pointers for exactly that number of children.
+There are two major objections to this.
+First, it places an undesirable limit on the number of children, which
+makes certain trees unrepresentable by this implementation.
+Second, this might be extremely wasteful of space because most
+nodes will have far fewer children and thus leave some pointer
+positions empty.</p>
+<p>The alternative is to allocate variable space for each node.
+There are two basic approaches.
+One is to allocate an array of child pointers as part of the node.
+In essence, each node stores an array-based list of child pointers.
+Figure  illustrates the concept.
+This approach assumes that the number of children is known when the
+node is created, which is true for some applications but not for
+others.
+It also works best if the number of children does not change.
+If the number of children does change (especially if it increases),
+then some special recovery mechanism must be provided to support
+a change in the size of the child pointer array.
+One possibility is to allocate a new node of the correct size from
+free store and return the old copy of the node to free store for
+later reuse.
+This works especially well in a language with built-in garbage
+collection such as Java.
+For example, assume that a node <span class="math notranslate nohighlight">\(M\)</span> initially has two children,
+and that space for two child pointers is allocated when <span class="math notranslate nohighlight">\(M\)</span> is
+created.
+If a third child is added to <span class="math notranslate nohighlight">\(M\)</span>, space for a new node with
+three child pointers can be allocated, the contents of <span class="math notranslate nohighlight">\(M\)</span> is
+copied over to the new space, and the old space is then returned to
+free store.
+As an alternative to relying on the system’s garbage collector,
+a memory manager for variable size storage units can be implemented,
+as described in Chapter .
+Another possibility is to use a collection of
+<a class="reference internal" href="Glossary.html#term-freelist"><span class="xref std std-term">free lists</span></a>, one for each array size.
+Note in Figure  that the current number
+of children for each node is stored explicitly in a <code class="docutils literal notranslate"><span class="pre">size</span></code> field.
+The child pointers are stored in an array with <code class="docutils literal notranslate"><span class="pre">size</span></code> elements.</p>
+<div class="figure align-center" id="id5" style="width: 90%">
+<span id="genlinkedfixed"></span><a class="reference internal image-reference" href="_images/GenLkFx.png"><img alt="A dynamic general tree with fixed-size arrays" src="_images/GenLkFx.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: A dynamic general tree representation with fixed-size arrays for
+the child pointers. (a) The general tree. (b) The tree representation.
+For each node, the first field stores the node value while the second
+field stores the size of the child pointer array.</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+</div>
+<p>Another approach that is more flexible, but which requires more space,
+is to store a linked list of child pointers with each node
+as illustrated by Figure .
+This implementation is essentially the same as the “list of
+children” implementation, but with
+dynamically allocated nodes rather than storing the nodes in an
+array.</p>
+<div class="figure align-center" id="id6" style="width: 90%">
+<span id="genlinkedlinked"></span><a class="reference internal image-reference" href="_images/GenLkLk.png"><img alt="A dynamic general tree with linked lists of child pointers" src="_images/GenLkLk.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: A dynamic general tree representation with linked lists of child
+pointers.
+(a) The general tree.
+(b) The tree representation.</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+<div class="section" id="dynamic-left-child-right-sibling-implementation">
+<h3>Dynamic Left-Child/Right-Sibling Implementation<a class="headerlink" href="#dynamic-left-child-right-sibling-implementation" title="Permalink to this headline">¶</a></h3>
+<p>The “left-child/right-sibling” implementation
+stores a fixed number of pointers with each node.
+This can be readily adapted to a dynamic implementation.
+In essence, we substitute a binary tree for a
+general tree.
+Each node of the “left-child/right-sibling” implementation points to
+two “children” in a new binary tree structure.
+The left child of this new structure is the node’s first child
+in the general tree.
+The right child is the node’s right sibling.
+We can easily extend this conversion to a forest of general trees,
+because the roots of the trees can be considered siblings.
+Converting from a forest of general trees to a single binary tree is
+illustrated by Figure .
+Here we simply include links from each node to its right sibling and
+remove links to all children except the leftmost child.
+Figure  shows how this might look in an
+implementation with two pointers at each node.
+Compared with the implementation illustrated by
+Figure  which requires overhead of three
+pointers/node, the implementation of Figure  only
+requires two pointers per node.
+The representation of Figure  is likely to be
+easier to implement, space efficient, and more flexible than the other
+implementations presented in this section.</p>
+<div class="figure align-center" id="id7" style="width: 90%">
+<span id="fortobin"></span><a class="reference internal image-reference" href="_images/FortoBin.png"><img alt="Converting from a forest of general trees to a binary tree" src="_images/FortoBin.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: Converting from a forest of general trees to a single binary tree.
+Each node stores pointers to its left child and right sibling.
+The tree roots are assumed to be siblings for the purpose of
+converting.</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id8" style="width: 90%">
+<span id="genbin"></span><a class="reference internal image-reference" href="_images/GenBin.png"><img alt="Dynamic &quot;left-child/right-sibling&quot; representation" src="_images/GenBin.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 0.1: A general tree converted to the dynamic “left-child/right-sibling”
+representation.
+Compared to the representation of
+Figure , this
+representation requires less space.</span><a class="headerlink" href="#id8" title="Permalink to this image">¶</a></p>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        <a  class="uplink" href="index.html">Contents</a>
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 12, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

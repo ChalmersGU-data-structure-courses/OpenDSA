@@ -159,7 +159,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-11 18:40:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="id1">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:57:06"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="id1">
 <h1>5.<span class="section-number">1. </span>Glossary<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <dl class="glossary">
 <dt id="term-2-3-tree">2-3 tree</dt><dd><p>A specialized form of the <a class="reference internal" href="#term-1"><span class="xref std std-term">B-tree</span></a> where each internal
@@ -286,15 +286,22 @@ branch of the tree.
 At the second level, such strings will be separated by branching
 on the second letter.</p>
 </dd>
-<dt id="term-amortized-analysis">amortized analysis</dt><dd><p>An <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a> techique that looks at the total
-cost for a series of operations and amortizes this total cost
-over the full series.
-This is as opposed to considering every individual operation to
-independently have the <a class="reference internal" href="#term-worst-case"><span class="xref std std-term">worst case</span></a> cost, which might lead
-to an overestimate for the total cost of the series.</p>
+<dt id="term-amortized-analysis">amortized analysis</dt><dd><p>Analysing the <a class="reference internal" href="#term-amortized-complexity"><span class="xref std std-term">amortized complexity</span></a> of an <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> or term:<cite>problem</cite>.</p>
 </dd>
-<dt id="term-amortized-cost">amortized cost</dt><dd><p>The total cost for a series of operations to be used in an
-<a class="reference internal" href="#term-amortized-analysis"><span class="xref std std-term">amortized analysis</span></a>.</p>
+<dt id="term-amortized-complexity">amortized complexity</dt><dd><p>A modification to the notion of <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> for operations on a
+data structure where, for each fixed input size, one does not just look at
+the cost of a single run of the operation, but its <a class="reference internal" href="#term-amortized-cost"><span class="xref std std-term">amortized cost</span></a>
+over sufficiently long series of operations of the same kind.
+This can be made precise without considering averages by introducing
+<a class="reference internal" href="#term-potential"><span class="xref std std-term">potentials</span></a>.</p>
+</dd>
+<dt id="term-amortized-cost">amortized cost</dt><dd><p>The average cost of an operation in a sufficiently long series of operations of the same kind.
+This is as opposed to considering every individual operation to
+independently have its own cost, which might lead to an overestimate for
+the total cost of the series.
+This can be made precise without considering averages by introducing
+<a class="reference internal" href="#term-potential"><span class="xref std std-term">potentials</span></a>.</p>
+<p>In <a class="reference internal" href="#term-amortized-analysis"><span class="xref std std-term">amortized analysis</span></a>, gives rise to the notion of <a class="reference internal" href="#term-amortized-complexity"><span class="xref std std-term">amortized complexity</span></a>.</p>
 </dd>
 <dt id="term-ancestor">ancestor</dt><dd><p>In a tree, for a given node <span class="math notranslate nohighlight">\(A\)</span>, any node on a
 <a class="reference internal" href="#term-path"><span class="xref std std-term">path</span></a> from <span class="math notranslate nohighlight">\(A\)</span> up to the root is an ancestor of
@@ -341,11 +348,25 @@ that is relatively easy for a human to read.</p>
 <dt id="term-asymptotic-algorithm-analysis">asymptotic algorithm analysis</dt><dd><p>A more formal term for <a class="reference internal" href="#term-asymptotic-analysis"><span class="xref std std-term">asymptotic analysis</span></a>.</p>
 </dd>
 <dt id="term-asymptotic-analysis">asymptotic analysis</dt><dd><p>A method for estimating the efficiency of an algorithm or
-computer program by identifying its <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a>.
+computer program by identifying its <a class="reference internal" href="#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a>,
+the <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> of its complexity function.
 Asymptotic analysis also gives a way to
 define the inherent difficulty of a <a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a>.
 We frequently use the term <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a> to mean
 the same thing.</p>
+</dd>
+<dt id="term-asymptotic-complexity">asymptotic complexity</dt><dd><p>The <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> or <a class="reference internal" href="#term-order-of-growth"><span class="xref std std-term">order of growth</span></a> of the <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an algorithm or problem.
+There are several independent categories of qualifiers for (asymptotic) complexity:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#term-time-complexity"><span class="xref std std-term">time complexity</span></a> (default), <a class="reference internal" href="#term-space-complexity"><span class="xref std std-term">space complexity</span></a>, complexity in some other cost,</p></li>
+<li><p><a class="reference internal" href="#term-worst-case"><span class="xref std std-term">worst case</span></a> (default), <a class="reference internal" href="#term-average-case"><span class="xref std std-term">average case</span></a>, <a class="reference internal" href="#term-best-case"><span class="xref std std-term">best case</span></a>,</p></li>
+<li><dl class="field-list simple">
+<dt class="field-odd">term</dt>
+<dd class="field-odd"><p>whether to use <a class="reference internal" href="#term-amortized-analysis"><span class="xref std std-term">amortized complexity</span></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
 </dd>
 <dt id="term-attribute">attribute</dt><dd><p>In <a class="reference internal" href="#term-object-oriented-programming-paradigm"><span class="xref std std-term">object-oriented programming</span></a>,
 a synonym for <a class="reference internal" href="#term-data-member"><span class="xref std std-term">data members</span></a>.</p>
@@ -357,11 +378,13 @@ When program flow enters and leaves the variable’s scope,
 automatic variables will be allocated and de-allocated
 automatically.</p>
 </dd>
-<dt id="term-average-case">average case</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, the average of the costs for all
-<a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instances</span></a> of a given input
-size <span class="math notranslate nohighlight">\(n\)</span>. If not all problem
-instances have equal probability of occurring, then average case
-must be calculated using a weighted average.</p>
+<dt id="term-average-case">average case</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, specifically <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an
+algorithm, the average of the costs for all <a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instances</span></a> of a given input size <span class="math notranslate nohighlight">\(n\)</span>.
+If not all problem instances have equal probability of occurring, then the
+average case must be calculated using a weighted average that is specified
+with the problem (for example, every input may be equally likely).
+Every input size <span class="math notranslate nohighlight">\(n\)</span> has its own average case.
+We <strong>never</strong> consider the average case as removed from input size.</p>
 </dd>
 <dt id="term-average-seek-time">average seek time</dt><dd><p>Expected (average) time to perform a <a class="reference internal" href="#term-seek"><span class="xref std std-term">seek</span></a> operation on a
 <a class="reference internal" href="#term-disk-drive"><span class="xref std std-term">disk drive</span></a>, assuming that the seek is between two
@@ -457,11 +480,11 @@ In this example, the base type is integers.</p>
 item into the data structure, deleting a <a class="reference internal" href="#term-data-item"><span class="xref std std-term">data item</span></a> from the
 data structure, and finding a specified <a class="reference internal" href="#term-data-item"><span class="xref std std-term">data item</span></a>.</p>
 </dd>
-<dt id="term-best-case">best case</dt><dd><p>In algorithm analysis, the <a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instance</span></a> from among
-all problem instances for a given input size <span class="math notranslate nohighlight">\(n\)</span> that has
-least cost. Note that the best case is <strong>not</strong> when <span class="math notranslate nohighlight">\(n\)</span> is
-small, since we are referring to the best from a class of inputs
-(i.e, we want the best of those inputs of size <span class="math notranslate nohighlight">\(n\)</span>).</p>
+<dt id="term-best-case">best case</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, specifically <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an
+algorithm, the <a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instance</span></a> from among all problem instances
+for a given input size <span class="math notranslate nohighlight">\(n\)</span> that has least cost.
+Every input size <span class="math notranslate nohighlight">\(n\)</span> has its own best case.
+We <strong>never</strong> consider the best case as removed from input size.</p>
 </dd>
 <dt id="term-best-fit">best fit</dt><dd><p>In a <a class="reference internal" href="#term-memory-manager"><span class="xref std std-term">memory manager</span></a>, best fit is a <a class="reference internal" href="#term-heuristic"><span class="xref std std-term">heuristic</span></a>
 for deciding which <a class="reference internal" href="#term-free-block"><span class="xref std std-term">free block</span></a> to use when allocating
@@ -477,9 +500,10 @@ unuseable memory blocks.</p>
 </dd>
 <dt id="term-bfs">BFS</dt><dd><p>Abbreviation for <a class="reference internal" href="#term-breadth-first-search"><span class="xref std std-term">breadth-first search</span></a>.</p>
 </dd>
-<dt id="term-big-oh-notation">big-Oh notation</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, a shorthand notation for
-describing the <a class="reference internal" href="#term-upper-bound"><span class="xref std std-term">upper bound</span></a> for an <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> or
-<a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a>.</p>
+<dt id="term-big-oh-notation">big-Oh notation</dt><dd><p>For <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rates</span></a> <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>,
+we write <span class="math notranslate nohighlight">\(f \in O(g)\)</span> to say that <span class="math notranslate nohighlight">\(g\)</span> is an <a class="reference internal" href="#term-upper-bound"><span class="xref std std-term">upper bound</span></a> for <span class="math notranslate nohighlight">\(f\)</span>.
+The notation can be made sense of by defining <cite>O(g)</cite> as the set of functions with growth rate less than or equal to that of <cite>g</cite>.
+The notation is often somewhat imprecisely used as <span class="math notranslate nohighlight">\(f(n) \in O(g(n))\)</span> or even <span class="math notranslate nohighlight">\(f(n) = O(g(n))\)</span>.</p>
 </dd>
 <dt id="term-binary-insert-sort">binary insert sort</dt><dd><p>A variation on <a class="reference internal" href="#term-insertion-sort"><span class="xref std std-term">insertion sort</span></a> where the position of the
 value being inserted is located by binary search, and then put
@@ -914,6 +938,17 @@ other vertex.</p>
 <dt id="term-complex-number">complex number</dt><dd><p>In mathematics, an imaginary number, that is, a number with a
 real component and an imaginary component.</p>
 </dd>
+<dt id="term-complexity">complexity</dt><dd><p>After fixing a <a class="reference internal" href="#term-cost-model"><span class="xref std std-term">cost model</span></a> for a problem,
+we can calculate the complexity function of an algorithm.
+This sends an input size <span class="math notranslate nohighlight">\(n\)</span> to the cost of running the algorithm on input of that size.
+For each fixed <cite>n</cite>, we consider only the <a class="reference internal" href="#term-worst-case"><span class="xref std std-term">worst-case</span></a> input of size <span class="math notranslate nohighlight">\(n\)</span>.
+This defines the worst-case complexity of the algorithm.
+There is also the <a class="reference internal" href="#term-average-case"><span class="xref std std-term">average-case</span></a> and <a class="reference internal" href="#term-best-case"><span class="xref std std-term">best-case</span></a> complexity,
+which are defined similarly.</p>
+<p>We speak of time complexity, space complexity, etc. depending on what kind of cost our cost model captures.
+Here, time refers to runtime and space refers to memory/storage.
+The case of time complexity is the default, so we omit the word “time”.</p>
+</dd>
 <dt id="term-composite-design-pattern">Composite design pattern</dt><dd><p>Given a class hierarchy representing a set of objects, and a
 container for a collection of objects, the composite
 <a class="reference internal" href="#term-design-pattern"><span class="xref std std-term">design pattern</span></a> addresses the relationship between the
@@ -1016,14 +1051,20 @@ series of one or more
 That is, the given non-terminal <span class="math notranslate nohighlight">\(A\)</span> can be replaced only
 when it is within the proper context.</p>
 </dd>
-<dt id="term-cost">cost</dt><dd><p>The amount of resources that the solution consumes.</p>
+<dt id="term-cost">cost</dt><dd><p>The amount of resources that given run of an algorithm consumes.</p>
 </dd>
 <dt id="term-cost-model">cost model</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, a definition for the cost of each
 <a class="reference internal" href="#term-basic-operation"><span class="xref std std-term">basic operation</span></a> performed by the algorithm,
 along with a definition for the size of the input.
 Having these definitions allows us to calculate the <a class="reference internal" href="#term-cost"><span class="xref std std-term">cost</span></a>
 to run the algorithm on a given input, and from there determine
-the <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> of the algorithm.
+the <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of the algorithm.</p>
+<p>By default, the cost model approximates the runtime of the program.
+To stress this, we also speak of time complexity.
+It is also possible to model other kinds of costs.
+In the case of memory/storage, we speak of space complexity.</p>
+<p>Looking at the <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> of the complexity function
+tells us the <a class="reference internal" href="#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a> of the algorithm.
 A cost model would be considered “good” if it yields predictions
 that conform to our understanding of reality.</p>
 </dd>
@@ -1787,8 +1828,18 @@ a connection between a pair of vertices in <span class="math notranslate nohighl
 </dd>
 <dt id="term-greedy-algorithm">greedy algorithm</dt><dd><p>An algorithm that makes locally optimal choices at each step.</p>
 </dd>
-<dt id="term-growth-rate">growth rate</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, the rate at which the cost
-of the <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> grows as the size of its input grows.</p>
+<dt id="term-growth-rate">growth rate</dt><dd><p>The rate at which a function grows.
+How quickly the function grows when its input grows.
+Also called its <cite>order of growth</cite>.</p>
+<p>A function <span class="math notranslate nohighlight">\(f\)</span> has growth rate bounded by a function <span class="math notranslate nohighlight">\(g\)</span> if the values of <span class="math notranslate nohighlight">\(f\)</span> are eventually bounded by those of <span class="math notranslate nohighlight">\(g\)</span> up to some constant factor.
+We often shorten this (somewhat confusingly) by saying that <span class="math notranslate nohighlight">\(f\)</span> has growth rate <span class="math notranslate nohighlight">\(g\)</span> or that <span class="math notranslate nohighlight">\(f\)</span> has order of growth <span class="math notranslate nohighlight">\(g\)</span>.</p>
+<p>Formally, there are constants <span class="math notranslate nohighlight">\(n_0 \geq 0\)</span> and <span class="math notranslate nohighlight">\(c &gt; 0\)</span> such that <span class="math notranslate nohighlight">\(f(n) \leq c g(n)\)</span> for all <span class="math notranslate nohighlight">\(n \geq n_0\)</span>.
+We then say that <span class="math notranslate nohighlight">\(f\)</span> has growth rate less or equal that of <span class="math notranslate nohighlight">\(g\)</span> and write <span class="math notranslate nohighlight">\(f \in O(g)\)</span> (big-Oh notation).
+This defines the preorder of growth rates.</p>
+<p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, we sometimes speak of the growth rate of an <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a>.
+By that, we mean the <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> of the <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of the algorithm,
+the rate at which the cost of the <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> grows as the size of its input grows.
+This is also called the <a class="reference internal" href="#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a> of that algorithm.</p>
 </dd>
 <dt id="term-guess-and-test">guess-and-test</dt><dd><p>A technique used when trying to determine the
 <a class="reference internal" href="#term-closed-form-solution"><span class="xref std std-term">closed-form solution</span></a> for a
@@ -2437,16 +2488,18 @@ costs to this approach are the space required for the table and
 the time required to compute the table. This is an example of a
 <a class="reference internal" href="#term-space-time-tradeoff"><span class="xref std std-term">space/time tradeoff</span></a>.</p>
 </dd>
-<dt id="term-lower-bound">lower bound</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, a <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> that is
-always less than or equal to the growth rate of the
-<a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> in question.
-In practice, this is the fastest-growing function that we know
-grows no faster than all but a constant number of inputs.
-It could be a gross under-estimate of the truth.
-Since the lower bound for the algorithm can be very different
-for different situations (such as the <a class="reference internal" href="#term-best-case"><span class="xref std std-term">best case</span></a> or
-<a class="reference internal" href="#term-worst-case"><span class="xref std std-term">worst case</span></a>), we typically have to specify which
-situation we are referring to.</p>
+<dt id="term-lower-bound">lower bound</dt><dd><p>An lower bound for a <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> <span class="math notranslate nohighlight">\(f\)</span> is any
+growth rate <span class="math notranslate nohighlight">\(g\)</span> that is less than or equal to it.
+Formally, there are constants <span class="math notranslate nohighlight">\(n_0 \geq 0\)</span> and <span class="math notranslate nohighlight">\(c &gt; 0\)</span>
+such that <span class="math notranslate nohighlight">\(f(n) \geq c g(n)\)</span> for all <span class="math notranslate nohighlight">\(n \geq n_0\)</span>.
+We also write <span class="math notranslate nohighlight">\(f \in \Omega(g)\)</span> or slightly imprecisely <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span>
+(this is <a class="reference internal" href="#term-omega-notation"><span class="xref std std-term">Omega notation</span></a>).</p>
+<p>Usually, we are interested in finding a lower bound <span class="math notranslate nohighlight">\(g\)</span> that has a
+simple expression compared to <span class="math notranslate nohighlight">\(f\)</span>, but is still sharp (there is not
+much room for improvement).</p>
+<p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, a lower bound for an algorithm is
+a lower bound for the <a class="reference internal" href="#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a> of the algorithm,
+the growth rate of its <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a>.</p>
 </dd>
 <dt id="term-lower-bounds-proof">lower bounds proof</dt><dd><p>A proof regarding the lower bound, with this term most typically
 referring to the lower bound for any possible algorithm to solve
@@ -2812,10 +2865,10 @@ An object-space decomposition is in opposition to an
 <dt id="term-octree">octree</dt><dd><p>The three-dimensional equivalent of the <a class="reference internal" href="#term-quadtree"><span class="xref std std-term">quadtree</span></a> would
 be a tree with <span class="math notranslate nohighlight">\(2^3\)</span> or eight branches.</p>
 </dd>
-<dt id="term-omega-notation">Omega notation</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>,
-<span class="math notranslate nohighlight">\(\Omega\)</span> notation is used to describe a <a class="reference internal" href="#term-lower-bound"><span class="xref std std-term">lower bound</span></a>.
-Roughly (but not completely) analogous to
-<a class="reference internal" href="#term-big-oh-notation"><span class="xref std std-term">big-Oh notation</span></a> used to define an <a class="reference internal" href="#term-upper-bound"><span class="xref std std-term">upper bound</span></a>.</p>
+<dt id="term-omega-notation">Omega notation</dt><dd><p>For <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rates</span></a> <span class="math notranslate nohighlight">\(f\)</span> and <span class="math notranslate nohighlight">\(g\)</span>,
+we write <span class="math notranslate nohighlight">\(f \in \Omega(g)\)</span> to say that <span class="math notranslate nohighlight">\(g\)</span> is a <a class="reference internal" href="#term-lower-bound"><span class="xref std std-term">lower bound</span></a> for <span class="math notranslate nohighlight">\(f\)</span>.
+The notation can be made sense of by defining <cite>Omega(g)</cite> as the set of functions with growth rate greater than or equal to that of <cite>g</cite>.
+The notation is often somewhat imprecisely used as <span class="math notranslate nohighlight">\(f(n) \in \Omega(g(n))\)</span> or even <span class="math notranslate nohighlight">\(f(n) = \Omega(g(n))\)</span>.</p>
 </dd>
 <dt id="term-one-way-list">one-way list</dt><dd><p>A synonym for a <a class="reference internal" href="#term-singly-linked-list"><span class="xref std std-term">singly linked list</span></a>.</p>
 </dd>
@@ -2844,6 +2897,8 @@ potential solutions, and the goal is to find the best solution.
 An example is the Traveling Salesman Problem, where
 visiting <span class="math notranslate nohighlight">\(n\)</span> cities in some order has a cost, and the goal
 is to visit in the cheapest order.</p>
+</dd>
+<dt id="term-order-of-growth">order of growth</dt><dd><p>A synonym for <cite>growth rate</cite>.</p>
 </dd>
 <dt id="term-out-degree">out degree</dt><dd><p>In <a class="reference internal" href="#term-graph"><span class="xref std std-term">graph</span></a> terminology, the out degree for a <a class="reference internal" href="#term-vertex"><span class="xref std std-term">vertex</span></a> is
 the number of edges directed out of the vertex.</p>
@@ -3029,9 +3084,17 @@ by position.</p>
 then recursively visits the right child, and then visits the
 <a class="reference internal" href="#term-root"><span class="xref std std-term">root</span></a>.</p>
 </dd>
-<dt id="term-potential">potential</dt><dd><p>A concept related to <a class="reference internal" href="#term-amortized-analysis"><span class="xref std std-term">amortized analysis</span></a>.
-Potential is the total or currently available amount of work
-that can be done.</p>
+<dt id="term-potential">potential</dt><dd><p>A concept in <a class="reference internal" href="#term-amortized-complexity"><span class="xref std std-term">amortized complexity</span></a> for operations on a data structure.
+We choose a <em>potential function</em> that associates an arbitrary non-negative value of <em>stored cost</em> (stored energy) with each state of the data structure.
+We then define the <a class="reference internal" href="#term-amortized-cost"><span class="xref std std-term">amortized cost</span></a> of a run of the operation to be its cost as given by the the <a class="reference internal" href="#term-cost-model"><span class="xref std std-term">cost model</span></a> plus the change in potential.
+The <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> modified this way is called <a class="reference internal" href="#term-amortized-complexity"><span class="xref std std-term">amortized complexity</span></a>.</p>
+<p>An example is adding an element to a dynamic array.
+When the dynamic array is not full, adding an element is quick and we store some of that saved cost by increasing the potential.
+When the dynamic array is full capacity, we perform an expensive reallocation, but compensate that cost by resetting the potential from a high value to zero.
+Let us define the potential of a dynamic array with capacity <span class="math notranslate nohighlight">\(c\)</span> and size <span class="math notranslate nohighlight">\(n\)</span> to be <span class="math notranslate nohighlight">\(max(2n-c,0)\)</span>.
+Assuming we double the capacity on reallocation, the operation of adding an element then has constant amortized complexity.</p>
+<p>The concept comes from potential energy in physics.
+For example, in the graviational field of the earth, kinetic energy may be stored as potential energy.</p>
 </dd>
 <dt id="term-powerset">powerset</dt><dd><p>For a <a class="reference internal" href="#term-set"><span class="xref std std-term">set</span></a> <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>, the power set is the set
 of all possible <a class="reference internal" href="#term-subset"><span class="xref std std-term">subsets</span></a> for <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.</p>
@@ -3520,8 +3583,8 @@ typically proved using an <a class="reference internal" href="#term-adversary-ar
 For a sorted array, it is <span class="math notranslate nohighlight">\(\Omega(\log n)\)</span> in the worst
 case, typically proved using an argument similar to the
 <a class="reference internal" href="#term-sorting-lower-bound"><span class="xref std std-term">sorting lower bound</span></a> proof.
-However, it is possible to search a sorted array in the average
-case in <span class="math notranslate nohighlight">\(O(\log \log n)\)</span> time.</p>
+Indeed, it is possible to search a sorted array in the average
+case in <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.</p>
 </dd>
 <dt id="term-search-problem">search problem</dt><dd><p>Given a particular key value <span class="math notranslate nohighlight">\(K\)</span>, the search problem is to
 locate a <a class="reference internal" href="#term-record"><span class="xref std std-term">record</span></a> <span class="math notranslate nohighlight">\((k_j, I_j)\)</span> in some collection of
@@ -3797,6 +3860,9 @@ In other words, the sorting problem is to arrange a set of
 records so that the values of their key fields are in
 non-decreasing order.</p>
 </dd>
+<dt id="term-space-complexity">space complexity</dt><dd><p>The <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> or <a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a>
+with a <a class="reference internal" href="#term-cost-model"><span class="xref std std-term">cost model</span></a> that approximates memory/storage usage.</p>
+</dd>
 <dt id="term-space-time-tradeoff">space/time tradeoff</dt><dd><p>Many programs can be designed to either speed processing at the
 cost of additional storage, or reduce storage at the cost of
 additional processing time.</p>
@@ -4029,6 +4095,9 @@ to indicate that the
 <a class="reference internal" href="#term-upper-bound"><span class="xref std std-term">upper bound</span></a> and <a class="reference internal" href="#term-lower-bound"><span class="xref std std-term">lower bound</span></a> for an
 <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> or <a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a> match.</p>
 </dd>
+<dt id="term-time-complexity">time complexity</dt><dd><p>The <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an <a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> or <a class="reference internal" href="#term-problem"><span class="xref std std-term">problem</span></a>
+with a <a class="reference internal" href="#term-cost-model"><span class="xref std std-term">cost model</span></a> that approximates runtime.</p>
+</dd>
 <dt id="term-token">token</dt><dd><p>The basic logical units of a program, as deterimined by
 <a class="reference internal" href="#term-lexical-analysis"><span class="xref std std-term">lexical analysis</span></a>.
 These are things like arithmetic operators, language keywords,
@@ -4255,16 +4324,24 @@ been processed at the current point in the algorithm.
 This information is typically maintained by using a
 <a class="reference internal" href="#term-mark-array"><span class="xref std std-term">mark array</span></a>.</p>
 </dd>
-<dt id="term-upper-bound">upper bound</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, a <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> that is
-always greater than or equal to the growth rate of the
-<a class="reference internal" href="#term-algorithm"><span class="xref std std-term">algorithm</span></a> in question.
-In practice, this is the slowest-growing function that we know
-grows at least as fast as all but a constant number of inputs.
-It could be a gross over-estimate of the truth.
-Since the upper bound for the algorithm can be very different
-for different situations (such as the <a class="reference internal" href="#term-best-case"><span class="xref std std-term">best case</span></a> or
-<a class="reference internal" href="#term-worst-case"><span class="xref std std-term">worst case</span></a>), we typically have to specify which
-situation we are referring to.</p>
+<dt id="term-upper-bound">upper bound</dt><dd><p>An upper bound for a <a class="reference internal" href="#term-growth-rate"><span class="xref std std-term">growth rate</span></a> <span class="math notranslate nohighlight">\(f\)</span> is any
+growth rate <span class="math notranslate nohighlight">\(g\)</span> that is greater than or equal to it.
+Formally, there are constants <span class="math notranslate nohighlight">\(n_0 \geq 0\)</span> and <span class="math notranslate nohighlight">\(C &gt; 0\)</span>
+such that <span class="math notranslate nohighlight">\(f(n) \leq C g(n)\)</span> for all <span class="math notranslate nohighlight">\(n \geq n_0\)</span>.
+We also write <span class="math notranslate nohighlight">\(f \in O(g)\)</span> or slightly imprecisely <span class="math notranslate nohighlight">\(f(n) \in O(g(n))\)</span>
+(this is <a class="reference internal" href="#term-big-oh-notation"><span class="xref std std-term">big-Oh notation</span></a>).</p>
+<p>Usually, we are interested in finding an upper bound <span class="math notranslate nohighlight">\(g\)</span> that has a
+simple expression compared to <span class="math notranslate nohighlight">\(f\)</span>, but is still sharp (there is not
+much room for improvement).</p>
+<p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, an upper bound for an algorithm is
+an upper bound for the <a class="reference internal" href="#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a> of the algorithm,
+the growth rate of its <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a>.
+In practice, we are looking for the best possible upper bound that has
+a simple mathematical expression.
+For example, we may write <span class="math notranslate nohighlight">\(T(n) \in O(n^2)\)</span> if <span class="math notranslate nohighlight">\(T\)</span> is the
+(time) complexity of the algorithm to say that the complexity is
+quadratic, i.e. the asymptoptic complexity of the algorithm has as upper bound
+the growth rate given by squaring.</p>
 </dd>
 <dt id="term-value-parameter">value parameter</dt><dd><p>A <a class="reference internal" href="#term-parameter"><span class="xref std std-term">parameter</span></a> that has been
 <a class="reference internal" href="#term-pass-by-value"><span class="xref std std-term">passed by value</span></a>.
@@ -4346,12 +4423,11 @@ that is operating on large amounts of data stored in
 <a class="reference internal" href="#term-peripheral-storage"><span class="xref std std-term">peripheral storage</span></a>, the working memory represents space
 that can hold some subset of the total data being processed.</p>
 </dd>
-<dt id="term-worst-case">worst case</dt><dd><p>In algorithm analysis, the <a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instance</span></a> from among
-all problem instances for a given input size <span class="math notranslate nohighlight">\(n\)</span> that has
-the greatest cost. Note that the worst case is <strong>not</strong> when
-<span class="math notranslate nohighlight">\(n\)</span> is big, since we are referring to the wrost from a
-class of inputs (i.e, we want the worst of those inputs of size
-<span class="math notranslate nohighlight">\(n\)</span>).</p>
+<dt id="term-worst-case">worst case</dt><dd><p>In <a class="reference internal" href="#term-algorithm-analysis"><span class="xref std std-term">algorithm analysis</span></a>, specifically <a class="reference internal" href="#term-complexity"><span class="xref std std-term">complexity</span></a> of an
+algorithm, the <a class="reference internal" href="#term-problem-instance"><span class="xref std std-term">problem instance</span></a> from among all problem instances
+for a given input size <span class="math notranslate nohighlight">\(n\)</span> that has the greatest cost.</p>
+<p>Every input size <span class="math notranslate nohighlight">\(n\)</span> has its own worst case.
+We <strong>never</strong> consider the worst case as removed from input size.</p>
 </dd>
 <dt id="term-worst-fit">worst fit</dt><dd><p>In a <a class="reference internal" href="#term-memory-manager"><span class="xref std std-term">memory manager</span></a>, worst fit is a <a class="reference internal" href="#term-heuristic"><span class="xref std std-term">heuristic</span></a>
 for deciding which <a class="reference internal" href="#term-free-block"><span class="xref std std-term">free block</span></a> to use when allocating
@@ -4425,7 +4501,7 @@ angular distance for each sector.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 11, 2021.
+      Last updated on Nov 12, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
