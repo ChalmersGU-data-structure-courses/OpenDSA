@@ -47,7 +47,7 @@ following operations:
 In this chapter, we will see how to implement a priority queue so that
 both adding and removing the minimum take :math:`O(\log n)` time.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: PriorityQueueADT
 
 .. TODO::

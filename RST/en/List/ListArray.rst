@@ -39,7 +39,7 @@ no elements yet.
 
 |
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListInit
 
 
@@ -58,7 +58,7 @@ As you can see below, there are no loops in the methods
 ``get`` and ``set``, which means that both 
 require :math:`\Theta(1)` time.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListGetSet
 
 
@@ -92,7 +92,7 @@ Therefore, if we want to add an element at position :math:`i`, then
 In the worst case, adding elements requires moving all :math:`n` elements,
 which is :math:`\Theta(n)`.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListAdd
 
 
@@ -123,7 +123,7 @@ following slideshow.
 In the worst case, insertion or removal each requires moving all
 :math:`n` elements, which is :math:`\Theta(n)`.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListRemove
 
 
@@ -146,6 +146,6 @@ Static Array-based List: Full code
 
 Finally, here is the full source code for the class ``StaticArrayList``.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayList
 

@@ -67,8 +67,8 @@ used when sorting data sets too large to fit in main memory.
 
 A complete implementation is as follows.
 
-.. codeinclude:: Sorting/Heapsort 
-   :tag: Heapsort 
+.. codeinclude:: ChalmersGU/Sorting/HeapSort 
+   :tag: HeapSort 
 
 Here is a warmup practice exercise for Heapsort.
 

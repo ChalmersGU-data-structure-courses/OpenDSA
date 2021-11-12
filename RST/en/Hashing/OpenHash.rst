@@ -130,13 +130,13 @@ minimum capacity, and then let every array cell be a new empty linked list map.
 Note that we put the initialisation in a private method of its own,
 so that we can reuse it when resizing the table.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Header
 
 To get the value for a key, we called the table index for the key, and then
 look up the key in the underlying map at that position.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Get
 
 To set a value for a key, we calculate the table index for the key,
@@ -146,7 +146,7 @@ previously, and then we know that the number of key/value pairs have been increa
 We also have to check if the load factor becomes too large, and then we make the
 internal table larger by a factor. 
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Put
 
 To remove a value, we do the same: find the underlying map for the key, and
@@ -155,7 +155,7 @@ If we actually removed the key (i.e., if it existed in the map), then
 we decrease the map size.
 We also check if the table becomes too sparse, and then decrease the internal table by a factor.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Remove
 
 The constants for min and max load factors, and the resizing factor, are a bit arbitrary.
@@ -165,12 +165,12 @@ but also more conflicts (i.e., longer search times).
 Also, we enlarge by 50%, or reduce by 33%, each time we resize the table.
 Increasing this value means that resizing will happen less often, but instead the memory usage will increase.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Constants
 
 The load factor :math:`N/M` is easy to calculate.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: LoadFactor
 
 
@@ -185,7 +185,7 @@ and reinitialise the table to the new capacity.
 Then we iterate through all bins and entries in the old table, and
 simply insert them again into the new resized table.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: Resize
 
 
@@ -201,7 +201,7 @@ Full implementation
 
 Here is the full implementation for separate chaining hash tables.
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: SeparateChainingHashMap
 
 

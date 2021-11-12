@@ -108,7 +108,7 @@ Simple implementation of deletion
 
 Here is a simple implementation of deletion in a HashMap using tombstones.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: Remove
 
 Since we are using an internal array of **KVPair**, there are actually two possible

@@ -27,12 +27,12 @@ Here is a visual representation for the linked stack.
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackInit
 
 Stack nodes are exactly the same as the :ref:`linked list nodes <LinkedList>` we saw earlier.
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackNode
 
 
@@ -47,7 +47,7 @@ Linked Stack Push
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackPush
 
 |
@@ -67,7 +67,7 @@ Linked Stack Pop
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackPop
 
 |
@@ -81,7 +81,7 @@ Linked stacks: Full implementation
 
 Here is the complete linked stack implementation.
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStack
 
    

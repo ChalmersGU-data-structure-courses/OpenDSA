@@ -76,7 +76,7 @@ A collection contains a number of elements, and it supports only two things:
 we can inquire how many elements it contains, and
 we can iterate through all elements, one at the time (i.e., it is Iterable).
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: CollectionADT
 
 Note that this very interface will not be implemented as it is, but instead
@@ -129,7 +129,7 @@ There are four main operations we want to support:
 Apart from these four, we also want to be able to loop through the list elements in order
 (i.e., an ``iterator`` over the elements).
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: ListADT
 
 |
@@ -145,14 +145,14 @@ in any desired order, and to access any desired position in the list.
 
 A list can be iterated through as follows:
 
-.. codeinclude:: Lists/ListTest
-   :tag: listiterNew1
+.. codeinclude:: ChalmersGU/Other/CodeFragments
+   :tag: ListIter1
 
 But both Java and Python has syntactic sugar for iterators,
 so the same iteration can be written like this:
 
-.. codeinclude:: Lists/ListTest
-   :tag: listiterNew2
+.. codeinclude:: ChalmersGU/Other/CodeFragments
+   :tag: ListIter2
 
 In this example, each element of the list in turn is stored
 in ``it``, and passed to the ``doSomething`` function.
@@ -170,8 +170,8 @@ list, and ``false`` otherwise.
 The ``find`` method needs no knowledge about the specific list
 implementation, just the list ADT.
 
-.. codeinclude:: Lists/ListTest
-   :tag: listfind
+.. codeinclude:: ChalmersGU/Other/CodeFragments
+   :tag: ListFind
 
 There are two standard approaches to implementing lists, the
 :ref:`array-based list <ListArray>`, and the

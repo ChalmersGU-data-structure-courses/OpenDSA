@@ -54,7 +54,7 @@ a variable storing the number of elements.
 (This second variable is in theory unnecessary, but it improves the efficiency
 of getting the list size).
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListVars
 
 Here is our implementation for list nodes, an inner private class ``Node``.
@@ -62,7 +62,7 @@ Objects in the ``Node`` class contain a field ``elem`` to
 store the element value, and a field ``next`` to store a pointer to
 the next node on the list.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListNode
 
 
@@ -72,7 +72,7 @@ Getting and setting values
 If we want to get or set the value at a certain index,
 we simply iterate through the nodes in sequence until we get to the node we want.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListGetSet
 
 
@@ -122,7 +122,7 @@ Inserting at the beginning of a list, and appending at the end.
 
 Here's the code for addition.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListAdd
 
 
@@ -144,7 +144,7 @@ Removing a Node
 
 Here's the code for deletion:
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListRemove
 
 
@@ -181,6 +181,6 @@ Linked List: Full code
 
 Finally, here is the full source code for the class ``LinkedList``.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedList
 

@@ -37,8 +37,8 @@ The input is an array named ``A`` that stores :math:`n` records.
 
 .. _introduction:
 
-.. codeinclude:: Sorting/Insertionsort
-   :tag: Insertionsort
+.. codeinclude:: ChalmersGU/Sorting/InsertionSort
+   :tag: InsertionSort
 
 .. _practice:
 
@@ -68,7 +68,7 @@ Insertion Sort will move it to the left so
 long as its value is less than that of the record immediately
 preceding it.
 As soon as a key value less than or equal to :math:`x` is
-encountered, ``insertionsort`` is done with that record because all
+encountered, ``insertionSort`` is done with that record because all
 records to its left in the array must have smaller keys.
 
 .. avembed:: AV/Sorting/insertionsortAV.html ss

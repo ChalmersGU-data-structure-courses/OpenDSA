@@ -51,7 +51,7 @@ A set cannot contain duplicate items: if we try to add an item that is
 already present, nothing happens, and the set is left unchanged.
 Recall the interface for sets from :ref:`the course API <CourseAPI>`:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SetADT
 
 We can use a set for the spell-checking example:
@@ -63,8 +63,8 @@ To create the spell-checking dictionary, we start with an initially
 empty set, and then call ``add`` repeatedly to add each valid word to
 the set.  Then to spell-check a given word, we just call ``contains``.
 
-.. codeinclude:: Searching/SpellCheck
-   :tag: SpellCheck
+.. codeinclude:: ChalmersGU/Other/SpellChecker
+   :tag: SpellChecker
 
 Database lookup: Maps
 ~~~~~~~~~~~~~~~~~~~~~
@@ -82,7 +82,7 @@ already present, then the value associated with ``k`` gets changed to
 keys can have the same value.
 Recall the interface for maps from :ref:`the course API <CourseAPI>`:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: MapADT
 
 The map is a perfect match for our database example:
@@ -95,7 +95,7 @@ is stored in a field ``pnr``, then to put a person ``p`` in the database we call
 ``database.put(p.pnr, p)``.  To find the person with personnummer ``pnr`` we
 call ``database.get(pnr)``.
 
-.. codeinclude:: Searching/Database
+.. codeinclude:: ChalmersGU/Other/PersonDatabase
    :tag: Database
 
 Search engine: Multimaps
@@ -123,7 +123,7 @@ multimap, where the key is a word, and the values are all documents
 containing that word. Then, searching for a word will just mean
 looking it up in the multimap.
 
-.. codeinclude:: Searching/SearchEngine
+.. codeinclude:: ChalmersGU/Other/SearchEngine
    :tag: SearchEngine
 
 Between X and Y: Sorted Sets and Maps
@@ -194,13 +194,13 @@ that take advantage of the natural order of the keys:
 
 Recall the interface for sorted maps from :ref:`the course API <CourseAPI>`:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedMapADT
 
 As well as a sorted map, it is also possible to have a *sorted set*.
 Recall the interface for sorted sets from :ref:`the course API <CourseAPI>`:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedSetADT
 
 Here is how to use a sorted map ADT to find all Swedish towns having
@@ -208,8 +208,8 @@ between 1,000 and 2,000 population. As there may be towns that have
 the same population, we need a *multimap*. As before, we solve this by
 having the key be a population number and the value be a set of towns.
 
-.. codeinclude:: Searching/Between
-   :tag: Between
+.. codeinclude:: ChalmersGU/Other/CityPopulations
+   :tag: CityPopulations
 
 How to implement sets and maps
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

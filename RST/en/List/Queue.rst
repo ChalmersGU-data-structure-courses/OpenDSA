@@ -35,7 +35,7 @@ Here is a sample queue ADT.
 This section presents two implementations for queues:
 the array-based queue and the linked queue.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: QueueADT
 
 
@@ -123,7 +123,7 @@ defined to be toward the higher-numbered positions.
 Thus, ``enqueue`` increments the rear pointer (modulus the size of the internal array),
 and ``dequeue`` increments the front pointer.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueInit
 
 Implemening the member functions is mostly straightforward.
@@ -134,7 +134,7 @@ Enqueueing an element
 When enqueueing, we increase the ``rear`` pointer
 (modulo the size of the internal array to make it circular).
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueEnqueue
 
 
@@ -144,7 +144,7 @@ Dequeueing an element
 When dequeueing, we increase the ``front`` pointer
 (modulo the size of the internal array).
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueDequeue
 
 Resizing the internal array
@@ -158,7 +158,7 @@ Instead we reset the ``front`` and ``rear`` pointers so that we copy the first
 queue element to position 0 of the new array, the second to position 1, etc.
 Apart from that, the implementation is similar to the one for lists and queues.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueEnqueue
 
 
@@ -178,5 +178,5 @@ Array-based Queues, Full Implementation
 
 Here is an array-based queue implementation.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueue

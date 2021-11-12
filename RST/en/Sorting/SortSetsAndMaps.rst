@@ -14,10 +14,10 @@ Arrays as Sets or Maps
 In Chapter :chap:`Introduction` we learnt about *sets* and *maps*, two of the
 most important ADTs.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SetADT
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: MapADT
 
 We can implement either of these ADTs using an array. For a set, we
@@ -56,10 +56,10 @@ find items in it. Sorted arrays also support the *sorted set* and
 implemented using binary search. As a reminder, here are the relevant
 operations:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedSetADT
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedMapADT
 
 Sorted arrays can also be useful in cases where we always add *many*

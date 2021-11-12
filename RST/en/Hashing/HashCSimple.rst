@@ -28,7 +28,7 @@ If we want to implement a **HashMap** (not a HashSet), we then need to be
 able to put both a key and a value in the same table cell.
 For this we need a class of key-value pairs.
 
-.. codeinclude:: ChalmersGU/KVPair
+.. codeinclude:: ChalmersGU/API/KVPair
    :tag: KVPair
 
 Now we can initialise our open addressing hash map.
@@ -36,14 +36,14 @@ In addition to the array of key-value pairs, we need a counter of the size,
 and the number of deleted cells (which is explained in
 :ref:`later in this chapter <HashDel>`).
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: Header
 
 We use the same constants as for the separate chaining map, but the values
 are different. Most importantly, the ``MaxLoadFactor`` must be smaller than 1,
 since there can only be one value per array slot.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: Constants
 
 
@@ -65,7 +65,7 @@ This sequence of slots is known as the
 :term:`probe function` that we will call **p** (or ``probe`` in the source code).
 Probing works as follows.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: HashIndex
   
 The method ``hashAndProbe`` first calculates the *home slot*,
@@ -98,7 +98,7 @@ In this way, a record not in its home position can be recovered.
 
 An implementation for the ``get`` method is as follows.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: Get
 
 Searching and inserting both assume that at least
@@ -110,7 +110,7 @@ and make sure to resize the array when it becomes too full.
 
 Setting a value for a key into the hash map works like this.
 
-.. codeinclude:: ChalmersGU/OpenAddressingHashMap
+.. codeinclude:: ChalmersGU/API/OpenAddressingHashMap
    :tag: Put
 
 First we the next available slot for the given key.

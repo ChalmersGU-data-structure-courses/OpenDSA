@@ -27,7 +27,7 @@ in the queue, to be able to add new elements efficiently.
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueInit
 
 Enqueueing Elements
@@ -41,7 +41,7 @@ Enqueueing Elements
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueEnqueue
 
 |
@@ -61,7 +61,7 @@ Dequeueing Elements
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueDequeue
 
 |
@@ -75,7 +75,7 @@ Linked Queue, Full Implementation
 
 Here is the full implementation for linked queues.
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueue
 
 
