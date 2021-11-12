@@ -2135,6 +2135,8 @@ looks at the total
       Also called its `order of growth`.
 
       A function :math:`f` has growth rate bounded by a function :math:`g` if the values of :math:`f` are eventually bounded by those of :math:`g` up to some constant factor.
+      We often shorten this (somewhat confusingly) by saying that :math:`f` has growth rate :math:`g` or that :math:`f` has order of growth :math:`g`.
+
       Formally, there are constants :math:`n_0 \geq 0` and :math:`c > 0` such that :math:`f(n) \leq c g(n)` for all :math:`n \geq n_0`.
       We then say that :math:`f` has growth rate less or equal that of :math:`g` and write :math:`f \in O(g)` (big-Oh notation).
       This defines the preorder of growth rates.
@@ -5268,16 +5270,8 @@ looks at the total
       a simple mathematical expression.
       For example, we may write :math:`T(n) \in O(n^2)` if :math:`T` is the
       (time) complexity of the algorithm to say that the complexity is
-      quadratic, i.e. the asymptoptic complexity of the algorithm has the growth
-      rate given by squaring as as upper bound.
-
-slowest-growing function that we know
-      grows at least as fast as all but a constant number of inputs.
-      It could be a gross over-estimate of the truth.
-      Since the upper bound for the algorithm can be very different
-      for different situations (such as the :term:`best case` or
-      :term:`worst case`), we typically have to specify which
-      situation we are referring to.
+      quadratic, i.e. the asymptoptic complexity of the algorithm has as upper bound
+      the growth rate given by squaring.
 
    value parameter
       A :term:`parameter` that has been
