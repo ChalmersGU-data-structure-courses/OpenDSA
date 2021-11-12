@@ -197,20 +197,31 @@ Glossary
    amortized analysis
       :to-term: algorithm analysis :label: is
 
-      An :term:`algorithm analysis` techique that does not look at the cost
-      of a single run of an operation, but at the average cost over
-looks at the total
-      cost for a series of operations and amortizes this total cost
-      over the full series.
-      This is as opposed to considering every individual operation to
-      independently have the :term:`worst-case<worst case>` cost, which might lead
-      to an overestimate for the total cost of the series.
+      Analysing the :term:`amortized complexity` of an :term:`algorithm` or term:`problem`.
+
+   amortized complexity
+      :to-term: amortized analysis :label: used in
+      :to-term: complexity :label: is
+
+      A modification to the notion of :term:`complexity` for operations on a
+      data structure where, for each fixed input size, one does not just look at
+      the cost of a single run of the operation, but its :term:`amortized cost`
+      over sufficiently long series of operations of the same kind.
+      This can be made precise without considering averages by introducing
+      :term:`potentials <potential>`.
 
    amortized cost
+      :to-term: amortized complexity :label: used in
       :to-term: amortized analysis :label: used in
 
-      The total cost for a series of operations to be used in an
-      :term:`amortized analysis`.
+      The average cost of an operation in a sufficiently long series of operations of the same kind.
+      This is as opposed to considering every individual operation to
+      independently have its own cost, which might lead to an overestimate for
+      the total cost of the series.
+      This can be made precise without considering averages by introducing
+      :term:`potentials <potential>`.
+
+      In :term:`amortized analysis`, gives rise to the notion of :term:`amortized complexity`.
 
    ancestor
       In a tree, for a given node :math:`A`, any node on a
@@ -3730,9 +3741,19 @@ looks at the total
       :term:`root`.
 
    potential
-      A concept related to :term:`amortized analysis`.
-      Potential is the total or currently available amount of work
-      that can be done.
+      A concept in :term:`amortized complexity` for operations on a data structure.
+      We choose a *potential function* that associates an arbitrary non-negative value of *stored cost* (stored energy) with each state of the data structure.
+      We then define the :term:`amortized cost` of a run of the operation to be its cost as given by the the :term:`cost model` plus the change in potential.
+      The :term:`complexity` modified this way is called :term:`amortized complexity`.
+
+      An example is adding an element to a dynamic array.
+      When the dynamic array is not full, adding an element is quick and we store some of that saved cost by increasing the potential.
+      When the dynamic array is full capacity, we perform an expensive reallocation, but compensate that cost by resetting the potential from a high value to zero.
+      Let us define the potential of a dynamic array with capacity :math:`c` and size :math:`n` to be :math:`max(2n-c,0)`.
+      Assuming we double the capacity on reallocation, the operation of adding an element then has constant amortized complexity.
+
+      The concept comes from potential energy in physics.
+      For example, in the graviational field of the earth, kinetic energy may be stored as potential energy.
 
    powerset
       For a :term:`set` :math:`\mathbf{S}`, the power set is the set
@@ -4692,6 +4713,10 @@ looks at the total
       records so that the values of their key fields are in
       non-decreasing order.
 
+   space complexity
+      The :term:`complexity` of an :term:`algorithm` or :term:`problem`
+      with a :term:`cost model` that approximates memory/storage usage.
+
    space/time tradeoff
       Many programs can be designed to either speed processing at the
       cost of additional storage, or reduce storage at the cost of
@@ -4981,6 +5006,10 @@ looks at the total
       to indicate that the
       :term:`upper bound` and :term:`lower bound` for an
       :term:`algorithm` or :term:`problem` match.
+
+   time complexity
+      The :term:`complexity` of an :term:`algorithm` or :term:`problem`
+      with a :term:`cost model` that approximates runtime.
 
    token
       The basic logical units of a program, as deterimined by
