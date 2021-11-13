@@ -113,15 +113,20 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
     }
 
     // Add a key-value pair, or update the value associated with an existing key.
-    public void put(Key key, Value value) {
+    // Returns the previous value associated with the key, or null if
+    // the key wasn't previously present.
+    public Value put(Key key, Value value) {
         root = putHelper(root, key, value);
         if (isRed(root)) root.isRed = false;
+        return oldValue;
     }
 
     // Helper method for 'put'.
     Node putHelper(Node node, Key key, Value value) {
-        if (node == null)
+        if (node == null) {
+            oldValue = null;
             return new Node(true, key, value, null, null);
+        }
 
         else if (key.compareTo(node.key) < 0)
             node.left = putHelper(node.left, key, value);
@@ -129,11 +134,17 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         else if (key.compareTo(node.key) > 0)
             node.right = putHelper(node.right, key, value);
 
-        else
+        else {
+            oldValue = node.value;
             node.value = value;
+        }
 
         return rebalance(node);
     }
+
+    // Used by putHelper and removeHelper, in order to return the
+    // value previously stored in the node.
+    private Value oldValue;
 
     // Repair the red-black invariant by rebalancing the node.
     Node rebalance(Node node) {
