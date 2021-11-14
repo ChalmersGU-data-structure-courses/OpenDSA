@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7.5. The AVL Tree (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>7.5. The AVL Tree &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,10 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-avl-tree-work-in-progress">
-<h1>7.<span class="section-number">5. </span>The AVL Tree (WORK IN PROGRESS)<a class="headerlink" href="#the-avl-tree-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<p>The AVL tree (named for its inventors Adelson-Velskii and Landis)
-should be viewed as a BST with the following additional property:
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['rotations', 'avl-tree-insertion'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-avl-tree">
+<h1>7.<span class="section-number">5. </span>The AVL Tree<a class="headerlink" href="#the-avl-tree" title="Permalink to this headline">¶</a></h1>
+<p>The AVL tree is a BST with the following additional property:
 For every node, the heights of its left and right subtrees differ by
 at most 1.
 As long as the tree maintains this property, if the tree contains
@@ -177,26 +176,67 @@ the node inserted or deleted, then updates will also cost
 <p>The key to making the AVL tree work is to alter the insert and delete
 routines so as to maintain the balance property.
 Of course, to be practical, we must be able to implement the revised
-update routines in <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time.</p>
+update routines in <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time.
+To maintain the balance property, we are going to use what are called
+<a class="reference internal" href="Glossary.html#term-rotation"><span class="xref std std-term">rotations</span></a>.</p>
+<div class="section" id="rotations">
+<h2>7.<span class="section-number">5.1. </span>Rotations<a class="headerlink" href="#rotations" title="Permalink to this headline">¶</a></h2>
+<p>Rotation is an operation that takes a node in the tree and moves it
+one level higher. Figure <a href="Splay.html#singprom">7.8.1</a> illustrates rotation.
+Here, <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(S\)</span> are nodes, while <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>
+and <span class="math notranslate nohighlight">\(C\)</span> represent subtrees.</p>
+<p>In Figure <a href="Splay.html#singprom">7.8.1</a> (a), node <span class="math notranslate nohighlight">\(S\)</span> is the left
+child of the root. A <em>right rotation</em> transforms it into the tree
+shown in Figure <a href="Splay.html#singprom">7.8.1</a> (b), where node <span class="math notranslate nohighlight">\(S\)</span> has
+become the root. Note that, because the value of <span class="math notranslate nohighlight">\(S\)</span> is less
+than the value of <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(P\)</span> must become <span class="math notranslate nohighlight">\(S\)</span>’s right
+child. Right rotation means transforming a tree from having the shape
+in (a) to having the shape in (b).</p>
+<p>A <em>left rotation</em> is the opposite process: starting from the tree in
+(b), transforming it to the tree in (a), by lifting node <span class="math notranslate nohighlight">\(P\)</span> up.
+Notice that a right rotation tends to make the tree more
+right-leaning, while a left rotation tends to make it more
+left-leaning.</p>
 <div class="figure align-center" id="id1" style="width: 90%">
+<span id="rotation"></span><a class="reference internal image-reference" href="_images/SingRot.png"><img alt="Rotation" src="_images/SingRot.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 7.6.1: Rotation. In a rotation, node <span class="math notranslate nohighlight">\(S\)</span> is promoted to the root,
+rotating with node <span class="math notranslate nohighlight">\(P\)</span>.
+Because the value of <span class="math notranslate nohighlight">\(S\)</span> is less than the value of <span class="math notranslate nohighlight">\(P\)</span>,
+<span class="math notranslate nohighlight">\(P\)</span> must become <span class="math notranslate nohighlight">\(S\)</span> ‘s right child.
+The positions of subtrees <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(C\)</span> are
+altered as appropriate to maintain the BST property, but the
+contents of these subtrees remains unchanged.
+(a) The original tree with <span class="math notranslate nohighlight">\(P\)</span> as the parent.
+(b) The tree after a rotation takes place.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<p>Going from (a) to (b) is called a <em>right rotation</em>. We can also go
+from (b) to (a) promoting node <span class="math notranslate nohighlight">\(P\)</span> to the root – this is
+called a <em>left rotation</em>. In general, a right rotation makes the
+tree more right-leaning, and a left rotation makes it more
+left-leaning.</p>
+</div>
+</div>
+</div>
+<div class="section" id="avl-tree-insertion">
+<h2>7.<span class="section-number">5.2. </span>AVL tree insertion<a class="headerlink" href="#avl-tree-insertion" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id2" style="width: 90%">
 <span id="avlinsert"></span><a class="reference internal image-reference" href="_images/AVLins.png"><img alt="An insertion that violates the AVL tree balance property" src="_images/AVLins.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 7.6.1: Example of an insert operation that violates the AVL tree balance
+<p class="caption"><span class="caption-text"> Figure 7.6.2: Example of an insert operation that violates the AVL tree balance
 property.
 Prior to the insert operation, all nodes of the tree are balanced
 (i.e., the depths of the left and right subtrees for every node
 differ by at most one).
 After inserting the node with value 5, the nodes with values 7 and
-24 are no longer balanced.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+24 are no longer balanced.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
 </div>
 <p>Consider what happens when we insert a node with key value 5,
-as shown in Figure <a href="AVL.html#avlinsert">7.6.1</a>.
+as shown in Figure <a href="AVL.html#avlinsert">7.6.2</a>.
 The tree on the left meets the AVL tree balance requirements.
 After the insertion, two nodes no longer meet the requirements.
 Because the original tree met the balance requirement, nodes in the
 new tree can only be unbalanced by a difference of at most 2 in the
-subtrees.
-For the bottommost unbalanced node, call it <span class="math notranslate nohighlight">\(S\)</span>, there are 4
-cases:</p>
+subtrees. For the bottommost unbalanced node, call it <span class="math notranslate nohighlight">\(S\)</span>, there
+are 4 cases:</p>
 <ol class="arabic simple">
 <li><p>The extra node is in the left child of the left child of
 <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
@@ -207,19 +247,18 @@ cases:</p>
 <li><p>The extra node is in the right child of the right child of
 <span class="math notranslate nohighlight">\(S\)</span>.</p></li>
 </ol>
-<p>Cases 1 and 4 are symmetrical, as are cases 2 and 3.
-Note also that the unbalanced nodes must be on the path from
-the root to the newly inserted node.</p>
+<p>Cases 1 and 4 are symmetric, as are cases 2 and 3.  Note also that the
+unbalanced nodes must be on the path from the root to the newly
+inserted node.</p>
 <p>Our problem now is how to balance the tree in <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.
-It turns out that we can do this using a series of local operations
-known as <a class="reference internal" href="Glossary.html#term-rotation"><span class="xref std std-term">rotations</span></a>.
+It turns out that we can do this using a series of rotations.
 Cases 1 and 4 can be fixed using a <a class="reference internal" href="Glossary.html#term-single-rotation"><span class="xref std std-term">single rotation</span></a>,
-as shown in Figure <a href="AVL.html#avlsingle">7.6.2</a>.
+as shown in Figure <a href="AVL.html#avlsingle">7.6.3</a>.
 Cases 2 and 3 can be fixed using a <a class="reference internal" href="Glossary.html#term-double-rotation"><span class="xref std std-term">double rotation</span></a>, as shown
-in Figure <a href="AVL.html#avldouble">7.6.3</a>.</p>
-<div class="figure align-center" id="id2" style="width: 90%">
+in Figure <a href="AVL.html#avldouble">7.6.4</a>.</p>
+<div class="figure align-center" id="id3" style="width: 90%">
 <span id="avlsingle"></span><a class="reference internal image-reference" href="_images/AVLSingRot.png"><img alt="AVL tree single rotation" src="_images/AVLSingRot.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 7.6.2: A single rotation in an AVL tree.
+<p class="caption"><span class="caption-text"> Figure 7.6.3: A single rotation in an AVL tree.
 This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(A\)</span>)
 is in the left child of the left child of the unbalanced node
 labeled <span class="math notranslate nohighlight">\(S\)</span>.
@@ -228,11 +267,11 @@ well as re-balance the tree to preserve the AVL tree balance
 property.
 The case where the excess node is in the right child of the
 right child of the unbalanced node is handled in the same
-way.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+way.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
 </div>
-<div class="figure align-center" id="id3" style="width: 90%">
+<div class="figure align-center" id="id4" style="width: 90%">
 <span id="avldouble"></span><a class="reference internal image-reference" href="_images/AVLDblRot.png"><img alt="AVL tree double rotation" src="_images/AVLDblRot.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text"> Figure 7.6.3: A double rotation in an AVL tree.
+<p class="caption"><span class="caption-text"> Figure 7.6.4: A double rotation in an AVL tree.
 This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(B\)</span>)
 is in the right child of the left child of the unbalanced node
 labeled <span class="math notranslate nohighlight">\(S\)</span>.
@@ -240,7 +279,7 @@ By rearranging the nodes as shown, we preserve the BST property, as
 well as re-balance the tree to preserve the AVL tree balance
 property.
 The case where the excess node is in the left child of the
-right child of <span class="math notranslate nohighlight">\(S\)</span> is handled in the same way.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+right child of <span class="math notranslate nohighlight">\(S\)</span> is handled in the same way.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 <p>The AVL tree insert algorithm begins with a normal BST insert.
 Then as the recursion unwinds up the tree, we perform the appropriate
@@ -249,7 +288,7 @@ Deletion is similar; however, consideration for unbalanced nodes must
 begin at the level of the <cite>deletemin</cite> operation.</p>
 <div class="topic">
 <p class="topic-title">Example 7.6.1 </p>
-<p>In Figure <a href="AVL.html#avlinsert">7.6.1</a> (b), the bottom-most unbalanced
+<p>In Figure <a href="AVL.html#avlinsert">7.6.2</a> (b), the bottom-most unbalanced
 node has value 7.
 The excess node (with value 5) is in the right subtree of the left
 child of 7, so we have an example of Case 2.
@@ -257,6 +296,9 @@ This requires a double rotation to fix.
 After the rotation, 5 becomes the left child of 24, 2 becomes the
 left child of 5, and 7 becomes the right child of 5.</p>
 </div>
+<p>To try out AVL insertion yourself and see how it works, see
+<a class="reference external" href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html">AVL Tree Visualization</a>. You can also find a few more examples under
+<a class="reference external" href="https://bradfieldcs.com/algos/trees/avl-trees/">AVL Trees</a>.</p>
 <p>Here is an implementation of AVL trees:</p>
 <div id="AVL_AVLTree_code"><ul><li><a href="#AVL_AVLTree_code_Java_Generic">Java</a></li><li><a href="#AVL_AVLTree_code_Python">Python</a></li></ul><div id="AVL_AVLTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// A dictionary implemented using an AVL tree.</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">AVL</span><span class="o">&lt;</span><span class="n">Key</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Value</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -366,14 +408,20 @@ left child of 5, and 7 becomes the right child of 5.</p>
     <span class="p">}</span>
 
     <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Returns the previous value associated with the key, or null if</span>
+    <span class="c1">// the key wasn&#39;t previously present.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;put&#39;.</span>
+    <span class="c1">// Stores the previous value in oldValue;</span>
     <span class="n">Node</span> <span class="nf">putHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> 
 
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
@@ -385,22 +433,30 @@ left child of 5, and 7 becomes the right child of 5.</p>
             <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
         <span class="p">}</span>
 
-        <span class="k">else</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
             <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
     <span class="p">}</span>
 
+    <span class="c1">// Used by putHelper and removeHelper, in order to return the</span>
+    <span class="c1">// value previously stored in the node.</span>
+    <span class="kd">private</span> <span class="n">Value</span> <span class="n">oldValue</span><span class="p">;</span>
+
     <span class="c1">// Delete a key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;remove&#39;.</span>
     <span class="n">Node</span> <span class="nf">removeHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
             <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
             <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
@@ -409,15 +465,18 @@ left child of 5, and 7 becomes the right child of 5.</p>
             <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
             <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// key == node.key</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
-            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
-            <span class="k">else</span> <span class="p">{</span>
-                <span class="n">Node</span> <span class="n">lastNode</span> <span class="o">=</span> <span class="n">lastNodeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">Node</span> <span class="n">lastNode</span> <span class="o">=</span> <span class="n">largestNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
                 <span class="n">Key</span> <span class="n">lastKey</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">key</span><span class="p">;</span>
                 <span class="n">Value</span> <span class="n">lastValue</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lastKey</span><span class="p">);</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">lastKey</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">lastValue</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
@@ -431,12 +490,12 @@ left child of 5, and 7 becomes the right child of 5.</p>
         <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
             <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
         <span class="k">else</span>
-            <span class="k">return</span> <span class="n">lastNodeHelper</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">key</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">largestNode</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">key</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;lastKey&#39;.</span>
     <span class="c1">// Returns the node instead, as that&#39;s useful in &#39;removeHelper&#39;.</span>
-    <span class="n">Node</span> <span class="nf">lastNodeHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Node</span> <span class="nf">largestNode</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// This one is maybe easier to implement non-recursively :)</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
@@ -675,59 +734,75 @@ left child of 5, and 7 becomes the right child of 5.</p>
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a key-value pair, or update the value associated with</span>
-<span class="sd">        an existing key.&quot;&quot;&quot;</span>
+<span class="sd">        an existing key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">put_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
             <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
             <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
 
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Delete a key.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Delete a key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;remove&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;remove&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
             <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
             <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
-            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
         <span class="k">else</span><span class="p">:</span> <span class="c1"># key == node.key</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">last_node</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">lastNode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
                 <span class="n">last_key</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">key</span>
                 <span class="n">last_val</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">value</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">last_key</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">last_key</span><span class="p">)</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">last_key</span>
+                <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">last_val</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
-                <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+                <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
 
     <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Find the largest key.&quot;&quot;&quot;</span>
@@ -896,6 +971,7 @@ left child of 5, and 7 becomes the right child of 5.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#AVL_AVLTree_code" ).tabs();});</script></div>
+</div>
 
 
       </div>
@@ -921,7 +997,7 @@ left child of 5, and 7 becomes the right child of 5.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 14, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

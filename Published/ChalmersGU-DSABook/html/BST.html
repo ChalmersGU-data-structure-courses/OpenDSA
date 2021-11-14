@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-search-trees">
 <h1>7.<span class="section-number">2. </span>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline">¶</a></h1>
@@ -289,14 +289,20 @@ Our BST implementation will require that records implement the
     <span class="p">}</span>
 
     <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Returns the previous value associated with the key, or null if</span>
+    <span class="c1">// the key wasn&#39;t previously present.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;put&#39;.</span>
+    <span class="c1">// Stores the previous value in oldValue;</span>
     <span class="n">Node</span> <span class="nf">putHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> 
 
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
@@ -304,39 +310,50 @@ Our BST implementation will require that records implement the
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 
-        <span class="k">else</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
             <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
     <span class="p">}</span>
 
+    <span class="c1">// Used by putHelper and removeHelper, in order to return the</span>
+    <span class="c1">// value previously stored in the node.</span>
+    <span class="kd">private</span> <span class="n">Value</span> <span class="n">oldValue</span><span class="p">;</span>
+
     <span class="c1">// Delete a key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;remove&#39;.</span>
     <span class="n">Node</span> <span class="nf">removeHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
             <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
         <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// key == node.key</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
-            <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
-            <span class="k">else</span> <span class="p">{</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
                 <span class="n">Node</span> <span class="n">lastNode</span> <span class="o">=</span> <span class="n">largestNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
                 <span class="n">Key</span> <span class="n">lastKey</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">key</span><span class="p">;</span>
                 <span class="n">Value</span> <span class="n">lastValue</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
-                <span class="c1">// We can either use &#39;deletemax&#39; (as in the next)</span>
+                <span class="c1">// We can either use &#39;deletemax&#39; (as in the text)</span>
                 <span class="c1">// or just recursively call removeHelper here</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lastKey</span><span class="p">);</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">lastKey</span><span class="p">;</span>
                 <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">lastValue</span><span class="p">;</span>
                 <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
@@ -513,56 +530,72 @@ Our BST implementation will require that records implement the
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a key-value pair, or update the value associated with</span>
-<span class="sd">        an existing key.&quot;&quot;&quot;</span>
+<span class="sd">        an existing key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">put_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">return</span> <span class="n">node</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
 
     <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Delete a key.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Delete a key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;remove&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;remove&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
-            <span class="k">return</span> <span class="n">node</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
         <span class="k">else</span><span class="p">:</span> <span class="c1"># key == node.key</span>
             <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="n">last_node</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">lastNode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
                 <span class="n">last_key</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">key</span>
                 <span class="n">last_val</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">value</span>
                 <span class="c1"># We can either use &#39;deletemax&#39; (as in the next)</span>
                 <span class="c1"># or just recursively call removeHelper here</span>
-                <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">last_key</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">last_key</span><span class="p">)</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">last_key</span>
+                <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
                 <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">last_val</span>
-                <span class="k">return</span> <span class="n">node</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
 
     <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Find the largest key.&quot;&quot;&quot;</span>
@@ -770,14 +803,20 @@ subroutine and is implemented as follows.</p>
 <h2>7.<span class="section-number">2.2. </span>BST Insert<a class="headerlink" href="#bst-insert" title="Permalink to this headline">¶</a></h2>
 <p>Now we look at how to insert a new node into the BST.</p>
 <div id="BST_put_code"><ul><li><a href="#BST_put_code_Java_Generic">Java</a></li><li><a href="#BST_put_code_Python">Python</a></li></ul><div id="BST_put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Returns the previous value associated with the key, or null if</span>
+    <span class="c1">// the key wasn&#39;t previously present.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;put&#39;.</span>
+    <span class="c1">// Stores the previous value in oldValue;</span>
     <span class="n">Node</span> <span class="nf">putHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> 
 
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
@@ -785,32 +824,46 @@ subroutine and is implemented as follows.</p>
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 
-        <span class="k">else</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
             <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
     <span class="p">}</span>
+
+    <span class="c1">// Used by putHelper and removeHelper, in order to return the</span>
+    <span class="c1">// value previously stored in the node.</span>
+    <span class="kd">private</span> <span class="n">Value</span> <span class="n">oldValue</span><span class="p">;</span>
 </pre></div>
 </div>
 </div><div id="BST_put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a key-value pair, or update the value associated with</span>
-<span class="sd">        an existing key.&quot;&quot;&quot;</span>
+<span class="sd">        an existing key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">put_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BST</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">return</span> <span class="n">node</span>
+        <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#BST_put_code" ).tabs();});</script><div id="BSTinsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="BSTinsertCON" data-long-name="BST Insert Slideshow" data-exer-id="" alt="BST Insert Slideshow" tabIndex="-1">
@@ -1124,7 +1177,7 @@ remain balanced, such as the <a class="reference internal" href="Glossary.html#t
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 14, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
