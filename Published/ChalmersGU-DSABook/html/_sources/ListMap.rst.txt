@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -72,7 +72,7 @@ If we cannot find the key, we add a new **KVPair** to the list.
 
 In this example we're using a linked list, but we could equally well have used
 a dynamic array list.
-The only thing we have to think about is that we add new pairs at the right location
+The only thing we have to think about is to add new pairs at the right location
 (beginning or end of the list) -- because linked lists prefer adding at the front,
 while array lists rather add to the back of the list.
 

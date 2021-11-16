@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-lists">
@@ -242,7 +242,7 @@ So the dynamic <code class="docutils literal notranslate"><span class="pre">add<
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListAdd_code" ).tabs();});</script><p>As explained below, we don’t have to double the size, but we can multiply by 3 or 1.5 or 1.1.
-The important thing is that we don’t add a constant number, but increase the size by a factor.
+The important point is that we don’t add a constant number, but increase the size by a factor.
 This factor is the <code class="docutils literal notranslate"><span class="pre">CapacityMultiplier</span></code> in the code above.</p>
 <div id="DynamicArrayList-Append-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DynamicArrayList-Append-CON" data-long-name="Dynamic Array-based List Addition Slideshow" data-exer-id="" alt="Dynamic Array-based List Addition Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -299,14 +299,14 @@ the program ought to take <cite>linear time</cite>.</p>
 </div>
 <p>Every time we call <code class="docutils literal notranslate"><span class="pre">add</span></code>, the internal array will be resized.
 Resizing the array takes linear time, because if the internal array
-has size <span class="math notranslate nohighlight">\(n\)</span>, then it has to copy <span class="math notranslate nohighlight">\(n\)</span> elements from the
+has size <span class="math notranslate nohighlight">\(n\)</span>, it has to copy <span class="math notranslate nohighlight">\(n\)</span> elements from the
 internal array to the new array. To put it another way, the loop body
 <code class="docutils literal notranslate"><span class="pre">newArray[i]</span> <span class="pre">=</span> <span class="pre">internalArray[i]</span></code> will be executed <span class="math notranslate nohighlight">\(n\)</span> times.</p>
 <p>Now suppose we run the program above to create a list of <span class="math notranslate nohighlight">\(n\)</span>
 elements.  Adding up all the calls to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code> that happen, how
 many times does an array element get copied from the internal array to
-the new array (that is, how many times is the statement <code class="docutils literal notranslate"><span class="pre">newArray[i]</span>
-<span class="pre">=</span> <span class="pre">internalArray[i]</span></code>) get executed?</p>
+the new array (that is, how many times does the statement <code class="docutils literal notranslate"><span class="pre">newArray[i]</span>
+<span class="pre">=</span> <span class="pre">internalArray[i]</span></code> get executed)?</p>
 <p>The array size is initially 1, so we get the following calls to <code class="docutils literal notranslate"><span class="pre">resizeArray</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">resizeArray(2)</span></code>, copying 1 element</p></li>
@@ -337,9 +337,9 @@ because a loop that repeatedly adds to the array will take quadratic time.</p>
 <div class="section" id="growing-by-a-constant-factor">
 <h3>4.<span class="section-number">4.2.2. </span>Growing by a constant factor<a class="headerlink" href="#growing-by-a-constant-factor" title="Permalink to this headline">¶</a></h3>
 <p>One way to think about the problem is: as the array gets bigger,
-resizing it gets more expensive. So, to make up for that, when the
-array is bigger we need to grow it by more, so that it gets resized
-less often. One way to do this is to always double the array size when
+resizing it gets more expensive. So, to make up for that, when the array
+is bigger we need to grow it by more, so that we don’t have to resize
+as often. One way to do this is to always double the array size when
 it gets full. This turns out to work well!</p>
 <p>Suppose that we run the example program with <span class="math notranslate nohighlight">\(n = 1000\)</span>, i.e. we
 add 1000 elements to the list. As before, the internal array initially
@@ -780,7 +780,7 @@ All these constants can be changed at will.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 14, 2021.
+      Last updated on Nov 16, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -67,7 +67,7 @@ So the dynamic ``add`` method will look like this.
    :tag: DynamicArrayListAdd
 
 As explained below, we don't have to double the size, but we can multiply by 3 or 1.5 or 1.1.
-The important thing is that we don't add a constant number, but increase the size by a factor.
+The important point is that we don't add a constant number, but increase the size by a factor.
 This factor is the ``CapacityMultiplier`` in the code above.
 
 .. inlineav:: DynamicArrayList-Append-CON ss
@@ -121,15 +121,15 @@ What happens if we only grow the internal array by 1 element when we resize it?
 
 Every time we call ``add``, the internal array will be resized.
 Resizing the array takes linear time, because if the internal array
-has size :math:`n`, then it has to copy :math:`n` elements from the
+has size :math:`n`, it has to copy :math:`n` elements from the
 internal array to the new array. To put it another way, the loop body
 ``newArray[i] = internalArray[i]`` will be executed :math:`n` times.
 
 Now suppose we run the program above to create a list of :math:`n`
 elements.  Adding up all the calls to ``resizeArray`` that happen, how
 many times does an array element get copied from the internal array to
-the new array (that is, how many times is the statement ``newArray[i]
-= internalArray[i]``) get executed?
+the new array (that is, how many times does the statement ``newArray[i]
+= internalArray[i]`` get executed)?
 
 The array size is initially 1, so we get the following calls to ``resizeArray``:
 
@@ -165,9 +165,9 @@ Growing by a constant factor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 One way to think about the problem is: as the array gets bigger,
-resizing it gets more expensive. So, to make up for that, when the
-array is bigger we need to grow it by more, so that it gets resized
-less often. One way to do this is to always double the array size when
+resizing it gets more expensive. So, to make up for that, when the array
+is bigger we need to grow it by more, so that we don't have to resize
+as often. One way to do this is to always double the array size when
 it gets full. This turns out to work well!
 
 Suppose that we run the example program with :math:`n = 1000`, i.e. we

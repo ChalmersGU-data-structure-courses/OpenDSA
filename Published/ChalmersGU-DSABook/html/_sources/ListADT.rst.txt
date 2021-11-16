@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-14 14:08:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -168,7 +168,7 @@ A list can be iterated through as follows:
 .. codeinclude:: Lists/ListTest
    :tag: listiterNew1
 
-But both Java and Python has syntactic sugar for iterators,
+Both Java and Python has syntactic sugar for iterators,
 so the same iteration can be written like this:
 
 .. codeinclude:: Lists/ListTest
