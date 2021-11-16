@@ -4,24 +4,27 @@ import java.util.Iterator;
 /* *** ODSATag: BST *** */
 // A dictionary implemented using a binary search tree.
 class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
+    BSTNode root = null;  // The root of the binary search tree.
+    V previousValue;
+
+/* *** ODSATag: Node *** */
     // A node in a binary search tree.
-    class Node {
+    class BSTNode {
         K key;
         V value;
-        Node left;
-        Node right;
+        BSTNode left;
+        BSTNode right;
 
-        Node(K key, V value, Node left, Node right) {
+        BSTNode(K key, V value, BSTNode left, BSTNode right) {
             this.key = key;
             this.value = value;
             this.left = left;
             this.right = right;
         }
     }
+/* *** ODSAendTag: Node *** */
 
-    // The root of the binary search tree.
-    Node root = null;
-
+/* *** ODSATag: Invariant *** */
     // Check that the invariant holds.
     void checkInvariant() {
         checkInvariantHelper(root, null, null);
@@ -32,7 +35,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     // Checks that the node is the root of a valid BST, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
     // if lo is None, and k < hi is skipped if hi is None.
-    void checkInvariantHelper(Node node, K lo, K hi) {
+    void checkInvariantHelper(BSTNode node, K lo, K hi) {
         if (node == null) return;
 
         if (lo != null && node.key.compareTo(lo) <= 0)
@@ -46,6 +49,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
         // Keys in the right subtree should be > node.key
         checkInvariantHelper(node.right, node.key, hi);
     }
+/* *** ODSAendTag: Invariant *** */
     
     // Return true if there are no keys.
     public boolean isEmpty() {
@@ -58,7 +62,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     // Helper method for 'size'.
-    int sizeHelper(Node node) {
+    int sizeHelper(BSTNode node) {
         if (node == null) return 0;
         else return 1 + sizeHelper(node.left) + sizeHelper(node.right);
     }
@@ -75,7 +79,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     // Helper method for 'get'.
-    V getHelper(Node node, K key) {
+    V getHelper(BSTNode node, K key) {
         if (node == null)
             return null;
 
@@ -93,14 +97,15 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 /* *** ODSATag: put *** */
     // Add a key-value pair, or update the value associated with an existing key.
     public V put(K key, V value) {
+        previousValue = null;
         root = putHelper(root, key, value);
-        return null; // FIXME
+        return previousValue;
     }
 
     // Helper method for 'put'.
-    Node putHelper(Node node, K key, V value) {
+    BSTNode putHelper(BSTNode node, K key, V value) {
         if (node == null)
-            return new Node(key, value, null, null);
+            return new BSTNode(key, value, null, null);
 
         else if (key.compareTo(node.key) < 0)
             node.left = putHelper(node.left, key, value);
@@ -108,21 +113,25 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
         else if (key.compareTo(node.key) > 0)
             node.right = putHelper(node.right, key, value);
 
-        else
+        else {
+            previousValue = node.value;
             node.value = value;
+        }
 
         return node;
     }
 /* *** ODSAendTag: put *** */
 
+/* *** ODSATag: remove *** */
     // Delete a key.
     public V remove(K key) {
+        previousValue = null;
         root = removeHelper(root, key);
-        return null; // FIXME
+        return previousValue;
     }
 
     // Helper method for 'remove'.
-    Node removeHelper(Node node, K key) {
+    BSTNode removeHelper(BSTNode node, K key) {
         if (node == null)
             return null;
         else if (key.compareTo(node.key) < 0) {
@@ -132,12 +141,13 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
             node.right = removeHelper(node.right, key);
             return node;
         } else { // key == node.key
+            previousValue = node.value;
             if (node.left == null)
                 return node.right;
             else if (node.right == null)
                 return node.left;
             else {
-                Node lastNode = lastNodeHelper(node.left);
+                BSTNode lastNode = lastNodeHelper(node.left);
                 K lastKey = lastNode.key;
                 V lastValue = lastNode.value;
                 node.left = removeHelper(node.left, lastKey);
@@ -147,6 +157,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
             }
         }
     }
+/* *** ODSAendTag: remove *** */
 
     // Find the largest key.
     public K lastKey() {
@@ -159,7 +170,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 /* *** ODSATag: lastNodeHelper *** */
     // Helper method for 'lastKey'.
     // Returns the node instead, as that's useful in 'removeHelper'.
-    Node lastNodeHelper(Node node) {
+    BSTNode lastNodeHelper(BSTNode node) {
         // This one is maybe easier to implement non-recursively :)
         while (node.right != null)
             node = node.right;
@@ -180,7 +191,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
 /* *** ODSATag: iteratorHelper *** */
     // Helper method for 'iterator'
-    void iteratorHelper(Node node, ArrayList<K> keys) {
+    void iteratorHelper(BSTNode node, ArrayList<K> keys) {
         if (node == null) return;
         iteratorHelper(node.left, keys);
         keys.add(node.key);
@@ -191,7 +202,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 /* *** ODSATag: printHelper *** */
     // An example inorder traversal.
     // Prints all node keys, in sorted order.
-    void printHelper(Node node) {
+    void printHelper(BSTNode node) {
         if (node == null) return;
         printHelper(node.left);
         System.out.println(node.key);

@@ -3,24 +3,29 @@ import java.util.Iterator;
 
 /* *** ODSATag: AVLTree *** */
 // A dictionary implemented using an AVL tree.
-public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
-    // A node in an AVL tree.
-    class Node {
-        Key key;
-        Value value;
-        Node left;
-        Node right;
-        private int height;
+public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements Map<K, V> {
+    AVLNode root = null;   // The root of the binary search tree.
+    V previousValue;
 
-        Node(Key key, Value value, Node left, Node right) {
+    // A node in an AVL tree.
+    class AVLNode extends BSTNode {
+        K key;
+        V value;
+        AVLNode left;
+        AVLNode right;
+        int height;
+
+        AVLNode(K key, V value, AVLNode left, AVLNode right) {
             this.key = key;
             this.value = value;
             this.left = left;
             this.right = right;
+            // super(key, value, left, right);
             updateHeight();
+            System.err.println("--> " + this);
         }
 
-        int getHeight(Node node) {
+        int getHeight(AVLNode node) {
             if (node == null) return 0;
             else return node.height;
         }
@@ -32,10 +37,11 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         int heightDiff() {
             return getHeight(left) - getHeight(right);
         }
-    }
 
-    // The root of the binary search tree.
-    Node root = null;
+        public String toString() {
+            return "(" + left + " {" + key + ":" + value + "} " + right + ") ";
+        }
+    }
 
     // Check that the invariant holds.
     void checkInvariant() {
@@ -47,7 +53,7 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
     // Checks that the node is the root of a valid AVL tree, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
     // if lo is None, and k < hi is skipped if hi is None.
-    void checkInvariantHelper(Node node, Key lo, Key hi) {
+    void checkInvariantHelper(AVLNode node, K lo, K hi) {
         if (node == null) return;
 
         if (lo != null && node.key.compareTo(lo) <= 0)
@@ -68,58 +74,21 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         checkInvariantHelper(node.right, node.key, hi);
     }
 
-    // Return true if there are no keys.
-    public boolean isEmpty() {
-        return root == null;
-    }
-
-    // Return the number of keys.
-    public int size() {
-        return sizeHelper(root);
-    }
-
-    // Helper method for 'size'.
-    int sizeHelper(Node node) {
-        if (node == null) return 0;
-        else return 1 + sizeHelper(node.left) + sizeHelper(node.right);
-    }
-
-    // Return true if the key has an associated value.
-    public boolean containsKey(Key key) {
-        return get(key) != null;
-    }
-
-    // Look up a key.
-    public Value get(Key key) {
-        return getHelper(root, key);
-    }
-
-    // Helper method for 'get'.
-    Value getHelper(Node node, Key key) {
-        if (node == null)
-            return null;
-
-        else if (key.compareTo(node.key) < 0)
-            return getHelper(node.left, key);
-
-        else if (key.compareTo(node.key) > 0)
-            return getHelper(node.right, key);
-
-        else
-            return node.value;
-    }
-
     // Add a key-value pair, or update the value associated with an existing key.
-    public void put(Key key, Value value) {
+    public V put(K key, V value) {
+        previousValue = null;
         root = putHelper(root, key, value);
+        return previousValue;
     }
 
     // Helper method for 'put'.
-    Node putHelper(Node node, Key key, Value value) {
+    AVLNode putHelper(AVLNode node, K key, V value) {
         if (node == null)
-            return new Node(key, value, null, null);
+            return new AVLNode(key, value, null, null);
 
-        else if (key.compareTo(node.key) < 0) {
+        System.err.println(node + ": " + key + " = " + value);
+
+        if (key.compareTo(node.key) < 0) {
             node.left = putHelper(node.left, key, value);
             node.updateHeight();
         }
@@ -129,19 +98,24 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             node.updateHeight();
         }
 
-        else
+        else {
+            previousValue = node.value;
             node.value = value;
+        }
 
         return rebalance(node);
     }
 
+    
     // Delete a key.
-    public void remove(Key key) {
+    public V remove(K key) {
+        previousValue = null;
         root = removeHelper(root, key);
+        return previousValue;
     }
 
     // Helper method for 'remove'.
-    Node removeHelper(Node node, Key key) {
+    AVLNode removeHelper(AVLNode node, K key) {
         if (node == null)
             return null;
         else if (key.compareTo(node.key) < 0) {
@@ -153,14 +127,15 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             node.updateHeight();
             return rebalance(node);
         } else { // key == node.key
+            previousValue = node.value;
             if (node.left == null)
                 return node.right;
             else if (node.right == null)
                 return node.left;
             else {
-                Node lastNode = lastNodeHelper(node.left);
-                Key lastKey = lastNode.key;
-                Value lastValue = lastNode.value;
+                BSTNode lastNode = lastNodeHelper(node.left);
+                K lastKey = lastNode.key;
+                V lastValue = lastNode.value;
                 node.left = removeHelper(node.left, lastKey);
                 node.key = lastKey;
                 node.value = lastValue;
@@ -170,26 +145,8 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         }
     }
 
-    // Find the largest key.
-    public Key lastKey() {
-        if (root == null)
-            return null;
-        else
-            return lastNodeHelper(root).key;
-    }
-
-    // Helper method for 'lastKey'.
-    // Returns the node instead, as that's useful in 'removeHelper'.
-    Node lastNodeHelper(Node node) {
-        // This one is maybe easier to implement non-recursively :)
-        while (node.right != null)
-            node = node.right;
-
-        return node;
-    }
-
     // Repair the AVL invariant by rebalancing the node.
-    Node rebalance(Node node) {
+    AVLNode rebalance(AVLNode node) {
         if (node == null) return node;
         int diff = node.heightDiff();
 
@@ -211,7 +168,7 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
             return node;
     }
 
-    Node rotateLeft(Node node) {
+    AVLNode rotateLeft(AVLNode node) {
         // Left rotation.
 
         //    x                y
@@ -222,16 +179,16 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         // """
 
         // Variables are named according to the picture above.
-        Node x = node;
-        Node A = x.left;
-        Node y = x.right;
-        Node B = y.left;
-        Node C = y.right;
+        AVLNode x = node;
+        AVLNode A = x.left;
+        AVLNode y = x.right;
+        AVLNode B = y.left;
+        AVLNode C = y.right;
 
-        return new Node(y.key, y.value, new Node(x.key, x.value, A, B), C);
+        return new AVLNode(y.key, y.value, new AVLNode(x.key, x.value, A, B), C);
     }
 
-    Node rotateRight(Node node) {
+    AVLNode rotateRight(AVLNode node) {
         // Right rotation.
         // 
         //      x             y
@@ -241,40 +198,22 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         //  A  B             B  C
 
         // Variables are named according to the picture above.
-        Node x = node;
-        Node y = x.left;
-        Node A = y.left;
-        Node B = y.right;
-        Node C = x.right;
+        AVLNode x = node;
+        AVLNode y = x.left;
+        AVLNode A = y.left;
+        AVLNode B = y.right;
+        AVLNode C = x.right;
 
-        return new Node(y.key, y.value, A, new Node(x.key, x.value, B, C));
+        return new AVLNode(y.key, y.value, A, new AVLNode(x.key, x.value, B, C));
     }
 
-    // Iterate through all keys.
-    // This is called when the user writes 'for (Key key: bst) { ... }.'
-    public Iterator<Key> iterator() {
-        // The easiest way to solve this is to add all keys to an
-        // ArrayList, then iterate through that.
-        ArrayList<Key> keys = new ArrayList<>();
-        iteratorHelper(root, keys);
-        return keys.iterator();
-    }
-
-    // Helper method for 'iterator'
-    void iteratorHelper(Node node, ArrayList<Key> keys) {
-        if (node == null) return;
-        iteratorHelper(node.left, keys);
-        keys.add(node.key);
-        iteratorHelper(node.right, keys);
-    }
-
-    // Override 'toString' to print the contents of the AVL tree.
+    // Override 'toString' to print the contents of the BST.
     public String toString() {
         StringBuilder str = new StringBuilder();
         boolean firstKey = true;
 
-        for (Key key: this) {
-            Value value = this.get(key);
+        for (K key: this) {
+            V value = this.get(key);
 
             if (!firstKey) str.append(", ");
             str.append(key.toString() + "->" + value.toString());
@@ -286,7 +225,7 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
     // Some test code to check that the AVL tree is working
     public static void main(String[] args) {
-        AVL<Integer, Integer> bst = new AVL<>();
+        AVLMap<Integer, Integer> bst = new AVLMap<>();
         int[] keys = {3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6};
         int[] values = new int[keys.length];
         for (int i = 0; i < values.length; i++) values[i] = i;

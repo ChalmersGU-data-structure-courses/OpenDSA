@@ -3,16 +3,19 @@ import java.util.Iterator;
 
 /* *** ODSATag: RedBlackTree *** */
 // A dictionary implemented using an red-black tree.
-public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterable<Key> {
+public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
+    Node root = null;    // The root of the binary search tree.
+    V previousValue;
+
     // A node in an red-black tree.
     class Node {
-        Key key;
-        Value value;
+        K key;
+        V value;
         Node left;
         Node right;
         boolean isRed;
 
-        Node(boolean isRed, Key key, Value value, Node left, Node right) {
+        Node(boolean isRed, K key, V value, Node left, Node right) {
             this.key = key;
             this.value = value;
             this.left = left;
@@ -26,9 +29,6 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         if (node == null) return false;
         return node.isRed;
     }
-
-    // The root of the binary search tree.
-    Node root = null;
 
     // Check that the invariant holds.
     void checkInvariant() {
@@ -45,7 +45,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
     // if lo is None, and k < hi is skipped if hi is None.
     //
     // Returns the "black height" of the tree.
-    int checkInvariantHelper(Node node, Key lo, Key hi) {
+    int checkInvariantHelper(Node node, K lo, K hi) {
         if (node == null) return 0;
 
         if (isRed(node.right))
@@ -88,17 +88,17 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
     }
 
     // Return true if the key has an associated value.
-    public boolean containsKey(Key key) {
+    public boolean containsKey(K key) {
         return get(key) != null;
     }
 
     // Look up a key.
-    public Value get(Key key) {
+    public V get(K key) {
         return getHelper(root, key);
     }
 
     // Helper method for 'get'.
-    Value getHelper(Node node, Key key) {
+    V getHelper(Node node, K key) {
         if (node == null)
             return null;
 
@@ -113,13 +113,15 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
     }
 
     // Add a key-value pair, or update the value associated with an existing key.
-    public void put(Key key, Value value) {
+    public V put(K key, V value) {
+        previousValue = null;
         root = putHelper(root, key, value);
         if (isRed(root)) root.isRed = false;
+        return previousValue;
     }
 
     // Helper method for 'put'.
-    Node putHelper(Node node, Key key, Value value) {
+    Node putHelper(Node node, K key, V value) {
         if (node == null)
             return new Node(true, key, value, null, null);
 
@@ -129,11 +131,51 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         else if (key.compareTo(node.key) > 0)
             node.right = putHelper(node.right, key, value);
 
-        else
+        else {
+            previousValue = node.value;
             node.value = value;
+        }
 
         return rebalance(node);
     }
+
+        // Delete a key.
+    public V remove(K key) {
+        previousValue = null;
+        // root = removeHelper(root, key);
+        return previousValue;
+    }
+
+    // // Helper method for 'remove'.
+    // Node removeHelper(Node node, K key) {
+    //     if (node == null)
+    //         return null;
+    //     else if (key.compareTo(node.key) < 0) {
+    //         node.left = removeHelper(node.left, key);
+    //         node.updateHeight();
+    //         return rebalance(node);
+    //     } else if (key.compareTo(node.key) > 0) {
+    //         node.right = removeHelper(node.right, key);
+    //         node.updateHeight();
+    //         return rebalance(node);
+    //     } else { // key == node.key
+    //         previousValue = node.value;
+    //         if (node.left == null)
+    //             return node.right;
+    //         else if (node.right == null)
+    //             return node.left;
+    //         else {
+    //             Node lastNode = lastNodeHelper(node.left);
+    //             K lastKey = lastNode.key;
+    //             V lastValue = lastNode.value;
+    //             node.left = removeHelper(node.left, lastKey);
+    //             node.key = lastKey;
+    //             node.value = lastValue;
+    //             node.updateHeight();
+    //             return rebalance(node);
+    //         }
+    //     }
+    // }
 
     // Repair the red-black invariant by rebalancing the node.
     Node rebalance(Node node) {
@@ -201,17 +243,17 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
     }
 
     // Iterate through all keys.
-    // This is called when the user writes 'for (Key key: bst) { ... }.'
-    public Iterator<Key> iterator() {
+    // This is called when the user writes 'for (K key: bst) { ... }.'
+    public Iterator<K> iterator() {
         // The easiest way to solve this is to add all keys to an
         // ArrayList, then iterate through that.
-        ArrayList<Key> keys = new ArrayList<>();
+        ArrayList<K> keys = new ArrayList<>();
         iteratorHelper(root, keys);
         return keys.iterator();
     }
 
     // Helper method for 'iterator'
-    void iteratorHelper(Node node, ArrayList<Key> keys) {
+    void iteratorHelper(Node node, ArrayList<K> keys) {
         if (node == null) return;
         iteratorHelper(node.left, keys);
         keys.add(node.key);
@@ -223,8 +265,8 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
         StringBuilder str = new StringBuilder();
         boolean firstKey = true;
 
-        for (Key key: this) {
-            Value value = this.get(key);
+        for (K key: this) {
+            V value = this.get(key);
 
             if (!firstKey) str.append(", ");
             str.append(key.toString() + "->" + value.toString());
@@ -236,7 +278,7 @@ public class RedBlackTree<Key extends Comparable<Key>, Value> implements Iterabl
 
     // Some test code to check that the red-black tree is working
     public static void main(String[] args) {
-        RedBlackTree<Integer, Integer> bst = new RedBlackTree<>();
+        RedBlackMap<Integer, Integer> bst = new RedBlackMap<>();
         int[] keys = {3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6};
         int[] values = new int[keys.length];
         for (int i = 0; i < values.length; i++) values[i] = i;
