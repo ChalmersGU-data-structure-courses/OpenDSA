@@ -57,7 +57,7 @@ If we cannot find the key, we add a new **KVPair** to the list.
 
 In this example we're using a linked list, but we could equally well have used
 a dynamic array list.
-The only thing we have to think about is that we add new pairs at the right location
+The only thing we have to think about is to add new pairs at the right location
 (beginning or end of the list) -- because linked lists prefer adding at the front,
 while array lists rather add to the back of the list.
 

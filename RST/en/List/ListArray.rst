@@ -15,9 +15,9 @@ Static Array-Based Lists
 First we give a static implementation for array-based lists,
 named **StaticArrayList**.
 This inherits from the :ref:`List ADT <CourseAPI>`,
-and so must implement all of the member functions of ``List``.
+and must therefore implement all of the member functions of ``List``.
 
-Unlike normal arrays, lists can change size: we can add elements to and remove from them.
+Unlike normal arrays, lists can change in size: we can add elements to and remove from them.
 How can this be implemented?
 Well, what we *don't* want to do is to create a completely new array every time elements
 are added or removed. So instead we will use an underlying array which is larger than we need.
@@ -25,9 +25,9 @@ are added or removed. So instead we will use an underlying array which is larger
 Internal variables
 --------------------
 
-Therefore we will need two internal variables:
-the underlying array, and a counter telling how much of the array that is actually used.
-When we create a new array-list we have to tell what the largest possible capacity is.
+Because of that will need two internal variables:
+the underlying array, and a counter telling how much of the array is actually used.
+When we create a new array-list we have to decide the largest possible capacity.
 Then the underlying array is initialised, and the counter is set to 0 because there are
 no elements yet.
 
@@ -107,7 +107,7 @@ Removing elements
 ----------------------------
 
 Removing an element from the head of the list is
-similar to adding in that all remaining elements must shift.
+similar to adding in the sense that all remaining elements must shift.
 But now we have to shift toward the head to fill in the gap,
 instead of toward the tail.
 If we want to remove the element at position :math:`i`, then

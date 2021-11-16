@@ -40,7 +40,7 @@ implementation makes use of a **header pointer**, but
 we also add a **tail pointer** to the end of the list.
  
 Here is an implementation for the class variables and the internal list node class.
-The only real difference between single linked lists are that we have pointers
+The only real difference between single linked lists is that we have pointers
 to the previous node, and a pointer to the tail of the list.
 
 .. codeinclude:: ChalmersGU/DoubleLinkedList

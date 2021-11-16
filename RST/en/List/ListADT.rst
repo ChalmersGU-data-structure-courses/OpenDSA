@@ -148,7 +148,7 @@ A list can be iterated through as follows:
 .. codeinclude:: Lists/ListTest
    :tag: listiterNew1
 
-But both Java and Python has syntactic sugar for iterators,
+Both Java and Python has syntactic sugar for iterators,
 so the same iteration can be written like this:
 
 .. codeinclude:: Lists/ListTest
