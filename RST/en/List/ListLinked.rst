@@ -20,7 +20,7 @@ for lists, usually called a :term:`linked list`.
 The linked list uses :term:`dynamic memory allocation`,
 that is, it allocates memory for new list elements as needed.
 The following diagram illustrates the linked list concept.
-Here there are three :term:`nodes <node>` that
+There are three :term:`nodes <node>` that
 are "linked" together.
 Each node has two boxes.
 The box on the right holds a link to the next node in the list.
@@ -81,7 +81,7 @@ Adding and removing nodes
 -----------------------------
 
 However, if we want to add or remove nodes,
-there is a problem using a pointer to the ``current`` node.
+there is a problem with using a pointer to the ``current`` node.
 
 .. inlineav:: LinkedList-Problems-CON ss
    :long_name: Linked List Add/Remove Problems
@@ -166,7 +166,7 @@ where these operations are :math:`\Theta(1)`.
 So are linked lists totally useless?
 No! But they don't work well with our current List interface.
 
-Instead, to make linked lists useful, we would need an enhanced iterator interface,
+To make linked lists useful, we need an enhanced iterator interface,
 where we can move forwards and backwards in the list, and add/remove nodes
 through this enhanced iterator.
 In the standard Java API, this kind of iterator is called a ListIterator_,

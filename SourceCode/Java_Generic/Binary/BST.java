@@ -92,14 +92,20 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
 
 /* *** ODSATag: put *** */
     // Add a key-value pair, or update the value associated with an existing key.
-    public void put(Key key, Value value) {
+    // Returns the previous value associated with the key, or null if
+    // the key wasn't previously present.
+    public Value put(Key key, Value value) {
         root = putHelper(root, key, value);
+        return oldValue;
     }
 
     // Helper method for 'put'.
+    // Stores the previous value in oldValue;
     Node putHelper(Node node, Key key, Value value) {
-        if (node == null)
+        if (node == null) {
+            oldValue = null;
             return new Node(key, value, null, null);
+        } 
 
         else if (key.compareTo(node.key) < 0)
             node.left = putHelper(node.left, key, value);
@@ -107,40 +113,51 @@ public class BST<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         else if (key.compareTo(node.key) > 0)
             node.right = putHelper(node.right, key, value);
 
-        else
+        else {
+            oldValue = node.value;
             node.value = value;
+        }
 
         return node;
     }
+
+    // Used by putHelper and removeHelper, in order to return the
+    // value previously stored in the node.
+    private Value oldValue;
 /* *** ODSAendTag: put *** */
 
     // Delete a key.
-    public void remove(Key key) {
+    public Value remove(Key key) {
         root = removeHelper(root, key);
+        return oldValue;
     }
 
     // Helper method for 'remove'.
     Node removeHelper(Node node, Key key) {
-        if (node == null)
+        if (node == null) {
+            oldValue = null;
             return null;
-        else if (key.compareTo(node.key) < 0) {
+        } else if (key.compareTo(node.key) < 0) {
             node.left = removeHelper(node.left, key);
             return node;
         } else if (key.compareTo(node.key) > 0) {
             node.right = removeHelper(node.right, key);
             return node;
         } else { // key == node.key
-            if (node.left == null)
+            if (node.left == null) {
+                oldValue = node.value;
                 return node.right;
-            else if (node.right == null)
+            } else if (node.right == null) {
+                oldValue = node.value;
                 return node.left;
-            else {
+            } else {
                 Node lastNode = largestNode(node.left);
                 Key lastKey = lastNode.key;
                 Value lastValue = lastNode.value;
-                // We can either use 'deletemax' (as in the next)
+                // We can either use 'deletemax' (as in the text)
                 // or just recursively call removeHelper here
                 node.left = removeHelper(node.left, lastKey);
+                oldValue = node.value;
                 node.key = lastKey;
                 node.value = lastValue;
                 return node;

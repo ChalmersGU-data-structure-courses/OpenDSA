@@ -112,25 +112,33 @@ class RedBlackTree:
 
     def put(self, key, value):
         """Add a key-value pair, or update the value associated with
-        an existing key."""
+        an existing key.
 
-        self.root = self.put_helper(self.root, key, value)
+        Returns the value previously associated with the key, or None
+        if the key was not present."""
+
+        self.root, old_value = self.put_helper(self.root, key, value)
         if Node.is_red(self.root):
             self.root._is_red = False
+        return old_value
 
     @staticmethod
     def put_helper(node, key, value):
-        """Helper method for 'put'."""
+        """Helper method for 'put'.
+
+        Returns the updated node, and the value previously associated
+        with the key."""
 
         if node is None:
-            return Node(True, key, value, None, None)
+            return Node(True, key, value, None, None), None
         elif key < node.key:
-            node.left = RedBlackTree.put_helper(node.left, key, value)
+            node.left, old_value = RedBlackTree.put_helper(node.left, key, value)
         elif key > node.key:
-            node.right = RedBlackTree.put_helper(node.right, key, value)
+            node.right, old_value = RedBlackTree.put_helper(node.right, key, value)
         else:
+            old_value = node.value
             node.value = value
-        return RedBlackTree.rebalance(node)
+        return RedBlackTree.rebalance(node), old_value
 
     @staticmethod
     def rebalance(node):

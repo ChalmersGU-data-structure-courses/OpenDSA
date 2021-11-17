@@ -148,7 +148,7 @@ A list can be iterated through as follows:
 .. codeinclude:: ChalmersGU/Other/CodeFragments
    :tag: ListIter1
 
-But both Java and Python has syntactic sugar for iterators,
+Both Java and Python has syntactic sugar for iterators,
 so the same iteration can be written like this:
 
 .. codeinclude:: ChalmersGU/Other/CodeFragments

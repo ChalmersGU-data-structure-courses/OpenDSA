@@ -107,59 +107,75 @@ class AVL:
 
     def put(self, key, value):
         """Add a key-value pair, or update the value associated with
-        an existing key."""
+        an existing key.
 
-        self.root = self.put_helper(self.root, key, value)
+        Returns the value previously associated with the key, or None
+        if the key was not present."""
+
+        self.root, old_value = self.put_helper(self.root, key, value)
+        return old_value
 
     @staticmethod
     def put_helper(node, key, value):
-        """Helper method for 'put'."""
+        """Helper method for 'put'.
+
+        Returns the updated node, and the value previously associated
+        with the key."""
 
         if node is None:
-            return Node(key, value, None, None)
+            return Node(key, value, None, None), None
         elif key < node.key:
-            node.left = AVL.put_helper(node.left, key, value)
+            node.left, old_value = AVL.put_helper(node.left, key, value)
             node.update_height()
         elif key > node.key:
-            node.right = AVL.put_helper(node.right, key, value)
+            node.right, old_value = AVL.put_helper(node.right, key, value)
             node.update_height()
         else:
+            old_value = node.value
             node.value = value
-        return AVL.rebalance(node)
+        return AVL.rebalance(node), old_value
 
     def remove(self, key):
-        """Delete a key."""
+        """Delete a key.
 
-        self.root = self.remove_helper(self.root, key)
+        Returns the value previously associated with the key, or None
+        if the key was not present."""
+
+        self.root, old_value = self.remove_helper(self.root, key)
+        return old_value
 
     @staticmethod
     def remove_helper(node, key):
-        """Helper method for 'remove'."""
+        """Helper method for 'remove'.
+
+        Returns the updated node, and the value previously associated
+        with the key."""
 
         if node is None:
-            return None
+            return None, None
         elif key < node.key:
-            node.left = AVL.remove_helper(node.left, key)
+            node.left, old_value = AVL.remove_helper(node.left, key)
             node.update_height()
-            return AVL.rebalance(node)
+            return AVL.rebalance(node), old_value
         elif key > node.key:
-            node.right = AVL.remove_helper(node.right, key)
+            node.right, old_value = AVL.remove_helper(node.right, key)
             node.update_height()
-            return AVL.rebalance(node)
+            return AVL.rebalance(node), old_value
         else: # key == node.key
             if node.left is None:
-                return node.right
+                return node.right, node.value
             elif node.right is None:
-                return node.left
+                return node.left, node.value
             else:
                 last_node = AVL.lastNode(node.left)
                 last_key = last_node.key
                 last_val = last_node.value
-                node.left = AVL.remove_helper(node.left, last_key)
+                node.left, _ = AVL.remove_helper(node.left, last_key)
                 node.key = last_key
+                old_value = node.value
                 node.value = last_val
                 node.update_height()
-                return AVL.rebalance(node)
+                return AVL.rebalance(node), old_value
 
     def lastKey(self):
         """Find the largest key."""
