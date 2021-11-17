@@ -1,21 +1,26 @@
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /* *** ODSATag: AVLTree *** */
+/* *** ODSATag: header *** */
 // A dictionary implemented using an AVL tree.
-public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements Map<K, V> {
-    AVLNode root = null;   // The root of the binary search tree.
-    V previousValue;
+public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
+    Node root = null;   // The root of the AVL tree.
+    int treeSize;       // The size of the tree.
+    V oldValue;         // Internal temporary variable for storing the old value of a key.
+/* *** ODSAendTag: header *** */
 
+/* *** ODSATag: Node *** */
     // A node in an AVL tree.
-    class AVLNode extends BSTNode {
+    class Node {
         K key;
         V value;
-        AVLNode left;
-        AVLNode right;
+        Node left;
+        Node right;
         int height;
 
-        AVLNode(K key, V value, AVLNode left, AVLNode right) {
+        Node(K key, V value, Node left, Node right) {
             this.key = key;
             this.value = value;
             this.left = left;
@@ -25,7 +30,7 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
             System.err.println("--> " + this);
         }
 
-        int getHeight(AVLNode node) {
+        int getHeight(Node node) {
             if (node == null) return 0;
             else return node.height;
         }
@@ -42,80 +47,110 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
             return "(" + left + " {" + key + ":" + value + "} " + right + ") ";
         }
     }
+/* *** ODSAendTag: header *** */
 
+/* *** ODSATag: invariant *** */
     // Check that the invariant holds.
     void checkInvariant() {
         checkInvariantHelper(root, null, null);
     }
 
-    // Helper method for 'check_invariant'.
-    //
+    // Recursive helper method for 'check_invariant'.
     // Checks that the node is the root of a valid AVL tree, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
     // if lo is None, and k < hi is skipped if hi is None.
-    void checkInvariantHelper(AVLNode node, K lo, K hi) {
-        if (node == null) return;
-
+    void checkInvariantHelper(Node node, K lo, K hi) {
+        if (node == null)
+            return;
         if (lo != null && node.key.compareTo(lo) <= 0)
             throw new AssertionError("key too small");
-
         if (hi != null && node.key.compareTo(hi) >= 0)
             throw new AssertionError("key too big");
-
         if (node.heightDiff() > 1)
             throw new AssertionError("too left-leaning");
-
         if (node.heightDiff() < -1)
             throw new AssertionError("too right-leaning");
-
         // Keys in the left subtree should be < node.key
         checkInvariantHelper(node.left, lo, node.key);
         // Keys in the right subtree should be > node.key
         checkInvariantHelper(node.right, node.key, hi);
     }
+/* *** ODSAendTag: invariant *** */
 
-    // Add a key-value pair, or update the value associated with an existing key.
-    public V put(K key, V value) {
-        previousValue = null;
-        root = putHelper(root, key, value);
-        return previousValue;
+    // Return true if there are no keys.
+    public boolean isEmpty() {
+        return root == null;
     }
 
-    // Helper method for 'put'.
-    AVLNode putHelper(AVLNode node, K key, V value) {
+    // Return the number of keys.
+    public int size() {
+        return treeSize;
+    }
+
+    // Return true if the key has an associated value.
+    public boolean containsKey(K key) {
+        return get(key) != null;
+    }
+
+/* *** ODSATag: get *** */
+    // Look up a key.
+    public V get(K key) {
+        return getHelper(root, key);
+    }
+
+    // Recursive helper method for 'get'.
+    V getHelper(Node node, K key) {
         if (node == null)
-            return new AVLNode(key, value, null, null);
+            return null;
+        else if (key.compareTo(node.key) < 0)
+            return getHelper(node.left, key);
+        else if (key.compareTo(node.key) > 0)
+            return getHelper(node.right, key);
+        else
+            return node.value;
+    }
+/* *** ODSAendTag: get *** */
 
-        System.err.println(node + ": " + key + " = " + value);
+/* *** ODSATag: put *** */
+    // Add a key-value pair, or update the value associated with an existing key.
+    public V put(K key, V value) {
+        oldValue = null;
+        root = putHelper(root, key, value);
+        if (oldValue == null)
+            treeSize++;
+        return oldValue;
+    }
 
+    // Recursive helper method for 'put'.
+    Node putHelper(Node node, K key, V value) {
+        if (node == null)
+            return new Node(key, value, null, null);
         if (key.compareTo(node.key) < 0) {
             node.left = putHelper(node.left, key, value);
             node.updateHeight();
-        }
-
-        else if (key.compareTo(node.key) > 0) {
+        } else if (key.compareTo(node.key) > 0) {
             node.right = putHelper(node.right, key, value);
             node.updateHeight();
-        }
-
-        else {
-            previousValue = node.value;
+        } else {
+            oldValue = node.value;
             node.value = value;
         }
-
         return rebalance(node);
     }
-
+/* *** ODSAendTag: put *** */
     
+/* *** ODSATag: remove *** */
     // Delete a key.
     public V remove(K key) {
-        previousValue = null;
+        oldValue = null;
         root = removeHelper(root, key);
-        return previousValue;
+        if (oldValue != null)
+            treeSize--;
+        return oldValue;
     }
 
-    // Helper method for 'remove'.
-    AVLNode removeHelper(AVLNode node, K key) {
+    // Recursive helper method for 'remove'.
+    Node removeHelper(Node node, K key) {
         if (node == null)
             return null;
         else if (key.compareTo(node.key) < 0) {
@@ -127,13 +162,14 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
             node.updateHeight();
             return rebalance(node);
         } else { // key == node.key
-            previousValue = node.value;
+            if (oldValue == null)
+                oldValue = node.value;
             if (node.left == null)
                 return node.right;
             else if (node.right == null)
                 return node.left;
             else {
-                BSTNode lastNode = lastNodeHelper(node.left);
+                Node lastNode = lastNodeHelper(node.left);
                 K lastKey = lastNode.key;
                 V lastValue = lastNode.value;
                 node.left = removeHelper(node.left, lastKey);
@@ -144,9 +180,11 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
             }
         }
     }
+/* *** ODSAendTag: remove *** */
 
+/* *** ODSATag: rebalance *** */
     // Repair the AVL invariant by rebalancing the node.
-    AVLNode rebalance(AVLNode node) {
+    Node rebalance(Node node) {
         if (node == null) return node;
         int diff = node.heightDiff();
 
@@ -168,44 +206,80 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
             return node;
     }
 
-    AVLNode rotateLeft(AVLNode node) {
+    Node rotateLeft(Node node) {
         // Left rotation.
-
-        //    x                y
-        //   / \              / \
-        //  A  y      ===>   x  C
-        //    / \           / \
-        //   B  C          A  B
-        // """
-
+        // 
+        //    x                 y
+        //   / \               / \
+        //  A   y     ===>    x   C
+        //     / \           / \
+        //    B   C         A   B
+        // 
         // Variables are named according to the picture above.
-        AVLNode x = node;
-        AVLNode A = x.left;
-        AVLNode y = x.right;
-        AVLNode B = y.left;
-        AVLNode C = y.right;
-
-        return new AVLNode(y.key, y.value, new AVLNode(x.key, x.value, A, B), C);
+        Node x = node;
+        Node A = x.left;
+        Node y = x.right;
+        Node B = y.left;
+        Node C = y.right;
+        return new Node(y.key, y.value, new Node(x.key, x.value, A, B), C);
     }
 
-    AVLNode rotateRight(AVLNode node) {
+    Node rotateRight(Node node) {
         // Right rotation.
         // 
-        //      x             y
-        //     / \           / \
-        //    y  C    ===>  A  x
-        //   / \              / \
-        //  A  B             B  C
-
+        //      x              y
+        //     / \            / \
+        //    y   C   ===>   A   x
+        //   / \                / \
+        //  A   B              B   C
+        //
         // Variables are named according to the picture above.
-        AVLNode x = node;
-        AVLNode y = x.left;
-        AVLNode A = y.left;
-        AVLNode B = y.right;
-        AVLNode C = x.right;
-
-        return new AVLNode(y.key, y.value, A, new AVLNode(x.key, x.value, B, C));
+        Node x = node;
+        Node y = x.left;
+        Node A = y.left;
+        Node B = y.right;
+        Node C = x.right;
+        return new Node(y.key, y.value, A, new Node(x.key, x.value, B, C));
     }
+/* *** ODSAendTag: remove *** */
+
+    // Find the largest key.
+    public K lastKey() {
+        if (root == null)
+            return null;
+        else
+            return lastNodeHelper(root).key;
+    }
+
+    // Recursive helper method for 'lastKey'.
+    // Returns the node instead, as that's useful in 'removeHelper'.
+    Node lastNodeHelper(Node node) {
+        // This one is maybe easier to implement non-recursively :)
+        while (node.right != null)
+            node = node.right;
+        return node;
+    }
+
+/* *** ODSATag: iterator *** */
+    // Iterate through all keys.
+    // This is called when the user writes 'for (Key key: bst) { ... }.'
+    public Iterator<K> iterator() {
+        // The easiest way to solve this is to add all keys to an
+        // ArrayList, then iterate through that.
+        ArrayList<K> keys = new ArrayList<>();
+        iteratorHelper(root, keys);
+        return keys.iterator();
+    }
+
+    // Recursive helper method for 'iterator'
+    void iteratorHelper(Node node, ArrayList<K> keys) {
+        if (node == null) return;
+        iteratorHelper(node.left, keys);
+        keys.add(node.key);
+        iteratorHelper(node.right, keys);
+    }
+/* *** ODSAendTag: iterator *** */
+/* *** ODSAendTag: AVLTree *** */
 
     // Override 'toString' to print the contents of the BST.
     public String toString() {
@@ -232,7 +306,7 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
 
         for (int i = 0; i < keys.length; i++) {
             bst.put(keys[i], values[i]);
-            System.out.println(bst);
+            System.out.println(bst.size() + ": " + bst);
             bst.checkInvariant();
         }
 
@@ -243,9 +317,10 @@ public class AVLMap<K extends Comparable<K>, V> extends BSTMap<K, V> implements 
 
         for (int i = 0; i < keys.length; i++) {
             bst.remove(keys[i]);
-            System.out.println(bst);
+            System.out.println(bst.size() + ": " + bst);
             bst.checkInvariant();
         }
     }
+/* *** ODSATag: AVLTree *** */
 }
 /* *** ODSAendTag: AVLTree *** */

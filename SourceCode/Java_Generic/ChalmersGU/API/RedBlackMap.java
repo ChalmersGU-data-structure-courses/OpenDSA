@@ -1,12 +1,17 @@
+
 import java.util.ArrayList;
 import java.util.Iterator;
 
 /* *** ODSATag: RedBlackTree *** */
+/* *** ODSATag: Header *** */
 // A dictionary implemented using an red-black tree.
 public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
-    Node root = null;    // The root of the binary search tree.
-    V previousValue;
+    Node root = null;   // The root of the red black tree.
+    int treeSize;       // The size of the tree.
+    V oldValue;         // Internal temporary variable for storing the old value of a key.
+/* *** ODSAendTag: Header *** */
 
+/* *** ODSATag: Node *** */
     // A node in an red-black tree.
     class Node {
         K key;
@@ -23,6 +28,15 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
             this.isRed = isRed;
         }
     }
+/* *** ODSAendTag: Node *** */
+
+/* *** ODSATag: Invariant *** */
+    // Check that the invariant holds.
+    void checkInvariant() {
+        if (isRed(root))
+            throw new AssertionError("red root");
+        checkInvariantHelper(root, null, null);
+    }
 
     // Check if a node is red. 'null' is always black.
     boolean isRed(Node node) {
@@ -30,46 +44,31 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
         return node.isRed;
     }
 
-    // Check that the invariant holds.
-    void checkInvariant() {
-        if (isRed(root))
-            throw new AssertionError("red root");
-
-        checkInvariantHelper(root, null, null);
-    }
-
-    // Helper method for 'check_invariant'.
-    //
+    // Recursive helper method for 'check_invariant'.
     // Checks that the node is the root of a valid red-black tree, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
     // if lo is None, and k < hi is skipped if hi is None.
-    //
     // Returns the "black height" of the tree.
     int checkInvariantHelper(Node node, K lo, K hi) {
-        if (node == null) return 0;
-
+        if (node == null)
+            return 0;
         if (isRed(node.right))
             throw new AssertionError("red right child");
-
         if (isRed(node) && isRed(node.left))
             throw new AssertionError("red node with red left child");
-
         if (lo != null && node.key.compareTo(lo) <= 0)
             throw new AssertionError("key too small");
-
         if (hi != null && node.key.compareTo(hi) >= 0)
             throw new AssertionError("key too big");
-
         // Keys in the left subtree should be < node.key
         int h1 = checkInvariantHelper(node.left, lo, node.key);
         // Keys in the right subtree should be > node.key
         int h2 = checkInvariantHelper(node.right, node.key, hi);
-
         if (h1 != h2)
             throw new AssertionError("unbalanced tree");
-
         return h1 + (isRed(node) ? 0 : 1);
     }
+/* *** ODSAendTag: Invariant *** */
 
     // Return true if there are no keys.
     public boolean isEmpty() {
@@ -78,13 +77,7 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     // Return the number of keys.
     public int size() {
-        return sizeHelper(root);
-    }
-
-    // Helper method for 'size'.
-    int sizeHelper(Node node) {
-        if (node == null) return 0;
-        else return 1 + sizeHelper(node.left) + sizeHelper(node.right);
+        return treeSize;
     }
 
     // Return true if the key has an associated value.
@@ -92,61 +85,64 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
         return get(key) != null;
     }
 
+/* *** ODSATag: get *** */
     // Look up a key.
     public V get(K key) {
         return getHelper(root, key);
     }
 
-    // Helper method for 'get'.
+    // Recursive helper method for 'get'.
     V getHelper(Node node, K key) {
         if (node == null)
             return null;
-
         else if (key.compareTo(node.key) < 0)
             return getHelper(node.left, key);
-
         else if (key.compareTo(node.key) > 0)
             return getHelper(node.right, key);
-
         else
             return node.value;
     }
+/* *** ODSAendTag: get *** */
 
+/* *** ODSATag: put *** */
     // Add a key-value pair, or update the value associated with an existing key.
     public V put(K key, V value) {
-        previousValue = null;
+        oldValue = null;
         root = putHelper(root, key, value);
-        if (isRed(root)) root.isRed = false;
-        return previousValue;
+        if (isRed(root))
+            root.isRed = false;
+        if (oldValue == null)
+            treeSize++;
+        return oldValue;
     }
 
-    // Helper method for 'put'.
+    // Recursive helper method for 'put'.
     Node putHelper(Node node, K key, V value) {
         if (node == null)
             return new Node(true, key, value, null, null);
-
         else if (key.compareTo(node.key) < 0)
             node.left = putHelper(node.left, key, value);
-
         else if (key.compareTo(node.key) > 0)
             node.right = putHelper(node.right, key, value);
-
         else {
-            previousValue = node.value;
+            oldValue = node.value;
             node.value = value;
         }
-
         return rebalance(node);
     }
+/* *** ODSAendTag: put *** */
 
-        // Delete a key.
+/* *** ODSATag: remove *** */
+    // Delete a key.
     public V remove(K key) {
-        previousValue = null;
+        oldValue = null;
         // root = removeHelper(root, key);
-        return previousValue;
+        if (oldValue != null)
+            treeSize--;
+        return oldValue;
     }
 
-    // // Helper method for 'remove'.
+    // // Recursive helper method for 'remove'.
     // Node removeHelper(Node node, K key) {
     //     if (node == null)
     //         return null;
@@ -159,7 +155,7 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     //         node.updateHeight();
     //         return rebalance(node);
     //     } else { // key == node.key
-    //         previousValue = node.value;
+    //         oldValue = node.value;
     //         if (node.left == null)
     //             return node.right;
     //         else if (node.right == null)
@@ -176,72 +172,67 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     //         }
     //     }
     // }
+/* *** ODSAendTag: remove *** */
 
+/* *** ODSATag: rebalance *** */
     // Repair the red-black invariant by rebalancing the node.
     Node rebalance(Node node) {
         if (node == null) return node;
-
         // Skew
         if (isRed(node.right))
             node = rotateLeft(node);
-
         // Split part 1
         if (isRed(node.left) && isRed(node.left.left))
             node = rotateRight(node);
-
         // Split part 2
         if (isRed(node.left) && isRed(node.right)) {
             node.left.isRed = false;
             node.right.isRed = false;
             node.isRed = true;
         }
-
         return node;
     }
 
     Node rotateLeft(Node node) {
         // Left rotation.
-
-        //    x                y
-        //   / \              / \
-        //  A  y      ===>   x  C
-        //    / \           / \
-        //   B  C          A  B
-        // """
-
+        // 
+        //    x                 y
+        //   / \               / \
+        //  A   y     ===>    x   C
+        //     / \           / \
+        //    B   C         A   B
+        // 
         // Variables are named according to the picture above.
         Node x = node;
         Node A = x.left;
         Node y = x.right;
         Node B = y.left;
         Node C = y.right;
-
-        // We also swap x's and y's colours
-        // (e.g. if x was black before, then y will be black afterwards).
+        // We also swap x's and y's colours (e.g. if x was black before, then y will be black afterwards).
         return new Node(x.isRed, y.key, y.value, new Node(y.isRed, x.key, x.value, A, B), C);
     }
 
     Node rotateRight(Node node) {
         // Right rotation.
         // 
-        //      x             y
-        //     / \           / \
-        //    y  C    ===>  A  x
-        //   / \              / \
-        //  A  B             B  C
-
+        //      x              y
+        //     / \            / \
+        //    y   C   ===>   A   x
+        //   / \                / \
+        //  A   B              B   C
+        // 
         // Variables are named according to the picture above.
         Node x = node;
         Node y = x.left;
         Node A = y.left;
         Node B = y.right;
         Node C = x.right;
-
-        // We also swap x's and y's colours
-        // (e.g. if x was black before, then y will be black afterwards).
+        // We also swap x's and y's colours (e.g. if x was black before, then y will be black afterwards).
         return new Node(x.isRed, y.key, y.value, A, new Node(y.isRed, x.key, x.value, B, C));
     }
+/* *** ODSAendTag: rebalance *** */
 
+/* *** ODSATag: iterator *** */
     // Iterate through all keys.
     // This is called when the user writes 'for (K key: bst) { ... }.'
     public Iterator<K> iterator() {
@@ -252,13 +243,15 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
         return keys.iterator();
     }
 
-    // Helper method for 'iterator'
+    // Recursive helper method for 'iterator'
     void iteratorHelper(Node node, ArrayList<K> keys) {
         if (node == null) return;
         iteratorHelper(node.left, keys);
         keys.add(node.key);
         iteratorHelper(node.right, keys);
     }
+/* *** ODSAendTag: iterator *** */
+/* *** ODSAendTag: RedBlackTree *** */
 
     // Override 'toString' to print the contents of the red-black tree.
     public String toString() {
@@ -294,5 +287,6 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
             bst.checkInvariant();
         }
     }
+/* *** ODSATag: RedBlackTree *** */
 }
 /* *** ODSAendTag: RedBlackTree *** */
