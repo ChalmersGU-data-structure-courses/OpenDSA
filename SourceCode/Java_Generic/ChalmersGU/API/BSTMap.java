@@ -8,7 +8,6 @@ import java.util.Iterator;
 class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     Node root = null;   // The root of the binary search tree.
     int treeSize;       // The size of the tree.
-    V oldValue;         // Internal temporary variable for storing the old value of a key.
 /* *** ODSAendTag: Header *** */
 
 /* *** ODSATag: Node *** */
@@ -74,16 +73,18 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     // Recursive helper method for 'get'.
+/* *** ODSATag: getHelper *** */
     V getHelper(Node node, K key) {
         if (node == null)
             return null;
-        else if (key.compareTo(node.key) < 0)
+        if (node.key.compareTo(key) > 0)
             return getHelper(node.left, key);
-        else if (key.compareTo(node.key) > 0)
-            return getHelper(node.right, key);
-        else
+        else if (node.key.compareTo(key) == 0)
             return node.value;
+        else
+            return getHelper(node.right, key);
     }
+/* *** ODSAendTag: getHelper *** */
 /* *** ODSAendTag: get *** */
 
 /* *** ODSATag: put *** */
@@ -97,6 +98,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     // Recursive helper method for 'put'.
+/* *** ODSATag: putHelper *** */
     Node putHelper(Node node, K key, V value) {
         if (node == null) {
             return new Node(key, value, null, null);
@@ -110,6 +112,11 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
         }
         return node;
     }
+/* *** ODSAendTag: putHelper *** */
+
+    // Used by putHelper and removeHelper, in order to return
+    // the value previously stored in the node.
+    private V oldValue;
 /* *** ODSAendTag: put *** */
 
 /* *** ODSATag: remove *** */
@@ -123,13 +130,14 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 
     // Recursive helper method for 'remove'.
+/* *** ODSATag: removeHelper *** */
     Node removeHelper(Node node, K key) {
         if (node == null)
             return null;
-        else if (key.compareTo(node.key) < 0) {
+        else if (node.key.compareTo(key) > 0) {
             node.left = removeHelper(node.left, key);
             return node;
-        } else if (key.compareTo(node.key) > 0) {
+        } else if (node.key.compareTo(key) < 0) {
             node.right = removeHelper(node.right, key);
             return node;
         } else { // key == node.key
@@ -139,10 +147,12 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
                 return node.right;
             else if (node.right == null)
                 return node.left;
-            else {
+            else { // Two children
                 Node lastNode = lastNodeHelper(node.left);
                 K lastKey = lastNode.key;
                 V lastValue = lastNode.value;
+                // We can either use 'deletemax' (as in the text)
+                // or just recursively call removeHelper here.
                 node.left = removeHelper(node.left, lastKey);
                 node.key = lastKey;
                 node.value = lastValue;
@@ -150,6 +160,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
             }
         }
     }
+/* *** ODSAendTag: removeHelper *** */
 /* *** ODSAendTag: remove *** */
 
     // Find the largest key.
@@ -201,7 +212,7 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
         System.out.println(node.key);
         printHelper(node.right);
     }
-/* *** ODSATag: printHelper *** */
+/* *** ODSAendTag: printHelper *** */
 
     // Override 'toString' to print the contents of the BST.
     public String toString() {

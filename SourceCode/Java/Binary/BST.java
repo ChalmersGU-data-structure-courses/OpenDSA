@@ -68,14 +68,14 @@ class BST {
   }
 /* *** ODSAendTag: inserthelp *** */
 
-/* *** ODSATag: deletemax *** */
+/* *** ODSATag: deleteMax *** */
   // Delete the maximum valued element in a subtree
-  private Node deletemax(Node rt) {
-    if (rt.right == null) return rt.left();
-    rt.right = deletemax(rt.right);
-    return rt;
+  private Node deleteMax(Node rt) {
+      if (rt.right == null) return rt.left();
+      rt.right = deleteMax(rt.right);
+      return rt;
   }
-/* *** ODSAendTag: deletemax *** */
+/* *** ODSAendTag: deleteMax *** */
 
 /* *** ODSATag: getmax *** */
   // Get the maximum valued element in a subtree
@@ -100,7 +100,7 @@ class BST {
       else { // Two children
         Node temp = lastNode(rt.left);
         rt.key = temp.key; rt.value = temp.value;
-        rt.left = deletemax(rt.left);
+        rt.left = deleteMax(rt.left);
       }
     }
     return rt;

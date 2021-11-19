@@ -32,39 +32,38 @@ void output(Object x) {}
 
 /* *** ODSATag: Binsort *** */
 void binsort(Integer[] A) {
-  List[] B = new LinkedList[MaxKeyValue+1];
-  Object item;
-  for (int i=0; i<=MaxKeyValue; i++) {
-    B[i] = new LinkedList();
-  }
-  for (int i=0; i<A.length; i++) { B[A[i]].append(new Integer(A[i])); }
-  int pos = 0;
-  for (int i=0; i<=MaxKeyValue; i++) {
-    for (B[i].moveToStart(); (item = B[i].getValue()) != null; B[i].next()) {
-      A[pos++] = (Integer)item;
+    List[] B = new LinkedList[MaxKeyValue+1];
+    Object item;
+    for (int i=0; i<=MaxKeyValue; i++) {
+        B[i] = new LinkedList();
     }
-  }
+    for (int i=0; i<A.length; i++) { B[A[i]].append(new Integer(A[i])); }
+    int pos = 0;
+    for (int i=0; i<=MaxKeyValue; i++) {
+        for (B[i].moveToStart(); (item = B[i].getValue()) != null; B[i].next()) {
+            A[pos++] = (Integer)item;
+        }
+    }
 }
 /* *** ODSAendTag: Binsort *** */
 
 
 void simplebinsort(Integer[] A, Integer[] B) {
-  int i;
 /* *** ODSATag: simplebinsort *** */
-  for (i=0; i<A.length; i++) {
+for (int i=0; i < A.length; i++) {
     B[A[i]] = A[i];
-  }
+}
 /* *** ODSAendTag: simplebinsort *** */
 }
 
 
 void simplebinsort2(Integer[] A) {
-  int i;
 /* *** ODSATag: simplebinsort2 *** */
-for (i=0; i<A.length; i++) {
-  while (A[i] != i) { // Swap element A[i] with A[A[i]]
-    swap(A, i, A[i]);
-  }
+for (int i=0; i < A.length; i++) {
+    while (A[i] != i) {
+        // Swap element A[i] with A[A[i]]
+        swap(A, i, A[i]);
+    }
 }
 /* *** ODSAendTag: simplebinsort2 *** */
 }
