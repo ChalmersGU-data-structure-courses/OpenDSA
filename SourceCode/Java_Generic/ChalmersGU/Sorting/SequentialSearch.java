@@ -1,4 +1,3 @@
-import java.io.*;
 
 // Tester for binary search function
 class SequentialSearch {
@@ -15,12 +14,12 @@ public static<E> int sequentialSearch(E[] elements, E e) {
 }
 /* *** ODSAendTag: Sequential *** */
 
-    public static void main(String args[]) throws IOException {
-        Integer[] A = {2, 3, 4, 5, 7, 10};
-        Integer[] searchKeys = {4, 6, 10};
-        for (Integer key : searchKeys) {
-            int pos = SequentialSearch.sequentialSearch(A, key);
-            System.out.println("Search for " + key + " --> position " + pos);
-        }
+public static void main(String args[]) {
+    Integer[] A = {2, 3, 4, 5, 7, 10};
+    Integer[] searchKeys = {4, 6, 10};
+    for (Integer key : searchKeys) {
+        int pos = SequentialSearch.sequentialSearch(A, key);
+        System.out.println("Search for " + key + " --> position " + pos);
     }
+}
 }

@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.Arrays;
 import java.util.NoSuchElementException;
 
 /* *** ODSATag: DynamicArrayStack *** */
@@ -68,21 +69,7 @@ class DynamicArrayStack<E> implements Stack<E> {
 
 /* *** ODSATag: DynamicArrayStackIterator *** */
     public Iterator<E> iterator() {
-        return new DynamicArrayStackIterator();
-    }
-
-    private class DynamicArrayStackIterator implements Iterator<E> {
-        private int index;
-        DynamicArrayStackIterator() {
-            index = stackSize;
-        }
-        public boolean hasNext() {
-            return index > 0;
-        }
-        public E next() {
-            index--;
-            return internalArray[index];
-        }
+        return Arrays.stream(internalArray, 0, stackSize).iterator();
     }
 /* *** ODSAendTag: DynamicArrayStackIterator *** */
 /* *** ODSAendTag: DynamicArrayStack *** */

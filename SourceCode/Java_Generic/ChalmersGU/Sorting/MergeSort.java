@@ -1,60 +1,23 @@
-static boolean sorttest(int[] inA) {
-  int i;
-  Comparable[] A = new Comparable[inA.length];
-  for (i=0; i<inA.length; i++) {
-    A[i] = new Integer(inA[i]);
-  }
-  Comparable[] temp = new Comparable[A.length];
-  Comparable[] B = new Comparable[A.length];
-  for(i=0; i<A.length; i++) { B[i] = A[i]; }
-  mergesort(A, temp, 0, A.length-1);
-  if (!checkorder(A)) { return false; }
-  mergesortOpt(B, temp, 0, A.length-1);
-  if (!checkorder(B)) { return false; }
-  return true;
+
+import java.util.Arrays;
+
+class MergeSort {
+
+/* *** ODSATag: MergeSortMain *** */
+public static <E extends Comparable<E>> void mergeSort(E[] A) {
+    @SuppressWarnings("unchecked")
+    E[] temp = (E[]) new Comparable[A.length];
+    mergeSort(A, temp, 0, A.length-1);
 }
-
-static void sorttime(Comparable[] B) {
-  int i;
-  Comparable[] A = new Comparable[B.length];
-  Comparable[] temp;
-  int totaltime, runs;
-  int numruns = 20;
-
-  totaltime = 0;
-  for (runs=0; runs<numruns; runs++) {
-    for(i=0; i<B.length; i++) { A[i] = B[i]; }
-    temp = new Comparable[B.length];
-    time1 = millis();
-    mergesort(A, temp, 0, A.length-1);
-    time2 = millis();
-    checkorder(A);
-    totaltime += (time2-time1);
-  }
-  System.out.println("Standard Mergesort for " + numruns + " runs: Size " +
-          testsize + ", Time: " + totaltime);
-  totaltime = 0;
-  for (runs=0; runs<numruns; runs++) {
-    for(i=0; i<B.length; i++) A[i] = B[i];
-    temp = new Comparable[B.length];
-    time1 = millis();
-    mergesortOpt(A, temp, 0, A.length-1);
-    time2 = millis();
-    checkorder(A);
-    totaltime += (time2-time1);
-  }
-  println("Optimized Mergesort for " + numruns + " runs: Size " +
-          testsize + ", Time: " + totaltime);
-}
-
+/* *** ODSAendTag: MergeSortMain *** */
 
 /* *** ODSATag: MergeSort *** */
-static <T extends Comparable<T>> void mergeSort(T[] A, T[] temp, int left, int right) {
+public static <T extends Comparable<T>> void mergeSort(T[] A, T[] temp, int left, int right) {
     if (left == right)                   // List has one record
         return;
     int mid = (left + right) / 2;        // Select midpoint
-    mergesort(A, temp, left, mid);       // Mergesort first half
-    mergesort(A, temp, mid+1, right);    // Mergesort second half
+    mergeSort(A, temp, left, mid);       // Mergesort first half
+    mergeSort(A, temp, mid+1, right);    // Mergesort second half
     for (int i = left; i <= right; i++)  // Copy subarray to temp
         temp[i] = A[i];
     // Do the merge operation back to A
@@ -78,26 +41,28 @@ static <T extends Comparable<T>> void mergeSort(T[] A, T[] temp, int left, int r
 }
 /* *** ODSAendTag: MergeSort *** */
 
-static void insertionsort(Comparable[] A, int left, int right) {
-  for (int i=left+1; i<=right; i++)        // Insert i'th record
-    for (int j=i; (j>left) && (A[j].compareTo(A[j-1]) < 0); j--)
-      Swap.swap(A, j, j-1);
+static int THRESHOLD = 10;
+
+static <T extends Comparable<T>> void insertionSort(T[] A, int left, int right) {
+    for (int i=left+1; i<=right; i++)        // Insert i'th record
+        for (int j=i; (j>left) && (A[j].compareTo(A[j-1]) < 0); j--)
+            Util.swap(A, j, j-1);
 }
 
 /* *** ODSATag: MergeSortOpt *** */
-static <T extends Comparable<T>> void mergesortOpt(T[] A, T[] temp, int left, int right) {
+public static <T extends Comparable<T>> void mergeSortOpt(T[] A, T[] temp, int left, int right) {
     int i, j, k;
     int mid = (left+right)/2;    // Select the midpoint
     if (left == right)           // List has one record
         return;
     if (mid-left >= THRESHOLD)
-        mergesortOpt(A, temp, left, mid);
+        mergeSortOpt(A, temp, left, mid);
     else
-        insertionsort(A, left, mid);
+        insertionSort(A, left, mid);
     if (right-mid > THRESHOLD)
-        mergesortOpt(A, temp, mid+1, right);
+        mergeSortOpt(A, temp, mid+1, right);
     else
-        insertionsort(A, mid+1, right);
+        insertionSort(A, mid+1, right);
     // Do the merge operation.  First, copy 2 halves to temp.
     for (i=left; i<=mid; i++) {
         temp[i] = A[i];
@@ -120,3 +85,4 @@ static <T extends Comparable<T>> void mergesortOpt(T[] A, T[] temp, int left, in
     }
 }
 /* *** ODSAendTag: MergeSortOpt *** */
+}

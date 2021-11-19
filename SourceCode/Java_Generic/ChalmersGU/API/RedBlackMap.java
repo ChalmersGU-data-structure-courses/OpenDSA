@@ -118,13 +118,13 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     // Recursive helper method for 'put'.
     Node putHelper(Node node, K key, V value) {
-        if (node == null)
+        if (node == null) {
             return new Node(true, key, value, null, null);
-        else if (key.compareTo(node.key) < 0)
+        } else if (key.compareTo(node.key) < 0) {
             node.left = putHelper(node.left, key, value);
-        else if (key.compareTo(node.key) > 0)
+        } else if (key.compareTo(node.key) > 0) {
             node.right = putHelper(node.right, key, value);
-        else {
+        } else {
             oldValue = node.value;
             node.value = value;
         }
@@ -257,15 +257,12 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         boolean firstKey = true;
-
         for (K key: this) {
             V value = this.get(key);
-
             if (!firstKey) str.append(", ");
             str.append(key.toString() + "->" + value.toString());
             firstKey = false;
         }
-
         return "{" + str + "}";
     }
 

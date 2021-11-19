@@ -98,13 +98,13 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     // Recursive helper method for 'put'.
     Node putHelper(Node node, K key, V value) {
-        if (node == null)
+        if (node == null) {
             return new Node(key, value, null, null);
-        else if (key.compareTo(node.key) < 0)
+        } else if (key.compareTo(node.key) < 0) {
             node.left = putHelper(node.left, key, value);
-        else if (key.compareTo(node.key) > 0)
+        } else if (key.compareTo(node.key) > 0) {
             node.right = putHelper(node.right, key, value);
-        else {
+        } else {
             oldValue = node.value;
             node.value = value;
         }

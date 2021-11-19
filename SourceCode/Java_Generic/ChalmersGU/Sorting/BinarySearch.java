@@ -1,4 +1,4 @@
-import java.io.*;
+// import java.io.;
 
 // Tester for binary search function
 class BinarySearch {
@@ -23,12 +23,12 @@ public static <E extends Comparable<E>> int binarySearch(E[] elements, E e) {
 }
 /* *** ODSAendTag: BinarySearch *** */
 
-    public static void main(String args[]) throws IOException {
-        Integer[] A = {2, 3, 4, 5, 7, 10};
-        Integer[] searchKeys = {4, 6, 10};
-        for (Integer key : searchKeys) {
-            int pos = BinarySearch.binarySearch(A, key);
-            System.out.println("Search for " + key + " --> position " + pos);
-        }
+public static void main(String args[]) {
+    Integer[] A = {2, 3, 4, 5, 7, 10};
+    Integer[] searchKeys = {4, 6, 10};
+    for (Integer key : searchKeys) {
+        int pos = BinarySearch.binarySearch(A, key);
+        System.out.println("Search for " + key + " --> position " + pos);
     }
+}
 }

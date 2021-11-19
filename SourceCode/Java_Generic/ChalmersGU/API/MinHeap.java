@@ -1,12 +1,10 @@
-// TODO: In Java, some of these are private methods (including update)
-// TODO: Need to test changes to update and modify
 
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Random;
 import java.util.NoSuchElementException;
 
-/* *** ODSATag: Minheap *** */
+/* *** ODSATag: MinHeap *** */
 // Min-heap implementation
 class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     private E[] heap;       // The heap array
@@ -24,26 +22,12 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     MinHeap(E[] h) {
-        heap = h;
+        heap = Arrays.copyOf(h);
         heapSize = heap.length;
         buildHeap();
         if (heapSize < MinCapacity)
             resizeHeap(MinCapacity);
     }
-
-/* *** ODSATag: invariant *** */
-    // Check that the invariant holds.
-    void checkInvariant() {
-        for (int i = 0; i < heapSize; i++) {
-            int left = getLeftChild(i);
-            int right = getRightChild(i);
-            if (left < heapSize && lessThan(left, i))
-                throw new AssertionError("Parent (" + i + ") is smaller than its left child: " + heap[i] + " < " + heap[left]);
-            if (right < heapSize && lessThan(right, i))
-                throw new AssertionError("Parent (" + i + ") is smaller than its right child: " + heap[i] + " < " + heap[right]);
-        }
-    }
-/* *** ODSAendTag: invariant *** */
 
     // Return true if there are no elements.
     public boolean isEmpty() {
@@ -73,13 +57,13 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     public E removeMin() {
         if (!(heapSize > 0)) throw new NoSuchElementException("removeMin from empty heap");
         heapSize--;
-        E removed = heap[0];
-        heap[0] = heap[heapSize];  // Make the last value the new root.
-        heap[heapSize] = null;     // Remove the old last value, for garbage collection.
+        swap(0, heapSize);  // Swap the root with the current last value.
         if (heapSize > 0) 
-            siftDown(0);           // Put the new heap root val in its correct place.
+            siftDown(0);    // Put the new heap root val in its correct place.
         if (heapSize <= heap.length * MinLoadFactor)
             resizeHeap((int) (heap.length / CapacityMultiplier));
+        E removed = heap[heapSize];
+        heap[heapSize] = null;   // Remove the old root value, for garbage collection.
         return removed;
     }
 
@@ -93,6 +77,20 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
 
     ////////////////////////////////////////////////////////////////////////////////
     // Private helper methods
+
+/* *** ODSATag: invariant *** */
+    // Check that the invariant holds.
+    void checkInvariant() {
+        for (int i = 0; i < heapSize; i++) {
+            int left = getLeftChild(i);
+            int right = getRightChild(i);
+            if (left < heapSize && lessThan(left, i))
+                throw new AssertionError("Parent (" + i + ") is smaller than its left child: " + heap[i] + " < " + heap[left]);
+            if (right < heapSize && lessThan(right, i))
+                throw new AssertionError("Parent (" + i + ") is smaller than its right child: " + heap[i] + " < " + heap[right]);
+        }
+    }
+/* *** ODSAendTag: invariant *** */
 
 /* *** ODSATag: resize *** */
     private void resizeHeap(int newCapacity) {
@@ -169,33 +167,7 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     private boolean lessThan(int i, int j) {
         return heap[i].compareTo(heap[j]) < 0;
     }
-
-    ////////////////////////////////////////////////////////////////////////////////
-    // Methods for modifying specific positions - are they really useful for us?
-
-    // Remove and return element at specified position
-    E remove(int pos) {
-        E removed = heap[pos];
-        heapSize--;
-        if (pos < heapSize-2) {
-            swap(pos, heapSize); // Swap with last value
-            update(pos);
-        }
-        heap[heapSize] = null;  // For garbage collection
-        return removed;
-    }
-
-    // Modify the value at the given position
-    void modify(int pos, E newVal) {
-        heap[pos] = newVal;
-        update(pos);
-    }
-
-    // The value at pos has been changed, restore the heap property
-    private void update(int pos) {
-        pos = siftUp(pos); // If it is a big value, push it up
-        siftDown(pos);     // If it is little, push down
-    }
+/* *** ODSAendTag: MinHeap *** */
 
     ////////////////////////////////////////////////////////////////////////////////
     // A very simple testing method
@@ -223,5 +195,6 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
             h.checkInvariant();
         }
     }
+/* *** ODSATag: MinHeap *** */
 }
-/* *** ODSAendTag: Minheap *** */
+/* *** ODSAendTag: MinHeap *** */

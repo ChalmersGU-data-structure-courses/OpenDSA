@@ -1,5 +1,6 @@
 
 import java.util.Iterator;
+import java.util.Arrays;
 
 /* *** ODSATag: DynamicArrayList *** */
 /* *** ODSATag: DynamicArrayListInit *** */
@@ -79,21 +80,7 @@ class DynamicArrayList<E> implements List<E> {
 
 /* *** ODSATag: DynamicArrayListIterator *** */
     public Iterator<E> iterator() {
-        return new DynamicArrayListIterator();
-    }
-
-    private class DynamicArrayListIterator implements Iterator<E> {
-        private int index;
-        DynamicArrayListIterator() {
-            index = -1;
-        }
-        public boolean hasNext() {
-            return index + 1 < listSize;
-        }
-        public E next() {
-            index++;
-            return internalArray[index];
-        }
+        return Arrays.stream(internalArray, 0, listSize).iterator();
     }
 /* *** ODSAendTag: DynamicArrayListIterator *** */
 /* *** ODSAendTag: DynamicArrayList *** */

@@ -8,7 +8,6 @@ import java.util.Iterator;
 public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
     Node root = null;   // The root of the AVL tree.
     int treeSize;       // The size of the tree.
-    V oldValue;         // Internal temporary variable for storing the old value of a key.
 /* *** ODSAendTag: header *** */
 
 /* *** ODSATag: Node *** */
@@ -111,6 +110,10 @@ public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
     }
 /* *** ODSAendTag: get *** */
 
+    // Used by put, remove, putHelper and removeHelper,
+    // in order to return the value previously stored in the node.
+    private V oldValue;
+
 /* *** ODSATag: put *** */
     // Add a key-value pair, or update the value associated with an existing key.
     public V put(K key, V value) {
@@ -123,9 +126,9 @@ public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     // Recursive helper method for 'put'.
     Node putHelper(Node node, K key, V value) {
-        if (node == null)
+        if (node == null) {
             return new Node(key, value, null, null);
-        if (key.compareTo(node.key) < 0) {
+        } if (key.compareTo(node.key) < 0) {
             node.left = putHelper(node.left, key, value);
             node.updateHeight();
         } else if (key.compareTo(node.key) > 0) {
@@ -151,9 +154,9 @@ public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
 
     // Recursive helper method for 'remove'.
     Node removeHelper(Node node, K key) {
-        if (node == null)
+        if (node == null) {
             return null;
-        else if (key.compareTo(node.key) < 0) {
+        } else if (key.compareTo(node.key) < 0) {
             node.left = removeHelper(node.left, key);
             node.updateHeight();
             return rebalance(node);
@@ -285,15 +288,12 @@ public class AVLMap<K extends Comparable<K>, V> implements Map<K, V> {
     public String toString() {
         StringBuilder str = new StringBuilder();
         boolean firstKey = true;
-
         for (K key: this) {
             V value = this.get(key);
-
             if (!firstKey) str.append(", ");
             str.append(key.toString() + "->" + value.toString());
             firstKey = false;
         }
-
         return "{" + str + "}";
     }
 

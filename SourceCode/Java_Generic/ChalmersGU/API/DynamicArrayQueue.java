@@ -1,5 +1,7 @@
 
 import java.util.Iterator;
+import java.util.Arrays;
+import java.util.stream.Stream;
 import java.util.NoSuchElementException;
 
 /* *** ODSATag: DynamicArrayQueue *** */
@@ -76,21 +78,11 @@ class DynamicArrayQueue<E> implements Queue<E> {
 
 /* *** ODSATag: DynamicArrayQueueIterator *** */
     public Iterator<E> iterator() {
-        return new DynamicArrayQueueIterator();
-    }
-
-    private class DynamicArrayQueueIterator implements Iterator<E> {
-        private int index;
-        DynamicArrayQueueIterator() {
-            index = -1;
-        }
-        public boolean hasNext() {
-            return index + 1 < queueSize;
-        }
-        public E next() {
-            index++;
-            return internalArray[(index + front) % internalArray.length];
-        }
+        if (front + queueSize <= internalArray.length)
+            return Arrays.stream(internalArray, front, front + queueSize).iterator();
+        else
+            return Stream.concat(Arrays.stream(internalArray, front, internalArray.length),
+                                 Arrays.stream(internalArray, 0, rear+1)).iterator();
     }
 /* *** ODSAendTag: DynamicArrayQueueIterator *** */
 /* *** ODSAendTag: DynamicArrayQueue *** */
