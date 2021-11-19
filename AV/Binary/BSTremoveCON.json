@@ -10,50 +10,27 @@
     }
   },
   "code": {
-    "java": [{
-      "url": "../../../SourceCode/Java/Binary/BST.java",
-      "lineNumbers": false,
-      "startAfter": "/* *** ODSATag: removehelp *** */",
-      "endBefore": "/* *** ODSAendTag: removehelp *** */",
-      "tags": {
-        "sig": 1,
-        "checknull": 2,
-        "checkless": 3,
-        "visitleft": 4,
-        "checkgreater": 5,
-        "visitright": 6,
-        "found": 7,
-        "checkleft": 8,
-        "checkright": 9,
-        "twochildren": 10,
-        "getmax": 11,
-        "setelement": 12,
-        "setleft": 13,
-        "return": 16,
-        "end": 17
-      }
-    }],
     "java_generic": [{
-      "url": "../../../SourceCode/Java_Generic/Binary/BST.java",
+      "url": "../../../SourceCode/Java_Generic/ChalmersGU/API/BSTMap.java",
       "lineNumbers": false,
-      "startAfter": "/* *** ODSATag: removehelp *** */",
-      "endBefore": "/* *** ODSAendTag: removehelp *** */",
+      "startAfter": "/* *** ODSATag: removeHelper *** */",
+      "endBefore": "/* *** ODSAendTag: removeHelper *** */",
       "tags": {
         "sig": 1,
         "checknull": 2,
-        "checkless": 3,
-        "visitleft": 4,
-        "checkgreater": 5,
-        "visitright": 6,
-        "found": 7,
-        "checkleft": 8,
-        "checkright": 9,
-        "twochildren": 10,
-        "getmax": 11,
-        "setelement": 12,
-        "setleft": 13,
-        "return": 16,
-        "end": 17
+        "checkless": 4,
+        "visitleft": 5,
+        "checkgreater": 7,
+        "visitright": 8,
+        "found": 10,
+        "checkleft": 13,
+        "checkright": 15,
+        "twochildren": 17,
+        "getmax": 18,
+        "setelement": 19,
+        "setleft": 23,
+        "return": 26,
+        "end": 29
       }
     }]
   }

@@ -18,36 +18,20 @@
     }
   },
   "code": {
-    "java": [{
-      "url": "../../../SourceCode/Java/Binary/BST.java",
-      "lineNumbers": false,
-      "startAfter": "/* *** ODSATag: findhelp *** */",
-      "endBefore": "/* *** ODSAendTag: findhelp *** */",
-      "tags": {
-        "sig": 1,
-        "checknull": 2,
-        "checkgreater": 3,
-        "visitleft": 4,
-        "checkequal": 5,
-        "found": 6,
-        "visitright": 7,
-        "end": 8
-      }
-    }],
     "java_generic": [{
-      "url": "../../../SourceCode/Java_Generic/Binary/BST.java",
+      "url": "../../../SourceCode/Java_Generic/ChalmersGU/API/BSTMap.java",
       "lineNumbers": false,
-      "startAfter": "/* *** ODSATag: findhelp *** */",
-      "endBefore": "/* *** ODSAendTag: findhelp *** */",
+      "startAfter": "/* *** ODSATag: getHelper *** */",
+      "endBefore": "/* *** ODSAendTag: getHelper *** */",
       "tags": {
         "sig": 1,
         "checknull": 2,
-        "checkgreater": 3,
-        "visitleft": 4,
-        "checkequal": 5,
-        "found": 6,
-        "visitright": 7,
-        "end": 8
+        "checkgreater": 4,
+        "visitleft": 5,
+        "checkequal": 6,
+        "found": 7,
+        "visitright": 9,
+        "end": 10
       }
     }]
   }

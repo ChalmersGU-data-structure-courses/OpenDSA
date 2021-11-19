@@ -10,8 +10,8 @@ $(document).ready(function () {
   var pseudo = av.code(code[0]);
   var temp1;
 
-  var bstTop = 410;
-  var bt = av.ds.binarytree({visible: true, nodegap: 15, top: bstTop, left: 275});
+  var bstTop = 45;
+  var bt = av.ds.binarytree({visible: true, nodegap: 15, top: bstTop, left: 10});
   bt.root(37);
   var rt = bt.root();
   rt.left(24);
@@ -263,22 +263,22 @@ $(document).ready(function () {
   av.step();
 
   // Slide 28
-  av.umsg("Call getmax to set a temporary variable to point to the node with the greatest value in the left subtree.");
+  av.umsg("Call lastNodeHelper to set a temporary variable to point to the node with the greatest value in the left subtree.");
   pseudo.setCurrentLine("getmax");
   var tnode = rt.left().right();
   tnode.addClass("processing");
-  var rt2 = av.pointer("temp", tnode, {anchor: "right top", top: -10});
+  var rt2 = av.pointer("lastNode", tnode, {anchor: "right top", top: -10});
   av.step();
 
   // Slide 29
-  av.umsg("Now set the root value to what was returned by getmax.");
+  av.umsg("Now set the root value to what was returned by lastNodeHelper.");
   pseudo.setCurrentLine("setelement");
   av.effects.moveValue(tnode, rt);
   rt.addClass("rednode");
   av.step();
 
   // Slide 30
-  av.umsg("Now call deletemax to remove the node with the maximum value in the left subtree. Set the root node's left pointer to point to the resulting subtree.");
+  av.umsg("Now call removeHelper to remove the node with the maximum value in the left subtree. Set the root node's left pointer to point to the resulting subtree.");
   pseudo.setCurrentLine("setleft");
   rt.left().right(rt.left().right().left());
   temp = rt.left().edgeToRight();
@@ -290,7 +290,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 31
-  av.umsg("We are now done deleting the old root node. Removehelp will return a pointer to this tree. The calling function will then set the BST root to point to this new tree.");
+  av.umsg("We are now done deleting the old root node. RemoveHelper will return a pointer to this tree. The calling function will then set the BST root to point to this new tree.");
   pseudo.setCurrentLine("return");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows
