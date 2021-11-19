@@ -176,7 +176,7 @@ Table :num:`Table #FreqExamp`. [#]_
 
 Here is the implementation for Huffman tree nodes.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanNode
 
 This implementation is similar to
@@ -189,12 +189,12 @@ internal nodes contain distinctly different information.
 
 Here is the implementation for the Huffman Tree class.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanTree
 
 Here is the implementation for the tree-building process.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanTreeBuild
 
 ``buildHuff`` takes as input ``fl``, the min-heap of partial
