@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['calculating-program-running-time', 'case-study:-two-search-algorithms', 'binary-search-practice-exercise', 'analyzing-binary-search', 'summary-exercise'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['case-study:-two-search-algorithms', 'binary-search-practice-exercise', 'analyzing-binary-search', 'summary-exercise'];</script>
 
 .. _AnalProgram:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalProgram";ODSA.SETTINGS.MODULE_LONG_NAME = "Calculating Program Running Time";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -30,8 +30,8 @@
    :satisfies: analyzing programs
    :topic: Algorithm Analysis
 
-Calculating Program Running Time (WORK IN PROGRESS)
-===================================================
+Calculating Program Running Time
+================================
 
 Calculating Program Running Time
 --------------------------------

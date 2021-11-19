@@ -1,0 +1,629 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Dictionary ADT &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span></span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Dictionary.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        <a  class="uplink" href="index.html">Contents</a>
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Dictionary";ODSA.SETTINGS.MODULE_LONG_NAME = "The Dictionary ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Iterators, Comparators, Dictionaries"; ODSA.SETTINGS.BUILD_DATE = "2021-09-24 12:54:10"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-dictionary-adt">
+<h1>The Dictionary ADT<a class="headerlink" href="#the-dictionary-adt" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>The Dictionary ADT<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The most common objective of computer programs is to store and
+retrieve data.
+Much of this book is about efficient ways to organize collections of
+data records so that they can be stored and retrieved quickly.
+In this section we describe a simple interface for such a collection,
+called a <a class="reference internal" href="Glossary.html#term-dictionary"><span class="xref std std-term">dictionary</span></a>.
+The dictionary ADT provides operations for storing records, finding
+records, and removing records from the collection.
+This ADT gives us a standard basis for comparing various data
+structures.
+Loosly speaking, we can say that any data structure that supports
+insert, search, and deletion is a “dictionary”.</p>
+<p>Dictionaries depend on the concepts of a <a class="reference internal" href="Glossary.html#term-search-key"><span class="xref std std-term">search key</span></a> and
+<a class="reference internal" href="Comparison.html#comparison"><span class="std std-ref">comparable</span></a> objects.
+To implement the dictionary’s search function, we will require that
+keys be <a class="reference internal" href="Glossary.html#term-total-order"><span class="xref std std-term">totally ordered</span></a>.
+Ordering fields that are naturally multi-dimensional, such as a point
+in two or three dimensions, present special opportunities if we wish
+to take advantage of their multidimensional nature.
+This problem is addressed by
+<a class="reference internal" href="Glossary.html#term-spatial-data-structure"><span class="xref std std-term">spatial data structures</span></a>.</p>
+<p>Here is code to define a simple abstract dictionary class.</p>
+<div id="Dictionary_DictionaryADT_code"><ul><li><a href="#Dictionary_DictionaryADT_code_Java_Generic">Java</a></li><li><a href="#Dictionary_DictionaryADT_code_Python">Python</a></li></ul><div id="Dictionary_DictionaryADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** The Dictionary abstract class. */</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">Dictionary</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+
+  <span class="cm">/** Reinitialize dictionary */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+
+  <span class="cm">/** Insert a record</span>
+<span class="cm">      @param k The key for the record being inserted.</span>
+<span class="cm">      @param e The record being inserted. */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">);</span>
+
+  <span class="cm">/** Remove and return a record.</span>
+<span class="cm">      @param k The key of the record to be removed.</span>
+<span class="cm">      @return A maching record. If multiple records match</span>
+<span class="cm">      &quot;k&quot;, remove an arbitrary one. Return null if no record</span>
+<span class="cm">      with key &quot;k&quot; exists. */</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>
+
+  <span class="cm">/** Remove and return an arbitrary record from dictionary.</span>
+<span class="cm">      @return the record removed, or null if none exists. */</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">removeAny</span><span class="p">();</span>
+
+  <span class="cm">/** @return A record matching &quot;k&quot; (null if none exists).</span>
+<span class="cm">      If multiple records match, return an arbitrary one.</span>
+<span class="cm">      @param k The key of the record to find */</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">);</span>
+
+  <span class="cm">/** @return The number of records in the dictionary. */</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Dictionary_DictionaryADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># The Dictionary abstract class.</span>
+<span class="k">class</span> <span class="nc">Dictionary</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+  <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+  <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+  <span class="k">def</span> <span class="nf">removeAny</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+  <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+  <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Dictionary_DictionaryADT_code" ).tabs();});</script><p>The methods <code class="docutils literal notranslate"><span class="pre">insert</span></code> and <code class="docutils literal notranslate"><span class="pre">find</span></code> are the heart of the class.
+Method <code class="docutils literal notranslate"><span class="pre">insert</span></code> takes a record and inserts it into the dictionary.
+Method <code class="docutils literal notranslate"><span class="pre">find</span></code> takes a key value and returns some record from
+the dictionary whose key matches the one provided.
+If there are multiple records in the dictionary with that key value,
+there is no requirement as to which one is returned.</p>
+<p>Method <code class="docutils literal notranslate"><span class="pre">clear</span></code> simply re-initializes the dictionary.
+The <code class="docutils literal notranslate"><span class="pre">remove</span></code> method is similar to <code class="docutils literal notranslate"><span class="pre">find</span></code>, except that it
+also deletes the record returned from the dictionary.
+Once again, if there are multiple records in the dictionary that match
+the desired key, there is no requirement as to which one actually is
+removed and returned.
+Method <code class="docutils literal notranslate"><span class="pre">size</span></code> returns the number of elements in the
+dictionary.</p>
+<p>The remaining Method is <code class="docutils literal notranslate"><span class="pre">removeAny</span></code>.
+This is similar to <code class="docutils literal notranslate"><span class="pre">remove</span></code>, except that it does not take a key
+value.
+Instead, it removes an arbitrary record from the dictionary, if one
+exists.
+The purpose of this method is to allow a user the ability to iterate
+over all elements in the dictionary (of course, the dictionary will
+become empty in the process).
+Without the <code class="docutils literal notranslate"><span class="pre">removeAny</span></code> method, dictionary users could not get
+at a record of the dictionary that they didn’t already know the key
+value for.
+With the <code class="docutils literal notranslate"><span class="pre">removeAny</span></code> method, the user can process all records
+in the dictionary as shown in the following code fragment.</p>
+<div id="DictionaryTest_Dictp4_code"><ul><li><a href="#DictionaryTest_Dictp4_code_Java_Generic">Java</a></li><li><a href="#DictionaryTest_Dictp4_code_Python">Python</a></li></ul><div id="DictionaryTest_Dictp4_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="p">(</span><span class="n">dict</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Object</span> <span class="n">it</span> <span class="o">=</span> <span class="n">dict</span><span class="p">.</span><span class="na">removeAny</span><span class="p">();</span>
+  <span class="n">doSomething</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DictionaryTest_Dictp4_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="nb">dict</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="n">it</span> <span class="o">=</span> <span class="nb">dict</span><span class="o">.</span><span class="n">removeAny</span><span class="p">()</span>
+    <span class="n">doSomething</span><span class="p">(</span><span class="n">it</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DictionaryTest_Dictp4_code" ).tabs();});</script><p>There are other approaches that might seem more natural for iterating
+though a dictionary, such as using a “first” and a “next” function.
+But not all data structures that we want to use to implement a
+dictionary are able to do “first” efficiently.
+For example, a hash table implementation cannot efficiently locate the
+record in the table with the smallest key value.
+By using <code class="docutils literal notranslate"><span class="pre">RemoveAny</span></code>, we have a mechanism that provides generic
+access.</p>
+<p>Given a database storing records of a particular type,
+we might want to search for records in multiple ways.
+For example, we might want to store payroll records in one dictionary
+that allows us to search by ID,
+and also store those same records in a second dictionary that
+allows us to search by name.</p>
+<p>Here is an implementation for a payroll record.</p>
+<div id="Payroll_Payroll_code"><ul><li><a href="#Payroll_Payroll_code_Java_Generic">Java</a></li><li><a href="#Payroll_Payroll_code_Python">Python</a></li></ul><div id="Payroll_Payroll_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** A simple payroll entry with ID, name, address fields */</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Payroll</span> <span class="p">{</span>
+
+  <span class="kd">private</span> <span class="n">Integer</span> <span class="n">ID</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">name</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="n">String</span> <span class="n">address</span><span class="p">;</span>
+
+  <span class="cm">/** Constructor */</span>
+  <span class="n">Payroll</span><span class="p">(</span><span class="kt">int</span> <span class="n">inID</span><span class="p">,</span> <span class="n">String</span> <span class="n">inname</span><span class="p">,</span> <span class="n">String</span> <span class="n">inaddr</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ID</span> <span class="o">=</span> <span class="n">inID</span><span class="p">;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="n">inname</span><span class="p">;</span>
+    <span class="n">address</span> <span class="o">=</span> <span class="n">inaddr</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="cm">/** Data member access functions */</span>
+  <span class="kd">public</span> <span class="n">Integer</span> <span class="nf">getID</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">ID</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getname</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kd">public</span> <span class="n">String</span> <span class="nf">getaddr</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">address</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Payroll_Payroll_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># A simple payroll entry with ID, name, address fields </span>
+<span class="k">class</span> <span class="nc">Payroll</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">inID</span><span class="p">,</span> <span class="n">inname</span><span class="p">,</span> <span class="n">inaddr</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">inID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">inname</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">address</span> <span class="o">=</span> <span class="n">inaddr</span>
+    <span class="k">def</span> <span class="nf">getID</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ID</span>
+    <span class="k">def</span> <span class="nf">getname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+    <span class="k">def</span> <span class="nf">getaddr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">address</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Payroll_Payroll_code" ).tabs();});</script><p>Class <code class="docutils literal notranslate"><span class="pre">Payroll</span></code> has multiple fields, each of which might be
+used as a search key.
+Simply by varying the type for the key, and using the appropriate
+field in each record as the key value,
+we can define a dictionary whose search key is the ID field,
+another whose search key is the name field, and a third whose search
+key is the address field.
+Here is an example where <code class="docutils literal notranslate"><span class="pre">Payroll</span></code>
+objects are stored in two separate dictionaries, one using the
+ID field as the key and the other using the name field as the key.</p>
+<div id="DictionaryTest_PayrollTest_code"><ul><li><a href="#DictionaryTest_PayrollTest_code_Java_Generic">Java</a></li><li><a href="#DictionaryTest_PayrollTest_code_Python">Python</a></li></ul><div id="DictionaryTest_PayrollTest_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// IDdict organizes Payroll records by ID</span>
+<span class="n">Dictionary</span> <span class="n">IDdict</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UALDictionary</span><span class="p">();</span>
+
+<span class="c1">// namedict organizes Payroll records by name</span>
+<span class="n">Dictionary</span> <span class="n">namedict</span> <span class="o">=</span> <span class="k">new</span> <span class="n">UALDictionary</span><span class="p">();</span>
+
+<span class="n">Payroll</span> <span class="n">foo1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Payroll</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s">&quot;Joe&quot;</span><span class="p">,</span> <span class="s">&quot;Anytown&quot;</span><span class="p">);</span>
+<span class="n">Payroll</span> <span class="n">foo2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Payroll</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s">&quot;John&quot;</span><span class="p">,</span> <span class="s">&quot;Mytown&quot;</span><span class="p">);</span>
+
+<span class="n">IDdict</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">foo1</span><span class="p">.</span><span class="na">getID</span><span class="p">(),</span> <span class="n">foo1</span><span class="p">);</span>
+<span class="n">IDdict</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">foo2</span><span class="p">.</span><span class="na">getID</span><span class="p">(),</span> <span class="n">foo2</span><span class="p">);</span>
+<span class="n">namedict</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">foo1</span><span class="p">.</span><span class="na">getname</span><span class="p">(),</span> <span class="n">foo1</span><span class="p">);</span>
+<span class="n">namedict</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">foo2</span><span class="p">.</span><span class="na">getname</span><span class="p">(),</span> <span class="n">foo2</span><span class="p">);</span>
+
+<span class="n">Payroll</span> <span class="n">findfoo1</span> <span class="o">=</span> <span class="p">(</span><span class="n">Payroll</span><span class="p">)</span><span class="n">IDdict</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">Payroll</span> <span class="n">findfoo2</span> <span class="o">=</span> <span class="p">(</span><span class="n">Payroll</span><span class="p">)</span><span class="n">namedict</span><span class="p">.</span><span class="na">find</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div><div id="DictionaryTest_PayrollTest_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># IDdict organizes Payroll records by ID</span>
+<span class="n">IDdict</span> <span class="o">=</span> <span class="n">UALDictionary</span><span class="p">()</span>
+
+<span class="c1"># namedict organizes Payroll records by name</span>
+<span class="n">namedict</span> <span class="o">=</span> <span class="n">UALDictionary</span><span class="p">()</span>
+
+<span class="n">foo1</span> <span class="o">=</span> <span class="n">Payroll</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Joe&quot;</span><span class="p">,</span> <span class="s2">&quot;Anytown&quot;</span><span class="p">);</span>
+<span class="n">foo2</span> <span class="o">=</span> <span class="n">Payroll</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="s2">&quot;John&quot;</span><span class="p">,</span> <span class="s2">&quot;Mytown&quot;</span><span class="p">);</span>
+
+<span class="n">IDdict</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">foo1</span><span class="o">.</span><span class="n">getID</span><span class="p">(),</span> <span class="n">foo1</span><span class="p">)</span>
+<span class="n">IDdict</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">foo2</span><span class="o">.</span><span class="n">getID</span><span class="p">(),</span> <span class="n">foo2</span><span class="p">)</span>
+<span class="n">namedict</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">foo1</span><span class="o">.</span><span class="n">getname</span><span class="p">(),</span> <span class="n">foo1</span><span class="p">)</span>
+<span class="n">namedict</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">foo2</span><span class="o">.</span><span class="n">getname</span><span class="p">(),</span> <span class="n">foo2</span><span class="p">)</span>
+
+<span class="n">findfoo1</span> <span class="o">=</span> <span class="n">IDdict</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">findfoo2</span> <span class="o">=</span> <span class="n">namedict</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&quot;John&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DictionaryTest_PayrollTest_code" ).tabs();});</script><p>One problem with the example as it is written is that the dictionary
+relies on the programmer to be reasonable about being consistent with
+the keys.
+These dictionaries are intended to have
+<a class="reference internal" href="ListElement.html#listelement"><span class="std std-ref">homogeneous</span></a> elements.
+But nothing stops the programmer from inserting an integer key into
+the names dictionary, or searching with an integer search key.
+This problem can be handled by using C++ templates or Java generics.</p>
+<p>The fundamental operation for a dictionary is finding a record that
+matches a given key.
+This raises the issue of how to
+<a class="reference internal" href="Comparison.html#comparison"><span class="std std-ref">extract the key</span></a> from a record.
+We will usually assume that dictionary implementations store a
+<a class="reference internal" href="Glossary.html#term-key-value-pair"><span class="xref std std-term">key-value pair</span></a> so as to be able to extract the key
+associated with a record for this particular dictionary.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">insert</span></code> method of the dictionary class supports the
+key-value pair implementation because it takes two parameters,
+a record and its associated key for that dictionary.</p>
+<p>Now that we have defined the dictionary ADT and settled on the design
+approach of storing key-value pairs for our dictionary entries, we are
+ready to consider ways to implement it.
+Two possibilities would be to use an array-based or linked list.
+Here is an implementation for the dictionary using
+an (unsorted) array-based list.</p>
+<div id="UALDictionary_UALDictionary_code"><ul><li><a href="#UALDictionary_UALDictionary_code_Java_Generic">Java</a></li><li><a href="#UALDictionary_UALDictionary_code_Python">Python</a></li></ul><div id="UALDictionary_UALDictionary_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Dictionary implemented by unsorted array-based list.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">UALDictionary</span> <span class="kd">implements</span> <span class="n">Dictionary</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">defaultSize</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">// Default size</span>
+  <span class="kd">private</span> <span class="n">AList</span> <span class="n">list</span><span class="p">;</span>                        <span class="c1">// To store dictionary</span>
+
+  <span class="c1">// Constructors</span>
+  <span class="n">UALDictionary</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="p">(</span><span class="n">defaultSize</span><span class="p">);</span> <span class="p">}</span>
+  <span class="n">UALDictionary</span><span class="p">(</span><span class="kt">int</span> <span class="n">sz</span><span class="p">)</span> <span class="p">{</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AList</span><span class="p">(</span><span class="n">sz</span><span class="p">);</span> <span class="p">}</span>
+
+  <span class="c1">// Reinitialize</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">()</span> <span class="p">{</span> <span class="n">list</span><span class="p">.</span><span class="na">clear</span><span class="p">();</span> <span class="p">}</span>
+
+  <span class="c1">// Insert an element: append to list</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">Comparable</span> <span class="n">k</span><span class="p">,</span> <span class="n">Object</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">);</span>
+    <span class="n">list</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Use sequential search to find the element to remove</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Comparable</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Object</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span> <span class="p">}</span>
+    <span class="k">return</span> <span class="n">temp</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Remove the last element</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">removeAny</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">list</span><span class="p">.</span><span class="na">moveToEnd</span><span class="p">();</span>
+      <span class="n">list</span><span class="p">.</span><span class="na">prev</span><span class="p">();</span>
+      <span class="n">KVPair</span> <span class="n">e</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="p">)</span><span class="n">list</span><span class="p">.</span><span class="na">remove</span><span class="p">();</span>
+      <span class="k">return</span> <span class="n">e</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Find k using sequential search</span>
+  <span class="c1">// Return the record with key value k</span>
+  <span class="kd">public</span> <span class="n">Object</span> <span class="nf">find</span><span class="p">(</span><span class="n">Comparable</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">list</span><span class="p">.</span><span class="na">moveToStart</span><span class="p">();</span> <span class="n">list</span><span class="p">.</span><span class="na">currPos</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">list</span><span class="p">.</span><span class="na">length</span><span class="p">();</span>
+        <span class="n">list</span><span class="p">.</span><span class="na">next</span><span class="p">())</span> <span class="p">{</span>
+      <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="p">)</span><span class="n">list</span><span class="p">.</span><span class="na">getValue</span><span class="p">();</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">temp</span><span class="p">.</span><span class="na">key</span><span class="p">())</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// &quot;k&quot; does not appear in dictionary</span>
+  <span class="p">}</span>
+
+  <span class="c1">// Return list size</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">list</span><span class="p">.</span><span class="na">length</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="UALDictionary_UALDictionary_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dictionary implemented by unsorted array-based list.</span>
+<span class="k">class</span> <span class="nc">UALDictionary</span><span class="p">(</span><span class="n">Dictionary</span><span class="p">):</span>
+    <span class="n">defaultSize</span> <span class="o">=</span> <span class="mi">10</span>  <span class="c1"># Default size</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sz</span><span class="o">=</span><span class="n">defaultSize</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span> <span class="o">=</span> <span class="n">AList</span><span class="p">(</span><span class="n">sz</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">k</span><span class="p">,</span> <span class="n">e</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">temp</span>
+
+    <span class="k">def</span> <span class="nf">removeAny</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">moveToEnd</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">prev</span><span class="p">()</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">remove</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">e</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">moveToStart</span><span class="p">()</span>
+        <span class="k">while</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">currPos</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">length</span><span class="p">():</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">getValue</span><span class="p">();</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">temp</span><span class="o">.</span><span class="n">key</span><span class="p">():</span>
+                <span class="k">return</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">next</span><span class="p">():</span>
+        <span class="k">return</span> <span class="kc">None</span>  <span class="c1"># &quot;k&quot; does not appear in dictionary</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">list</span><span class="o">.</span><span class="n">length</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#UALDictionary_UALDictionary_code" ).tabs();});</script><p>Examining class <code class="docutils literal notranslate"><span class="pre">UALdict</span></code> (UAL stands for “unsorted array-based
+list”), we can easily see that <code class="docutils literal notranslate"><span class="pre">insert</span></code>
+is a constant-time operation, because it simply inserts the new record
+at the end of the list.
+However, <code class="docutils literal notranslate"><span class="pre">find</span></code>, and <code class="docutils literal notranslate"><span class="pre">remove</span></code> both require <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time
+in the average and worst cases, because we need to do a sequential
+search.
+Method <code class="docutils literal notranslate"><span class="pre">remove</span></code> in particular must touch every record in the
+list, because once the desired record is found, the remaining records
+must be shifted down in the list to fill the gap.
+Method <code class="docutils literal notranslate"><span class="pre">removeAny</span></code> removes the last record from the list, so
+this is a constant-time operation.</p>
+<p>As an alternative, we could implement the dictionary using a linked
+list.
+The implementation would be quite similar to that for
+<code class="docutils literal notranslate"><span class="pre">UALDictionary</span></code>, and the cost of the functions should be the same
+asymptotically.</p>
+<p>Another alternative would be to implement the dictionary with a sorted
+list.
+The advantage of this approach would be that we might be able to speed
+up the <code class="docutils literal notranslate"><span class="pre">find</span></code> operation by using a binary search.
+To do so, first we must define a variation on the <code class="docutils literal notranslate"><span class="pre">List</span></code> ADT to
+support sorted lists.
+A sorted list is somewhat different from an unsorted list in that it
+cannot permit the user to control where elements get inserted.
+Thus, the <code class="docutils literal notranslate"><span class="pre">insert</span></code> method must be quite different in a sorted
+list than in an unsorted list.
+Likewise, the user cannot be permitted to append elements onto the
+list.
+For these reasons, a sorted list cannot be implemented with
+straightforward inheritance from the <code class="docutils literal notranslate"><span class="pre">List</span></code> ADT.</p>
+<p>The cost for <code class="docutils literal notranslate"><span class="pre">find</span></code> in a sorted list is <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> for a
+list of length <span class="math notranslate nohighlight">\(n\)</span>.
+This is a great improvement over the cost of <code class="docutils literal notranslate"><span class="pre">find</span></code> in an
+unsorted list.
+Unfortunately, the cost of <code class="docutils literal notranslate"><span class="pre">insert</span></code> changes from constant time in
+the unsorted list to <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time in the sorted list.
+Whether the sorted list implementation for the dictionary ADT is more
+or less efficient than the unsorted list implementation depends on the
+relative number of
+<code class="docutils literal notranslate"><span class="pre">insert</span></code> and <code class="docutils literal notranslate"><span class="pre">find</span></code> operations to be performed.
+If many more <code class="docutils literal notranslate"><span class="pre">find</span></code> operations than <code class="docutils literal notranslate"><span class="pre">insert</span></code> operations are
+used, then it might be worth using a sorted list to implement the
+dictionary.
+In both cases, <code class="docutils literal notranslate"><span class="pre">remove</span></code> requires <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time in the worst
+and average cases.
+Even if we used binary search to cut down on the time to find the
+record prior to removal, we would still need to shift down the
+remaining records in the list to fill the gap left by the
+<code class="docutils literal notranslate"><span class="pre">remove</span></code> operation.</p>
+<p><a class="reference internal" href="BST.html#bst"><span class="std std-ref">Search trees</span></a> are search
+structures that can perform all three key operations of insert,
+search, and delete in <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time.</p>
+<div
+    id="DesignDictionarySumm"
+    class="embedContainer"
+    data-exer-name="DesignDictionarySumm"
+    data-long-name="Dictionary Summary Exercise"
+    data-short-name="DesignDictionarySumm"
+    data-frame-src="../../../Exercises/Design/DesignDictionarySumm.html?localMode=true&amp;module=Dictionary&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="DesignDictionarySumm_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        <a  class="uplink" href="index.html">Contents</a>
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 19, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>
