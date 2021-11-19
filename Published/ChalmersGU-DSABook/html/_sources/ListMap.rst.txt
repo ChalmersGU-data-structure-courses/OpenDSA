@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListMap";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Maps using Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -48,37 +48,37 @@ Using a list of key-value pairs
 
 A very simple way of implementing a **Map** using a list, is to use :ref:`key-value pairs <Comparison>`.
 
-.. codeinclude:: ChalmersGU/KVPair
+.. codeinclude:: ChalmersGU/API/KVPair
    :tag: KVPair
 
 Now we can create a **Map** class that uses an underlying **List** of **KVPair**.
 So the only thing we need is really an internal variable referring to the underlying list.
 
-.. codeinclude:: ChalmersGU/ListMap
+.. codeinclude:: ChalmersGU/API/ListMap
    :tag: Header
 
 Finding the value for a certain key is easy.
 We just iterate through all entries and stop whenever we find a matching key.
 
-.. codeinclude:: ChalmersGU/ListMap
+.. codeinclude:: ChalmersGU/API/ListMap
    :tag: Get
 
 Setting a value for a given key means to search the list
 for a matching key, and then updating the value.
 If we cannot find the key, we add a new **KVPair** to the list.
 
-.. codeinclude:: ChalmersGU/ListMap
+.. codeinclude:: ChalmersGU/API/ListMap
    :tag: Put
 
 In this example we're using a linked list, but we could equally well have used
 a dynamic array list.
-The only thing we have to think about is that we add new pairs at the right location
+The only thing we have to think about is to add new pairs at the right location
 (beginning or end of the list) -- because linked lists prefer adding at the front,
 while array lists rather add to the back of the list.
 
 Other methods can be deferred to the underlying list.
 
-.. codeinclude:: ChalmersGU/ListMap
+.. codeinclude:: ChalmersGU/API/ListMap
    :tag: EmptySize
 
 How to remove keys from the map
@@ -93,7 +93,7 @@ takes :math:`O(n)` time in the worst case. So, first we find the position
 (which takes :math:`O(n)` time), and then we remove it (which takes another :math:`O(n)` time).
 This is double the work than it should be, which is unnecessary.
 
-.. codeinclude:: ChalmersGU/ListMap
+.. codeinclude:: ChalmersGU/API/ListMap
    :tag: Remove
 
 If the **Iterator** interface would include a method for
@@ -114,20 +114,20 @@ The advantage of this solution is that deletion becomes more efficient.
 
 Instead of using nodes with just one value, we used key-value nodes.
 
-.. codeinclude:: ChalmersGU/LinkedMap
+.. codeinclude:: ChalmersGU/API/LinkedMap
    :tag: KVNode
 
 Then the internal structure is very much like our previous
 :ref:`linked lists implementation <ListLinked>`.
 The private variables are the same (except we use a **KVNode** instead of a **Node**).
 
-.. codeinclude:: ChalmersGU/LinkedMap
+.. codeinclude:: ChalmersGU/API/LinkedMap
    :tag: Header
 
 Searching for a key simply means to iterating through the key-value node
 until we find a matching key.
 
-.. codeinclude:: ChalmersGU/LinkedMap
+.. codeinclude:: ChalmersGU/API/LinkedMap
    :tag: Get
 
 Setting a value for a key is similar:
@@ -145,7 +145,7 @@ So, we use two nodes -- the one to be removed, and the previous one.
 The loop searches through the nodes until the one to be removed is found,
 and then reassigns the pointer for the previous node to the following one.
 
-.. codeinclude:: ChalmersGU/LinkedMap
+.. codeinclude:: ChalmersGU/API/LinkedMap
    :tag: Remove
 
 
@@ -154,7 +154,7 @@ Linked Maps: Full code
 
 Finally, here is the full source code for the class **LinkedMap**.
 
-.. codeinclude:: ChalmersGU/LinkedMap
+.. codeinclude:: ChalmersGU/API/LinkedMap
    :tag: LinkedMap
 
 

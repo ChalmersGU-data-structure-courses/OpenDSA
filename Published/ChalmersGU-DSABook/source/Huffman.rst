@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -198,7 +198,7 @@ Table :num:`Table #FreqExamp`. [#]_
 
 Here is the implementation for Huffman tree nodes.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanNode
 
 This implementation is similar to
@@ -211,12 +211,12 @@ internal nodes contain distinctly different information.
 
 Here is the implementation for the Huffman Tree class.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanTree
 
 Here is the implementation for the tree-building process.
 
-.. codeinclude:: Binary/Huffman
+.. codeinclude:: ChalmersGU/Other/Huffman
    :tag: HuffmanTreeBuild
 
 ``buildHuff`` takes as input ``fl``, the min-heap of partial

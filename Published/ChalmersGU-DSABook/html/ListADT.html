@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-list', 'collections', 'defining-the-list-adt'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['what-is-a-list', 'collections', 'defining-the-list-adt'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListADT";ODSA.SETTINGS.MODULE_LONG_NAME = "The List ADT";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="the-list-adt">
 <h1>4.<span class="section-number">2. </span>The List ADT<a class="headerlink" href="#the-list-adt" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="what-is-a-list">
@@ -220,12 +220,7 @@ a more general kind of ADT, which we will call collections.</p>
 <p>A collection contains a number of elements, and it supports only two things:
 we can inquire how many elements it contains, and
 we can iterate through all elements, one at the time (i.e., it is Iterable).</p>
-<div id="API_CollectionADT_code"><ul><li><a href="#API_CollectionADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_CollectionADT_code_Java_Generic">Java</a></li><li><a href="#API_CollectionADT_code_Python">Python</a></li></ul><div id="API_CollectionADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Iterable</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="n">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>   <span class="c1">// Returns true if the collection is empty.</span>
-    <span class="n">size</span><span class="p">()</span>    <span class="p">:</span> <span class="kt">int</span>       <span class="c1">// Returns the number of elements in this collection.</span>
-</pre></div>
-</div>
-</div><div id="API_CollectionADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Collection</span>
+<div id="API_CollectionADT_code"><ul><li><a href="#API_CollectionADT_code_Java_Generic">Java</a></li><li><a href="#API_CollectionADT_code_Python">Python</a></li></ul><div id="API_CollectionADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.Collection</span>
 <span class="kd">interface</span> <span class="nc">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">();</span>  <span class="c1">// Returns true if the collection is empty.</span>
     <span class="kt">int</span> <span class="nf">size</span><span class="p">();</span>         <span class="c1">// Returns the number of elements in this collection.</span>
@@ -280,15 +275,7 @@ There are four main operations we want to support:</p>
 </ul>
 <p>Apart from these four, we also want to be able to loop through the list elements in order
 (i.e., an <code class="docutils literal notranslate"><span class="pre">iterator</span></code> over the elements).</p>
-<div id="API_ListADT_code"><ul><li><a href="#API_ListADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#API_ListADT_code_Java_Generic">Java</a></li><li><a href="#API_ListADT_code_Python">Python</a></li></ul><div id="API_ListADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">extends</span> <span class="nf">Collection</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>       <span class="c1">// Adds x at position i; where 0 &lt;= i &lt;= size.</span>
-    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>      <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Returns the element at position i; where 0 &lt;= i &lt; size.</span>
-    <span class="n">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Replaces the value at position i with x; where 0 &lt;= i &lt; size.</span>
-    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>   <span class="p">:</span> <span class="n">E</span>   <span class="c1">// Removes the element at position i; where 0 &lt;= i &lt; size.</span>
-    <span class="c1">// Note: iterator() should yield the elements starting from position 0.</span>
-</pre></div>
-</div>
-</div><div id="API_ListADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.List</span>
+<div id="API_ListADT_code"><ul><li><a href="#API_ListADT_code_Java_Generic">Java</a></li><li><a href="#API_ListADT_code_Python">Python</a></li></ul><div id="API_ListADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of java.util.List</span>
 <span class="kd">interface</span> <span class="nc">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Adds x at position i; where 0 &lt;= i &lt;= size.</span>
     <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">);</span>          <span class="c1">// Returns the element at position i; where 0 &lt;= i &lt; size.</span>
@@ -329,34 +316,21 @@ There are four main operations we want to support:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">List</span></code> member functions allow you to build a list with elements
 in any desired order, and to access any desired position in the list.</p>
 <p>A list can be iterated through as follows:</p>
-<div id="ListTest_listiterNew1_code"><ul><li><a href="#ListTest_listiterNew1_code_Java_Generic">Java</a></li><li><a href="#ListTest_listiterNew1_code_Python">Python</a></li></ul><div id="ListTest_listiterNew1_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">it</span> <span class="o">=</span> <span class="n">L</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
 <span class="k">while</span> <span class="p">(</span><span class="n">it</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
     <span class="n">E</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">it</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
     <span class="n">doSomething</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListTest_listiterNew1_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">it</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="fm">__iter__</span><span class="p">()</span>
-<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
-    <span class="k">try</span><span class="p">:</span>
-        <span class="n">elem</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="fm">__next__</span><span class="p">()</span>
-        <span class="n">doSomething</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
-    <span class="k">except</span> <span class="ne">StopIteration</span><span class="p">:</span>
-        <span class="k">break</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListTest_listiterNew1_code" ).tabs();});</script><p>But both Java and Python has syntactic sugar for iterators,
+<p>Both Java and Python has syntactic sugar for iterators,
 so the same iteration can be written like this:</p>
-<div id="ListTest_listiterNew2_code"><ul><li><a href="#ListTest_listiterNew2_code_Java_Generic">Java</a></li><li><a href="#ListTest_listiterNew2_code_Python">Python</a></li></ul><div id="ListTest_listiterNew2_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">E</span> <span class="n">elem</span> <span class="p">:</span> <span class="n">L</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">E</span> <span class="n">elem</span> <span class="p">:</span> <span class="n">L</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">doSomething</span><span class="p">(</span><span class="n">elem</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListTest_listiterNew2_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-    <span class="n">doSomething</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListTest_listiterNew2_code" ).tabs();});</script><p>In this example, each element of the list in turn is stored
+<p>In this example, each element of the list in turn is stored
 in <code class="docutils literal notranslate"><span class="pre">it</span></code>, and passed to the <code class="docutils literal notranslate"><span class="pre">doSomething</span></code> function.
 The loop terminates when the current position reaches the end of the
 list.</p>
@@ -370,8 +344,8 @@ return <code class="docutils literal notranslate"><span class="pre">true</span><
 list, and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.
 The <code class="docutils literal notranslate"><span class="pre">find</span></code> method needs no knowledge about the specific list
 implementation, just the list ADT.</p>
-<div id="ListTest_listfind_code"><ul><li><a href="#ListTest_listfind_code_Java_Generic">Java</a></li><li><a href="#ListTest_listfind_code_Python">Python</a></li></ul><div id="ListTest_listfind_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return true if k is in list L, false otherwise.</span>
-<span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">find</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">L</span><span class="p">,</span> <span class="n">E</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return true if k is in list L, false otherwise.</span>
+<span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">boolean</span> <span class="nf">find</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">L</span><span class="p">,</span> <span class="n">E</span> <span class="n">k</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">E</span> <span class="n">n</span> <span class="p">:</span> <span class="n">L</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">k</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
             <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>  <span class="c1">// Found k</span>
@@ -380,15 +354,7 @@ implementation, just the list ADT.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="ListTest_listfind_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">find</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return true if k is in list L, false otherwise.&quot;&quot;&quot;</span>
-    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">L</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">true</span>  <span class="c1"># Found k</span>
-    <span class="k">return</span> <span class="n">false</span>         <span class="c1"># k not found</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#ListTest_listfind_code" ).tabs();});</script><p>There are two standard approaches to implementing lists, the
+<p>There are two standard approaches to implementing lists, the
 <a class="reference internal" href="ListArray.html#listarray"><span class="std std-ref">array-based list</span></a>, and the
 <a class="reference internal" href="ListLinked.html#listlinked"><span class="std std-ref">linked list</span></a>.</p>
 <script type="text/javascript" src="../../../AV/ChalmersGU/ListADT-Positions-CON.js"></script>
@@ -419,7 +385,7 @@ implementation, just the list ADT.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

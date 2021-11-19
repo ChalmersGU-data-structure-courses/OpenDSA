@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -44,12 +44,12 @@ Here is a visual representation for the linked stack.
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackInit
 
 Stack nodes are exactly the same as the linked list nodes  we saw earlier.
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackNode
 
 
@@ -65,7 +65,7 @@ Linked Stack Push
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackPush
 
 |
@@ -91,7 +91,7 @@ Linked Stack Pop
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStackPop
 
 |
@@ -110,7 +110,7 @@ Linked stacks: Full implementation
 
 Here is the complete linked stack implementation.
 
-.. codeinclude:: ChalmersGU/LinkedStack
+.. codeinclude:: ChalmersGU/API/LinkedStack
    :tag: LinkedStack
 
    

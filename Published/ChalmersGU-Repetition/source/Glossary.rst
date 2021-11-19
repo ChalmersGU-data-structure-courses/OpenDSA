@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:57:06"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Glossary";ODSA.SETTINGS.MODULE_LONG_NAME = "Glossary";ODSA.SETTINGS.MODULE_CHAPTER = "Appendix"; ODSA.SETTINGS.BUILD_DATE = "2021-11-03 11:11:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -151,14 +151,6 @@ Glossary
       :term:`asymptotic algorithm analysis`, generally used as a
       synonym for :term:`asymptotic analysis`.
 
-   asymptotic complexity
-      The :term:`growth rate` or :term:`order of growth` of the :term:`complexity` of an algorithm or problem.
-      There are several independent categories of qualifiers for (asymptotic) complexity:
-
-      - :term:`time complexity` (default), :term:`space complexity`, complexity in some other cost,
-      - :term:`worst case` (default), :term:`average case`, :term:`best case`,
-      - :term: whether to use :term:`amortized complexity<amortized analysis>`.
-
    alias
       Another name for something. In programming, this usually refers
       to two :term:`references <reference>` that refer to the same
@@ -196,27 +188,17 @@ Glossary
 
    amortized analysis
 
-      Analysing the :term:`amortized complexity` of an :term:`algorithm` or term:`problem`.
-
-   amortized complexity
-
-      A modification to the notion of :term:`complexity` for operations on a
-      data structure where, for each fixed input size, one does not just look at
-      the cost of a single run of the operation, but its :term:`amortized cost`
-      over sufficiently long series of operations of the same kind.
-      This can be made precise without considering averages by introducing
-      :term:`potentials <potential>`.
+      An :term:`algorithm analysis` techique that looks at the total
+      cost for a series of operations and amortizes this total cost
+      over the full series.
+      This is as opposed to considering every individual operation to
+      independently have the :term:`worst case` cost, which might lead
+      to an overestimate for the total cost of the series.
 
    amortized cost
 
-      The average cost of an operation in a sufficiently long series of operations of the same kind.
-      This is as opposed to considering every individual operation to
-      independently have its own cost, which might lead to an overestimate for
-      the total cost of the series.
-      This can be made precise without considering averages by introducing
-      :term:`potentials <potential>`.
-
-      In :term:`amortized analysis`, gives rise to the notion of :term:`amortized complexity`.
+      The total cost for a series of operations to be used in an
+      :term:`amortized analysis`.
 
    ancestor
       In a tree, for a given node :math:`A`, any node on a
@@ -280,8 +262,7 @@ Glossary
    asymptotic analysis
 
       A method for estimating the efficiency of an algorithm or
-      computer program by identifying its :term:`asymptotic complexity`,
-      the :term:`growth rate` of its complexity function.
+      computer program by identifying its :term:`growth rate`.
       Asymptotic analysis also gives a way to
       define the inherent difficulty of a :term:`problem`.
       We frequently use the term :term:`algorithm analysis` to mean
@@ -301,14 +282,11 @@ Glossary
       automatically.
 
    average case
-      In :term:`algorithm analysis`, specifically :term:`complexity` of an
-      algorithm, the average of the costs for all :term:`problem instances
-      <problem instance>` of a given input size :math:`n`.
-      If not all problem instances have equal probability of occurring, then the
-      average case must be calculated using a weighted average that is specified
-      with the problem (for example, every input may be equally likely).
-      Every input size :math:`n` has its own average case.
-      We **never** consider the average case as removed from input size.
+      In :term:`algorithm analysis`, the average of the costs for all
+      :term:`problem instances <problem instance>` of a given input
+      size :math:`n`. If not all problem
+      instances have equal probability of occurring, then average case
+      must be calculated using a weighted average.
 
    average seek time
       Expected (average) time to perform a :term:`seek` operation on a
@@ -356,7 +334,7 @@ Glossary
       :term:`children <child>` per :term:`internal node`),
       causing the tree to be very shallow.
       When stored on disk, the node size is selected to be same as the
-      desired unit of I/O (hence some multiple of the disk :term:`sector`
+      desired unit of I/O (so some multiple of the disk :term:`sector`
       size).
       This makes it easy to gain access to the record associated with
       a given :term:`search key` stored in the tree with few
@@ -424,11 +402,11 @@ Glossary
       data structure, and finding a specified :term:`data item`.
 
    best case
-      In :term:`algorithm analysis`, specifically :term:`complexity` of an
-      algorithm, the :term:`problem instance` from among all problem instances
-      for a given input size :math:`n` that has least cost.
-      Every input size :math:`n` has its own best case.
-      We **never** consider the best case as removed from input size.
+      In algorithm analysis, the :term:`problem instance` from among
+      all problem instances for a given input size :math:`n` that has
+      least cost. Note that the best case is **not** when :math:`n` is
+      small, since we are referring to the best from a class of inputs
+      (i.e, we want the best of those inputs of size :math:`n`).
 
    best fit
       In a :term:`memory manager`, best fit is a :term:`heuristic`
@@ -447,10 +425,9 @@ Glossary
       Abbreviation for :term:`breadth-first search`.
 
    big-Oh notation
-      For :term:`growth rates<growth rate>` :math:`f` and :math:`g`,
-      we write :math:`f \in O(g)` to say that :math:`g` is an :term:`upper bound` for :math:`f`.
-      The notation can be made sense of by defining `O(g)` as the set of functions with growth rate less than or equal to that of `g`.
-      The notation is often somewhat imprecisely used as :math:`f(n) \in O(g(n))` or even :math:`f(n) = O(g(n))`.
+      In :term:`algorithm analysis`, a shorthand notation for
+      describing the :term:`upper bound` for an :term:`algorithm` or
+      :term:`problem`.
 
    binary insert sort
       A variation on :term:`insertion sort` where the position of the
@@ -895,11 +872,11 @@ Glossary
       To be reliably compared for a greater/lesser relationship,
       the values being compared must belong to a :term:`total order`.
       In programming, the property of a data type such that two
-      elements of the type can be compared to determine if they are the
+      elements of the type can be compared to determine if they the
       same (a weaker version), or which of the two is larger (a
       stronger version).
       ``Comparable`` is also the name of an :term:`interface` in Java that
-      asserts a comparable relationship between objects within a class,
+      asserts a comparable relationship between objects with a class,
       and ``.compareTo()`` is the ``Comparable`` interface method that
       implements the actual comparison between two objects of the class.
 
@@ -908,11 +885,11 @@ Glossary
       (or alternatively, a parameter for a C++ template or a Java
       generic).
       The comparator function concept provides a generic way
-      to encapulate the process of performing a comparison between two
+      encapulates the process of performing a comparison between two
       objects of a specific type.
       For example, if we want to write a generic sorting routine, that
       can handle any record type, we can require that the user of the
-      sorting routine passes in a comparator function
+      sorting routine pass in a comparator function
       to define how records in the collection are to be compared.
 
    comparison
@@ -963,19 +940,6 @@ Glossary
    complex number
       In mathematics, an imaginary number, that is, a number with a
       real component and an imaginary component.
-
-   complexity
-      After fixing a :term:`cost model` for a problem,
-      we can calculate the complexity function of an algorithm.
-      This sends an input size :math:`n` to the cost of running the algorithm on input of that size.
-      For each fixed `n`, we consider only the :term:`worst-case<worst case>` input of size :math:`n`.
-      This defines the worst-case complexity of the algorithm.
-      There is also the :term:`average-case<average case>` and :term:`best-case<best case>` complexity,
-      which are defined similarly.
-
-      We speak of time complexity, space complexity, etc. depending on what kind of cost our cost model captures.
-      Here, time refers to runtime and space refers to memory/storage.
-      The case of time complexity is the default, so we omit the word "time".
 
    Composite design pattern
       Given a class hierarchy representing a set of objects, and a
@@ -1105,7 +1069,7 @@ Glossary
       the set to the set of integers.
 
    cost
-      The amount of resources that given run of an algorithm consumes.
+      The amount of resources that the solution consumes.
 
    cost model
       In :term:`algorithm analysis`, a definition for the cost of each
@@ -1113,15 +1077,7 @@ Glossary
       along with a definition for the size of the input.
       Having these definitions allows us to calculate the :term:`cost`
       to run the algorithm on a given input, and from there determine
-      the :term:`complexity` of the algorithm.
-
-      By default, the cost model approximates the runtime of the program.
-      To stress this, we also speak of time complexity.
-      It is also possible to model other kinds of costs.
-      In the case of memory/storage, we speak of space complexity.
-
-      Looking at the :term:`growth rate` of the complexity function
-      tells us the :term:`asymptotic complexity` of the algorithm.
+      the :term:`growth rate` of the algorithm.
       A cost model would be considered "good" if it yields predictions
       that conform to our understanding of reality.
 
@@ -2040,21 +1996,8 @@ Glossary
 
    growth rate
 
-      The rate at which a function grows.
-      How quickly the function grows when its input grows.
-      Also called its `order of growth`.
-
-      A function :math:`f` has growth rate bounded by a function :math:`g` if the values of :math:`f` are eventually bounded by those of :math:`g` up to some constant factor.
-      We often shorten this (somewhat confusingly) by saying that :math:`f` has growth rate :math:`g` or that :math:`f` has order of growth :math:`g`.
-
-      Formally, there are constants :math:`n_0 \geq 0` and :math:`c > 0` such that :math:`f(n) \leq c g(n)` for all :math:`n \geq n_0`.
-      We then say that :math:`f` has growth rate less or equal that of :math:`g` and write :math:`f \in O(g)` (big-Oh notation).
-      This defines the preorder of growth rates.
-
-      In :term:`algorithm analysis`, we sometimes speak of the growth rate of an :term:`algorithm`.
-      By that, we mean the :term:`growth rate` of the :term:`complexity` of the algorithm,
-      the rate at which the cost of the :term:`algorithm` grows as the size of its input grows.
-      This is also called the :term:`asymptotic complexity` of that algorithm.
+      In :term:`algorithm analysis`, the rate at which the cost
+      of the :term:`algorithm` grows as the size of its input grows.
 
    guess-and-test
       A technique used when trying to determine the
@@ -2146,7 +2089,7 @@ Glossary
       In a properly implemented :term:`hash system`, that position in
       the table will have high probability of containing the record
       that matches the key value.
-      Sometimes, the hash function will return a position that does
+      Sometimes, the hash function will return an position that does
       not store the desired key, due to a process called
       :term:`collision`.
       In that case, the desired record is found through a process
@@ -2711,7 +2654,7 @@ Glossary
       It allows for efficient search (including for
       :term:`range queries <range query>`), but it is not good for
       inserting and deleting entries in the array.
-      Therefore, it is an ideal indexing structure for when the system
+      Therefore, it is an ideal indexing structure when the system
       needs to do range queries but the collection of records never
       changes once the linear index has been created.
 
@@ -2834,20 +2777,16 @@ Glossary
       :term:`space/time tradeoff`.
 
    lower bound
-      An lower bound for a :term:`growth rate` :math:`f` is any
-      growth rate :math:`g` that is less than or equal to it.
-      Formally, there are constants :math:`n_0 \geq 0` and :math:`c > 0`
-      such that :math:`f(n) \geq c g(n)` for all :math:`n \geq n_0`.
-      We also write :math:`f \in \Omega(g)` or slightly imprecisely :math:`f(n) \in \Omega(g(n))`
-      (this is :term:`Omega notation`).
-
-      Usually, we are interested in finding a lower bound :math:`g` that has a
-      simple expression compared to :math:`f`, but is still sharp (there is not
-      much room for improvement).
-
-      In :term:`algorithm analysis`, a lower bound for an algorithm is
-      a lower bound for the :term:`asymptotic complexity` of the algorithm,
-      the growth rate of its :term:`complexity`.
+      In :term:`algorithm analysis`, a :term:`growth rate` that is
+      always less than or equal to the growth rate of the
+      :term:`algorithm` in question.
+      In practice, this is the fastest-growing function that we know
+      grows no faster than all but a constant number of inputs.
+      It could be a gross under-estimate of the truth.
+      Since the lower bound for the algorithm can be very different
+      for different situations (such as the :term:`best case` or
+      :term:`worst case`), we typically have to specify which
+      situation we are referring to.
 
    lower bounds proof
 
@@ -3288,10 +3227,10 @@ Glossary
       be a tree with :math:`2^3` or eight branches.
 
    Omega notation
-      For :term:`growth rates<growth rate>` :math:`f` and :math:`g`,
-      we write :math:`f \in \Omega(g)` to say that :math:`g` is a :term:`lower bound` for :math:`f`.
-      The notation can be made sense of by defining `Omega(g)` as the set of functions with growth rate greater than or equal to that of `g`.
-      The notation is often somewhat imprecisely used as :math:`f(n) \in \Omega(g(n))` or even :math:`f(n) = \Omega(g(n))`.
+      In :term:`algorithm analysis`,
+      :math:`\Omega` notation is used to describe a :term:`lower bound`.
+      Roughly (but not completely) analogous to
+      :term:`big-Oh notation` used to define an :term:`upper bound`.
 
    one-way list
       A synonym for a :term:`singly linked list`.
@@ -3326,10 +3265,6 @@ Glossary
       An example is the Traveling Salesman Problem, where
       visiting :math:`n` cities in some order has a cost, and the goal
       is to visit in the cheapest order.
-
-   order of growth
-
-      A synonym for `growth rate`.
 
    out degree
       In :term:`graph` terminology, the out degree for a :term:`vertex` is
@@ -3482,7 +3417,7 @@ Glossary
 
    physical form
       The implementation of a data type as a data structure.
-      Contrast to the :term:`logical form` for the data type.
+      Contrast to the :term:`physical form` for the data type.
 
    Pigeonhole Principle
       A commonly used lemma in Mathematics. A typical variant states:
@@ -3559,19 +3494,9 @@ Glossary
       :term:`root`.
 
    potential
-      A concept in :term:`amortized complexity` for operations on a data structure.
-      We choose a *potential function* that associates an arbitrary non-negative value of *stored cost* (stored energy) with each state of the data structure.
-      We then define the :term:`amortized cost` of a run of the operation to be its cost as given by the the :term:`cost model` plus the change in potential.
-      The :term:`complexity` modified this way is called :term:`amortized complexity`.
-
-      An example is adding an element to a dynamic array.
-      When the dynamic array is not full, adding an element is quick and we store some of that saved cost by increasing the potential.
-      When the dynamic array is full capacity, we perform an expensive reallocation, but compensate that cost by resetting the potential from a high value to zero.
-      Let us define the potential of a dynamic array with capacity :math:`c` and size :math:`n` to be :math:`max(2n-c,0)`.
-      Assuming we double the capacity on reallocation, the operation of adding an element then has constant amortized complexity.
-
-      The concept comes from potential energy in physics.
-      For example, in the graviational field of the earth, kinetic energy may be stored as potential energy.
+      A concept related to :term:`amortized analysis`.
+      Potential is the total or currently available amount of work
+      that can be done.
 
    powerset
       For a :term:`set` :math:`\mathbf{S}`, the power set is the set
@@ -3923,7 +3848,7 @@ Glossary
       The set of possible outputs for a function.
 
    range query
-      Records are returned if their relevant key value falls within a
+      Records are returned if their relevant key value falls with a
       specified range.
 
    read/write head
@@ -4161,8 +4086,8 @@ Glossary
       For a sorted array, it is :math:`\Omega(\log n)` in the worst
       case, typically proved using an argument similar to the
       :term:`sorting lower bound` proof.
-      Indeed, it is possible to search a sorted array in the average
-      case in :math:`O(\log n)` time.
+      However, it is possible to search a sorted array in the average
+      case in :math:`O(\log \log n)` time.
 
    search problem
       Given a particular key value :math:`K`, the search problem is to
@@ -4412,7 +4337,7 @@ Glossary
    singly linked list
 
       A :term:`linked list` implementation variant where each list
-      node contains access a pointer only to the next element in the list.
+      node contains access an pointer only to the next element in the list.
 
    skip list
       A form of :term:`linked list` that adds additional links to
@@ -4494,10 +4419,6 @@ Glossary
       In other words, the sorting problem is to arrange a set of
       records so that the values of their key fields are in
       non-decreasing order.
-
-   space complexity
-      The :term:`complexity` of an :term:`algorithm` or :term:`problem`
-      with a :term:`cost model` that approximates memory/storage usage.
 
    space/time tradeoff
       Many programs can be designed to either speed processing at the
@@ -4780,10 +4701,6 @@ Glossary
       :term:`upper bound` and :term:`lower bound` for an
       :term:`algorithm` or :term:`problem` match.
 
-   time complexity
-      The :term:`complexity` of an :term:`algorithm` or :term:`problem`
-      with a :term:`cost model` that approximates runtime.
-
    token
       The basic logical units of a program, as deterimined by
       :term:`lexical analysis`.
@@ -4812,7 +4729,7 @@ Glossary
    total order
       A binary relation on a set where every pair of distinct elements
       in the set are :term:`comparable` (that is, one can determine
-      which of the two is greater than the other).
+      which of the pair is greater than the other).
 
    total path length
       In a :term:`tree`, the sum of the :term:`levels <level>` for
@@ -5051,26 +4968,16 @@ Glossary
       :term:`mark array`.
 
    upper bound
-      An upper bound for a :term:`growth rate` :math:`f` is any
-      growth rate :math:`g` that is greater than or equal to it.
-      Formally, there are constants :math:`n_0 \geq 0` and :math:`C > 0`
-      such that :math:`f(n) \leq C g(n)` for all :math:`n \geq n_0`.
-      We also write :math:`f \in O(g)` or slightly imprecisely :math:`f(n) \in O(g(n))`
-      (this is :term:`big-Oh notation`).
-
-      Usually, we are interested in finding an upper bound :math:`g` that has a
-      simple expression compared to :math:`f`, but is still sharp (there is not
-      much room for improvement).
-
-      In :term:`algorithm analysis`, an upper bound for an algorithm is
-      an upper bound for the :term:`asymptotic complexity` of the algorithm,
-      the growth rate of its :term:`complexity`.
-      In practice, we are looking for the best possible upper bound that has
-      a simple mathematical expression.
-      For example, we may write :math:`T(n) \in O(n^2)` if :math:`T` is the
-      (time) complexity of the algorithm to say that the complexity is
-      quadratic, i.e. the asymptoptic complexity of the algorithm has as upper bound
-      the growth rate given by squaring.
+      In :term:`algorithm analysis`, a :term:`growth rate` that is
+      always greater than or equal to the growth rate of the
+      :term:`algorithm` in question.
+      In practice, this is the slowest-growing function that we know
+      grows at least as fast as all but a constant number of inputs.
+      It could be a gross over-estimate of the truth.
+      Since the upper bound for the algorithm can be very different
+      for different situations (such as the :term:`best case` or
+      :term:`worst case`), we typically have to specify which
+      situation we are referring to.
 
    value parameter
       A :term:`parameter` that has been
@@ -5170,12 +5077,12 @@ Glossary
       that can hold some subset of the total data being processed.
 
    worst case
-      In :term:`algorithm analysis`, specifically :term:`complexity` of an
-      algorithm, the :term:`problem instance` from among all problem instances
-      for a given input size :math:`n` that has the greatest cost.
-
-      Every input size :math:`n` has its own worst case.
-      We **never** consider the worst case as removed from input size.
+      In algorithm analysis, the :term:`problem instance` from among
+      all problem instances for a given input size :math:`n` that has
+      the greatest cost. Note that the worst case is **not** when
+      :math:`n` is big, since we are referring to the wrost from a
+      class of inputs (i.e, we want the worst of those inputs of size
+      :math:`n`).
 
    worst fit
       In a :term:`memory manager`, worst fit is a :term:`heuristic`

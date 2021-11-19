@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortSetsAndMaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Arrays as Sets or Maps";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -31,10 +31,10 @@ Arrays as Sets or Maps
 In Chapter :chap:`Introduction` we learnt about *sets* and *maps*, two of the
 most important ADTs.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SetADT
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: MapADT
 
 We can implement either of these ADTs using an array. For a set, we
@@ -73,10 +73,10 @@ find items in it. Sorted arrays also support the *sorted set* and
 implemented using binary search. As a reminder, here are the relevant
 operations:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedSetADT
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedMapADT
 
 Sorted arrays can also be useful in cases where we always add *many*

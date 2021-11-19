@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -47,7 +47,7 @@ in the queue, to be able to add new elements efficiently.
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueInit
 
 Enqueueing Elements
@@ -62,7 +62,7 @@ Enqueueing Elements
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueEnqueue
 
 |
@@ -88,7 +88,7 @@ Dequeueing Elements
 
 |
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueueDequeue
 
 |
@@ -107,7 +107,7 @@ Linked Queue, Full Implementation
 
 Here is the full implementation for linked queues.
 
-.. codeinclude:: ChalmersGU/LinkedQueue
+.. codeinclude:: ChalmersGU/API/LinkedQueue
    :tag: LinkedQueue
 
 

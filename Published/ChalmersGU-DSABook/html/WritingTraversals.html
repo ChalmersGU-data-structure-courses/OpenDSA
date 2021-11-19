@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['base-case', 'the-recursive-call', 'binary-tree-increment-by-one-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "WritingTraversals";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Tree Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-tree-traversals">
 <h1>5.<span class="section-number">7. </span>Implementing Tree Traversals<a class="headerlink" href="#implementing-tree-traversals" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>5.<span class="section-number">7.1. </span>Implementing Tree Traversals<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -183,10 +183,10 @@ A common mistake is to check the child pointers of the current node,
 and only make the recursive call for a non-null child.</p>
 <p>Recall the basic preorder traversal function.</p>
 <div id="Preorder_preorder_code"><ul><li><a href="#Preorder_preorder_code_Java_Generic">Java</a></li><li><a href="#Preorder_preorder_code_Python">Python</a></li></ul><div id="Preorder_preorder_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Empty subtree - do nothing</span>
-  <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>              <span class="c1">// Process root node</span>
-  <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>    <span class="c1">// Process all nodes in left</span>
-  <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>   <span class="c1">// Process all nodes in right</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>  <span class="c1">// Empty subtree - do nothing</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>               <span class="c1">// Process root node</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>     <span class="c1">// Process all nodes in left</span>
+    <span class="n">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>    <span class="c1">// Process all nodes in right</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -202,9 +202,9 @@ left and right pointers of the current node are checked so that the
 recursive call is made only on non-empty children.</p>
 <div id="Preorder_preorder2_code"><ul><li><a href="#Preorder_preorder2_code_Java_Generic">Java</a></li><li><a href="#Preorder_preorder2_code_Python">Python</a></li></ul><div id="Preorder_preorder2_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// This is a bad idea</span>
 <span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">preorder2</span><span class="p">(</span><span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span> <span class="p">}</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span> <span class="p">}</span>
+    <span class="n">visit</span><span class="p">(</span><span class="n">rt</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">()</span>  <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">left</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="n">preorder2</span><span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">right</span><span class="p">());</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -272,17 +272,17 @@ binary tree.
 The following solution has an error, since it does redundant
 manipulation to the left and the right children of each node.</p>
 <div id="RecTutor_IneffbtInc_code"><ul><li><a href="#RecTutor_IneffbtInc_code_Java_Generic">Java</a></li><li><a href="#RecTutor_IneffbtInc_code_Python">Python</a></li></ul><div id="RecTutor_IneffbtInc_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="nf">ineff_BTinc</span><span class="p">(</span><span class="n">BinNode</span> <span class="n">root</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">root</span><span class="p">.</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">left</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span><span class="p">.</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">left</span><span class="p">().</span><span class="na">left</span><span class="p">());</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">right</span><span class="p">());</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">()</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">setValue</span><span class="p">((</span><span class="kt">int</span><span class="p">)(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">value</span><span class="p">())</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-      <span class="n">ineff_BTinc</span><span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">right</span><span class="p">().</span><span class="na">right</span><span class="p">());</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -360,7 +360,7 @@ call.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

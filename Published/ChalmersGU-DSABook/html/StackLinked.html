@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linked-stack-implementation', 'linked-stack-push', 'linked-stack-pop', 'linked-stacks:-full-implementation', 'comparison-of-array-based-and-linked-stacks', 'implementing-two-stacks-using-one-array'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['linked-stack-implementation', 'linked-stack-push', 'linked-stack-pop', 'linked-stacks:-full-implementation', 'comparison-of-array-based-and-linked-stacks', 'implementing-two-stacks-using-one-array'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-stacks">
 <h1>4.<span class="section-number">10. </span>Linked Stacks<a class="headerlink" href="#linked-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="linked-stack-implementation">
@@ -177,16 +177,7 @@ Here is a visual representation for the linked stack.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedStack_LinkedStackInit_code"><ul><li><a href="#LinkedStack_LinkedStackInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackInit_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackInit_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedStack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Stack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to top of stack</span>
-    <span class="kd">private</span> <span class="n">stackSize</span> <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of stack</span>
-
-    <span class="n">LinkedStack</span><span class="p">()</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div><div id="LinkedStack_LinkedStackInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="LinkedStack_LinkedStackInit_code"><ul><li><a href="#LinkedStack_LinkedStackInit_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackInit_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>   <span class="c1">// Size of stack</span>
 
@@ -203,12 +194,7 @@ Here is a visual representation for the linked stack.</p>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#LinkedStack_LinkedStackInit_code" ).tabs();});</script><p>Stack nodes are exactly the same as the linked list nodes  we saw earlier.</p>
-<div id="LinkedStack_LinkedStackNode_code"><ul><li><a href="#LinkedStack_LinkedStackNode_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackNode_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackNode_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackNode_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span>
-        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
-        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in stack</span>
-</pre></div>
-</div>
-</div><div id="LinkedStack_LinkedStackNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+<div id="LinkedStack_LinkedStackNode_code"><ul><li><a href="#LinkedStack_LinkedStackNode_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackNode_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
         <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
         <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>    <span class="c1">// Pointer to next node in stack</span>
 
@@ -248,12 +234,7 @@ Here is a visual representation for the linked stack.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedStack_LinkedStackPush_code"><ul><li><a href="#LinkedStack_LinkedStackPush_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackPush_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPush_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPush_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
-        <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div><div id="LinkedStack_LinkedStackPush_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div id="LinkedStack_LinkedStackPush_code"><ul><li><a href="#LinkedStack_LinkedStackPush_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPush_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPush_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">top</span><span class="p">);</span>
         <span class="n">stackSize</span><span class="o">++</span><span class="p">;</span>
     <span class="p">}</span>
@@ -313,16 +294,7 @@ Here is a visual representation for the linked stack.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedStack_LinkedStackPop_code"><ul><li><a href="#LinkedStack_LinkedStackPop_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPop_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: stackSize &gt; 0</span>
-        <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">top</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
-        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
-</pre></div>
-</div>
-</div><div id="LinkedStack_LinkedStackPop_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
+<div id="LinkedStack_LinkedStackPop_code"><ul><li><a href="#LinkedStack_LinkedStackPop_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStackPop_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStackPop_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">pop</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">stackSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;pop from empty stack&quot;</span><span class="p">);</span>
         <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">top</span><span class="p">;</span>
         <span class="n">top</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
@@ -370,45 +342,7 @@ Here is a visual representation for the linked stack.</p>
 <div class="section" id="linked-stacks-full-implementation">
 <h2>4.<span class="section-number">10.3. </span>Linked stacks: Full implementation<a class="headerlink" href="#linked-stacks-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is the complete linked stack implementation.</p>
-<div id="LinkedStack_LinkedStack_code"><ul><li><a href="#LinkedStack_LinkedStack_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedStack_LinkedStack_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStack_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStack_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedStack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Stack</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">top</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to top of stack</span>
-    <span class="kd">private</span> <span class="n">stackSize</span> <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of stack</span>
-
-    <span class="n">LinkedStack</span><span class="p">()</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">stackSize</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span>
-        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
-        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in stack</span>
-
-    <span class="n">push</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">top</span><span class="p">)</span>
-        <span class="n">stackSize</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="n">peek</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: stackSize &gt; 0</span>
-        <span class="k">return</span> <span class="n">top</span><span class="p">.</span><span class="na">elem</span>
-
-    <span class="nf">pop</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: stackSize &gt; 0</span>
-        <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">top</span>
-        <span class="n">top</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
-        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">stackSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
-
-    <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
-        <span class="k">return</span> <span class="n">stackSize</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="n">size</span><span class="p">()</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">stackSize</span>
-
-    <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">the</span> <span class="n">stack</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">top</span> <span class="n">element</span>
-</pre></div>
-</div>
-</div><div id="LinkedStack_LinkedStack_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="LinkedStack_LinkedStack_code"><ul><li><a href="#LinkedStack_LinkedStack_code_Java_Generic">Java</a></li><li><a href="#LinkedStack_LinkedStack_code_Python">Python</a></li></ul><div id="LinkedStack_LinkedStack_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedStack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">top</span><span class="p">;</span>        <span class="c1">// Pointer to top of stack</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">stackSize</span><span class="p">;</span>   <span class="c1">// Size of stack</span>
 
@@ -580,7 +514,7 @@ and the array has to be resized.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

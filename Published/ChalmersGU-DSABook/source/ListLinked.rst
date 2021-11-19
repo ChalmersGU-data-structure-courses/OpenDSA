@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -39,7 +39,7 @@ for lists, usually called a :term:`linked list`.
 The linked list uses :term:`dynamic memory allocation`,
 that is, it allocates memory for new list elements as needed.
 The following diagram illustrates the linked list concept.
-Here there are three :term:`nodes <node>` that
+There are three :term:`nodes <node>` that
 are "linked" together.
 Each node has two boxes.
 The box on the right holds a link to the next node in the list.
@@ -72,7 +72,7 @@ a variable storing the number of elements.
 (This second variable is in theory unnecessary, but it improves the efficiency
 of getting the list size).
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListVars
 
 Here is our implementation for list nodes, an inner private class ``Node``.
@@ -80,7 +80,7 @@ Objects in the ``Node`` class contain a field ``elem`` to
 store the element value, and a field ``next`` to store a pointer to
 the next node on the list.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListNode
 
 
@@ -90,7 +90,7 @@ Getting and setting values
 If we want to get or set the value at a certain index,
 we simply iterate through the nodes in sequence until we get to the node we want.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListGetSet
 
 
@@ -99,7 +99,7 @@ Adding and removing nodes
 -----------------------------
 
 However, if we want to add or remove nodes,
-there is a problem using a pointer to the ``current`` node.
+there is a problem with using a pointer to the ``current`` node.
 
 .. inlineav:: LinkedList-Problems-CON ss
    :points: 0.0
@@ -143,7 +143,7 @@ Inserting at the beginning of a list, and appending at the end.
 
 Here's the code for addition.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListAdd
 
 
@@ -171,7 +171,7 @@ Removing a Node
 
 Here's the code for deletion:
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedListRemove
 
 
@@ -198,7 +198,7 @@ where these operations are :math:`\Theta(1)`.
 So are linked lists totally useless?
 No! But they don't work well with our current List interface.
 
-Instead, to make linked lists useful, we would need an enhanced iterator interface,
+To make linked lists useful, we need an enhanced iterator interface,
 where we can move forwards and backwards in the list, and add/remove nodes
 through this enhanced iterator.
 In the standard Java API, this kind of iterator is called a ListIterator_,
@@ -213,7 +213,7 @@ Linked List: Full code
 
 Finally, here is the full source code for the class ``LinkedList``.
 
-.. codeinclude:: ChalmersGU/LinkedList
+.. codeinclude:: ChalmersGU/API/LinkedList
    :tag: LinkedList
 
 

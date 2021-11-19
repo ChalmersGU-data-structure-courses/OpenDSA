@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashToIndex";ODSA.SETTINGS.MODULE_LONG_NAME = "Converting Objects to Table Indices";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashToIndex";ODSA.SETTINGS.MODULE_LONG_NAME = "Converting Objects to Table Indices";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -38,7 +38,7 @@ so that strings can decide how to hash strings, and x-ray images can decide how 
 This is done by requiring a class to implement a hash method
 (called ``hashCode()`` in Java, and ``__hash__()`` in Python).
 
-.. codeinclude:: ChalmersGU/HashcodeDemo
+.. codeinclude:: ChalmersGU/Other/Hashcode
    :tag: PersonHash
 
 Now, the problem is that these classes have no idea how large the internal hash table should be,
@@ -74,7 +74,7 @@ One way to do this is to mask off the sign bit.
 Java integers are :math:`-2^{31}\leq h<2^{31}`, so we can use ``h & 0x7fffffff``.
 (Python uses arbitrary size hash values, but it works fine to truncate them to 31 bits as we have done here).
 
-.. codeinclude:: ChalmersGU/SeparateChainingHashMap
+.. codeinclude:: ChalmersGU/API/SeparateChainingHashMap
    :tag: HashIndex
 
 

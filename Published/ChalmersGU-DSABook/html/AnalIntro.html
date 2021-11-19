@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparing-algorithms', 'introduction', 'basic-operations-and-input-size', 'growth-rates', 'growth-rates-ordering-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Algorithms (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/GrowthRatesCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparing-algorithms', 'introduction', 'basic-operations-and-input-size', 'growth-rates', 'growth-rates-ordering-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparing Algorithms (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/AlgAnal/GrowthRatesCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/AlgAnal/GrowthRatesZoomCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="comparing-algorithms-work-in-progress">
 <h1>3.<span class="section-number">3. </span>Comparing Algorithms (WORK IN PROGRESS)<a class="headerlink" href="#comparing-algorithms-work-in-progress" title="Permalink to this headline">¶</a></h1>
@@ -274,16 +274,27 @@ The algorithm looks at each integer in turn, saving the position of
 the largest value seen so far.
 This algorithm is called the <em>largest-value sequential search</em>
 and is illustrated by the following function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return position of largest value in integer array A</span>
+<div id="LargestTest_Largest_code"><ul><li><a href="#LargestTest_Largest_code_Java_Generic">Java</a></li><li><a href="#LargestTest_Largest_code_Python">Python</a></li></ul><div id="LargestTest_Largest_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return position of largest value in integer array A</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">largest</span><span class="p">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">currlarge</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>               <span class="c1">// Position of largest element seen</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For each element</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">currlarge</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span>     <span class="c1">// if A[i] is larger</span>
+            <span class="n">currlarge</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>           <span class="c1">// remember its position</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">currlarge</span><span class="p">;</span>                <span class="c1">// Return largest position</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LargestTest_Largest_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return position of largest value in integer array A</span>
 <span class="k">def</span> <span class="nf">largest</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-    <span class="n">currlarge</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Position of largest element seen</span>
+    <span class="n">currlarge</span> <span class="o">=</span> <span class="mi">0</span>                 <span class="c1"># Position of largest element seen</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">A</span><span class="o">.</span><span class="n">length</span><span class="p">):</span>  <span class="c1"># For each element</span>
         <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">currlarge</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>   <span class="c1"># if A[i] is larger</span>
              <span class="n">currlarge</span> <span class="o">=</span> <span class="n">i</span>        <span class="c1"># remember its position</span>
     <span class="k">return</span> <span class="n">currlarge</span>              <span class="c1"># Return largest position</span>
 </pre></div>
 </div>
-<p>Here, the size of the problem is <code class="docutils literal notranslate"><span class="pre">A.length</span></code>,
+</div></div><script>$(function() {$( "#LargestTest_Largest_code" ).tabs();});</script><p>Here, the size of the problem is <code class="docutils literal notranslate"><span class="pre">A.length</span></code>,
 the number of integers stored in array <code class="docutils literal notranslate"><span class="pre">A</span></code>.
 The basic operation is to compare an integer’s value to that
 of the largest value seen so far.
@@ -344,16 +355,16 @@ This is called a <a class="reference internal" href="Glossary.html#term-constant
 <p>Consider the following code:</p>
 <div id="Anal_Analp1_code"><ul><li><a href="#Anal_Analp1_code_Java_Generic">Java</a></li><li><a href="#Anal_Analp1_code_Python">Python</a></li></ul><div id="Anal_Analp1_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
-  <span class="p">}</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;=</span><span class="n">n</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="Anal_Analp1_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-  <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="nb">sum</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#Anal_Analp1_code" ).tabs();});</script><p>What is the running time for this code fragment?
@@ -561,7 +572,7 @@ faster than the other.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

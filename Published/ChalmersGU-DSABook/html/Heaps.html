@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heaps-and-priority-queues', 'building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heaps-and-priority-queues', 'building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues', 'changing-the-priority-of-elements', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/HeapsIndCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/heapbuildProofCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="heaps-and-priority-queues-work-in-progress">
@@ -243,220 +243,186 @@ descendant of the other.</p>
 For example, the Heapsort uses the max heap,
 while the Replacement Selection algorithm used for external sorting
 uses a min heap.
-The examples in the rest of this section will use a max heap.</p>
+The examples in the rest of this section will sometimes use a min
+and sometimes a max heap.</p>
 <p>Be sure not to confuse the logical representation of a heap
 with its physical implementation by means of the array-based complete
 binary tree.
 The two are not synonymous because the logical view of the heap is
 actually a tree structure, while the typical physical implementation
 uses an array.</p>
-<p>Here is an implementation for max heaps.
+<p>Here is an implementation for min heaps.
 The class uses records that support the Comparable interface to
 provide flexibility.</p>
-<div id="MaxHeap_Maxheap_code"><ul><li><a href="#MaxHeap_Maxheap_code_Java_Generic">Java</a></li><li><a href="#MaxHeap_Maxheap_code_Python">Python</a></li></ul><div id="MaxHeap_Maxheap_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Max-heap implementation</span>
-<span class="kd">class</span> <span class="nc">MaxHeap</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">Comparable</span><span class="o">[]</span> <span class="n">Heap</span><span class="p">;</span> <span class="c1">// Pointer to the heap array</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>          <span class="c1">// Maximum size of the heap</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>             <span class="c1">// Number of things now in heap</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Min-heap implementation</span>
+<span class="kd">class</span> <span class="nc">MinHeap</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kd">implements</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">heap</span><span class="p">;</span>       <span class="c1">// The heap array</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">heapSize</span><span class="p">;</span>   <span class="c1">// Size of heap, and index of the next free slot</span>
 
-  <span class="c1">// Constructor supporting preloading of heap contents</span>
-  <span class="n">MaxHeap</span><span class="p">(</span><span class="n">Comparable</span><span class="o">[]</span> <span class="n">h</span><span class="p">,</span> <span class="kt">int</span> <span class="n">num</span><span class="p">,</span> <span class="kt">int</span> <span class="n">max</span><span class="p">)</span>
-  <span class="p">{</span> <span class="n">Heap</span> <span class="o">=</span> <span class="n">h</span><span class="p">;</span>  <span class="n">n</span> <span class="o">=</span> <span class="n">num</span><span class="p">;</span>  <span class="n">size</span> <span class="o">=</span> <span class="n">max</span><span class="p">;</span>  <span class="n">buildheap</span><span class="p">();</span> <span class="p">}</span>
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>               <span class="c1">// Minimum capacity of heap</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>        <span class="c1">// Must be smaller than 1/CapacityMultiplier</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>   <span class="c1">// Factor to grow/shrink the capacity</span>
 
-  <span class="c1">// Return current size of the heap</span>
-  <span class="kt">int</span> <span class="nf">heapsize</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span><span class="p">;</span> <span class="p">}</span>
-
-  <span class="c1">// Return true if pos a leaf position, false otherwise</span>
-  <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span>
-  <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">);</span> <span class="p">}</span>
-
-  <span class="c1">// Return position for left child of pos</span>
-  <span class="kt">int</span> <span class="nf">leftchild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Return position for right child of pos</span>
-  <span class="kt">int</span> <span class="nf">rightchild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Return position for parent</span>
-  <span class="kt">int</span> <span class="nf">parent</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Insert val into heap</span>
-  <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="kt">int</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Heap is full&quot;</span><span class="p">);</span>
-      <span class="k">return</span><span class="p">;</span>
+    <span class="c1">// Constructor supporting preloading of heap contents</span>
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="n">MinHeap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Comparable</span><span class="o">[</span><span class="n">MinCapacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">heapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">n</span><span class="o">++</span><span class="p">;</span>
-    <span class="n">Heap</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>  <span class="c1">// Start at end of heap</span>
-    <span class="c1">// Now sift up until curr&#39;s parent&#39;s key &gt; curr&#39;s key</span>
-    <span class="k">while</span> <span class="p">((</span><span class="n">curr</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span><span class="o">]</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">Heap</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">));</span>
-      <span class="n">curr</span> <span class="o">=</span> <span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">);</span>
+
+    <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
+        <span class="n">heapSize</span> <span class="o">=</span> <span class="n">heap</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+        <span class="n">buildHeap</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">heapSize</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span>
+            <span class="n">resizeHeap</span><span class="p">(</span><span class="n">MinCapacity</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 
-  <span class="c1">// Heapify contents of Heap</span>
-  <span class="kt">void</span> <span class="nf">buildheap</span><span class="p">()</span>
-    <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">n</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">&gt;=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="n">siftdown</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="p">}</span> <span class="p">}</span>
-
-  <span class="c1">// Put element in its correct place</span>
-  <span class="kt">void</span> <span class="nf">siftdown</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Illegal position</span>
-    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">isLeaf</span><span class="p">(</span><span class="n">pos</span><span class="p">))</span> <span class="p">{</span>
-      <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">leftchild</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
-      <span class="k">if</span> <span class="p">((</span><span class="n">j</span><span class="o">&lt;</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">j</span><span class="o">++</span><span class="p">;</span> <span class="c1">// j is now index of child with greater value</span>
-      <span class="p">}</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>
-      <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">Heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span>
-      <span class="n">pos</span> <span class="o">=</span> <span class="n">j</span><span class="p">;</span>  <span class="c1">// Move down</span>
+    <span class="c1">// Return true if there are no elements.</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">heapSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 
-  <span class="c1">// Remove and return maximum value</span>
-  <span class="n">Comparable</span> <span class="nf">removemax</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// Removing from empty heap</span>
-    <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">Heap</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">--</span><span class="n">n</span><span class="p">);</span> <span class="c1">// Swap maximum with last value</span>
-    <span class="n">siftdown</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>   <span class="c1">// Put new heap root val in correct place</span>
-    <span class="k">return</span> <span class="n">Heap</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
-  <span class="p">}</span>
-
-  <span class="c1">// Remove and return element at specified position</span>
-  <span class="n">Comparable</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Illegal heap position</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">pos</span> <span class="o">==</span> <span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="p">{</span> <span class="n">n</span><span class="o">--</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Last element, no work to be done</span>
-    <span class="k">else</span> <span class="p">{</span>
-      <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">Heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="o">--</span><span class="n">n</span><span class="p">);</span> <span class="c1">// Swap with last value</span>
-      <span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+    <span class="c1">// Return current size of the heap</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">heapSize</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="n">Heap</span><span class="o">[</span><span class="n">n</span><span class="o">]</span><span class="p">;</span>
-  <span class="p">}</span>
 
-  <span class="c1">// Modify the value at the given position</span>
-  <span class="kt">void</span> <span class="nf">modify</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">,</span> <span class="n">Comparable</span> <span class="n">newVal</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">||</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">))</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Illegal heap position</span>
-    <span class="n">Heap</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span> <span class="o">=</span> <span class="n">newVal</span><span class="p">;</span>
-    <span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="c1">// The value at pos has been changed, restore the heap property</span>
-  <span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// If it is a big value, push it up</span>
-    <span class="k">while</span> <span class="p">((</span><span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">Heap</span><span class="o">[</span><span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span><span class="o">]</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="p">{</span>
-      <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">Heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">));</span>
-      <span class="n">pos</span> <span class="o">=</span> <span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">getMin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">heapSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;getMin from empty heap&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">heap</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">siftdown</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span> <span class="c1">// If it is little, push down</span>
-  <span class="p">}</span>
+
+    <span class="c1">// Insert val into heap</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">heapSize</span> <span class="o">&gt;=</span> <span class="n">heap</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
+            <span class="n">resizeHeap</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="n">heap</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>  <span class="c1">// Start at end of heap.</span>
+        <span class="n">siftUp</span><span class="p">(</span><span class="n">heapSize</span><span class="p">);</span>       <span class="c1">// Put the new value in its correct place.</span>
+        <span class="n">heapSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Remove and return minimum value</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">removeMin</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">heapSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;removeMin from empty heap&quot;</span><span class="p">);</span>
+        <span class="n">heapSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="n">swap</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">heapSize</span><span class="p">);</span>  <span class="c1">// Swap the root with the current last value.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">heapSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> 
+            <span class="n">siftDown</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// Put the new heap root val in its correct place.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">heapSize</span> <span class="o">&lt;=</span> <span class="n">heap</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">MinLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeHeap</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">heap</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="n">E</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">heap</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">heap</span><span class="o">[</span><span class="n">heapSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// Remove the old root value, for garbage collection.</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Arrays</span><span class="p">.</span><span class="na">toString</span><span class="p">(</span><span class="n">heap</span><span class="p">).</span><span class="na">replace</span><span class="p">(</span><span class="s">&quot;null&quot;</span><span class="p">,</span> <span class="s">&quot;-&quot;</span><span class="p">)</span> <span class="o">+</span> <span class="n">heapSize</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">////////////////////////////////////////////////////////////////////////////////</span>
+    <span class="c1">// Private helper methods</span>
+
+    <span class="c1">// Check that the invariant holds.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariant</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">heapSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">left</span> <span class="o">=</span> <span class="n">getLeftChild</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">getRightChild</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="o">&amp;&amp;</span> <span class="n">lessThan</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;Parent (&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&quot;) is smaller than its left child: &quot;</span> <span class="o">+</span> <span class="n">heap</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &lt; &quot;</span> <span class="o">+</span> <span class="n">heap</span><span class="o">[</span><span class="n">left</span><span class="o">]</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="o">&amp;&amp;</span> <span class="n">lessThan</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span>
+                <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;Parent (&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s">&quot;) is smaller than its right child: &quot;</span> <span class="o">+</span> <span class="n">heap</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; &lt; &quot;</span> <span class="o">+</span> <span class="n">heap</span><span class="o">[</span><span class="n">right</span><span class="o">]</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeHeap</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+        <span class="n">E</span><span class="o">[]</span> <span class="n">newHeap</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Comparable</span><span class="o">[</span><span class="n">newCapacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">heapSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">newHeap</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">heap</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">heap</span> <span class="o">=</span> <span class="n">newHeap</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return true if pos a leaf position, false otherwise</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">heapSize</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the position for the left child of the given node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getLeftChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the position for the right child of the given node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getRightChild</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the position for the parent. Returns -1 if we&#39;re already at the root.</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getParent</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Swap the values in two positions</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos1</span><span class="p">,</span> <span class="kt">int</span> <span class="n">pos2</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">E</span> <span class="n">tmp</span> <span class="o">=</span> <span class="n">heap</span><span class="o">[</span><span class="n">pos1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">heap</span><span class="o">[</span><span class="n">pos1</span><span class="o">]</span> <span class="o">=</span> <span class="n">heap</span><span class="o">[</span><span class="n">pos2</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">heap</span><span class="o">[</span><span class="n">pos2</span><span class="o">]</span> <span class="o">=</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Heapify the contents of an array</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">buildHeap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">heapSize</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">pos</span><span class="o">--</span><span class="p">)</span>
+            <span class="n">siftDown</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Sift a value down the tree, return its new position.</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">siftDown</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">isLeaf</span><span class="p">(</span><span class="n">pos</span><span class="p">))</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">child</span> <span class="o">=</span> <span class="n">getLeftChild</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+            <span class="kt">int</span> <span class="n">right</span> <span class="o">=</span> <span class="n">child</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>   <span class="c1">// or: getRightChild(pos)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">right</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="o">&amp;&amp;</span> <span class="n">lessThan</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">child</span><span class="p">))</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>   <span class="c1">// &#39;child&#39; is now the index of the child with smaller value</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">lessThan</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">pos</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">child</span><span class="p">);</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">child</span><span class="p">;</span>   <span class="c1">// Move down one level in the tree.</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Sift a value up the tree, return its new position.</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">siftUp</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">getParent</span><span class="p">(</span><span class="n">pos</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">lessThan</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">parent</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+            <span class="n">swap</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">parent</span><span class="p">);</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">parent</span><span class="p">;</span>   <span class="c1">// Move up one level in the tree.</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Compare the values in the given positions.</span>
+    <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">lessThan</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">heap</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">heap</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="MaxHeap_Maxheap_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Max-heap implementation</span>
-<span class="k">class</span> <span class="nc">MaxHeap</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="nb">max</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heap</span> <span class="o">=</span> <span class="n">h</span>       <span class="c1"># Pointer to the heap array</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">=</span> <span class="n">num</span>        <span class="c1"># Number of things now in heap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="nb">max</span>     <span class="c1"># Maximum size of the heap</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">buildheap</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">heapsize</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
-
-    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span> <span class="o">&lt;=</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
-
-    <span class="k">def</span> <span class="nf">leftchild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">rightchild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span>
-
-    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
-
-    <span class="k">def</span> <span class="nf">insert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">&gt;=</span> <span class="n">size</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Heap is full&quot;</span><span class="p">)</span>
-        <span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">key</span>  <span class="c1"># Start at end of heap</span>
-        <span class="c1"># Now sift up until curr&#39;s parent&#39;s key &gt; curr&#39;s key</span>
-        <span class="k">while</span> <span class="n">curr</span> <span class="o">!=</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">)]:</span>
-            <span class="n">swap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">,</span> <span class="n">curr</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">))</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">curr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">buildheap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">siftdown</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">siftdown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">n</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Illegal position&quot;</span><span class="p">)</span>
-        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-            <span class="n">j</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">leftchild</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">j</span><span class="o">&lt;</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-                <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># j is now index of child with greater value</span>
-            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
-                <span class="k">return</span>
-            <span class="n">swap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="n">j</span>  <span class="c1"># Move down</span>
-
-    <span class="k">def</span> <span class="nf">removemax</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Removing from empty heap&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">swap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Swap maximum with last value</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">siftdown</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>            <span class="c1"># Put new heap root val in correct place</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Illegal heap position&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">n</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">!=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="n">swap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>  <span class="c1"># Swap with last value</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">modify</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">newVal</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;Illegal heap position&quot;</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">=</span> <span class="n">newVal</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
-        <span class="c1"># If it is a big value, push it up</span>
-        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">)]:</span>
-            <span class="n">swap</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">heap</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">))</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">parent</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">siftdown</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>  <span class="c1"># If it is little, push down</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#MaxHeap_Maxheap_code" ).tabs();});</script><p>This class definition makes two concessions to the fact that an
+<blockquote>
+<div><p>This class definition makes two concessions to the fact that an
 array-based implementation is used.
 First, heap nodes are indicated by their logical position within the
 heap rather than by a pointer to the node.
 In practice, the logical heap position corresponds to the identically
 numbered physical position in the array.
-Second, the constructor takes as input a pointer to the array to be
-used.
+Second, the constructor takes as input a pointer to the array to be used.
 This approach provides the greatest flexibility for using the heap
 because all data values can be loaded into the array directly
 by the client.
@@ -466,15 +432,17 @@ The constructor also takes an integer parameter indicating the initial
 size of the heap (based on the number of elements initially loaded
 into the array) and a second integer parameter indicating the maximum
 size allowed for the heap (the size of the array).</p>
-<p>Method <code class="docutils literal notranslate"><span class="pre">heapsize</span></code> returns the current size of the heap.
-<code class="docutils literal notranslate"><span class="pre">H.isLeaf(pos)</span></code> returns TRUE if position
-<code class="docutils literal notranslate"><span class="pre">pos</span></code> is a leaf in heap <code class="docutils literal notranslate"><span class="pre">H</span></code>, and FALSE otherwise.
-Members <code class="docutils literal notranslate"><span class="pre">leftchild</span></code>, <code class="docutils literal notranslate"><span class="pre">rightchild</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">parent</span></code> return the position (actually, the array index)
+</div></blockquote>
+<p>The class contains some private auxiliary methods that are use when adding and
+removing elements from the heap:
+<code class="docutils literal notranslate"><span class="pre">isLeaf(pos)</span></code> returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if position
+<code class="docutils literal notranslate"><span class="pre">pos</span></code> is a leaf in the tree, and <code class="docutils literal notranslate"><span class="pre">false</span></code> otherwise.
+Members <code class="docutils literal notranslate"><span class="pre">getLeftChild</span></code>, <code class="docutils literal notranslate"><span class="pre">getRightChild</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">getParent</span></code> return the position (actually, the array index)
 for the left child, right child, and parent of the position passed,
 respectively.</p>
 <p>One way to build a heap is to insert the elements one at a time.
-Method <code class="docutils literal notranslate"><span class="pre">insert</span></code> will insert a new element <span class="math notranslate nohighlight">\(V\)</span> into
+Method <code class="docutils literal notranslate"><span class="pre">add</span></code> will insert a new element <span class="math notranslate nohighlight">\(V\)</span> into
 the heap.</p>
 <div id="heapinsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="heapinsertCON" data-long-name="Heap insert Slideshow" data-exer-id="" alt="Heap insert Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -500,9 +468,9 @@ However, this approach is not likely to work because the heap must
 maintain the shape of a complete binary tree.
 Equivalently, if the heap takes up the first
 <span class="math notranslate nohighlight">\(n\)</span> positions of its array prior to the call to
-<code class="docutils literal notranslate"><span class="pre">insert</span></code>,
+<code class="docutils literal notranslate"><span class="pre">add</span></code>,
 it must take up the first <span class="math notranslate nohighlight">\(n+1\)</span> positions after.
-To accomplish this, <code class="docutils literal notranslate"><span class="pre">insert</span></code> first places <span class="math notranslate nohighlight">\(V\)</span> at
+To accomplish this, <code class="docutils literal notranslate"><span class="pre">add</span></code> first places <span class="math notranslate nohighlight">\(V\)</span> at
 position <span class="math notranslate nohighlight">\(n\)</span> of the array.
 Of course, <span class="math notranslate nohighlight">\(V\)</span> is unlikely to be in the correct position.
 To move <span class="math notranslate nohighlight">\(V\)</span> to the right place, it is compared to its
@@ -526,7 +494,7 @@ Starting at 1, we can double only <span class="math notranslate nohighlight">\(\
 value of <span class="math notranslate nohighlight">\(n\)</span>.
 To be precise, the height of a heap with <span class="math notranslate nohighlight">\(n\)</span> nodes is
 <span class="math notranslate nohighlight">\(\lceil \log n + 1 \rceil\)</span>.</p>
-<p>Each call to <code class="docutils literal notranslate"><span class="pre">insert</span></code> takes <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time in the
+<p>Each call to <code class="docutils literal notranslate"><span class="pre">add</span></code> takes <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time in the
 worst case, because the value being inserted can move at most the
 distance from the bottom of the tree to the top of the tree.
 Thus, to insert <span class="math notranslate nohighlight">\(n\)</span> values into the heap, if we insert them
@@ -617,7 +585,7 @@ In this case, we simply continue the process of “pushing down”
 <span class="math notranslate nohighlight">\(R\)</span> until it reaches a level where it is greater than its
 children, or is a leaf node.
 This process is implemented by the private method
-<code class="docutils literal notranslate"><span class="pre">siftdown</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">siftDown</span></code>.</p>
 <p>This approach assumes that the subtrees are already heaps,
 suggesting that a complete algorithm can be obtained by visiting
 the nodes in some order such that the children of a node are
@@ -670,8 +638,8 @@ first internal node.</p>
   </div>
 </div>
 <p>What is the cost of <code class="docutils literal notranslate"><span class="pre">buildHeap</span></code>?
-Clearly it is the sum of the costs for the calls to <code class="docutils literal notranslate"><span class="pre">siftdown</span></code>.
-Each <code class="docutils literal notranslate"><span class="pre">siftdown</span></code> operation can cost at most the number of
+Clearly it is the sum of the costs for the calls to <code class="docutils literal notranslate"><span class="pre">siftDown</span></code>.
+Each <code class="docutils literal notranslate"><span class="pre">siftDown</span></code> operation can cost at most the number of
 levels it takes for the node being sifted to reach the bottom of the
 tree.
 In any complete tree, approximately half of the nodes are leaves
@@ -775,7 +743,8 @@ cases.</p>
  </div>
 </div>
 <p></p>
-<p>For some applications, objects might get their priority modified.
+<blockquote>
+<div><p>For some applications, objects might get their priority modified.
 One solution in this case is to remove the object and reinsert it.
 To do this, the application needs to know the position of the object
 in the heap.
@@ -787,6 +756,7 @@ removed, that value might be either too small or too big for its new
 position.
 So we use a utility method called <code class="docutils literal notranslate"><span class="pre">update</span></code> in both the <code class="docutils literal notranslate"><span class="pre">remove</span></code>
 and <code class="docutils literal notranslate"><span class="pre">modify</span></code> methods to handle this process.</p>
+</div></blockquote>
 </div>
 <div class="section" id="priority-queues">
 <h2>8.<span class="section-number">3.4. </span>Priority Queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
@@ -794,28 +764,33 @@ and <code class="docutils literal notranslate"><span class="pre">modify</span></
 at the beginning of this section.
 Jobs can be added to the heap (using their priority value as the
 ordering key) when needed.
-Method <code class="docutils literal notranslate"><span class="pre">removemax</span></code> can be called whenever a new job is to be
+Method <code class="docutils literal notranslate"><span class="pre">removeMin</span></code> can be called whenever a new job is to be
 executed.</p>
+<p>Priority queues can be helpful for solving graph problems such as
+<a class="reference internal" href="GraphShortest.html#graphshortest"><span class="std std-ref">single-source shortest paths</span></a>
+and
+<a class="reference internal" href="MCST.html#mcst"><span class="std std-ref">minimal-cost spanning tree</span></a>.</p>
+<p>For a story about Priority Queues and dragons, see <a href="http://computationaltales.blogspot.com/2011/04/stacks-queues-priority-queues-and.html" target="_blank">Computational Fairy Tales: Stacks, Queues, Priority Queues, and the Prince's Complaint Line</a>.</p>
+<div class="section" id="changing-the-priority-of-elements">
+<h3>8.<span class="section-number">3.4.1. </span>Changing the priority of elements<a class="headerlink" href="#changing-the-priority-of-elements" title="Permalink to this headline">¶</a></h3>
 <p>Some applications of priority queues require the ability to change the
 priority of an object already stored in the queue.
 This might require that the object’s position in the heap representation
 be updated.
-Unfortunately, a max heap is not efficient when searching for an
-arbitrary value; it is only good for finding the maximum value.
+Unfortunately, a min heap is not efficient when searching for an
+arbitrary value; it is only good for finding the minimum value.
 However, if we already know the index for an object within the heap,
 it is a simple matter to update its priority (including changing its
-position to maintain the heap property) or remove it.
-The <code class="docutils literal notranslate"><span class="pre">remove</span></code> method takes as input the position of the
-node to be removed from the heap.
-A typical implementation for priority queues requiring updating of
+position to maintain the heap property) or remove it.</p>
+<p>A typical implementation for priority queues requiring updating of
 priorities will need to use an auxiliary data structure that supports
 efficient search for objects (such as a BST).
 Records in the auxiliary data structure will store
-the object’s heap index, so that the object’s priority can be updated.
-Priority queues can be helpful for solving graph problems such as
-<a class="reference internal" href="GraphShortest.html#graphshortest"><span class="std std-ref">single-source shortest paths</span></a>
-and
-<a class="reference internal" href="MCST.html#mcst"><span class="std std-ref">minimal-cost spanning tree</span></a>.</p>
+the object’s heap index, so that the object’s priority can be updated.</p>
+</div>
+</div>
+<div class="section" id="practice-questions">
+<h2>8.<span class="section-number">3.5. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h2>
 <div
     id="HeapSumm"
     class="embedContainer"
@@ -838,7 +813,6 @@ and
     <div id="HeapSumm_iframe"></div>
   </div>
 </div>
-<p>For a story about Priority Queues and dragons, see <a href="http://computationaltales.blogspot.com/2011/04/stacks-queues-priority-queues-and.html" target="_blank">Computational Fairy Tales: Stacks, Queues, Priority Queues, and the Prince's Complaint Line</a>.</p>
 <script type="text/javascript" src="../../../DataStructures/binaryheap.js"></script>
 <script type="text/javascript" src="../../../AV/Binary/heapinsertCON.js"></script>
 <script type="text/javascript" src="../../../AV/Binary/HeapBldChoiceCON.js"></script>
@@ -874,7 +848,7 @@ and
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -54,7 +54,7 @@ Here is a sample queue ADT.
 This section presents two implementations for queues:
 the array-based queue and the linked queue.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: QueueADT
 
 
@@ -147,7 +147,7 @@ defined to be toward the higher-numbered positions.
 Thus, ``enqueue`` increments the rear pointer (modulus the size of the internal array),
 and ``dequeue`` increments the front pointer.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueInit
 
 Implemening the member functions is mostly straightforward.
@@ -158,7 +158,7 @@ Enqueueing an element
 When enqueueing, we increase the ``rear`` pointer
 (modulo the size of the internal array to make it circular).
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueEnqueue
 
 
@@ -168,7 +168,7 @@ Dequeueing an element
 When dequeueing, we increase the ``front`` pointer
 (modulo the size of the internal array).
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueDequeue
 
 Resizing the internal array
@@ -182,7 +182,7 @@ Instead we reset the ``front`` and ``rear`` pointers so that we copy the first
 queue element to position 0 of the new array, the second to position 1, etc.
 Apart from that, the implementation is similar to the one for lists and queues.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueueEnqueue
 
 
@@ -212,7 +212,7 @@ Array-based Queues, Full Implementation
 
 Here is an array-based queue implementation.
 
-.. codeinclude:: ChalmersGU/DynamicArrayQueue
+.. codeinclude:: ChalmersGU/API/DynamicArrayQueue
    :tag: DynamicArrayQueue
 
 .. odsascript:: AV/List/aqueueFirstCON.js

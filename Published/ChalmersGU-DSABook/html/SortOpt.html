@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning-optional">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-for-simple-sorting-algorithms', 'insertion-sort', 'bubble-sort', 'selection-sort'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="optimizing-sort-algorithms-with-code-tuning-optional">
 <h1>2.<span class="section-number">9. </span>Optimizing Sort Algorithms with Code Tuning (optional)<a class="headerlink" href="#optimizing-sort-algorithms-with-code-tuning-optional" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="code-tuning-for-simple-sorting-algorithms">
 <h2>2.<span class="section-number">9.1. </span>Code Tuning for Simple Sorting Algorithms<a class="headerlink" href="#code-tuning-for-simple-sorting-algorithms" title="Permalink to this headline">¶</a></h2>
@@ -202,30 +202,32 @@ on how much movement there is among the records.
 If the list is already nearly sorted, then there will be few swaps
 anyway.
 Here is an implementation for Insertion Sort using this optimization.</p>
-<div id="Insertionsort_InsertionOpt_code"><ul><li><a href="#Insertionsort_InsertionOpt_code_Java_Generic">Java</a></li><li><a href="#Insertionsort_InsertionOpt_code_Python">Python</a></li></ul><div id="Insertionsort_InsertionOpt_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Instead of swapping, &quot;shift&quot; the values down the array</span>
-<span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">insertionsortshift</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Insert i&#39;th record</span>
-    <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">j</span><span class="o">=</span><span class="n">i</span><span class="p">;</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+<div id="InsertionSort_InsertionOpt_code"><ul><li><a href="#InsertionSort_InsertionOpt_code_Java_Generic">Java</a></li><li><a href="#InsertionSort_InsertionOpt_code_Python">Python</a></li></ul><div id="InsertionSort_InsertionOpt_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Instead of swapping, &quot;shift&quot; the values down the array</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">insertionSortShift</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Insert i&#39;th record.</span>
+        <span class="n">T</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">temp</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">j</span><span class="o">--</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">A</span><span class="o">[</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">;</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Insertionsort_InsertionOpt_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insertionsortshift</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span> <span class="c1"># Insert i&#39;th record</span>
-    <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-    <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-      <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
-    <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+</div><div id="InsertionSort_InsertionOpt_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">insertionSortShift</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span> <span class="c1"># Insert i&#39;th record</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">temp</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Insertionsort_InsertionOpt_code" ).tabs();});</script><p>Now, you can test whether you understand how this works.</p>
+</div></div><script>$(function() {$( "#InsertionSort_InsertionOpt_code" ).tabs();});</script><p>Now, you can test whether you understand how this works.</p>
 <div
     id="insertionSortWithoutSwapPRO"
     class="embedContainer"
@@ -313,35 +315,35 @@ no swaps could happen to values at positions greater than <span class="math notr
 Thus, we never need to check higher-positioned values again, which
 could save many iterations even if there are a few swaps lower down.
 Here is code to implement this approach.</p>
-<div id="Bubblesort_BubblesortCheck_code"><ul><li><a href="#Bubblesort_BubblesortCheck_code_Java_Generic">Java</a></li><li><a href="#Bubblesort_BubblesortCheck_code_Python">Python</a></li></ul><div id="Bubblesort_BubblesortCheck_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">bubblecheckswap</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">newn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="cm">/* if this pair is out of order */</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
-        <span class="n">newn</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
-      <span class="p">}</span>
+<div id="BubbleSort_BubbleSortCheck_code"><ul><li><a href="#BubbleSort_BubbleSortCheck_code_Java_Generic">Java</a></li><li><a href="#BubbleSort_BubbleSortCheck_code_Python">Python</a></li></ul><div id="BubbleSort_BubbleSortCheck_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">bubbleSortOpt</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">newn</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// If this pair is out of order.</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">Util</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+                <span class="n">newn</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">newn</span><span class="p">;</span>
     <span class="p">}</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">newn</span><span class="p">;</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Bubblesort_BubblesortCheck_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubblecheckswap</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
-  <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-  <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-    <span class="n">newn</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-      <span class="c1"># if this pair is out of order</span>
-      <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
-        <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
-        <span class="n">newn</span> <span class="o">=</span> <span class="n">i</span>
-    <span class="n">n</span> <span class="o">=</span> <span class="n">newn</span>
+</div><div id="BubbleSort_BubbleSortCheck_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">bubbleCheckSwap</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">newn</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="c1"># if this pair is out of order</span>
+            <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="n">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+                <span class="n">newn</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="n">newn</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Bubblesort_BubblesortCheck_code" ).tabs();});</script><p>The problem with this idea is that a considerable amount of effort
+</div></div><script>$(function() {$( "#BubbleSort_BubbleSortCheck_code" ).tabs();});</script><p>The problem with this idea is that a considerable amount of effort
 (relatively speaking) is required to track the position for the last
 swap within the inner loop.
 This tracking process has a cost, and that cost is worthwhile only if
@@ -394,7 +396,7 @@ Evidently, the cost to swap is high for Python.</p>
 to <code class="docutils literal notranslate"><span class="pre">swap</span></code> even if the current record is already in its correct
 location.
 For example, if the record with the largest value is already in the
-rightmost array position, then <code class="docutils literal notranslate"><span class="pre">selectionsort</span></code> will still call <code class="docutils literal notranslate"><span class="pre">swap</span></code>
+rightmost array position, then <code class="docutils literal notranslate"><span class="pre">selectionSort</span></code> will still call <code class="docutils literal notranslate"><span class="pre">swap</span></code>
 with the two position parameters being the same.
 The net effect is that the work done by <code class="docutils literal notranslate"><span class="pre">swap</span></code> will not change
 anything in the array, and this is a waste of time.
@@ -464,7 +466,7 @@ more than double over those shown in the table.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

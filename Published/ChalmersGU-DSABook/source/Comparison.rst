@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Comparison";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables, Comparators and Key-Value Pairs";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -155,7 +155,7 @@ records and extracting keys is for various map
 implementations and sorting algorithms.
 Here is a simple class for representing key-value pairs:
 
-.. codeinclude:: ChalmersGU/KVPair
+.. codeinclude:: ChalmersGU/API/KVPair
    :tag: KVPair
 
 Using this we can easily implement a **Map** from an underlying **List**,
@@ -179,8 +179,8 @@ To illustrate, here is an example of
 work on an array that stores records that support the ``Comparable``
 interface:
 
-.. codeinclude:: Sorting/Insertionsort
-   :tag: Insertionsort
+.. codeinclude:: ChalmersGU/Sorting/InsertionSort
+   :tag: InsertionSort
 
 Review questions
 ------------------

@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMultiple";ODSA.SETTINGS.MODULE_LONG_NAME = "Multiple Parameters (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="multiple-parameters-work-in-progress">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMultiple";ODSA.SETTINGS.MODULE_LONG_NAME = "Multiple Parameters (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="multiple-parameters-work-in-progress">
 <h1>3.<span class="section-number">11. </span>Multiple Parameters (WORK IN PROGRESS)<a class="headerlink" href="#multiple-parameters-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <p>Sometimes the proper analysis for an algorithm requires
 multiple parameters to describe the cost.
@@ -181,19 +181,19 @@ Assume that the picture is a rectangle with <span class="math notranslate nohigh
 A pseudocode algorithm to solve the problem follows.</p>
 <blockquote>
 <div><div id="Anal_c3p16_code"><ul><li><a href="#Anal_c3p16_code_Java_Generic">Java</a></li><li><a href="#Anal_c3p16_code_Python">Python</a></li></ul><div id="Anal_c3p16_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">C</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// Initialize count</span>
-  <span class="n">count</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">count</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">P</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// Look at all of the pixels</span>
-  <span class="n">count</span><span class="o">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">]++</span><span class="p">;</span> <span class="c1">// Increment a pixel value count</span>
+    <span class="n">count</span><span class="o">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">]++</span><span class="p">;</span>  <span class="c1">// Increment a pixel value count</span>
 <span class="p">}</span>
-<span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>          <span class="c1">// Sort pixel value counts</span>
+<span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">);</span>            <span class="c1">// Sort pixel value counts</span>
 </pre></div>
 </div>
-</div><div id="Anal_c3p16_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>        <span class="c1"># Initialize count</span>
-  <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>      <span class="c1"># Look at all of the pixels</span>
-    <span class="n">count</span><span class="p">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Increment a pixel value count</span>
-  <span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>             <span class="c1"># Sort pixel value counts</span>
+</div><div id="Anal_c3p16_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>            <span class="c1"># Initialize count</span>
+    <span class="n">count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="p">):</span>        <span class="c1"># Look at all of the pixels</span>
+        <span class="n">count</span><span class="p">[</span><span class="n">value</span><span class="p">(</span><span class="n">i</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Increment a pixel value count</span>
+    <span class="n">sort</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>               <span class="c1"># Sort pixel value counts</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#Anal_c3p16_code" ).tabs();});</script></div></blockquote>
@@ -258,7 +258,7 @@ Thus, neither variable should be ignored.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -64,8 +64,15 @@ following operations:
 In this chapter, we will see how to implement a priority queue so that
 both adding and removing the minimum take :math:`O(\log n)` time.
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: PriorityQueueADT
+
+Note that this API assumes that the priority queue orders the elements in *ascending* order.
+There is also the possibility of ordering in descending order --
+that kind of queue is called a *maximum priority queue*.
+If you have a minimum priority queue, it's straightforward to turn it into
+a maximum priority queue.
+
 
 .. raw:: html
 
@@ -89,7 +96,7 @@ sort a list of items:
 
 Here is an implementation of this algorithm in code:
 
-.. codeinclude:: Sorting/PQsort
+.. codeinclude:: ChalmersGU/Sorting/PQsort
    :tag: PQsort
 
 What is the time complexity of this algorithm? Well, for an input list

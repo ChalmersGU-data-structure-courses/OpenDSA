@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="linked-queues">
 <h1>4.<span class="section-number">13. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -190,18 +190,7 @@ in the queue, to be able to add new elements efficiently.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedQueue_LinkedQueueInit_code"><ul><li><a href="#LinkedQueue_LinkedQueueInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">front</span>      <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to front queue node</span>
-    <span class="kd">private</span> <span class="n">rear</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to rear queue node</span>
-    <span class="kd">private</span> <span class="n">queueSize</span>  <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of queue</span>
-
-    <span class="n">LinkedQueue</span><span class="p">()</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div><div id="LinkedQueue_LinkedQueueInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="LinkedQueue_LinkedQueueInit_code"><ul><li><a href="#LinkedQueue_LinkedQueueInit_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">front</span><span class="p">;</span>      <span class="c1">// Pointer to front queue node</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">rear</span><span class="p">;</span>       <span class="c1">// Pointer to rear queue node</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>   <span class="c1">// Size of queue</span>
@@ -243,17 +232,7 @@ in the queue, to be able to add new elements efficiently.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedQueue_LinkedQueueEnqueue_code"><ul><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueEnqueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="n">newRear</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
-            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="k">else</span>
-            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="n">queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
-</pre></div>
-</div>
-</div><div id="LinkedQueue_LinkedQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div id="LinkedQueue_LinkedQueueEnqueue_code"><ul><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
@@ -322,18 +301,7 @@ in the queue, to be able to add new elements efficiently.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="LinkedQueue_LinkedQueueDequeue_code"><ul><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueDequeue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: queueSize &gt; 0</span>
-        <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">front</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
-        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
-            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
-</pre></div>
-</div>
-</div><div id="LinkedQueue_LinkedQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
+<div id="LinkedQueue_LinkedQueueDequeue_code"><ul><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
         <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
         <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
@@ -385,54 +353,7 @@ in the queue, to be able to add new elements efficiently.</p>
 <div class="section" id="linked-queue-full-implementation">
 <h2>4.<span class="section-number">13.4. </span>Linked Queue, Full Implementation<a class="headerlink" href="#linked-queue-full-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full implementation for linked queues.</p>
-<div id="LinkedQueue_LinkedQueue_code"><ul><li><a href="#LinkedQueue_LinkedQueue_code_Pseudo">Pseudo-Code</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueue_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">LinkedQueue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">Queue</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">front</span>      <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to front queue node</span>
-    <span class="kd">private</span> <span class="n">rear</span>       <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to rear queue node</span>
-    <span class="kd">private</span> <span class="n">queueSize</span>  <span class="p">:</span> <span class="kt">int</span>    <span class="c1">// Size of queue</span>
-
-    <span class="n">LinkedQueue</span><span class="p">()</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span>
-        <span class="n">elem</span> <span class="p">:</span> <span class="n">E</span>      <span class="c1">// Value for this node</span>
-        <span class="n">next</span> <span class="p">:</span> <span class="n">Node</span>   <span class="c1">// Pointer to next node in list</span>
-
-    <span class="n">enqueue</span><span class="p">(</span><span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="n">newRear</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
-            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="k">else</span>
-            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span>
-        <span class="n">queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="n">peek</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: queueSize &gt; 0</span>
-        <span class="k">return</span> <span class="n">front</span><span class="p">.</span><span class="na">elem</span>
-
-    <span class="nf">dequeue</span><span class="p">()</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: queueSize &gt; 0</span>
-        <span class="n">removed</span> <span class="p">:</span> <span class="n">Node</span> <span class="o">=</span> <span class="n">front</span>
-        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span>
-        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="n">queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="k">if</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
-            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span>
-        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span>
-
-    <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
-        <span class="k">return</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="n">size</span><span class="p">()</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">queueSize</span>
-
-    <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">the</span> <span class="n">queue</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">the</span> <span class="n">frontmost</span> <span class="n">element</span>
-</pre></div>
-</div>
-</div><div id="LinkedQueue_LinkedQueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="LinkedQueue_LinkedQueue_code"><ul><li><a href="#LinkedQueue_LinkedQueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">front</span><span class="p">;</span>      <span class="c1">// Pointer to front queue node</span>
     <span class="kd">private</span> <span class="n">Node</span> <span class="n">rear</span><span class="p">;</span>       <span class="c1">// Pointer to rear queue node</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>   <span class="c1">// Size of queue</span>
@@ -622,7 +543,7 @@ unless items are always transferred directly from one queue to the other.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

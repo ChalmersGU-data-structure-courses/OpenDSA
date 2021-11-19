@@ -162,22 +162,22 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="static-array-based-lists">
 <h1>4.<span class="section-number">3. </span>Static Array-Based Lists<a class="headerlink" href="#static-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>First we give a static implementation for array-based lists,
 named <strong>StaticArrayList</strong>.
 This inherits from the <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">List ADT</span></a>,
-and so must implement all of the member functions of <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p>
-<p>Unlike normal arrays, lists can change size: we can add elements to and remove from them.
+and must therefore implement all of the member functions of <code class="docutils literal notranslate"><span class="pre">List</span></code>.</p>
+<p>Unlike normal arrays, lists can change in size: we can add elements to and remove from them.
 How can this be implemented?
 Well, what we <em>don’t</em> want to do is to create a completely new array every time elements
 are added or removed. So instead we will use an underlying array which is larger than we need.</p>
 <div class="section" id="internal-variables">
 <h2>4.<span class="section-number">3.1. </span>Internal variables<a class="headerlink" href="#internal-variables" title="Permalink to this headline">¶</a></h2>
-<p>Therefore we will need two internal variables:
-the underlying array, and a counter telling how much of the array that is actually used.
-When we create a new array-list we have to tell what the largest possible capacity is.
+<p>Because of that will need two internal variables:
+the underlying array, and a counter telling how much of the array is actually used.
+When we create a new array-list we have to decide the largest possible capacity.
 Then the underlying array is initialised, and the counter is set to 0 because there are
 no elements yet.</p>
 <div id="StaticArrayList-Vars-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="StaticArrayList-Vars-CON" data-long-name="Static Array-based List Variables Slideshow" data-exer-id="" alt="Static Array-based List Variables Slideshow" tabIndex="-1">
@@ -200,16 +200,7 @@ no elements yet.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div id="StaticArrayList_StaticArrayListInit_code"><ul><li><a href="#StaticArrayList_StaticArrayListInit_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayListInit_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListInit_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListInit_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">StaticArrayList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the list elements</span>
-    <span class="kd">private</span> <span class="n">listSize</span>      <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of list</span>
-
-    <span class="n">StaticArrayList</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">capacity</span>
-        <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div><div id="StaticArrayList_StaticArrayListInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">StaticArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="StaticArrayList_StaticArrayListInit_code"><ul><li><a href="#StaticArrayList_StaticArrayListInit_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListInit_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">StaticArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the list elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>        <span class="c1">// Size of list</span>
 
@@ -250,18 +241,7 @@ no elements yet.</p>
 <p>As you can see below, there are no loops in the methods
 <code class="docutils literal notranslate"><span class="pre">get</span></code> and <code class="docutils literal notranslate"><span class="pre">set</span></code>, which means that both
 require <span class="math notranslate nohighlight">\(\Theta(1)\)</span> time.</p>
-<div id="StaticArrayList_StaticArrayListGetSet_code"><ul><li><a href="#StaticArrayList_StaticArrayListGetSet_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayListGetSet_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListGetSet_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListGetSet_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-
-    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="n">old</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">return</span> <span class="n">old</span>
-</pre></div>
-</div>
-</div><div id="StaticArrayList_StaticArrayListGetSet_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<div id="StaticArrayList_StaticArrayListGetSet_code"><ul><li><a href="#StaticArrayList_StaticArrayListGetSet_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListGetSet_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListGetSet_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
         <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
     <span class="p">}</span>
@@ -332,16 +312,7 @@ all existing elements in the array by one position toward the tail.</p>
 <span class="math notranslate nohighlight">\(n - i - 1\)</span> elements must shift toward the tail to leave room for the new element.
 In the worst case, adding elements requires moving all <span class="math notranslate nohighlight">\(n\)</span> elements,
 which is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
-<div id="StaticArrayList_StaticArrayListAdd_code"><ul><li><a href="#StaticArrayList_StaticArrayListAdd_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayListAdd_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListAdd_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListAdd_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="c1">// Precondition: listSize &lt; size of internalArray</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-        <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-            <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div><div id="StaticArrayList_StaticArrayListAdd_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+<div id="StaticArrayList_StaticArrayListAdd_code"><ul><li><a href="#StaticArrayList_StaticArrayListAdd_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListAdd_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListAdd_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">listSize</span> <span class="o">&lt;</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list capacity exceeded&quot;</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">listSize</span><span class="p">))</span>         <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
         <span class="n">listSize</span><span class="o">++</span><span class="p">;</span>
@@ -389,7 +360,7 @@ which is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
 <div class="section" id="removing-elements">
 <h2>4.<span class="section-number">3.4. </span>Removing elements<a class="headerlink" href="#removing-elements" title="Permalink to this headline">¶</a></h2>
 <p>Removing an element from the head of the list is
-similar to adding in that all remaining elements must shift.
+similar to adding in the sense that all remaining elements must shift.
 But now we have to shift toward the head to fill in the gap,
 instead of toward the tail.
 If we want to remove the element at position <span class="math notranslate nohighlight">\(i\)</span>, then
@@ -414,17 +385,7 @@ following slideshow.</p>
 <p></p>
 <p>In the worst case, insertion or removal each requires moving all
 <span class="math notranslate nohighlight">\(n\)</span> elements, which is <span class="math notranslate nohighlight">\(\Theta(n)\)</span>.</p>
-<div id="StaticArrayList_StaticArrayListRemove_code"><ul><li><a href="#StaticArrayList_StaticArrayListRemove_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayListRemove_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListRemove_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListRemove_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="n">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
-            <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
-        <span class="n">listSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">listSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">return</span> <span class="n">x</span>
-</pre></div>
-</div>
-</div><div id="StaticArrayList_StaticArrayListRemove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+<div id="StaticArrayList_StaticArrayListRemove_code"><ul><li><a href="#StaticArrayList_StaticArrayListRemove_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayListRemove_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayListRemove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">remove</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">i</span> <span class="o">&amp;&amp;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">IndexOutOfBoundsException</span><span class="p">(</span><span class="s">&quot;list index out of range&quot;</span><span class="p">);</span>
         <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">listSize</span><span class="p">;</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span>
@@ -499,52 +460,7 @@ following slideshow.</p>
 <div class="section" id="static-array-based-list-full-code">
 <h2>4.<span class="section-number">3.6. </span>Static Array-based List: Full code<a class="headerlink" href="#static-array-based-list-full-code" title="Permalink to this headline">¶</a></h2>
 <p>Finally, here is the full source code for the class <code class="docutils literal notranslate"><span class="pre">StaticArrayList</span></code>.</p>
-<div id="StaticArrayList_StaticArrayList_code"><ul><li><a href="#StaticArrayList_StaticArrayList_code_Pseudo">Pseudo-Code</a></li><li><a href="#StaticArrayList_StaticArrayList_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayList_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayList_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nf">StaticArrayList</span><span class="p">(</span><span class="n">E</span><span class="p">)</span> <span class="kd">implements</span> <span class="nf">List</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="kd">private</span> <span class="n">internalArray</span> <span class="p">:</span> <span class="n">E</span><span class="o">[]</span>   <span class="c1">// Internal array containing the list elements</span>
-    <span class="kd">private</span> <span class="n">listSize</span>      <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Size of list</span>
-
-    <span class="n">StaticArrayList</span><span class="p">(</span><span class="n">capacity</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span>
-        <span class="n">internalArray</span> <span class="o">=</span> <span class="k">new</span> <span class="n">array</span> <span class="n">of</span> <span class="n">size</span> <span class="n">capacity</span>
-        <span class="n">listSize</span> <span class="o">=</span> <span class="mi">0</span>
-
-    <span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="k">return</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-
-    <span class="nf">set</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="n">old</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">return</span> <span class="n">old</span>
-
-    <span class="nf">add</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">,</span> <span class="n">x</span><span class="p">:</span><span class="n">E</span><span class="p">)</span>
-        <span class="c1">// Precondition: listSize &lt; size of internalArray</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt;= listSize</span>
-        <span class="n">listSize</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
-            <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span>
-
-    <span class="nf">remove</span><span class="p">(</span><span class="n">i</span><span class="p">:</span><span class="kt">int</span><span class="p">)</span> <span class="p">:</span> <span class="n">E</span>
-        <span class="c1">// Precondition: 0 &lt;= i &lt; listSize</span>
-        <span class="n">x</span> <span class="p">:</span> <span class="n">E</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span>
-        <span class="k">for</span> <span class="n">k</span> <span class="n">in</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">listSize</span><span class="o">-</span><span class="mi">1</span>
-            <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span>
-        <span class="n">listSize</span> <span class="o">-=</span> <span class="mi">1</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">listSize</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span>   <span class="c1">// For garbage collection</span>
-        <span class="k">return</span> <span class="n">x</span>
-
-    <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">:</span> <span class="kt">boolean</span>
-        <span class="k">return</span> <span class="n">listSize</span> <span class="o">==</span> <span class="mi">0</span>
-
-    <span class="n">size</span><span class="p">()</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">listSize</span>
-
-    <span class="nf">iterator</span><span class="p">()</span> <span class="p">:</span> <span class="n">Iterator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">an</span> <span class="n">iterator</span> <span class="n">over</span> <span class="n">the</span> <span class="n">elements</span> <span class="n">in</span> <span class="n">internalArray</span><span class="p">,</span> <span class="n">starting</span> <span class="n">from</span> <span class="n">element</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div><div id="StaticArrayList_StaticArrayList_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">StaticArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="StaticArrayList_StaticArrayList_code"><ul><li><a href="#StaticArrayList_StaticArrayList_code_Java_Generic">Java</a></li><li><a href="#StaticArrayList_StaticArrayList_code_Python">Python</a></li></ul><div id="StaticArrayList_StaticArrayList_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">StaticArrayList</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">internalArray</span><span class="p">;</span>   <span class="c1">// Internal array containing the list elements</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">listSize</span><span class="p">;</span>        <span class="c1">// Size of list</span>
 
@@ -673,7 +589,7 @@ following slideshow.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

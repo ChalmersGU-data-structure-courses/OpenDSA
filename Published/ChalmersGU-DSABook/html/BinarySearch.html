@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sequential-search', 'binary-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinarySearch";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching in an Array";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sequential-search', 'binary-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinarySearch";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching in an Array";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Searching/binarySearchCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="searching-in-an-array">
 <h1>2.<span class="section-number">2. </span>Searching in an Array<a class="headerlink" href="#searching-in-an-array" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="sequential-search">
@@ -176,16 +176,7 @@ If you do find it, we call this a <a class="reference internal" href="Glossary.h
 If the value is not in the array, eventually you will reach the end.
 We will call this an <a class="reference internal" href="Glossary.html#term-unsuccessful-search"><span class="xref std std-term">unsuccessful search</span></a>.
 Here is a simple implementation for sequential search.</p>
-<div id="Sequential_Sequential_code"><ul><li><a href="#Sequential_Sequential_code_Pseudo">Pseudo-Code</a></li><li><a href="#Sequential_Sequential_code_Java_Generic">Java</a></li><li><a href="#Sequential_Sequential_code_Python">Python</a></li></ul><div id="Sequential_Sequential_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
-<span class="c1">// If the element is not found, return -1.</span>
-<span class="n">sequentialSearch</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span><span class="n">E</span><span class="o">[]</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">integer</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">size</span> <span class="n">of</span> <span class="n">elements</span> <span class="o">-</span> <span class="mi">1</span> <span class="c1">// For each element</span>
-        <span class="k">if</span> <span class="n">elements</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">==</span> <span class="n">e</span>                 <span class="c1">// if we found it</span>
-            <span class="k">return</span> <span class="n">i</span>                        <span class="c1">// return its position</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                               <span class="c1">// Otherwise, return -1</span>
-</pre></div>
-</div>
-</div><div id="Sequential_Sequential_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
+<div id="SequentialSearch_Sequential_code"><ul><li><a href="#SequentialSearch_Sequential_code_Java_Generic">Java</a></li><li><a href="#SequentialSearch_Sequential_code_Python">Python</a></li></ul><div id="SequentialSearch_Sequential_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
 <span class="c1">// If the element is not found, return -1.</span>
 <span class="kd">public</span> <span class="kd">static</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kt">int</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">elements</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">elements</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// For each element</span>
@@ -196,7 +187,7 @@ Here is a simple implementation for sequential search.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Sequential_Sequential_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of an element in a list.</span>
+</div><div id="SequentialSearch_Sequential_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of an element in a list.</span>
 <span class="c1"># If the element is not found, return -1.</span>
 <span class="k">def</span> <span class="nf">sequentialSearch</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">elements</span><span class="p">)):</span>  <span class="c1"># For each element</span>
@@ -205,7 +196,7 @@ Here is a simple implementation for sequential search.</p>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                       <span class="c1"># Otherwise, return -1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Sequential_Sequential_code" ).tabs();});</script><p>It is natural to ask how long a program or algorithm will take to
+</div></div><script>$(function() {$( "#SequentialSearch_Sequential_code" ).tabs();});</script><p>It is natural to ask how long a program or algorithm will take to
 run.
 But we do not really care exactly how long a particular program will
 run on a particular computer.
@@ -272,23 +263,7 @@ Here is an illustration of the binary search method.</p>
 </div>
 <p></p>
 <p>And here is the method in more programming languages:</p>
-<div id="Bsearch_BinarySearch_code"><ul><li><a href="#Bsearch_BinarySearch_code_Pseudo">Pseudo-Code</a></li><li><a href="#Bsearch_BinarySearch_code_Java_Generic">Java</a></li><li><a href="#Bsearch_BinarySearch_code_Python">Python</a></li></ul><div id="Bsearch_BinarySearch_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
-<span class="c1">// If the element is not found, return -1.</span>
-<span class="n">binarySearch</span><span class="p">(</span><span class="n">elements</span><span class="p">:</span><span class="n">E</span><span class="o">[]</span><span class="p">,</span> <span class="n">e</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="n">integer</span>
-    <span class="n">low</span>  <span class="p">:</span> <span class="n">integer</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">high</span> <span class="p">:</span> <span class="n">integer</span> <span class="o">=</span> <span class="n">size</span> <span class="n">of</span> <span class="n">elements</span> <span class="o">-</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span>                      <span class="c1">// Stop when low and high meet</span>
-        <span class="n">mid</span> <span class="p">:</span> <span class="n">integer</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>   <span class="c1">// Check middle of subarray</span>
-        <span class="k">if</span> <span class="n">elements</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">e</span>
-            <span class="n">low</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>                  <span class="c1">// In right half</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="n">elements</span><span class="o">[</span><span class="n">mid</span><span class="o">]</span> <span class="o">&gt;</span> <span class="n">e</span>
-            <span class="n">high</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span>                 <span class="c1">// In left half</span>
-        <span class="k">else</span>
-            <span class="k">return</span> <span class="n">mid</span>                     <span class="c1">// Found it</span>
-    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                              <span class="c1">// Search value not in array</span>
-</pre></div>
-</div>
-</div><div id="Bsearch_BinarySearch_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
+<div id="BinarySearch_BinarySearch_code"><ul><li><a href="#BinarySearch_BinarySearch_code_Java_Generic">Java</a></li><li><a href="#BinarySearch_BinarySearch_code_Python">Python</a></li></ul><div id="BinarySearch_BinarySearch_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Return the position of an element in a list.</span>
 <span class="c1">// If the element is not found, return -1.</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kt">int</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">E</span><span class="o">[]</span> <span class="n">elements</span><span class="p">,</span> <span class="n">E</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -307,7 +282,7 @@ Here is an illustration of the binary search method.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Bsearch_BinarySearch_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of an element in a list.</span>
+</div><div id="BinarySearch_BinarySearch_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Return the position of an element in a list.</span>
 <span class="c1"># If the element is not found, return -1.</span>
 <span class="k">def</span> <span class="nf">binarySearch</span><span class="p">(</span><span class="n">elements</span><span class="p">,</span> <span class="n">e</span><span class="p">):</span>
     <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
@@ -323,7 +298,7 @@ Here is an illustration of the binary search method.</p>
     <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>                      <span class="c1"># Search value not in array</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Bsearch_BinarySearch_code" ).tabs();});</script><p>With the right math techniques, it is not too hard to show that the
+</div></div><script>$(function() {$( "#BinarySearch_BinarySearch_code" ).tabs();});</script><p>With the right math techniques, it is not too hard to show that the
 cost of binary search on an array of <span class="math notranslate nohighlight">\(n\)</span> values is at most
 <span class="math notranslate nohighlight">\(\log_2 n\)</span>.
 This is because we are repeatedly splitting the size of the subarray
@@ -401,7 +376,7 @@ is the most efficient algorithm possible on an unsorted array.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

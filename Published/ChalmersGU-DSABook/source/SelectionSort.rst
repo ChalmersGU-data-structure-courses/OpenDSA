@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SelectionSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Selection Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SelectionSort";ODSA.SETTINGS.MODULE_LONG_NAME = "Selection Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -62,8 +62,8 @@ Thus, the total number of swaps required will be :math:`n-1`
 
 Here is an implementation for Selection Sort.
 
-.. codeinclude:: Sorting/Selectionsort 
-   :tag: Selectionsort
+.. codeinclude:: ChalmersGU/Sorting/SelectionSort 
+   :tag: SelectionSort
 
 Consider the example of the following array.
 

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -34,9 +34,9 @@ Static Array-Based Lists
 First we give a static implementation for array-based lists,
 named **StaticArrayList**.
 This inherits from the :ref:`List ADT <CourseAPI>`,
-and so must implement all of the member functions of ``List``.
+and must therefore implement all of the member functions of ``List``.
 
-Unlike normal arrays, lists can change size: we can add elements to and remove from them.
+Unlike normal arrays, lists can change in size: we can add elements to and remove from them.
 How can this be implemented?
 Well, what we *don't* want to do is to create a completely new array every time elements
 are added or removed. So instead we will use an underlying array which is larger than we need.
@@ -44,9 +44,9 @@ are added or removed. So instead we will use an underlying array which is larger
 Internal variables
 --------------------
 
-Therefore we will need two internal variables:
-the underlying array, and a counter telling how much of the array that is actually used.
-When we create a new array-list we have to tell what the largest possible capacity is.
+Because of that will need two internal variables:
+the underlying array, and a counter telling how much of the array is actually used.
+When we create a new array-list we have to decide the largest possible capacity.
 Then the underlying array is initialised, and the counter is set to 0 because there are
 no elements yet.
 
@@ -59,7 +59,7 @@ no elements yet.
 
 |
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListInit
 
 
@@ -79,7 +79,7 @@ As you can see below, there are no loops in the methods
 ``get`` and ``set``, which means that both 
 require :math:`\Theta(1)` time.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListGetSet
 
 
@@ -115,7 +115,7 @@ Therefore, if we want to add an element at position :math:`i`, then
 In the worst case, adding elements requires moving all :math:`n` elements,
 which is :math:`\Theta(n)`.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListAdd
 
 
@@ -135,7 +135,7 @@ Removing elements
 ----------------------------
 
 Removing an element from the head of the list is
-similar to adding in that all remaining elements must shift.
+similar to adding in the sense that all remaining elements must shift.
 But now we have to shift toward the head to fill in the gap,
 instead of toward the tail.
 If we want to remove the element at position :math:`i`, then
@@ -152,7 +152,7 @@ following slideshow.
 In the worst case, insertion or removal each requires moving all
 :math:`n` elements, which is :math:`\Theta(n)`.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayListRemove
 
 
@@ -185,7 +185,7 @@ Static Array-based List: Full code
 
 Finally, here is the full source code for the class ``StaticArrayList``.
 
-.. codeinclude:: ChalmersGU/StaticArrayList
+.. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayList
 
 

@@ -34,8 +34,8 @@ interface PriorityQueue(E) extends Collection(E)
 
 
 interface Set(E) extends Collection(E)
-    add(x:E)      : boolean   // Adds x to the set. Returns true if the element wasn't already in the set.
-    remove(x:E)   : boolean   // Removes x from the set. Returns true if the element was in the set.
+    add(x:E)      : boolean   // Adds x to the set (if it's not already there).
+    remove(x:E)   : boolean   // Removes x from the set (if it's there).
     contains(x:E) : boolean   // Returns true if x is in the set.
     // Note: iterator() can yield the elements in any order.
 

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SortOpt";ODSA.SETTINGS.MODULE_LONG_NAME = "Optimizing Sort Algorithms with Code Tuning (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -70,7 +70,7 @@ If the list is already nearly sorted, then there will be few swaps
 anyway.
 Here is an implementation for Insertion Sort using this optimization.
 
-.. codeinclude:: Sorting/Insertionsort
+.. codeinclude:: ChalmersGU/Sorting/InsertionSort
    :tag: InsertionOpt
 
 Now, you can test whether you understand how this works.
@@ -156,8 +156,8 @@ Thus, we never need to check higher-positioned values again, which
 could save many iterations even if there are a few swaps lower down.
 Here is code to implement this approach.
 
-.. codeinclude:: Sorting/Bubblesort 
-   :tag: BubblesortCheck        
+.. codeinclude:: ChalmersGU/Sorting/BubbleSort 
+   :tag: BubbleSortCheck
 
 The problem with this idea is that a considerable amount of effort
 (relatively speaking) is required to track the position for the last
@@ -215,7 +215,7 @@ Our original Selection Sort implementation is written to make a call
 to ``swap`` even if the current record is already in its correct
 location.
 For example, if the record with the largest value is already in the
-rightmost array position, then ``selectionsort`` will still call ``swap``
+rightmost array position, then ``selectionSort`` will still call ``swap``
 with the two position parameters being the same.
 The net effect is that the work done by ``swap`` will not change
 anything in the array, and this is a waste of time.

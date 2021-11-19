@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="mergesort-concepts">
 <span id="index-0"></span><h1>2.<span class="section-number">10. </span>Mergesort Concepts<a class="headerlink" href="#mergesort-concepts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -180,11 +180,12 @@ sense and in empirical running time.
 Unfortunately, even though it is based on a simple concept,
 it is relatively difficult to implement in practice.
 Here is a pseudocode sketch of Mergesort:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List mergesort(List inlist)
-  if length of inlist &lt;= 1 then return inlist
-  List L1 = half of the items from inlist
-  List L2 = other half of the items from inlist
-  return merge(mergesort(L1), mergesort(L2))
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>mergeSort(inlist)
+    if length of inlist &lt;= 1:
+        return inlist
+    L1 = half of the items from inlist
+    L2 = other half of the items from inlist
+    return merge(mergeSort(L1), mergeSort(L2))
 </pre></div>
 </div>
 <p>Here is a visualization that illustrates how Mergesort works.</p>
@@ -219,22 +220,21 @@ Merging continues in this way, comparing the front
 records of the sublists and continually appending the smaller to the
 output list until no more input records remain.</p>
 <p>Here is pseudocode for merge on lists:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>List merge(List L1, List L2)
-  List answer = new empty list
-  while L1 is not empty and L2 is not empty
-    x = first element of L1
-    y = first element of L2
-    if x &lt;= y
-      append x to answer
-      remove first element from L1
-    else
-      append y to answer
-      remove first element from L2
-  // Now one of L1 and L2 is empty, so append
-  // all remaining elements
-  append all elements of L1 to answer
-  append all elements of L2 to answer
-  return answer
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>merge(L1, L2)
+    answer = new empty list
+    while L1 is not empty and L2 is not empty
+        x = first element of L1
+        y = first element of L2
+        if x &lt;= y
+            append x to answer
+            remove first element from L1
+        else
+            append y to answer
+            remove first element from L2
+    // Now one of L1 and L2 is empty, so append all remaining elements
+    append all elements of L1 to answer
+    append all elements of L2 to answer
+    return answer
 </pre></div>
 </div>
 <p>Here is a visualization for the merge operation.</p>
@@ -255,7 +255,7 @@ output list until no more input records remain.</p>
  </div>
 </div>
 <p></p>
-<p>Here is a mergesort warmup exercise to practice merging.</p>
+<p>Here is a Mergesort warmup exercise to practice merging.</p>
 <div
     id="MergesortMergePRO"
     class="embedContainer"
@@ -351,7 +351,7 @@ output list until no more input records remain.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

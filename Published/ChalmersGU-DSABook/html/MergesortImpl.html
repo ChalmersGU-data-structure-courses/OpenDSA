@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-mergesort">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="implementing-mergesort">
 <h1>2.<span class="section-number">11. </span>Implementing Mergesort<a class="headerlink" href="#implementing-mergesort" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>2.<span class="section-number">11.1. </span>Implementing Mergesort<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
@@ -220,65 +220,64 @@ Array <code class="docutils literal notranslate"><span class="pre">temp</span></
 the merge process.
 Parameters <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> define the left and right
 indices, respectively, for the subarray being sorted.
-The initial call to <code class="docutils literal notranslate"><span class="pre">mergesort</span></code> would be
-<code class="docutils literal notranslate"><span class="pre">mergesort(array,</span> <span class="pre">temparray,</span> <span class="pre">0,</span> <span class="pre">n-1)</span></code>.</p>
-<div id="Mergesort_Mergesort_code"><ul><li><a href="#Mergesort_Mergesort_code_Java_Generic">Java</a></li><li><a href="#Mergesort_Mergesort_code_Python">Python</a></li></ul><div id="Mergesort_Mergesort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">mergesort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">,</span> <span class="n">T</span><span class="o">[]</span> <span class="n">temp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span>                   <span class="c1">// List has one record</span>
-    <span class="k">return</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>            <span class="c1">// Select midpoint</span>
-  <span class="n">mergesort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>       <span class="c1">// Mergesort first half</span>
-  <span class="n">mergesort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>    <span class="c1">// Mergesort second half</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">left</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Copy subarray to temp</span>
-    <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-  <span class="p">}</span>
-  <span class="c1">// Do the merge operation back to A</span>
-  <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
-  <span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">curr</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">curr</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">i1</span> <span class="o">==</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>                 <span class="c1">// Left sublist exhausted</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">i2</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i2</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>           <span class="c1">// Right sublist exhausted</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">i1</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Get smaller value</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">i1</span><span class="o">++</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-      <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">i2</span><span class="o">++</span><span class="p">;</span>
+The initial call to <code class="docutils literal notranslate"><span class="pre">mergeSort</span></code> would be
+<code class="docutils literal notranslate"><span class="pre">mergeSort(array,</span> <span class="pre">temparray,</span> <span class="pre">0,</span> <span class="pre">n-1)</span></code>.</p>
+<div id="MergeSort_MergeSort_code"><ul><li><a href="#MergeSort_MergeSort_code_Java_Generic">Java</a></li><li><a href="#MergeSort_MergeSort_code_Python">Python</a></li></ul><div id="MergeSort_MergeSort_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="o">&lt;</span><span class="n">T</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span> <span class="kt">void</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">T</span><span class="o">[]</span> <span class="n">A</span><span class="p">,</span> <span class="n">T</span><span class="o">[]</span> <span class="n">temp</span><span class="p">,</span> <span class="kt">int</span> <span class="n">left</span><span class="p">,</span> <span class="kt">int</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">)</span>                   <span class="c1">// List has one record</span>
+        <span class="k">return</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>        <span class="c1">// Select midpoint</span>
+    <span class="n">mergeSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">);</span>       <span class="c1">// Mergesort first half</span>
+    <span class="n">mergeSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">);</span>    <span class="c1">// Mergesort second half</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>  <span class="c1">// Copy subarray to temp</span>
+        <span class="n">temp</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">A</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+    <span class="c1">// Do the merge operation back to A</span>
+    <span class="kt">int</span> <span class="n">i1</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">i2</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span> <span class="n">curr</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">;</span> <span class="n">curr</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i1</span> <span class="o">==</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>               <span class="c1">// Left sublist exhausted</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">i2</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">i2</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>         <span class="c1">// Right sublist exhausted</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">i1</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Get smaller value</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i1</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">i1</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">A</span><span class="o">[</span><span class="n">curr</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">[</span><span class="n">i2</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">i2</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Mergesort_Mergesort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergesort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
-  <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>                 <span class="c1"># List has one record</span>
-    <span class="k">return</span>
-  <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>              <span class="c1"># Select midpoint</span>
-  <span class="n">mergesort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>     <span class="c1"># Mergesort first half</span>
-  <span class="n">mergesort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>  <span class="c1"># Mergesort second half</span>
-  <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>    <span class="c1"># Copy subarray to temp</span>
-    <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-  <span class="c1"># Do the merge operation back to A</span>
-  <span class="n">i1</span> <span class="o">=</span> <span class="n">left</span>
-  <span class="n">i2</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
-  <span class="k">for</span> <span class="n">curr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">i1</span> <span class="o">==</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>                 <span class="c1"># Left sublist exhausted</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span>
-      <span class="n">i2</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">i2</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>                <span class="c1"># Right sublist exhausted</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span>
-      <span class="n">i1</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">elif</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]:</span>      <span class="c1"># Get smaller value</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span>
-      <span class="n">i1</span> <span class="o">+=</span> <span class="mi">1</span>
-    <span class="k">else</span><span class="p">:</span>
-      <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span>
-      <span class="n">i2</span> <span class="o">+=</span> <span class="mi">1</span>
+</div><div id="MergeSort_MergeSort_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">mergeSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">left</span> <span class="o">==</span> <span class="n">right</span><span class="p">:</span>                 <span class="c1"># List has one record</span>
+        <span class="k">return</span>
+    <span class="n">mid</span> <span class="o">=</span> <span class="p">(</span><span class="n">left</span> <span class="o">+</span> <span class="n">right</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>         <span class="c1"># Select midpoint</span>
+    <span class="n">mergeSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">left</span><span class="p">,</span> <span class="n">mid</span><span class="p">)</span>     <span class="c1"># Mergesort first half</span>
+    <span class="n">mergeSort</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">temp</span><span class="p">,</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>  <span class="c1"># Mergesort second half</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>    <span class="c1"># Copy subarray to temp</span>
+        <span class="n">temp</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="c1"># Do the merge operation back to A</span>
+    <span class="n">i1</span> <span class="o">=</span> <span class="n">left</span>
+    <span class="n">i2</span> <span class="o">=</span> <span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">curr</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i1</span> <span class="o">==</span> <span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span>               <span class="c1"># Left sublist exhausted</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span>
+            <span class="n">i2</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">i2</span> <span class="o">&gt;</span> <span class="n">right</span><span class="p">:</span>              <span class="c1"># Right sublist exhausted</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span>
+            <span class="n">i1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]:</span>    <span class="c1"># Get smaller value</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span>
+            <span class="n">i1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span>
+            <span class="n">i2</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#Mergesort_Mergesort_code" ).tabs();});</script><p>Here is a visualization for the merge step.</p>
+</div></div><script>$(function() {$( "#MergeSort_MergeSort_code" ).tabs();});</script><p>Here is a visualization for the merge step.</p>
 <div id="mergeImplS1CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="mergeImplS1CON" data-long-name="Mergesort Implementation Slideshow 1" data-exer-id="" alt="Mergesort Implementation Slideshow 1" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -346,7 +345,7 @@ The initial call to <code class="docutils literal notranslate"><span class="pre"
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

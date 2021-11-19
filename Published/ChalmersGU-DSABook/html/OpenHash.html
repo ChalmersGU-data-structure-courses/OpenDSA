@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['separate-chaining-or-open-hashing', 'alternatives-to-a-linked-list', 'resizing-is-important', 'implementing-separate-chaining', 'resizing-the-internal-table', 'exercise', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/openhashCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['separate-chaining-or-open-hashing', 'alternatives-to-a-linked-list', 'resizing-is-important', 'implementing-separate-chaining', 'resizing-the-internal-table', 'exercise', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/openhashCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="separate-chaining">
 <h1>9.<span class="section-number">4. </span>Separate Chaining<a class="headerlink" href="#separate-chaining" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="separate-chaining-or-open-hashing">
@@ -277,8 +277,15 @@ so that we can reuse it when resizing the table.</p>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedListMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
         <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="nf">lookupBin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">bin</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -289,8 +296,7 @@ so that we can reuse it when resizing the table.</p>
 look up the key in the underlying map at that position.</p>
 <div id="SeparateChainingHashMap_Get_code"><ul><li><a href="#SeparateChainingHashMap_Get_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Get_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="n">bin</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
     <span class="p">}</span>        
 </pre></div>
 </div>
@@ -307,10 +313,7 @@ We also have to check if the load factor becomes too large, and then we make the
 internal table larger by a factor.</p>
 <div id="SeparateChainingHashMap_Put_code"><ul><li><a href="#SeparateChainingHashMap_Put_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Put_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedListMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">bin</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">old</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
@@ -337,10 +340,7 @@ we decrease the map size.
 We also check if the table becomes too sparse, and then decrease the internal table by a factor.</p>
 <div id="SeparateChainingHashMap_Remove_code"><ul><li><a href="#SeparateChainingHashMap_Remove_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Remove_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Remove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">bin</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">removed</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">mapSize</span><span class="o">--</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">MinLoadFactor</span><span class="p">)</span> 
@@ -457,8 +457,15 @@ simply insert them again into the new resized table.</p>
 
     <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedListMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
         <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="nf">lookupBin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">bin</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
@@ -472,10 +479,7 @@ simply insert them again into the new resized table.</p>
 
     <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedListMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">bin</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">old</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
@@ -486,16 +490,12 @@ simply insert them again into the new resized table.</p>
 
     <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="n">bin</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
     <span class="p">}</span>        
 
     <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
-            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
-        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">bin</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">removed</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">mapSize</span><span class="o">--</span><span class="p">;</span>
             <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">MinLoadFactor</span><span class="p">)</span> 
@@ -506,8 +506,7 @@ simply insert them again into the new resized table.</p>
 
     <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
-        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-        <span class="k">return</span> <span class="n">bin</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">bin</span><span class="p">.</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
@@ -541,13 +540,13 @@ simply insert them again into the new resized table.</p>
         <span class="kd">private</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="n">bucketIterator</span><span class="p">;</span>
         <span class="n">HashMapIterator</span><span class="p">()</span> <span class="p">{</span>
             <span class="n">bucketIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-            <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">bucketIndex</span><span class="o">]</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+            <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">bucketIndex</span><span class="p">).</span><span class="na">iterator</span><span class="p">();</span>
         <span class="p">}</span>
         <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="p">()</span> <span class="p">{</span>
             <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">bucketIterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
                 <span class="n">bucketIndex</span><span class="o">++</span><span class="p">;</span>
                 <span class="k">if</span> <span class="p">(</span><span class="n">bucketIndex</span> <span class="o">&gt;=</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-                <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">bucketIndex</span><span class="o">]</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+                <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">bucketIndex</span><span class="p">).</span><span class="na">iterator</span><span class="p">();</span>
             <span class="p">}</span>
             <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
         <span class="p">}</span>
@@ -655,7 +654,7 @@ simply insert them again into the new resized table.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

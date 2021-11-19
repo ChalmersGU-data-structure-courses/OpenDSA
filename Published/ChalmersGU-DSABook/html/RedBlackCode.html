@@ -45,7 +45,7 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
     <link rel="next" title="7. The Splay Tree (optional) (WORK IN PROGRESS)" href="Splay.html" />
-    <link rel="prev" title="5. The AVL Tree (WORK IN PROGRESS)" href="AVL.html" />
+    <link rel="prev" title="5. The AVL Tree" href="AVL.html" />
 
   </head>
 
@@ -150,7 +150,7 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="AVL.html">7.<span class="section-number">5. </span>The AVL Tree (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="AVL.html">7.<span class="section-number">5. </span>The AVL Tree</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
 <h1>7.<span class="section-number">6. </span>Red-Black Trees (code only)<a class="headerlink" href="#red-black-trees-code-only" title="Permalink to this headline">¶</a></h1>
 <p>For information about red-black trees, see the lecture handout
 “2-3 trees and red-black trees” under Theme 4 (Search trees).</p>
@@ -278,15 +278,20 @@
     <span class="p">}</span>
 
     <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
-    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Returns the previous value associated with the key, or null if</span>
+    <span class="c1">// the key wasn&#39;t previously present.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">root</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">isRed</span><span class="p">(</span><span class="n">root</span><span class="p">))</span> <span class="n">root</span><span class="p">.</span><span class="na">isRed</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
     <span class="p">}</span>
 
     <span class="c1">// Helper method for &#39;put&#39;.</span>
     <span class="n">Node</span> <span class="nf">putHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
             <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="kc">true</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span>
 
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
@@ -294,11 +299,17 @@
         <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
             <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
 
-        <span class="k">else</span>
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
             <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
         <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
     <span class="p">}</span>
+
+    <span class="c1">// Used by putHelper and removeHelper, in order to return the</span>
+    <span class="c1">// value previously stored in the node.</span>
+    <span class="kd">private</span> <span class="n">Value</span> <span class="n">oldValue</span><span class="p">;</span>
 
     <span class="c1">// Repair the red-black invariant by rebalancing the node.</span>
     <span class="n">Node</span> <span class="nf">rebalance</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
@@ -533,25 +544,33 @@
 
     <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Add a key-value pair, or update the value associated with</span>
-<span class="sd">        an existing key.&quot;&quot;&quot;</span>
+<span class="sd">        an existing key.</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">Node</span><span class="o">.</span><span class="n">is_red</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="o">.</span><span class="n">_is_red</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">return</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">put_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.&quot;&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
 
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-            <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">return</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">RedBlackTree</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
 
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
@@ -709,7 +728,7 @@
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="AVL.html">7.<span class="section-number">5. </span>The AVL Tree (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="AVL.html">7.<span class="section-number">5. </span>The AVL Tree</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
@@ -728,7 +747,7 @@
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

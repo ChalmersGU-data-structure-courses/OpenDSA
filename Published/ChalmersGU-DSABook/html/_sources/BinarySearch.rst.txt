@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinarySearch";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching in an Array";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinarySearch";ODSA.SETTINGS.MODULE_LONG_NAME = "Searching in an Array";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -43,7 +43,7 @@ If the value is not in the array, eventually you will reach the end.
 We will call this an :term:`unsuccessful search`.
 Here is a simple implementation for sequential search.
 
-.. codeinclude:: Searching/Sequential
+.. codeinclude:: ChalmersGU/Sorting/SequentialSearch
       :tag: Sequential
 
 It is natural to ask how long a program or algorithm will take to
@@ -107,7 +107,7 @@ Here is an illustration of the binary search method.
 
 And here is the method in more programming languages:
 
-.. codeinclude:: Searching/Bsearch
+.. codeinclude:: ChalmersGU/Sorting/BinarySearch
       :tag: BinarySearch
 
 With the right math techniques, it is not too hard to show that the

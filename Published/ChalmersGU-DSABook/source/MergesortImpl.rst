@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MergesortImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Implementing Mergesort";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -87,11 +87,11 @@ Array ``temp`` is used as a place to temporarily copy records during
 the merge process.
 Parameters ``left`` and ``right`` define the left and right
 indices, respectively, for the subarray being sorted.
-The initial call to ``mergesort`` would be
-``mergesort(array, temparray, 0, n-1)``.
+The initial call to ``mergeSort`` would be
+``mergeSort(array, temparray, 0, n-1)``.
 
-.. codeinclude:: Sorting/Mergesort
-   :tag: Mergesort
+.. codeinclude:: ChalmersGU/Sorting/MergeSort
+   :tag: MergeSort
 
 Here is a visualization for the merge step.
 

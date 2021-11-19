@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and Comparators: An Example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['comparables-and-comparators-in-java', 'comparables', 'comparators-the-old-way', 'comparators-the-new-functional-interface-in-java-8', 'comparing-fields-using-key-extractors', 'comparing-several-fields', 'case-insensitive-and-language-specific-comparisons', '…and-what-about-the-names', 'running-the-program'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ComparingExample";ODSA.SETTINGS.MODULE_LONG_NAME = "Comparables and Comparators: An Example";ODSA.SETTINGS.MODULE_CHAPTER = "Introduction"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="comparables-and-comparators-an-example">
 <h1>1.<span class="section-number">6. </span>Comparables and Comparators: An Example<a class="headerlink" href="#comparables-and-comparators-an-example" title="Permalink to this headline">¶</a></h1>
 <p><em>Note</em>: This example treats comparables and comparators, as they work in Java.
 Python code is also included, but since Python thinks of comparisons in a different way,
@@ -171,16 +171,7 @@ the code is not always transferrable.</p>
 <h2>1.<span class="section-number">6.1. </span>Comparables and comparators in Java<a class="headerlink" href="#comparables-and-comparators-in-java" title="Permalink to this headline">¶</a></h2>
 <p>In Java there are two main ways of comparing objects. The one that most people find easier to understand is <em>comparable</em>. But there is an alternative, <em>comparator</em>, which is very useful.</p>
 <p>As a running example we use a class for persons:</p>
-<div id="DemoComparator_Person_code"><ul><li><a href="#DemoComparator_Person_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_Person_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_Person_code_Python">Python</a></li></ul><div id="DemoComparator_Person_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">givenName</span>  <span class="p">:</span> <span class="n">String</span>
-    <span class="n">familyName</span> <span class="p">:</span> <span class="n">String</span>
-    <span class="n">birthYear</span>  <span class="p">:</span> <span class="kt">int</span>
-
-    <span class="nf">toString</span><span class="p">()</span> <span class="p">:</span> <span class="n">String</span>
-        <span class="k">return</span> <span class="n">givenName</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">familyName</span> <span class="o">+</span> <span class="s">&quot; (&quot;</span> <span class="o">+</span> <span class="n">birthYear</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_Person_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="ComparatorExample_Person_code"><ul><li><a href="#ComparatorExample_Person_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_Person_code_Python">Python</a></li></ul><div id="ComparatorExample_Person_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">String</span> <span class="n">givenName</span><span class="p">;</span>
     <span class="kd">private</span> <span class="n">String</span> <span class="n">familyName</span><span class="p">;</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">birthYear</span><span class="p">;</span>
@@ -195,7 +186,7 @@ the code is not always transferrable.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_Person_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
+</div><div id="ComparatorExample_Person_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">given</span><span class="p">,</span> <span class="n">family</span><span class="p">,</span> <span class="n">birth</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">givenName</span>  <span class="o">=</span> <span class="n">given</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">familyName</span> <span class="o">=</span> <span class="n">family</span>
@@ -205,20 +196,8 @@ the code is not always transferrable.</p>
         <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">givenName</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">familyName</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">birthYear</span><span class="si">}</span><span class="s2">)&quot;</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_Person_code" ).tabs();});</script><p>Also, let’s create an array of persons that we can use later:</p>
-<div id="DemoComparator_GetPeople_code"><ul><li><a href="#DemoComparator_GetPeople_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_GetPeople_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_GetPeople_code_Python">Python</a></li></ul><div id="DemoComparator_GetPeople_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">getPeople</span><span class="p">()</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="k">return</span> <span class="o">[</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Anna&quot;</span><span class="p">,</span> <span class="s">&quot;Thorvaldsdóttir&quot;</span><span class="p">,</span> <span class="mi">1977</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Andrea&quot;</span><span class="p">,</span> <span class="s">&quot;Tarrodi&quot;</span><span class="p">,</span> <span class="mi">1981</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Diana&quot;</span><span class="p">,</span> <span class="s">&quot;Čemerytė&quot;</span><span class="p">,</span> <span class="mi">1974</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Elfrida&quot;</span><span class="p">,</span> <span class="s">&quot;Andrée&quot;</span><span class="p">,</span> <span class="mi">1841</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Guy&quot;</span><span class="p">,</span> <span class="s">&quot;d’Hardelot&quot;</span><span class="p">,</span> <span class="mi">1858</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Nadia&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1887</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Lili&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1893</span><span class="p">),</span>
-            <span class="o">]</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_GetPeople_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getPeople</span><span class="p">()</span> <span class="p">{</span>
+</div></div><script>$(function() {$( "#ComparatorExample_Person_code" ).tabs();});</script><p>Also, let’s create an array of persons that we can use later:</p>
+<div id="ComparatorExample_GetPeople_code"><ul><li><a href="#ComparatorExample_GetPeople_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_GetPeople_code_Python">Python</a></li></ul><div id="ComparatorExample_GetPeople_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getPeople</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
     <span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">));</span>
     <span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Anna&quot;</span><span class="p">,</span> <span class="s">&quot;Thorvaldsdóttir&quot;</span><span class="p">,</span> <span class="mi">1977</span><span class="p">));</span>
@@ -232,7 +211,7 @@ the code is not always transferrable.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_GetPeople_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getPeople</span><span class="p">():</span>
+</div><div id="ComparatorExample_GetPeople_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">getPeople</span><span class="p">():</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s2">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">),</span>
             <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Anna&quot;</span><span class="p">,</span> <span class="s2">&quot;Thorvaldsdóttir&quot;</span><span class="p">,</span> <span class="mi">1977</span><span class="p">),</span>
             <span class="n">Person</span><span class="p">(</span><span class="s2">&quot;Andrea&quot;</span><span class="p">,</span> <span class="s2">&quot;Tarrodi&quot;</span><span class="p">,</span> <span class="mi">1981</span><span class="p">),</span>
@@ -244,20 +223,16 @@ the code is not always transferrable.</p>
             <span class="p">]</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_GetPeople_code" ).tabs();});</script><p>Now we can print the list:</p>
-<div id="DemoComparator_PrintPeople_code"><ul><li><a href="#DemoComparator_PrintPeople_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_PrintPeople_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_PrintPeople_code_Python">Python</a></li></ul><div id="DemoComparator_PrintPeople_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_PrintPeople_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span>
+</div></div><script>$(function() {$( "#ComparatorExample_GetPeople_code" ).tabs();});</script><p>Now we can print the list:</p>
+<div id="ComparatorExample_PrintPeople_code"><ul><li><a href="#ComparatorExample_PrintPeople_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_PrintPeople_code_Python">Python</a></li></ul><div id="ComparatorExample_PrintPeople_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_PrintPeople_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>
+</div><div id="ComparatorExample_PrintPeople_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_PrintPeople_code" ).tabs();});</script><p>Which results in:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_PrintPeople_code" ).tabs();});</script><p>Which results in:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Unsuk Chin (1961)</div>
@@ -275,14 +250,7 @@ the code is not always transferrable.</p>
 <h2>1.<span class="section-number">6.2. </span>Comparables<a class="headerlink" href="#comparables" title="Permalink to this headline">¶</a></h2>
 <p>With the <strong>Comparable</strong> interface we can define the “natural ordering” for a class (<a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html">Java 8 Comparable</a>).
 Recall the interface for comparables from <a class="reference internal" href="CourseAPI.html#courseapi"><span class="std std-ref">the course API</span></a>:</p>
-<div id="BaseAPI_ComparableADT_code"><ul><li><a href="#BaseAPI_ComparableADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#BaseAPI_ComparableADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparableADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparableADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">E</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>   <span class="c1">// Returns &lt;0  if  this &lt; other,</span>
-                               <span class="c1">//      or  0  if  this == other,</span>
-                               <span class="c1">//      or &gt;0  if  this &gt; other.</span>
-    <span class="c1">// Note: Python uses a range of basic comparisons instead.</span>
-</pre></div>
-</div>
-</div><div id="BaseAPI_ComparableADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is the same as the java.lang.Comparable interface</span>
+<div id="BaseAPI_ComparableADT_code"><ul><li><a href="#BaseAPI_ComparableADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparableADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparableADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is the same as the java.lang.Comparable interface</span>
 <span class="kd">interface</span> <span class="nc">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">E</span> <span class="n">other</span><span class="p">);</span>  <span class="c1">// Returns &lt;0  if  this &lt; other,</span>
                              <span class="c1">//      or  0  if  this == other,</span>
@@ -302,13 +270,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#BaseAPI_ComparableADT_code" ).tabs();});</script><p>Let’s say that we want the natural ordering to be to compare persons by their family name. Then we let <code class="docutils literal notranslate"><span class="pre">Person</span></code> implement the <code class="docutils literal notranslate"><span class="pre">Comparable</span></code> interface by overriding <code class="docutils literal notranslate"><span class="pre">.compareTo(…)</span></code>:</p>
-<div id="DemoComparator_PersonCompareTo_code"><ul><li><a href="#DemoComparator_PersonCompareTo_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_PersonCompareTo_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_PersonCompareTo_code_Python">Python</a></li></ul><div id="DemoComparator_PersonCompareTo_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="c1">// ...as above...</span>
-    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_PersonCompareTo_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="ComparatorExample_PersonCompareTo_code"><ul><li><a href="#ComparatorExample_PersonCompareTo_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_PersonCompareTo_code_Python">Python</a></li></ul><div id="ComparatorExample_PersonCompareTo_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="c1">// ...as above...</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Person</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">familyName</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="na">familyName</span><span class="p">());</span>
@@ -316,7 +278,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_PersonCompareTo_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
+</div><div id="ComparatorExample_PersonCompareTo_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Comparable</span><span class="p">):</span>
     <span class="c1"># ...as above...</span>
     <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">familyName</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">familyName</span>
     <span class="k">def</span> <span class="fm">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">familyName</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">familyName</span>
@@ -326,23 +288,18 @@ Recall the interface for comparables from <a class="reference internal" href="Co
     <span class="k">def</span> <span class="fm">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span> <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">familyName</span> <span class="o">&gt;=</span> <span class="n">other</span><span class="o">.</span><span class="n">familyName</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_PersonCompareTo_code" ).tabs();});</script><p>Now we can sort our people array according to family name:</p>
-<div id="DemoComparator_SortNatural_code"><ul><li><a href="#DemoComparator_SortNatural_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_SortNatural_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_SortNatural_code_Python">Python</a></li></ul><div id="DemoComparator_SortNatural_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">the</span> <span class="n">natural</span> <span class="n">ordering</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_SortNatural_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
+</div></div><script>$(function() {$( "#ComparatorExample_PersonCompareTo_code" ).tabs();});</script><p>Now we can sort our people array according to family name:</p>
+<div id="ComparatorExample_SortNatural_code"><ul><li><a href="#ComparatorExample_SortNatural_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_SortNatural_code_Python">Python</a></li></ul><div id="ComparatorExample_SortNatural_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
 <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_SortNatural_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
+</div><div id="ComparatorExample_SortNatural_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
 <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_SortNatural_code" ).tabs();});</script><p>Resulting in:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_SortNatural_code" ).tabs();});</script><p>Resulting in:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Elfrida Andrée (1841)</div>
@@ -364,14 +321,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <div class="section" id="comparators-the-old-way">
 <h2>1.<span class="section-number">6.3. </span>Comparators, the old way<a class="headerlink" href="#comparators-the-old-way" title="Permalink to this headline">¶</a></h2>
 <p>What if we sometimes want to sort the list according to some other ordering, e.g., birth year or given name? Enter <em>comparators</em>, and here is the interface (<a class="reference external" href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html">Java 8 Comparator</a>):</p>
-<div id="BaseAPI_ComparatorADT_code"><ul><li><a href="#BaseAPI_ComparatorADT_code_Pseudo">Pseudo-Code</a></li><li><a href="#BaseAPI_ComparatorADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparatorADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparatorADT_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">E</span><span class="p">)</span>
-    <span class="n">compareTo</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">E</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>  <span class="c1">// Returns &lt;0  if  one &lt; other,</span>
-                                   <span class="c1">//      or  0  if  one == other,</span>
-                                   <span class="c1">//      or &gt;0  if  one &gt; other.</span>
-    <span class="c1">// Note: Python prefers to use a key extraction function instead.</span>
-</pre></div>
-</div>
-</div><div id="BaseAPI_ComparatorADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of the java.util.Comparator interface</span>
+<div id="BaseAPI_ComparatorADT_code"><ul><li><a href="#BaseAPI_ComparatorADT_code_Java_Generic">Java</a></li><li><a href="#BaseAPI_ComparatorADT_code_Python">Python</a></li></ul><div id="BaseAPI_ComparatorADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is a subset of the java.util.Comparator interface</span>
 <span class="kd">interface</span> <span class="nc">Comparator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">E</span> <span class="n">one</span><span class="p">,</span> <span class="n">E</span> <span class="n">other</span><span class="p">);</span>  <span class="c1">// Returns &lt;0  if  one &lt; other,</span>
                                   <span class="c1">//      or  0  if  one == other,</span>
@@ -390,68 +340,52 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#BaseAPI_ComparatorADT_code" ).tabs();});</script><p>To use this we have to implement a separate class for each ordering we want to use. Here’s one for comparing by birth year:</p>
-<div id="DemoComparator_BirthYearComparator_code"><ul><li><a href="#DemoComparator_BirthYearComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_BirthYearComparator_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_BirthYearComparator_code_Python">Python</a></li></ul><div id="DemoComparator_BirthYearComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BirthYearComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_BirthYearComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BirthYearComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="ComparatorExample_BirthYearComparator_code"><ul><li><a href="#ComparatorExample_BirthYearComparator_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_BirthYearComparator_code_Python">Python</a></li></ul><div id="ComparatorExample_BirthYearComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BirthYearComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Person</span> <span class="n">one</span><span class="p">,</span> <span class="n">Person</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">one</span><span class="p">.</span><span class="na">birthYear</span><span class="p">(),</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_BirthYearComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: Python doesn&#39;t have comparators like Java does.</span>
+</div><div id="ComparatorExample_BirthYearComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Note: Python doesn&#39;t have comparators like Java does.</span>
 <span class="c1"># The most similar is to define a comparator-like function:</span>
 <span class="k">def</span> <span class="nf">birthYearComparator</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">birthYear</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">birthYear</span> <span class="k">else</span>
              <span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">birthYear</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">birthYear</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_BirthYearComparator_code" ).tabs();});</script><p><em>Notes</em>:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_BirthYearComparator_code" ).tabs();});</script><p><em>Notes</em>:</p>
 <ol class="arabic simple">
 <li><p>Don’t compare numbers by using subtraction! This might lead to overflow and rounding errors. Instead use the static <code class="docutils literal notranslate"><span class="pre">.compare(…)</span></code> methods that are built into the number classes (<code class="docutils literal notranslate"><span class="pre">Integer</span></code>, <code class="docutils literal notranslate"><span class="pre">Double</span></code>, etc).</p></li>
 <li><p>Since numbers are not objects, you cannot use <code class="docutils literal notranslate"><span class="pre">one.birthYear.compareTo(…)</span></code>. You can do <code class="docutils literal notranslate"><span class="pre">new</span> <span class="pre">Integer(one.birthYear).compareTo(…)</span></code>, or you can use <code class="docutils literal notranslate"><span class="pre">Integer.compare(…)</span></code> as above.</p></li>
 </ol>
 <p>And here’s the class for comparing by given name:</p>
-<div id="DemoComparator_GivenNameComparator_code"><ul><li><a href="#DemoComparator_GivenNameComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_GivenNameComparator_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_GivenNameComparator_code_Python">Python</a></li></ul><div id="DemoComparator_GivenNameComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">GivenNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_GivenNameComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">GivenNameComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="ComparatorExample_GivenNameComparator_code"><ul><li><a href="#ComparatorExample_GivenNameComparator_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_GivenNameComparator_code_Python">Python</a></li></ul><div id="ComparatorExample_GivenNameComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">GivenNameComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Person</span> <span class="n">one</span><span class="p">,</span> <span class="n">Person</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="na">givenName</span><span class="p">());</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_GivenNameComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">givenNameComparator</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div><div id="ComparatorExample_GivenNameComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">givenNameComparator</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">givenName</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">givenName</span> <span class="k">else</span>
              <span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">givenName</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">givenName</span> <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_GivenNameComparator_code" ).tabs();});</script><p>To use them you have to first create an object, i.e., instantiate the comparator:</p>
-<div id="DemoComparator_SortByBirthYear_code"><ul><li><a href="#DemoComparator_SortByBirthYear_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_SortByBirthYear_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_SortByBirthYear_code_Python">Python</a></li></ul><div id="DemoComparator_SortByBirthYear_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BirthYearComparator</span><span class="p">()</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_SortByBirthYear_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byBirthYear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BirthYearComparator</span><span class="p">();</span>
+</div></div><script>$(function() {$( "#ComparatorExample_GivenNameComparator_code" ).tabs();});</script><p>To use them you have to first create an object, i.e., instantiate the comparator:</p>
+<div id="ComparatorExample_SortByBirthYear_code"><ul><li><a href="#ComparatorExample_SortByBirthYear_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_SortByBirthYear_code_Python">Python</a></li></ul><div id="ComparatorExample_SortByBirthYear_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byBirthYear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BirthYearComparator</span><span class="p">();</span>
 <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
 <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">byBirthYear</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_SortByBirthYear_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">birthYearComparator</span><span class="p">)</span>
+</div><div id="ComparatorExample_SortByBirthYear_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">birthYearComparator</span><span class="p">)</span>
 <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
 <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">byBirthYear</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_SortByBirthYear_code" ).tabs();});</script><p>Result:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_SortByBirthYear_code" ).tabs();});</script><p>Result:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Elfrida Andrée (1841)</div>
@@ -465,25 +399,19 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 </div>
 </div></blockquote>
 <p>And similar for given names:</p>
-<div id="DemoComparator_SortByGivenName_code"><ul><li><a href="#DemoComparator_SortByGivenName_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_SortByGivenName_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_SortByGivenName_code_Python">Python</a></li></ul><div id="DemoComparator_SortByGivenName_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byGivenName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GivenNameComparator</span><span class="p">()</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_SortByGivenName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byGivenName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GivenNameComparator</span><span class="p">();</span>
+<div id="ComparatorExample_SortByGivenName_code"><ul><li><a href="#ComparatorExample_SortByGivenName_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_SortByGivenName_code_Python">Python</a></li></ul><div id="ComparatorExample_SortByGivenName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byGivenName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GivenNameComparator</span><span class="p">();</span>
 <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
 <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">byGivenName</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_SortByGivenName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byGivenName</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">givenNameComparator</span><span class="p">)</span>
+</div><div id="ComparatorExample_SortByGivenName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byGivenName</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">givenNameComparator</span><span class="p">)</span>
 <span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
 <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">byGivenName</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_SortByGivenName_code" ).tabs();});</script><p>Result:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_SortByGivenName_code" ).tabs();});</script><p>Result:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Andrea Tarrodi (1981)</div>
@@ -500,37 +428,29 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <div class="section" id="comparators-the-new-functional-interface-in-java-8">
 <h2>1.<span class="section-number">6.4. </span>Comparators, the new functional interface in Java 8<a class="headerlink" href="#comparators-the-new-functional-interface-in-java-8" title="Permalink to this headline">¶</a></h2>
 <p>Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similarly to we would do in Python or Haskell:</p>
-<div id="DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code"><ul><li><a href="#DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Python">Python</a></li></ul><div id="DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
-<span class="n">byGivenName</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">one</span><span class="p">.</span><span class="na">birthYear</span><span class="p">(),</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span><span class="p">());</span>
+<div id="ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code"><ul><li><a href="#ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code_Python">Python</a></li></ul><div id="ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="n">one</span><span class="p">.</span><span class="na">birthYear</span><span class="p">(),</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span><span class="p">());</span>
 <span class="n">byGivenName</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="na">givenName</span><span class="p">());</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">birthYear</span>
+</div><div id="ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">birthYear</span>
 <span class="n">byGivenName</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="n">person</span><span class="o">.</span><span class="n">givenName</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_ByBirthYearFunctional_-ByGivenNameFunctional_code" ).tabs();});</script><p>Yay! That’s a lot nicer than the clumsy class definition
+</div></div><script>$(function() {$( "#ComparatorExample_ByBirthYearFunctional_-ByGivenNameFunctional_code" ).tabs();});</script><p>Yay! That’s a lot nicer than the clumsy class definition
 (<code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">BirthYearComparator</span> <span class="pre">implements</span> <span class="pre">Comparator&lt;Person&gt;</span></code>, etc).</p>
 </div>
 <div class="section" id="comparing-fields-using-key-extractors">
 <h2>1.<span class="section-number">6.5. </span>Comparing fields using key extractors<a class="headerlink" href="#comparing-fields-using-key-extractors" title="Permalink to this headline">¶</a></h2>
 <p>In many cases (including our example case), we only want to compare some fields in a class. Then we can use <em>key extractors</em> to simplify even more:</p>
-<div id="DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code"><ul><li><a href="#DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Python">Python</a></li></ul><div id="DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">birthYear</span><span class="p">)</span>
-<span class="n">byGivenName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">Comparator</span><span class="p">.</span><span class="na">comparingInt</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">birthYear</span><span class="p">);</span>
+<div id="ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code"><ul><li><a href="#ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Python">Python</a></li></ul><div id="ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">Comparator</span><span class="p">.</span><span class="na">comparingInt</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">birthYear</span><span class="p">);</span>
 <span class="n">byGivenName</span> <span class="o">=</span> <span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">givenName</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;birthYear&#39;</span><span class="p">)</span>
+</div><div id="ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;birthYear&#39;</span><span class="p">)</span>
 <span class="n">byGivenName</span> <span class="o">=</span> <span class="n">operator</span><span class="o">.</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;givenName&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code" ).tabs();});</script><ul class="simple">
+</div></div><script>$(function() {$( "#ComparatorExample_ByBirthYearKeyExtractor_-ByGivenNameKeyExtractor_code" ).tabs();});</script><ul class="simple">
 <li><p><em>Note</em>: We use <code class="docutils literal notranslate"><span class="pre">.comparingInt(…)</span></code> when defining <code class="docutils literal notranslate"><span class="pre">byBirthYear</span></code>. It’s not strictly necessary (i.e., we can use <code class="docutils literal notranslate"><span class="pre">.comparing(…)</span></code>), but it makes things slightly more efficient.</p></li>
 </ul>
 </div>
@@ -538,16 +458,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <h2>1.<span class="section-number">6.6. </span>Comparing several fields<a class="headerlink" href="#comparing-several-fields" title="Permalink to this headline">¶</a></h2>
 <p>Remember the natural ordering? The problem with only comparing the family name is that if two persons have the same name they keep their internal order. So, Nadia Boulanger comes before Lili Boulanger even though L precedes N in the alphabet.</p>
 <p>What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:</p>
-<div id="DemoComparator_FullNameComparator_code"><ul><li><a href="#DemoComparator_FullNameComparator_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_FullNameComparator_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_FullNameComparator_code_Python">Python</a></li></ul><div id="DemoComparator_FullNameComparator_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="n">cmp</span> <span class="p">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
-        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
-        <span class="n">cmp</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
-        <span class="k">return</span> <span class="mi">0</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_FullNameComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
+<div id="ComparatorExample_FullNameComparator_code"><ul><li><a href="#ComparatorExample_FullNameComparator_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_FullNameComparator_code_Python">Python</a></li></ul><div id="ComparatorExample_FullNameComparator_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="p">(</span><span class="n">Person</span> <span class="n">one</span><span class="p">,</span> <span class="n">Person</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
         <span class="kt">int</span> <span class="n">cmp</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">familyName</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">.</span><span class="na">familyName</span><span class="p">());</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span> <span class="n">cmp</span><span class="p">;</span>
@@ -558,52 +469,41 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_FullNameComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fullNameComparator</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+</div><div id="ComparatorExample_FullNameComparator_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fullNameComparator</span><span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">familyName</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">familyName</span> <span class="k">else</span>
              <span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">familyName</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">familyName</span> <span class="k">else</span>
             <span class="o">-</span><span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">givenName</span>  <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">givenName</span>  <span class="k">else</span>
              <span class="mi">1</span> <span class="k">if</span> <span class="n">one</span><span class="o">.</span><span class="n">givenName</span>  <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">givenName</span>  <span class="k">else</span> <span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_FullNameComparator_code" ).tabs();});</script><p>After this we can instantiate a specific comparator:</p>
-<div id="DemoComparator_ByFullName_code"><ul><li><a href="#DemoComparator_ByFullName_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ByFullName_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ByFullName_code_Python">Python</a></li></ul><div id="DemoComparator_ByFullName_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullNameComparator</span><span class="p">()</span>
+</div></div><script>$(function() {$( "#ComparatorExample_FullNameComparator_code" ).tabs();});</script><p>After this we can instantiate a specific comparator:</p>
+<div id="ComparatorExample_ByFullName_code"><ul><li><a href="#ComparatorExample_ByFullName_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_ByFullName_code_Python">Python</a></li></ul><div id="ComparatorExample_ByFullName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byFullName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullNameComparator</span><span class="p">();</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ByFullName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">byFullName</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullNameComparator</span><span class="p">();</span>
+</div><div id="ComparatorExample_ByFullName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">fullNameComparator</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ByFullName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="o">=</span> <span class="n">functools</span><span class="o">.</span><span class="n">cmp_to_key</span><span class="p">(</span><span class="n">fullNameComparator</span><span class="p">)</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#DemoComparator_ByFullName_code" ).tabs();});</script><p>If we have many fields this gets quite cumbersome (and error-prone). But using the functional interface, and the magic <code class="docutils literal notranslate"><span class="pre">.thenComparing(…)</span></code> method, it’s really easy:</p>
-<div id="DemoComparator_ByFullNameThenComparing_code"><ul><li><a href="#DemoComparator_ByFullNameThenComparing_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ByFullNameThenComparing_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ByFullNameThenComparing_code_Python">Python</a></li></ul><div id="DemoComparator_ByFullNameThenComparing_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span><span class="p">),</span> <span class="n">then</span> <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_ByFullNameThenComparing_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="o">=</span> <span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">familyName</span><span class="p">)</span>
+</div></div><script>$(function() {$( "#ComparatorExample_ByFullName_code" ).tabs();});</script><p>If we have many fields this gets quite cumbersome (and error-prone). But using the functional interface, and the magic <code class="docutils literal notranslate"><span class="pre">.thenComparing(…)</span></code> method, it’s really easy:</p>
+<div id="ComparatorExample_ByFullNameThenComparing_code"><ul><li><a href="#ComparatorExample_ByFullNameThenComparing_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_ByFullNameThenComparing_code_Python">Python</a></li></ul><div id="ComparatorExample_ByFullNameThenComparing_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">byFullName</span> <span class="o">=</span> <span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">familyName</span><span class="p">)</span>
     <span class="p">.</span><span class="na">thenComparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">givenName</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ByFullNameThenComparing_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In Python we can simply create a tuple, and it will sort the way we want</span>
+</div><div id="ComparatorExample_ByFullNameThenComparing_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># In Python we can simply create a tuple, and it will sort the way we want</span>
 <span class="n">byFullName</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">familyName</span><span class="p">,</span> <span class="n">person</span><span class="o">.</span><span class="n">givenName</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_ByFullNameThenComparing_code" ).tabs();});</script><p>And here it is in action:</p>
-<div id="DemoComparator_SortByFullName_code"><ul><li><a href="#DemoComparator_SortByFullName_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_SortByFullName_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_SortByFullName_code_Python">Python</a></li></ul><div id="DemoComparator_SortByFullName_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byFullName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_SortByFullName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
+</div></div><script>$(function() {$( "#ComparatorExample_ByFullNameThenComparing_code" ).tabs();});</script><p>And here it is in action:</p>
+<div id="ComparatorExample_SortByFullName_code"><ul><li><a href="#ComparatorExample_SortByFullName_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_SortByFullName_code_Python">Python</a></li></ul><div id="ComparatorExample_SortByFullName_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
 <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">byFullName</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_SortByFullName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
+</div><div id="ComparatorExample_SortByFullName_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
 <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">byFullName</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_SortByFullName_code" ).tabs();});</script><p>Result:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_SortByFullName_code" ).tabs();});</script><p>Result:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Elfrida Andrée (1841)</div>
@@ -624,44 +524,33 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <p>But you shouldn’t use it if you’re serious about handling text correctly. This is because strings are no longer ASCII, but Unicode. And Unicode is a beast of its own – it knows how to write hundreds of different alphabets with diacritics and other special characters. (Unicode even knows about bidirectional text (left-to-right vs right-to-left), but we won’t discuss that here).</p>
 <p>Now, correct string sorting depends on your locale. E.g., in Swedish we put Å, Ä, Ö at the end of the alphabet, while Á, Ô, È are mixed together with A, O, E, respectively. Also, it’s common to mix V and W in Swedish dictionaries. German on the other hand mixes Ä, Ö with A, O. And it sorts ß together with S.</p>
 <p>So, here’s how to define a correct comparator for Swedish, which ignores case differences and orders according to Swedish locale:</p>
-<div id="DemoComparator_BySwedishLocale_code"><ul><li><a href="#DemoComparator_BySwedishLocale_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_BySwedishLocale_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_BySwedishLocale_code_Python">Python</a></li></ul><div id="DemoComparator_BySwedishLocale_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">swedishLocale</span> <span class="p">:</span> <span class="n">Collator</span> <span class="o">=</span> <span class="n">get</span> <span class="n">instance</span> <span class="n">from</span> <span class="n">Locale</span> <span class="s">&quot;sv/SE&quot;</span>
-<span class="n">bySwedishLocale</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">),</span> <span class="n">then</span>
-        <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">)</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_BySwedishLocale_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Collator</span> <span class="n">swedishLocale</span> <span class="o">=</span> <span class="n">Collator</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">new</span> <span class="n">Locale</span><span class="p">(</span><span class="s">&quot;sv&quot;</span><span class="p">,</span> <span class="s">&quot;SE&quot;</span><span class="p">));</span>
+<div id="ComparatorExample_BySwedishLocale_code"><ul><li><a href="#ComparatorExample_BySwedishLocale_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_BySwedishLocale_code_Python">Python</a></li></ul><div id="ComparatorExample_BySwedishLocale_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">Collator</span> <span class="n">swedishLocale</span> <span class="o">=</span> <span class="n">Collator</span><span class="p">.</span><span class="na">getInstance</span><span class="p">(</span><span class="k">new</span> <span class="n">Locale</span><span class="p">(</span><span class="s">&quot;sv&quot;</span><span class="p">,</span> <span class="s">&quot;SE&quot;</span><span class="p">));</span>
 <span class="n">swedishLocale</span><span class="p">.</span><span class="na">setStrength</span><span class="p">(</span><span class="n">Collator</span><span class="p">.</span><span class="na">PRIMARY</span><span class="p">);</span>
 <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">bySwedishLocale</span> <span class="o">=</span> 
     <span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">familyName</span><span class="p">,</span> <span class="n">swedishLocale</span><span class="p">)</span>
     <span class="p">.</span><span class="na">thenComparing</span><span class="p">(</span><span class="n">Person</span><span class="p">::</span><span class="n">givenName</span><span class="p">,</span> <span class="n">swedishLocale</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_BySwedishLocale_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">locale</span>
+</div><div id="ComparatorExample_BySwedishLocale_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">locale</span>
 <span class="n">locale</span><span class="o">.</span><span class="n">setlocale</span><span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">LC_COLLATE</span><span class="p">,</span> <span class="s1">&#39;sv_SE&#39;</span><span class="p">)</span>
 <span class="n">bySwedishLocale</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">person</span><span class="p">:</span> <span class="p">(</span><span class="n">locale</span><span class="o">.</span><span class="n">strxfrm</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">familyName</span><span class="o">.</span><span class="n">casefold</span><span class="p">()),</span>
                                       <span class="n">locale</span><span class="o">.</span><span class="n">strxfrm</span><span class="p">(</span><span class="n">person</span><span class="o">.</span><span class="n">givenName</span><span class="o">.</span><span class="n">casefold</span><span class="p">()))</span>
 <span class="c1"># Note: There&#39;s a bug in Python&#39;s Swedish locale, so Č comes after all other letters</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_BySwedishLocale_code" ).tabs();});</script><p>And in action:</p>
-<div id="DemoComparator_SortBySwedishLocale_code"><ul><li><a href="#DemoComparator_SortBySwedishLocale_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_SortBySwedishLocale_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_SortBySwedishLocale_code_Python">Python</a></li></ul><div id="DemoComparator_SortBySwedishLocale_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">bySwedishLocale</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_SortBySwedishLocale_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
+</div></div><script>$(function() {$( "#ComparatorExample_BySwedishLocale_code" ).tabs();});</script><p>And in action:</p>
+<div id="ComparatorExample_SortBySwedishLocale_code"><ul><li><a href="#ComparatorExample_SortBySwedishLocale_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_SortBySwedishLocale_code_Python">Python</a></li></ul><div id="ComparatorExample_SortBySwedishLocale_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">();</span> <span class="c1">// reset the people list</span>
 <span class="n">Collections</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">people</span><span class="p">,</span> <span class="n">bySwedishLocale</span><span class="p">);</span>
 <span class="k">for</span> <span class="p">(</span><span class="n">Person</span> <span class="n">p</span> <span class="p">:</span> <span class="n">people</span><span class="p">)</span> <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_SortBySwedishLocale_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
+</div><div id="ComparatorExample_SortBySwedishLocale_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1"># reset the people list</span>
 <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">bySwedishLocale</span><span class="p">)</span>
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="c1"># Note: Because of a bug in Python&#39;s Swedish locale, Diana Čemerytė is still printed last</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_SortBySwedishLocale_code" ).tabs();});</script><p>Result:</p>
+</div></div><script>$(function() {$( "#ComparatorExample_SortBySwedishLocale_code" ).tabs();});</script><p>Result:</p>
 <blockquote>
 <div><div class="line-block">
 <div class="line">Elfrida Andrée (1841)</div>
@@ -683,124 +572,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <div class="section" id="running-the-program">
 <h2>1.<span class="section-number">6.9. </span>Running the program<a class="headerlink" href="#running-the-program" title="Permalink to this headline">¶</a></h2>
 <p>Here is the full source code. Just compile and run it without any arguments:</p>
-<div id="DemoComparator_ComparatorDemo_code"><ul><li><a href="#DemoComparator_ComparatorDemo_code_Pseudo">Pseudo-Code</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Java_Generic">Java</a></li><li><a href="#DemoComparator_ComparatorDemo_code_Python">Python</a></li></ul><div id="DemoComparator_ComparatorDemo_code_Pseudo"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="nf">Comparable</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">givenName</span>  <span class="p">:</span> <span class="n">String</span>
-    <span class="n">familyName</span> <span class="p">:</span> <span class="n">String</span>
-    <span class="n">birthYear</span>  <span class="p">:</span> <span class="kt">int</span>
-
-    <span class="nf">toString</span><span class="p">()</span> <span class="p">:</span> <span class="n">String</span>
-        <span class="k">return</span> <span class="n">givenName</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">familyName</span> <span class="o">+</span> <span class="s">&quot; (&quot;</span> <span class="o">+</span> <span class="n">birthYear</span> <span class="o">+</span> <span class="s">&quot;)&quot;</span>
-
-    <span class="c1">// ...as above...</span>
-    <span class="n">compareTo</span><span class="p">(</span><span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
-
-
-<span class="kd">class</span> <span class="nc">BirthYearComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
-
-
-<span class="kd">class</span> <span class="nc">GivenNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="k">return</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-
-<span class="kd">class</span> <span class="nc">FullNameComparator</span> <span class="kd">implements</span> <span class="nf">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="n">compare</span><span class="p">(</span><span class="n">one</span><span class="p">:</span><span class="n">Person</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span><span class="n">Person</span><span class="p">)</span> <span class="p">:</span> <span class="kt">int</span>
-        <span class="n">cmp</span> <span class="p">:</span> <span class="kt">int</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">familyName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">familyName</span>
-        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
-        <span class="n">cmp</span> <span class="o">=</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-        <span class="k">if</span> <span class="n">cmp</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">cmp</span>
-        <span class="k">return</span> <span class="mi">0</span>
-
-<span class="n">getPeople</span><span class="p">()</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
-    <span class="k">return</span> <span class="o">[</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Anna&quot;</span><span class="p">,</span> <span class="s">&quot;Thorvaldsdóttir&quot;</span><span class="p">,</span> <span class="mi">1977</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Andrea&quot;</span><span class="p">,</span> <span class="s">&quot;Tarrodi&quot;</span><span class="p">,</span> <span class="mi">1981</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Diana&quot;</span><span class="p">,</span> <span class="s">&quot;Čemerytė&quot;</span><span class="p">,</span> <span class="mi">1974</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Elfrida&quot;</span><span class="p">,</span> <span class="s">&quot;Andrée&quot;</span><span class="p">,</span> <span class="mi">1841</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Guy&quot;</span><span class="p">,</span> <span class="s">&quot;d’Hardelot&quot;</span><span class="p">,</span> <span class="mi">1858</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Nadia&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1887</span><span class="p">),</span>
-            <span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Lili&quot;</span><span class="p">,</span> <span class="s">&quot;Boulanger&quot;</span><span class="p">,</span> <span class="mi">1893</span><span class="p">),</span>
-            <span class="o">]</span>
-
-
-<span class="c1">// No order</span>
-<span class="n">people</span> <span class="p">:</span> <span class="n">List</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Natural ordering</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">the</span> <span class="n">natural</span> <span class="n">ordering</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by birth year (pre-Java-8 solution)</span>
-<span class="n">byBirthYear</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BirthYearComparator</span><span class="p">()</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by birth year (functional solution)</span>
-<span class="n">byBirthYear</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">birthYear</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">birthYear</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by birth year (using a key extractor)</span>
-<span class="n">byBirthYear</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">birthYear</span><span class="p">)</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byBirthYear</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by given name (pre-Java-8 solution)</span>
-<span class="n">byGivenName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">GivenNameComparator</span><span class="p">()</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by given name (functional solution)</span>
-<span class="n">byGivenName</span> <span class="o">=</span> <span class="p">(</span><span class="n">one</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">one</span><span class="p">.</span><span class="na">givenName</span> <span class="o">&lt;=&gt;</span> <span class="n">other</span><span class="p">.</span><span class="na">givenName</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by given name (using a key extractor)</span>
-<span class="n">byGivenName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byGivenName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by full name: family name + given name (pre-Java-8 solution)</span>
-<span class="n">byFullName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> <span class="k">new</span> <span class="n">FullNameComparator</span><span class="p">()</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byFullName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by full name: family name + given name (using key extractors and thenComparing)</span>
-<span class="n">byFullName</span> <span class="o">=</span> <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span><span class="p">),</span> <span class="n">then</span> <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span><span class="p">)</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">byFullName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by Swedish locale, case-insensitive</span>
-<span class="n">swedishLocale</span> <span class="p">:</span> <span class="n">Collator</span> <span class="o">=</span> <span class="n">get</span> <span class="n">instance</span> <span class="n">from</span> <span class="n">Locale</span> <span class="s">&quot;sv/SE&quot;</span>
-<span class="n">bySwedishLocale</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span>
-        <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">),</span> <span class="n">then</span>
-        <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">)</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">bySwedishLocale</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-
-<span class="c1">// Ordered by Swedish locale, given name first</span>
-<span class="n">bySwedishGivenName</span> <span class="p">:</span> <span class="n">Comparator</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span> <span class="o">=</span> 
-    <span class="n">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">givenName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">),</span> <span class="n">then</span>
-    <span class="nf">comparing</span><span class="p">(</span><span class="n">Person</span><span class="p">.</span><span class="na">familyName</span> <span class="n">using</span> <span class="n">swedishLocale</span><span class="p">)</span>
-<span class="n">people</span> <span class="o">=</span> <span class="n">getPeople</span><span class="p">()</span>  <span class="c1">// reset the people list</span>
-<span class="n">sort</span> <span class="nf">people</span> <span class="p">(</span><span class="n">using</span> <span class="n">bySwedishGivenName</span><span class="p">)</span>
-<span class="n">print</span> <span class="n">each</span> <span class="n">person</span> <span class="n">in</span> <span class="n">people</span>
-</pre></div>
-</div>
-</div><div id="DemoComparator_ComparatorDemo_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
+<div id="ComparatorExample_ComparatorDemo_code"><ul><li><a href="#ComparatorExample_ComparatorDemo_code_Java_Generic">Java</a></li><li><a href="#ComparatorExample_ComparatorDemo_code_Python">Python</a></li></ul><div id="ComparatorExample_ComparatorDemo_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.util.*</span><span class="p">;</span>
 <span class="kn">import</span> <span class="nn">java.text.Collator</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">Person</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -856,7 +628,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
     <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">public</span> <span class="kd">class</span> <span class="nc">DemoComparator</span> <span class="p">{</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">ComparatorExample</span> <span class="p">{</span>
 <span class="kd">static</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="nf">getPeople</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Person</span><span class="o">&gt;</span> <span class="n">people</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
     <span class="n">people</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">Person</span><span class="p">(</span><span class="s">&quot;Unsuk&quot;</span><span class="p">,</span> <span class="s">&quot;Chin&quot;</span><span class="p">,</span> <span class="mi">1961</span><span class="p">));</span>
@@ -950,7 +722,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DemoComparator_ComparatorDemo_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">BaseAPI</span> <span class="kn">import</span> <span class="n">Comparable</span>
+</div><div id="ComparatorExample_ComparatorDemo_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">BaseAPI</span> <span class="kn">import</span> <span class="n">Comparable</span>
 <span class="kn">import</span> <span class="nn">functools</span> 
 <span class="kn">import</span> <span class="nn">operator</span>
 
@@ -1078,7 +850,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
 <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DemoComparator_ComparatorDemo_code" ).tabs();});</script></div>
+</div></div><script>$(function() {$( "#ComparatorExample_ComparatorDemo_code" ).tabs();});</script></div>
 </div>
 
 
@@ -1105,7 +877,7 @@ Recall the interface for comparables from <a class="reference internal" href="Co
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

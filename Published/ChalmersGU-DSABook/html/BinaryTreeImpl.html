@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-12 10:51:57"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Tree Node Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 16:27:05"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BTCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BTnullpointerCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/expressionTreeCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-tree-node-implementations">
@@ -183,18 +183,25 @@ Every <code class="docutils literal notranslate"><span class="pre">BSTNode</span
 one to its left child and another to its right child.</p>
 <div id="BSTNode_BSTNode_code"><ul><li><a href="#BSTNode_BSTNode_code_Java_Generic">Java</a></li><li><a href="#BSTNode_BSTNode_code_Python">Python</a></li></ul><div id="BSTNode_BSTNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Binary tree node implementation</span>
 <span class="kd">class</span> <span class="nc">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="n">element</span><span class="p">;</span>           <span class="c1">// Element for this node</span>
-  <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>     <span class="c1">// Pointer to left child</span>
-  <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span>    <span class="c1">// Pointer to right child</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="n">element</span><span class="p">;</span>               <span class="c1">// Element for this node</span>
+    <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">left</span><span class="p">;</span>  <span class="c1">// Pointer to left child</span>
+    <span class="kd">public</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">right</span><span class="p">;</span> <span class="c1">// Pointer to right child</span>
 
-  <span class="c1">// Constructors</span>
-  <span class="n">BinaryTreeNode</span><span class="p">()</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
-  <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span>
-    <span class="p">{</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+    <span class="c1">// Constructors</span>
+    <span class="n">BinaryTreeNode</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="n">BinaryTreeNode</span><span class="p">(</span><span class="n">E</span> <span class="n">val</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">l</span><span class="p">,</span> <span class="n">BinaryTreeNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">element</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
 
-  <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">);</span> <span class="p">}</span>
+    <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -222,16 +229,16 @@ following <code class="docutils literal notranslate"><span class="pre">BinNode</
 the element value, return a pointer to the left or right child, and
 indicate whether a node is a leaf.</p>
 <div id="BinNode_BinNode_code"><ul><li><a href="#BinNode_BinNode_code_Java_Generic">Java</a></li><li><a href="#BinNode_BinNode_code_Python">Python</a></li></ul><div id="BinNode_BinNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">interface</span> <span class="nc">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span> <span class="c1">// Binary tree node ADT</span>
-  <span class="c1">// Get and set the element value</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">();</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">);</span>
+    <span class="c1">// Get and set the element value</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">v</span><span class="p">);</span>
 
-  <span class="c1">// return the children</span>
-  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">();</span>
-  <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">();</span>
+    <span class="c1">// return the children</span>
+    <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">left</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="n">BinNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">right</span><span class="p">();</span>
 
-  <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span>
+    <span class="c1">// return TRUE if a leaf node, FALSE otherwise</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -330,43 +337,49 @@ Whenever a node is examined, its version of <code class="docutils literal notran
 the node’s subclass.</p>
 <div id="ExpressionTree_ExpressionTree_code"><ul><li><a href="#ExpressionTree_ExpressionTree_code_Java_Generic">Java</a></li><li><a href="#ExpressionTree_ExpressionTree_code_Python">Python</a></li></ul><div id="ExpressionTree_ExpressionTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Base class for expression tree nodes</span>
 <span class="kd">public</span> <span class="kd">interface</span> <span class="nc">VarBinNode</span> <span class="p">{</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span> <span class="c1">// All subclasses must implement</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span> <span class="c1">// All subclasses must implement</span>
 <span class="p">}</span>
 
 <span class="cm">/** Leaf node */</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">VarLeafNode</span> <span class="kd">implements</span> <span class="n">VarBinNode</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">String</span> <span class="n">operand</span><span class="p">;</span>                 <span class="c1">// Operand value</span>
+    <span class="kd">private</span> <span class="n">String</span> <span class="n">operand</span><span class="p">;</span>        <span class="c1">// Operand value</span>
 
-  <span class="n">VarLeafNode</span><span class="p">(</span><span class="n">String</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">operand</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">String</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">operand</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">VarLeafNode</span><span class="p">(</span><span class="n">String</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">operand</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">true</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">String</span>  <span class="nf">value</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="n">operand</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// Internal node</span>
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">VarIntlNode</span> <span class="kd">implements</span> <span class="n">VarBinNode</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">left</span><span class="p">;</span>                <span class="c1">// Left child</span>
-  <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">right</span><span class="p">;</span>               <span class="c1">// Right child</span>
-  <span class="kd">private</span> <span class="n">Character</span> <span class="n">operator</span><span class="p">;</span>             <span class="c1">// Operator value</span>
+    <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">left</span><span class="p">;</span>       <span class="c1">// Left child</span>
+    <span class="kd">private</span> <span class="n">VarBinNode</span> <span class="n">right</span><span class="p">;</span>      <span class="c1">// Right child</span>
+    <span class="kd">private</span> <span class="n">Character</span>  <span class="n">operator</span><span class="p">;</span>   <span class="c1">// Operator value</span>
 
-  <span class="n">VarIntlNode</span><span class="p">(</span><span class="n">Character</span> <span class="n">op</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">r</span><span class="p">)</span>
-    <span class="p">{</span> <span class="n">operator</span> <span class="o">=</span> <span class="n">op</span><span class="p">;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">leftchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">rightchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
-  <span class="kd">public</span> <span class="n">Character</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">operator</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">VarIntlNode</span><span class="p">(</span><span class="n">Character</span> <span class="n">op</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">VarBinNode</span> <span class="n">r</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">operator</span> <span class="o">=</span> <span class="n">op</span><span class="p">;</span> <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span>    <span class="nf">isLeaf</span><span class="p">()</span>     <span class="p">{</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">leftchild</span><span class="p">()</span>  <span class="p">{</span> <span class="k">return</span> <span class="n">left</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">VarBinNode</span> <span class="nf">rightchild</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">right</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kd">public</span> <span class="n">Character</span>  <span class="nf">value</span><span class="p">()</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">operator</span><span class="p">;</span> <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="c1">// Preorder traversal</span>
 <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">traverse</span><span class="p">(</span><span class="n">VarBinNode</span> <span class="n">rt</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>         <span class="c1">// Nothing to visit</span>
-  <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span> <span class="p">{</span>                 <span class="c1">// Process leaf node</span>
-    <span class="n">Visit</span><span class="p">.</span><span class="na">VisitLeafNode</span><span class="p">(((</span><span class="n">VarLeafNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
-  <span class="p">}</span>
-  <span class="k">else</span> <span class="p">{</span>                           <span class="c1">// Process internal node</span>
-    <span class="n">Visit</span><span class="p">.</span><span class="na">VisitInternalNode</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
-    <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">leftchild</span><span class="p">());</span>
-    <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">rightchild</span><span class="p">());</span>
-  <span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>  <span class="c1">// Nothing to visit</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">rt</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+        <span class="c1">// Process leaf node</span>
+        <span class="n">Visit</span><span class="p">.</span><span class="na">VisitLeafNode</span><span class="p">(((</span><span class="n">VarLeafNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+        <span class="c1">// Process internal node</span>
+        <span class="n">Visit</span><span class="p">.</span><span class="na">VisitInternalNode</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">value</span><span class="p">());</span>
+        <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">leftchild</span><span class="p">());</span>
+        <span class="n">traverse</span><span class="p">(((</span><span class="n">VarIntlNode</span><span class="p">)</span><span class="n">rt</span><span class="p">).</span><span class="na">rightchild</span><span class="p">());</span>
+    <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -472,7 +485,7 @@ function <code class="docutils literal notranslate"><span class="pre">traverse</
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 12, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
