@@ -50,6 +50,13 @@ both adding and removing the minimum take :math:`O(\log n)` time.
 .. codeinclude:: ChalmersGU/API/API
    :tag: PriorityQueueADT
 
+Note that this API assumes that the priority queue orders the elements in *ascending* order.
+There is also the possibility of ordering in descending order --
+that kind of queue is called a *maximum priority queue*.
+If you have a minimum priority queue, it's straightforward to turn it into
+a maximum priority queue.
+
+
 .. TODO::
    Add max priority queues, and the version with an explicit priority
    (and/or comparator?)
@@ -68,7 +75,7 @@ sort a list of items:
 
 Here is an implementation of this algorithm in code:
 
-.. codeinclude:: Sorting/PQsort
+.. codeinclude:: ChalmersGU/Sorting/PQsort
    :tag: PQsort
 
 What is the time complexity of this algorithm? Well, for an input list
