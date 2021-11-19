@@ -9,8 +9,8 @@
    :satisfies: best and worst case
    :topic: Algorithm Analysis
 
-Best, Worst, and Average Cases (WORK IN PROGRESS)
-=================================================
+Best, Worst, and Average Cases
+==============================
 
 Best, Worst, and Average Cases
 ------------------------------

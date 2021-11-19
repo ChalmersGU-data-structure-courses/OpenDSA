@@ -9,8 +9,8 @@
    :requires: growth rate; best and worst case
    :topic: Algorithm Analysis
 
-Lower Bounds and :math:`\Theta` Notation (WORK IN PROGRESS)
-===========================================================
+Lower Bounds and :math:`\Theta` Notation
+========================================
 
 Lower Bounds and Theta Notation
 -------------------------------
