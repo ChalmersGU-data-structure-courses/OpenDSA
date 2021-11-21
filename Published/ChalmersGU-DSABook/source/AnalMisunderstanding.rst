@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['common-misunderstandings'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
 
 .. _AnalMisunderstanding:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMisunderstanding";ODSA.SETTINGS.MODULE_LONG_NAME = "Common Misunderstandings (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalMisunderstanding";ODSA.SETTINGS.MODULE_LONG_NAME = "Common Misunderstandings";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :satisfies: analysis misunderstandings
    :topic: Algorithm Analysis
 
-Common Misunderstandings (WORK IN PROGRESS)
-===========================================
+Common Misunderstandings
+========================
 
 Common Misunderstandings
 ------------------------

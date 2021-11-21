@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['code-tuning-and-empirical-analysis', 'empirical-analysis'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['empirical-analysis'];</script>
 
 .. _AnalTuning:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalTuning";ODSA.SETTINGS.MODULE_LONG_NAME = "Code Tuning and Empirical Analysis";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: code tuning; empirical analysis
    :topic: Algorithm Analysis
 
-Code Tuning and Empirical Analysis (WORK IN PROGRESS)
-=====================================================
+Code Tuning and Empirical Analysis
+==================================
 
 Code Tuning and Empirical Analysis
 ----------------------------------

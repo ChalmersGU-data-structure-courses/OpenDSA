@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3.1. Chapter Introduction: Algorithm Analysis (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>3.1. Chapter Introduction: Algorithm Analysis &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Problems, Algorithms, and Programs (WORK IN PROGRESS)" href="AnalPrelim.html" />
+    <link rel="next" title="2. Problems, Algorithms, and Programs" href="AnalPrelim.html" />
     <link rel="prev" title="16. Sorting Summary Exercises" href="SortSumm.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="AnalPrelim.html">3.<span class="section-number">2. </span>Problems, Algorithms, and Programs (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="AnalPrelim.html">3.<span class="section-number">2. </span>Problems, Algorithms, and Programs</a>&#160;&#160;»
 
 
         </p>
@@ -162,44 +162,34 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalChap";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Algorithm Analysis (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-16 15:06:47"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="chapter-introduction-algorithm-analysis-work-in-progress">
-<h1>3.<span class="section-number">1. </span>Chapter Introduction: Algorithm Analysis (WORK IN PROGRESS)<a class="headerlink" href="#chapter-introduction-algorithm-analysis-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<p>How long will it take to process the company payroll once we complete
-our planned merger?
-Should I buy a new payroll program from vendor X or vendor Y?
-If a particular program is slow, is it badly implemented or is it
-solving a hard problem?
-Questions like these ask us to consider the difficulty of a problem,
-or the relative efficiency of two or more approaches to solving a
-problem.</p>
-<p>This chapter introduces the motivation, basic notation, and
-fundamental techniques of algorithm analysis.
-We focus on a methodology known as
-<a class="reference internal" href="Glossary.html#term-asymptotic-algorithm-analysis"><span class="xref std std-term">asymptotic algorithm analysis</span></a>, or simply
-<a class="reference internal" href="Glossary.html#term-asymptotic-analysis"><span class="xref std std-term">asymptotic analysis</span></a>.
-Asymptotic analysis attempts to estimate the resource
-consumption of an algorithm.
-It allows us to compare the relative costs of two or more
-algorithms for solving the same problem.
-Asymptotic analysis also gives algorithm designers a tool for
-estimating whether a proposed solution is likely to meet the resource
-constraints for a problem before they implement an actual
-program.
-After reading this chapter, you should understand</p>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AnalChap";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Algorithm Analysis";ODSA.SETTINGS.MODULE_CHAPTER = "Algorithm Analysis"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="chapter-introduction-algorithm-analysis">
+<h1>3.<span class="section-number">1. </span>Chapter Introduction: Algorithm Analysis<a class="headerlink" href="#chapter-introduction-algorithm-analysis" title="Permalink to this headline">¶</a></h1>
+<p>How long will a program take when I run it on a dataset ten times as large?
+If a particular program is slow, is it badly implemented or is it solving a hard problem?
+What order of improvement can I expect if I switch to a better algorithm?
+Questions like these ask us to consider the difficulty of a problem and the efficiency of approaches to solving it.</p>
+<p>This chapter introduces the motivation, basic notation, and fundamental techniques of algorithm analysis.
+We focus on a methodology known as <a class="reference internal" href="Glossary.html#term-asymptotic-algorithm-analysis"><span class="xref std std-term">asymptotic algorithm analysis</span></a>, or simply <a class="reference internal" href="Glossary.html#term-asymptotic-analysis"><span class="xref std std-term">asymptotic analysis</span></a>.</p>
+<p>Asymptotic analysis estimates the resource consumption of an algorithm, called its <a class="reference internal" href="Glossary.html#term-complexity"><span class="xref std std-term">complexity</span></a>.
+Here, resource consumption can mean runtime, memory use, API calls, or any other measure.
+Instead of computing this resource consumption exactly, asymptotic analysis is only interested in its <a class="reference internal" href="Glossary.html#term-growth-rate"><span class="xref std std-term">growth rate</span></a> (also called <a class="reference internal" href="Glossary.html#term-order-of-growth"><span class="xref std std-term">order of growth</span></a>).
+The growth rate is what determines the resource consumption for large inputs.
+Thankfully, growth rate expressions are relatively easy to compare.
+This allows us decide which of two algorithms is better at solving the same problem.
+Asymptotic analysis also gives algorithm designers a tool for estimating whether a proposed solution is likely to meet the resource constraints for a problem before they implement an actual program.</p>
+<p>After reading this chapter, you should understand:</p>
 <ul class="simple">
-<li><p>the concept of a <a class="reference internal" href="Glossary.html#term-growth-rate"><span class="xref std std-term">growth rate</span></a>,
-the rate at which the cost of an algorithm grows
-as the size of its input grows;</p></li>
-<li><p>the concept of an <a class="reference internal" href="Glossary.html#term-upper-bound"><span class="xref std std-term">upper bound</span></a> and <a class="reference internal" href="Glossary.html#term-lower-bound"><span class="xref std std-term">lower bound</span></a> for a
-growth rate, and how to estimate these bounds for a simple program,
-algorithm, or problem; and</p></li>
-<li><p>the difference between the cost of an <a class="reference internal" href="Glossary.html#term-algorithm"><span class="xref std std-term">algorithm</span></a>
-(or program) and the cost of a <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a>.</p></li>
+<li><p>The concept of <a class="reference internal" href="Glossary.html#term-complexity"><span class="xref std std-term">complexity</span></a> of an algorithm, the resource usage of an algorithm as a function of an input parameter.
+Different kinds of complexity such as <a class="reference internal" href="Glossary.html#term-worst-case"><span class="xref std std-term">worst-case</span></a> and <a class="reference internal" href="Glossary.html#term-average-case"><span class="xref std std-term">average-case</span></a>.</p></li>
+<li><p>The concept of <a class="reference internal" href="Glossary.html#term-growth-rate"><span class="xref std std-term">growth rate</span></a> or <a class="reference internal" href="Glossary.html#term-order-of-growth"><span class="xref std std-term">order of growth</span></a> of a (mathematical) function.
+How to compute and compare growth rates of functions.
+Notations such as <a class="reference internal" href="Glossary.html#term-big-oh-notation"><span class="xref std std-term">big-Oh</span></a> to describe upper and lower bounds of growth rates.</p></li>
+<li><p>The <a class="reference internal" href="Glossary.html#term-asymptotic-complexity"><span class="xref std std-term">asymptotic complexity</span></a> of an algorithm, which is the growth rate of its complexity.
+Sometimes, this is just called the growth rate of the algorithm.</p></li>
+<li><p>The difference between the asymptotic complexity of an <a class="reference internal" href="Glossary.html#term-algorithm"><span class="xref std std-term">algorithm</span></a> (or program) and that of a <a class="reference internal" href="Glossary.html#term-problem"><span class="xref std std-term">problem</span></a>.
+The latter is the best asymptotic complexity over all algorithms that solve the problem.</p></li>
 </ul>
-<p>The chapter concludes with a brief discussion of the
-practical difficulties encountered when empirically measuring the cost
-of a program, and some principles for code tuning
-to improve program efficiency.</p>
+<p>The chapter concludes with a brief discussion of the practical difficulties encountered when empirically measuring the cost of a program, and some principles for code tuning to improve program efficiency.</p>
 </div>
 
 
@@ -211,7 +201,7 @@ to improve program efficiency.</p>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="AnalPrelim.html">3.<span class="section-number">2. </span>Problems, Algorithms, and Programs (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="AnalPrelim.html">3.<span class="section-number">2. </span>Problems, Algorithms, and Programs</a>&#160;&#160;»
 
 </p>
       </div>
@@ -226,7 +216,7 @@ to improve program efficiency.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 16, 2021.
+      Last updated on Nov 19, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
