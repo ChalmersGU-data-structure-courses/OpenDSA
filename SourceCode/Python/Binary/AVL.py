@@ -68,7 +68,7 @@ class AVL:
     def isEmpty(self):
         """Return true if there are no keys."""
 
-        return self.root is not None
+        return self.root is None
     
     def size(self):
         """Return the number of keys."""
@@ -297,6 +297,11 @@ class AVL:
         """This is called when the user writes 'bst[key] = value'."""
 
         self.put(key, value)
+
+    def __contains__(self, key):
+        """This is called when the user writes 'key in bst'."""
+
+        return self.containsKey(key)
 
     def __delitem__(self, key):
         """This is called when the user writes 'del bst[key]'."""
