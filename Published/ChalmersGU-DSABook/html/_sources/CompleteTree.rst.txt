@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['array-implementation-for-complete-binary-trees'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
 
 .. _CompleteTree:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CompleteTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Array Implementation for Complete Binary Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CompleteTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Array Implementation for Complete Binary Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-22 18:08:35"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -27,8 +27,8 @@
    :topic: Binary Trees
 
 
-Array Implementation for Complete Binary Trees (WORK IN PROGRESS)
-====================================================================
+Array Implementation for Complete Binary Trees
+==============================================
 
 Array Implementation for Complete Binary Trees
 ----------------------------------------------

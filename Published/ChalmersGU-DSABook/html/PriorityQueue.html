@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8.1. Priority queues (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>8.1. Priority queues &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,8 +44,8 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="2. Array Implementation for Complete Binary Trees (WORK IN PROGRESS)" href="CompleteTree.html" />
-    <link rel="prev" title="9. Binary Search Tree Chapter Summary (WORK IN PROGRESS)" href="BSTChapSumm.html" />
+    <link rel="next" title="2. Array Implementation for Complete Binary Trees" href="CompleteTree.html" />
+    <link rel="prev" title="9. Binary Search Tree Chapter Summary" href="BSTChapSumm.html" />
 
   </head>
 
@@ -150,11 +150,11 @@
             <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
 
           
-        «&#160;&#160;<a id="prevmod" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues-work-in-progress">
-<h1>8.<span class="section-number">1. </span>Priority queues (WORK IN PROGRESS)<a class="headerlink" href="#priority-queues-work-in-progress" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="priority-queues">
-<h2>8.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h2>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sorting', 'finding-the-top-100-items'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-22 18:08:35"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="priority-queues">
+<h1>8.<span class="section-number">1. </span>Priority queues<a class="headerlink" href="#priority-queues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>8.<span class="section-number">1.1. </span>Priority queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>So far we have seen two <a class="reference internal" href="Glossary.html#term-adt"><span class="xref std std-term">ADTs</span></a> that represent a collection
 of objects, and support adding and removing objects:</p>
 <ul class="simple">
@@ -220,12 +220,7 @@ both adding and removing the minimum take <span class="math notranslate nohighli
     <span class="c1"># Note: __iter__() can yield the elements in any order, but the minimum element should come first.</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#API_PriorityQueueADT_code" ).tabs();});</script><a id="todo0"></a><div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Add max priority queues, and the version with an explicit priority
-(and/or comparator?)</p>
-</div>
-<p>Now let’s look at a couple of applications of priority queues.</p>
+</div></div><script>$(function() {$( "#API_PriorityQueueADT_code" ).tabs();});</script><p>Now let’s look at a couple of applications of priority queues.</p>
 </div>
 <div class="section" id="sorting">
 <h2>8.<span class="section-number">1.2. </span>Sorting<a class="headerlink" href="#sorting" title="Permalink to this headline">¶</a></h2>
@@ -405,11 +400,11 @@ elements. If we generalize this problem to keeping track of the top
       <div class="bottomnav">
       <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
       
-        «&#160;&#160;<a id="prevmod1" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary (WORK IN PROGRESS)</a>
+        «&#160;&#160;<a id="prevmod1" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary</a>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="CompleteTree.html">8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees</a>&#160;&#160;»
 
 </p>
       </div>
@@ -424,7 +419,7 @@ elements. If we generalize this problem to keeping track of the top
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 19, 2021.
+      Last updated on Nov 22, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

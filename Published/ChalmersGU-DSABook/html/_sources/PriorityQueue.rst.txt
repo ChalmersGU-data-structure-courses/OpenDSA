@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['priority-queues', 'sorting', 'finding-the-top-100-items'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sorting', 'finding-the-top-100-items'];</script>
 
 .. _PriorityQueue:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-22 18:08:35"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :satisfies: priority queue
    :topic: Priority queues
 
-Priority queues (WORK IN PROGRESS)
-=====================================
+Priority queues
+===============
 
 Priority queues
 ---------------
@@ -66,14 +66,6 @@ both adding and removing the minimum take :math:`O(\log n)` time.
 
 .. codeinclude:: ChalmersGU/API
    :tag: PriorityQueueADT
-
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-   Add max priority queues, and the version with an explicit priority
-   (and/or comparator?)
 
 Now let's look at a couple of applications of priority queues.
 

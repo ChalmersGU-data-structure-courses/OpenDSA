@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. The Splay Tree (optional) (WORK IN PROGRESS)" href="Splay.html" />
+    <link rel="next" title="7. The Splay Tree (optional)" href="Splay.html" />
     <link rel="prev" title="5. The AVL Tree" href="AVL.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional)</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-22 18:08:35"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="red-black-trees-code-only">
 <h1>7.<span class="section-number">6. </span>Red-Black Trees (code only)<a class="headerlink" href="#red-black-trees-code-only" title="Permalink to this headline">¶</a></h1>
 <p>For information about red-black trees, see the lecture handout
 “2-3 trees and red-black trees” under Theme 4 (Search trees).</p>
@@ -505,7 +505,7 @@
     <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return true if there are no keys.&quot;&quot;&quot;</span>
 
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span>
     
     <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Return the number of keys.&quot;&quot;&quot;</span>
@@ -680,6 +680,11 @@
 
         <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;key in bst&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
     <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;del bst[key]&#39;.&quot;&quot;&quot;</span>
 
@@ -732,7 +737,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -747,7 +752,7 @@
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 19, 2021.
+      Last updated on Nov 22, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

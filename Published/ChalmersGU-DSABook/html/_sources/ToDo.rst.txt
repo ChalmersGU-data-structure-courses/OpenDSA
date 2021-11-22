@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-19 23:10:55"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-22 18:08:35"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -16,19 +16,6 @@
 
 TODO List
 =========
-.. raw:: html
-
-   <hr /><h1>No Category</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="PriorityQueue.html#todo0">source: PriorityQueue</a></h2>
-
-.. TODO::
-
-   Add max priority queues, and the version with an explicit priority
-   (and/or comparator?)
-
 .. raw:: html
 
    <hr /><h1>AV</h1><hr />
