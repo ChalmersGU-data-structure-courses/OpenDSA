@@ -161,11 +161,11 @@ Similar to the ``inserthelp`` method, each node on the path back to
 the root has its right child pointer reassigned to the subtree
 resulting from its call to the ``deletemax`` method.
 
-A useful companion method is ``lastNodeHelper`` which returns a
+A useful companion method is ``largestNode`` which returns a
 pointer to the node containing the maximum value in the subtree.
 
 .. codeinclude:: Binary/BST
-   :tag: lastNodeHelper
+   :tag: largestNode
 
 Now we are ready for the ``removehelp`` method.
 Removing a node with given key value :math:`R` from the BST
