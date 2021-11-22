@@ -9,8 +9,8 @@
    :satisfies: priority queue
    :topic: Priority queues
 
-Priority queues (WORK IN PROGRESS)
-=====================================
+Priority queues
+===============
 
 Priority queues
 ---------------
@@ -49,10 +49,6 @@ both adding and removing the minimum take :math:`O(\log n)` time.
 
 .. codeinclude:: ChalmersGU/API
    :tag: PriorityQueueADT
-
-.. TODO::
-   Add max priority queues, and the version with an explicit priority
-   (and/or comparator?)
 
 Now let's look at a couple of applications of priority queues.
 

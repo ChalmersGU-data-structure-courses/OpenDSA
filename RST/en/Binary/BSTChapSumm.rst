@@ -9,8 +9,8 @@
    :requires: BST
    :topic: Binary Search Trees
 
-Binary Search Tree Chapter Summary (WORK IN PROGRESS)
-=====================================================
+Binary Search Tree Chapter Summary
+==================================
 
 Summary Questions
 -----------------

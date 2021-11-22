@@ -10,8 +10,8 @@
    :topic: Binary Trees
 
 
-Array Implementation for Complete Binary Trees (WORK IN PROGRESS)
-====================================================================
+Array Implementation for Complete Binary Trees
+==============================================
 
 Array Implementation for Complete Binary Trees
 ----------------------------------------------
