@@ -9,8 +9,8 @@
    :satisfies:
    :topic: Algorithm Analysis
 
-Faster Computer, or Faster Algorithm? (WORK IN PROGRESS)
-========================================================
+Faster Computer, or Faster Algorithm?
+=====================================
 
 Faster Computer, or Faster Algorithm?
 -------------------------------------

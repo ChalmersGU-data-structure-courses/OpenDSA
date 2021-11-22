@@ -8,8 +8,8 @@
    :satisfies: problems; algorithms; functions
    :topic: Algorithm Analysis
 
-Problems, Algorithms, and Programs (WORK IN PROGRESS)
-=====================================================
+Problems, Algorithms, and Programs
+==================================
 
 Problems, Algorithms, and Programs
 ----------------------------------
