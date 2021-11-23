@@ -17,9 +17,8 @@ class GTNode:
 class GenTree:
     def clear(self): raise NotImplementedError
     def root(self): raise NotImplementedError
-    def newroot(self, value, first, sib): raise NotImplementedError
-    def newleftchild(self, value): raise NotImplementedError
-}
+    def newRoot(self, value, first, sib): raise NotImplementedError
+    def newLeftChild(self, value): raise NotImplementedError
 #/* *** ODSAendTag: GenTreeADT *** */
 
 
