@@ -25,10 +25,10 @@ When we need to support search structures such as the
 :ref:`Binary Search Tree <binary search tree> <BST>`,
 the node will typically store a
 :ref:`key-value pair <key-value pair> <Dictionary>`.
-Every ``BSTNode`` object also has two pointers,
+Every ``BinaryTreeNode`` object also has two pointers,
 one to its left child and another to its right child.
 
-.. codeinclude:: Binary/BSTNode
+.. codeinclude:: Binary/BinaryTreeNode
    :tag: BSTNode
 
 Sometimes, we will treat binary tree nodes as an *abstract data type*.
@@ -148,7 +148,7 @@ pointers of type ``VarBinNode``.
 Function ``traverse`` illustrates the use of these classes.
 When ``traverse`` calls method ``isLeaf``,
 the language's runtime environment
-determines which subclass this particular instance of ``rt``
+determines which subclass this particular instance of ``node``
 happens to be and calls that subclass's version of ``isLeaf``.
 Method ``isLeaf`` then provides the actual node type to its
 caller.

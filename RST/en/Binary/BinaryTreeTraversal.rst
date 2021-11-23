@@ -117,17 +117,16 @@ Implementation
 A traversal routine is naturally written as a recursive
 function.
 Its input parameter is a pointer to a node which we will call
-``rt`` because each node can be viewed as the root of some
-subtree.
+``node``.
 The initial call to the traversal function passes in a pointer to the
 root node of the tree.
-The traversal function visits ``rt`` and its children (if any) 
+The traversal function visits ``node`` and its children (if any) 
 in the desired order.
-For example, a preorder traversal specifies that ``rt`` be
+For example, a preorder traversal specifies that ``node`` be
 visited before its children.
 This can easily be implemented as follows.
 
-.. codeinclude:: Binary/Preorder
+.. codeinclude:: Binary/Traverse
    :tag: preorder
 
 Function ``preorder`` first checks that the tree is not

@@ -1,13 +1,12 @@
 # /* *** ODSATag: BinNode *** */
-class BinNode: # Binary tree node ADT
-  # Get and set the element value
-  def value(self): ...
-  def setValue(self, value): ...
+class BinNode:
+    """Binary tree node ADT."""
 
-  # Return the children
-  def left(self): ... # returns a BinNode
-  def right(self): ... # returns a BinNode
+    def value(self):           """Get the element value."""
+    def setValue(self, value): """Set the element value."""
 
-  # return True if a leaf node, False otherwise
-  def isLeaf(self): ...
+    def left(self):   """Return the left child."""
+    def right(self):  """Return the right child."""
+
+    def isLeaf(self): """return True if a leaf node, False otherwise."""
 # /* *** ODSAendTag: BinNode *** */

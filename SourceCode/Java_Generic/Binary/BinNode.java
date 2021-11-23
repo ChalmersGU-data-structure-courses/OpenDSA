@@ -1,14 +1,13 @@
 /* *** ODSATag: BinNode *** */
-interface BinNode<E> { // Binary tree node ADT
-    // Get and set the element value
-    public E value();
-    public void setValue(E v);
+interface BinNode<E> {
+    // Binary tree node ADT
 
-    // return the children
-    public BinNode<E> left();
-    public BinNode<E> right();
+    public E value();           // Get and set the element value.
+    public void setValue(E v);  // Set the element value.
 
-    // return TRUE if a leaf node, FALSE otherwise
-    public boolean isLeaf();
+    public BinNode<E> left();   // Return the left child.
+    public BinNode<E> right();  // Return the right child.
+
+    public boolean isLeaf();    // return TRUE if a leaf node, FALSE otherwise.
 }
 /* *** ODSAendTag: BinNode *** */

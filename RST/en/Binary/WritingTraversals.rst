@@ -34,14 +34,14 @@ and only make the recursive call for a non-null child.
 
 Recall the basic preorder traversal function.
 
-.. codeinclude:: Binary/Preorder
+.. codeinclude:: Binary/Traverse
    :tag: preorder
 
 Here is an alternate design for the preorder traversal, in which the
 left and right pointers of the current node are checked so that the
 recursive call is made only on non-empty children.
 
-.. codeinclude:: Binary/Preorder
+.. codeinclude:: Binary/Traverse
    :tag: preorder2
 
 At first, it might appear that ``preorder2`` is more efficient

@@ -12,22 +12,8 @@
     }
   },
   "code": {
-    "java": [{
-      "url": "../../../SourceCode/Java/Binary/Preorder.java",
-      "lineNumbers": false,
-      "startAfter": "/* *** ODSATag: preorder *** */",
-      "endBefore": "/* *** ODSAendTag: preorder *** */",
-      "tags": {
-        "sig": 1,
-        "checknull": 2,
-        "visit": 3,
-        "visitleft": 4,
-        "visitright": 5,
-        "end": 6
-      }
-    }],
     "java_generic": [{
-      "url": "../../../SourceCode/Java_Generic/Binary/Preorder.java",
+      "url": "../../../SourceCode/Java_Generic/Binary/Traverse.java",
       "lineNumbers": false,
       "startAfter": "/* *** ODSATag: preorder *** */",
       "endBefore": "/* *** ODSAendTag: preorder *** */",

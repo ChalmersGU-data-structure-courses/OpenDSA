@@ -6,7 +6,7 @@ public class RecTutor {
 static boolean SUCCESS = true;
 
 /* *** ODSATag: EffCnt *** */
-static int count(BinNode root) {
+static <E> int count(BinNode<E> root) {
     if (root == null) return 0;  // Nothing to count
     return 1 + count(root.left()) + count(root.right());
 }
@@ -14,13 +14,13 @@ static int count(BinNode root) {
 
 
 /* *** ODSATag: IneffCnt *** */
-static int ineff_count(BinNode root) {
+static <E> int ineff_count(BinNode<E> root) {
     if (root == null) return 0;  // Nothing to count
     int count = 0;
     if (root.left() != null)
-        count = 1 + ineff_count(root.left());
+        count += ineff_count(root.left());
     if (root.right() != null)
-        count = 1 + ineff_count(root.right());
+        count += ineff_count(root.right());
     if (root.left() == null && root.right() == null)
         return 1;
     return 1 + count;
@@ -29,15 +29,15 @@ static int ineff_count(BinNode root) {
 
 
 /* *** ODSATag: IneffbtInc *** */
-static void ineff_BTinc(BinNode root) {
+static void ineff_BTinc(BinNode<Integer> root) {
     if (root != null) {
-        root.setValue((int)(root.value()) + 1);
+        root.setValue(root.value() + 1);
         if (root.left() != null) {
-            root.left().setValue((int)(root.left().value()) + 1);
+            root.left().setValue(root.left().value() + 1);
             ineff_BTinc(root.left().left());
         }
         if (root.right() != null) {
-            root.right().setValue((int)(root.right().value()) + 1);
+            root.right().setValue(root.right().value() + 1);
             ineff_BTinc(root.right().right());
         }
     }
@@ -55,10 +55,10 @@ static int bad_count(BinNode root) {
 
 
 public static void main(String args[]) throws IOException {
-   BSTNode root = null;
-   root = new BSTNode(10);
-   BSTNode leftChild = new BSTNode(15);
-   BSTNode rightChild = new BSTNode(20);
+   BinaryTreeNode root = null;
+   root = new BinaryTreeNode(10);
+   BinaryTreeNode leftChild = new BinaryTreeNode(15);
+   BinaryTreeNode rightChild = new BinaryTreeNode(20);
    root.setLeft(leftChild); 
    root.setRight(rightChild);
   

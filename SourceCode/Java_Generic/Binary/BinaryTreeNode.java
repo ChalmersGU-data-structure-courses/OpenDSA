@@ -1,9 +1,9 @@
 /* *** ODSATag: BSTNode *** */
 // Binary tree node implementation
 class BinaryTreeNode<E> {
-    public E element;               // Element for this node
-    public BinaryTreeNode<E> left;  // Pointer to left child
-    public BinaryTreeNode<E> right; // Pointer to right child
+    public E element;               // Element for this node.
+    public BinaryTreeNode<E> left;  // Pointer to left child.
+    public BinaryTreeNode<E> right; // Pointer to right child.
 
     // Constructors
     BinaryTreeNode() {
@@ -16,7 +16,7 @@ class BinaryTreeNode<E> {
         left = l; right = r; element = val;
     }
 
-    // return TRUE if a leaf node, FALSE otherwise
+    // Return TRUE if a leaf node, FALSE otherwise.
     public boolean isLeaf() {
         return left == null && right == null;
     }

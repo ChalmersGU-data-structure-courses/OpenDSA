@@ -1,21 +1,19 @@
 
 #/* *** ODSATag: EffCnt *** */
 def count(root):
-    if root is None:
-        return 0   # Nothing to count
-    return 1 + count(root.left()) + count(root.right())
+    if node is None: return 0  # No nodes to count
+    return 1 + count(node.left()) + count(node.right())
 #/* *** ODSAendTag: EffCnt *** */
 
 
 #/* *** ODSATag: IneffCnt *** */
 def ineff_count(root):
-    if root is None:
-        return 0   # Nothing to count
+    if root is None: return 0   # Nothing to count
     count = 0
     if root.left() is not None:
-        count = 1 + ineff_count(root.left())
+        count += ineff_count(root.left())
     if root.right() is not None:
-        count = 1 + ineff_count(root.right())
+        count += ineff_count(root.right())
     if root.left() is None and root.right() is None:
         return 1
     return 1 + count

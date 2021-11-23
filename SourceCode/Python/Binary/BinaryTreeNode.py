@@ -2,17 +2,11 @@
 # Binary tree node implementation
 class BinaryTreeNode:
     def __init__(self, element=None, left=None, right=None):
-        # Element for this node
-        self.element = element
-
-        # Pointer to left child
-        self.left = left
-
-        # Pointer to right child
-        self.right = right
+        self.element = element   # Element for this node.
+        self.left = left         # Pointer to left child.
+        self.right = right       # Pointer to right child.
 
     def isLeaf(self):
         """Return True if a leaf node, False otherwise."""
-
-        return self.left is not None or self.right is not None
+        return self.left is None and self.right is None
 # /* *** ODSAendTag: BSTNode *** */

@@ -14,8 +14,8 @@
     }
   },
   "code": {
-    "java": [{
-      "url": "../../../SourceCode/Java/Binary/ExpressionTree.java",
+    "java_generic": [{
+      "url": "../../../SourceCode/Java_Generic/Binary/ExpressionTree.java",
       "lineNumbers": false,
       "startAfter": "/* *** ODSATag: pointer based preorder *** */",
       "endBefore": "/* *** ODSAendTag: pointer based preorder *** */",
@@ -23,13 +23,13 @@
         "sig": 1,
         "checknull": 2,
         "isleaf": 3,
-        "visitleaf": 4,
-        "isnotleaf": 5,
-        "visitinternal": 6,
-        "traverseleft": 7,
-        "traverseright": 8,
-        "endnotleaf": 9,
-        "end": 10
+        "visitleaf": 5,
+        "isnotleaf": 6,
+        "visitinternal": 8,
+        "traverseleft": 9,
+        "traverseright": 10,
+        "endnotleaf": 11,
+        "end": 12
       }
     }]
   }

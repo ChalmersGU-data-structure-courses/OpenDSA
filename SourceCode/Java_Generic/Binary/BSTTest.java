@@ -11,7 +11,7 @@ static <T> void visit(BinNode<T> rt) {
 //  System.out.print(rt.value() + " ");
 }
 
-static <E extends Comparable<E>> boolean checkBST(BSTNode<E> rt, Vector<E> sorted) {
+static <E extends Comparable<E>> boolean checkBST(BinaryTreeNode<E> rt, Vector<E> sorted) {
 	if (rt == null)
 		return true; // Empty subtree
 	// Inorder traversal

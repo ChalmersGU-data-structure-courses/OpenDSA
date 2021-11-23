@@ -29,13 +29,12 @@ class VarIntlNode(VarBinNode):
         return self.operator
 
 # Preorder traversal
-def traverse(rt):
-    if rt is None:
-        return       # Nothing to visit
-    if rt.isLeaf():  # Process leaf node
-        VisitLeafNode(rt.value())
-    else:            # Process internal node
-        VisitInternalNode(rt.value())
-        traverse(rt.leftchild())
-        traverse(rt.rightchild())
+def traverse(node):
+    if node is None: return  # Nothing to visit
+    if node.isLeaf():        # Process leaf node
+        VisitLeafNode(node.value())
+    else:                    # Process internal node
+        VisitInternalNode(node.value())
+        traverse(node.leftchild())
+        traverse(node.rightchild())
 #/* *** ODSAendTag: ExpressionTree *** */

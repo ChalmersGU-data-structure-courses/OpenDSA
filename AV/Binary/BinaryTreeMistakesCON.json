@@ -8,8 +8,8 @@
     }
   },
   "code": {
-    "java": [{
-      "url": "../../../SourceCode/Java/Binary/RecTutor.java",
+    "java_generic": [{
+      "url": "../../../SourceCode/Java_Generic/Binary/RecTutor.java",
       "lineNumbers": false,
       "startAfter": "/* *** ODSATag: bad_count *** */",
       "endBefore": "/* *** ODSAendTag: bad_count *** */",

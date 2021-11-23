@@ -38,16 +38,16 @@ public class VarIntlNode implements VarBinNode {
 
 // Preorder traversal
 /* *** ODSATag: pointer based preorder *** */
-public static void traverse(VarBinNode rt) {
-    if (rt == null) return;  // Nothing to visit
-    if (rt.isLeaf()) {
+public static void traverse(VarBinNode node) {
+    if (node == null) return;  // Nothing to visit
+    if (node.isLeaf()) {
         // Process leaf node
-        Visit.VisitLeafNode(((VarLeafNode)rt).value());
+        Visit.VisitLeafNode(((VarLeafNode)node).value());
     } else {
         // Process internal node
-        Visit.VisitInternalNode(((VarIntlNode)rt).value());
-        traverse(((VarIntlNode)rt).leftchild());
-        traverse(((VarIntlNode)rt).rightchild());
+        Visit.VisitInternalNode(((VarIntlNode)node).value());
+        traverse(((VarIntlNode)node).leftchild());
+        traverse(((VarIntlNode)node).rightchild());
     }
 }
 /* *** ODSAendTag: pointer based preorder *** */
