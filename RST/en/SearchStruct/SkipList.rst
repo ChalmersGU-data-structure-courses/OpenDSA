@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic: Randomized Algorithms
 
-Skip Lists (optional) (WORK IN PROGRESS)
-========================================
+Skip Lists (optional)
+=====================
 
 Skip Lists
 ----------

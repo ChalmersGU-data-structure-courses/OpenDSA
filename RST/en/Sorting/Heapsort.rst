@@ -11,8 +11,8 @@
 
 .. index:: ! Heapsort
 
-Heapsort (WORK IN PROGRESS)
-=============================
+Heapsort
+========
 
 Heapsort
 --------
@@ -67,8 +67,8 @@ used when sorting data sets too large to fit in main memory.
 
 A complete implementation is as follows.
 
-.. codeinclude:: ChalmersGU/Sorting/HeapSort 
-   :tag: HeapSort 
+.. codeinclude:: Sorting/HeapsortInplace
+   :tag: Heapsort 
 
 Here is a warmup practice exercise for Heapsort.
 

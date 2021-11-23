@@ -9,8 +9,8 @@
    :requires: complete tree; heap
    :topic: Priority Queues
 
-Priority Queues Chapter Summary (WORK IN PROGRESS)
-==================================================
+Priority Queues Chapter Summary
+===============================
 
 Summary Questions
 -----------------

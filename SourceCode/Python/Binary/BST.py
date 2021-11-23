@@ -43,7 +43,7 @@ class BST:
     def isEmpty(self):
         """Return true if there are no keys."""
 
-        return self.root is not None
+        return self.root is None
     
     def size(self):
         """Return the number of keys."""
@@ -142,7 +142,7 @@ class BST:
             elif node.right is None:
                 return node.left, node.value
             else:
-                last_node = BST.lastNode(node.left)
+                last_node = BST.largestNode(node.left)
                 last_key = last_node.key
                 last_val = last_node.value
                 # We can either use 'deletemax' (as in the next)
@@ -159,19 +159,19 @@ class BST:
         if self.root is None:
             return None
         else:
-            last_node = self.lastNode(self.root)
+            last_node = self.largestNode(self.root)
             return last_node.key
 
-#/* *** ODSATag: lastNodeHelper *** */
+#/* *** ODSATag: largestNode *** */
     @staticmethod
-    def lastNode(node):
+    def largestNode(node):
         """Find the node having the largest key."""
 
         while node.right is not None:
             node = node.right
 
         return node
-#/* *** ODSATag: lastNodeHelper *** */
+#/* *** ODSATag: largestNode *** */
 
     def __iter__(self):
         """Iterate through all keys.
@@ -218,6 +218,11 @@ class BST:
         """This is called when the user writes 'bst[key] = value'."""
 
         self.put(key, value)
+
+    def __contains__(self, key):
+        """This is called when the user writes 'key in bst'."""
+
+        return self.containsKey(key)
 
     def __delitem__(self, key):
         """This is called when the user writes 'del bst[key]'."""

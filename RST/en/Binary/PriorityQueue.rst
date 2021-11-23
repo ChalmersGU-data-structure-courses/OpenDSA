@@ -9,8 +9,8 @@
    :satisfies: priority queue
    :topic: Priority queues
 
-Priority queues (WORK IN PROGRESS)
-=====================================
+Priority queues
+===============
 
 Priority queues
 ---------------
@@ -55,11 +55,6 @@ There is also the possibility of ordering in descending order --
 that kind of queue is called a *maximum priority queue*.
 If you have a minimum priority queue, it's straightforward to turn it into
 a maximum priority queue.
-
-
-.. TODO::
-   Add max priority queues, and the version with an explicit priority
-   (and/or comparator?)
 
 Now let's look at a couple of applications of priority queues.
 

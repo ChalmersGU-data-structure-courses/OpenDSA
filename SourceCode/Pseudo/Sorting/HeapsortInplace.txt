@@ -1,0 +1,31 @@
+/* *** ODSATag: Heapsort *** */
+Algorithm 1 Heapsort(A)
+    // Convert the array to a heap
+    BuildHeap(A)
+
+    // Repeatedly find and remove the minimum element
+    heapsize = A.size
+    while heapsize > 0
+        Swap(A[0], A[heapsize - 1])
+        heapsize -= 1
+        SiftDown(A, 0)
+
+// Standard sift-down method for max heaps
+Algorithm 2 SiftDown(A, i)
+    while Left-child-index(i) < heapsize
+        l = Left-child-index(i)
+        r = Right-child-index(i)
+        if A[l] > A[i]
+            largest = l
+        else
+            largest = i
+
+        if r < heapsize and A[r] > A[largest]
+            largest = r
+
+        if largest = i
+            return
+        else
+            Swap(A[i], A[largest])
+            i = largest
+/* *** ODSAendTag: Heapsort *** */
