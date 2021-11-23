@@ -285,20 +285,16 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         iteratorHelper(node.right, keys);
     }
 
-    // Override 'toString' to print the contents of the AVL tree.
+    // Override 'toString' to print the contents of the BST.
     public String toString() {
-        StringBuilder str = new StringBuilder();
-        boolean firstKey = true;
+        if (root == null) return "{}";
+        return toStringHelper(root);
+    }
 
-        for (Key key: this) {
-            Value value = this.get(key);
-
-            if (!firstKey) str.append(", ");
-            str.append(key.toString() + "->" + value.toString());
-            firstKey = false;
-        }
-
-        return "{" + str + "}";
+    String toStringHelper(Node node) {
+        if (node == null) return ".";
+        return "{" + toStringHelper(node.left) + " " +
+            node.key + "->" + node.value + " " + toStringHelper(node.right) + "}";
     }
 
     // Some test code to check that the AVL tree is working
@@ -315,7 +311,7 @@ public class AVL<Key extends Comparable<Key>, Value> implements Iterable<Key> {
         }
 
         for (int i = 0; i < keys.length; i++) {
-            System.out.println(bst.get(keys[i]));
+            System.out.println(keys[i] + " -> " + bst.get(keys[i]));
             bst.checkInvariant();
         }
 
