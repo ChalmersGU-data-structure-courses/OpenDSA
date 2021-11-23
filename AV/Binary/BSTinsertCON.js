@@ -31,7 +31,7 @@ $(document).ready(function() {
   newedge.addClass("rededge");
   bt.layout();
 
-  var rt1 = av.pointer("rt", bt.root(), {anchor: "right top", top: -10});
+  var rt1 = av.pointer("node", bt.root(), {anchor: "right top", top: -10});
 
   // Slide 1
   av.umsg(interpret("sc1"));
