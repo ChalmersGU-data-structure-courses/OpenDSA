@@ -144,24 +144,8 @@ BST Remove
 Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered
 individually.
-Before tackling the general node removal process, we will first see
-how to remove from a given subtree the node with the largest key
-value.
-This routine will be used later by the general node removal function.
-
-.. inlineav:: BSTdeletemaxCON ss
-   :long_name: BST deletemax Slideshow
-   :links: AV/Binary/BSTCON.css
-   :scripts: AV/Binary/BSTdeletemaxCON.js
-   :output: show
-
-The return value of the ``deleteMax`` method is the subtree of
-the current node with the maximum-valued node in the subtree removed.
-Similar to the ``inserthelp`` method, each node on the path back to
-the root has its right child pointer reassigned to the subtree
-resulting from its call to the ``deleteMax`` method.
-
-A useful companion method is ``largestNode`` which returns a
+Before tackling the general node removal process,
+we need a useful companion method, ``largestNode``, which returns a
 pointer to the node containing the maximum value in the subtree.
 
 .. codeinclude:: Binary/BST
