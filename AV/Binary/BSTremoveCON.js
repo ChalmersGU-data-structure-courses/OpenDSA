@@ -39,7 +39,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 3
-  av.umsg("Compare the root value of 37 to the value that we want to delete (30). Since 37 is greater, we will left.");
+  av.umsg("Compare the root value of 37 to the value that we want to delete (30). Since 37 is greater, we go left.");
   pseudo.setCurrentLine("visitleft");
   av.step();
 
@@ -263,15 +263,15 @@ $(document).ready(function () {
   av.step();
 
   // Slide 28
-  av.umsg("Call lastNodeHelper to set a temporary variable to point to the node with the greatest value in the left subtree.");
+  av.umsg("Call largestNode to set a temporary variable to point to the node with the greatest value in the left subtree. This node is the predecessor to the node we want to remove.");
   pseudo.setCurrentLine("getmax");
   var tnode = rt.left().right();
   tnode.addClass("processing");
-  var rt2 = av.pointer("lastNode", tnode, {anchor: "right top", top: -10});
+  var rt2 = av.pointer("predecessor", tnode, {anchor: "right top", top: -10});
   av.step();
 
   // Slide 29
-  av.umsg("Now set the root value to what was returned by lastNodeHelper.");
+  av.umsg("Now set the root value to what was returned by largestNode.");
   pseudo.setCurrentLine("setelement");
   av.effects.moveValue(tnode, rt);
   rt.addClass("rednode");
