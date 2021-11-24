@@ -7,7 +7,7 @@ import java.util.Iterator;
 // A dictionary implemented using a binary search tree.
 class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
     Node root = null;   // The root of the binary search tree.
-    int treeSize;       // The size of the tree.
+    int treeSize = 0;   // The size of the tree.
 /* *** ODSAendTag: Header *** */
 
 /* *** ODSATag: Node *** */
@@ -30,15 +30,18 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 /* *** ODSATag: Invariant *** */
     // Check that the invariant holds.
     void checkInvariant() {
-        checkInvariantHelper(root, null, null);
+        int size = checkInvariantHelper(root, null, null);
+        if (size != treeSize) 
+            throw new AssertionError("wrong tree size");
     }
 
     // Recursive helper method for 'check_invariant'.
     // Checks that the node is the root of a valid BST, and that
     // all keys k satisfy lo < k < hi. The test lo < k is skipped
     // if lo is None, and k < hi is skipped if hi is None.
-    void checkInvariantHelper(Node node, K lo, K hi) {
-        if (node == null) return;
+    // Also, it returns the size of the tree.
+    int checkInvariantHelper(Node node, K lo, K hi) {
+        if (node == null) return 0;
 
         if (lo != null && node.key.compareTo(lo) <= 0)
             throw new AssertionError("key too small");
@@ -46,9 +49,10 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
             throw new AssertionError("key too big");
 
         // Keys in the left subtree should be < node.key
-        checkInvariantHelper(node.left, lo, node.key);
         // Keys in the right subtree should be > node.key
-        checkInvariantHelper(node.right, node.key, hi);
+        return 1 + 
+            checkInvariantHelper(node.left, lo, node.key) +
+            checkInvariantHelper(node.right, node.key, hi);
     }
 /* *** ODSAendTag: Invariant *** */
     
@@ -125,6 +129,8 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 
 /* *** ODSATag: remove *** */
     // Delete a key.
+    // Returns the previous value associated with the key,
+    // or null if the key wasn't previously present.
     public V remove(K key) {
         root = removeHelper(root, key);
         if (oldValue != null)
@@ -152,15 +158,11 @@ class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
                 oldValue = node.value;
                 return node.left;
             } else {
-                Node lastNode = largestNode(node.left);
-                K lastKey = lastNode.key;
-                V lastValue = lastNode.value;
-                // We can either use 'deletemax' (as in the text)
-                // or just recursively call removeHelper here.
-                node.left = removeHelper(node.left, lastKey);
+                Node predecessor = largestNode(node.left);
                 oldValue = node.value;
-                node.key = lastKey;
-                node.value = lastValue;
+                node.key = predecessor.key;
+                node.value = predecessor.value;
+                node.left = removeHelper(node.left, predecessor.key);
                 return node;
             }
         }
