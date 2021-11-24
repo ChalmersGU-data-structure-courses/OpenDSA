@@ -40,7 +40,7 @@ When removed, an element is said to be :term:`popped <pop>` from the
 stack.
 Here is our :term:`ADT` for stacks:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: StackADT
 
 As with lists, there are many variations on stack implementation.
@@ -57,7 +57,7 @@ and the index of the **top** of the stack.
 Or actually, the index is for the next free slot in the array,
 which at the same time is the size of the stack.
    
-.. codeinclude:: ChalmersGU/DynamicArrayStack
+.. codeinclude:: ChalmersGU/API/DynamicArrayStack
    :tag: DynamicArrayStackInit
 
 The array-based stack implementation is essentially
@@ -80,7 +80,7 @@ Pushing to the Stack
    :scripts: AV/ChalmersGU/DynamicArrayStack-Push-CON.js
    :output: show
 
-.. codeinclude:: ChalmersGU/DynamicArrayStack
+.. codeinclude:: ChalmersGU/API/DynamicArrayStack
    :tag: DynamicArrayStackPush
 
 .. avembed:: Exercises/ChalmersGU/DynamicArrayStack-Push-PRO.html ka
@@ -96,7 +96,7 @@ Popping from the Stack
    :scripts: AV/ChalmersGU/DynamicArrayStack-Pop-CON.js
    :output: show
 
-.. codeinclude:: ChalmersGU/DynamicArrayStack
+.. codeinclude:: ChalmersGU/API/DynamicArrayStack
    :tag: DynamicArrayStackPop
 
 .. avembed:: Exercises/ChalmersGU/DynamicArrayStack-Pop-PRO.html ka
@@ -113,5 +113,5 @@ The main difference is that stacks are even simpler to implement than their list
 Here is a complete implementation for
 the (dynamic) array-based stack class.
 
-.. codeinclude:: ChalmersGU/DynamicArrayStack
+.. codeinclude:: ChalmersGU/API/DynamicArrayStack
    :tag: DynamicArrayStack

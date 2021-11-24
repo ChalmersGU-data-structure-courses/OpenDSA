@@ -32,11 +32,12 @@ Unfortunately, even though it is based on a simple concept,
 it is relatively difficult to implement in practice.
 Here is a pseudocode sketch of Mergesort::
 
-    List mergesort(List inlist)
-      if length of inlist <= 1 then return inlist
-      List L1 = half of the items from inlist
-      List L2 = other half of the items from inlist
-      return merge(mergesort(L1), mergesort(L2))
+    mergeSort(inlist)
+        if length of inlist <= 1:
+            return inlist
+        L1 = half of the items from inlist
+        L2 = other half of the items from inlist
+        return merge(mergeSort(L1), mergeSort(L2))
 
 Here is a visualization that illustrates how Mergesort works.
 
@@ -54,22 +55,21 @@ output list until no more input records remain.
 
 Here is pseudocode for merge on lists::
 
-    List merge(List L1, List L2)
-      List answer = new empty list
-      while L1 is not empty and L2 is not empty
-        x = first element of L1
-        y = first element of L2
-        if x <= y
-          append x to answer
-          remove first element from L1
-        else
-          append y to answer
-          remove first element from L2
-      // Now one of L1 and L2 is empty, so append
-      // all remaining elements
-      append all elements of L1 to answer
-      append all elements of L2 to answer
-      return answer
+    merge(L1, L2)
+        answer = new empty list
+        while L1 is not empty and L2 is not empty
+            x = first element of L1
+            y = first element of L2
+            if x <= y
+                append x to answer
+                remove first element from L1
+            else
+                append y to answer
+                remove first element from L2
+        // Now one of L1 and L2 is empty, so append all remaining elements
+        append all elements of L1 to answer
+        append all elements of L2 to answer
+        return answer
 
 Here is a visualization for the merge operation.
 
@@ -78,7 +78,7 @@ Here is a visualization for the merge operation.
    :scripts: AV/Sorting/mergesortCON.js
    :output: show
 
-Here is a mergesort warmup exercise to practice merging.
+Here is a Mergesort warmup exercise to practice merging.
 
 .. avembed:: Exercises/Sorting/MergesortMergePRO.html ka
    :long_name: Mergesort Merging Proficiency Exercise

@@ -80,8 +80,8 @@ or to sum the values of all the nodes.
    us.
    Thus, we can implement ``count`` as follows.
 
-   .. codeinclude:: Binary/Traverse
-      :tag: count
+   .. codeinclude:: Binary/RecTutor
+      :tag: EffCnt
 
    The following solution is correct but inefficient as it does
    redundant checks on the left and the right child of each visited

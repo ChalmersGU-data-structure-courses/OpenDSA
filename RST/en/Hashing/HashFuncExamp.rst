@@ -19,7 +19,7 @@ Simple Mod Function
 Consider the following hash function used to hash integers to a table
 of sixteen slots.
 
-.. codeinclude:: ChalmersGU/HashcodeDemo
+.. codeinclude:: ChalmersGU/Other/Hashcode
    :tag: Mod16
 
 Here "%" is the symbol for the mod function.
@@ -190,7 +190,7 @@ Now we will examine some hash functions suitable for storing strings
 of characters.
 We start with a simple summation function.
 
-.. codeinclude:: ChalmersGU/HashcodeDemo
+.. codeinclude:: ChalmersGU/Other/Hashcode
    :tag: StringHashSimple
 
 This function sums the ASCII values of the letters in a string.
@@ -233,7 +233,7 @@ If we instead multiply the hash with a prime number, before adding
 the next character, we get a much better distribution of the hash codes.
 This is Java's default hash code for strings, where the prime number is 31.
 
-.. codeinclude:: ChalmersGU/HashcodeDemo
+.. codeinclude:: ChalmersGU/Other/Hashcode
    :tag: StringHashImproved
 
 Mathematically, the hash function is

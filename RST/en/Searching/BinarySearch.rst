@@ -24,7 +24,7 @@ If the value is not in the array, eventually you will reach the end.
 We will call this an :term:`unsuccessful search`.
 Here is a simple implementation for sequential search.
 
-.. codeinclude:: Searching/Sequential
+.. codeinclude:: ChalmersGU/Sorting/SequentialSearch
       :tag: Sequential
 
 It is natural to ask how long a program or algorithm will take to
@@ -87,7 +87,7 @@ Here is an illustration of the binary search method.
 
 And here is the method in more programming languages:
 
-.. codeinclude:: Searching/Bsearch
+.. codeinclude:: ChalmersGU/Sorting/BinarySearch
       :tag: BinarySearch
 
 With the right math techniques, it is not too hard to show that the

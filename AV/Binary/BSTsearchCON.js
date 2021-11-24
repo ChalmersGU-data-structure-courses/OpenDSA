@@ -23,7 +23,7 @@ $(document).ready(function () {
   rt.right().right(120);
   bt.layout();
 
-  var rt1 = av.pointer("rt", bt.root(), {anchor: "right top"});
+  var rt1 = av.pointer("node", bt.root(), {anchor: "right top"});
 
   // Slide 1
   av.umsg(interpret("sc1"));

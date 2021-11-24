@@ -138,7 +138,7 @@ records and extracting keys is for various map
 implementations and sorting algorithms.
 Here is a simple class for representing key-value pairs:
 
-.. codeinclude:: ChalmersGU/KVPair
+.. codeinclude:: ChalmersGU/API/KVPair
    :tag: KVPair
 
 Using this we can easily implement a **Map** from an underlying **List**,
@@ -162,8 +162,8 @@ To illustrate, here is an example of
 work on an array that stores records that support the ``Comparable``
 interface:
 
-.. codeinclude:: Sorting/Insertionsort
-   :tag: Insertionsort
+.. codeinclude:: ChalmersGU/Sorting/InsertionSort
+   :tag: InsertionSort
 
 Review questions
 ------------------

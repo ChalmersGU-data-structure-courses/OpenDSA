@@ -10,7 +10,9 @@ $(document).ready(function() {
 //  var pseudo = av.code($.extend({top: -50, left: 200}, code[0]));
   var pseudo = av.code(code[0]);
 
-  var bt = av.ds.binarytree({visible: true, nodegap: 15});
+  var bstTop = 45;
+  var bt = av.ds.binarytree({top: bstTop, left: 10, visible: true, nodegap: 15});
+  // var bt = av.ds.binarytree({visible: true, nodegap: 15});
   bt.root(37);
   var rt = bt.root();
   rt.left(24);
@@ -29,7 +31,7 @@ $(document).ready(function() {
   newedge.addClass("rededge");
   bt.layout();
 
-  var rt1 = av.pointer("rt", bt.root(), {anchor: "right top", top: -10});
+  var rt1 = av.pointer("node", bt.root(), {anchor: "right top", top: -10});
 
   // Slide 1
   av.umsg(interpret("sc1"));
@@ -43,7 +45,7 @@ $(document).ready(function() {
 
   // Slide 3
   av.umsg(interpret("sc3"));
-  pseudo.setCurrentLine("compare");
+  pseudo.setCurrentLine("compareleft");
   av.step();
 
   // Slide 4
@@ -65,7 +67,7 @@ $(document).ready(function() {
 
   // Slide 7
   av.umsg(interpret("sc7"));
-  pseudo.setCurrentLine("compare");
+  pseudo.setCurrentLine("compareright");
   av.step();
 
   // Slide 8
@@ -87,7 +89,7 @@ $(document).ready(function() {
 
   // Slide 11
   av.umsg(interpret("sc3"));
-  pseudo.setCurrentLine("compare");
+  pseudo.setCurrentLine("compareleft");
   av.step();
 
   // Slide 12

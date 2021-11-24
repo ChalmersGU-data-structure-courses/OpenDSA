@@ -41,8 +41,8 @@ Thus, the total number of swaps required will be :math:`n-1`
 
 Here is an implementation for Selection Sort.
 
-.. codeinclude:: Sorting/Selectionsort 
-   :tag: Selectionsort
+.. codeinclude:: ChalmersGU/Sorting/SelectionSort 
+   :tag: SelectionSort
 
 Consider the example of the following array.
 

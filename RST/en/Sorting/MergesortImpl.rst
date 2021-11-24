@@ -70,11 +70,11 @@ Array ``temp`` is used as a place to temporarily copy records during
 the merge process.
 Parameters ``left`` and ``right`` define the left and right
 indices, respectively, for the subarray being sorted.
-The initial call to ``mergesort`` would be
-``mergesort(array, temparray, 0, n-1)``.
+The initial call to ``mergeSort`` would be
+``mergeSort(array, temparray, 0, n-1)``.
 
-.. codeinclude:: Sorting/Mergesort
-   :tag: Mergesort
+.. codeinclude:: ChalmersGU/Sorting/MergeSort
+   :tag: MergeSort
 
 Here is a visualization for the merge step.
 

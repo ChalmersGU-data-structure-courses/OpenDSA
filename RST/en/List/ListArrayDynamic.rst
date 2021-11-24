@@ -23,7 +23,7 @@ How can we modify our class to allow for any number of elements?
 One solution is to create a larger internal array whenever the capacity is exceeded,
 and copy over all elements to the new one.
 
-.. codeinclude:: ChalmersGU/DynamicArrayList
+.. codeinclude:: ChalmersGU/API/DynamicArrayList
    :tag: DynamicArrayListResize
 
 So, how large should the new internal array be? For now, let's
@@ -40,7 +40,7 @@ That's the only difference from the ``add`` method from **StaticArrayList**.
 So the dynamic ``add`` method will look like this.
 
 
-.. codeinclude:: ChalmersGU/DynamicArrayList
+.. codeinclude:: ChalmersGU/API/DynamicArrayList
    :tag: DynamicArrayListAdd
 
 As explained below, we don't have to double the size, but we can multiply by 3 or 1.5 or 1.1.
@@ -307,7 +307,7 @@ The only thing that matters is that the minimum load factor (1/3) is smaller
 than the shrinking factor (1/2). 
 So the dynamic ``remove`` method will look like this.
 
-.. codeinclude:: ChalmersGU/DynamicArrayList
+.. codeinclude:: ChalmersGU/API/DynamicArrayList
    :tag: DynamicArrayListRemove
 
 |
@@ -337,7 +337,7 @@ The minimum load factor is set to 50% (which is smaller than 1/1.5 = 67%),
 and the minimum array capacity is 8.
 All these constants can be changed at will.
 
-.. codeinclude:: ChalmersGU/DynamicArrayList
+.. codeinclude:: ChalmersGU/API/DynamicArrayList
    :tag: DynamicArrayList
 
 .. [1] You can get a precise number by using the formula for an

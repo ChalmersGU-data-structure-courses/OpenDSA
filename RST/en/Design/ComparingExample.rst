@@ -22,17 +22,17 @@ In Java there are two main ways of comparing objects. The one that most people f
 
 As a running example we use a class for persons:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: Person
 
 Also, let’s create an array of persons that we can use later:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: GetPeople
 
 Now we can print the list:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: PrintPeople
 
 Which results in:
@@ -54,17 +54,17 @@ Recall the interface for comparables from :ref:`the course API <CourseAPI>`:
 
 .. _`Java 8 Comparable`: https://docs.oracle.com/javase/8/docs/api/java/lang/Comparable.html
 
-.. codeinclude:: ChalmersGU/BaseAPI
+.. codeinclude:: ChalmersGU/API/BaseAPI
    :tag: ComparableADT
 
 Let’s say that we want the natural ordering to be to compare persons by their family name. Then we let ``Person`` implement the ``Comparable`` interface by overriding ``.compareTo(…)``:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: PersonCompareTo
 
 Now we can sort our people array according to family name:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: SortNatural
 
 Resulting in:
@@ -90,12 +90,12 @@ What if we sometimes want to sort the list according to some other ordering, e.g
 
 .. _`Java 8 Comparator`: https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html
 
-.. codeinclude:: ChalmersGU/BaseAPI
+.. codeinclude:: ChalmersGU/API/BaseAPI
    :tag: ComparatorADT
 
 To use this we have to implement a separate class for each ordering we want to use. Here's one for comparing by birth year:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: BirthYearComparator
 
 
@@ -106,12 +106,12 @@ To use this we have to implement a separate class for each ordering we want to u
 
 And here’s the class for comparing by given name:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: GivenNameComparator
 
 To use them you have to first create an object, i.e., instantiate the comparator:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: SortByBirthYear
 
 Result:
@@ -127,7 +127,7 @@ Result:
 
 And similar for given names:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: SortByGivenName
 
 Result:
@@ -146,7 +146,7 @@ Comparators, the new functional interface in Java 8
 
 Since Java 8, there’s a functional interface which can be used to build comparators (and many other things). So we don’t have to write the class definitions, and instead write similarly to we would do in Python or Haskell:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: ByBirthYearFunctional, ByGivenNameFunctional
 
 Yay! That’s a lot nicer than the clumsy class definition
@@ -157,7 +157,7 @@ Comparing fields using key extractors
 
 In many cases (including our example case), we only want to compare some fields in a class. Then we can use *key extractors* to simplify even more:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: ByBirthYearKeyExtractor, ByGivenNameKeyExtractor
 
 * *Note*: We use ``.comparingInt(…)`` when defining ``byBirthYear``. It’s not strictly necessary (i.e., we can use ``.comparing(…)``), but it makes things slightly more efficient.
@@ -169,22 +169,22 @@ Remember the natural ordering? The problem with only comparing the family name i
 
 What we want is to be able to compare several fields. The old and not-so-good solution is to use clumsy if-then-elses, like this:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: FullNameComparator
 
 After this we can instantiate a specific comparator:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: ByFullName
 
 If we have many fields this gets quite cumbersome (and error-prone). But using the functional interface, and the magic ``.thenComparing(…)`` method, it’s really easy:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: ByFullNameThenComparing
 
 And here it is in action:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: SortByFullName
 
 Result:
@@ -211,12 +211,12 @@ Now, correct string sorting depends on your locale. E.g., in Swedish we put Å, 
 
 So, here’s how to define a correct comparator for Swedish, which ignores case differences and orders according to Swedish locale:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: BySwedishLocale
 
 And in action:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: SortBySwedishLocale
 
 Result:
@@ -242,5 +242,5 @@ Running the program
 
 Here is the full source code. Just compile and run it without any arguments:
 
-.. codeinclude:: ChalmersGU/DemoComparator
+.. codeinclude:: ChalmersGU/Other/ComparatorExample
    :tag: ComparatorDemo

@@ -71,17 +71,17 @@ objects.
 Here is an implementation for Quicksort.
 Parameters ``left`` and ``right`` define the left and right
 indices, respectively, for the subarray being sorted.
-The initial call to ``quicksort`` would be
-``quicksort(array, 0, n-1)``.
+The initial call to ``quickSort`` would be
+``quickSort(array, 0, n-1)``.
 
-.. codeinclude:: Sorting/Quicksort
-   :tag: Quicksort
+.. codeinclude:: ChalmersGU/Sorting/QuickSort
+   :tag: QuickSort
 
 Function ``partition`` will move records to the
 appropriate partition and then return the final position of the pivot.
 This is the correct position of the pivot in the final, sorted array.
 By doing so, we guarantee that at least one value (the pivot) will not
-be processed in the recursive calls to ``qsort``.
+be processed in the recursive calls to ``quickSort``.
 Even if a bad pivot is selected, yielding a completely empty
 partition to one side of the pivot, the larger partition will contain
 at most :math:`n-1` records.
@@ -90,12 +90,12 @@ Selecting a pivot can be done in many ways. The simplest is to use the
 first key. However, if the input is sorted or reverse sorted, this
 will produce a poor partitioning with all values to one side of the
 pivot. One simple way to avoid this problem is to select the middle
-position in the array. Here is a simple ``findpivot`` function
+position in the array. Here is a simple ``findPivot`` function
 implementing this idea. Note that later in the chapter we will switch
 to a better pivot selection strategy.
 
-.. codeinclude:: Sorting/Quicksort
-   :tag: findpivot
+.. codeinclude:: ChalmersGU/Sorting/QuickSort
+   :tag: FindPivot
 
 .. avembed:: Exercises/Sorting/QuicksortPivotPRO.html ka
    :long_name: Quicksort Pivot Proficiency Exercise
@@ -114,13 +114,13 @@ we use a clever algorithm that moves indices inwards from the
 ends of the subarray, swapping values as necessary until the two
 indices meet.
 
-Since quicksort is a recursive algorithm, we will not only partition
+Since Quicksort is a recursive algorithm, we will not only partition
 the whole array, but also part of the array. Therefore ``partition``
 needs the positions of the leftmost and rightmost elements in the
 subarray that we will partition.
 
-.. codeinclude:: Sorting/Quicksort
-   :tag: partition
+.. codeinclude:: ChalmersGU/Sorting/QuickSort
+   :tag: Partition
 
 The function ``partition`` first puts the pivot at the leftmost position
 in the subarray, and increases ``left`` by one
@@ -181,7 +181,7 @@ Quicksort.
 Quicksort Analysis
 ------------------
 
-This visualization explains the worst-case running time of Quick Sort
+This visualization explains the worst-case running time of Quicksort
 
 .. inlineav:: QuickSortWorstCaseCON ss
    :long_name: Quicksort Worst Case Analysis Slideshow
@@ -266,19 +266,19 @@ This is why picking a good pivot is so important.
 Pivots in practice
 ------------------
 
-Perhaps the most important choice in implementing quicksort is how to
+Perhaps the most important choice in implementing Quicksort is how to
 choose the pivot. Choosing a bad pivot can result in all elements of
-the array ending up in the same partition, in which case quicksort
+the array ending up in the same partition, in which case Quicksort
 ends up taking quadratic time.
 
 Choosing the *first* or the *last* element of the array is a bad
 strategy. If the input array is sorted, then the first element of the
 array will also be the smallest element. Hence all elements of the
 array will end up in the "greater than pivot" partition. Worse, the
-exact same thing will happen in all the recursive calls to quicksort.
-Hence the partitioning will be as bad as possible, and quicksort will
+exact same thing will happen in all the recursive calls to Quicksort.
+Hence the partitioning will be as bad as possible, and Quicksort will
 end up taking quadratic time. You sometimes see implementations of
-quicksort that use the first element as the pivot, but this is a bad
+Quicksort that use the first element as the pivot, but this is a bad
 idea!
 
 Above, we picked the *middle* element of the array, to avoid this
@@ -288,7 +288,7 @@ strategies are used.
 The theoretically best choice of pivot is one that divides the array
 equally in two, i.e. the median element of the array. However, the
 median of an array is difficult to compute (unless you sort the array
-first!) Instead, many quicksort implementations use a strategy called
+first!) Instead, many Quicksort implementations use a strategy called
 *median-of-three*. In median-of-three, we pick elements from three
 positions in the array: the *first* position, the *middle* position
 and the *last* position. Then we take the median of these three
@@ -301,18 +301,18 @@ Median-of-three is not guaranteed to pick a good pivot: there are
 cases where it partitions the input array badly. However, these bad
 cases do not seem to occur in practice. In practice, median-of-three
 picks good pivots, and it is also cheap to implement. It is used by
-most real-world quicksort implementations.
+most real-world Quicksort implementations.
 
 Another good approach is to pick a random element of the array as the
 pivot. This makes it somewhat unlikely to get a poor partitioning.
 What's more, if we do get a poor partitioning, it is likely that in
-the recursive call to ``qsort``, we will choose a different pivot and
+the recursive call to ``quickSort``, we will choose a different pivot and
 get a better partitioning. Unlike median-of-three, this approach is
 theoretically sound: there are no input arrays which make it work
 badly. Another way to get the same effect is to pick e.g. the first
 element as the pivot, but to *shuffle* the array before sorting,
 rearranging it into a random order. The array only needs to be
-shuffled once before quicksort begins, not in every recursive call.
+shuffled once before Quicksort begins, not in every recursive call.
 
 More practical improvements
 ---------------------------
@@ -359,7 +359,7 @@ be stored is small.
 We need not store copies of a subarray, only the subarray bounds.
 Furthermore, the stack depth can be kept small if care is taken on
 the order in which Quicksort's recursive calls are executed.
-We can also place the code for ``findpivot`` and
+We can also place the code for ``findPivot`` and
 ``partition`` inline to eliminate the remaining function
 calls.
 Note however that by not processing smal sublists of size nine or

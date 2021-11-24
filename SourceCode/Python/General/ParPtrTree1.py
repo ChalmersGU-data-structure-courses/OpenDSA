@@ -16,7 +16,7 @@ class ParPtrTree:
     def FIND(self, curr):
         while self.array[curr] != -1:
             curr = self.array[curr]
-        return curr  # Now at root
+        return curr           # Now at root
 #/* *** ODSAendTag: UF1 *** */
 #/* *** ODSATag: UF2 *** */
 #/* *** ODSAendTag: UF2 *** */

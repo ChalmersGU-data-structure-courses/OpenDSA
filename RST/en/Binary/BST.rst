@@ -55,7 +55,7 @@ and passing in a :term:`comparator function <comparator>`.
 Our BST implementation will require that records implement the
 ``Comparable`` interface.
 
-.. codeinclude:: Binary/BST
+.. codeinclude:: ChalmersGU/API/BSTMap
    :tag: BST
 
 
@@ -75,7 +75,7 @@ subtree and the search key.
 Member ``getHelper`` has the desired form for this recursive
 subroutine and is implemented as follows.
 
-.. codeinclude:: Binary/BST
+.. codeinclude:: ChalmersGU/API/BSTMap
    :tag: get
 
 .. inlineav:: BSTsearchCON ss
@@ -93,7 +93,7 @@ BST Insert
 
 Now we look at how to insert a new node into the BST.
 
-.. codeinclude:: Binary/BST
+.. codeinclude:: ChalmersGU/API/BSTMap
    :tag: put
 
 .. inlineav:: BSTinsertCON ss
@@ -144,30 +144,14 @@ BST Remove
 Removing a node from a BST is a bit trickier than inserting a node,
 but it is not complicated if all of the possible cases are considered
 individually.
-Before tackling the general node removal process, we will first see
-how to remove from a given subtree the node with the largest key
-value.
-This routine will be used later by the general node removal function.
-
-.. inlineav:: BSTdeletemaxCON ss
-   :long_name: BST deletemax Slideshow
-   :links: AV/Binary/BSTCON.css
-   :scripts: AV/Binary/BSTdeletemaxCON.js
-   :output: show
-
-The return value of the ``deletemax`` method is the subtree of
-the current node with the maximum-valued node in the subtree removed.
-Similar to the ``inserthelp`` method, each node on the path back to
-the root has its right child pointer reassigned to the subtree
-resulting from its call to the ``deletemax`` method.
-
-A useful companion method is ``largestNode`` which returns a
+Before tackling the general node removal process,
+we need a useful companion method, ``largestNode``, which returns a
 pointer to the node containing the maximum value in the subtree.
 
 .. codeinclude:: Binary/BST
    :tag: largestNode
 
-Now we are ready for the ``removehelp`` method.
+Now we are ready for the ``removeHelper`` method.
 Removing a node with given key value :math:`R` from the BST
 requires that we first find :math:`R` and then remove it from the
 tree.
@@ -177,7 +161,7 @@ Once :math:`R` is found, there are several possibilities.
 If :math:`R` has no children, then :math:`R`'s parent has its
 pointer set to NULL.
 If :math:`R` has one child, then :math:`R`'s parent has
-its pointer set to :math:`R`'s child (similar to ``deletemax``).
+its pointer set to :math:`R`'s child (similar to ``deleteMax``).
 The problem comes if :math:`R` has two children.
 One simple approach, though expensive, is to set :math:`R`'s parent to
 point to one of :math:`R`'s subtrees, and then reinsert the remaining
@@ -219,6 +203,13 @@ Tree Property if equal values appear in the left subtree.
 .. [#] Alternatively, if we prefer to store duplicate values in the
        right subtree, then we must replace a deleted node with the
        least value from its right subtree.
+
+
+The code for removal is shown here.
+
+.. codeinclude:: ChalmersGU/API/BSTMap
+   :tag: remove
+
 
 .. avembed:: AV/Binary/BSTremovePRO.html pe
    :long_name: BST Remove Proficiency Exercise
@@ -266,7 +257,7 @@ Below is an example traversal, named ``printHelper``.
 It performs an inorder traversal on the BST to print the node keys, in
 sorted order.
 
-.. codeinclude:: Binary/BST
+.. codeinclude:: ChalmersGU/API/BSTMap
    :tag: printHelper
 
 While the BST is simple to implement and efficient when the tree is

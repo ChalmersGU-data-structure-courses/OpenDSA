@@ -92,7 +92,8 @@ Min heaps and max heaps both have their uses.
 For example, the Heapsort uses the max heap,
 while the Replacement Selection algorithm used for external sorting
 uses a min heap.
-The examples in the rest of this section will use a max heap.
+The examples in the rest of this section will sometimes use a min
+and sometimes a max heap.
 
 Be sure not to confuse the logical representation of a heap
 with its physical implementation by means of the array-based complete
@@ -101,41 +102,45 @@ The two are not synonymous because the logical view of the heap is
 actually a tree structure, while the typical physical implementation
 uses an array.
 
-Here is an implementation for max heaps.
+Here is an implementation for min heaps.
 The class uses records that support the Comparable interface to
 provide flexibility.
 
-.. codeinclude:: Binary/MaxHeap
-   :tag: Maxheap
+.. codeinclude:: ChalmersGU/API/MinHeap
+   :tag: MinHeap
 
-This class definition makes two concessions to the fact that an
-array-based implementation is used.
-First, heap nodes are indicated by their logical position within the
-heap rather than by a pointer to the node.
-In practice, the logical heap position corresponds to the identically
-numbered physical position in the array.
-Second, the constructor takes as input a pointer to the array to be
-used.
-This approach provides the greatest flexibility for using the heap
-because all data values can be loaded into the array directly
-by the client.
-The advantage of this comes during the heap construction phase,
-as explained below.
-The constructor also takes an integer parameter indicating the initial
-size of the heap (based on the number of elements initially loaded
-into the array) and a second integer parameter indicating the maximum
-size allowed for the heap (the size of the array).
 
-Method ``heapsize`` returns the current size of the heap.
-``H.isLeaf(pos)`` returns TRUE if position
-``pos`` is a leaf in heap ``H``, and FALSE otherwise.
-Members ``leftchild``, ``rightchild``,
-and ``parent`` return the position (actually, the array index)
+..
+
+    This class definition makes two concessions to the fact that an
+    array-based implementation is used.
+    First, heap nodes are indicated by their logical position within the
+    heap rather than by a pointer to the node.
+    In practice, the logical heap position corresponds to the identically
+    numbered physical position in the array.
+    Second, the constructor takes as input a pointer to the array to be used.
+    This approach provides the greatest flexibility for using the heap
+    because all data values can be loaded into the array directly
+    by the client.
+    The advantage of this comes during the heap construction phase,
+    as explained below.
+    The constructor also takes an integer parameter indicating the initial
+    size of the heap (based on the number of elements initially loaded
+    into the array) and a second integer parameter indicating the maximum
+    size allowed for the heap (the size of the array).
+
+
+The class contains some private auxiliary methods that are use when adding and
+removing elements from the heap: 
+``isLeaf(pos)`` returns ``true`` if position
+``pos`` is a leaf in the tree, and ``false`` otherwise.
+Members ``getLeftChild``, ``getRightChild``,
+and ``getParent`` return the position (actually, the array index)
 for the left child, right child, and parent of the position passed,
 respectively.
 
 One way to build a heap is to insert the elements one at a time.
-Method ``insert`` will insert a new element :math:`V` into
+Method ``add`` will insert a new element :math:`V` into
 the heap.
 
 .. inlineav:: heapinsertCON ss
@@ -151,9 +156,9 @@ However, this approach is not likely to work because the heap must
 maintain the shape of a complete binary tree.
 Equivalently, if the heap takes up the first
 :math:`n` positions of its array prior to the call to
-``insert``,
+``add``,
 it must take up the first :math:`n+1` positions after.
-To accomplish this, ``insert`` first places :math:`V` at
+To accomplish this, ``add`` first places :math:`V` at
 position :math:`n` of the array.
 Of course, :math:`V` is unlikely to be in the correct position.
 To move :math:`V` to the right place, it is compared to its
@@ -179,7 +184,7 @@ value of :math:`n`.
 To be precise, the height of a heap with :math:`n` nodes is
 :math:`\lceil \log n + 1 \rceil`.
 
-Each call to ``insert`` takes :math:`\Theta(\log n)` time in the
+Each call to ``add`` takes :math:`\Theta(\log n)` time in the
 worst case, because the value being inserted can move at most the
 distance from the bottom of the tree to the top of the tree.
 Thus, to insert :math:`n` values into the heap, if we insert them 
@@ -250,7 +255,7 @@ In this case, we simply continue the process of "pushing down"
 :math:`R` until it reaches a level where it is greater than its
 children, or is a leaf node.
 This process is implemented by the private method
-``siftdown``.
+``siftDown``.
 
 This approach assumes that the subtrees are already heaps,
 suggesting that a complete algorithm can be obtained by visiting
@@ -277,8 +282,8 @@ Method ``buildHeap`` implements the building algorithm.
    :long_name: Heap Build Proficiency Exercise
 
 What is the cost of ``buildHeap``?
-Clearly it is the sum of the costs for the calls to ``siftdown``.
-Each ``siftdown`` operation can cost at most the number of
+Clearly it is the sum of the costs for the calls to ``siftDown``.
+Each ``siftDown`` operation can cost at most the number of
 levels it takes for the node being sifted to reach the bottom of the
 tree.
 In any complete tree, approximately half of the nodes are leaves
@@ -335,18 +340,21 @@ cases.
    :scripts: DataStructures/binaryheap.js AV/Binary/heapremoveCON.js
    :output: show
 
-For some applications, objects might get their priority modified.
-One solution in this case is to remove the object and reinsert it.
-To do this, the application needs to know the position of the object
-in the heap.
-Another option is to change the priority value of the object, and then
-update its position in the heap.
-Note that a remove operation implicitly has to do this anyway, since
-when the last element in the heap is swapped with the one being
-removed, that value might be either too small or too big for its new
-position.
-So we use a utility method called ``update`` in both the ``remove``
-and ``modify`` methods to handle this process.
+
+.. 
+
+    For some applications, objects might get their priority modified.
+    One solution in this case is to remove the object and reinsert it.
+    To do this, the application needs to know the position of the object
+    in the heap.
+    Another option is to change the priority value of the object, and then
+    update its position in the heap.
+    Note that a remove operation implicitly has to do this anyway, since
+    when the last element in the heap is swapped with the one being
+    removed, that value might be either too small or too big for its new
+    position.
+    So we use a utility method called ``update`` in both the ``remove``
+    and ``modify`` methods to handle this process.
 
             
 Priority Queues
@@ -356,35 +364,42 @@ The heap is a natural implementation for the priority queue discussed
 at the beginning of this section.
 Jobs can be added to the heap (using their priority value as the
 ordering key) when needed.
-Method ``removemax`` can be called whenever a new job is to be
+Method ``removeMin`` can be called whenever a new job is to be
 executed.
 
-Some applications of priority queues require the ability to change the
-priority of an object already stored in the queue.
-This might require that the object's position in the heap representation
-be updated.
-Unfortunately, a max heap is not efficient when searching for an
-arbitrary value; it is only good for finding the maximum value.
-However, if we already know the index for an object within the heap,
-it is a simple matter to update its priority (including changing its
-position to maintain the heap property) or remove it.
-The ``remove`` method takes as input the position of the
-node to be removed from the heap.
-A typical implementation for priority queues requiring updating of
-priorities will need to use an auxiliary data structure that supports
-efficient search for objects (such as a BST).
-Records in the auxiliary data structure will store
-the object's heap index, so that the object's priority can be updated.
 Priority queues can be helpful for solving graph problems such as
 :ref:`single-source shortest paths <single-source shortest paths problem> <GraphShortest>`
 and
 :ref:`minimal-cost spanning tree <minimal-cost spanning tree> <MCST>`.
-
-.. avembed:: Exercises/Binary/HeapSumm.html ka
-   :long_name: Heap Question Summary
 
 For a story about Priority Queues and dragons, see |external_link|.
 
 .. |external_link| raw:: html
 
    <a href="http://computationaltales.blogspot.com/2011/04/stacks-queues-priority-queues-and.html" target="_blank">Computational Fairy Tales: Stacks, Queues, Priority Queues, and the Prince's Complaint Line</a>
+
+
+Changing the priority of elements
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Some applications of priority queues require the ability to change the
+priority of an object already stored in the queue.
+This might require that the object's position in the heap representation
+be updated.
+Unfortunately, a min heap is not efficient when searching for an
+arbitrary value; it is only good for finding the minimum value.
+However, if we already know the index for an object within the heap,
+it is a simple matter to update its priority (including changing its
+position to maintain the heap property) or remove it.
+
+A typical implementation for priority queues requiring updating of
+priorities will need to use an auxiliary data structure that supports
+efficient search for objects (such as a BST).
+Records in the auxiliary data structure will store
+the object's heap index, so that the object's priority can be updated.
+
+Practice Questions
+-------------------
+
+.. avembed:: Exercises/Binary/HeapSumm.html ka
+   :long_name: Heap Question Summary

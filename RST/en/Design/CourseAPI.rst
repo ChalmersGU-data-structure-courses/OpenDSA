@@ -36,17 +36,17 @@ Basic Abstract Data Types
 
 These include comparables.
 
-.. codeinclude:: ChalmersGU/BaseAPI
+.. codeinclude:: ChalmersGU/API/BaseAPI
    :tag: ComparableADT
 
 And iterators and iterables:
 
-.. codeinclude:: ChalmersGU/BaseAPI
+.. codeinclude:: ChalmersGU/API/BaseAPI
    :tag: IteratorADT, IterableADT
 
 As well as collections:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: CollectionADT
 
 Lists
@@ -54,22 +54,22 @@ Lists
 
 General lists:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: ListADT
 
 Stacks:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: StackADT
 
 Queues:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: QueueADT
 
 Priority queues:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: PriorityQueueADT
 
 Sets
@@ -77,12 +77,12 @@ Sets
 
 Sets with no internal order:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SetADT
 
 Sets where the elements are sorted:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedSetADT
 
 Maps or Dictionaries
@@ -92,12 +92,12 @@ Maps are also called dictionaries or associative arrays.
 
 Maps with no internal order:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: MapADT
 
 Maps where the keys are sorted:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: SortedMapADT
 
 Graphs
@@ -105,7 +105,7 @@ Graphs
 
 Finally, graphs:
 
-.. codeinclude:: ChalmersGU/API
+.. codeinclude:: ChalmersGU/API/API
    :tag: GraphADT
 
 Comparison with the standard Java API

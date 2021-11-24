@@ -50,8 +50,8 @@ records, looking at one less record toward the end than did the
 preceding pass.
 Here is an implementation.
 
-.. codeinclude:: Sorting/Bubblesort 
-   :tag: Bubblesort        
+.. codeinclude:: ChalmersGU/Sorting/BubbleSort 
+   :tag: BubbleSort
 
 |
 

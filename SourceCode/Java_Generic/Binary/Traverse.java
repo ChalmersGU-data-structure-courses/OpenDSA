@@ -2,71 +2,73 @@ static boolean SUCCESS = true;
 
 // Visit nodes via inorder traversal
 /* *** ODSATag: inorder *** */
-static <E> void inorder(BinNode<E> rt) {
-  if (rt == null) { return; }
-  inorder(rt.left());
-  visit(rt);
-  inorder(rt.right());
+static <E> void inorder(BinNode<E> node) {
+    if (node == null) return;  // Empty subtree - do nothing
+    preorder(node.left());     // Process all nodes in left
+    visit(node);               // Visit root node
+    preorder(node.right());    // Process all nodes in right
 }
 /* *** ODSAendTag: inorder *** */
 
 // Visit nodes via postorder traversal
 /* *** ODSATag: postorder *** */
-static <E> void postorder(BinNode<E> rt) {
-  if (rt == null) { return; }
-  postorder(rt.left());
-  postorder(rt.right());
-  visit(rt);
+static <E> void postorder(BinNode<E> node) {
+    if (node == null) return;  // Empty subtree - do nothing
+    preorder(node.left());     // Process all nodes in left
+    preorder(node.right());    // Process all nodes in right
+    visit(node);               // Visit root node
 }
 /* *** ODSAendTag: postorder *** */
 
 // Visit nodes via preorder traversal
 /* *** ODSATag: preorder *** */
-static <E> void preorder(BinNode<E> rt) {
-  preorder(rt.left());
-  preorder(rt.right());
-  if (rt == null) { return; }
-  visit(rt);
+static <E> void preorder(BinNode<E> node) {
+    if (node == null) return;  // Empty subtree - do nothing
+    visit(node);               // Visit root node
+    preorder(node.left());     // Process all nodes in left
+    preorder(node.right());    // Process all nodes in right
 }
 /* *** ODSAendTag: preorder *** */
 
-static <E> void visit(BinNode<E> rt) {
-  System.out.print(rt.value() + " ");
+/* *** ODSATag: preorder2 *** */
+// This is a bad idea
+static <E> void preorder2(BinNode<E> node) {
+    visit(node);
+    if (node.left()  != null) preorder2(node.left());
+    if (node.right() != null) preorder2(node.right());
 }
+/* *** ODSAendTag: preorder2 *** */
 
-/* *** ODSATag: count *** */
-static <E> int count(BinNode<E> rt) {
-  if (rt == null) { return 0; }  // Nothing to count
-  return 1 + count(rt.left()) + count(rt.right());
+static <E> void visit(BinNode<E> node) {
+    System.out.print(node.value() + " ");
 }
-/* *** ODSAendTag: count *** */
 
 public static void main(String args[]) throws IOException {
-  BSTNode<Integer> rt1 = null;
-  int temp = count(rt1);
+  BSTNode<Integer> node1 = null;
+  int temp = count(node1);
 
-  rt1 = new BSTNode<Integer>(new Integer(5));
-  preorder(rt1);
+  node1 = new BSTNode<Integer>(new Integer(5));
+  preorder(node1);
   System.out.println();
-  rt1.setLeft(new BSTNode<Integer>(new Integer(3)));
-  rt1.setRight(new BSTNode<Integer>(new Integer(6)));
-  preorder(rt1);
+  node1.setLeft(new BSTNode<Integer>(new Integer(3)));
+  node1.setRight(new BSTNode<Integer>(new Integer(6)));
+  preorder(node1);
   System.out.println();
-  preorder2(rt1);
+  preorder2(node1);
   System.out.println();
-  inorder(rt1);
+  inorder(node1);
   System.out.println();
-  postorder(rt1);
+  postorder(node1);
   System.out.println();
 
-  BSTNode<KVPair<Integer,String>> rt2 =
+  BSTNode<KVPair<Integer,String>> node2 =
     new BSTNode<KVPair<Integer,String>>(new KVPair<Integer,String>(new Integer(5), "John"));
 
-  if (!checkBST(rt2, new KVPair<Integer,String>(new Integer(-1), ""),
+  if (!checkBST(node2, new KVPair<Integer,String>(new Integer(-1), ""),
 		new KVPair<Integer,String>(new Integer(999999), "")))
     SUCCESS = false;
-  rt2.setLeft(new BSTNode<KVPair<Integer,String>>(new KVPair<Integer,String>(new Integer(10), "Jack")));
-  if (checkBST(rt2, new KVPair<Integer,String>(new Integer(-1), ""),
+  node2.setLeft(new BSTNode<KVPair<Integer,String>>(new KVPair<Integer,String>(new Integer(10), "Jack")));
+  if (checkBST(node2, new KVPair<Integer,String>(new Integer(-1), ""),
 	       new KVPair<Integer,String>(new Integer(999999), "")))
     SUCCESS = false;
 

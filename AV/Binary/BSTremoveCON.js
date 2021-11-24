@@ -10,8 +10,8 @@ $(document).ready(function () {
   var pseudo = av.code(code[0]);
   var temp1;
 
-  var bstTop = 410;
-  var bt = av.ds.binarytree({visible: true, nodegap: 15, top: bstTop, left: 275});
+  var bstTop = 45;
+  var bt = av.ds.binarytree({visible: true, nodegap: 15, top: bstTop, left: 10});
   bt.root(37);
   var rt = bt.root();
   rt.left(24);
@@ -29,7 +29,7 @@ $(document).ready(function () {
   var rt1 = av.pointer("rt", bt.root(), {anchor: "left top"});
 
   // Slide 1
-  av.umsg("Let's look a few examples for removehelp. We will start with an easy case. Let's see what happens when we delete 30 from this tree.");
+  av.umsg("Let's look a few examples for removeHelper. We will start with an easy case. Let's see what happens when we delete 30 from this tree.");
   pseudo.setCurrentLine("sig");
   av.displayInit();
 
@@ -39,14 +39,14 @@ $(document).ready(function () {
   av.step();
 
   // Slide 3
-  av.umsg("Compare the root value of 37 to the value that we want to delete (30). Since 37 is greater, we will left.");
+  av.umsg("Compare the root value of 37 to the value that we want to delete (30). Since 37 is greater, we go left.");
   pseudo.setCurrentLine("visitleft");
   av.step();
 
   // Slide 4
   rt.addClass("processing");
   rt1.target(rt.left());
-  av.umsg("Now we start the recursive call on removehelp with 24 as the root.");
+  av.umsg("Now we start the recursive call on removeHelper with 24 as the root.");
   pseudo.setCurrentLine("sig");
   av.step();
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
   // Slide 9
   rt.left().addClass("processing");
   rt1.target(rt.left().right(), {anchor: "right top"});
-  av.umsg("Now we start the recursive call on removehelp with 32 as the root.");
+  av.umsg("Now we start the recursive call on removeHelper with 32 as the root.");
   pseudo.setCurrentLine("sig");
   av.step();
 
@@ -131,7 +131,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 18
-  av.umsg("Now we return from the initial call to removehelp, setting the root of the tree to the result");
+  av.umsg("Now we return from the initial call to removeHelper, setting the root of the tree to the result");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows
   rt1.arrow.css({"stroke": "red"});
@@ -206,7 +206,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 19
-  av.umsg("Now we return from the initial call to removehelp, setting the root of the tree to the result");
+  av.umsg("Now we return from the initial call to removeHelper, setting the root of the tree to the result");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows
   rt1.arrow.css({"stroke": "red"});
@@ -263,22 +263,22 @@ $(document).ready(function () {
   av.step();
 
   // Slide 28
-  av.umsg("Call getmax to set a temporary variable to point to the node with the greatest value in the left subtree.");
+  av.umsg("Call largestNode to set a temporary variable to point to the node with the greatest value in the left subtree. This node is the predecessor to the node we want to remove.");
   pseudo.setCurrentLine("getmax");
   var tnode = rt.left().right();
   tnode.addClass("processing");
-  var rt2 = av.pointer("temp", tnode, {anchor: "right top", top: -10});
+  var rt2 = av.pointer("predecessor", tnode, {anchor: "right top", top: -10});
   av.step();
 
   // Slide 29
-  av.umsg("Now set the root value to what was returned by getmax.");
+  av.umsg("Now set the root value to what was returned by largestNode.");
   pseudo.setCurrentLine("setelement");
   av.effects.moveValue(tnode, rt);
   rt.addClass("rednode");
   av.step();
 
   // Slide 30
-  av.umsg("Now call deletemax to remove the node with the maximum value in the left subtree. Set the root node's left pointer to point to the resulting subtree.");
+  av.umsg("Now call removeHelper to remove the node with the maximum value in the left subtree. Set the root node's left pointer to point to the resulting subtree.");
   pseudo.setCurrentLine("setleft");
   rt.left().right(rt.left().right().left());
   temp = rt.left().edgeToRight();
@@ -290,7 +290,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 31
-  av.umsg("We are now done deleting the old root node. Removehelp will return a pointer to this tree. The calling function will then set the BST root to point to this new tree.");
+  av.umsg("We are now done deleting the old root node. RemoveHelper will return a pointer to this tree. The calling function will then set the BST root to point to this new tree.");
   pseudo.setCurrentLine("return");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows

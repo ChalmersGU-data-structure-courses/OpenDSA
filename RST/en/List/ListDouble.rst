@@ -43,7 +43,7 @@ Here is an implementation for the class variables and the internal list node cla
 The only real difference between single linked lists is that we have pointers
 to the previous node, and a pointer to the tail of the list.
 
-.. codeinclude:: ChalmersGU/DoubleLinkedList
+.. codeinclude:: ChalmersGU/API/DoubleLinkedList
    :tag: DoubleLinkedListHeader
 
 The main advantage with doubly linked lists are that we can implement more advanced iterators
@@ -65,7 +65,7 @@ Adding/inserting elements
 Adding elements becomes a bit trickier, because we have to make sure that all pointers are updated correctly.
 We get some special cases – when the list is empty, or when we add before the head or after the tail.
 
-.. codeinclude:: ChalmersGU/DoubleLinkedList
+.. codeinclude:: ChalmersGU/API/DoubleLinkedList
    :tag: DoubleLinkedListAdd
 
 Removing elements
@@ -73,7 +73,7 @@ Removing elements
 
 The same goes for removing elements – we get special cases when we remove the head or the tail.
 
-.. codeinclude:: ChalmersGU/DoubleLinkedList
+.. codeinclude:: ChalmersGU/API/DoubleLinkedList
    :tag: DoubleLinkedListRemove
 
 
@@ -82,5 +82,5 @@ Full implementation
 
 Here is the full implementation of doubly linked lists.
 
-.. codeinclude:: ChalmersGU/DoubleLinkedList
+.. codeinclude:: ChalmersGU/API/DoubleLinkedList
    :tag: DoubleLinkedList
