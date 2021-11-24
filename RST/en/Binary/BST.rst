@@ -151,7 +151,7 @@ pointer to the node containing the maximum value in the subtree.
 .. codeinclude:: Binary/BST
    :tag: largestNode
 
-Now we are ready for the ``removehelp`` method.
+Now we are ready for the ``removeHelper`` method.
 Removing a node with given key value :math:`R` from the BST
 requires that we first find :math:`R` and then remove it from the
 tree.
@@ -203,6 +203,13 @@ Tree Property if equal values appear in the left subtree.
 .. [#] Alternatively, if we prefer to store duplicate values in the
        right subtree, then we must replace a deleted node with the
        least value from its right subtree.
+
+
+The code for removal is shown here.
+
+.. codeinclude:: ChalmersGU/API/BSTMap
+   :tag: remove
+
 
 .. avembed:: AV/Binary/BSTremovePRO.html pe
    :long_name: BST Remove Proficiency Exercise
