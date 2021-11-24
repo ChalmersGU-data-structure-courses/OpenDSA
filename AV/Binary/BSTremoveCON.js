@@ -29,7 +29,7 @@ $(document).ready(function () {
   var rt1 = av.pointer("rt", bt.root(), {anchor: "left top"});
 
   // Slide 1
-  av.umsg("Let's look a few examples for removehelp. We will start with an easy case. Let's see what happens when we delete 30 from this tree.");
+  av.umsg("Let's look a few examples for removeHelper. We will start with an easy case. Let's see what happens when we delete 30 from this tree.");
   pseudo.setCurrentLine("sig");
   av.displayInit();
 
@@ -46,7 +46,7 @@ $(document).ready(function () {
   // Slide 4
   rt.addClass("processing");
   rt1.target(rt.left());
-  av.umsg("Now we start the recursive call on removehelp with 24 as the root.");
+  av.umsg("Now we start the recursive call on removeHelper with 24 as the root.");
   pseudo.setCurrentLine("sig");
   av.step();
 
@@ -73,7 +73,7 @@ $(document).ready(function () {
   // Slide 9
   rt.left().addClass("processing");
   rt1.target(rt.left().right(), {anchor: "right top"});
-  av.umsg("Now we start the recursive call on removehelp with 32 as the root.");
+  av.umsg("Now we start the recursive call on removeHelper with 32 as the root.");
   pseudo.setCurrentLine("sig");
   av.step();
 
@@ -131,7 +131,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 18
-  av.umsg("Now we return from the initial call to removehelp, setting the root of the tree to the result");
+  av.umsg("Now we return from the initial call to removeHelper, setting the root of the tree to the result");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows
   rt1.arrow.css({"stroke": "red"});
@@ -206,7 +206,7 @@ $(document).ready(function () {
   av.step();
 
   // Slide 19
-  av.umsg("Now we return from the initial call to removehelp, setting the root of the tree to the result");
+  av.umsg("Now we return from the initial call to removeHelper, setting the root of the tree to the result");
   rt1.arrow.addClass("thinredline");
   // This line should not be needed, but it is here to fix Raphael bug with arrows
   rt1.arrow.css({"stroke": "red"});
