@@ -1,0 +1,551 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9.7. Open Addressing &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="8. Improved Collision Resolution" href="HashCImproved.html" />
+    <link rel="prev" title="6. Bucket Hashing (optional)" href="BucketHash.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 9 Hash Tables</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/HashCSimple.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BucketHash.html">9.<span class="section-number">6. </span>Bucket Hashing (optional)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="HashCImproved.html">9.<span class="section-number">8. </span>Improved Collision Resolution</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="open-addressing">
+<span id="index-0"></span><h1>9.<span class="section-number">7. </span>Open Addressing<a class="headerlink" href="#open-addressing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="hash-tables-without-bins">
+<h2>9.<span class="section-number">7.1. </span>Hash tables without bins<a class="headerlink" href="#hash-tables-without-bins" title="Permalink to this headline">¶</a></h2>
+<p>We now turn to the most commonly used form of hashing:
+<a class="reference internal" href="Glossary.html#term-open-addressing"><span class="xref std std-term">open addressing</span></a> (also called <a class="reference internal" href="Glossary.html#term-closed-hash-system"><span class="xref std std-term">closed hashing</span></a>)
+with no bucketing, and a <a class="reference internal" href="Glossary.html#term-collision-resolution-policy"><span class="xref std std-term">collision resolution policy</span></a>
+that can potentially use any slot in the hash table.</p>
+<p>Compared to <a class="reference internal" href="OpenHash.html#openhash"><span class="std std-ref">separate chaining</span></a>,
+we will now have room for exactly one entry in each table cell.
+If we want to implement a <strong>HashMap</strong> (not a HashSet), we then need to be
+able to put both a key and a value in the same table cell.
+For this we need a class of key-value pairs.</p>
+<div id="KVPair_KVPair_code"><ul><li><a href="#KVPair_KVPair_code_Java_Generic">Java</a></li><li><a href="#KVPair_KVPair_code_Python">Python</a></li></ul><div id="KVPair_KVPair_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">K</span> <span class="n">key</span><span class="p">;</span>
+    <span class="n">V</span> <span class="n">value</span><span class="p">;</span>
+    <span class="n">KVPair</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+        <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="KVPair_KVPair_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">KVPair</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#KVPair_KVPair_code" ).tabs();});</script><p>Now we can initialise our open addressing hash map.
+In addition to the array of key-value pairs, we need a counter of the size,
+and the number of deleted cells (which is explained in
+<a class="reference internal" href="HashDel.html#hashdel"><span class="std std-ref">later in this chapter</span></a>).</p>
+<div id="OpenAddressingHashMap_Header_code"><ul><li><a href="#OpenAddressingHashMap_Header_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Header_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Header_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">OpenAddressingHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">internalTable</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mapSize</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">numDeleted</span><span class="p">;</span>
+
+    <span class="n">OpenAddressingHashMap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">MinCapacity</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">numDeleted</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Header_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">OpenAddressingHashMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">capacity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_numDeleted</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Header_code" ).tabs();});</script><p>We use the same constants as for the separate chaining map, but the values
+are different. Most importantly, the <code class="docutils literal notranslate"><span class="pre">MaxLoadFactor</span></code> must be smaller than 1,
+since there can only be one value per array slot.</p>
+<div id="OpenAddressingHashMap_Constants_code"><ul><li><a href="#OpenAddressingHashMap_Constants_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Constants_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Constants_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MaxLoadFactor</span> <span class="o">=</span> <span class="mf">0.7</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Constants_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.3</span>
+    <span class="n">_maxLoadFactor</span> <span class="o">=</span> <span class="mf">0.7</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Constants_code" ).tabs();});</script></div>
+<div class="section" id="collision-resolution">
+<h2>9.<span class="section-number">7.2. </span>Collision Resolution<a class="headerlink" href="#collision-resolution" title="Permalink to this headline">¶</a></h2>
+<p>The goal of <a class="reference internal" href="Glossary.html#term-collision-resolution"><span class="xref std std-term">collision resolution</span></a> is to find
+a free slot in the hash table when the “home position” for the record is
+already occupied.
+We can view any collision resolution method as generating a sequence
+of hash table slots that can potentially hold the record.
+The first slot in the sequence will be the home position for the key.
+If the home position is occupied, then the collision resolution policy
+goes to the next slot in the sequence.
+If this is occupied as well, then another slot must be found, and
+so on.
+This sequence of slots is known as the
+<a class="reference internal" href="Glossary.html#term-probe-sequence"><span class="xref std std-term">probe sequence</span></a>, and it is generated by some
+<a class="reference internal" href="Glossary.html#term-probe-function"><span class="xref std std-term">probe function</span></a> that we will call <strong>p</strong> (or <code class="docutils literal notranslate"><span class="pre">probe</span></code> in the source code).
+Probing works as follows.</p>
+<div id="OpenAddressingHashMap_HashIndex_code"><ul><li><a href="#OpenAddressingHashMap_HashIndex_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_HashIndex_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_HashIndex_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">hashAndProbe</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">home</span> <span class="o">=</span> <span class="n">key</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span><span class="p">;</span>   <span class="c1">// Turn the hash code into a positive integer</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="kt">int</span> <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="n">probe</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+            <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">pos</span><span class="o">]</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">key</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">elem</span><span class="p">.</span><span class="na">key</span><span class="p">))</span>
+                <span class="k">return</span> <span class="n">pos</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;Hash table full&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_HashIndex_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_hashAndProbe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">home</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span>   <span class="c1"># Turn the hash code into a positive integer</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)):</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_probe</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
+            <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="n">elem</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">pos</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Hash table full&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_HashIndex_code" ).tabs();});</script><p>The method <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> first calculates the <em>home slot</em>,
+which is the hash code compressed to an index in the internal hash array.
+Then it uses the probe function
+<span class="math notranslate nohighlight">\(\textbf{p}(k, i)\)</span> to locate a free slot in the table.
+Function <strong>p</strong> has two parameters, the key <span class="math notranslate nohighlight">\(k\)</span> and a
+count <span class="math notranslate nohighlight">\(i\)</span> of where in the probe sequence we wish to be.
+That is, to get the first position in the probe sequence
+for key <span class="math notranslate nohighlight">\(K\)</span>, we call <span class="math notranslate nohighlight">\(\textbf{p}(K, 0)\)</span>.
+For the next slot in the probe sequence, call <span class="math notranslate nohighlight">\(\textbf{p}(K, 1)\)</span>,
+then <span class="math notranslate nohighlight">\(\textbf{p}(K, 2)\)</span>, etc.
+If the key is already in the table, <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> returns the position of that entry,
+otherwise it returns the position of the first unoccupied slot.</p>
+<p>Note that the probe function returns an offset from the original home
+position, rather than a slot in the hash table.
+Thus, the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop in <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> is computing positions
+in the table at each iteration by adding the value returned from the
+probe function to the home position.
+The <span class="math notranslate nohighlight">\(i\)</span> th call to <strong>p</strong> returns the <span class="math notranslate nohighlight">\(i\)</span> th offset to be used.</p>
+</div>
+<div class="section" id="implementing-methods-of-the-hash-map">
+<h2>9.<span class="section-number">7.3. </span>Implementing methods of the hash map<a class="headerlink" href="#implementing-methods-of-the-hash-map" title="Permalink to this headline">¶</a></h2>
+<p>All main methods in the Map interface
+(<code class="docutils literal notranslate"><span class="pre">put</span></code>, <code class="docutils literal notranslate"><span class="pre">get</span></code> and <code class="docutils literal notranslate"><span class="pre">remove</span></code>)
+use the same probing function <strong>p</strong> to get the same probe sequence.
+In this way, a record not in its home position can be recovered.</p>
+<p>An implementation for the <code class="docutils literal notranslate"><span class="pre">get</span></code> method is as follows.</p>
+<div id="OpenAddressingHashMap_Get_code"><ul><li><a href="#OpenAddressingHashMap_Get_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Get_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="kc">null</span> <span class="p">:</span> <span class="n">elem</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Get_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="kc">None</span> <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Get_code" ).tabs();});</script><p>Searching and inserting both assume that at least
+one slot on the probe sequence of every key will be empty.
+Otherwise they will continue in an infinite loop on unsuccessful
+searches.
+Thus, the hash system should keep a count of the number of records stored,
+and make sure to resize the array when it becomes too full.</p>
+<p>Setting a value for a key into the hash map works like this.</p>
+<div id="OpenAddressingHashMap_Put_code"><ul><li><a href="#OpenAddressingHashMap_Put_code_Java_Generic">Java</a></li><li><a href="#OpenAddressingHashMap_Put_code_Python">Python</a></li></ul><div id="OpenAddressingHashMap_Put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">elem</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">elem</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="n">elem</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+            <span class="n">elem</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
+            <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="OpenAddressingHashMap_Put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">elem</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLoadFactor</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#OpenAddressingHashMap_Put_code" ).tabs();});</script><p>First we the next available slot for the given key.
+If the slot is empty (<code class="docutils literal notranslate"><span class="pre">null</span></code>), we create a new <code class="docutils literal notranslate"><span class="pre">KVPair</span></code>
+with the key and value and insert it into the table,
+and increase the map size.
+otherwise we update the value of the current entry,
+which doesn’t change the size of the table.
+Finally, we resize the table if the load factor becomes too large.</p>
+<p>Deleting from an open addressing hash table is explained in
+<a class="reference internal" href="HashDel.html#hashdel"><span class="std std-ref">a later module</span></a>.</p>
+</div>
+<div class="section" id="linear-probing">
+<h2>9.<span class="section-number">7.4. </span>Linear probing<a class="headerlink" href="#linear-probing" title="Permalink to this headline">¶</a></h2>
+<p>The simplest approach to collsion resolution is simply to move down
+the table from the home slot until a free slot is found.
+This is known as <a class="reference internal" href="Glossary.html#term-linear-probing"><span class="xref std std-term">linear probing</span></a>.
+The probe function for simple linear probing is
+<span class="math notranslate nohighlight">\(\textbf{p}(K, i) = i\)</span>.
+That is, the <span class="math notranslate nohighlight">\(i\)</span> th offset on the probe sequence is just
+<span class="math notranslate nohighlight">\(i\)</span>,
+meaning that the <span class="math notranslate nohighlight">\(i\)</span> th step is simply to move down  <span class="math notranslate nohighlight">\(i\)</span>
+slots in the table.
+Once the bottom of the table is reached, the probe sequence
+wraps around to the beginning of the table (since the last step is to
+mod the result to the table size).
+Linear probing has the virtue that all slots in the table will be
+candidates for inserting a new record before the probe sequence
+returns to the home position.</p>
+<div id="linProbeCON1" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="linProbeCON1" data-long-name="Linear Probing Slideshow 1" data-exer-id="" alt="Linear Probing Slideshow 1" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="linProbeCON1_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="linProbeCON1_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="linProbeCON1_cm_error_msg" class="cm_error_msg">
+   <img id="linProbeCON1_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Can you see any reason why this might not be the best approach
+to collision resolution?</p>
+<div class="section" id="the-problem-with-linear-probing">
+<h3>9.<span class="section-number">7.4.1. </span>The Problem with Linear Probing<a class="headerlink" href="#the-problem-with-linear-probing" title="Permalink to this headline">¶</a></h3>
+<p>While linear probing is probably
+the first idea that comes to mind when considering collision
+resolution policies, it is not the only one possible.
+Probe function <strong>p</strong> allows us many options for how to do collision
+resolution.
+In fact, linear probing is one of the worst collision resolution
+methods.
+The main problem is illustrated by the next slideshow.</p>
+<div id="linProbeCON2" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="linProbeCON2" data-long-name="Linear Probing Slideshow 2" data-exer-id="" alt="Linear Probing Slideshow 2" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="linProbeCON2_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="linProbeCON2_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="linProbeCON2_cm_error_msg" class="cm_error_msg">
+   <img id="linProbeCON2_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Again, the ideal behavior for a collision resolution mechanism is that
+each empty slot in the table will have equal probability of
+receiving the next record inserted (assuming that every slot in the
+table has equal probability of being hashed to initially).
+This tendency of linear probing to cluster items together is known as
+<a class="reference internal" href="Glossary.html#term-primary-clustering"><span class="xref std std-term">primary clustering</span></a>.
+Small clusters tend to merge into big clusters, making the problem
+worse.</p>
+<p>The problem with primary clustering is that it leads to
+long probe sequences, which increases execution time.
+However, linear probing is still a very common probing method,
+because it is so simple and can be implemented efficiently.</p>
+<div
+    id="HashLinearPPRO"
+    class="embedContainer"
+    data-exer-name="HashLinearPPRO"
+    data-long-name="Linear Probing Proficiency Exercise"
+    data-short-name="HashLinearPPRO"
+    data-frame-src="../../../Exercises/Hashing/HashLinearPPRO.html?localMode=true&amp;module=HashCSimple&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HashLinearPPRO_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Hashing/linProbeCON1.js"></script>
+<script type="text/javascript" src="../../../AV/Hashing/linProbeCON2.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BucketHash.html">9.<span class="section-number">6. </span>Bucket Hashing (optional)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="HashCImproved.html">9.<span class="section-number">8. </span>Improved Collision Resolution</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,402 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.6. Reading Input (from Files or Otherwise) &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="7. JUnit Testing And You" href="junitstart.html" />
+    <link rel="prev" title="5. Debugging In Eclipse" href="debug.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 1 Java Programming, repetition</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/scanning.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="debug.html">1.<span class="section-number">5. </span>Debugging In Eclipse</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="junitstart.html">1.<span class="section-number">7. </span>JUnit Testing And You</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['', 'the-scanner-class'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "scanning";ODSA.SETTINGS.MODULE_LONG_NAME = "Reading Input (from Files or Otherwise)";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="reading-input-from-files-or-otherwise">
+<h1>1.<span class="section-number">6. </span>Reading Input (from Files or Otherwise)<a class="headerlink" href="#reading-input-from-files-or-otherwise" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="the-scanner-class">
+<h2>1.<span class="section-number">6.1. </span>The Scanner Class<a class="headerlink" href="#the-scanner-class" title="Permalink to this headline">¶</a></h2>
+<p>There are a number of ways in Java for properly reading in a file.
+The Scanner class is an excellent class for this purpose as it provides a quickly parse through a String.
+See the <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Scanner.html" target = "_blank">Scanner class API</a>.
+So how do we properly read in a file?
+There are a number of ways.
+This page shows a simple demonstration of how to use the Scanner class to read
+in a command file.</p>
+<p>In this project we are given four commands that our program must handle:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code> – prints information about the tree in the program</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">search</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> <code class="docutils literal notranslate"><span class="pre">{radius}</span></code> – searches a region based off coordinates given</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">add</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> <code class="docutils literal notranslate"><span class="pre">{name}</span></code> – adds a node at the coordinates given</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">delete</span></code> <code class="docutils literal notranslate"><span class="pre">{x}</span></code> <code class="docutils literal notranslate"><span class="pre">{y}</span></code> – deletes a node at the specific point</p></li>
+</ol>
+<p>See <a href="http://courses.cs.vt.edu/~cs3114/Fall13/watcherP4.txt" target = "_blank">input file</a> for some example input. Consider the following code snippet.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">java.io.File</span><span class="p">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="p">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>     
+        <span class="n">String</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Pass the function a full filepath.</span>
+        <span class="n">beginParsing</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span> <span class="c1">// Call the parsing function.</span>
+    <span class="p">}</span>
+   
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">beginParsing</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">try</span> <span class="p">{</span>
+            <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span> <span class="c1">// Create our new scanner.</span>
+            <span class="k">while</span> <span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// While the scanner has information to read.</span>
+                <span class="n">String</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Read the next term.</span>
+                <span class="kt">double</span> <span class="n">x</span><span class="p">;</span> <span class="kt">double</span> <span class="n">y</span><span class="p">;</span> <span class="kt">double</span> <span class="n">radius</span><span class="p">;</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&quot;debug&quot;</span> <span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;debug cmd activated&quot;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;add&quot;</span><span class="p">:</span> <span class="c1">// Found an add command.</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">String</span> <span class="n">name</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Insert node at &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="s">&quot; with name &quot;</span><span class="o">+</span><span class="n">name</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;delete&quot;</span><span class="p">:</span> <span class="c1">// Found a delete command.</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Remove node at &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;search&quot;</span><span class="p">:</span> <span class="c1">// Found a search command.</span>
+                    <span class="n">x</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">y</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">radius</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextDouble</span><span class="p">();</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Search for node near &quot;</span><span class="o">+</span><span class="n">x</span><span class="o">+</span><span class="s">&quot; &quot;</span><span class="o">+</span><span class="n">y</span><span class="o">+</span><span class="s">&quot; within radius of &quot;</span><span class="o">+</span><span class="n">radius</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">default</span><span class="p">:</span> <span class="c1">// Found an unrecognized command.</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized input &quot;</span><span class="o">+</span><span class="n">cmd</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This code will parse through a command file, read in each command and each of
+their parameters (if it has any). It is important to note, however,
+that this code is not necessarily safe. It assumes that the command file
+given is properly formatted, and as such if a user decides to give the program
+a malformed file the program will behave in a possibly unknown way.</p>
+<p>Depending on the structure of your file you may wish to simply do the token
+method. Another approach would be to read in an entire line and then work from
+there.
+Consider <a href="http://courses.cs.vt.edu/~cs3114/Fall14/P1sampleInput.txt" target = "_blank">this input file</a>.
+We now have 3 commands that we must support.</p>
+<p>1. <code class="docutils literal notranslate"><span class="pre">insert</span></code> <code class="docutils literal notranslate"><span class="pre">{artist-name}&lt;SEP&gt;{song-name}</span></code> – inserts a song using the information
+provided in the fields</p>
+<ol class="arabic simple" start="2">
+<li><p><code class="docutils literal notranslate"><span class="pre">remove</span></code> <code class="docutils literal notranslate"><span class="pre">{artist|song}</span></code> <code class="docutils literal notranslate"><span class="pre">{name}</span></code> – removes a song given a song name or artist name</p></li>
+</ol>
+<p>3. <code class="docutils literal notranslate"><span class="pre">print</span></code> <code class="docutils literal notranslate"><span class="pre">{artist|song|blocks}</span></code> – depending on the parameter value, you will print
+out either a complete listing of the artists contained in the database, or the
+songs, or else the free block list for the memory manager</p>
+<p>So this time we have less commands to support, but more options for each command.
+No worries! We simply need to change our code just a little bit. We see this
+time that the insert command has no spacing between artist/song tokens. Rather it
+uses the separator <code class="docutils literal notranslate"><span class="pre">&lt;SEP&gt;</span></code>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">beginParsingByLine</span><span class="p">(</span><span class="n">String</span> <span class="n">filename</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+        <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="k">new</span> <span class="n">File</span><span class="p">(</span><span class="n">filename</span><span class="p">));</span>
+        <span class="n">Scanner</span> <span class="n">scancmd</span><span class="p">;</span> <span class="c1">// Declare two scanners one to read the file and one to read the text pulled from the file.</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">sc</span><span class="p">.</span><span class="na">hasNextLine</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// While we have text to read.</span>
+            <span class="n">String</span> <span class="n">line</span> <span class="o">=</span> <span class="n">sc</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span> <span class="c1">// Get our next line.</span>
+            <span class="n">scancmd</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="p">(</span><span class="n">line</span><span class="p">);</span> <span class="c1">// Create a scanner from this line.</span>
+            <span class="n">String</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the first word (the command) on each line.</span>
+            <span class="n">String</span> <span class="n">type</span><span class="p">;</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">cmd</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="s">&quot;insert&quot;</span><span class="p">:</span> <span class="c1">// In the case of insert change our delimiter from white space to &lt;SEP&gt;.</span>
+                <span class="n">scancmd</span><span class="p">.</span><span class="na">useDelimiter</span><span class="p">(</span><span class="s">&quot;&lt;SEP&gt;&quot;</span><span class="p">);</span>
+                <span class="n">String</span> <span class="n">artist</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the artist since it is before &lt;SEP&gt;.</span>
+                <span class="n">String</span> <span class="n">song</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the song title that follows &lt;SEP&gt;.</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Insert &quot;</span> <span class="o">+</span> <span class="n">artist</span> <span class="o">+</span> <span class="s">&quot; \\ &quot;</span> <span class="o">+</span> <span class="n">song</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">&quot;remove&quot;</span><span class="p">:</span>
+                <span class="n">type</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the mode of deletion artist/song.</span>
+                <span class="n">String</span> <span class="n">token</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">nextLine</span><span class="p">();</span>
+                <span class="c1">// Since both artist titles and song titles have spaces</span>
+                <span class="c1">// get the rest of the line for the song/artist name.</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&quot;artist&quot;</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Artist Delete: &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;song&quot;</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Song Delete: &quot;</span> <span class="o">+</span> <span class="n">token</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">default</span><span class="p">:</span> <span class="c1">// Error: bad token.</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error bad remove type &quot;</span> <span class="o">+</span> <span class="n">type</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">&quot;print&quot;</span><span class="p">:</span> <span class="c1">// Print command.</span>
+                <span class="n">type</span> <span class="o">=</span> <span class="n">scancmd</span><span class="p">.</span><span class="na">next</span><span class="p">();</span> <span class="c1">// Get the type of print command.</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">case</span> <span class="s">&quot;artist&quot;</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print artist mode&quot;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;song&quot;</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print song mode&quot;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">case</span> <span class="s">&quot;blocks&quot;</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Print block mode&quot;</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="k">default</span><span class="p">:</span>
+                    <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Error bad print type&quot;</span> <span class="o">+</span> <span class="n">type</span><span class="p">);</span>
+                    <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span> <span class="p">:</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized input&quot;</span><span class="p">);</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Separating artists and song names on the same line can prove to be rather difficult
+due to the fact that names might include a space or other
+traditional delimiters.
+By separating these fields using <code class="docutils literal notranslate"><span class="pre">&lt;SEP&gt;</span></code>, we drastically
+reduce the possibilty of a valid name containing the delimiter.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="debug.html">1.<span class="section-number">5. </span>Debugging In Eclipse</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="junitstart.html">1.<span class="section-number">7. </span>JUnit Testing And You</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

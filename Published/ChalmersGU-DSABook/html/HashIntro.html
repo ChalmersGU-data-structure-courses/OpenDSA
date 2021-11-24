@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9.1. Chapter Introduction: Hashing &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="2. Hash Function Principles" href="HashFunc.html" />
+    <link rel="prev" title="8. Priority Queues Chapter Summary" href="HeapChapSumm.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 9 Hash Tables</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/HashIntro.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="HeapChapSumm.html">8.<span class="section-number">8. </span>Priority Queues Chapter Summary</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['introduction'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "Chapter Introduction: Hashing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/hashIntroCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="chapter-introduction-hashing">
+<span id="index-0"></span><h1>9.<span class="section-number">1. </span>Chapter Introduction: Hashing<a class="headerlink" href="#chapter-introduction-hashing" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>9.<span class="section-number">1.1. </span>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Hashing is a method for storing and retrieving records from a database.
+It lets you insert, delete, and search for records based on a search
+key value.
+When properly implemented, these operations can be performed
+in constant time.
+In fact, a properly tuned hash system typically looks at only
+one or two records for each search, insert, or delete operation.
+This is better than the <span class="math notranslate nohighlight">\(O(\log n)\)</span> cost required
+to do a binary search on a sorted array of <span class="math notranslate nohighlight">\(n\)</span> records,
+or the <span class="math notranslate nohighlight">\(O(\log n)\)</span> cost required to do an operation
+on a binary search tree.
+However, even though hashing is based on a very simple idea,
+it is surprisingly difficult to implement properly.
+Designers need to pay careful attention to all of the details
+involved with implementing a hash system.</p>
+<p>A hash system stores records in an array called a <a class="reference internal" href="Glossary.html#term-hash-table"><span class="xref std std-term">hash table</span></a>,
+which we will call <code class="docutils literal notranslate"><span class="pre">HT</span></code>.
+Hashing works by performing a computation on a search key
+<code class="docutils literal notranslate"><span class="pre">K</span></code> in a way that is intended to identify the position in
+<code class="docutils literal notranslate"><span class="pre">HT</span></code> that contains the record with key <code class="docutils literal notranslate"><span class="pre">K</span></code>.
+The function that does this calculation is called the
+<a class="reference internal" href="HashFuncExamp.html#hashfuncexamp"><span class="std std-ref">hash function</span></a>,
+and will be denoted by the letter <strong>h</strong>.
+Since hashing schemes place records in the table in whatever order
+satisfies the needs of the address calculation, records are
+not ordered by value.
+A position in the hash table is also known as a <a class="reference internal" href="Glossary.html#term-slot"><span class="xref std std-term">slot</span></a>.
+The number of slots in hash table <code class="docutils literal notranslate"><span class="pre">HT</span></code> will be denoted by the
+variable <span class="math notranslate nohighlight">\(M\)</span> with slots numbered from 0 to <span class="math notranslate nohighlight">\(M-1\)</span>.</p>
+<p>The goal for a hashing system is to arrange things such that,
+for any key value <code class="docutils literal notranslate"><span class="pre">K</span></code> and some hash function <span class="math notranslate nohighlight">\(h\)</span>,
+<span class="math notranslate nohighlight">\(i = \mathbf{h}(K)\)</span> is a slot in the table such that
+<span class="math notranslate nohighlight">\(0 &lt;= i &lt; M\)</span>,
+and we have the key of the record stored at
+<code class="docutils literal notranslate"><span class="pre">HT[i]</span></code> equal to <code class="docutils literal notranslate"><span class="pre">K</span></code>.</p>
+<p>Hashing is not good for applications where multiple
+records with the same key value are permitted.
+Hashing is not a good method for answering range searches.
+In other words, we cannot easily find all records (if any) whose key
+values fall within a certain range.
+Nor can we easily find the record with the minimum or maximum key
+value, or visit the records in key order.
+Hashing is most appropriate for answering the question, ‘What record,
+if any, has key value <code class="docutils literal notranslate"><span class="pre">K</span></code>?’
+<strong>For applications where all search is done by exact-match queries,
+hashing is the search method of choice because it is extremely
+efficient when implemented correctly.</strong>
+As this tutorial shows, however, there are many approaches
+to hashing and it is easy to devise an inefficient implementation.
+Hashing is suitable for both in-memory and disk-based searching and
+is one of the two most widely used methods for organizing large
+databases stored on disk (the other is the B-tree).</p>
+<p>As a simple (though unrealistic) example of hashing,
+consider storing <span class="math notranslate nohighlight">\(n\)</span> records, each with a unique key value in
+the range 0 to <span class="math notranslate nohighlight">\(n-1\)</span>.
+A record with key <code class="docutils literal notranslate"><span class="pre">k</span></code> can be stored in
+<code class="docutils literal notranslate"><span class="pre">HT[k]</span></code>, and so the hash function is
+<span class="math notranslate nohighlight">\(\mathbf{h}(k) = k\)</span>.
+To find the record with key value <code class="docutils literal notranslate"><span class="pre">k</span></code>, look in
+<code class="docutils literal notranslate"><span class="pre">HT[k]</span></code>.</p>
+<div id="hashIntroCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="hashIntroCON" data-long-name="Hashing Intro Slideshow" data-exer-id="" alt="Hashing Intro Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="hashIntroCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="hashIntroCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="hashIntroCON_cm_error_msg" class="cm_error_msg">
+   <img id="hashIntroCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>In most applications, there are many more values in the key range
+than there are slots in the hash table.
+For a more realistic example, suppose the key can take any value in
+the range 0 to 65,535 (i.e., the key is a two-byte unsigned integer),
+and that we expect to store approximately 1000 records at any given time.
+It is impractical in this situation to use a hash table with
+65,536 slots, because then the vast majority of the slots would be
+left empty.
+Instead, we must devise a hash function that allows us to store the
+records in a much smaller table.
+Because the key range is larger than the size of the table,
+at least some of the slots must be mapped to from multiple key values.
+Given a hash function <strong>h</strong> and two keys <span class="math notranslate nohighlight">\(k_1\)</span> and
+<span class="math notranslate nohighlight">\(k_2\)</span>, if
+<span class="math notranslate nohighlight">\(\mathbf{h}(k_1) = \beta = \mathbf{h}(k_2)\)</span>
+where <span class="math notranslate nohighlight">\(\beta\)</span> is a slot in
+the table, then we say that <span class="math notranslate nohighlight">\(k_1\)</span> and <span class="math notranslate nohighlight">\(k_2\)</span> have a
+<a class="reference internal" href="Glossary.html#term-collision"><span class="xref std std-term">collision</span></a> at slot <span class="math notranslate nohighlight">\(\beta\)</span> under hash function <strong>h</strong>.</p>
+<p>Finding a record with key value <code class="docutils literal notranslate"><span class="pre">K</span></code> in a database organized by hashing
+follows a two-step procedure:</p>
+<ol class="arabic simple">
+<li><p>Compute the table location <span class="math notranslate nohighlight">\(\mathbf{h}(K)\)</span>.</p></li>
+<li><p>Starting with slot <span class="math notranslate nohighlight">\(\mathbf{h}(K)\)</span>, locate the record
+containing key <code class="docutils literal notranslate"><span class="pre">K</span></code> using (if necessary) a
+<a class="reference internal" href="HashCSimple.html#hashcsimple"><span class="std std-ref">collision resolution</span></a>
+policy .</p></li>
+</ol>
+<script type="text/javascript" src="../../../AV/Hashing/hashIntroCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="HeapChapSumm.html">8.<span class="section-number">8. </span>Priority Queues Chapter Summary</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="HashFunc.html">9.<span class="section-number">2. </span>Hash Function Principles</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,1056 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.5. The AVL Tree &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="6. Red-Black Trees (code only)" href="RedBlackCode.html" />
+    <link rel="prev" title="4. Balanced Trees" href="BalancedTree.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 7 Search Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/AVL.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BalancedTree.html">7.<span class="section-number">4. </span>Balanced Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="RedBlackCode.html">7.<span class="section-number">6. </span>Red-Black Trees (code only)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['rotations', 'avl-tree-insertion'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "AVL";ODSA.SETTINGS.MODULE_LONG_NAME = "The AVL Tree";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="the-avl-tree">
+<h1>7.<span class="section-number">5. </span>The AVL Tree<a class="headerlink" href="#the-avl-tree" title="Permalink to this headline">¶</a></h1>
+<p>The AVL tree is a BST with the following additional property:
+For every node, the heights of its left and right subtrees differ by
+at most 1.
+As long as the tree maintains this property, if the tree contains
+<span class="math notranslate nohighlight">\(n\)</span> nodes, then it has a depth of at most <span class="math notranslate nohighlight">\(O(\log n)\)</span>.
+As a result, search for any node will cost <span class="math notranslate nohighlight">\(O(\log n)\)</span>,
+and if the updates can be done in time proportional to the depth of
+the node inserted or deleted, then updates will also cost
+<span class="math notranslate nohighlight">\(O(\log n)\)</span>, even in the worst case.</p>
+<p>The key to making the AVL tree work is to alter the insert and delete
+routines so as to maintain the balance property.
+Of course, to be practical, we must be able to implement the revised
+update routines in <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time.
+To maintain the balance property, we are going to use what are called
+<a class="reference internal" href="Glossary.html#term-rotation"><span class="xref std std-term">rotations</span></a>.</p>
+<div class="section" id="rotations">
+<h2>7.<span class="section-number">5.1. </span>Rotations<a class="headerlink" href="#rotations" title="Permalink to this headline">¶</a></h2>
+<p>Rotation is an operation that takes a node in the tree and moves it
+one level higher. Figure <a href="Splay.html#singprom">7.8.1</a> illustrates rotation.
+Here, <span class="math notranslate nohighlight">\(P\)</span> and <span class="math notranslate nohighlight">\(S\)</span> are nodes, while <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>
+and <span class="math notranslate nohighlight">\(C\)</span> represent subtrees.</p>
+<p>In Figure <a href="Splay.html#singprom">7.8.1</a> (a), node <span class="math notranslate nohighlight">\(S\)</span> is the left
+child of the root. A <em>right rotation</em> transforms it into the tree
+shown in Figure <a href="Splay.html#singprom">7.8.1</a> (b), where node <span class="math notranslate nohighlight">\(S\)</span> has
+become the root. Note that, because the value of <span class="math notranslate nohighlight">\(S\)</span> is less
+than the value of <span class="math notranslate nohighlight">\(P\)</span>, <span class="math notranslate nohighlight">\(P\)</span> must become <span class="math notranslate nohighlight">\(S\)</span>’s right
+child. Right rotation means transforming a tree from having the shape
+in (a) to having the shape in (b).</p>
+<p>A <em>left rotation</em> is the opposite process: starting from the tree in
+(b), transforming it to the tree in (a), by lifting node <span class="math notranslate nohighlight">\(P\)</span> up.
+Notice that a right rotation tends to make the tree more
+right-leaning, while a left rotation tends to make it more
+left-leaning.</p>
+<div class="figure align-center" id="id1" style="width: 90%">
+<span id="rotation"></span><a class="reference internal image-reference" href="_images/SingRot.png"><img alt="Rotation" src="_images/SingRot.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 7.6.1: Rotation. In a rotation, node <span class="math notranslate nohighlight">\(S\)</span> is promoted to the root,
+rotating with node <span class="math notranslate nohighlight">\(P\)</span>.
+Because the value of <span class="math notranslate nohighlight">\(S\)</span> is less than the value of <span class="math notranslate nohighlight">\(P\)</span>,
+<span class="math notranslate nohighlight">\(P\)</span> must become <span class="math notranslate nohighlight">\(S\)</span> ‘s right child.
+The positions of subtrees <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, and <span class="math notranslate nohighlight">\(C\)</span> are
+altered as appropriate to maintain the BST property, but the
+contents of these subtrees remains unchanged.
+(a) The original tree with <span class="math notranslate nohighlight">\(P\)</span> as the parent.
+(b) The tree after a rotation takes place.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+<div class="legend">
+<p>Going from (a) to (b) is called a <em>right rotation</em>. We can also go
+from (b) to (a) promoting node <span class="math notranslate nohighlight">\(P\)</span> to the root – this is
+called a <em>left rotation</em>. In general, a right rotation makes the
+tree more right-leaning, and a left rotation makes it more
+left-leaning.</p>
+</div>
+</div>
+</div>
+<div class="section" id="avl-tree-insertion">
+<h2>7.<span class="section-number">5.2. </span>AVL tree insertion<a class="headerlink" href="#avl-tree-insertion" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="avlinsert"></span><a class="reference internal image-reference" href="_images/AVLins.png"><img alt="An insertion that violates the AVL tree balance property" src="_images/AVLins.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 7.6.2: Example of an insert operation that violates the AVL tree balance
+property.
+Prior to the insert operation, all nodes of the tree are balanced
+(i.e., the depths of the left and right subtrees for every node
+differ by at most one).
+After inserting the node with value 5, the nodes with values 7 and
+24 are no longer balanced.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Consider what happens when we insert a node with key value 5,
+as shown in Figure <a href="AVL.html#avlinsert">7.6.2</a>.
+The tree on the left meets the AVL tree balance requirements.
+After the insertion, two nodes no longer meet the requirements.
+Because the original tree met the balance requirement, nodes in the
+new tree can only be unbalanced by a difference of at most 2 in the
+subtrees. For the bottommost unbalanced node, call it <span class="math notranslate nohighlight">\(S\)</span>, there
+are 4 cases:</p>
+<ol class="arabic simple">
+<li><p>The extra node is in the left child of the left child of
+<span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>The extra node is in the right child of the left child of
+<span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>The extra node is in the left child of the right child of
+<span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+<li><p>The extra node is in the right child of the right child of
+<span class="math notranslate nohighlight">\(S\)</span>.</p></li>
+</ol>
+<p>Cases 1 and 4 are symmetric, as are cases 2 and 3.  Note also that the
+unbalanced nodes must be on the path from the root to the newly
+inserted node.</p>
+<p>Our problem now is how to balance the tree in <span class="math notranslate nohighlight">\(O(\log n)\)</span> time.
+It turns out that we can do this using a series of rotations.
+Cases 1 and 4 can be fixed using a <a class="reference internal" href="Glossary.html#term-single-rotation"><span class="xref std std-term">single rotation</span></a>,
+as shown in Figure <a href="AVL.html#avlsingle">7.6.3</a>.
+Cases 2 and 3 can be fixed using a <a class="reference internal" href="Glossary.html#term-double-rotation"><span class="xref std std-term">double rotation</span></a>, as shown
+in Figure <a href="AVL.html#avldouble">7.6.4</a>.</p>
+<div class="figure align-center" id="id3" style="width: 90%">
+<span id="avlsingle"></span><a class="reference internal image-reference" href="_images/AVLSingRot.png"><img alt="AVL tree single rotation" src="_images/AVLSingRot.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 7.6.3: A single rotation in an AVL tree.
+This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(A\)</span>)
+is in the left child of the left child of the unbalanced node
+labeled <span class="math notranslate nohighlight">\(S\)</span>.
+By rearranging the nodes as shown, we preserve the BST property, as
+well as re-balance the tree to preserve the AVL tree balance
+property.
+The case where the excess node is in the right child of the
+right child of the unbalanced node is handled in the same
+way.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div class="figure align-center" id="id4" style="width: 90%">
+<span id="avldouble"></span><a class="reference internal image-reference" href="_images/AVLDblRot.png"><img alt="AVL tree double rotation" src="_images/AVLDblRot.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 7.6.4: A double rotation in an AVL tree.
+This operation occurs when the excess node (in subtree <span class="math notranslate nohighlight">\(B\)</span>)
+is in the right child of the left child of the unbalanced node
+labeled <span class="math notranslate nohighlight">\(S\)</span>.
+By rearranging the nodes as shown, we preserve the BST property, as
+well as re-balance the tree to preserve the AVL tree balance
+property.
+The case where the excess node is in the left child of the
+right child of <span class="math notranslate nohighlight">\(S\)</span> is handled in the same way.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>The AVL tree insert algorithm begins with a normal BST insert.
+Then as the recursion unwinds up the tree, we perform the appropriate
+rotation on any node that is found to be unbalanced.
+Deletion is similar; however, consideration for unbalanced nodes must
+begin at the level of the <cite>deletemin</cite> operation.</p>
+<div class="topic">
+<p class="topic-title">Example 7.6.1 </p>
+<p>In Figure <a href="AVL.html#avlinsert">7.6.2</a> (b), the bottom-most unbalanced
+node has value 7.
+The excess node (with value 5) is in the right subtree of the left
+child of 7, so we have an example of Case 2.
+This requires a double rotation to fix.
+After the rotation, 5 becomes the left child of 24, 2 becomes the
+left child of 5, and 7 becomes the right child of 5.</p>
+</div>
+<p>To try out AVL insertion yourself and see how it works, see
+<a class="reference external" href="https://www.cs.usfca.edu/~galles/visualization/AVLtree.html">AVL Tree Visualization</a>. You can also find a few more examples under
+<a class="reference external" href="https://bradfieldcs.com/algos/trees/avl-trees/">AVL Trees</a>.</p>
+<p>Here is an implementation of AVL trees:</p>
+<div id="AVL_AVLTree_code"><ul><li><a href="#AVL_AVLTree_code_Java_Generic">Java</a></li><li><a href="#AVL_AVLTree_code_Python">Python</a></li></ul><div id="AVL_AVLTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// A dictionary implemented using an AVL tree.</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AVL</span><span class="o">&lt;</span><span class="n">Key</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Value</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Iterable</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="c1">// A node in an AVL tree.</span>
+    <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="n">Key</span> <span class="n">key</span><span class="p">;</span>
+        <span class="n">Value</span> <span class="n">value</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">right</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">height</span><span class="p">;</span>
+
+        <span class="n">Node</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">,</span> <span class="n">Node</span> <span class="n">left</span><span class="p">,</span> <span class="n">Node</span> <span class="n">right</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">key</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">right</span><span class="p">;</span>
+            <span class="n">updateHeight</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="nf">getHeight</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="k">else</span> <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">height</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="kt">void</span> <span class="nf">updateHeight</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">Math</span><span class="p">.</span><span class="na">max</span><span class="p">(</span><span class="n">getHeight</span><span class="p">(</span><span class="n">left</span><span class="p">),</span> <span class="n">getHeight</span><span class="p">(</span><span class="n">right</span><span class="p">));</span>
+        <span class="p">}</span>
+
+        <span class="kt">int</span> <span class="nf">heightDiff</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">getHeight</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">-</span> <span class="n">getHeight</span><span class="p">(</span><span class="n">right</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// The root of the binary search tree.</span>
+    <span class="n">Node</span> <span class="n">root</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+
+    <span class="c1">// Check that the invariant holds.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariant</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;check_invariant&#39;.</span>
+    <span class="c1">//</span>
+    <span class="c1">// Checks that the node is the root of a valid AVL tree, and that</span>
+    <span class="c1">// all keys k satisfy lo &lt; k &lt; hi. The test lo &lt; k is skipped</span>
+    <span class="c1">// if lo is None, and k &lt; hi is skipped if hi is None.</span>
+    <span class="kt">void</span> <span class="nf">checkInvariantHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">lo</span><span class="p">,</span> <span class="n">Key</span> <span class="n">hi</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">lo</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">lo</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too small&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">hi</span> <span class="o">!=</span> <span class="kc">null</span> <span class="o">&amp;&amp;</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">hi</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;key too big&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">heightDiff</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;too left-leaning&quot;</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">heightDiff</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="n">AssertionError</span><span class="p">(</span><span class="s">&quot;too right-leaning&quot;</span><span class="p">);</span>
+
+        <span class="c1">// Keys in the left subtree should be &lt; node.key</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="c1">// Keys in the right subtree should be &gt; node.key</span>
+        <span class="n">checkInvariantHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">hi</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return true if there are no keys.</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return the number of keys.</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">sizeHelper</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;size&#39;.</span>
+    <span class="kt">int</span> <span class="nf">sizeHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">sizeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">+</span> <span class="n">sizeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Return true if the key has an associated value.</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsKey</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Look up a key.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">get</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;get&#39;.</span>
+    <span class="n">Value</span> <span class="nf">getHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">getHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Add a key-value pair, or update the value associated with an existing key.</span>
+    <span class="c1">// Returns the previous value associated with the key, or null if</span>
+    <span class="c1">// the key wasn&#39;t previously present.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">put</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;put&#39;.</span>
+    <span class="c1">// Stores the previous value in oldValue;</span>
+    <span class="n">Node</span> <span class="nf">putHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">,</span> <span class="n">Value</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="p">}</span> 
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">putHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">else</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Used by putHelper and removeHelper, in order to return the</span>
+    <span class="c1">// value previously stored in the node.</span>
+    <span class="kd">private</span> <span class="n">Value</span> <span class="n">oldValue</span><span class="p">;</span>
+
+    <span class="c1">// Delete a key.</span>
+    <span class="kd">public</span> <span class="n">Value</span> <span class="nf">remove</span><span class="p">(</span><span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">oldValue</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;remove&#39;.</span>
+    <span class="n">Node</span> <span class="nf">removeHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">Key</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">oldValue</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">compareTo</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">key</span><span class="p">);</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span> <span class="c1">// key == node.key</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="k">return</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+            <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+                <span class="n">Node</span> <span class="n">lastNode</span> <span class="o">=</span> <span class="n">largestNode</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+                <span class="n">Key</span> <span class="n">lastKey</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">key</span><span class="p">;</span>
+                <span class="n">Value</span> <span class="n">lastValue</span> <span class="o">=</span> <span class="n">lastNode</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">removeHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">lastKey</span><span class="p">);</span>
+                <span class="n">oldValue</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">key</span> <span class="o">=</span> <span class="n">lastKey</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">=</span> <span class="n">lastValue</span><span class="p">;</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+                <span class="k">return</span> <span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Find the largest key.</span>
+    <span class="kd">public</span> <span class="n">Key</span> <span class="nf">lastKey</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="n">largestNode</span><span class="p">(</span><span class="n">root</span><span class="p">).</span><span class="na">key</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;lastKey&#39;.</span>
+    <span class="c1">// Returns the node instead, as that&#39;s useful in &#39;removeHelper&#39;.</span>
+    <span class="n">Node</span> <span class="nf">largestNode</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// This one is maybe easier to implement non-recursively :)</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Repair the AVL invariant by rebalancing the node.</span>
+    <span class="n">Node</span> <span class="nf">rebalance</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">diff</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">heightDiff</span><span class="p">();</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">diff</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Left-leaning</span>
+            <span class="kt">int</span> <span class="n">leftDiff</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">.</span><span class="na">heightDiff</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">leftDiff</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Left-right - convert to left-left</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">left</span> <span class="o">=</span> <span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">);</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">diff</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Right-leaning</span>
+            <span class="kt">int</span> <span class="n">rightDiff</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">.</span><span class="na">heightDiff</span><span class="p">();</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">rightDiff</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Right-left - convert to right-right</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">=</span> <span class="n">rotateRight</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">);</span>
+                <span class="n">node</span><span class="p">.</span><span class="na">updateHeight</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="n">rotateLeft</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+        <span class="p">}</span> <span class="k">else</span>
+            <span class="k">return</span> <span class="n">node</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="nf">rotateLeft</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Left rotation.</span>
+
+        <span class="c1">//    x                y</span>
+        <span class="c1">//   / \              / \</span>
+        <span class="c1">//  A  y      ===&gt;   x  C</span>
+        <span class="c1">//    / \           / \</span>
+        <span class="c1">//   B  C          A  B</span>
+        <span class="c1">// &quot;&quot;&quot;</span>
+
+        <span class="c1">// Variables are named according to the picture above.</span>
+        <span class="n">Node</span> <span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">A</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">C</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">),</span> <span class="n">C</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">Node</span> <span class="nf">rotateRight</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Right rotation.</span>
+        <span class="c1">// </span>
+        <span class="c1">//      x             y</span>
+        <span class="c1">//     / \           / \</span>
+        <span class="c1">//    y  C    ===&gt;  A  x</span>
+        <span class="c1">//   / \              / \</span>
+        <span class="c1">//  A  B             B  C</span>
+
+        <span class="c1">// Variables are named according to the picture above.</span>
+        <span class="n">Node</span> <span class="n">x</span> <span class="o">=</span> <span class="n">node</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">A</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">left</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+        <span class="n">Node</span> <span class="n">C</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
+
+        <span class="k">return</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">y</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">y</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="na">value</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Iterate through all keys.</span>
+    <span class="c1">// This is called when the user writes &#39;for (Key key: bst) { ... }.&#39;</span>
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// The easiest way to solve this is to add all keys to an</span>
+        <span class="c1">// ArrayList, then iterate through that.</span>
+        <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">keys</span><span class="p">.</span><span class="na">iterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Helper method for &#39;iterator&#39;</span>
+    <span class="kt">void</span> <span class="nf">iteratorHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">,</span> <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span> <span class="n">keys</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+        <span class="n">keys</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">key</span><span class="p">);</span>
+        <span class="n">iteratorHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">,</span> <span class="n">keys</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Override &#39;toString&#39; to print the contents of the BST.</span>
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;{}&quot;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">toStringHelper</span><span class="p">(</span><span class="n">root</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">String</span> <span class="nf">toStringHelper</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">node</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="k">return</span> <span class="s">&quot;.&quot;</span><span class="p">;</span>
+        <span class="k">return</span> <span class="s">&quot;{&quot;</span> <span class="o">+</span> <span class="n">toStringHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">left</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span>
+            <span class="n">node</span><span class="p">.</span><span class="na">key</span> <span class="o">+</span> <span class="s">&quot;-&gt;&quot;</span> <span class="o">+</span> <span class="n">node</span><span class="p">.</span><span class="na">value</span> <span class="o">+</span> <span class="s">&quot; &quot;</span> <span class="o">+</span> <span class="n">toStringHelper</span><span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">)</span> <span class="o">+</span> <span class="s">&quot;}&quot;</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="c1">// Some test code to check that the AVL tree is working</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">AVL</span><span class="o">&lt;</span><span class="n">Integer</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">bst</span> <span class="o">=</span> <span class="k">new</span> <span class="n">AVL</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">keys</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">values</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">values</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">,</span> <span class="n">values</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">);</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot; -&gt; &quot;</span> <span class="o">+</span> <span class="n">bst</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">));</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">keys</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">remove</span><span class="p">(</span><span class="n">keys</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">);</span>
+            <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="n">bst</span><span class="p">);</span>
+            <span class="n">bst</span><span class="p">.</span><span class="na">checkInvariant</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="AVL_AVLTree_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Node</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A node in an AVL tree.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">key</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the height of a tree. Also works for None.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_height</span>
+
+    <span class="k">def</span> <span class="nf">height_diff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the height difference, left height - right height.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="o">-</span> <span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">update_height</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Recompute the value of the height field.</span>
+<span class="sd">        Must be called every time the height of the tree could change.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_height</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">),</span> <span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span>
+
+<span class="k">class</span> <span class="nc">AVL</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;A dictionary implemented using a binary search tree.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">check_invariant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the invariant holds.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">check_invariant_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">check_invariant_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;check_invariant&#39;.</span>
+
+<span class="sd">        Checks that the node is the root of a valid AVL tree, and that</span>
+<span class="sd">        all keys k satisfy lo &lt; k &lt; hi. The test lo &lt; k is skipped</span>
+<span class="sd">        if lo is None, and k &lt; hi is skipped if hi is None.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span>
+
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">height_diff</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;too left-leaning&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">height_diff</span><span class="p">()</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;too right-leaning&quot;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">lo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&lt;=</span> <span class="n">lo</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;key too small&quot;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">hi</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&gt;=</span> <span class="n">hi</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;key too big&quot;</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+        <span class="c1"># Keys in the left subtree should be &lt; node.key</span>
+        <span class="n">AVL</span><span class="o">.</span><span class="n">check_invariant_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">lo</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
+        <span class="c1"># Keys in the right subtree should be &gt; node.key</span>
+        <span class="n">AVL</span><span class="o">.</span><span class="n">check_invariant_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">hi</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if there are no keys.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span>
+    
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the number of keys.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">size_helper</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;size&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+        <span class="k">else</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">size_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="n">size_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if the key has an associated value.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Look up a key.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;get&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">get_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">get_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Add a key-value pair, or update the value associated with</span>
+<span class="sd">        an existing key.</span>
+
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">put_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;put&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Delete a key.</span>
+
+<span class="sd">        Returns the value previously associated with the key, or None</span>
+<span class="sd">        if the key was not present.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old_value</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;remove&#39;.</span>
+
+<span class="sd">        Returns the updated node, and the value previously associated</span>
+<span class="sd">        with the key.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">)</span>
+            <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># key == node.key</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">last_node</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">lastNode</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+                <span class="n">last_key</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">key</span>
+                <span class="n">last_val</span> <span class="o">=</span> <span class="n">last_node</span><span class="o">.</span><span class="n">value</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">remove_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">last_key</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">last_key</span>
+                <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">last_val</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+                <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">),</span> <span class="n">old_value</span>
+
+    <span class="k">def</span> <span class="nf">lastKey</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the largest key.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">last_node</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lastNode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">last_node</span><span class="o">.</span><span class="n">key</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">lastNode</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Find the node having the largest key.&quot;&quot;&quot;</span>
+
+        <span class="k">while</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
+
+        <span class="k">return</span> <span class="n">node</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">rebalance</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">height_diff</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">diff</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">left_diff</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">height_diff</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">left_diff</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">diff</span> <span class="o">==</span> <span class="o">-</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">right_diff</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">height_diff</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">right_diff</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+                <span class="n">node</span><span class="o">.</span><span class="n">update_height</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">AVL</span><span class="o">.</span><span class="n">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">node</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">rotate_left</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Left rotation.</span>
+
+<span class="sd">           x                y</span>
+<span class="sd">          / \              / \</span>
+<span class="sd">         A  y      ===&gt;   x  C</span>
+<span class="sd">           / \           / \</span>
+<span class="sd">          B  C          A  B</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Variables are named according to the picture above.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">left</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">right</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">left</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">right</span>
+
+        <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">left</span> <span class="o">=</span>
+                        <span class="n">Node</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                             <span class="n">left</span> <span class="o">=</span> <span class="n">A</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">B</span><span class="p">),</span>
+                    <span class="n">right</span> <span class="o">=</span> <span class="n">C</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">rotate_right</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Right rotation.</span>
+
+<span class="sd">             x             y</span>
+<span class="sd">            / \           / \</span>
+<span class="sd">           y  C    ===&gt;  A  x</span>
+<span class="sd">          / \              / \</span>
+<span class="sd">         A  B             B  C</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c1"># Variables are named according to the picture above.</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">left</span>
+        <span class="n">A</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">left</span>
+        <span class="n">B</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">right</span>
+        <span class="n">C</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">right</span>
+
+        <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                    <span class="n">left</span> <span class="o">=</span> <span class="n">A</span><span class="p">,</span>
+                    <span class="n">right</span> <span class="o">=</span>
+                        <span class="n">Node</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+                             <span class="n">left</span> <span class="o">=</span> <span class="n">B</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">C</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Iterate through all keys.</span>
+
+<span class="sd">        This is called when the user writes &#39;for key in bst: ...&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Helper method for &#39;__iter__&#39;.&quot;&quot;&quot;</span>
+
+        <span class="c1"># This method is a generator:</span>
+        <span class="c1"># https://docs.python.org/3/howto/functional.html#generators</span>
+        <span class="c1"># Generators are an easy way to make iterators</span>
+
+        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">AVL</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">key</span>
+            <span class="k">yield</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">AVL</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">key</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;x = bst[key]&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;bst[key] = value&#39;.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;key in bst&#39;.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;del bst[key]&#39;.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called to show the AVL as a string.&quot;&quot;&quot;</span>
+
+        <span class="c1"># Use a dict comprehension to convert the AVL into a dict:</span>
+        <span class="c1"># https://docs.python.org/3/tutorial/datastructures.html#dictionaries</span>
+        <span class="c1"># Then show the dict as a string.</span>
+
+        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">})</span>
+        <span class="c1"># This code is the same as:</span>
+        <span class="c1"># d = {}</span>
+        <span class="c1"># for key in self:</span>
+        <span class="c1">#   d[key] = self[key]</span>
+        <span class="c1"># return str(d)</span>
+        <span class="c1"># Note that &#39;for key in self&#39; calls self.__iter__ to produce</span>
+        <span class="c1"># the keys, and &#39;self[key]&#39; calls self.__getitem__.</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This is called to show the AVL as a string.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">})</span>
+
+<span class="c1"># Some code to test that the AVL tree is working</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">bst</span> <span class="o">=</span> <span class="n">AVL</span><span class="p">()</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+    <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)))</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
+        <span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="n">bst</span><span class="o">.</span><span class="n">root</span><span class="p">),</span> <span class="n">bst</span><span class="p">)</span>
+        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
+        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
+        <span class="k">del</span> <span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">Node</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="n">bst</span><span class="o">.</span><span class="n">root</span><span class="p">),</span> <span class="n">bst</span><span class="p">)</span>
+        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#AVL_AVLTree_code" ).tabs();});</script></div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BalancedTree.html">7.<span class="section-number">4. </span>Balanced Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="RedBlackCode.html">7.<span class="section-number">6. </span>Red-Black Trees (code only)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

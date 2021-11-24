@@ -1,0 +1,712 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>9.4. Separate Chaining &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="5. Converting Objects to Table Indices" href="HashToIndex.html" />
+    <link rel="prev" title="3. Sample Hash Functions" href="HashFuncExamp.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 9 Hash Tables</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/OpenHash.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="HashFuncExamp.html">9.<span class="section-number">3. </span>Sample Hash Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="HashToIndex.html">9.<span class="section-number">5. </span>Converting Objects to Table Indices</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['separate-chaining-or-open-hashing', 'alternatives-to-a-linked-list', 'resizing-is-important', 'implementing-separate-chaining', 'resizing-the-internal-table', 'exercise', 'full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "OpenHash";ODSA.SETTINGS.MODULE_LONG_NAME = "Separate Chaining";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/openhashCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="separate-chaining">
+<h1>9.<span class="section-number">4. </span>Separate Chaining<a class="headerlink" href="#separate-chaining" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="separate-chaining-or-open-hashing">
+<h2>9.<span class="section-number">4.1. </span>Separate Chaining, or Open Hashing<a class="headerlink" href="#separate-chaining-or-open-hashing" title="Permalink to this headline">¶</a></h2>
+<p>While the goal of a hash function is to minimize collisions,
+some collisions are unavoidable in practice.
+Thus, hashing implementations must include some form of collision
+resolution policy.
+Collision resolution techniques can be broken into two classes:
+<a class="reference internal" href="Glossary.html#term-separate-chaining"><span class="xref std std-term">separate chaining</span></a>
+(also called <a class="reference internal" href="Glossary.html#term-open-hash-system"><span class="xref std std-term">open hashing</span></a>) and
+<a class="reference internal" href="Glossary.html#term-open-addressing"><span class="xref std std-term">open addressing</span></a>
+(also called <a class="reference internal" href="HashCSimple.html#hashcsimple"><span class="std std-ref">closed hashing</span></a>).
+(Yes, it is confusing when “open hashing” means the opposite of
+“open addressing”, but unfortunately, that is the way it is.)
+The difference between the two has to do with whether
+collisions are stored outside the table (separate chaining/open hashing), or
+whether collisions result in storing one of the records at another
+slot in the table (open addressing/closed hashing).</p>
+<p>The simplest form of separate chaining defines each slot in the
+hash table to be the head of a linked list.
+All records that hash to a particular slot are placed on that slot’s
+linked list.
+The following figure illustrates a hash table where each
+slot points to a linked list to hold the records associated with that slot.
+The hash function used is the simple mod function.</p>
+<div class="divdgm">
+<div id="openhashCON">
+</div>
+</div>
+<p>Records within a slot’s list can be ordered in several ways:
+by insertion order, by key value order, or by frequency-of-access
+order.
+Ordering the list by key value provides an advantage in the case of an
+unsuccessful search, because we know to stop searching the list once we
+encounter a key that is greater than the one being searched for.
+If records on the list are unordered or ordered by frequency, then an
+unsuccessful search will need to visit every record on the list.</p>
+<p>Given a table of size <span class="math notranslate nohighlight">\(M\)</span> storing <span class="math notranslate nohighlight">\(N\)</span> records,
+the hash function will (ideally) spread the records evenly among the
+<span class="math notranslate nohighlight">\(M\)</span> positions in
+the table, yielding on average <span class="math notranslate nohighlight">\(N/M\)</span> records for each list.
+This value, <span class="math notranslate nohighlight">\(N/M\)</span>, is commonly called the <a class="reference internal" href="Glossary.html#term-load-factor"><span class="xref std std-term">load factor</span></a>.</p>
+<p>Assuming that the table has more slots than there are records to be
+stored, we can hope that few slots will contain more than one record.
+In the case where a list is empty or has only one record,
+a search requires only one access to the list.
+Thus, the average cost for hashing should be <span class="math notranslate nohighlight">\(\Theta(1\)</span>).
+However, if clustering causes many records to hash to only a few of
+the slots, then the cost to access a record will be much higher
+because many elements on the linked list must be searched.</p>
+<p>Separate chaining is most appropriate when the hash table is kept in main
+memory, with the lists implemented by a standard in-memory linked list.
+Storing an separate chaining hash table on disk in an efficient way is
+difficult, because members of a given linked list might be stored on
+different disk blocks.
+This would result in multiple disk accesses when searching for a
+particular key value, which defeats the purpose of using hashing.</p>
+<p>There are similarities between separate chaining and
+<a class="reference internal" href="Glossary.html#term-binsort"><span class="xref std std-term">Binsort</span></a>.
+One way to view separate chaining is that each record is simply placed in a bin.
+While multiple records may hash to the same bin, this initial binning
+should still greatly reduce the number of records accessed by
+a search operation.
+In a similar fashion, a simple Binsort reduces the number of
+records in each bin to a small number that can be sorted in some
+other way.</p>
+</div>
+<div class="section" id="alternatives-to-a-linked-list">
+<h2>9.<span class="section-number">4.2. </span>Alternatives to a linked list<a class="headerlink" href="#alternatives-to-a-linked-list" title="Permalink to this headline">¶</a></h2>
+<p>There is nothing that requires us to use a linked list as the underlying data structure,
+it could be a dynamic array or a balanced search tree too.
+(In fact, Java 8’s hash tables use a combination of linked lists and balanced trees).</p>
+<p>Conceptually, a hash table can use any kind of collection data structure –
+the only thing that the actual array does is to partition the large collection into
+<span class="math notranslate nohighlight">\(M\)</span> disjoint collections.
+If the hash function is good and distributes the objects evenly among the bins, all operations
+will become <span class="math notranslate nohighlight">\(M\)</span> times faster (because the bins are <span class="math notranslate nohighlight">\(M\)</span> times smaller than
+the original large collection).</p>
+<div class="section" id="resizing-is-important">
+<h3>9.<span class="section-number">4.2.1. </span>Resizing is important<a class="headerlink" href="#resizing-is-important" title="Permalink to this headline">¶</a></h3>
+<p>Just as for dynamic arrays, it is important that we resize the internal table when it becomes
+too large (or too small). That is, we change the size <span class="math notranslate nohighlight">\(M\)</span> so that it is proportional to the
+number of table entries.</p>
+<p>If <span class="math notranslate nohighlight">\(M\)</span> is always proportional to the number of entries, <em>and</em> if we have a good hash function,
+the number of elements in a bin will remain approximately constant. And then all operations
+will be expected constant time.</p>
+</div>
+</div>
+<div class="section" id="implementing-separate-chaining">
+<h2>9.<span class="section-number">4.3. </span>Implementing Separate Chaining<a class="headerlink" href="#implementing-separate-chaining" title="Permalink to this headline">¶</a></h2>
+<p>Here we will show the implementation of a <strong>hash map</strong>.
+Implementing a hash set is very similar, and even simpler.</p>
+<p>A separate chaining hash map consists of an internal array of key-value maps.
+We don’t have to specify what kind of maps just yet,
+but we will use a simple <a class="reference internal" href="ListMap.html#listmap"><span class="std std-ref">linked list map</span></a> because the idea
+is that each bin will only contain a couple of entries.
+We also have to remember the collected size of the map,
+otherwise we would have to calculate a sum every time
+<code class="docutils literal notranslate"><span class="pre">size()</span></code> or <code class="docutils literal notranslate"><span class="pre">isEmpty()</span></code> would be called.</p>
+<p>To initialise the table, we first create the internal array of the initial
+minimum capacity, and then let every array cell be a new empty linked list map.
+Note that we put the initialisation in a private method of its own,
+so that we can reuse it when resizing the table.</p>
+<div id="SeparateChainingHashMap_Header_code"><ul><li><a href="#SeparateChainingHashMap_Header_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Header_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Header_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SeparateChainingHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span> <span class="n">internalTable</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mapSize</span><span class="p">;</span>
+
+    <span class="n">SeparateChainingHashMap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">MinCapacity</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="nf">lookupBin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">bin</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Header_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SeparateChainingHashMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Header_code" ).tabs();});</script><p>To get the value for a key, we called the table index for the key, and then
+look up the key in the underlying map at that position.</p>
+<div id="SeparateChainingHashMap_Get_code"><ul><li><a href="#SeparateChainingHashMap_Get_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Get_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Get_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>        
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Get_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Get_code" ).tabs();});</script><p>To set a value for a key, we calculate the table index for the key,
+and then we set the value for the key in the underlying map.
+If if the old value for the key is null, the key wasn’t in the hash table
+previously, and then we know that the number of key/value pairs have been increased.
+We also have to check if the load factor becomes too large, and then we make the
+internal table larger by a factor.</p>
+<div id="SeparateChainingHashMap_Put_code"><ul><li><a href="#SeparateChainingHashMap_Put_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Put_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Put_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">old</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
+                <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLoadFactor</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Put_code" ).tabs();});</script><p>To remove a value, we do the same: find the underlying map for the key, and
+remove the key/value pair.
+If we actually removed the key (i.e., if it existed in the map), then
+we decrease the map size.
+We also check if the table becomes too sparse, and then decrease the internal table by a factor.</p>
+<div id="SeparateChainingHashMap_Remove_code"><ul><li><a href="#SeparateChainingHashMap_Remove_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Remove_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Remove_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">removed</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mapSize</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">MinLoadFactor</span><span class="p">)</span> 
+                <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">;</span>
+    <span class="p">}</span>            
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Remove_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">removed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">removed</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Remove_code" ).tabs();});</script><p>The constants for min and max load factors, and the resizing factor, are a bit arbitrary.
+With the following values, we ensure that the table on average contains between 0.5 and 2
+entries per table index. Increasing these values leads to more better memory usage,
+but also more conflicts (i.e., longer search times).
+Also, we enlarge by 50%, or reduce by 33%, each time we resize the table.
+Increasing this value means that resizing will happen less often, but instead the memory usage will increase.</p>
+<div id="SeparateChainingHashMap_Constants_code"><ul><li><a href="#SeparateChainingHashMap_Constants_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Constants_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Constants_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MaxLoadFactor</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Constants_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_maxLoadFactor</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Constants_code" ).tabs();});</script><p>The load factor <span class="math notranslate nohighlight">\(N/M\)</span> is easy to calculate.</p>
+<div id="SeparateChainingHashMap_LoadFactor_code"><ul><li><a href="#SeparateChainingHashMap_LoadFactor_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_LoadFactor_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_LoadFactor_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">loadFactor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">mapSize</span> <span class="o">/</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_LoadFactor_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">loadFactor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_LoadFactor_code" ).tabs();});</script></div>
+<div class="section" id="resizing-the-internal-table">
+<h2>9.<span class="section-number">4.4. </span>Resizing the internal table<a class="headerlink" href="#resizing-the-internal-table" title="Permalink to this headline">¶</a></h2>
+<p>When we resize the internal table, it is very important that we <em>do not keep</em>
+the old hash indices for the keys, because they will not be the same
+after resizing.
+Instead we save the current internal table to a temporary variable,
+and reinitialise the table to the new capacity.
+Then we iterate through all bins and entries in the old table, and
+simply insert them again into the new resized table.</p>
+<div id="SeparateChainingHashMap_Resize_code"><ul><li><a href="#SeparateChainingHashMap_Resize_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_Resize_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_Resize_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span> <span class="n">oldTable</span> <span class="o">=</span> <span class="n">internalTable</span><span class="p">;</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="p">:</span> <span class="n">oldTable</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">K</span> <span class="n">k</span> <span class="p">:</span> <span class="n">bin</span><span class="p">)</span>
+                    <span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bin</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">k</span><span class="p">));</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_Resize_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_resizeTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">oldTable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialiseTable</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">))</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">oldTable</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">bin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_Resize_code" ).tabs();});</script></div>
+<div class="section" id="exercise">
+<h2>9.<span class="section-number">4.5. </span>Exercise<a class="headerlink" href="#exercise" title="Permalink to this headline">¶</a></h2>
+<div
+    id="OpenHashPRO"
+    class="embedContainer"
+    data-exer-name="OpenHashPRO"
+    data-long-name="Separate Chaining Proficiency Exercise"
+    data-short-name="OpenHashPRO"
+    data-frame-src="../../../Exercises/Hashing/OpenHashPRO.html?localMode=true&amp;module=OpenHash&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="720"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="OpenHashPRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="full-implementation">
+<h2>9.<span class="section-number">4.6. </span>Full implementation<a class="headerlink" href="#full-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Here is the full implementation for separate chaining hash tables.</p>
+<div id="SeparateChainingHashMap_SeparateChainingHashMap_code"><ul><li><a href="#SeparateChainingHashMap_SeparateChainingHashMap_code_Java_Generic">Java</a></li><li><a href="#SeparateChainingHashMap_SeparateChainingHashMap_code_Python">Python</a></li></ul><div id="SeparateChainingHashMap_SeparateChainingHashMap_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SeparateChainingHashMap</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span> <span class="n">internalTable</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">mapSize</span><span class="p">;</span>
+
+    <span class="n">SeparateChainingHashMap</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">MinCapacity</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">initialiseTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">capacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">internalTable</span> <span class="o">=</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">[</span><span class="n">capacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">mapSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="nf">lookupBin</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span>
+            <span class="n">bin</span> <span class="o">=</span> <span class="n">internalTable</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedMap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="k">return</span> <span class="n">bin</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">static</span> <span class="kt">int</span> <span class="n">MinCapacity</span> <span class="o">=</span> <span class="mi">8</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MinLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">MaxLoadFactor</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kt">double</span> <span class="n">CapacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">;</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">hash</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">key</span><span class="p">.</span><span class="na">hashCode</span><span class="p">()</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">put</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">V</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">old</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">old</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mapSize</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">MaxLoadFactor</span><span class="p">)</span>
+                <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">old</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">get</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">get</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>        
+
+    <span class="kd">public</span> <span class="n">V</span> <span class="nf">remove</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="n">V</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">remove</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">removed</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">mapSize</span><span class="o">--</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">MinLoadFactor</span><span class="p">)</span> 
+                <span class="n">resizeTable</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalTable</span><span class="p">.</span><span class="na">length</span> <span class="o">/</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
+        <span class="p">}</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">;</span>
+    <span class="p">}</span>            
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">containsKey</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">hash</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">i</span><span class="p">).</span><span class="na">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeTable</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;[]</span> <span class="n">oldTable</span> <span class="o">=</span> <span class="n">internalTable</span><span class="p">;</span>
+        <span class="n">initialiseTable</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">V</span><span class="o">&gt;</span> <span class="n">bin</span> <span class="p">:</span> <span class="n">oldTable</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">bin</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
+                <span class="k">for</span> <span class="p">(</span><span class="n">K</span> <span class="n">k</span> <span class="p">:</span> <span class="n">bin</span><span class="p">)</span>
+                    <span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">bin</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">k</span><span class="p">));</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">mapSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">mapSize</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">double</span> <span class="nf">loadFactor</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="n">mapSize</span> <span class="o">/</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HashMapIterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">HashMapIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="kt">int</span> <span class="n">bucketIndex</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span> <span class="n">bucketIterator</span><span class="p">;</span>
+        <span class="n">HashMapIterator</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">bucketIndex</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+            <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">bucketIndex</span><span class="p">).</span><span class="na">iterator</span><span class="p">();</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">bucketIterator</span><span class="p">.</span><span class="na">hasNext</span><span class="p">())</span> <span class="p">{</span>
+                <span class="n">bucketIndex</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">bucketIndex</span> <span class="o">&gt;=</span> <span class="n">internalTable</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+                <span class="n">bucketIterator</span> <span class="o">=</span> <span class="n">lookupBin</span><span class="p">(</span><span class="n">bucketIndex</span><span class="p">).</span><span class="na">iterator</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="n">K</span> <span class="nf">next</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">hasNext</span><span class="p">();</span>
+            <span class="k">return</span> <span class="n">bucketIterator</span><span class="p">.</span><span class="na">next</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="SeparateChainingHashMap_SeparateChainingHashMap_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SeparateChainingHashMap</span><span class="p">(</span><span class="n">Map</span><span class="p">):</span>
+    <span class="n">_minCapacity</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">_minLoadFactor</span> <span class="o">=</span> <span class="mf">0.5</span>
+    <span class="n">_maxLoadFactor</span> <span class="o">=</span> <span class="mf">2.0</span>
+    <span class="n">_capacityMultiplier</span> <span class="o">=</span> <span class="mf">1.5</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_initialiseTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">capacity</span><span class="p">):</span>
+        <span class="n">capacity</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">capacity</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">capacity</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">capacity</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">LinkedListMap</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">_hash</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">old</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">old</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLoadFactor</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">old</span>
+
+    <span class="k">def</span> <span class="nf">get</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">removed</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minLoadFactor</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">removed</span>
+
+    <span class="k">def</span> <span class="nf">containsKey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_resizeTable</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">oldTable</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_initialiseTable</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">))</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="n">oldTable</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="nb">bin</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">k</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span>
+
+    <span class="k">def</span> <span class="nf">loadFactor</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">for</span> <span class="nb">bin</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_table</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="nb">bin</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">key</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#SeparateChainingHashMap_SeparateChainingHashMap_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/Hashing/openhashCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="HashFuncExamp.html">9.<span class="section-number">3. </span>Sample Hash Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="HashToIndex.html">9.<span class="section-number">5. </span>Converting Objects to Table Indices</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

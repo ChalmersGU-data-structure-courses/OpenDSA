@@ -1,0 +1,750 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.5. Huffman Coding Trees (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="6. Trees versus Tries (optional) (WORK IN PROGRESS)" href="TreeTrie.html" />
+    <link rel="prev" title="4. Heapsort" href="Heapsort.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 8 Priority Queues</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Huffman.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="Heapsort.html">8.<span class="section-number">4. </span>Heapsort</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/huffmanCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="huffman-coding-trees-optional-work-in-progress">
+<span id="index-0"></span><h1>8.<span class="section-number">5. </span>Huffman Coding Trees (optional) (WORK IN PROGRESS)<a class="headerlink" href="#huffman-coding-trees-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="huffman-coding-trees">
+<h2>8.<span class="section-number">5.1. </span>Huffman Coding Trees<a class="headerlink" href="#huffman-coding-trees" title="Permalink to this headline">¶</a></h2>
+<p>One can often gain an improvement in space requirements in exchange
+for a penalty in running time.
+There are many situations where this is a desirable tradeoff.
+A typical example is storing files on disk.
+If the files are not actively used, the owner might wish to compress
+them to save space. Later, they can be uncompressed for use, which
+costs some time, but only once.</p>
+<p>We often represent a set of items in a computer program by assigning a
+unique code to each item.
+For example, the standard <a class="reference internal" href="Glossary.html#term-ascii-character-coding"><span class="xref std std-term">ASCII coding</span></a>
+scheme assigns a unique eight-bit value to each character.
+It takes a certain minimum number of bits to provide enough unique
+codes so that we have a different one for each character.
+For example, it takes <span class="math notranslate nohighlight">\(\left\lceil log\ 128\right\rceil\)</span>
+or seven bits to provide the 128 unique codes needed
+to represent the 128 symbols of the ASCII character set. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>The requirement for <span class="math notranslate nohighlight">\(\left \lceil log\ n \right\rceil\)</span> bits to
+represent <span class="math notranslate nohighlight">\(n\)</span> unique code values assumes that all codes will be
+the same length, as are ASCII codes.
+These are called <a class="reference internal" href="Glossary.html#term-fixed-length-coding"><span class="xref std std-term">fixed-length codes</span></a>.
+If all characters were used equally often, then a fixed-length coding
+scheme is the most space efficient method.
+However, you are probably aware that not all characters are used
+equally often in many applications.
+For example, the various letters in an English language document have
+greatly different frequencies of use.</p>
+<p>Table <a href="Huffman.html#freq">8.6.1</a> shows the relative frequencies of the
+letters of the alphabet. From this table we can see that the letter
+‘E’ appears about 60 times more often than the letter ‘Z’. In normal
+ASCII, the words “DEED” and “MUCK” require the same amount of space
+(four bytes). It would seem that words such as “DEED”, which are
+composed of relatively common letters, should be storable in less
+space than words such as “MUCK”, which are composed of relatively
+uncommon letters.</p>
+<div class="topic" id="freq">
+<p class="topic-title">Table 8.6.1  </p>
+<p>Relative frequencies for the 26 letters of the
+alphabet as they appear in a selected set of English
+documents. “Frequency” represents the expected frequency of occurrence
+per 1000 letters, ignoring case.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{c|c|c|c}
+\textbf{Letter}&amp;\textbf{Frequency}&amp;\textbf{Letter}&amp;\textbf{Frequency}\\
+\textrm A &amp; 77 &amp; N &amp; 67\\
+\textrm B &amp; 17 &amp; O &amp; 67\\
+\textrm C &amp; 32 &amp; P &amp; 20\\
+\textrm D &amp; 42 &amp; Q &amp;  5\\
+\textrm E &amp;120 &amp; R &amp; 59\\
+\textrm F &amp; 24 &amp; S &amp; 67\\
+\textrm G &amp; 17 &amp; T &amp; 85\\
+\textrm H &amp; 50 &amp; U &amp; 37\\
+\textrm I &amp; 76 &amp; V &amp; 12\\
+\textrm J &amp;  4 &amp; W &amp; 22\\
+\textrm K &amp;  7 &amp; X &amp;  4\\
+\textrm L &amp; 42 &amp; Y &amp; 22\\
+\textrm M &amp; 24 &amp; Z &amp;  2\\
+\end{array}\end{split}\]</div>
+</div>
+<p>If some characters are used more frequently than others, is it
+possible to take advantage of this fact and somehow assign them
+shorter codes?
+The price could be that other characters require longer codes, but
+this might be worthwhile if such characters appear rarely enough.
+This concept is at the heart of file compression techniques in
+common use today.
+The next section presents one such approach to assigning
+<a class="reference internal" href="Glossary.html#term-variable-length-coding"><span class="xref std std-term">variable-length codes</span></a>,
+called <a class="reference internal" href="Glossary.html#term-huffman-codes"><span class="xref std std-term">Huffman coding</span></a>.
+While it is not commonly used in its simplest form for file
+compression (there are better methods), Huffman coding gives the
+flavor of such coding schemes.
+One motivation for studying Huffman coding is because it provides our
+first opportunity to see a type of tree structure referred to as a
+<a class="reference internal" href="Glossary.html#term-search-trie"><span class="xref std std-term">search trie</span></a>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>To keep things simple, these examples for building Huffman
+trees uses a <a class="reference internal" href="Glossary.html#term-sorted-list"><span class="xref std std-term">sorted list</span></a> to keep the partial Huffman trees
+ordered by frequency.
+But a real implementation would use a <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> to implement a
+<a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queue</span></a> keyed by the frequencies.</p>
+</dd>
+</dl>
+<div class="section" id="building-huffman-coding-trees">
+<h3>8.<span class="section-number">5.1.1. </span>Building Huffman Coding Trees<a class="headerlink" href="#building-huffman-coding-trees" title="Permalink to this headline">¶</a></h3>
+<p>Huffman coding assigns codes to characters such that the length of the
+code depends on the relative frequency or <a class="reference internal" href="Glossary.html#term-weight"><span class="xref std std-term">weight</span></a> of the
+corresponding character.
+Thus, it is a variable-length code.
+If the estimated frequencies for letters match the actual frequency
+found in an encoded message, then the length of that message will
+typically be less than if a fixed-length code had been used.
+The Huffman code for each letter is derived from a full binary tree
+called the <a class="reference internal" href="Glossary.html#term-huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, or simply the
+<a class="reference internal" href="Glossary.html#term-huffman-tree"><span class="xref std std-term">Huffman tree</span></a>.
+Each leaf of the Huffman tree corresponds to a letter, and we
+define the weight of the leaf node to be the weight (frequency) of its
+associated letter.
+The goal is to build a tree with the
+<a class="reference internal" href="Glossary.html#term-minimum-external-path-weight"><span class="xref std std-term">minimum external path weight</span></a>.
+Define the <a class="reference internal" href="Glossary.html#term-weighted-path-length"><span class="xref std std-term">weighted path length</span></a> of a leaf to be its weight
+times its depth.
+The binary tree with minimum external path weight is the one with the
+minimum sum of weighted path lengths for the given set of leaves.
+A letter with high weight should have low depth, so that it will count
+the least against the total path length.
+As a result, another letter might be pushed deeper in the tree if it
+has less weight.</p>
+<p>The process of building the Huffman tree for <span class="math notranslate nohighlight">\(n\)</span> letters is
+quite simple.
+First, create a collection of <span class="math notranslate nohighlight">\(n\)</span> initial Huffman trees,
+each of which is a single leaf node containing one of the letters.
+Put the <span class="math notranslate nohighlight">\(n\)</span> partial trees onto a priority queue
+organized by weight (frequency).
+Next, remove the first two trees (the ones with lowest weight) from
+the priority queue.
+Join these two trees together to create a new tree whose root has the
+two trees as children, and whose weight is the sum of the weights of
+the two trees.
+Put this new tree back into the priority queue.
+This process is repeated until all of the partial Huffman trees have
+been combined into one.</p>
+<div class="topic" id="freqexamp">
+<p class="topic-title">Table 8.6.2  </p>
+<p>The relative frequencies for eight selected letters.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|cccccccc|}
+\hline
+\textrm Letter &amp; C &amp; D &amp; E &amp; K &amp; L &amp; M &amp; U &amp; Z\\
+\textrm Frequency &amp; 32 &amp; 42 &amp; 120 &amp; 7 &amp; 42 &amp; 24 &amp; 37 &amp; 2\\
+\hline
+\end{array}\end{split}\]</div>
+</div>
+<p>The following slideshow illustrates the Huffman tree
+construction process for the eight letters of
+Table <a href="Huffman.html#freqexamp">8.6.2</a>. <a class="footnote-reference brackets" href="#id4" id="id3">2</a></p>
+<div id="huffmanBuildCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanBuildCON" data-long-name="Huffman Coding Tree Slideshow: Build" data-exer-id="" alt="Huffman Coding Tree Slideshow: Build" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="huffmanBuildCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="huffmanBuildCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="huffmanBuildCON_cm_error_msg" class="cm_error_msg">
+   <img id="huffmanBuildCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Here is the implementation for Huffman tree nodes.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** Huffman tree node implementation: Base class */</span>
+<span class="kd">interface</span> <span class="nc">HuffBaseNode</span> <span class="p">{</span>
+    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span> 
+    <span class="kt">int</span> <span class="nf">weight</span><span class="p">();</span>
+<span class="p">}</span>
+
+
+<span class="cm">/** Huffman tree node: Leaf class */</span>
+<span class="kd">class</span> <span class="nc">HuffLeafNode</span> <span class="kd">implements</span> <span class="n">HuffBaseNode</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">char</span> <span class="n">element</span><span class="p">;</span>   <span class="c1">// Element for this node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>     <span class="c1">// Weight for this node</span>
+
+    <span class="n">HuffLeafNode</span><span class="p">(</span><span class="kt">char</span> <span class="n">el</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="n">el</span><span class="p">;</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">wt</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">char</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">element</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="cm">/** Huffman tree node: Internal class */</span>
+<span class="kd">class</span> <span class="nc">HuffInternalNode</span> <span class="kd">implements</span> <span class="n">HuffBaseNode</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>          <span class="c1">// Weight for this node</span>
+    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">left</span><span class="p">;</span>   <span class="c1">// Left child</span>
+    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">right</span><span class="p">;</span>  <span class="c1">// Right child</span>
+
+    <span class="n">HuffInternalNode</span><span class="p">(</span><span class="n">HuffBaseNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">HuffBaseNode</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">wt</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">HuffBaseNode</span> <span class="nf">left</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">HuffBaseNode</span> <span class="nf">right</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">right</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This implementation is similar to
+a typical <a class="reference internal" href="BinaryTreeImpl.html#binarytreeimpl"><span class="std std-ref">class hierarchy</span></a>
+for implementing full binary trees.
+There is an abstract <a class="reference internal" href="Glossary.html#term-base-class"><span class="xref std std-term">base class</span></a>, named <code class="docutils literal notranslate"><span class="pre">HuffNode</span></code>, and two
+<a class="reference internal" href="Glossary.html#term-subclass"><span class="xref std std-term">subclasses</span></a>, named <code class="docutils literal notranslate"><span class="pre">LeafNode</span></code> and <code class="docutils literal notranslate"><span class="pre">IntlNode</span></code>.
+This implementation reflects the fact that leaf and
+internal nodes contain distinctly different information.</p>
+<p>Here is the implementation for the Huffman Tree class.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** A Huffman coding tree */</span>
+<span class="kd">class</span> <span class="nc">HuffTree</span> <span class="kd">implements</span> <span class="n">Comparable</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">root</span><span class="p">;</span>  
+
+    <span class="n">HuffTree</span><span class="p">(</span><span class="kt">char</span> <span class="n">el</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffLeafNode</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">wt</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">HuffTree</span><span class="p">(</span><span class="n">HuffBaseNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">HuffBaseNode</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffInternalNode</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">wt</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="n">HuffBaseNode</span> <span class="nf">root</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">();</span>  <span class="c1">// Weight of tree is weight of root</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Object</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">HuffTree</span> <span class="n">that</span> <span class="o">=</span> <span class="p">(</span><span class="n">HuffTree</span><span class="p">)</span><span class="n">t</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">that</span><span class="p">.</span><span class="na">weight</span><span class="p">())</span>
+            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">==</span> <span class="n">that</span><span class="p">.</span><span class="na">weight</span><span class="p">())</span>
+            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Here is the implementation for the tree-building process.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="n">HuffTree</span> <span class="nf">buildTree</span><span class="p">(</span><span class="n">MinHeap</span><span class="o">&lt;</span><span class="n">HuffTree</span><span class="o">&gt;</span> <span class="n">huffHeap</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">huffHeap</span><span class="p">.</span><span class="na">heapsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// While two items left</span>
+        <span class="n">HuffTree</span> <span class="n">tmp1</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
+        <span class="n">HuffTree</span> <span class="n">tmp2</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
+        <span class="n">HuffTree</span> <span class="n">tmp3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffTree</span><span class="p">(</span><span class="n">tmp1</span><span class="p">.</span><span class="na">root</span><span class="p">(),</span> <span class="n">tmp2</span><span class="p">.</span><span class="na">root</span><span class="p">(),</span>
+                                     <span class="n">tmp1</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">+</span> <span class="n">tmp2</span><span class="p">.</span><span class="na">weight</span><span class="p">());</span>
+        <span class="n">huffHeap</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">tmp3</span><span class="p">);</span>   <span class="c1">// Return new tree to heap</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">getmin</span><span class="p">();</span>    <span class="c1">// Return the tree</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">buildHuff</span></code> takes as input <code class="docutils literal notranslate"><span class="pre">fl</span></code>, the min-heap of partial
+Huffman trees, which initially are single leaf nodes as shown in Step
+1 of the slideshow above.
+The body of function <code class="docutils literal notranslate"><span class="pre">buildTree</span></code> consists mainly of a <code class="docutils literal notranslate"><span class="pre">for</span></code>
+loop. On each iteration of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, the first two partial
+trees are taken off the heap and placed in variables <code class="docutils literal notranslate"><span class="pre">temp1</span></code> and
+<code class="docutils literal notranslate"><span class="pre">temp2</span></code>.
+A tree is created (<code class="docutils literal notranslate"><span class="pre">temp3</span></code>) such that the left and right subtrees
+are <code class="docutils literal notranslate"><span class="pre">temp1</span></code> and <code class="docutils literal notranslate"><span class="pre">temp2</span></code>, respectively.
+Finally, <code class="docutils literal notranslate"><span class="pre">temp3</span></code> is returned to <code class="docutils literal notranslate"><span class="pre">fl</span></code>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
+<dd><p>ASCII coding actually uses 8 bits per character.
+Seven bits are used to represent the 128 codes of the ASCII
+character set.
+The eigth bit as a <a class="reference internal" href="Glossary.html#term-parity"><span class="xref std std-term">parity</span></a> bit, that can be used to
+check if there is a transmission error for the character.</p>
+</dd>
+</dl>
+<p>Assigning and Using Huffman Codes</p>
+<p>Once the Huffman tree has been constructed, it is an easy matter to
+assign codes to individual letters.
+Beginning at the root, we assign either a ‘0’ or a ‘1’ to each edge in
+the tree. ‘0’ is assigned to edges connecting a node with its left
+child, and ‘1’ to edges connecting a node with its right child.
+This process is illustrated by the following slideshow.</p>
+<div id="huffmanLabelCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanLabelCON" data-long-name="Huffman Coding Tree Slideshow: Label Edges" data-exer-id="" alt="Huffman Coding Tree Slideshow: Label Edges" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="huffmanLabelCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="huffmanLabelCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="huffmanLabelCON_cm_error_msg" class="cm_error_msg">
+   <img id="huffmanLabelCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Now that we see how the edges associate with bits in the code, it is a
+simple matter to generate the codes for each letter (since each letter
+corresponds to a leaf node in the tree).</p>
+<div id="huffmanCodesCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanCodesCON" data-long-name="Huffman Coding Tree Slideshow: Setting Codes" data-exer-id="" alt="Huffman Coding Tree Slideshow: Setting Codes" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="huffmanCodesCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="huffmanCodesCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="huffmanCodesCON_cm_error_msg" class="cm_error_msg">
+   <img id="huffmanCodesCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Now that we have a code for each letter,
+encoding a text message is done by replacing each letter of the
+message with its binary code.
+A lookup table can be used for this purpose.</p>
+</div>
+<div class="section" id="decoding">
+<h3>8.<span class="section-number">5.1.2. </span>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h3>
+<p>A set of codes is said to meet the <a class="reference internal" href="Glossary.html#term-prefix-property"><span class="xref std std-term">prefix property</span></a> if no
+code in the set is the prefix of another.
+The prefix property guarantees that there will be no ambiguity in how
+a bit string is decoded.
+In other words, once we reach the last bit of a code during
+the decoding process, we know which letter it is the code for.
+Huffman codes certainly have the prefix property because any prefix
+for a code would correspond to an internal node, while all codes
+correspond to leaf nodes.</p>
+<p>When we decode a character using the Huffman coding tree, we follow a
+path through the tree dictated by the bits in the code string.
+Each ‘0’ bit indicates a left branch while each ‘1’ bit indicates a
+right branch.
+The following slideshow shows an example for how to decode a message
+by traversing the tree appropriately.</p>
+<div id="huffmanDecodeCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanDecodeCON" data-long-name="Huffman Coding Tree Slideshow: Decoding" data-exer-id="" alt="Huffman Coding Tree Slideshow: Decoding" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="huffmanDecodeCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="huffmanDecodeCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="huffmanDecodeCON_cm_error_msg" class="cm_error_msg">
+   <img id="huffmanDecodeCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div
+    id="HuffmanDecodePRO"
+    class="embedContainer"
+    data-exer-name="HuffmanDecodePRO"
+    data-long-name="Huffman Decoding Proficiency Exercise"
+    data-short-name="HuffmanDecodePRO"
+    data-frame-src="../../../Exercises/Binary/HuffmanDecodePRO.html?localMode=true&amp;module=Huffman&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="820"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="HuffmanDecodePRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="how-efficient-is-huffman-coding">
+<h3>8.<span class="section-number">5.1.3. </span>How efficient is Huffman coding?<a class="headerlink" href="#how-efficient-is-huffman-coding" title="Permalink to this headline">¶</a></h3>
+<p>In theory, Huffman coding is an optimal coding method whenever the
+true frequencies are known, and the frequency of a letter is
+independent of the context of that letter in the message.
+In practice, the frequencies of letters in an English text document do
+change depending on context.
+For example, while E is the most commonly used letter of the alphabet
+in English documents, T is more common as the first letter of a
+word.
+This is why most commercial compression utilities do not use Huffman
+coding as their primary coding method, but instead use techniques that
+take advantage of the context for the letters.</p>
+<p>Another factor that affects the compression efficiency of Huffman
+coding is the relative frequencies of the letters.
+Some frequency patterns will save no space as compared to fixed-length
+codes; others can result in great compression.
+In general, Huffman coding does better when there is large variation
+in the frequencies of letters.</p>
+<div class="topic">
+<p class="topic-title">Example 8.6.1 </p>
+<p>In the particular case of the frequencies shown in
+Table <a href="Huffman.html#freq">8.6.1</a>, we can determine the expected savings from
+Huffman coding if the actual frequencies of a coded message match the
+expected frequencies.
+Because the sum of the frequencies is 306 and E has frequency 120,
+we expect it to appear 120 times in a message containing 306
+letters.
+An actual message might or might not meet this expectation.
+Letters D, L, and U have code lengths of three,
+and together are expected to appear 121 times in 306 letters.
+Letter C has a code length of four, and is expected to appear 32
+times in 306 letters.
+Letter M has a code length of five, and is expected to appear
+24 times in 306 letters.
+Finally, letters K and Z have code lengths of six,
+and together are expected to appear only 9 times in 306 letters.
+The average expected cost per character is simply the sum of
+the cost for each character (<span class="math notranslate nohighlight">\(c_i\)</span>) times the probability of
+its occurring (<span class="math notranslate nohighlight">\(p_i\)</span>), or
+<span class="math notranslate nohighlight">\(c_1 p_1 + c_2 p_2 + \cdots + c_n p_n.\)</span>
+This can be reorganized as
+<span class="math notranslate nohighlight">\(\frac{c_1 f_1 + c_2 f_2 + \cdots + c_n f_n}{f_T}\)</span>,
+where <span class="math notranslate nohighlight">\(f_i\)</span> is the (relative) frequency of letter
+<span class="math notranslate nohighlight">\(i\)</span> and <span class="math notranslate nohighlight">\(f_T\)</span> is the total for all letter frequencies.
+For this set of frequencies, the expected cost per letter is
+<span class="math notranslate nohighlight">\([(1 \times 120) + (3 \times 121) + (4 \times 32) + (5 \times 24) + (6 \times 9)]/306 = 785/306 \approx 2.57.\)</span></p>
+<p>A fixed-length code for these eight characters would require
+<span class="math notranslate nohighlight">\(\log 8 = 3\)</span> bits per letter as opposed to about 2.57 bits
+per letter for Huffman coding.
+Thus, Huffman coding is expected to save about 14% for this set of
+letters.</p>
+</div>
+<p>Huffman coding for all ASCII symbols should do better than this
+example.
+The letters of Table <a href="Huffman.html#freq">8.6.1</a> are atypical in that there
+are too many common letters compared to the number of rare letters.
+Huffman coding for all 26 letters would yield an expected
+cost of 4.29 bits per letter.
+The equivalent fixed-length code would require about five bits.
+This is somewhat unfair to fixed-length coding because there is
+actually room for 32 codes in five bits, but only 26 letters.
+More generally, Huffman coding of a typical text file
+will save around 40% over ASCII coding if we charge ASCII coding at
+eight bits per character.
+Huffman coding for a binary file (such as a compiled executable) would
+have a very different set of distribution frequencies and so would
+have a different space savings.
+Most commercial compression programs use two or three coding schemes
+to adjust to different types of files.</p>
+<p>In decoding example, “DEED” was coded in 8 bits, a saving of 33%
+over the twelve bits required from a fixed-length coding.
+However, “MUCK” would require 18 bits, more space than required by the
+corresponding fixed-length coding.
+The problem is that “MUCK” is composed of letters that are not
+expected to occur often.
+If the message does not match the expected frequencies of the letters,
+than the length of the encoding will not be as expected either.</p>
+<p>You can use the following visualization to create a huffman tree for
+your own set of letters and frequencies.</p>
+<div
+    id="huffmanCustomBuildAV"
+    class="embedContainer"
+    data-exer-name="huffmanCustomBuildAV"
+    data-long-name="huffmanCustomBuildAV"
+    data-short-name="huffmanCustomBuildAV"
+    data-frame-src="../../../AV/Binary/huffmanCustomBuildAV.html?localMode=true&amp;module=Huffman&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="0.0"
+    data-required="False"
+    data-showhide="show"
+    data-threshold="1"
+    data-type="ss"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="huffmanCustomBuildAV_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../DataStructures/huffman.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/huffmanBuildCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/huffmanLabelCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/huffmanCodesCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/huffmanDecodeCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="Heapsort.html">8.<span class="section-number">4. </span>Heapsort</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,24 @@
+
+interface Comparable(E)
+    compareTo(other:E) : int   // Returns <0  if  this < other,
+                               //      or  0  if  this == other,
+                               //      or >0  if  this > other.
+    // Note: Python uses a range of basic comparisons instead.
+
+
+interface Comparator(E)
+    compareTo(one:E, other) : int  // Returns <0  if  one < other,
+                                   //      or  0  if  one == other,
+                                   //      or >0  if  one > other.
+    // Note: Python prefers to use a key extraction function instead.
+
+
+interface Iterator(E)
+    hasNext() : boolean   // Returns true if the iterator is not empty.
+    next()    : E         // Yields the next element in the iterator.
+    // Note: Python uses one single method `__next__` instead
+
+interface Iterable(E)
+    iterator() : Iterator(E)   // Return a new fresh iterator.
+    // Note: Python uses the method `__iter__` instead
+

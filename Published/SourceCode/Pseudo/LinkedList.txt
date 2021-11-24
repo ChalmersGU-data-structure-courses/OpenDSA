@@ -1,0 +1,64 @@
+
+class LinkedList(E) implements List(E)
+    private head     : Node   // Pointer to list header
+    private listSize : int    // Size of list
+
+    LinkedList()
+        head = null
+        listSize = 0
+
+    private class Node
+        elem : E      // Value for this node
+        next : Node   // Pointer to next node in list
+
+    get(i:int) : E
+        // Precondition: 0 <= i < listSize
+        current : E = head
+        repeat i times
+            current = current.next
+        return current.elem
+
+    set(i:int, x:E) : E
+        // Precondition: 0 <= i < listSize
+        current : Node = head
+        repeat i times
+            current = current.next
+        old : E = current.elem
+        current.elem = x
+        return old
+
+    add(i:int, x:E)
+        // Precondition: 0 <= i <= listSize
+        if i == 0
+            head = new Node(x, head)
+        else
+            prev : Node = head
+            repeat i-1 times
+                prev = prev.next
+            prev.next = new Node(x, prev.next)
+        listSize += 1
+
+    remove(i:int) : E
+        // Precondition: 0 <= i < listSize
+        if i == 0
+            removed : Node = head
+            head = removed.next
+        else
+            prev : Node = head
+            repeat i-1 times
+                prev = prev.next
+            removed : Node = prev.next
+            prev.next = removed.next
+        removed.next = null   // For garbage collection
+        listSize -= 1
+        return removed.elem
+
+    isEmpty() : boolean
+        return listSize == 0
+
+    size() : int
+        return listSize
+
+    iterator() : Iterator(E)
+        return an iterator over the elements in the list, starting from the head
+

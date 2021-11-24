@@ -1,0 +1,4 @@
+
+class KVPair(K, V)
+    key   : K
+    value : V

@@ -1,0 +1,601 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>4.13. Linked Queues &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="14. Linear Structure Summary Exercises" href="ListSumm.html" />
+    <link rel="prev" title="12. Array-Based Queues" href="Queue.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 4 Linear Structures</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/QueueLinked.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="Queue.html">4.<span class="section-number">12. </span>Array-Based Queues</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="ListSumm.html">4.<span class="section-number">14. </span>Linear Structure Summary Exercises</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['enqueueing-elements', 'dequeueing-elements', 'linked-queue-full-implementation', 'comparison-of-array-based-and-linked-queues', 'stack-and-queue-summary-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "QueueLinked";ODSA.SETTINGS.MODULE_LONG_NAME = "Linked Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+<div class="section" id="linked-queues">
+<h1>4.<span class="section-number">13. </span>Linked Queues<a class="headerlink" href="#linked-queues" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>4.<span class="section-number">13.1. </span>Linked Queues<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The linked queue implementation is an adaptation of the linked list.
+The only thing is that we have to add a pointer to the rear node
+in the queue, to be able to add new elements efficiently.</p>
+<div id="LinkedQueue-Intro-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Intro-CON" data-long-name="Linked Queue Intro" data-exer-id="" alt="Linked Queue Intro" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="LinkedQueue-Intro-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Intro-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Intro-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Intro-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedQueue_LinkedQueueInit_code"><ul><li><a href="#LinkedQueue_LinkedQueueInit_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueInit_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueInit_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">front</span><span class="p">;</span>      <span class="c1">// Pointer to front queue node</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">rear</span><span class="p">;</span>       <span class="c1">// Pointer to rear queue node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>   <span class="c1">// Size of queue</span>
+
+    <span class="n">LinkedQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueInit_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to front queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Pointer to rear queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of queue</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueInit_code" ).tabs();});</script></div>
+<div class="section" id="enqueueing-elements">
+<h2>4.<span class="section-number">13.2. </span>Enqueueing Elements<a class="headerlink" href="#enqueueing-elements" title="Permalink to this headline">¶</a></h2>
+<div id="LinkedQueue-Enqueue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Enqueue-CON" data-long-name="Linked Queue Enqueue" data-exer-id="" alt="Linked Queue Enqueue" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="LinkedQueue-Enqueue-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Enqueue-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Enqueue-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Enqueue-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedQueue_LinkedQueueEnqueue_code"><ul><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueEnqueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueEnqueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">newRear</span> <span class="o">=</span> <span class="n">LinkedQueueNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueEnqueue_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div
+    id="LinkedQueue-Enqueue-PRO"
+    class="embedContainer"
+    data-exer-name="LinkedQueue-Enqueue-PRO"
+    data-long-name="Linked Queue Enqueue Exercise"
+    data-short-name="LinkedQueue-Enqueue-PRO"
+    data-frame-src="../../../Exercises/ChalmersGU/LinkedQueue-Enqueue-PRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="550"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="LinkedQueue-Enqueue-PRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="dequeueing-elements">
+<h2>4.<span class="section-number">13.3. </span>Dequeueing Elements<a class="headerlink" href="#dequeueing-elements" title="Permalink to this headline">¶</a></h2>
+<div id="LinkedQueue-Dequeue-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="LinkedQueue-Dequeue-CON" data-long-name="Linked Queue Dequeue" data-exer-id="" alt="Linked Queue Dequeue" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="LinkedQueue-Dequeue-CON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="LinkedQueue-Dequeue-CON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="LinkedQueue-Dequeue-CON_cm_error_msg" class="cm_error_msg">
+   <img id="LinkedQueue-Dequeue-CON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div id="LinkedQueue_LinkedQueueDequeue_code"><ul><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueueDequeue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueueDequeue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
+        <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueueDequeue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueueDequeue_code" ).tabs();});</script><div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div
+    id="LinkedQueue-Dequeue-PRO"
+    class="embedContainer"
+    data-exer-name="LinkedQueue-Dequeue-PRO"
+    data-long-name="Linked Queue Dequeue Exercise"
+    data-short-name="LinkedQueue-Dequeue-PRO"
+    data-frame-src="../../../Exercises/ChalmersGU/LinkedQueue-Dequeue-PRO.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="550"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="LinkedQueue-Dequeue-PRO_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="linked-queue-full-implementation">
+<h2>4.<span class="section-number">13.4. </span>Linked Queue, Full Implementation<a class="headerlink" href="#linked-queue-full-implementation" title="Permalink to this headline">¶</a></h2>
+<p>Here is the full implementation for linked queues.</p>
+<div id="LinkedQueue_LinkedQueue_code"><ul><li><a href="#LinkedQueue_LinkedQueue_code_Java_Generic">Java</a></li><li><a href="#LinkedQueue_LinkedQueue_code_Python">Python</a></li></ul><div id="LinkedQueue_LinkedQueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">LinkedQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Queue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">front</span><span class="p">;</span>      <span class="c1">// Pointer to front queue node</span>
+    <span class="kd">private</span> <span class="n">Node</span> <span class="n">rear</span><span class="p">;</span>       <span class="c1">// Pointer to rear queue node</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">queueSize</span><span class="p">;</span>   <span class="c1">// Size of queue</span>
+
+    <span class="n">LinkedQueue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="n">queueSize</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">Node</span> <span class="p">{</span>
+        <span class="n">E</span> <span class="n">elem</span><span class="p">;</span>       <span class="c1">// Value for this node</span>
+        <span class="n">Node</span> <span class="n">next</span><span class="p">;</span>    <span class="c1">// Pointer to next node in queue</span>
+
+        <span class="n">Node</span><span class="p">(</span><span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="n">Node</span> <span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">elem</span> <span class="o">=</span> <span class="n">elem</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">next</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">Node</span> <span class="n">newRear</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Node</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">null</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">front</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="k">else</span>
+            <span class="n">rear</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="n">newRear</span><span class="p">;</span>
+        <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">peek</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;peek from empty queue&quot;</span><span class="p">);</span>
+        <span class="k">return</span> <span class="n">front</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">dequeue</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">))</span> <span class="k">throw</span> <span class="k">new</span> <span class="n">NoSuchElementException</span><span class="p">(</span><span class="s">&quot;dequeue from empty queue&quot;</span><span class="p">);</span>
+        <span class="n">Node</span> <span class="n">removed</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="n">removed</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+        <span class="n">removed</span><span class="p">.</span><span class="na">next</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>   <span class="c1">// For garbage collection</span>
+        <span class="n">queueSize</span><span class="o">--</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="n">rear</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isEmpty</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">queueSize</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">iterator</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">LinkedQueueIterator</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kd">class</span> <span class="nc">LinkedQueueIterator</span> <span class="kd">implements</span> <span class="n">Iterator</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="n">Node</span> <span class="n">current</span><span class="p">;</span>
+        <span class="n">LinkedQueueIterator</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">front</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">hasNext</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">current</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="kd">public</span> <span class="n">E</span> <span class="nf">next</span><span class="p">()</span> <span class="p">{</span>
+            <span class="n">E</span> <span class="n">x</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">elem</span><span class="p">;</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="p">.</span><span class="na">next</span><span class="p">;</span>
+            <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="LinkedQueue_LinkedQueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">LinkedQueue</span><span class="p">(</span><span class="n">Queue</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="kc">None</span>    <span class="c1"># Pointer to front queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>     <span class="c1"># Pointer to rear queue node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># Size of queue</span>
+
+    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="n">newRear</span> <span class="o">=</span> <span class="n">LinkedQueueNode</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="n">newRear</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">peek</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;peek from empty queue&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="o">.</span><span class="n">elem</span>
+
+    <span class="k">def</span> <span class="nf">dequeue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;dequeue from empty queue&quot;</span><span class="p">)</span>
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="n">removed</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">removed</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>   <span class="c1"># For garbage collection</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">removed</span><span class="o">.</span><span class="n">elem</span>
+
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span>
+        <span class="k">while</span> <span class="n">current</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">current</span><span class="o">.</span><span class="n">elem</span>
+            <span class="n">current</span> <span class="o">=</span> <span class="n">current</span><span class="o">.</span><span class="n">next</span>
+
+
+<span class="c1"># Python does not have internal classes, so we have to make the queue node standalone.</span>
+<span class="k">class</span> <span class="nc">LinkedQueueNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="nb">next</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>   <span class="c1"># Value for this node</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>   <span class="c1"># Pointer to next node in queue</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#LinkedQueue_LinkedQueue_code" ).tabs();});</script></div>
+<div class="section" id="comparison-of-array-based-and-linked-queues">
+<h2>4.<span class="section-number">13.5. </span>Comparison of Array-Based and Linked Queues<a class="headerlink" href="#comparison-of-array-based-and-linked-queues" title="Permalink to this headline">¶</a></h2>
+<p>All member functions for both the array-based and linked queue
+implementations require constant time.
+The space comparison issues are the same as for the equivalent stack
+implementations.</p>
+<p>Unlike the array-based stack implementation, there is no convenient
+way to store two queues in the same array,
+unless items are always transferred directly from one queue to the other.</p>
+</div>
+<div class="section" id="stack-and-queue-summary-questions">
+<h2>4.<span class="section-number">13.6. </span>Stack and Queue Summary Questions<a class="headerlink" href="#stack-and-queue-summary-questions" title="Permalink to this headline">¶</a></h2>
+<div
+    id="StackQueue-Summary-QUIZ"
+    class="embedContainer"
+    data-exer-name="StackQueue-Summary-QUIZ"
+    data-long-name="Stack/Queue Summary Exercise"
+    data-short-name="StackQueue-Summary-QUIZ"
+    data-frame-src="../../../Exercises/ChalmersGU/StackQueue-Summary-QUIZ.html?localMode=true&amp;module=QueueLinked&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="StackQueue-Summary-QUIZ_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Intro-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Enqueue-CON.js"></script>
+<script type="text/javascript" src="../../../AV/ChalmersGU/LinkedQueue-Dequeue-CON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="Queue.html">4.<span class="section-number">12. </span>Array-Based Queues</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="ListSumm.html">4.<span class="section-number">14. </span>Linear Structure Summary Exercises</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

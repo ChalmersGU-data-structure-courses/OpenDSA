@@ -1,0 +1,392 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.3. Miscellaneous Notation &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="4. Logarithms" href="Logarithms.html" />
+    <link rel="prev" title="2. Sets and Relations" href="SetDef.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/MiscMath.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="SetDef.html">3.<span class="section-number">2. </span>Sets and Relations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Logarithms.html">3.<span class="section-number">4. </span>Logarithms</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MiscMath";ODSA.SETTINGS.MODULE_LONG_NAME = "Miscellaneous Notation";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="miscellaneous-notation">
+<h1>3.<span class="section-number">3. </span>Miscellaneous Notation<a class="headerlink" href="#miscellaneous-notation" title="Permalink to this headline">¶</a></h1>
+<p>This module collects together definitions for a number of mathematical
+terms and concepts, as a place for reference when needed.</p>
+<p><strong>Units of measure:</strong>
+OpenDSA modules use the following notation for units of measure.
+“B” will be used as an abbreviation for bytes, “b” for bits,
+“KB” for kilobytes <span class="math notranslate nohighlight">\((2^{10} = 1024\)</span> bytes),
+“MB” for megabytes <span class="math notranslate nohighlight">\((2^{20}\)</span> bytes)
+“GB” for gigabytes <span class="math notranslate nohighlight">\((2^{30}\)</span> bytes)
+and “ms” for milliseconds
+(a millisecond is 1/1000 of a second).
+Spaces are not placed between the number and the unit abbreviation
+when a power of two is intended.
+Thus a disk drive of size 25 gigabytes (where a gigabyte is intended
+as <span class="math notranslate nohighlight">\(2^{30}\)</span> bytes) will be written as “25GB”.
+Spaces are used when a decimal value is intended.
+An amount of 2000 bits would therefore be written “2 Kb” while
+“2Kb” represents 2048 bits.
+2000 milliseconds is written as 2000 ms.
+Note that in this book large amounts of storage are nearly always
+measured in powers of two and times in powers of
+ten.</p>
+<p><strong>Factorial function:</strong>
+The <a class="reference internal" href="Glossary.html#term-factorial"><span class="xref std std-term">factorial</span></a> function, written <span class="math notranslate nohighlight">\(n!\)</span> for <span class="math notranslate nohighlight">\(n\)</span> an
+integer greater than 0, is the product of
+the integers between 1 and <span class="math notranslate nohighlight">\(n\)</span>, inclusive.
+Thus, <span class="math notranslate nohighlight">\(5! = 1 \cdot 2 \cdot 3 \cdot 4 \cdot 5 = 120\)</span>.
+As a special case, <span class="math notranslate nohighlight">\(0! = 1\)</span>.
+The factorial function grows quickly as <span class="math notranslate nohighlight">\(n\)</span> becomes larger.
+Because computing the factorial function directly is a time-consuming
+process, it can be useful to have an equation that provides a
+good approximation.
+Stirling’s approximation states that
+<span class="math notranslate nohighlight">\(n! \approx \sqrt{2\pi n}(\frac{n}{e})^n\)</span>,
+where <span class="math notranslate nohighlight">\(e \approx 2.71828\)</span>
+(<span class="math notranslate nohighlight">\(e\)</span> is the base for the system of natural logarithms) <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.
+Thus we see that while <span class="math notranslate nohighlight">\(n!\)</span> grows
+slower than <span class="math notranslate nohighlight">\(n^n\)</span> (because <span class="math notranslate nohighlight">\(\sqrt{2\pi n}/e^n &lt; 1\)</span>),
+it grows faster than <span class="math notranslate nohighlight">\(c^n\)</span> for any positive integer constant
+<span class="math notranslate nohighlight">\(c\)</span>.</p>
+<p><strong>Permutations:</strong>
+A <a class="reference internal" href="Glossary.html#term-permutation"><span class="xref std std-term">permutation</span></a> of a sequence <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>
+is simply the members of <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> arranged in some order.
+For example, a permutation of the integers 1 through <span class="math notranslate nohighlight">\(n\)</span> would
+be those values arranged in some order.
+If the sequence contains <span class="math notranslate nohighlight">\(n\)</span> distinct members, then there are
+<span class="math notranslate nohighlight">\(n!\)</span> different permutations for the sequence.
+This is because there are <span class="math notranslate nohighlight">\(n\)</span> choices for the first member in
+the permutation; for each choice of first member there are <span class="math notranslate nohighlight">\(n-1\)</span>
+choices for the second member, and so on.
+Sometimes one would like to obtain a <a class="reference internal" href="Glossary.html#term-random-permutation"><span class="xref std std-term">random permutation</span></a> for a
+sequence, that is, one of the <span class="math notranslate nohighlight">\(n!\)</span> possible permutations is
+selected in such a way that each permutation has equal probability of
+being selected.
+A simple function for generating a random permutation is as
+follows.
+Here, the <span class="math notranslate nohighlight">\(n\)</span> values of the sequence are stored in
+positions 0 through <span class="math notranslate nohighlight">\(n-1\)</span> of array <code class="docutils literal notranslate"><span class="pre">A</span></code>,
+function <code class="docutils literal notranslate"><span class="pre">swap(A,</span> <span class="pre">i,</span> <span class="pre">j)</span></code>
+exchanges elements <code class="docutils literal notranslate"><span class="pre">i</span></code> and <code class="docutils literal notranslate"><span class="pre">j</span></code> in array <code class="docutils literal notranslate"><span class="pre">A</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">Random(n)</span></code> returns an integer value in the range 0 to
+<span class="math notranslate nohighlight">\(n-1\)</span>.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Randomly permute the values in array A</span>
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">permute</span><span class="p">(</span><span class="n">Object</span><span class="o">[]</span> <span class="n">A</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">A</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// for each i</span>
+    <span class="n">Swap</span><span class="p">.</span><span class="na">swap</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">random</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>         <span class="c1">//   swap A[i-1] with a random</span>
+<span class="p">}</span>                                    <span class="c1">//   position in the range 0 to i-1.</span>
+</pre></div>
+</div>
+<p><strong>Boolean variables:</strong>
+A <a class="reference internal" href="Glossary.html#term-boolean-variable"><span class="xref std std-term">Boolean variable</span></a>
+is a variable that takes on one of the two values <code class="docutils literal notranslate"><span class="pre">True</span></code> and
+<code class="docutils literal notranslate"><span class="pre">False</span></code>.
+These two values are often associated with the values 1 and 0,
+respectively, although there is no reason why this needs to be the
+case.
+It is poor programming practice to rely on the
+correspondence between 0 and False, because these are logically
+distinct objects of different types.</p>
+<p><strong>Logic Notation:</strong>
+We will occasionally make use of the notation of symbolic or Boolean
+logic.
+<span class="math notranslate nohighlight">\(A \Rightarrow B\)</span> means “<span class="math notranslate nohighlight">\(A\)</span> implies <span class="math notranslate nohighlight">\(B\)</span>” or
+“If <span class="math notranslate nohighlight">\(A\)</span> then <span class="math notranslate nohighlight">\(B\)</span>”.
+<span class="math notranslate nohighlight">\(A \Leftrightarrow B\)</span> means “<span class="math notranslate nohighlight">\(A\)</span> if and only if <span class="math notranslate nohighlight">\(B\)</span>”
+or “<span class="math notranslate nohighlight">\(A\)</span> is equivalent to <span class="math notranslate nohighlight">\(B\)</span>”.
+<span class="math notranslate nohighlight">\(A \vee B\)</span> means “<span class="math notranslate nohighlight">\(A\)</span> or <span class="math notranslate nohighlight">\(B\)</span>”
+(useful both in the context of symbolic
+logic or when performing a Boolean operation).
+<span class="math notranslate nohighlight">\(A \wedge B\)</span> means “<span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>”.
+<span class="math notranslate nohighlight">\(\sim\!A\)</span> and <span class="math notranslate nohighlight">\(\overline{A}\)</span> both mean “not <span class="math notranslate nohighlight">\(A\)</span>” or
+the negation of <span class="math notranslate nohighlight">\(A\)</span> where <span class="math notranslate nohighlight">\(A\)</span> is a Boolean variable.</p>
+<p><strong>Floor and ceiling:</strong>
+The <a class="reference internal" href="Glossary.html#term-floor"><span class="xref std std-term">floor</span></a> of <span class="math notranslate nohighlight">\(x\)</span> (written <span class="math notranslate nohighlight">\(\lfloor x \rfloor\)</span>)
+takes real value <span class="math notranslate nohighlight">\(x\)</span> and returns the greatest
+integer <span class="math notranslate nohighlight">\(\leq x\)</span>.
+For example, <span class="math notranslate nohighlight">\(\lfloor 3.4 \rfloor = 3\)</span>,
+as does <span class="math notranslate nohighlight">\(\lfloor 3.0 \rfloor\)</span>,
+while <span class="math notranslate nohighlight">\(\lfloor -3.4 \rfloor = -4\)</span> and
+<span class="math notranslate nohighlight">\(\lfloor -3.0 \rfloor = -3\)</span>.
+The <a class="reference internal" href="Glossary.html#term-ceiling"><span class="xref std std-term">ceiling</span></a> of <span class="math notranslate nohighlight">\(x\)</span> (written
+<span class="math notranslate nohighlight">\(\lceil x \rceil\)</span>) takes real value <span class="math notranslate nohighlight">\(x\)</span> and returns the
+least integer <span class="math notranslate nohighlight">\(\geq x\)</span>.
+For example, <span class="math notranslate nohighlight">\(\lceil 3.4 \rceil = 4\)</span>, as does
+<span class="math notranslate nohighlight">\(\lceil 4.0 \rceil\)</span>,
+while <span class="math notranslate nohighlight">\(\lceil -3.4 \rceil = \lceil -3.0 \rceil = -3\)</span>.</p>
+<p><strong>Modulus function:</strong>
+The <a class="reference internal" href="Glossary.html#term-modulus"><span class="xref std std-term">modulus</span></a> (or <a class="reference internal" href="Glossary.html#term-mod"><span class="xref std std-term">mod</span></a>) function returns the remainder of
+an integer division.
+Sometimes written <span class="math notranslate nohighlight">\(n \bmod m\)</span> in mathematical expressions,
+the syntax in many programming languages is <code class="docutils literal notranslate"><span class="pre">n</span> <span class="pre">%</span> <span class="pre">m</span></code>.
+From the definition of remainder, <span class="math notranslate nohighlight">\(n \bmod m\)</span> is the integer
+<span class="math notranslate nohighlight">\(r\)</span> such that <span class="math notranslate nohighlight">\(n = qm + r\)</span> for <span class="math notranslate nohighlight">\(q\)</span> an integer,
+and <span class="math notranslate nohighlight">\(|r| &lt; |m|\)</span>.
+Therefore, the result of <span class="math notranslate nohighlight">\(n \bmod m\)</span> must be between 0 and
+<span class="math notranslate nohighlight">\(m-1\)</span> when <span class="math notranslate nohighlight">\(n\)</span> and <span class="math notranslate nohighlight">\(m\)</span> are positive integers.
+For example, <span class="math notranslate nohighlight">\(5 \bmod 3 = 2\)</span>; <span class="math notranslate nohighlight">\(25 \bmod 3 = 1\)</span>,
+<span class="math notranslate nohighlight">\(5 \bmod 7 = 5\)</span>, and <span class="math notranslate nohighlight">\(5 \bmod 5 = 0\)</span>.</p>
+<p>There is more than one way to assign values to <span class="math notranslate nohighlight">\(q\)</span>
+and <span class="math notranslate nohighlight">\(r\)</span>, depending on how integer division is interpreted.
+The most common mathematical definition computes the mod function as
+<span class="math notranslate nohighlight">\(n \bmod m = n - m\lfloor n/m\rfloor\)</span>.
+In this case, <span class="math notranslate nohighlight">\(-3 \bmod 5 = 2\)</span>.
+However, Java and C++ compilers typically use the underlying
+processor’s machine instruction for computing integer arithmetic.
+On many computers this is done by truncating the resulting fraction,
+meaning <span class="math notranslate nohighlight">\(n \bmod m = n - m (\mathrm{trunc}(n/m))\)</span>.
+Under this definition, <span class="math notranslate nohighlight">\(-3 \bmod 5 = -3\)</span>.
+Another language might do something different.</p>
+<p>Unfortunately, for many applications this is not what the user wants
+or expects.
+For example, many <a class="reference internal" href="Glossary.html#term-hash-system"><span class="xref std std-term">hash systems</span></a>
+will perform some computation on a record’s <a class="reference internal" href="Glossary.html#term-key"><span class="xref std std-term">key</span></a> value and then
+take the result modulo the hash table size.
+The expectation here would be that the result is a legal index into
+the hash table, not a negative number.
+Implementers of hash functions must either insure that the
+result of the computation is always positive, or else add the hash
+table size to the result of the modulo function when that result is
+negative.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The symbol “<span class="math notranslate nohighlight">\(\approx\)</span>” means “approximately equal.”</p>
+</dd>
+</dl>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="SetDef.html">3.<span class="section-number">2. </span>Sets and Relations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Logarithms.html">3.<span class="section-number">4. </span>Logarithms</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

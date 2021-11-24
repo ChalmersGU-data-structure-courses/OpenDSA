@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1.2. Parsing Command Line Parameters In Your Program &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="3. Using Parameters in Eclipse" href="eclipseparameters.html" />
+    <link rel="prev" title="1. Command Line Basics" href="cmdline.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 1 Java Programming, repetition</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/parameters.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="cmdline.html">1.<span class="section-number">1. </span>Command Line Basics</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="eclipseparameters.html">1.<span class="section-number">3. </span>Using Parameters in Eclipse</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['parameters-in-programming'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "parameters";ODSA.SETTINGS.MODULE_LONG_NAME = "Parsing Command Line Parameters In Your Program";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="parsing-command-line-parameters-in-your-program">
+<h1>1.<span class="section-number">2. </span>Parsing Command Line Parameters In Your Program<a class="headerlink" href="#parsing-command-line-parameters-in-your-program" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="parameters-in-programming">
+<h2>1.<span class="section-number">2.1. </span>Parameters In Programming<a class="headerlink" href="#parameters-in-programming" title="Permalink to this headline">¶</a></h2>
+<p>You probably understand the concept of parameters for a function.
+But how does a program itself have parameters?
+This comes in the <code class="docutils literal notranslate"><span class="pre">main</span></code> function that every Java program has.
+Consider this the “launch” function.
+Usually the “main” function is named <code class="docutils literal notranslate"><span class="pre">main</span></code> and takes an array of
+strings as its parameter, like this.</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>public static void main(String[] args)
+</pre></div>
+</div>
+<p>So when you launch the command from the terminal it passes in an array of all
+the additional information (and it usually trims white space).
+So if I run</p>
+<div class="figure align-center" style="width: 90%">
+<a class="reference internal image-reference" href="_images/parameterexample.png"><img alt="ls with paramaters" src="_images/parameterexample.png" style="width: 500px;" /></a>
+</div>
+<p>then <cite>args</cite> is an array containing:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>{&quot;-l&quot;, &quot;file.txt&quot;}
+</pre></div>
+</div>
+<p>Note while this is true for Java, it is a little different for C or C++.
+In C, the first parameter that you are given is always the command name so
+your array in C would be:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>{&quot;ls&quot;, &quot;-l&quot;, &quot;file.txt&quot;}
+</pre></div>
+</div>
+<p>Java however, removes the command name and only provides parameters.</p>
+<p>I have created a main function skeleton for you to use in your projects. It is
+set up simply and makes use of switch cases.
+Let’s see how it works.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="p">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Set our counter</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="na">length</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// No parameters: is this a problem?</span>
+        <span class="p">}</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">count</span> <span class="o">&lt;</span> <span class="n">args</span><span class="p">.</span><span class="na">length</span><span class="p">)</span> <span class="p">{</span>
+            <span class="c1">// While we have not reached the end of our arguments keep going.</span>
+            <span class="k">switch</span> <span class="p">(</span><span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">]</span><span class="p">)</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="s">&quot;-h&quot;</span><span class="p">:</span> <span class="c1">// Display help info</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;This is the help message. Proper command syntax:&quot;</span><span class="p">);</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -v: Displays version information&quot;</span><span class="p">);</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -h: Displays this help message&quot;</span><span class="p">);</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;cmdline -f [file]: Sets file to file provided&quot;</span><span class="p">);</span>
+                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>            
+            <span class="k">case</span> <span class="s">&quot;-v&quot;</span><span class="p">:</span> <span class="c1">// Display version information</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Cmdline parse sample version 1.0.0&quot;</span><span class="p">);</span>
+                <span class="n">count</span><span class="o">++</span><span class="p">;</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">case</span> <span class="s">&quot;-f&quot;</span><span class="p">:</span> <span class="c1">// This is an example to show you how to handle when you have a parameter that takes info</span>
+                <span class="n">String</span> <span class="n">fileName</span> <span class="o">=</span> <span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span> <span class="c1">// We are getting the filename so set it to the string after -f</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">out</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Input file is &quot;</span> <span class="o">+</span> <span class="n">fileName</span><span class="p">);</span> <span class="c1">// Print out info</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">2</span><span class="p">;</span>  <span class="c1">// Increment counter to next item (skipping filename).</span>
+                <span class="c1">// Note this provides no bounds checking so if you pass the parameter without file info it may bomb if at the end</span>
+                <span class="c1">// You may also surround it in a try/catch for safety.</span>
+                <span class="k">break</span><span class="p">;</span>
+            <span class="k">default</span><span class="p">:</span> <span class="c1">// If none of your cases match then this is an unrecognized parameter and we will exit.</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">err</span><span class="p">.</span><span class="na">println</span><span class="p">(</span><span class="s">&quot;Unrecognized parameter &quot;</span> <span class="o">+</span> <span class="n">args</span><span class="o">[</span><span class="n">count</span><span class="o">]</span> <span class="o">+</span> <span class="s">&quot;\nExiting.&quot;</span><span class="p">);</span>
+                <span class="n">System</span><span class="p">.</span><span class="na">exit</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>              
+                <span class="k">break</span><span class="p">;</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We have our main function take an array of Strings (named args).
+If that array is empty then we may or may not want to exit as we have
+no parameters.
+It will then progress into a while loop that iterates through all
+parameters.
+The syntax of this loop is useful as it does not lock parameters into
+any fixed order.
+You can invoke them any way you wish.
+The switch case statement allows you to easily write for any parameter
+and add a case for unrecognized parameters by using the default case
+for any non matching parameters.
+In this example I choose to exit after printing the unrecognized
+string.
+In the future you may wish to change this to something else.
+You can learn more about <a href="http://docs.oracle.com/javase/tutorial/java/nutsandbolts/switch.html" target="_blank">switch statements</a>.</p>
+<p>It is also important to note that this function will possibly throw an
+exception or behave in an unexpected way if you use  <code class="docutils literal notranslate"><span class="pre">-f</span></code> but do not
+give a file name.
+For example if you call the program with <code class="docutils literal notranslate"><span class="pre">{&quot;-f&quot;,</span> <span class="pre">&quot;-v&quot;}</span></code>, this will set
+the filename to “-v”.
+Or if you call the program with <code class="docutils literal notranslate"><span class="pre">{&quot;-f&quot;}</span></code>, you will get an exception for
+trying to access outside the array bounds.
+You can prevent this by using a try-catch, but I chose to keep this
+example very simple.
+Once you have your parameters set, you can call the appropriate
+methods to launch your program.
+There you go, simple command line parsing!</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="cmdline.html">1.<span class="section-number">1. </span>Command Line Basics</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="eclipseparameters.html">1.<span class="section-number">3. </span>Using Parameters in Eclipse</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

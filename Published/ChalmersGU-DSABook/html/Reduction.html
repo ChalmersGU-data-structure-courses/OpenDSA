@@ -1,0 +1,688 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>11.2. Reductions (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. NP-Completeness (optional) (WORK IN PROGRESS)" href="NPComplete.html" />
+    <link rel="prev" title="1. Limits to Computing (optional) (WORK IN PROGRESS)" href="LimComp.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 11 Limits to Computing (optional)</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Reduction.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="LimComp.html">11.<span class="section-number">1. </span>Limits to Computing (optional) (WORK IN PROGRESS)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="NPComplete.html">11.<span class="section-number">3. </span>NP-Completeness (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['reductions', 'example:-the-pairing-problem', 'reduction-and-finding-a-lower-bound', 'the-reduction-template', 'two-multiplication-examples', 'bounds-theorems', 'the-cost-of-making-a-simple-polygon'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Reduction";ODSA.SETTINGS.MODULE_LONG_NAME = "Reductions (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Limits to Computing (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/NP/SortingProblemCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/NP/pairToSortCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/NP/sortToPairCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/NP/matrixMulCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/SeniorAlgAnal/ReduceSimpPCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="reductions-optional-work-in-progress">
+<h1>11.<span class="section-number">2. </span>Reductions (optional) (WORK IN PROGRESS)<a class="headerlink" href="#reductions-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="reductions">
+<h2>11.<span class="section-number">2.1. </span>Reductions<a class="headerlink" href="#reductions" title="Permalink to this headline">¶</a></h2>
+<p>This module introduces an important concept for
+understanding the relationships between problems, called
+<a class="reference internal" href="Glossary.html#term-reduction"><span class="xref std std-term">reduction</span></a>.
+Reduction allows us to solve one problem in terms of another.
+Equally importantly, when we wish to understand the difficulty of a
+problem, reduction allows us to make relative statements about
+upper and lower bounds on the cost of a problem (as opposed to an
+algorithm or program).</p>
+<p>Because the concept of a problem is discussed extensively in this
+chapter, we want notation to simplify problem descriptions.
+Throughout this chapter, a problem will be defined in terms of a
+mapping between inputs and outputs, and the name of the problem will
+be given in all capital letters.
+Thus, a complete definition of the sorting problem could appear as
+follows:</p>
+<div class="topic">
+<p class="topic-title">SORTING</p>
+<p><strong>Input:</strong> A sequence of integers
+<span class="math notranslate nohighlight">\(x_0, x_1, x_2, \ldots, x_{n-1}\)</span>.</p>
+<p><strong>Output:</strong>
+A permutation <span class="math notranslate nohighlight">\(y_0, y_1, y_2, \ldots, y_{n-1}\)</span> of the
+sequence such that <span class="math notranslate nohighlight">\(y_i \leq y_j\)</span> whenever <span class="math notranslate nohighlight">\(i &lt; j\)</span>.</p>
+</div>
+<div id="SortingProblemCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SortingProblemCON" data-long-name="Sorting Problem" data-exer-id="" alt="Sorting Problem" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SortingProblemCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SortingProblemCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SortingProblemCON_cm_error_msg" class="cm_error_msg">
+   <img id="SortingProblemCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div class="section" id="example-the-pairing-problem">
+<h3>11.<span class="section-number">2.1.1. </span>Example: The Pairing Problem<a class="headerlink" href="#example-the-pairing-problem" title="Permalink to this headline">¶</a></h3>
+<p>When you buy or write a program to solve one problem, such
+as sorting, you might be able to use it to help solve a different
+problem.
+This is known in software engineering as <a class="reference internal" href="Glossary.html#term-software-reuse"><span class="xref std std-term">software reuse</span></a>.
+To illustrate this, let us consider another problem.</p>
+<div class="topic">
+<p class="topic-title">PAIRING</p>
+<p><strong>Input:</strong>
+Two sequences of integers
+<span class="math notranslate nohighlight">\(X = (x_0, x_1, ..., x_{n-1})\)</span> and
+<span class="math notranslate nohighlight">\(Y =(y_0, y_1, ..., y_{n-1})\)</span>.</p>
+<p><strong>Output:</strong>
+A pairing of the elements in the two sequences such that
+the least value in <span class="math notranslate nohighlight">\(X\)</span> is paired with the least value in
+<span class="math notranslate nohighlight">\(Y\)</span>, the next least value in <span class="math notranslate nohighlight">\(X\)</span> is paired with the
+next least value in <span class="math notranslate nohighlight">\(Y\)</span>, and so on.</p>
+</div>
+<div class="figure align-center" id="id3" style="width: 90%">
+<span id="pair"></span><a class="reference internal image-reference" href="_images/Pairing.png"><img alt="Illustration of PAIRING" src="_images/Pairing.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 11.3.1: An illustration of PAIRING.
+The two lists of numbers are paired up so that the least values
+from each list make a pair, the next smallest values from each list
+make a pair, and so on.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</div>
+<div id="pairToSortCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="pairToSortCON" data-long-name="Pair to Sorting Reduction Slideshow" data-exer-id="" alt="Pair to Sorting Reduction Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="pairToSortCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="pairToSortCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="pairToSortCON_cm_error_msg" class="cm_error_msg">
+   <img id="pairToSortCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Figure <a href="Reduction.html#pair">11.3.1</a> illustrates PAIRING.
+One way to solve PAIRING is to use an existing sorting
+program to sort each of the two sequences, and then pair off
+items based on their position in sorted order.
+Technically we say that in this solution, <strong>PAIRING</strong> is
+<a class="reference internal" href="Glossary.html#term-reduction"><span class="xref std std-term">reduced</span></a> to SORTING, because <strong>SORTING</strong> is used to
+solve PAIRING.</p>
+<p>Notice that reduction is a three-step process.
+The first step is to convert an instance of
+<strong>PAIRING</strong> into two instances of <strong>SORTING</strong>.
+The conversion step in this example is not very interesting; it simply
+takes each sequence and assigns it to an array to be passed to
+<strong>SORTING</strong>.
+The second step is to sort the two arrays (i.e., apply <strong>SORTING</strong> to
+each array).
+The third step is to convert the output of <strong>SORTING</strong> to the output
+for <strong>PAIRING</strong>.
+This is done by pairing the first elements in the sorted arrays, the
+second elements, and so on.</p>
+<p>A reduction of <strong>PAIRING</strong> to <strong>SORTING</strong> helps to establish an upper
+bound on the cost of <strong>PAIRING</strong>.
+In terms of asymptotic notation, assuming that we can find one method
+to convert the inputs to <strong>PAIRING</strong> into inputs to <strong>SORTING</strong>
+“fast enough”, and a second method to convert the result of
+<strong>SORTING</strong> back to the correct result for <strong>PAIRING</strong> “fast enough”,
+then the asymptotic cost of PAIRING cannot be more than the cost of
+<strong>SORTING</strong>.
+In this case, there is little work to be done to convert from
+<strong>PAIRING</strong> to <strong>SORTING</strong>, or to convert the answer from <strong>SORTING</strong>
+back to the answer for <strong>PAIRING</strong>, so the dominant cost of this
+solution is performing the sort operation.
+Thus, an upper bound for <strong>PAIRING</strong> is in <span class="math notranslate nohighlight">\(O(n \log n)\)</span>.</p>
+<p>It is important to note that the pairing problem does <strong>not</strong>
+require that elements of the two sequences be sorted.
+This is merely one possible way to solve the problem.
+<strong>PAIRING</strong> only requires that the elements of the sequences be paired
+correctly.
+Perhaps there is another way to do it?
+Certainly if we use sorting to solve <strong>PAIRING</strong>,
+the algorithms will require <span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span> time.
+But, another approach might conceivably be faster.</p>
+</div>
+<div class="section" id="reduction-and-finding-a-lower-bound">
+<h3>11.<span class="section-number">2.1.2. </span>Reduction and Finding a Lower Bound<a class="headerlink" href="#reduction-and-finding-a-lower-bound" title="Permalink to this headline">¶</a></h3>
+<p>There is another use of reductions aside from applying an old
+algorithm to solve a new problem (and thereby establishing an upper
+bound for the new problem).
+That is to prove a lower bound on the cost of a new problem by showing
+that it could be used as a solution for an old problem with a known
+lower bound.</p>
+<p>Assume we can go the other way and convert <strong>SORTING</strong> to <strong>PAIRING</strong>
+“fast enough”.
+What does this say about the minimum cost of <strong>PAIRING</strong>?
+We know that the
+<a class="reference internal" href="SortingLowerBound.html#sortinglowerbound"><span class="std std-ref">lower bound</span></a>
+for <strong>SORTING</strong> in the worst and average cases is
+in <span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span>.
+In other words, the best possible algorithm for sorting requires at
+least <span class="math notranslate nohighlight">\(n \log n\)</span> time.</p>
+<p>Assume that PAIRING could be done in <span class="math notranslate nohighlight">\(O(n)\)</span> time.
+Then, one way to create a sorting algorithm would be to convert
+<strong>SORTING</strong> into <strong>PAIRING</strong>, run the algorithm for <strong>PAIRING</strong>,
+and finally convert the answer back to the answer for <strong>SORTING</strong>.
+Provided that we can convert SORTING to/from PAIRING “fast enough”,
+this process would yield an <span class="math notranslate nohighlight">\(O(n)\)</span> algorithm for sorting!
+Because this contradicts what we know about the lower bound for
+<strong>SORTING</strong>, and the only flaw in the reasoning is the initial
+assumption that <strong>PAIRING</strong> can be done in <span class="math notranslate nohighlight">\(O(n)\)</span> time, we can
+conclude that there is no <span class="math notranslate nohighlight">\(O(n)\)</span> time algorithm for
+<strong>PAIRING</strong>.
+This reduction process tells us that <strong>PAIRING</strong> must be at least as
+expensive as <strong>SORTING</strong> and so must itself have a lower bound in
+<span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span>.</p>
+<p>To complete this proof regarding the lower bound for <strong>PAIRING</strong>, we
+need now to find a way to reduce <strong>SORTING</strong> to <strong>PAIRING</strong>.
+This is easily done.
+Take an instance of SORTING (i.e., an array <span class="math notranslate nohighlight">\(A\)</span> of <span class="math notranslate nohighlight">\(n\)</span>
+elements).
+A second array <span class="math notranslate nohighlight">\(B\)</span> is generated that simply stores <span class="math notranslate nohighlight">\(i\)</span> in
+position <span class="math notranslate nohighlight">\(i\)</span> for <span class="math notranslate nohighlight">\(0 \leq i &lt; n\)</span>.
+Pass the two arrays to <strong>PAIRING</strong>.
+Take the resulting set of pairs, and use the value from the <span class="math notranslate nohighlight">\(B\)</span>
+half of the pair to tell which position in the sorted array the
+<span class="math notranslate nohighlight">\(A\)</span> half should take; that is, we can now reorder the records in
+the <span class="math notranslate nohighlight">\(A\)</span> array using the corresponding value in the <span class="math notranslate nohighlight">\(B\)</span>
+array as the sort key and running a simple
+<span class="math notranslate nohighlight">\(\Theta(n)\)</span>
+<a class="reference internal" href="Glossary.html#term-binsort"><span class="xref std std-term">Binsort</span></a>.
+The conversion of <strong>SORTING</strong> to <strong>PAIRING</strong> can be done in
+<span class="math notranslate nohighlight">\(O(n)\)</span> time, and likewise the conversion of the output of
+<strong>PAIRING</strong> can be converted to the correct output for <strong>SORTING</strong> in
+<span class="math notranslate nohighlight">\(O(n)\)</span> time.
+Thus, the cost of this “sorting algorithm” is dominated by the cost
+for <strong>PAIRING</strong>.</p>
+</div>
+<div class="section" id="the-reduction-template">
+<h3>11.<span class="section-number">2.1.3. </span>The Reduction Template<a class="headerlink" href="#the-reduction-template" title="Permalink to this headline">¶</a></h3>
+<p>Consider any two problems for which a suitable reduction from one to
+the other can be found.
+The first problem takes an arbitrary instance of its input, which
+we will call <strong>I</strong>, and transforms <strong>I</strong> to a solution, which
+we will call <strong>SLN</strong>.
+The second problem takes an arbitrary instance of its input, which
+we will call <strong>I’</strong>, and transforms <strong>I’</strong> to a solution,
+which we will call <strong>SLN’</strong>.
+We can define reduction more formally as a three-step process:</p>
+<ol class="arabic simple">
+<li><p>Transform an arbitrary instance of the first problem to an
+instance of the second problem.
+In other words, there must be a transformation from any instance
+<strong>I</strong> of the first problem to an instance <strong>I’</strong> of the
+second problem.</p></li>
+<li><p>Apply an algorithm for the second problem to the instance
+<strong>I’</strong>, yielding a solution <strong>SLN’</strong>.</p></li>
+<li><p>Transform <strong>SLN’</strong> to the solution of <strong>I</strong>, known as <strong>SLN</strong>.
+Note that <strong>SLN</strong> must in fact be the correct solution for <strong>I</strong>
+for the reduction to be acceptable.</p></li>
+</ol>
+<div class="figure align-center" id="id4" style="width: 90%">
+<span id="blackbox"></span><a class="reference internal image-reference" href="_images/BlackBox.png"><img alt="General blackbox reduction" src="_images/BlackBox.png" style="width: 200px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 11.3.2: The general process for reduction shown as a “blackbox” diagram.</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+<p>Figure <a href="Reduction.html#blackbox">11.3.2</a> shows a graphical representation of the
+general reduction process, showing the role of the two problems, and
+the two transformations.
+Next is a slideshow that shows the steps for
+the reduction of <strong>SORTING</strong> to <strong>PAIRING</strong>.</p>
+<div id="sortToPairCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="sortToPairCON" data-long-name="Sorting to Pairing Reduction Slideshow" data-exer-id="" alt="Sorting to Pairing Reduction Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="sortToPairCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="sortToPairCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="sortToPairCON_cm_error_msg" class="cm_error_msg">
+   <img id="sortToPairCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>It is important to note that the reduction process does not give us
+an algorithm for solving either problem by itself.
+It merely gives us a method for solving the first problem given that
+we already have a solution to the second.
+More importantly for the topics to be discussed in the remainder of
+this chapter, reduction gives us a way to understand the bounds of
+one problem in terms of another.
+Specifically, given efficient transformations,
+the upper bound of the first problem is at most the upper bound of
+the second.
+Conversely, the lower bound of the second problem is at least the
+lower bound of the first.</p>
+</div>
+<div class="section" id="two-multiplication-examples">
+<h3>11.<span class="section-number">2.1.4. </span>Two Multiplication Examples<a class="headerlink" href="#two-multiplication-examples" title="Permalink to this headline">¶</a></h3>
+<p>As a second example of reduction, consider the simple problem of
+multiplying two <span class="math notranslate nohighlight">\(n\)</span>-digit numbers.
+The standard long-hand method for multiplication is to multiply the
+last digit of the first number by the second number
+(taking <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time), multiply the second digit of the
+first number by the second number (again taking <span class="math notranslate nohighlight">\(\Theta(n)\)</span>
+time), and so on for each of the <span class="math notranslate nohighlight">\(n\)</span> digits of the first
+number.
+Finally, the intermediate results are added together.
+Note that adding two numbers of length <span class="math notranslate nohighlight">\(M\)</span> and <span class="math notranslate nohighlight">\(N\)</span> can
+easily be done in <span class="math notranslate nohighlight">\(\Theta(M + N)\)</span> time.
+Because each digit of the first number is multiplied against each
+digit of the second, this algorithm requires <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span>
+time.
+Asymptotically faster (but more complicated) algorithms are known, but
+none is so fast as to be in <span class="math notranslate nohighlight">\(O(n)\)</span>.</p>
+<p>Next we ask the question:
+Is squaring an <span class="math notranslate nohighlight">\(n\)</span>-digit number as difficult as multiplying two
+<span class="math notranslate nohighlight">\(n\)</span>-digit numbers?
+We might hope that something about this special case will allow for a
+faster algorithm than is required by the more general multiplication
+problem.
+However, a simple reduction proof serves to show that squaring is
+“as hard” as multiplying.</p>
+<p>The key to the reduction is the following formula:</p>
+<div class="math notranslate nohighlight">
+\[X \times Y = \frac{(X + Y)^2 - (X - Y)^2}{4}.\]</div>
+<p>The significance of this formula is that it allows us to
+convert an arbitrary instance of multiplication to a series of
+operations involving three addition/subtractions (each of which can be
+done in linear time), two squarings, and a division by 4.
+This is because</p>
+<div class="math notranslate nohighlight">
+\[(X + Y)^2 - (X - Y)^2 = X^2 + 2XY + Y^2 - (X^2 - 2XY + Y^2) = 4XY\]</div>
+<p>Note that the division by 4 can be done in linear time (simply convert
+to binary, shift right by two digits, and convert back).
+This reduction shows that if a linear time algorithm for squaring can
+be found, it can be used to construct a linear time algorithm for
+multiplication.</p>
+<p>Our next example of reduction concerns the multiplication of two
+<span class="math notranslate nohighlight">\(n \times n\)</span> matrices.
+For this problem, we will assume that the values stored in the
+matrices are simple integers and that multiplying two simple integers
+takes constant time (because multiplication of two <code class="docutils literal notranslate"><span class="pre">int</span></code>
+variables takes a fixed number of machine instructions).
+The standard algorithm for multiplying two matrices is to multiply
+each element of the first matrix’s first row by the corresponding
+element of the second matrix’s first column, then adding the numbers.
+This takes <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time.
+Each of the <span class="math notranslate nohighlight">\(n^2\)</span> elements of the solution are computed in
+similar fashion, requiring a total of <span class="math notranslate nohighlight">\(\Theta(n^3)\)</span> time.
+Faster algorithms are known
+(see <a class="reference internal" href="Glossary.html#term-strassen-s-algorithm"><span class="xref std std-term">Strassen’s algorithm</span></a>),
+but none are so fast as to be in <span class="math notranslate nohighlight">\(O(n^2)\)</span>.</p>
+<p>Now, consider the case of multiplying two
+<a class="reference internal" href="Glossary.html#term-symmetric-matrix"><span class="xref std std-term">symmetric matrices</span></a>.
+A symmetric matrix is one in which entry <span class="math notranslate nohighlight">\(ij\)</span> is equal to entry
+<span class="math notranslate nohighlight">\(ji\)</span>; that is, the upper-right triangle of the matrix is a
+mirror image of the lower-left triangle.
+Is there something about this restricted case that allows us to
+multiply two symmetric matrices faster than in the general case?
+The answer is no, as can be seen by the following reduction.
+Assume that we have been given two <span class="math notranslate nohighlight">\(n \times n\)</span> matrices
+<span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span>.
+We can construct a <span class="math notranslate nohighlight">\(2n \times 2n\)</span> symmetric matrix from an
+arbitrary matrix <span class="math notranslate nohighlight">\(A\)</span> as follows:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[
+\begin{array}{cc}
+0 &amp;A\\
+A^{\rm T}&amp; 0
+\end{array}
+\right].\end{split}\]</div>
+<p>Here 0 stands for an <span class="math notranslate nohighlight">\(n \times n\)</span> matrix composed of zero
+values, <span class="math notranslate nohighlight">\(A\)</span> is the original matrix, and <span class="math notranslate nohighlight">\(A^{\rm T}\)</span> stands
+for the transpose of matrix <span class="math notranslate nohighlight">\(A\)</span>. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+<p>Note that the resulting matrix is now symmetric.
+We can convert matrix <span class="math notranslate nohighlight">\(B\)</span> to a symmetric matrix in a similar
+manner.
+If symmetric matrices could be multiplied “quickly” (in particular,
+if they could be multiplied together in <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> time),
+then we could find the result of multiplying two arbitrary
+<span class="math notranslate nohighlight">\(n \times n\)</span> matrices in <span class="math notranslate nohighlight">\(\Theta(n^2)\)</span> time by taking
+advantage of the following observation:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\left[
+\begin{array}{cc}
+0&amp;A\\
+A^{\rm T}&amp;0
+\end{array}
+\right]
+\left[
+\begin{array}{cc}
+0&amp;B^{\rm T}\\
+B&amp;0
+\end{array}
+\right] =
+\left[
+\begin{array}{cc}
+AB&amp;0\\
+0&amp;A^{\rm T}B^{\rm T}
+\end{array}
+\right].\end{split}\]</div>
+<p>In the above formula, <span class="math notranslate nohighlight">\(AB\)</span> is the result of multiplying
+matrices <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> together.</p>
+<p>The following slideshow illustrates this reduction process.</p>
+<div id="matrixMulCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="matrixMulCON" data-long-name="Matrix Multiplication" data-exer-id="" alt="Matrix Multiplication" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="matrixMulCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="matrixMulCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="matrixMulCON_cm_error_msg" class="cm_error_msg">
+   <img id="matrixMulCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The transpose operation
+takes position <span class="math notranslate nohighlight">\(ij\)</span> of the original matrix and places it
+in position <span class="math notranslate nohighlight">\(ji\)</span> of the transpose matrix.
+This can easily be done in <span class="math notranslate nohighlight">\(n^2\)</span> time for an
+<span class="math notranslate nohighlight">\(n \times n\)</span> matrix.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="bounds-theorems">
+<h3>11.<span class="section-number">2.1.5. </span>Bounds Theorems<a class="headerlink" href="#bounds-theorems" title="Permalink to this headline">¶</a></h3>
+<p>We will use the following notation:
+<span class="math notranslate nohighlight">\(\leq_{O(g(n))}\)</span> means that a reduction can be done
+with transformations that cost <span class="math notranslate nohighlight">\(O(g(n))\)</span>.</p>
+<p><strong>Lower Bound Theorem}</strong>: If <span class="math notranslate nohighlight">\(P_1 \leq_{O(g(n))} P_2\)</span>,
+then there is a lower bound of <span class="math notranslate nohighlight">\(\Omega(h(n))\)</span> on the time
+complexity of <span class="math notranslate nohighlight">\(P_1\)</span>, and <span class="math notranslate nohighlight">\(g(n) = o(h(n))\)</span>,
+then there is a lower bound of <span class="math notranslate nohighlight">\(\Omega(h(n))\)</span> on
+<span class="math notranslate nohighlight">\(P_2\)</span>.
+(Notice little-oh, not big-Oh.)</p>
+<p>Example:
+SORTING <span class="math notranslate nohighlight">\(\leq_{O(n)}\)</span> PAIRING, because
+<span class="math notranslate nohighlight">\(g(n) = n\)</span>, <span class="math notranslate nohighlight">\(h(n) = n \log n\)</span>, and
+<span class="math notranslate nohighlight">\(g(n) = o(h(n))\)</span>.
+The Lower Bound Theorem gives us an <span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span>
+lower bound on PAIRING.</p>
+<p>This also goes the other way.</p>
+<p><strong>Upper Bound Theorem</strong>: If <span class="math notranslate nohighlight">\(P_2\)</span> has time complexity
+<span class="math notranslate nohighlight">\(O(h(n))\)</span> and <span class="math notranslate nohighlight">\(P_1 \leq_{O(g(n))} P_2\)</span>, then
+<span class="math notranslate nohighlight">\(P_1\)</span> has time complexity <span class="math notranslate nohighlight">\(O(g(n) + h(n))\)</span>.</p>
+<p>So, given good transformations, both problems take at least
+<span class="math notranslate nohighlight">\(\Omega(P_1)\)</span> and at most <span class="math notranslate nohighlight">\(O(P_2)\)</span>.</p>
+</div>
+<div class="section" id="the-cost-of-making-a-simple-polygon">
+<h3>11.<span class="section-number">2.1.6. </span>The Cost of Making a Simple Polygon<a class="headerlink" href="#the-cost-of-making-a-simple-polygon" title="Permalink to this headline">¶</a></h3>
+<p>SIMPLE POLYGON: Given a set of <span class="math notranslate nohighlight">\(n\)</span> points in the plane,
+find a simple polygon with those points as vertices.
+(Here, “simple” means that no lines cross.)
+We will show that SORTING <span class="math notranslate nohighlight">\(\leq_{O(n)}\)</span> SIMPLE POLYGON.</p>
+<p>We start with an instance of SORTING: <span class="math notranslate nohighlight">\(\{x_1, x_2, \cdots, x_n\}\)</span>.
+In linear time, find <span class="math notranslate nohighlight">\(M = \max|x_i|\)</span>.
+Let <span class="math notranslate nohighlight">\(C\)</span> be a circle centered at the origin, of radius <span class="math notranslate nohighlight">\(M\)</span>.</p>
+<p>We will generate an instance of SIMPLE POLYGON by replacing each value
+in the array to be sorted with a corresponding point defined as</p>
+<div class="math notranslate nohighlight">
+\[\{(x_1, \sqrt{M^2 - x_i^2}), \cdots, (x_n, \sqrt{M^2 - x_n^2})\}.\]</div>
+<div class="divdgm">
+<div id="ReduceSimpPCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 11.3.3: Input to SORTING: the values 5, -3, 2, 0, 10.
+When converted to points, they fall on a circle as shown.</span></p>
+</div>
+<p>It is an important fact that all of these points fall on <span class="math notranslate nohighlight">\(C\)</span>.
+Furthermore, when we find a simple polygon, the points all fall along
+the circle in sort order.
+This is because
+the only simple polygon having all of its points on <span class="math notranslate nohighlight">\(C\)</span> as
+vertices is the convex one.
+Therefore, by the Lower Bound Theorem, SIMPLE POLYGON is in
+<span class="math notranslate nohighlight">\(\Omega(n \log n)\)</span>.</p>
+<script type="text/javascript" src="../../../AV/NP/SortingProblemCON.js"></script>
+<script type="text/javascript" src="../../../AV/NP/pairToSortCON.js"></script>
+<script type="text/javascript" src="../../../AV/NP/sortToPairCON.js"></script>
+<script type="text/javascript" src="../../../AV/NP/matrixMulCON.js"></script>
+<script type="text/javascript" src="../../../AV/SeniorAlgAnal/ReduceSimpPCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="LimComp.html">11.<span class="section-number">1. </span>Limits to Computing (optional) (WORK IN PROGRESS)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="NPComplete.html">11.<span class="section-number">3. </span>NP-Completeness (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

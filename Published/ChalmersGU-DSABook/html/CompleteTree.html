@@ -1,0 +1,352 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>8.2. Array Implementation for Complete Binary Trees &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. Heaps and Priority Queues (WORK IN PROGRESS)" href="Heaps.html" />
+    <link rel="prev" title="1. Priority queues" href="PriorityQueue.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 8 Priority Queues</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/CompleteTree.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="PriorityQueue.html">8.<span class="section-number">1. </span>Priority queues</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Heaps.html">8.<span class="section-number">3. </span>Heaps and Priority Queues (WORK IN PROGRESS)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "CompleteTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Array Implementation for Complete Binary Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="array-implementation-for-complete-binary-trees">
+<h1>8.<span class="section-number">2. </span>Array Implementation for Complete Binary Trees<a class="headerlink" href="#array-implementation-for-complete-binary-trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>8.<span class="section-number">2.1. </span>Array Implementation for Complete Binary Trees<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>From the <a class="reference internal" href="BinaryTreeFullThm.html#binarytreefullthm"><span class="std std-ref">full binary tree theorem</span></a>, we know
+that a large fraction of the space in a typical binary tree node
+implementation is devoted to structural <a class="reference internal" href="Glossary.html#term-overhead"><span class="xref std std-term">overhead</span></a>, not to
+storing data.
+This module presents a simple, compact implementation
+for <a class="reference internal" href="Glossary.html#term-complete-binary-tree"><span class="xref std std-term">complete binary trees</span></a>.
+Recall that complete binary trees have all levels except the bottom
+filled out completely, and the bottom level has all of its nodes filled
+in from left to right.
+Thus, a complete binary tree of <span class="math notranslate nohighlight">\(n\)</span> nodes has only one possible
+shape.
+You might think that a complete binary tree is such an unusual
+occurrence that there is no reason to develop a special
+implementation for it.
+However, the complete binary tree has practical uses, the most
+important being the <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> data structure.
+Heaps are often used to implement
+<a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queues</span></a> and for
+<a class="reference internal" href="Glossary.html#term-external-sort"><span class="xref std std-term">external sorting algorithms</span></a>.</p>
+<p>We begin by assigning numbers to the node positions in the complete
+binary tree, level by level, from left to right as shown in
+Figure <a href="CompleteTree.html#binarray">8.3.1</a>.
+An array can store the tree’s data values efficiently, placing
+each data value in the array position corresponding to that node’s
+position within the tree.
+The table lists the array indices for the
+children, parent, and siblings of each node in
+Figure <a href="CompleteTree.html#binarray">8.3.1</a>.</p>
+<div class="figure align-center" id="id2" style="width: 90%">
+<span id="binarray"></span><a class="reference internal image-reference" href="_images/BinArray.png"><img alt="Complete binary tree node numbering" src="_images/BinArray.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"> Figure 8.3.1: A complete binary tree of 12 nodes, numbered starting from 0.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<p>Here is a table that lists, for each node position, the positions of
+the parent, sibling, and children of the node.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textrm{Position} &amp; 0  &amp; 1 &amp; 2 &amp; 3 &amp;  4 &amp;  5 &amp; 6 &amp; 7 &amp; 8 &amp;  9 &amp; 10 &amp; 11\\
+\hline
+\hline
+\textrm{Parent} &amp; \,--\, &amp; 0 &amp; 0 &amp; 1 &amp;  1 &amp;  2 &amp;  2 &amp; 3 &amp; 3 &amp; 4 &amp; 4 &amp; 5\\
+\hline
+\textrm{Left Child} &amp; 1  &amp; 3 &amp; 5 &amp; 7 &amp;  9 &amp; 11 &amp; \,--\, &amp; \,--\, &amp; \,--\, &amp;
+\,--\, &amp; \,--\, &amp;  \,--\,\\
+\hline
+\textrm{Right Child} &amp; 2  &amp; 4 &amp; 6 &amp; 8 &amp; 10 &amp; \,--\, &amp; \,--\, &amp; \,--\, &amp;
+\,--\, &amp; \,--\, &amp; \,--\, &amp;  \,--\,\\
+\hline
+\textrm{Left Sibling} &amp; \,--\, &amp; \,--\, &amp; 1 &amp; \,--\, &amp;  3 &amp; \,--\, &amp; 5 &amp;
+\,--\, &amp; 7 &amp; \,--\, &amp;  9 &amp;  \,--\,\\
+\hline
+\textrm{Right Sibling} &amp; \,--\, &amp; 2 &amp; \,--\, &amp; 4 &amp; \,--\, &amp;  6 &amp; \,--\, &amp; 8 &amp;
+\,--\, &amp; 10 &amp; \,--\, &amp; \,--\,\\
+\hline
+\end{array}\end{split}\]</div>
+<p>Looking at the table, you should see a pattern
+regarding the positions of a node’s relatives within the array.
+Simple formulas can be derived for calculating the array index
+for each relative of a node <span class="math notranslate nohighlight">\(R\)</span> from <span class="math notranslate nohighlight">\(R\)</span>’s index.
+No explicit pointers are necessary to reach a node’s left or
+right child.
+This means there is no overhead to the array implementation if the
+array is selected to be of size <span class="math notranslate nohighlight">\(n\)</span> for a tree of <span class="math notranslate nohighlight">\(n\)</span>
+nodes.</p>
+<p>The formulae for calculating the array indices of the various
+relatives of a node are as follows.
+The total number of nodes in the tree is <span class="math notranslate nohighlight">\(n\)</span>.
+The index of the node in question is <span class="math notranslate nohighlight">\(r\)</span>,
+which must fall in the range 0 to <span class="math notranslate nohighlight">\(n-1\)</span>.</p>
+<ul class="simple">
+<li><p>Parent(<span class="math notranslate nohighlight">\(r\)</span>) <span class="math notranslate nohighlight">\(= \lfloor(r - 1)/2\rfloor\)</span>
+if <span class="math notranslate nohighlight">\(r \neq 0\)</span>.</p></li>
+<li><p>Left child(<span class="math notranslate nohighlight">\(r\)</span>) <span class="math notranslate nohighlight">\(= 2r + 1\)</span> if <span class="math notranslate nohighlight">\(2r + 1 &lt; n\)</span>.</p></li>
+<li><p>Right child(<span class="math notranslate nohighlight">\(r\)</span>) <span class="math notranslate nohighlight">\(= 2r + 2\)</span> if <span class="math notranslate nohighlight">\(2r + 2 &lt; n\)</span>.</p></li>
+<li><p>Left sibling(<span class="math notranslate nohighlight">\(r\)</span>) <span class="math notranslate nohighlight">\(= r - 1\)</span> if <span class="math notranslate nohighlight">\(r\)</span> is even and
+<span class="math notranslate nohighlight">\(r \neq 0\)</span>.</p></li>
+<li><p>Right sibling(<span class="math notranslate nohighlight">\(r\)</span>) <span class="math notranslate nohighlight">\(= r + 1\)</span> if <span class="math notranslate nohighlight">\(r\)</span>
+is odd and <span class="math notranslate nohighlight">\(r + 1 &lt; n\)</span>.</p></li>
+</ul>
+<div
+    id="CompleteFIB"
+    class="embedContainer"
+    data-exer-name="CompleteFIB"
+    data-long-name="Complete Tree Exercise"
+    data-short-name="CompleteFIB"
+    data-frame-src="../../../Exercises/Binary/CompleteFIB.html?localMode=true&amp;module=CompleteTree&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="550"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="CompleteFIB_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="PriorityQueue.html">8.<span class="section-number">1. </span>Priority queues</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Heaps.html">8.<span class="section-number">3. </span>Heaps and Priority Queues (WORK IN PROGRESS)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

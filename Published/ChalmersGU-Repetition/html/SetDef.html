@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.2. Sets and Relations &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="3. Miscellaneous Notation" href="MiscMath.html" />
+    <link rel="prev" title="1. Chapter Introduction: Mathematical Background" href="MathpreIntro.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/SetDef.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="MathpreIntro.html">3.<span class="section-number">1. </span>Chapter Introduction: Mathematical Background</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="MiscMath.html">3.<span class="section-number">3. </span>Miscellaneous Notation</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['set-notation', 'relations', 'equivalence-relations', 'partial-orders'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SetDef";ODSA.SETTINGS.MODULE_LONG_NAME = "Sets and Relations";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="sets-and-relations">
+<h1>3.<span class="section-number">2. </span>Sets and Relations<a class="headerlink" href="#sets-and-relations" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="set-notation">
+<h2>3.<span class="section-number">2.1. </span>Set Notation<a class="headerlink" href="#set-notation" title="Permalink to this headline">¶</a></h2>
+<p>The concept of a set in the mathematical sense has wide
+application in computer science.
+The notations and techniques of set theory are commonly used
+when describing and implementing algorithms because the abstractions
+associated with sets often help to clarify and simplify algorithm
+design.</p>
+<p>A <a class="reference internal" href="Glossary.html#term-set"><span class="xref std std-term">set</span></a> is a collection of distinguishable
+<a class="reference internal" href="Glossary.html#term-member"><span class="xref std std-term">members</span></a> or <a class="reference internal" href="Glossary.html#term-element"><span class="xref std std-term">elements</span></a>.
+The members are typically drawn from some larger population known as
+the <a class="reference internal" href="Glossary.html#term-base-type"><span class="xref std std-term">base type</span></a>.
+Each member of a set is either a <a class="reference internal" href="Glossary.html#term-primitive-element"><span class="xref std std-term">primitive element</span></a> of the
+base type or is a set itself.
+There is no concept of duplication in a set.
+Each value from the base type is either in the set or not in the set.
+For example, a set named <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> might consist of the three
+integers 7, 11, and 42.
+In this case, <span class="math notranslate nohighlight">\(\mathbf{P}\)</span>’s members are 7, 11, and 42, and the
+base type is integer.</p>
+<p>The following table shows the symbols commonly used to express sets
+and their relationships.</p>
+<div class="topic" id="setnotation">
+<p class="topic-title">Table 3.3.1  </p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\begin{array}{l|l}
+\{1, 4\}&amp; \mbox{A set composed of the members 1 and 4}\\
+\{\mathsf{x}\, |\, \mathsf{x}\ \mbox{is a positive integer}\}&amp;
+   \mbox{A set definition using a set former}\\
+&amp;\qquad \mbox{Example: the set of all positive integers}\\
+\mathsf{x} \in \mathbf{P}&amp;\mathsf{x}\ \mbox{is a member of set}\ \mathbf{P}\\
+\mathsf{x} \notin \mathbf{P}&amp;\mathsf{x}\ \mbox{is not a member of set}\ \mathbf{P}\\
+\emptyset&amp;\mbox{The null or empty set}\\
+|\mathbf{P}|&amp; \mbox{Cardinality: size of set}\ \mathbf{P}
+           \mbox{or number of members for set}\ \mathbf{P}\\
+\mathbf{P}\,\subseteq\,\mathbf{Q},
+  \mathbf{Q}\,\supseteq\,\mathbf{P}&amp;
+  \mbox{Set}\ \mathbf{P}\ \mbox{is included in set}\ \mathbf{Q},\\
+&amp;\qquad \mbox{set}\ \mathbf{P}\ \mbox{is a subset of set}\ \mathbf{Q},\\
+&amp;\qquad \mbox{set}\ \mathbf{Q}\ \mbox{is a superset of set}\ \mathbf{P}\\
+\mathbf{P}\,\cup\,\mathbf{Q}      &amp;
+  \mbox{Set Union: all elements appearing in}
+  \ \mathbf{P}\ \mbox{OR}\ \mathbf{Q}\\
+\mathbf{P}\,\cap\,\mathbf{Q}      &amp;
+  \mbox{Set Intersection: all elements appearing in}\ \mbox{P}
+  \ \mbox{AND}\ \mathbf{Q}\\
+\mathbf{P}\,-\,\mathbf{Q} &amp;
+  \mbox{Set difference: all elements of set}
+  \ \mathbf{P}\ \mbox{NOT in set}\ \mathbf{Q}\\
+\mathbf{P}\,\times\,\mathbf{Q} &amp;
+  \mbox{Set (Cartesian) Product: yields a set of ordered pairs}\\
+\end{array}\end{split}\]</div>
+</div>
+<p>Here are some examples of this notation in use.
+First define two sets, <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>.</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{P} = \{2, 3, 5\}, \qquad \mathbf{Q} = \{5, 10\}.\]</div>
+<p><span class="math notranslate nohighlight">\(|\mathbf{P}| = 3\)</span>  (because <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> has three
+members) and <span class="math notranslate nohighlight">\(|\mathbf{Q}| = 2\)</span>
+(because <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span> has two members).
+Both of these sets are finite in length.
+Other sets can be infinite, for example, the set of integers.</p>
+<p>The union of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>, written
+<span class="math notranslate nohighlight">\(\mathbf{P} \cup \mathbf{Q}\)</span>, is the set of elements in either
+<span class="math notranslate nohighlight">\(\mathbf{P}\)</span> or <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>, which is {2, 3, 5, 10}.
+The intersection of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>,
+written <span class="math notranslate nohighlight">\(\mathbf{P} \cap \mathbf{Q}\)</span>, is the set of elements that
+appear in both <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>, which is {5}.
+The set difference of <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>,
+written <span class="math notranslate nohighlight">\(\mathbf{P} - \mathbf{Q}\)</span>,
+is the set of elements that occur in <span class="math notranslate nohighlight">\(\mathbf{P}\)</span> but not in
+<span class="math notranslate nohighlight">\(\mathbf{Q}\)</span>, which is {2, 3}.
+Note that
+<span class="math notranslate nohighlight">\(\mathbf{P} \cup \mathbf{Q} = \mathbf{Q} \cup \mathbf{P}\)</span>
+and that
+<span class="math notranslate nohighlight">\(\mathbf{P} \cap \mathbf{Q} = \mathbf{Q} \cap \mathbf{P}\)</span>,
+but in general
+<span class="math notranslate nohighlight">\(\mathbf{P} - \mathbf{Q} \neq \mathbf{Q} - \mathbf{P}\)</span>.
+In this example,
+<span class="math notranslate nohighlight">\(\mathbf{Q} - \mathbf{P}  = \{10\}\)</span>.
+Finally, the set {5, 3, 2} is indistinguishable from set
+<span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, because sets have no concept of order.
+Likewise, set {2, 3, 2, 5} is also indistinguishable from
+<span class="math notranslate nohighlight">\(\mathbf{P}\)</span>, because sets have no concept of duplicate elements.</p>
+<p>The <a class="reference internal" href="Glossary.html#term-set-product"><span class="xref std std-term">set product</span></a> or <a class="reference internal" href="Glossary.html#term-cartesian-product"><span class="xref std std-term">Cartesian product</span></a> of two sets
+<span class="math notranslate nohighlight">\(\mathbf{Q} \times \mathbf{P}\)</span> is a set of ordered pairs.
+For our example sets, the set product would be</p>
+<div class="math notranslate nohighlight">
+\[\{(2, 5),\ (2, 10),\ (3, 5),\ (3, 10),\ (5, 5),\ (5, 10)\}.\]</div>
+<p>The <a class="reference internal" href="Glossary.html#term-powerset"><span class="xref std std-term">powerset</span></a> of a set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> (denoted <span class="math notranslate nohighlight">\(2^S\)</span>)
+is the set of all possible subsets for <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.
+Consider the set <span class="math notranslate nohighlight">\(\mathbf{S} = \{ a, b, c \}\)</span>.
+The powerset of <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\{ \emptyset,\ \{a\},\ \{b\},\ \{c\},\ \{a, b\},
+\ \{a, c\},\ \{b, c\},\ \{a, b, c\}\}.\]</div>
+<p>A collection of elements with no order (like a set), but with
+duplicate-valued elements is called a
+<a class="reference internal" href="Glossary.html#term-bag"><span class="xref std std-term">bag</span></a> <a class="footnote-reference brackets" href="#id2" id="id1">1</a>.
+To distinguish bags from sets, we will use square brackets [] around
+a bag’s elements.
+For example, bag [3, 4, 5, 4] is distinct from bag [3, 4, 5],
+while set {3, 4, 5, 4} is indistinguishable from set
+{3, 4, 5}.
+However, bag [3, 4, 5, 4] is indistinguishable from bag
+[3, 4, 4, 5].</p>
+<p>A <a class="reference internal" href="Glossary.html#term-sequence"><span class="xref std std-term">sequence</span></a> is a collection of elements with an order, and
+which may contain duplicate-valued elements.
+A sequence is also sometimes called a <a class="reference internal" href="Glossary.html#term-tuple"><span class="xref std std-term">tuple</span></a> or a
+<a class="reference internal" href="Glossary.html#term-vector"><span class="xref std std-term">vector</span></a>.
+In a sequence, there is a 0th element, a 1st element, 2nd element, and
+so on.
+We will use angle brackets <span class="math notranslate nohighlight">\(\langle\rangle\)</span> to enclose the
+elements of a sequence.
+For example, <span class="math notranslate nohighlight">\(\langle3, 4, 5, 4\rangle\)</span> is a sequence.
+Note that sequence <span class="math notranslate nohighlight">\(\langle3, 5, 4, 4\rangle\)</span> is distinct from
+sequence <span class="math notranslate nohighlight">\(\langle3, 4, 5, 4\rangle\)</span>, and both are distinct from
+sequence <span class="math notranslate nohighlight">\(\langle3, 4, 5\rangle\)</span>.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>The object referred to here as a
+bag is sometimes called a
+<a class="reference internal" href="Glossary.html#term-multilist"><span class="xref std std-term">multilist</span></a>.
+But, the term multilist also refers to a list that may contain
+sublists.</p>
+</dd>
+</dl>
+<div class="section" id="relations">
+<h3>3.<span class="section-number">2.1.1. </span>Relations<a class="headerlink" href="#relations" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="Glossary.html#term-relation"><span class="xref std std-term">relation</span></a> <span class="math notranslate nohighlight">\(R\)</span> over set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is a set of
+ordered pairs from <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.
+As an example of a relation, if <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is
+<span class="math notranslate nohighlight">\(\{a, b, c\}\)</span>, then</p>
+<div class="math notranslate nohighlight">
+\[\{ \langle a, c\rangle, \langle b, c\rangle, \langle c, b\rangle \}\]</div>
+<p>is a relation, and</p>
+<div class="math notranslate nohighlight">
+\[\{ \langle a, a\rangle, \langle a, c\rangle, \langle b, b\rangle,
+\langle b, c\rangle, \langle c, c\rangle \}\]</div>
+<p>is a different relation.
+If tuple <span class="math notranslate nohighlight">\(\langle x, y\rangle\)</span> is in relation <span class="math notranslate nohighlight">\(R\)</span>, we may
+use the infix notation <span class="math notranslate nohighlight">\(xRy\)</span>.
+We often use relations such as the less than operator (<span class="math notranslate nohighlight">\(&lt;\)</span>) on
+the natural numbers, which includes ordered pairs such as
+<span class="math notranslate nohighlight">\(\langle1, 3\rangle\)</span> and
+<span class="math notranslate nohighlight">\(\langle2, 23\rangle\)</span>, but not <span class="math notranslate nohighlight">\(\langle3, 2\rangle\)</span> or
+<span class="math notranslate nohighlight">\(\langle2, 2\rangle\)</span>.
+Rather than writing the relationship in terms of ordered pairs, we
+typically use an infix notation for such relations, writing <span class="math notranslate nohighlight">\(1&lt;3\)</span>.</p>
+<p>Define the properties of relations as follows, with <span class="math notranslate nohighlight">\(R\)</span> a
+binary relation over set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is <a class="reference internal" href="Glossary.html#term-reflexive"><span class="xref std std-term">reflexive</span></a> if <span class="math notranslate nohighlight">\(aRa\)</span>
+for all <span class="math notranslate nohighlight">\(a \in \mathbf{S}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is <a class="reference internal" href="Glossary.html#term-irreflexive"><span class="xref std std-term">irreflexive</span></a> if <span class="math notranslate nohighlight">\(aRa\)</span> is not true
+for all <span class="math notranslate nohighlight">\(a \in \mathbf{S}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is <a class="reference internal" href="Glossary.html#term-symmetric"><span class="xref std std-term">symmetric</span></a> if whenever <span class="math notranslate nohighlight">\(aRb\)</span>,
+then <span class="math notranslate nohighlight">\(bRa\)</span>, for all <span class="math notranslate nohighlight">\(a, b \in \mathbf{S}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is <a class="reference internal" href="Glossary.html#term-antisymmetric"><span class="xref std std-term">antisymmetric</span></a> if whenever <span class="math notranslate nohighlight">\(aRb\)</span>
+and <span class="math notranslate nohighlight">\(bRa\)</span>, then <span class="math notranslate nohighlight">\(a = b\)</span>, for all
+<span class="math notranslate nohighlight">\(a, b \in \mathbf{S}\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(R\)</span> is <a class="reference internal" href="Glossary.html#term-transitive"><span class="xref std std-term">transitive</span></a> if whenever <span class="math notranslate nohighlight">\(aRb\)</span> and
+<span class="math notranslate nohighlight">\(bRc\)</span>, then <span class="math notranslate nohighlight">\(aRc\)</span>, for all
+<span class="math notranslate nohighlight">\(a, b, c \in \mathbf{S}\)</span>.</p></li>
+</ul>
+<p>As examples, for the natural numbers, <span class="math notranslate nohighlight">\(&lt;\)</span> is
+irreflexive (because <span class="math notranslate nohighlight">\(aRa\)</span> is never true),
+antisymmetric (because there is no case where <span class="math notranslate nohighlight">\(aRb\)</span> and
+<span class="math notranslate nohighlight">\(bRa\)</span>), and transitive.
+Relation <span class="math notranslate nohighlight">\(\leq\)</span> is reflexive, antisymmetric, and transitive.
+Relation <span class="math notranslate nohighlight">\(=\)</span> is reflexive, symmetric (and antisymmetric!),
+and transitive.
+For people, the relation “is a sibling of” is symmetric and
+transitive.
+If we define a person to be a sibling of themself, then it is
+reflexive; if we define a person not to be a sibling of themself, then
+it is not reflexive.</p>
+<div
+    id="SetTFrelation"
+    class="embedContainer"
+    data-exer-name="SetTFrelation"
+    data-long-name="Relations Exercise"
+    data-short-name="SetTFrelation"
+    data-frame-src="../../../Exercises/Background/SetTFrelation.html?localMode=true&amp;module=SetDef&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="SetTFrelation_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+<div class="section" id="equivalence-relations">
+<h2>3.<span class="section-number">2.2. </span>Equivalence Relations<a class="headerlink" href="#equivalence-relations" title="Permalink to this headline">¶</a></h2>
+<p><span class="math notranslate nohighlight">\(R\)</span> is an <a class="reference internal" href="Glossary.html#term-equivalence-relation"><span class="xref std std-term">equivalence relation</span></a> on set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>
+if it is reflexive, symmetric, and transitive.
+An equivalence relation can be used to partition a set into
+<a class="reference internal" href="Glossary.html#term-equivalence-class"><span class="xref std std-term">equivalence classes</span></a>.
+If two elements <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> are equivalent to each other,
+we write <span class="math notranslate nohighlight">\(a \equiv b\)</span>.
+A <a class="reference internal" href="Glossary.html#term-partition"><span class="xref std std-term">partition</span></a> of a set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> is a collection of
+subsets that are <a class="reference internal" href="Glossary.html#term-disjoint"><span class="xref std std-term">disjoint</span></a> from each other and whose union is
+<span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.
+An <a class="reference internal" href="Glossary.html#term-equivalence-relation"><span class="xref std std-term">equivalence relation</span></a> on set <span class="math notranslate nohighlight">\(\mathbf{S}\)</span> partitions
+the set into disjoint subsets whose elements are equivalent.
+The <a class="reference internal" href="Glossary.html#term-union-find"><span class="xref std std-term">UNION/FIND</span></a> algorithm efficiently
+maintains equivalence classes on a set.
+One application for such <a class="reference internal" href="Glossary.html#term-disjoint-sets"><span class="xref std std-term">disjoint sets</span></a>
+computing a <a class="reference internal" href="Glossary.html#term-mcst"><span class="xref std std-term">minimal cost spanning tree</span></a>.</p>
+<div class="topic">
+<p class="topic-title">Example 3.3.1 </p>
+<p>For the integers, <span class="math notranslate nohighlight">\(=\)</span> is an equivalence relation that
+partitions each element into a distinct subset.
+In other words, for any integer <span class="math notranslate nohighlight">\(a\)</span>, three things are true.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(a = a\)</span>,</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(a = b\)</span> then <span class="math notranslate nohighlight">\(b = a\)</span>, and</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(a = b\)</span> and <span class="math notranslate nohighlight">\(b = c\)</span>, then <span class="math notranslate nohighlight">\(a = c\)</span>.</p></li>
+</ol>
+<p>Of course, for distinct integers <span class="math notranslate nohighlight">\(a\)</span>, <span class="math notranslate nohighlight">\(b\)</span>, and <span class="math notranslate nohighlight">\(c\)</span>
+there are never cases where <span class="math notranslate nohighlight">\(a = b\)</span>, <span class="math notranslate nohighlight">\(b = a\)</span>, or
+<span class="math notranslate nohighlight">\(b = c\)</span>.
+So the requirements for symmetry and transitivity are never
+violated, and therefore the relation is symmetric and transitive.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 3.3.2 </p>
+<p>If we clarify the definition of sibling to mean that a person is
+a sibling of themself, then the sibling relation is an
+equivalence relation that partitions the set of people.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 3.3.3 </p>
+<p>We can use the <a class="reference internal" href="MiscMath.html#miscmath"><span class="std std-ref">modulus</span></a> function
+to define an equivalence relation.
+For the set of integers, use the modulus function
+to define a binary relation such that two numbers
+<span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> are in the relation if and only if
+<span class="math notranslate nohighlight">\(x \bmod m = y \bmod m\)</span>.
+Thus, for <span class="math notranslate nohighlight">\(m = 4\)</span>, <span class="math notranslate nohighlight">\(\langle1, 5\rangle\)</span> is in the
+relation because <span class="math notranslate nohighlight">\(1 \bmod 4 = 5 \bmod 4\)</span>.
+We see that modulus used in this way defines an equivalence
+relation on the integers, and this relation can be used to
+partition the integers into <span class="math notranslate nohighlight">\(m\)</span> equivalence classes.
+This relation is an equivalence relation because</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(x \bmod m = x \bmod m\)</span> for all <span class="math notranslate nohighlight">\(x\)</span>;</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(x \bmod m = y \bmod m\)</span>,
+then <span class="math notranslate nohighlight">\(y \bmod m = x \bmod m\)</span>; and</p></li>
+<li><p>if <span class="math notranslate nohighlight">\(x \bmod m = y \bmod m\)</span> and
+<span class="math notranslate nohighlight">\(y \bmod m = z \bmod m\)</span>, then
+<span class="math notranslate nohighlight">\(x \bmod m = z \bmod m\)</span>.</p></li>
+</ol>
+</div>
+<div
+    id="SetTFequivrel"
+    class="embedContainer"
+    data-exer-name="SetTFequivrel"
+    data-long-name="Equivalence Exercise"
+    data-short-name="SetTFequivrel"
+    data-frame-src="../../../Exercises/Background/SetTFequivrel.html?localMode=true&amp;module=SetDef&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="SetTFequivrel_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="partial-orders">
+<h2>3.<span class="section-number">2.3. </span>Partial Orders<a class="headerlink" href="#partial-orders" title="Permalink to this headline">¶</a></h2>
+<p>A binary relation is called a
+<a class="reference internal" href="Glossary.html#term-partial-order"><span class="xref std std-term">partial order</span></a> if it is antisymmetric and transitive.
+If the relation is reflexive, it is called a
+<a class="reference internal" href="Glossary.html#term-non-strict-partial-order"><span class="xref std std-term">non-strict partial order</span></a>.
+If the relation is <a class="reference internal" href="Glossary.html#term-irreflexive"><span class="xref std std-term">irreflexive</span></a>, it is called a
+<a class="reference internal" href="Glossary.html#term-strict-partial-order"><span class="xref std std-term">strict partial order</span></a>.
+The set on which the partial order is defined is called a
+<a class="reference internal" href="Glossary.html#term-partially-ordered-set"><span class="xref std std-term">partially ordered set</span></a> or a <a class="reference internal" href="Glossary.html#term-poset"><span class="xref std std-term">poset</span></a>.
+Elements <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> of a set are <a class="reference internal" href="Glossary.html#term-comparable"><span class="xref std std-term">comparable</span></a> under
+a given relation <span class="math notranslate nohighlight">\(R\)</span> if either <span class="math notranslate nohighlight">\(xRy\)</span> or <span class="math notranslate nohighlight">\(yRx\)</span>.
+If every pair of distinct elements in a partial order are comparable,
+then the order is called a <a class="reference internal" href="Glossary.html#term-total-order"><span class="xref std std-term">total order</span></a> or <a class="reference internal" href="Glossary.html#term-linear-order"><span class="xref std std-term">linear order</span></a>.</p>
+<div class="topic">
+<p class="topic-title">Example 3.3.4 </p>
+<p>For the integers, relations <span class="math notranslate nohighlight">\(&lt;\)</span> and <span class="math notranslate nohighlight">\(\leq\)</span> define
+partial orders.
+Operation <span class="math notranslate nohighlight">\(&lt;\)</span> is a total order because, for every pair of
+integers <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> such that <span class="math notranslate nohighlight">\(x \neq y\)</span>,
+either <span class="math notranslate nohighlight">\(x &lt; y\)</span> or <span class="math notranslate nohighlight">\(y &lt; x\)</span>.
+Likewise, <span class="math notranslate nohighlight">\(\leq\)</span> is a total order because,
+for every pair of integers <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span> such that
+<span class="math notranslate nohighlight">\(x \neq y\)</span>, either <span class="math notranslate nohighlight">\(x \leq y\)</span> or <span class="math notranslate nohighlight">\(y \leq x\)</span>.</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 3.3.5 </p>
+<p>For the powerset of the integers, the subset
+operator defines a partial order (because it is antisymmetric and
+transitive).
+For example, <span class="math notranslate nohighlight">\(\{1, 2\}\subseteq\{1, 2, 3\}\)</span>.
+However, sets {1, 2} and {1, 3} are not comparable by the
+subset operator, because neither is a subset of the other.
+Therefore, the subset operator does not define a total order on the
+powerset of the integers.</p>
+</div>
+<div
+    id="SetTFpartialorder"
+    class="embedContainer"
+    data-exer-name="SetTFpartialorder"
+    data-long-name="PartialOrder Exercise"
+    data-short-name="SetTFpartialorder"
+    data-frame-src="../../../Exercises/Background/SetTFpartialorder.html?localMode=true&amp;module=SetDef&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="SetTFpartialorder_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="MathpreIntro.html">3.<span class="section-number">1. </span>Chapter Introduction: Mathematical Background</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="MiscMath.html">3.<span class="section-number">3. </span>Miscellaneous Notation</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

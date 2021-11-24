@@ -1,0 +1,87 @@
+
+interface Collection(E) extends Iterable(E)
+    isEmpty() : boolean   // Returns true if the collection is empty.
+    size()    : int       // Returns the number of elements in this collection.
+
+
+interface List(E) extends Collection(E)
+    add(i:int, x:E)       // Adds x at position i; where 0 <= i <= size.
+    get(i:int)      : E   // Returns the element at position i; where 0 <= i < size.
+    set(i:int, x:E) : E   // Replaces the value at position i with x; where 0 <= i < size.
+    remove(i:int)   : E   // Removes the element at position i; where 0 <= i < size.
+    // Note: iterator() should yield the elements starting from position 0.
+
+
+interface Stack(E) extends Collection(E)
+    push(x:E)       // Pushes x on top of the stack.
+    pop()     : E   // Pops the top of the stack and returns it. Raises an exception if the stack is empty.
+    peek()    : E   // Returns the top element, without removing it. Raises an exception if the stack is empty.
+    // Note: iterator() should yield the elements starting from the top of the stack.
+
+
+interface Queue(E) extends Collection(E)
+    enqueue(x:E)       // Enqueues x at the end of the queue.
+    dequeue()    : E   // Dequeues the frontmost element. Raises an exception if the queue is empty.
+    peek()       : E   // Returns the frontmost element, without removing it. Raises an exception if the queue is empty.
+    // Note: iterator() should yield the elements starting from the frontmost element.
+
+
+interface PriorityQueue(E) extends Collection(E)
+    add(x:E)          // Adds x to the priority queue.
+    removeMin() : E   // Removes and returns the minimum element. Raises an exception if the priority queue is empty.
+    getMin()    : E   // Returns the minimum element, without removing it.  Raises an exception if the priority queue is empty.
+    // Note: iterator() can yield the elements in any order, but the minimum element should come first.
+
+
+interface Set(E) extends Collection(E)
+    add(x:E)      : boolean   // Adds x to the set (if it's not already there).
+    remove(x:E)   : boolean   // Removes x from the set (if it's there).
+    contains(x:E) : boolean   // Returns true if x is in the set.
+    // Note: iterator() can yield the elements in any order.
+
+
+interface SortedSet(E) extends Set(E)
+    first()             : E            // Returns the first (smallest) element. Raises an exception if the set is empty.
+    last()              : E            // Returns the last (largest) element. Raises an exception if the set is empty.
+    floor(x:E)          : E            // Returns the closest element <= x, or null if there is no such element.
+    ceiling(x:E)        : E            // Returns the closest element >= x, or null if there is no such element.
+    lower(x:E)          : E            // Returns the closest element < x, or null if there is no such element.
+    higher(x:E)         : E            // Returns the closest element > x, or null if there is no such element.
+    between(x1:E, x2:E) : Iterator(E)  // Returns all elements x such that x1 <= x <= x2.
+    // Note: iterator() should yield the elements in order.
+
+
+interface Map(K,V) extends Iterable(K)
+    put(k:K, v:V)    : V            // Sets the value of the given key. Returns the previous value, or null.
+    get(k:K)         : V            // Returns the value associated with the given key, or null if the key is not there.
+    remove(k:K)      : V            // Removes and returns the value associated with the given key, or null if there is no key.
+    containsKey(k:K) : boolean      // Returns true if the key has an associated value.
+    isEmpty()        : boolean      // Returns true if there are no keys.
+    size()           : int          // Returns the number of keys (i.e., the number of key/value pairs).
+    // Note: iterator() can yield the keys in any order.
+
+
+interface SortedMap(K,V) extends Map(K,V)
+    firstKey()              : K            // Returns the first (smallest) key. Raises an exception if the map is empty.
+    lastKey()               : K            // Returns the last (largest) key. Raises an exception if the map is empty.
+    floorKey(k:K)           : K            // Returns the closest key <= k, or null if there is no key.
+    ceilingKey(k:K)         : K            // Returns the closest key >= k, or null if there is no key.
+    lowerKey(k:K)           : K            // Returns the closest key < k, or null if there is no such element.
+    higherKey(k:K)          : K            // Returns the closest key > k, or null if there is no such element.
+    keysBetween(k1:K, k2:K) : Iterator(K)  // Returns all keys k such that k1 <= k <= k2.
+    // Note: iterator() should yield the keys in order.
+
+
+interface Graph(V)
+    addVertex(v:V)     : boolean              // Adds the vertex v to the graph. Returns true if it wasn't already in the graph.
+    addEdge(e:Edge(V)) : boolean              // Adds the edge e to the graph. Returns true if it wasn't already in the graph.
+    vertices()         : Collection(V)        // Returns a Collection of all vertices in the graph.
+    outgoingEdges(v:V) : Collection(Edge(V))  // Returns a Collection of the edges that originates in vertex v. Returns null if there are no edges.
+    vertexCount()      : int                  // Returns the number of vertices in the graph.
+    edgeCount()        : int                  // Returns the number of edges in the graph.
+
+class Edge(V)
+    start     : V           // The start vertex.
+    end       : V           // The end vertex.
+    weight    : double      // The weight (if the edge is unweighted this defaults to 1.0).
+

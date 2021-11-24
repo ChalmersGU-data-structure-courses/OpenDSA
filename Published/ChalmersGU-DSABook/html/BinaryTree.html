@@ -1,0 +1,417 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.2. Binary Trees &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="3. Binary Tree as a Recursive Data Structure" href="RecursiveDS.html" />
+    <link rel="prev" title="1. Chapter Introduction: Binary Trees" href="BinaryTreeIntro.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 5 Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BinaryTree.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeIntro.html">5.<span class="section-number">1. </span>Chapter Introduction: Binary Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['definitions-and-properties', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTree";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BinExampCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/BinDiffCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Binary/FullCompCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="binary-trees">
+<h1>5.<span class="section-number">2. </span>Binary Trees<a class="headerlink" href="#binary-trees" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="definitions-and-properties">
+<h2>5.<span class="section-number">2.1. </span>Definitions and Properties<a class="headerlink" href="#definitions-and-properties" title="Permalink to this headline">¶</a></h2>
+<p>A <a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">binary tree</span></a> is made up of a finite set of elements
+called <a class="reference internal" href="Glossary.html#term-node"><span class="xref std std-term">nodes</span></a>.
+This set either is empty or consists of a node called the
+<a class="reference internal" href="Glossary.html#term-root"><span class="xref std std-term">root</span></a> together with two binary trees, called the left and
+right
+<a class="reference internal" href="Glossary.html#term-subtree"><span class="xref std std-term">subtrees</span></a>, which are disjoint from each other and
+from the root.
+(Disjoint means that they have no nodes in common.)
+The roots of these subtrees are
+<a class="reference internal" href="Glossary.html#term-child"><span class="xref std std-term">children</span></a> of the root.
+There is an <a class="reference internal" href="Glossary.html#term-edge"><span class="xref std std-term">edge</span></a> from a node to each of its children,
+and a node is said to be the <a class="reference internal" href="Glossary.html#term-parent"><span class="xref std std-term">parent</span></a> of its children.</p>
+<p>If <span class="math notranslate nohighlight">\(n_1, n_2, ..., n_k\)</span>
+is a sequence of nodes in the tree such
+that <span class="math notranslate nohighlight">\(n_i\)</span> is the parent of
+<span class="math notranslate nohighlight">\(n_i+1\)</span> for <span class="math notranslate nohighlight">\(1 \leq i &lt; k\)</span>,
+then this sequence is called a <a class="reference internal" href="Glossary.html#term-path"><span class="xref std std-term">path</span></a> from
+<span class="math notranslate nohighlight">\(n_1\)</span> to <span class="math notranslate nohighlight">\(n_k\)</span>.
+The <a class="reference internal" href="Glossary.html#term-length"><span class="xref std std-term">length</span></a> of the path is <span class="math notranslate nohighlight">\(k-1\)</span>.
+If there is a path from node <span class="math notranslate nohighlight">\(R\)</span> to node <span class="math notranslate nohighlight">\(M\)</span>,
+then <span class="math notranslate nohighlight">\(R\)</span> is an <a class="reference internal" href="Glossary.html#term-ancestor"><span class="xref std std-term">ancestor</span></a> of <span class="math notranslate nohighlight">\(M\)</span>, and
+<span class="math notranslate nohighlight">\(M\)</span> is a <a class="reference internal" href="Glossary.html#term-descendant"><span class="xref std std-term">descendant</span></a> of <span class="math notranslate nohighlight">\(R\)</span>.
+Thus, all nodes in the tree are descendants of the root of the tree,
+while the root is the ancestor of all nodes.
+The <a class="reference internal" href="Glossary.html#term-depth"><span class="xref std std-term">depth</span></a> of a node <span class="math notranslate nohighlight">\(M\)</span> in the tree is the length
+of the path from the root of the tree to <span class="math notranslate nohighlight">\(M\)</span>.
+The <a class="reference internal" href="Glossary.html#term-height"><span class="xref std std-term">height</span></a> of a tree is the depth of the
+deepest node in the tree.
+All nodes of depth <span class="math notranslate nohighlight">\(d\)</span> are at
+<a class="reference internal" href="Glossary.html#term-level"><span class="xref std std-term">level</span></a> <span class="math notranslate nohighlight">\(d\)</span> in the tree.
+The root is the only node at level 0, and its depth is 0.
+A <a class="reference internal" href="Glossary.html#term-leaf-node"><span class="xref std std-term">leaf node</span></a> is any node that has two empty children.
+An <a class="reference internal" href="Glossary.html#term-internal-node"><span class="xref std std-term">internal node</span></a> is
+any node that has at least one non-empty child.</p>
+<div class="divdgm" id="binexample">
+<div id="BinExampCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 5.3.1: A binary tree.
+Node <span class="math notranslate nohighlight">\(A\)</span> is the root.
+Nodes <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(C\)</span> are <span class="math notranslate nohighlight">\(A\)</span>’s children.
+Nodes <span class="math notranslate nohighlight">\(B\)</span> and <span class="math notranslate nohighlight">\(D\)</span> together form a subtree.
+Node <span class="math notranslate nohighlight">\(B\)</span> has two children:
+Its left child is the empty tree and its right child is <span class="math notranslate nohighlight">\(D\)</span>.
+Nodes <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, and <span class="math notranslate nohighlight">\(E\)</span> are ancestors of
+<span class="math notranslate nohighlight">\(G\)</span>.
+Nodes <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(E\)</span>, and <span class="math notranslate nohighlight">\(F\)</span> make up level 2 of
+the tree;
+node <span class="math notranslate nohighlight">\(A\)</span> is at level 0.
+The edges from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(C\)</span> to <span class="math notranslate nohighlight">\(E\)</span> to <span class="math notranslate nohighlight">\(G\)</span>
+form a path of length 3.
+Nodes <span class="math notranslate nohighlight">\(D\)</span>, <span class="math notranslate nohighlight">\(G\)</span>, <span class="math notranslate nohighlight">\(H\)</span>, and <span class="math notranslate nohighlight">\(I\)</span> are leaves.
+Nodes <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>, <span class="math notranslate nohighlight">\(C\)</span>, <span class="math notranslate nohighlight">\(E\)</span>, and
+<span class="math notranslate nohighlight">\(F\)</span> are internal nodes.
+The depth of <span class="math notranslate nohighlight">\(I\)</span> is 3.
+The height of this tree is 3.</span></p>
+</div>
+<div class="divdgm" id="bindiff">
+<div id="BinDiffCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 5.3.2: Two different binary trees.
+(a) A binary tree whose root has a non-empty left child.
+(b) A binary tree whose root has a non-empty right child.
+(c) The binary tree of (a) with the missing right child made explicit.
+(d) The binary tree of (b) with the missing left child made explicit.</span></p>
+</div>
+<p>Figure <a href="BinaryTree.html#binexample">5.3.1</a> illustrates the various terms used to
+identify parts of a binary tree.
+Figure <a href="BinaryTree.html#bindiff">5.3.2</a> illustrates an important point regarding
+the structure of binary trees.
+Because <em>all</em> binary tree nodes have two children
+(one or both of which might be empty), the two binary
+trees of Figure <a href="BinaryTree.html#bindiff">5.3.2</a> are <em>not</em> the same.</p>
+<p>Two restricted forms of binary tree are sufficiently
+important to warrant special names.
+Each node in a <a class="reference internal" href="Glossary.html#term-full-tree"><span class="xref std std-term">full binary tree</span></a>
+is either (1) an internal node with exactly two non-empty children or
+(2) a leaf.
+A <a class="reference internal" href="Glossary.html#term-complete-binary-tree"><span class="xref std std-term">complete binary tree</span></a> has a restricted shape obtained by
+starting at the root and filling the tree by levels from left to
+right.
+In the complete binary tree of height <span class="math notranslate nohighlight">\(d\)</span>, all levels
+except possibly level <span class="math notranslate nohighlight">\(d\)</span> are completely full.
+The bottom level has its nodes filled in from the left side.</p>
+<div class="divdgm" id="fullcomplete">
+<div id="FullCompCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 5.3.3: Examples of full and complete binary trees.</span></p>
+</div>
+<p>Figure <a href="BinaryTree.html#fullcomplete">5.3.3</a> illustrates the differences between
+full and complete binary trees. <a class="footnote-reference brackets" href="#id2" id="id1">1</a>
+There is no particular relationship between these two tree shapes;
+that is, the tree of Figure <a href="BinaryTree.html#fullcomplete">5.3.3</a> (a) is full
+but not complete while the tree of Figure <a href="BinaryTree.html#fullcomplete">5.3.3</a>
+(b) is
+complete but not full.
+The <a class="reference internal" href="Heaps.html#heaps"><span class="std std-ref">heap</span></a> data structure is an example
+of a complete binary tree.
+The <a class="reference internal" href="Huffman.html#huffman"><span class="std std-ref">Huffman coding tree</span></a>
+is an example of a full binary tree.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>While these definitions for full and complete binary tree are
+the ones most commonly used, they are not universal.
+Because the common meaning of the words “full” and “complete”
+are quite similar, there is little that you can do to
+distinguish between them other than to memorize the
+definitions.
+Here is a memory aid that you might find useful:
+“Complete” is a wider word than “full”, and complete binary
+trees tend to be wider than full binary trees because each
+level of a complete binary tree is as wide as possible.</p>
+</dd>
+</dl>
+<div
+    id="DefSumm"
+    class="embedContainer"
+    data-exer-name="DefSumm"
+    data-long-name="Tree Definition Summary Exercises"
+    data-short-name="DefSumm"
+    data-frame-src="../../../Exercises/Binary/DefSumm.html?localMode=true&amp;module=BinaryTree&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="700"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="DefSumm_iframe"></div>
+  </div>
+</div>
+</div>
+<div class="section" id="practice-questions">
+<h2>5.<span class="section-number">2.2. </span>Practice Questions<a class="headerlink" href="#practice-questions" title="Permalink to this headline">¶</a></h2>
+<div
+    id="Treeprobs"
+    class="embedContainer"
+    data-exer-name="Treeprobs"
+    data-long-name="Tree/Node Exercises"
+    data-short-name="Treeprobs"
+    data-frame-src="../../../Exercises/Binary/Treeprobs.html?localMode=true&amp;module=BinaryTree&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="800"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="Treeprobs_iframe"></div>
+  </div>
+</div>
+<script type="text/javascript" src="../../../AV/Binary/BinExampCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/BinDiffCON.js"></script>
+<script type="text/javascript" src="../../../AV/Binary/FullCompCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeIntro.html">5.<span class="section-number">1. </span>Chapter Introduction: Binary Trees</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="RecursiveDS.html">5.<span class="section-number">3. </span>Binary Tree as a Recursive Data Structure</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,492 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>6.1. General Trees (optional) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="2. The Union/Find Algorithm (optional)" href="UnionFind.html" />
+    <link rel="prev" title="12. Binary Tree Chapter Summary" href="BinaryChapSumm.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 6 General Trees and Union-Find (optional)</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/GenTreeIntro.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryChapSumm.html">5.<span class="section-number">12. </span>Binary Tree Chapter Summary</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="UnionFind.html">6.<span class="section-number">2. </span>The Union/Find Algorithm (optional)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['general-trees', 'general-tree-definitions-and-terminology', 'an-adt-for-general-tree-nodes', 'general-tree-traversals'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GenTreeIntro";ODSA.SETTINGS.MODULE_LONG_NAME = "General Trees (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/GenTreeCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="general-trees-optional">
+<h1>6.<span class="section-number">1. </span>General Trees (optional)<a class="headerlink" href="#general-trees-optional" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="general-trees">
+<h2>6.<span class="section-number">1.1. </span>General Trees<a class="headerlink" href="#general-trees" title="Permalink to this headline">¶</a></h2>
+<p>Many organizations are hierarchical in nature, such as the military
+and most businesses.
+Consider a company with a president and some number of vice presidents
+who report to the president.
+Each vice president has some number of direct subordinates, and so on.
+If we wanted to model this company with a data structure,
+it would be natural to think of the president
+in the root node of a tree, the vice presidents at level 1, and their
+subordinates at lower levels in the tree as we go
+down the organizational hierarchy.</p>
+<p>Because the number of vice presidents is likely to be more than two,
+this company’s organization cannot easily be represented by a
+binary tree.
+We need instead to use a tree whose nodes have an arbitrary
+number of children.
+Unfortunately, when we permit trees to have nodes with an arbitrary
+number of children, they become much harder to implement than binary
+trees.
+We consider such trees in this chapter.
+To distinguish them from binary trees,
+we use the term <a class="reference internal" href="Glossary.html#term-general-tree"><span class="xref std std-term">general tree</span></a>.</p>
+<p>In this module we will examine general tree terminology and define a
+basic ADT for general trees.</p>
+<div class="section" id="general-tree-definitions-and-terminology">
+<h3>6.<span class="section-number">1.1.1. </span>General Tree Definitions and Terminology<a class="headerlink" href="#general-tree-definitions-and-terminology" title="Permalink to this headline">¶</a></h3>
+<p>A <a class="reference internal" href="Glossary.html#term-tree"><span class="xref std std-term">tree</span></a> <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is a finite set of one or more nodes
+such that there is one designated node <span class="math notranslate nohighlight">\(R\)</span>, called the root
+of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
+If the set <span class="math notranslate nohighlight">\((\mathbf{T} -\{R\})\)</span> is not empty, these nodes are
+partitioned into <span class="math notranslate nohighlight">\(n &gt; 0\)</span> disjoint sets <span class="math notranslate nohighlight">\(\mathbf{T}_0\)</span>,
+<span class="math notranslate nohighlight">\(\mathbf{T}_1\)</span>, …, <span class="math notranslate nohighlight">\(\mathbf{T}_{n-1}\)</span>, each of which is
+a tree, and whose roots <span class="math notranslate nohighlight">\(R_1, R_2, ..., R_n\)</span>,
+respectively, are children of <span class="math notranslate nohighlight">\(R\)</span>.
+The subsets <span class="math notranslate nohighlight">\(\mathbf{T}_i (0 \leq i &lt; n)\)</span> are said to be
+<a class="reference internal" href="Glossary.html#term-subtree"><span class="xref std std-term">subtrees</span></a> of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
+These subtrees are ordered in that <span class="math notranslate nohighlight">\(\mathbf{T}_i\)</span> is said to
+come before <span class="math notranslate nohighlight">\(\mathbf{T}_j\)</span> if <span class="math notranslate nohighlight">\(i &lt; j\)</span>.
+By convention, the subtrees are arranged from left to right with
+subtree <span class="math notranslate nohighlight">\(\mathbf{T}_0\)</span> called the leftmost child of <span class="math notranslate nohighlight">\(R\)</span>.
+A node’s <a class="reference internal" href="Glossary.html#term-out-degree"><span class="xref std std-term">out degree</span></a> is the number of children for that node.
+A <a class="reference internal" href="Glossary.html#term-forest"><span class="xref std std-term">forest</span></a> is a collection of one or more trees.
+Figure <a href="GenTreeIntro.html#gentreefig">6.2.1</a> presents further tree notation
+generalized from the notation for binary trees.</p>
+<div class="divdgm" id="gentreefig">
+<div id="GenTreeCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 6.2.1: Notation for general trees.
+Node <span class="math notranslate nohighlight">\(P\)</span> is the parent of nodes <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(S1\)</span>,
+and <span class="math notranslate nohighlight">\(S2\)</span>.
+Thus, <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(S1\)</span>, and <span class="math notranslate nohighlight">\(S2\)</span> are children
+of <span class="math notranslate nohighlight">\(P\)</span>.
+Nodes <span class="math notranslate nohighlight">\(R\)</span> and <span class="math notranslate nohighlight">\(P\)</span> are ancestors of <span class="math notranslate nohighlight">\(V\)</span>.
+Nodes <span class="math notranslate nohighlight">\(V\)</span>, <span class="math notranslate nohighlight">\(S1\)</span>, and <span class="math notranslate nohighlight">\(S2\)</span> are called
+<a class="reference internal" href="Glossary.html#term-sibling"><span class="xref std std-term">siblings</span></a>.
+The oval surrounds the subtree having <span class="math notranslate nohighlight">\(V\)</span> as its root.</span></p>
+</div>
+<p>Each node in a tree has precisely one parent, except for the root,
+which has no parent.
+From this observation, it immediately follows that a tree with
+<span class="math notranslate nohighlight">\(n\)</span> nodes must have <span class="math notranslate nohighlight">\(n-1\)</span> edges because each node, aside
+from the root, has one edge connecting that node to its parent.</p>
+</div>
+<div class="section" id="an-adt-for-general-tree-nodes">
+<h3>6.<span class="section-number">1.1.2. </span>An ADT for General Tree Nodes<a class="headerlink" href="#an-adt-for-general-tree-nodes" title="Permalink to this headline">¶</a></h3>
+<p>Before discussing general tree implementations, we should first make
+precise what operations such implementations must support.
+Any implementation must be able to initialize a tree.
+Given a tree, we need access to the root of that tree.
+There must be some way to access the children of a node.
+In the case of the ADT for binary tree nodes, this was done by
+providing member functions that give explicit access to the left and
+right child pointers.
+Unfortunately, because we do not know in advance how many children a
+given node will have in the general tree, we cannot give explicit
+functions to access each child.
+An alternative must be found that works for an unknown number of
+children.</p>
+<p>One choice would be to provide a function that takes as its parameter
+the index for the desired child.
+That combined with a function that returns the number of children for
+a given node would support the ability to access any node or process
+all children of a node.
+Unfortunately, this view of access tends to bias the
+choice for node implementations in favor of an array-based approach,
+because these functions favor random access to a list of children.
+In practice, an implementation based on a linked list is often
+preferred.</p>
+<p>An alternative is to provide access to the first (or leftmost) child
+of a node, and to provide access to the next (or right) sibling of a
+node.
+Here are the class declarations for general trees and
+their nodes.
+Based on these two access functions, the children of a node can be
+traversed like a list.
+Trying to find the next sibling of the rightmost sibling would return
+<code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<div id="GenTree_GenTreeADT_code"><ul><li><a href="#GenTree_GenTreeADT_code_Java_Generic">Java</a></li><li><a href="#GenTree_GenTreeADT_code_Python">Python</a></li></ul><div id="GenTree_GenTreeADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// General tree node ADT</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">value</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">parent</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">leftmostChild</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">rightSibling</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setValue</span><span class="p">(</span><span class="n">E</span> <span class="n">value</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">setParent</span><span class="p">(</span><span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">par</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertFirst</span><span class="p">(</span><span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">n</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insertNext</span><span class="p">(</span><span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">n</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeFirst</span><span class="p">();</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">removeNext</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// General tree ADT</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">GenTree</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>       <span class="c1">// Clear the tree</span>
+    <span class="kd">public</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="nf">root</span><span class="p">();</span>   <span class="c1">// Return the root</span>
+    <span class="c1">// Make the tree have a new root, give first child and sib</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newRoot</span><span class="p">(</span><span class="n">E</span> <span class="n">value</span><span class="p">,</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">first</span><span class="p">,</span> <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">sib</span><span class="p">);</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">newLeftChild</span><span class="p">(</span><span class="n">E</span> <span class="n">value</span><span class="p">);</span> <span class="c1">// Add left child</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="GenTree_GenTreeADT_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># General tree node ADT</span>
+<span class="k">class</span> <span class="nc">GTNode</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">parent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">leftmostChild</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">rightSibling</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">setValue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">setParent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">par</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">insertFirst</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">insertNext</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">removeFirst</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">removeNext</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+
+<span class="c1"># General tree ADT</span>
+<span class="k">class</span> <span class="nc">GenTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">clear</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">root</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">newRoot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">sib</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+    <span class="k">def</span> <span class="nf">newLeftChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#GenTree_GenTreeADT_code" ).tabs();});</script></div>
+<div class="section" id="general-tree-traversals">
+<h3>6.<span class="section-number">1.1.3. </span>General Tree Traversals<a class="headerlink" href="#general-tree-traversals" title="Permalink to this headline">¶</a></h3>
+<p>There are three traditional
+<a class="reference internal" href="BinaryTreeTraversal.html#binarytreetraversal"><span class="std std-ref">tree traversals</span></a>
+for <a class="reference internal" href="Glossary.html#term-binary-tree"><span class="xref std std-term">binary trees</span></a>:
+<a class="reference internal" href="Glossary.html#term-preorder-traversal"><span class="xref std std-term">preorder</span></a>,
+<a class="reference internal" href="Glossary.html#term-postorder-traversal"><span class="xref std std-term">postorder</span></a>,
+and <a class="reference internal" href="Glossary.html#term-inorder-traversal"><span class="xref std std-term">inorder</span></a>.
+For general trees, preorder and postorder traversals are defined with
+meanings similar to their binary tree
+counterparts.
+Preorder traversal of a general tree first visits the root of the
+tree, then performs a preorder traversal of each subtree from left to
+right.
+A postorder traversal of a general tree performs a postorder traversal
+of the root’s subtrees from left to right, then visits the root.
+Inorder traversal does not have a natural definition for the
+general tree, because there is no particular number of children for an
+internal node.
+An arbitrary definition—such as visit the leftmost subtree in
+inorder, then the root, then visit the remaining subtrees in inorder—can be invented.
+However, inorder traversals are generally not useful with
+general trees.</p>
+<div id="GenTreePreTravCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="GenTreePreTravCON" data-long-name="General Tree Preorder Traversal Slideshow" data-exer-id="" alt="General Tree Preorder Traversal Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="GenTreePreTravCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="GenTreePreTravCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="GenTreePreTravCON_cm_error_msg" class="cm_error_msg">
+   <img id="GenTreePreTravCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>To perform a preorder traversal, it is necessary to visit each of the
+children for a given node (say <span class="math notranslate nohighlight">\(R\)</span>) from left to right.
+This is accomplished by starting at R’s leftmost child
+(call it <span class="math notranslate nohighlight">\(T\)</span>).
+From <span class="math notranslate nohighlight">\(T\)</span>, we can move to <span class="math notranslate nohighlight">\(T\)</span>’s right sibling, and then
+to that node’s right sibling, and so on.</p>
+<div id="GenTreePostTravCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="GenTreePostTravCON" data-long-name="General Tree Postorder Traversal Slideshow" data-exer-id="" alt="General Tree Postorder Traversal Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="GenTreePostTravCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="GenTreePostTravCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="GenTreePostTravCON_cm_error_msg" class="cm_error_msg">
+   <img id="GenTreePostTravCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Using the General Tree ADT shown above, here is an
+implementation to print the nodes of a general tree in
+preorder.
+Note the <cite>while</cite> loop at the end, which processes the list of
+children by beginning with the leftmost child, then repeatedly moving
+to the next child until calling <code class="docutils literal notranslate"><span class="pre">next</span></code> returns <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+<div id="GenTree_GenTreePrint_code"><ul><li><a href="#GenTree_GenTreePrint_code_Java_Generic">Java</a></li><li><a href="#GenTree_GenTreePrint_code_Python">Python</a></li></ul><div id="GenTree_GenTreePrint_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Preorder traversal for general trees</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">PrintNode</span><span class="p">(</span><span class="n">node</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">node</span><span class="p">.</span><span class="na">isLeaf</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">GTNode</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">leftmostChild</span><span class="p">();</span>
+        <span class="k">while</span> <span class="p">(</span><span class="n">temp</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">preorder</span><span class="p">(</span><span class="n">temp</span><span class="p">);</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="na">rightSibling</span><span class="p">();</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="GenTree_GenTreePrint_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preorder traversal for general trees</span>
+<span class="k">def</span> <span class="nf">preorder</span><span class="p">(</span><span class="n">rt</span><span class="p">):</span>
+    <span class="n">PrintNode</span><span class="p">(</span><span class="n">rt</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">rt</span><span class="o">.</span><span class="n">isLeaf</span><span class="p">():</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">rt</span><span class="o">.</span><span class="n">leftmostChild</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">temp</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+            <span class="n">preorder</span><span class="p">(</span><span class="n">temp</span><span class="p">)</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">rightSibling</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#GenTree_GenTreePrint_code" ).tabs();});</script><script type="text/javascript" src="../../../AV/General/GenTreeCON.js"></script>
+<script type="text/javascript" src="../../../AV/General/GenTreePreTravCON.js"></script>
+<script type="text/javascript" src="../../../AV/General/GenTreePostTravCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryChapSumm.html">5.<span class="section-number">12. </span>Binary Tree Chapter Summary</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="UnionFind.html">6.<span class="section-number">2. </span>The Union/Find Algorithm (optional)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.5. Summations &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="6. Recurrence Relations" href="RecurrenceIntro.html" />
+    <link rel="prev" title="4. Logarithms" href="Logarithms.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Summations.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="Logarithms.html">3.<span class="section-number">4. </span>Logarithms</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="RecurrenceIntro.html">3.<span class="section-number">6. </span>Recurrence Relations</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Summations";ODSA.SETTINGS.MODULE_LONG_NAME = "Summations";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Background/SummationOneToNCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/Background/SummationTwoPowerICON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="id1">
+<h1>3.<span class="section-number">5. </span>Summations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.<span class="section-number">5.1. </span>Summations<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>Most programs contain loop constructs.
+When analyzing running time costs for programs with loops, we
+need to add up the costs for each time the loop is executed.
+This is an example of a <a class="reference internal" href="Glossary.html#term-summation"><span class="xref std std-term">summation</span></a>.
+Summations are simply the sum of costs for some function applied to a
+range of parameter values.
+Summations are typically written with the following “Sigma”
+notation:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{i=1}^{n} f(i).\]</div>
+<p>This notation indicates that we are summing the value of
+<span class="math notranslate nohighlight">\(f(i)\)</span> over some range of (integer) values.
+The parameter to the expression and its initial value are indicated
+below the <span class="math notranslate nohighlight">\(\sum\)</span> symbol.
+Here, the notation <span class="math notranslate nohighlight">\(i=1\)</span> indicates that the parameter is
+<span class="math notranslate nohighlight">\(i\)</span> and that it begins with the value 1.
+At the top of the <span class="math notranslate nohighlight">\(\sum\)</span> symbol is the expression <span class="math notranslate nohighlight">\(n\)</span>.
+This indicates the maximum value for the parameter <span class="math notranslate nohighlight">\(i\)</span>.
+Thus, this notation means to sum the values of <span class="math notranslate nohighlight">\(f(i)\)</span> as
+<span class="math notranslate nohighlight">\(i\)</span> ranges across the integers from 1 through <span class="math notranslate nohighlight">\(n\)</span>.
+This can also be written
+<span class="math notranslate nohighlight">\(f(1) + f(2) + \cdots + f(n-1) + f(n)\)</span>.
+Within a sentence, Sigma notation is typeset as
+<span class="math notranslate nohighlight">\(\sum_{i=1}^{n} f(i)\)</span>.</p>
+<p>Given a summation, you often wish to replace it with an algebraic
+equation with the same value as the summation.
+This is known as a <a class="reference internal" href="Glossary.html#term-closed-form-solution"><span class="xref std std-term">closed-form solution</span></a>,
+and the process of replacing the summation with its closed-form
+solution is known as solving the summation.
+For example, the summation
+<span class="math notranslate nohighlight">\(\sum_{i=1}^{n} 1\)</span>
+is simply the expression “1” summed <span class="math notranslate nohighlight">\(n\)</span> times
+(remember that <span class="math notranslate nohighlight">\(i\)</span> ranges from 1 to <span class="math notranslate nohighlight">\(n\)</span>).
+Because the sum of <span class="math notranslate nohighlight">\(n\)</span> 1s is <span class="math notranslate nohighlight">\(n\)</span>,
+the closed-form solution is <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Here is an explanation about the closed form solution of one summation
+that you will see many times in this book.
+Since this appears so often, it will help you later if you can get
+comfortable with it.</p>
+<div id="SummationOneToNCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SummationOneToNCON" data-long-name="Summation of the first N Integers visualization" data-exer-id="" alt="Summation of the first N Integers visualization" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SummationOneToNCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SummationOneToNCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SummationOneToNCON_cm_error_msg" class="cm_error_msg">
+   <img id="SummationOneToNCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<div id="SummationTwoPowerICON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SummationTwoPowerICON" data-long-name="Summation Two Power I visualization" data-exer-id="" alt="Summation Two Power I visualization" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SummationTwoPowerICON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SummationTwoPowerICON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SummationTwoPowerICON_cm_error_msg" class="cm_error_msg">
+   <img id="SummationTwoPowerICON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>Here is a list of useful summations, along with their closed-form solutions.</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\sum_{i = 1}^{n} i &amp;= \frac{n (n+1)}{2} \\
+\sum_{i = 1}^{n} i^2 &amp;= \frac{2 n^3 + 3 n^2 + n}{6} = \frac{n(2n + 1)(n + 1)}{6} \\
+\sum_{i = 1}^{\log n} n &amp;= n \log n \\
+\sum_{i = 0}^\infty a^i &amp;= \frac{1}{1-a}\ \text{for} \ 0 &lt; a &lt; 1 \\
+\sum_{i = 0}^{n} a^i &amp;= \frac{a^{n+1} - 1}{a - 1}\ \text{for} \ a \neq 1 \\
+\text{As special cases to the last summation, we have the following two:} \
+\sum_{i = 1}^{n} \frac{1}{2^i} &amp;= 1 - \frac{1}{2^n} \\
+\sum_{i = 0}^{n} 2^i &amp;= 2^{n+1} - 1 \\
+\text{As a corollary to the previous summation: } \
+\sum_{i = 0}^{\log n} 2^i &amp;= 2^{\log n + 1} - 1 = 2n - 1 \\
+\text{Finally: } \
+\sum_{i = 1}^{n} \frac{i}{2^i} &amp;= 2 - \frac{n+2}{2^n}\end{split}\]</div>
+<p>The sum of reciprocals from 1 to <span class="math notranslate nohighlight">\(n\)</span>, called the
+<a class="reference internal" href="Glossary.html#term-harmonic-series"><span class="xref std std-term">Harmonic Series</span></a> and written <span class="math notranslate nohighlight">\({\cal H}_n\)</span>, has a value
+between <span class="math notranslate nohighlight">\(\log_e n\)</span> and <span class="math notranslate nohighlight">\(\log_e n + 1\)</span>.
+To be more precise, as <span class="math notranslate nohighlight">\(n\)</span> grows,
+the summation grows closer to</p>
+<div class="math notranslate nohighlight">
+\[{\cal H}_n \approx \log_e n + \gamma + \frac{1}{2n},\]</div>
+<p>where <span class="math notranslate nohighlight">\(\gamma\)</span> is Euler’s constant and has the value 0.5772…</p>
+<p>Most of these equalities can be proved easily by a
+<a class="reference internal" href="Proofs.html#proofs"><span class="std std-ref">proof by induction</span></a>.
+Unfortunately, induction does not help us derive a closed-form
+solution.
+Induction only confirms when a proposed closed-form solution is
+correct.</p>
+<script type="text/javascript" src="../../../AV/Background/SummationOneToNCON.js"></script>
+<script type="text/javascript" src="../../../AV/Background/SummationTwoPowerICON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="Logarithms.html">3.<span class="section-number">4. </span>Logarithms</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="RecurrenceIntro.html">3.<span class="section-number">6. </span>Recurrence Relations</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

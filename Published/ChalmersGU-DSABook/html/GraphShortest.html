@@ -1,0 +1,655 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10.5. Shortest-Paths Problems (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="6. Minimal Cost Spanning Trees (WORK IN PROGRESS)" href="MCST.html" />
+    <link rel="prev" title="4. Topological Sort (WORK IN PROGRESS)" href="GraphTopsort.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 10 Graphs</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/GraphShortest.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="GraphTopsort.html">10.<span class="section-number">4. </span>Topological Sort (WORK IN PROGRESS)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="MCST.html">10.<span class="section-number">6. </span>Minimal Cost Spanning Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['shortest-paths-problems', 'single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="shortest-paths-problems-work-in-progress">
+<h1>10.<span class="section-number">5. </span>Shortest-Paths Problems (WORK IN PROGRESS)<a class="headerlink" href="#shortest-paths-problems-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="shortest-paths-problems">
+<h2>10.<span class="section-number">5.1. </span>Shortest-Paths Problems<a class="headerlink" href="#shortest-paths-problems" title="Permalink to this headline">¶</a></h2>
+<p>On a road map, a road connecting two towns is typically
+labeled with its distance.
+We can model a road network as a directed graph whose edges are
+labeled with real numbers.
+These numbers represent the distance (or other cost metric, such as
+travel time) between two vertices.
+These labels may be called <a class="reference internal" href="Glossary.html#term-weight"><span class="xref std std-term">weights</span></a>,
+<a class="reference internal" href="Glossary.html#term-cost"><span class="xref std std-term">costs</span></a>, or <a class="reference internal" href="Glossary.html#term-distance"><span class="xref std std-term">distances</span></a>,
+depending on the application.
+Given such a graph, a typical problem is to find the total
+length of the shortest path between two specified vertices.
+This is not a trivial problem, because the shortest path may not be
+along the edge (if any) connecting two vertices, but rather may be
+along a path involving one or more intermediate vertices.</p>
+<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Incorporate the following paragraph into a slideshow with the
+figure below it.</p>
+</dd>
+</dl>
+</div>
+<p>For example, in Figure <a href="GraphShortest.html#distexamp">10.6.1</a>,
+the cost of the path from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(B\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 15.
+The cost of the edge directly from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 20.
+The cost of the path from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(C\)</span> to <span class="math notranslate nohighlight">\(B\)</span> to
+<span class="math notranslate nohighlight">\(D\)</span> is 10.
+Thus, the shortest path from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 10
+(rather than along the edge connecting <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span>).
+We use the notation <span class="math notranslate nohighlight">\(\mathbf{d}(A, D) = 10\)</span> to indicate that the
+shortest distance from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span> is 10.
+In Figure <a href="GraphShortest.html#distexamp">10.6.1</a>, there is no path from <span class="math notranslate nohighlight">\(E\)</span> to
+<span class="math notranslate nohighlight">\(B\)</span>, so we set <span class="math notranslate nohighlight">\(\mathbf{d}(E, B) = \infty\)</span>.
+We define <span class="math notranslate nohighlight">\(\mathbf{w}(A, D) = 20\)</span> to be the weight of edge
+<span class="math notranslate nohighlight">\((A, D)\)</span>, that is, the weight of the direct connection
+from <span class="math notranslate nohighlight">\(A\)</span> to <span class="math notranslate nohighlight">\(D\)</span>.
+Because there is no edge from <span class="math notranslate nohighlight">\(E\)</span> to <span class="math notranslate nohighlight">\(B\)</span>,
+<span class="math notranslate nohighlight">\(\mathbf{w}(E, B) = \infty\)</span>.
+Note that <span class="math notranslate nohighlight">\(\mathbf{w}(D, A) = \infty\)</span> because the graph of
+Figure <a href="GraphShortest.html#distexamp">10.6.1</a> is directed.
+We assume that all weights are positive.</p>
+<div class="divdgm" id="distexamp">
+<div id="DistanceExampCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 10.6.1: Example graph for shortest-path definitions.</span></p>
+</div>
+<div class="section" id="single-source-shortest-paths">
+<h3>10.<span class="section-number">5.1.1. </span>Single-Source Shortest Paths<a class="headerlink" href="#single-source-shortest-paths" title="Permalink to this headline">¶</a></h3>
+<p>We will now present an algorithm to solve the
+<a class="reference internal" href="Glossary.html#term-single-source-shortest-paths-problem"><span class="xref std std-term">single-source shortest paths problem</span></a>.
+Given Vertex <span class="math notranslate nohighlight">\(S\)</span> in Graph <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>,
+find a shortest path from <span class="math notranslate nohighlight">\(S\)</span> to every other vertex in
+<span class="math notranslate nohighlight">\(\mathbf{G}\)</span>.
+We might want only the shortest path between two vertices,
+<span class="math notranslate nohighlight">\(S\)</span> and <span class="math notranslate nohighlight">\(T\)</span>.
+However in the worst case, finding the shortest path from
+<span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(T\)</span> requires us to find the shortest paths from
+<span class="math notranslate nohighlight">\(S\)</span> to every other vertex as well.
+So there is no better algorithm (in the worst case) for
+finding the shortest path to a single vertex than to find shortest
+paths to all vertices.
+The algorithm described here will only compute the distance to every
+such vertex, rather than recording the actual path.
+Recording the path requires only simple modifications to the algorithm.</p>
+<p>Computer networks provide an application for the single-source
+shortest-paths problem.
+The goal is to find the cheapest way for one computer to broadcast
+a message to all other computers on the network.
+The network can be modeled by a graph with edge weights indicating
+time or
+cost to send a message to a neighboring computer.</p>
+<p>For unweighted graphs (or whenever all edges have the same cost), the
+single-source shortest paths can be found using a simple breadth-first
+search.
+When weights are added, BFS will not give the correct answer.</p>
+<a id="todo1"></a><div class="admonition-todo admonition" id="id2">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Provide a slideshow to demonstrate the following example.</p>
+</dd>
+</dl>
+</div>
+<p>One approach to solving this problem when the edges have
+differing weights might be to process the
+vertices in a fixed order.
+Label the vertices <span class="math notranslate nohighlight">\(v_0\)</span> to <span class="math notranslate nohighlight">\(v_{n-1}\)</span>, with
+<span class="math notranslate nohighlight">\(S = v_0\)</span>.
+When processing Vertex <span class="math notranslate nohighlight">\(v_1\)</span>, we take the edge connecting
+<span class="math notranslate nohighlight">\(v_0\)</span> and <span class="math notranslate nohighlight">\(v_1\)</span>.
+When processing <span class="math notranslate nohighlight">\(v_2\)</span>, we consider the shortest distance from
+<span class="math notranslate nohighlight">\(v_0\)</span> to <span class="math notranslate nohighlight">\(v_2\)</span> and compare that to the shortest
+distance from <span class="math notranslate nohighlight">\(v_0\)</span> to <span class="math notranslate nohighlight">\(v_1\)</span> to <span class="math notranslate nohighlight">\(v_2\)</span>.
+When processing Vertex <span class="math notranslate nohighlight">\(v_i\)</span>, we consider the shortest
+path for Vertices <span class="math notranslate nohighlight">\(v_0\)</span> through <span class="math notranslate nohighlight">\(v_{i-1}\)</span> that have
+already been processed.
+Unfortunately, the true shortest path to <span class="math notranslate nohighlight">\(v_i\)</span> might go
+through Vertex <span class="math notranslate nohighlight">\(v_j\)</span> for <span class="math notranslate nohighlight">\(j &gt; i\)</span>.
+Such a path will not be considered by this algorithm.
+However, the problem would not occur if we process the vertices in
+order of distance from <span class="math notranslate nohighlight">\(S\)</span>.
+Assume that we have processed in order of distance from <span class="math notranslate nohighlight">\(S\)</span> to
+the first <span class="math notranslate nohighlight">\(i-1\)</span> vertices that are closest to <span class="math notranslate nohighlight">\(S\)</span>;
+call this set of vertices <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.
+We are now about to process the <span class="math notranslate nohighlight">\(i\)</span> th closest vertex; call
+it <span class="math notranslate nohighlight">\(X\)</span>.</p>
+<p>A shortest path from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(X\)</span> must have its next-to-last
+vertex in <span class="math notranslate nohighlight">\(S\)</span>.
+Thus,</p>
+<div class="math notranslate nohighlight">
+\[\mathbf{d}(S, X) =
+\min_{U \in \mathbf{S}}(\mathbf{d}(S, U) + \mathbf{w}(U, X)).\]</div>
+<p>In other words, the shortest path from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(X\)</span> is the
+minimum over all paths that go from <span class="math notranslate nohighlight">\(S\)</span> to <span class="math notranslate nohighlight">\(U\)</span>, then have an
+edge from <span class="math notranslate nohighlight">\(U\)</span> to <span class="math notranslate nohighlight">\(X\)</span>, where <span class="math notranslate nohighlight">\(U\)</span> is some vertex
+in <span class="math notranslate nohighlight">\(\mathbf{S}\)</span>.</p>
+<p>This solution is usually referred to as Dijkstra’s algorithm.
+It works by maintaining a distance estimate
+<span class="math notranslate nohighlight">\(\mathbf{D}(X)\)</span> for all vertices <span class="math notranslate nohighlight">\(X\)</span> in <span class="math notranslate nohighlight">\(\mathbf{V}\)</span>.
+The elements of <span class="math notranslate nohighlight">\(\mathbf{D}\)</span> are initialized to the value
+<code class="docutils literal notranslate"><span class="pre">INFINITE</span></code>.
+Vertices are processed in order of distance from <span class="math notranslate nohighlight">\(S\)</span>.
+Whenever a vertex <span class="math notranslate nohighlight">\(v\)</span> is processed, <span class="math notranslate nohighlight">\(\mathbf{D}(X)\)</span> is
+updated for every neighbor <span class="math notranslate nohighlight">\(X\)</span> of <span class="math notranslate nohighlight">\(V\)</span>.
+Here is an implementation for Dijkstra’s
+algorithm.
+At the end, array <code class="docutils literal notranslate"><span class="pre">D</span></code> will contain the shortest distance values.</p>
+<div id="Dijkstra_GraphDijk1_code"><ul><li><a href="#Dijkstra_GraphDijk1_code_Java_Generic">Java</a></li><li><a href="#Dijkstra_GraphDijk1_code_Python">Python</a></li></ul><div id="Dijkstra_GraphDijk1_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute shortest path distances from s, store them in D</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">Dijkstra</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">D</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>    <span class="c1">// Initialize</span>
+    <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">INFINITY</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">D</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Process the vertices</span>
+    <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="n">minVertex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">);</span>     <span class="c1">// Find next-closest vertex</span>
+    <span class="n">G</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// Unreachable</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">nList</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)))</span> <span class="p">{</span>
+        <span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Dijkstra_GraphDijk1_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute shortest path distances from s, store them in D</span>
+<span class="k">def</span> <span class="nf">Dijkstra</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>   <span class="c1"># Initialize</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">INFINITY</span>
+    <span class="n">D</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>   <span class="c1"># Process the vertices</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">minVertex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">)</span>          <span class="c1"># Find next-closest vertex</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">:</span>
+            <span class="k">return</span>   <span class="c1"># Unreachable</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Dijkstra_GraphDijk1_code" ).tabs();});</script><div id="DijkstraCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DijkstraCON" data-long-name="Dijkstra Slideshow" data-exer-id="" alt="Dijkstra Slideshow" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="DijkstraCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="DijkstraCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="DijkstraCON_cm_error_msg" class="cm_error_msg">
+   <img id="DijkstraCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<a id="todo2"></a><div class="admonition-todo admonition" id="id3">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: AV</dt><dd><p>Provide an AV that runs on a random graph. An initial version is in
+<code class="docutils literal notranslate"><span class="pre">AV/Development/TopSort/dijkstraAV.*</span></code>.</p>
+</dd>
+</dl>
+</div>
+<p>There are two reasonable solutions to the key issue of finding the
+unvisited vertex with minimum distance value during each pass through
+the main <code class="docutils literal notranslate"><span class="pre">for</span></code> loop.
+The first method is simply to scan through the list of
+<span class="math notranslate nohighlight">\(|\mathbf{V}|\)</span> vertices searching for the minimum value, as
+follows:</p>
+<div id="Dijkstra_MinVertex_code"><ul><li><a href="#Dijkstra_MinVertex_code_Java_Generic">Java</a></li><li><a href="#Dijkstra_MinVertex_code_Python">Python</a></li></ul><div id="Dijkstra_MinVertex_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Find the unvisited vertex with the smalled distance</span>
+<span class="kd">static</span> <span class="kt">int</span> <span class="nf">minVertex</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">D</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// Initialize v to any unvisited vertex;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span><span class="p">)</span> <span class="p">{</span> <span class="n">v</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span> <span class="k">break</span><span class="p">;</span> <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>  <span class="c1">// Now find smallest value</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">G</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span><span class="p">))</span> <span class="p">{</span>
+      <span class="n">v</span> <span class="o">=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="Dijkstra_MinVertex_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find the unvisited vertex with the smalled distance</span>
+<span class="k">def</span> <span class="nf">minVertex</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Initialize v to any unvisited vertex</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span><span class="p">:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">i</span>
+            <span class="k">break</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>   <span class="c1"># Now find smallest value</span>
+        <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">!=</span> <span class="n">VISITED</span> <span class="ow">and</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]:</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">v</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Dijkstra_MinVertex_code" ).tabs();});</script><a id="todo3"></a><div class="admonition-todo admonition" id="id4">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Code</dt><dd><p>Why does the code look for an unvisited value first?
+Is there an easier way?</p>
+</dd>
+</dl>
+</div>
+<p>Because this scan is done <span class="math notranslate nohighlight">\(|\mathbf{V}|\)</span> times,
+and because each edge requires a constant-time update to <code class="docutils literal notranslate"><span class="pre">D</span></code>,
+the total cost for this approach
+is <span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|^2 + |\mathbf{E}|) =
+\Theta(|\mathbf{V}|^2)\)</span>,
+because <span class="math notranslate nohighlight">\(|\mathbf{E}|\)</span> is in <span class="math notranslate nohighlight">\(O(|\mathbf{V}|^2)\)</span>.</p>
+<a id="todo4"></a><div class="admonition-todo admonition" id="id5">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: AV</dt><dd><p>AV here to demonstrate the minVertex implementation.</p>
+</dd>
+</dl>
+</div>
+<p>An alternative approach is to store unprocessed vertices in a
+min-heap ordered by their distance from the processed vertices.
+The next-closest vertex can be found in the heap in
+<span class="math notranslate nohighlight">\(\Theta(\log |\mathbf{V}|)\)</span> time.
+Every time we modify <span class="math notranslate nohighlight">\(\mathbf{D}(X)\)</span>,
+we could reorder <span class="math notranslate nohighlight">\(X\)</span> in
+the heap by deleting and reinserting it.
+This is an example of a <a class="reference internal" href="Heaps.html#heaps"><span class="std std-ref">priority queue</span></a>
+with priority update.
+To implement true priority updating, we would need to store with each
+vertex its position within the heap so that we can remove its old
+distances whenever it is updated by processing new edges.
+A simpler approach is to add the new (always smaller) distance value
+for a given vertex as a new record in the heap.
+The smallest value for a given vertex currently in the heap will be
+found first, and greater distance values found later will be ignored
+because the vertex will already be marked as <code class="docutils literal notranslate"><span class="pre">VISITED</span></code>.
+The only disadvantage to repeatedly inserting distance values in this
+way is that it will raise the number of elements in the heap from
+<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|)\)</span> to <span class="math notranslate nohighlight">\(\Theta(|\mathbf{E}|)\)</span>
+in the worst case.
+But in practice this only adds a slight increase to the depth of the
+heap.
+The time complexity is
+<span class="math notranslate nohighlight">\(\Theta((|\mathbf{V}| + |\mathbf{E}|) \log |\mathbf{E}|)\)</span>,
+because for each edge that we process we must reorder the heap.
+We use the <code class="docutils literal notranslate"><span class="pre">KVPair</span></code> class to store key-value pairs in the heap, with
+the edge weight as the key and the target vertex as the value.
+here is the implementation for Dijkstra’s algorithm using a heap.</p>
+<div id="DijkstraPQ_DijkstraPQ_code"><ul><li><a href="#DijkstraPQ_DijkstraPQ_code_Java_Generic">Java</a></li><li><a href="#DijkstraPQ_DijkstraPQ_code_Python">Python</a></li></ul><div id="DijkstraPQ_DijkstraPQ_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Dijkstra&#39;s shortest-paths: priority queue version</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="nf">DijkstraPQ</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">D</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">int</span> <span class="n">v</span><span class="p">;</span>                                 <span class="c1">// The current vertex</span>
+  <span class="n">KVPair</span><span class="o">[]</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">[</span><span class="n">G</span><span class="p">.</span><span class="na">edgeCount</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>        <span class="c1">// Heap for edges</span>
+  <span class="n">E</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">);</span>               <span class="c1">// Initial vertex</span>
+  <span class="n">MinHeap</span> <span class="n">H</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">G</span><span class="p">.</span><span class="na">edgeCount</span><span class="p">());</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>            <span class="c1">// Initialize distance</span>
+    <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">INFINITY</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">D</span><span class="o">[</span><span class="n">s</span><span class="o">]</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>          <span class="c1">// For each vertex</span>
+
+    <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="p">)(</span><span class="n">H</span><span class="p">.</span><span class="na">removemin</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>      <span class="c1">// Unreachable nodes exist</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+    
+    <span class="k">while</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">getValue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">VISITED</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">temp</span> <span class="o">=</span> <span class="p">(</span><span class="n">KVPair</span><span class="p">)(</span><span class="n">H</span><span class="p">.</span><span class="na">removemin</span><span class="p">());</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>      <span class="c1">// Unreachable nodes exist</span>
+      <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">Integer</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+    <span class="p">}</span>
+      
+    <span class="n">G</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>        <span class="c1">// Unreachable</span>
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="n">nList</span><span class="o">[</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)))</span> <span class="p">{</span> <span class="c1">// Update D</span>
+        <span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="o">=</span> <span class="n">D</span><span class="o">[</span><span class="n">v</span><span class="o">]</span> <span class="o">+</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">);</span>
+        <span class="n">H</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">w</span><span class="o">]</span><span class="p">,</span> <span class="n">w</span><span class="p">));</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div><div id="DijkstraPQ_DijkstraPQ_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Dijkstra&#39;s shortest-paths: priority queue version</span>
+<span class="k">def</span> <span class="nf">DijkstraPQ</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
+    <span class="nb">int</span> <span class="n">v</span>                                     <span class="c1"># The current vertex</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="o">.</span><span class="n">edgeCount</span><span class="p">()</span>                <span class="c1"># Heap for edges</span>
+    <span class="n">E</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>                             <span class="c1"># Initial vertex</span>
+    <span class="n">H</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">G</span><span class="o">.</span><span class="n">edgeCount</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>            <span class="c1"># Initialize distance</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">INFINITY</span>
+    <span class="n">D</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>            <span class="c1"># For each vertex</span>
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">removemin</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span>                            <span class="c1"># Unreachable nodes exist</span>
+
+        <span class="n">v</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">G</span><span class="o">.</span><span class="n">getValue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">==</span> <span class="n">VISITED</span><span class="p">:</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">removemin</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>                        <span class="c1"># Unreachable nodes exist</span>
+            <span class="n">v</span> <span class="o">=</span> <span class="n">temp</span><span class="o">.</span><span class="n">value</span><span class="p">()</span>
+
+        <span class="n">G</span><span class="o">.</span><span class="n">setValue</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">VISITED</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">==</span> <span class="n">INFINITY</span><span class="p">:</span>
+            <span class="k">return</span>                            <span class="c1"># Unreachable</span>
+        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">):</span>  <span class="c1"># Update D</span>
+                <span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">+</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+                <span class="n">H</span><span class="o">.</span><span class="n">insert</span><span class="p">((</span><span class="n">D</span><span class="p">[</span><span class="n">w</span><span class="p">],</span> <span class="n">w</span><span class="p">))</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#DijkstraPQ_DijkstraPQ_code" ).tabs();});</script><a id="todo5"></a><div class="admonition-todo admonition" id="id6">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>This slideshow illustrates Dijkstra’s algorithm using the heap.
+The start vertex is A.
+All vertices except A have an initial value of <span class="math notranslate nohighlight">\(\infty\)</span>.
+After processing Vertex A, its neighbors have their D estimates
+updated to be the direct distance from A.
+After processing C (the closest vertex to A),
+Vertices B and E are updated to reflect the shortest
+path through C.
+The remaining vertices are processed in order B, D,
+and E.
+Changes in the D array should be shown along with this.</p>
+</dd>
+</dl>
+</div>
+<p>Using <code class="docutils literal notranslate"><span class="pre">MinVertex</span></code> to scan the vertex list for the minimum value
+is more efficient when the graph is dense, that is, when
+<span class="math notranslate nohighlight">\(|\mathbf{E}|\)</span> approaches <span class="math notranslate nohighlight">\(|\mathbf{V}|^2\)</span>.
+Using a heap is more efficient when the graph is sparse
+because its cost is
+<span class="math notranslate nohighlight">\(\Theta((|\mathbf{V}| + |\mathbf{E}|) \log |\mathbf{E}|)\)</span>.
+However, when the graph is dense, this cost can become as great as
+<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|V|^2 \log |V|)\)</span>.</p>
+<a id="todo6"></a><div class="admonition-todo admonition" id="id7">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Slideshow</dt><dd><p>Slideshow to demonstrate the relative costs of the two algorithms.</p>
+</dd>
+</dl>
+</div>
+<p>Now you can practice using Dijkstra’s algorithm.</p>
+<div
+    id="DijkstraPE"
+    class="embedContainer"
+    data-exer-name="DijkstraPE"
+    data-long-name="Dijkstra's Algorithm Proficiency Exercise"
+    data-short-name="DijkstraPE"
+    data-frame-src="../../../AV/Graph/DijkstraPE.html?localMode=true&amp;module=GraphShortest&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="0.9"
+    data-type="pe"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="DijkstraPE_iframe"></div>
+  </div>
+</div>
+<a id="todo7"></a><div class="admonition-todo admonition" id="id8">
+<p class="admonition-title">Todo</p>
+<dl class="simple">
+<dt>type: Exercise</dt><dd><p>Summary battery of questions for Dijkstra’s algorithm</p>
+</dd>
+</dl>
+</div>
+<script type="text/javascript" src="../../../AV/Graph/DistanceExampCON.js"></script>
+<script type="text/javascript" src="../../../AV/Graph/DijkstraCON.js"></script>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="GraphTopsort.html">10.<span class="section-number">4. </span>Topological Sort (WORK IN PROGRESS)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="MCST.html">10.<span class="section-number">6. </span>Minimal Cost Spanning Trees (WORK IN PROGRESS)</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -1,0 +1,371 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>5.5. The Full Binary Tree Theorem (optional) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="6. Binary Tree Traversals" href="BinaryTreeTraversal.html" />
+    <link rel="prev" title="4. Binary Tree Node Implementations" href="BinaryTreeImpl.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 5 Binary Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/BinaryTreeFullThm.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="BinaryTreeImpl.html">5.<span class="section-number">4. </span>Binary Tree Node Implementations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BinaryTreeFullThm";ODSA.SETTINGS.MODULE_LONG_NAME = "The Full Binary Tree Theorem (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Binary Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/UnaryTreeExampleCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="the-full-binary-tree-theorem-optional">
+<h1>5.<span class="section-number">5. </span>The Full Binary Tree Theorem (optional)<a class="headerlink" href="#the-full-binary-tree-theorem-optional" title="Permalink to this headline">¶</a></h1>
+<p>Some binary tree implementations store data only at the
+<a class="reference internal" href="Glossary.html#term-leaf-node"><span class="xref std std-term">leaf nodes</span></a>,
+using the <a class="reference internal" href="Glossary.html#term-internal-node"><span class="xref std std-term">internal nodes</span></a> to provide structure
+to the tree.
+By definition, a leaf node does not need to store pointers to its
+(empty) <a class="reference internal" href="Glossary.html#term-child"><span class="xref std std-term">children</span></a>.
+More generally, binary tree implementations might require some amount
+of space for internal nodes, and a different amount for leaf nodes.
+Thus, to compute the space required by such implementations, it is
+useful to know the minimum and maximum fraction of the nodes that are
+leaves in a tree containing <span class="math notranslate nohighlight">\(n\)</span> internal nodes.</p>
+<p>Unfortunately, this fraction is not fixed.
+A binary tree of <span class="math notranslate nohighlight">\(n\)</span> internal nodes might have only one leaf.
+This occurs when the internal nodes are arranged in a chain ending
+in a single leaf as shown in Figure <a href="BinaryTreeFullThm.html#oneleaf">5.6.1</a>.
+In this example, the number of leaves is low because each
+internal node has only one non-empty child.
+To find an upper bound on the number of leaves for a tree of <span class="math notranslate nohighlight">\(n\)</span>
+internal nodes, first note that the upper bound will occur when each
+internal node has two non-empty children, that is, when the tree is
+full.
+However, this observation does not tell what shape of tree will yield
+the highest percentage of non-empty leaves.
+It turns out not to matter, because all full binary trees with
+<span class="math notranslate nohighlight">\(n\)</span> internal nodes have the same number of leaves.
+This fact allows us to compute the space requirements for a full
+binary tree implementation whose leaves require a different amount of
+space from its internal nodes.</p>
+<div class="divdgm" id="oneleaf">
+<div id="UnaryTreeExampleCON">
+</div>
+<p class="caption"><span class="caption-text"> Figure 5.6.1: A tree containing many internal nodes and a single leaf.</span></p>
+</div>
+<div class="topic" id="fulltree">
+<p class="topic-title">Theorem 5.6.1  </p>
+<p><strong>Full Binary Tree Theorem:</strong>
+The number of leaves in a non-empty full binary tree is one
+more than the number of internal nodes.</p>
+<p><strong>Proof:</strong>
+The proof is by <a class="reference internal" href="Glossary.html#term-proof-by-induction"><span class="xref std std-term">mathematical induction</span></a>
+on <span class="math notranslate nohighlight">\(n\)</span>, the number of internal nodes.
+This is an example of the style of induction proof
+where we reduce from an arbitrary instance of size <span class="math notranslate nohighlight">\(n\)</span> to an
+instance of size <span class="math notranslate nohighlight">\(n-1\)</span> that meets the induction hypothesis.</p>
+<ol class="lowerroman simple">
+<li><p><strong>Base Cases:</strong> The non-empty tree with zero internal nodes has
+one leaf node.
+A full binary tree with one internal node has two leaf nodes.
+Thus, the base cases for <span class="math notranslate nohighlight">\(n = 0\)</span> and <span class="math notranslate nohighlight">\(n = 1\)</span> conform
+to the theorem.</p></li>
+<li><p><strong>Induction Hypothesis:</strong> Assume that any full binary
+tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> containing <span class="math notranslate nohighlight">\(n-1\)</span> internal nodes
+has <span class="math notranslate nohighlight">\(n\)</span> leaves.</p></li>
+<li><p><strong>Induction Step:</strong>
+Given tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> with <span class="math notranslate nohighlight">\(n\)</span> internal nodes,
+select an internal node <span class="math notranslate nohighlight">\(I\)</span> whose children are both leaf
+nodes.
+Remove both of <span class="math notranslate nohighlight">\(I\)</span>’s children, making <span class="math notranslate nohighlight">\(I\)</span> a leaf
+node.
+Call the new tree <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span>.
+<span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> has <span class="math notranslate nohighlight">\(n-1\)</span> internal nodes.
+From the induction hypothesis, <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> has
+<span class="math notranslate nohighlight">\(n\)</span> leaves.
+Now, restore <span class="math notranslate nohighlight">\(I\)</span>’s two children.
+We once again have tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> with <span class="math notranslate nohighlight">\(n\)</span>
+internal nodes.
+How many leaves does <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> have?
+Because <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> has <span class="math notranslate nohighlight">\(n\)</span> leaves, adding the two
+children yields <span class="math notranslate nohighlight">\(n+2\)</span>.
+However, node <span class="math notranslate nohighlight">\(I\)</span> counted as one of the leaves in
+<span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> and has now become an internal node.
+Thus, tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> has <span class="math notranslate nohighlight">\(n+1\)</span> leaf nodes and
+<span class="math notranslate nohighlight">\(n\)</span> internal nodes.</p></li>
+</ol>
+<p>By mathematical induction the theorem holds for all values of
+<span class="math notranslate nohighlight">\(n &gt; 0\)</span>.</p>
+</div>
+<p>When analyzing the space requirements for a binary tree
+implementation,
+it is useful to know how many empty subtrees a tree contains.
+A simple extension of the Full Binary Tree Theorem tells us exactly
+how many empty subtrees there are in <em>any</em> binary tree, whether
+full or not.
+Here are two approaches to proving the following theorem, and
+each suggests a useful way of thinking about binary trees.</p>
+<div class="topic" id="subtreethrm">
+<p class="topic-title">Theorem 5.6.2  </p>
+<p>The number of empty subtrees in a non-empty binary tree is one
+more than the number of nodes in the tree.</p>
+<p><strong>Proof 1:</strong>
+Take an arbitrary binary tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> and replace
+every empty subtree with a leaf node.
+Call the new tree <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span>.
+All nodes originally in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> will be internal
+nodes in <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> (because even the leaf nodes of
+<span class="math notranslate nohighlight">\(\mathbf{T}\)</span> have children in <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span>).
+<span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> is a full binary tree, because every
+internal node of <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> now must have two children
+in <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span>, and each leaf node
+in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> must have two children in
+<span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> (the leaves just added).
+The Full Binary Tree Theorem tells us that the number of leaves
+in a full binary tree is one more than the number of internal
+nodes.
+Thus, the number of new leaves that were added to create
+<span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> is one more than the number of nodes in
+<span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
+Each leaf node in <span class="math notranslate nohighlight">\(\mathbf{T}'\)</span> corresponds to an
+empty subtree in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.
+Thus, the number of empty subtrees in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> is one
+more than the number of nodes in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>.</p>
+<p><strong>Proof 2:</strong>
+By definition, every node in binary tree <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> has
+two children, for a total of <span class="math notranslate nohighlight">\(2n\)</span> children in a tree of
+<span class="math notranslate nohighlight">\(n\)</span> nodes.
+Every node except the root node has one parent, for a total of
+<span class="math notranslate nohighlight">\(n-1\)</span> nodes with parents.
+In other words, there are <span class="math notranslate nohighlight">\(n-1\)</span> non-empty children.
+Because the total number of children is <span class="math notranslate nohighlight">\(2n\)</span>, the remaining
+<span class="math notranslate nohighlight">\(n+1\)</span> children must be empty.</p>
+</div>
+<script type="text/javascript" src="../../../AV/Binary/UnaryTreeExampleCON.js"></script>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="BinaryTreeImpl.html">5.<span class="section-number">4. </span>Binary Tree Node Implementations</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BinaryTreeTraversal.html">5.<span class="section-number">6. </span>Binary Tree Traversals</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

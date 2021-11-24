@@ -1,0 +1,377 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3.4. Logarithms &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+    <link rel="next" title="5. Summations" href="Summations.html" />
+    <link rel="prev" title="3. Miscellaneous Notation" href="MiscMath.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span>Chapter 3 Mathematical Background</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/Logarithms.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="MiscMath.html">3.<span class="section-number">3. </span>Miscellaneous Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="Summations.html">3.<span class="section-number">5. </span>Summations</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Logarithms";ODSA.SETTINGS.MODULE_LONG_NAME = "Logarithms";ODSA.SETTINGS.MODULE_CHAPTER = "Mathematical Background"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="id1">
+<h1>3.<span class="section-number">4. </span>Logarithms<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2>3.<span class="section-number">4.1. </span>Logarithms<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="Glossary.html#term-logarithm"><span class="xref std std-term">logarithm</span></a> of base <span class="math notranslate nohighlight">\(b\)</span> for value <span class="math notranslate nohighlight">\(y\)</span> is the
+power to which <span class="math notranslate nohighlight">\(b\)</span> is raised to get <span class="math notranslate nohighlight">\(y\)</span>.
+Normally, this is written as <span class="math notranslate nohighlight">\(\log_b y = x\)</span>.
+Thus, if <span class="math notranslate nohighlight">\(\log_b y = x\)</span> then <span class="math notranslate nohighlight">\(b^x = y\)</span>,
+and <span class="math notranslate nohighlight">\(b^{log_b y} = y\)</span>.</p>
+<p>Logarithms are used frequently by programmers.
+Here are two typical uses.</p>
+<div class="topic">
+<p class="topic-title">Example 3.5.1 </p>
+<p>Many programs require an encoding for a collection of objects.
+What is the minimum number of bits needed to represent <span class="math notranslate nohighlight">\(n\)</span>
+distinct code values?
+The answer is <span class="math notranslate nohighlight">\(\lceil \log_2 n \rceil\)</span> bits.
+For example, if you have 1000 codes to store, you will require at
+least <span class="math notranslate nohighlight">\(\lceil \log_2 1000 \rceil = 10\)</span> bits to have 1000
+different codes (10 bits provide 1024 distinct code values).</p>
+</div>
+<div class="topic">
+<p class="topic-title">Example 3.5.2 </p>
+<p>Consider the <a class="reference internal" href="Glossary.html#term-binary-search"><span class="xref std std-term">binary search</span></a>
+algorithm for finding a given value within an array sorted by value
+from lowest to highest.
+Binary search first looks at the middle element
+and determines if the value being searched for is in the upper half
+or the lower half of the array.
+The algorithm then continues splitting the appropriate
+subarray in half until the desired value is found.
+How many times can an array of size (n) be split in half until
+only one element remains in the final subarray?
+The answer is <span class="math notranslate nohighlight">\(\lceil \log_2 n \rceil\)</span> times.</p>
+</div>
+<p>In OpenDSA, nearly all logarithms used have a base of two.
+This is because data structures and algorithms most often divide
+things in half, or store codes with binary bits.
+Whenever you see the notation <span class="math notranslate nohighlight">\(\log n\)</span> in OpenDSA,
+either <span class="math notranslate nohighlight">\(\log_2 n\)</span> is meant or else the term is being used
+asymptotically and so the actual base does not matter.
+For logarithms using any base other than two, we will show the base
+explicitly.</p>
+<p>Logarithms have the following properties, for any positive values of
+<span class="math notranslate nohighlight">\(m\)</span>, <span class="math notranslate nohighlight">\(n\)</span>, and <span class="math notranslate nohighlight">\(r\)</span>, and any positive integers
+<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>.</p>
+<ol class="arabic simple">
+<li><p><span class="math notranslate nohighlight">\(\log (nm) = \log n + \log m\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\log (n/m) = \log n - \log m\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\log (n^r) = r \log n\)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\log_a n = \log_b n / \log_b a\)</span>.</p></li>
+</ol>
+<p>The first two properties state that the logarithm
+of two numbers multiplied (or divided) can be found by adding
+(or subtracting) the logarithms of the two numbers. <a class="footnote-reference brackets" href="#id4" id="id3">1</a>
+Property (3) is simply an extension of property (1).
+Property (4) tells us that, for variable <span class="math notranslate nohighlight">\(n\)</span> and any two integer
+constants <span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span>, <span class="math notranslate nohighlight">\(\log_a n\)</span> and
+<span class="math notranslate nohighlight">\(\log_b n\)</span> differ by the constant factor <span class="math notranslate nohighlight">\(\log_b a\)</span>,
+regardless of the value of <span class="math notranslate nohighlight">\(n\)</span>.
+Most runtime analyses we use are of a type that ignores
+constant factors in costs.
+Property (4) says that such analyses need not be concerned with the
+base of the logarithm, because this can change the total cost only by
+a constant factor.</p>
+<p>A useful identity to know is:</p>
+<div class="math notranslate nohighlight">
+\[2^{\log n} = n\]</div>
+<p>To give some intuition for why this is true:
+What does it mean to take the log (base 2) of <span class="math notranslate nohighlight">\(n\)</span>?
+If <span class="math notranslate nohighlight">\(\log_2 n = x\)</span>, then <span class="math notranslate nohighlight">\(x\)</span> is the power to which you need
+to raise 2 to get back to <span class="math notranslate nohighlight">\(n\)</span>.
+So of course, <span class="math notranslate nohighlight">\(2^{\log n} = n\)</span> when the base of the log is 2.</p>
+<p>When discussing logarithms, exponents often lead to confusion.
+Property (3) tells us that <span class="math notranslate nohighlight">\(\log n^2 = 2 \log n\)</span>.
+How do we indicate the square of the logarithm (as opposed to the
+logarithm of <span class="math notranslate nohighlight">\(n^2\)</span>)?
+This could be written as <span class="math notranslate nohighlight">\((\log n)^2\)</span>, but it is traditional to
+use <span class="math notranslate nohighlight">\(\log^2 n\)</span>.
+On the other hand, we might want to take the logarithm of the
+logarithm of <span class="math notranslate nohighlight">\(n\)</span>.
+This is written <span class="math notranslate nohighlight">\(\log \log n\)</span>.</p>
+<p>A special notation is used in the rare case when we need to know how
+many times we must take the log of a number before we reach a
+value <span class="math notranslate nohighlight">\(\leq 1\)</span>.
+This quantity is written <span class="math notranslate nohighlight">\(\log^* n\)</span>.
+For example, <span class="math notranslate nohighlight">\(\log^* 1024 = 4\)</span> because
+<span class="math notranslate nohighlight">\(\log 1024 = 10\)</span>, <span class="math notranslate nohighlight">\(\log 10 \approx 3.33\)</span>,
+<span class="math notranslate nohighlight">\(\log 3.33 \approx 1.74\)</span>,
+and <span class="math notranslate nohighlight">\(\log 1.74 &lt; 1\)</span>, which is a total of 4 log operations.</p>
+<dl class="footnote brackets">
+<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">1</a></span></dt>
+<dd><p>These properties are the idea behind the slide rule.
+Adding two numbers can be viewed as joining two lengths
+together and measuring their combined length.
+Multiplication is not so easily done.
+However, if the numbers are first converted to the lengths of
+their logarithms, then those lengths can be added and the
+inverse logarithm of the resulting length gives the answer for
+the multiplication (this is simply logarithm property (1)).
+A slide rule measures the length of the logarithm for the
+numbers, lets you slide bars representing these lengths to add
+up the total length, and finally converts this total length to
+the correct numeric answer by taking the inverse of the
+logarithm for the result.</p>
+</dd>
+</dl>
+<p>Here is some practice with manipulating logarithms.</p>
+<div
+    id="MathLogSumm"
+    class="embedContainer"
+    data-exer-name="MathLogSumm"
+    data-long-name="Logarithms Practice Questions"
+    data-short-name="MathLogSumm"
+    data-frame-src="../../../Exercises/Background/MathLogSumm.html?localMode=true&amp;module=Logarithms&amp;selfLoggingEnabled=false&amp;JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=java"
+    data-frame-width="950"
+    data-frame-height="650"
+    data-vertical-scrolling="no"
+    data-external="false"
+    data-points="1.0"
+    data-required="True"
+    data-showhide="show"
+    data-threshold="5"
+    data-type="ka"
+    data-exer-id="">
+  
+  <div class="center">
+    <div id="MathLogSumm_iframe"></div>
+  </div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="MiscMath.html">3.<span class="section-number">3. </span>Miscellaneous Notation</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="Summations.html">3.<span class="section-number">5. </span>Summations</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

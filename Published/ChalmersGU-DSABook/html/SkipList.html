@@ -1,0 +1,531 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7.8. Skip Lists (optional) &mdash; Data Structures and Algorithms</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Data Structures and Algorithms" href="index.html" />
+    <link rel="next" title="9. Binary Search Tree Chapter Summary" href="BSTChapSumm.html" />
+    <link rel="prev" title="7. The Splay Tree (optional)" href="Splay.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Data Structures and Algorithms</span></a></h1>
+              <h2 class="heading" ><span>Chapter 7 Search Trees</span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/SkipList.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        «&#160;&#160;<a id="prevmod" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary</a>&#160;&#160;»
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['skip-lists'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SkipList";ODSA.SETTINGS.MODULE_LONG_NAME = "Skip Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/SkipList.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/SearchStruct/SkipListIntroCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/SearchStruct/SkipListInsertCON.css" rel="stylesheet" type="text/css" />
+<link href="../../../AV/SearchStruct/SkipListRmvCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="skip-lists-optional">
+<h1>7.<span class="section-number">8. </span>Skip Lists (optional)<a class="headerlink" href="#skip-lists-optional" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="skip-lists">
+<h2>7.<span class="section-number">8.1. </span>Skip Lists<a class="headerlink" href="#skip-lists" title="Permalink to this headline">¶</a></h2>
+<p>This module presents a probabilistic search structure called the
+<a class="reference internal" href="Glossary.html#term-skip-list"><span class="xref std std-term">skip list</span></a>.
+Like the <a class="reference internal" href="Glossary.html#term-bst"><span class="xref std std-term">BST</span></a>, skip lists are designed to overcome a basic
+limitation of array-based and linked lists:
+Either search or update operations require linear
+time.
+The skip list is an example of a
+<a class="reference internal" href="Glossary.html#term-probabilistic-data-structure"><span class="xref std std-term">probabilistic data structure</span></a>, because it makes some of its
+decisions at random.</p>
+<p>Skip lists provide an alternative to the BST and related tree
+structures.
+The primary problem with the BST is that it may easily become
+unbalanced.
+The <a class="reference internal" href="Glossary.html#term-2-3-tree"><span class="xref std std-term">2-3 Tree</span></a> is guaranteed to remain balanced regardless of
+the order in which data values are inserted, but it is rather
+complicated to implement.
+The <a class="reference internal" href="Glossary.html#term-avl-tree"><span class="xref std std-term">AVL tree</span></a> and the <a class="reference internal" href="Glossary.html#term-splay-tree"><span class="xref std std-term">splay tree</span></a> are also guaranteed to
+provide good performance, but at the cost of added complexity as
+compared to the BST.
+The skip list is easier to implement than known balanced tree
+structures.
+The skip list is not guaranteed to provide good performance
+(where good performance is defined as
+<span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> search, insertion, and deletion time), but it
+will provide good performance with extremely high probability
+(unlike the BST which has a good chance of performing poorly).
+As such it represents a good compromise between difficulty of
+implementation and performance.</p>
+<div id="SkipListIntroCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SkipListIntroCON" data-long-name="SkipListIntroCON" data-exer-id="" alt="SkipListIntroCON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SkipListIntroCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SkipListIntroCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SkipListIntroCON_cm_error_msg" class="cm_error_msg">
+   <img id="SkipListIntroCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>We can continue adding pointers to selected nodes in this way — give
+a third pointer to every fourth node, give a fourth pointer to every
+eighth node, and so on—until we reach the
+ultimate of <span class="math notranslate nohighlight">\(\log n\)</span> pointers in the first and middle nodes for
+a list of <span class="math notranslate nohighlight">\(n\)</span> nodes.
+To search, start with the bottom row of pointers, going as far as
+possible and skipping many nodes at a time.
+Then, shift up to shorter and shorter steps as required.
+With this arrangement, the worst-case number of accesses is
+<span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>.</p>
+<p>We will store with each skip list node an array
+named <code class="docutils literal notranslate"><span class="pre">forward</span></code> that stores the pointers.
+Position <code class="docutils literal notranslate"><span class="pre">forward[0]</span></code> stores a level 0 pointer,
+<code class="docutils literal notranslate"><span class="pre">forward[1]</span></code> stores a level 1 pointer, and so on. It also
+uses a KVPair to store the key and record for the node.
+The SkipNode class follows:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="kd">class</span> <span class="nc">SkipNode</span><span class="o">&lt;</span><span class="n">K</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">private</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">rec</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">forward</span><span class="p">;</span>
+
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">element</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">K</span> <span class="nf">key</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">key</span><span class="p">();</span>
+    <span class="p">}</span>
+
+    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+    <span class="kd">public</span> <span class="nf">SkipNode</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">rec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span>
+      <span class="n">forward</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="n">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The skip list object includes data member <code class="docutils literal notranslate"><span class="pre">level</span></code> that
+stores the highest level for any node currently in the skip list.
+The skip list stores a header node named <code class="docutils literal notranslate"><span class="pre">head</span></code> with
+<code class="docutils literal notranslate"><span class="pre">level+1</span></code> pointers where the head level is initially 0 and the level
+is set to -1 for the empty list. The start of the SkipList class follows:</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SkipList</span><span class="o">&lt;</span><span class="n">K</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Dictionary</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">head</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">level</span><span class="p">;</span>
+  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="kd">private</span> <span class="n">Random</span> <span class="n">ran</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span> <span class="c1">// Hold the Random class object</span>
+
+  <span class="kd">public</span> <span class="nf">SkipList</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">find</span></code> function works as follows.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Return the (first) matching matching element if one exists, null otherwise</span>
+  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Dummy header node</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// For each level...</span>
+      <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// go forward</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Go one last step</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Move to actual record, if it exists</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="na">element</span><span class="p">();</span> <span class="c1">// Got it</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Its not there</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>The ideal skip list is organized so that (if the head node is not
+counted) half of the nodes have only one pointer, one quarter
+have two, one eighth have three, and so on.
+And ideally, the distances would be equally spaced; in effect this is a
+“perfectly balanced” skip list.
+Maintaining such balance would be expensive during the normal process
+of insertions and deletions.
+The key to skip lists is that we do not worry about any of this.
+Whenever inserting a node, we assign it a level
+(i.e., some number of pointers).
+The assignment is random, using a geometric distribution yielding
+a 50% probability that the node will have one pointer, a 25%
+probability that it will have two, and so on.
+The following function determines the level based on such a
+distribution.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Pick a level using a geometric distribution</span>
+  <span class="kt">int</span> <span class="nf">randomLevel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">lev</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">lev</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">ran</span><span class="p">.</span><span class="na">nextInt</span><span class="p">())</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="n">lev</span><span class="o">++</span><span class="p">)</span> <span class="c1">// ran is random generator</span>
+      <span class="p">;</span> <span class="c1">// Do nothing</span>
+    <span class="k">return</span> <span class="n">lev</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<p>Once the proper level for the node has been determined, the next
+step is to find where the node should be inserted and link it in as
+appropriate at all of its levels.
+Here is an implementation for inserting a new
+value into the skip list followed by
+a visualization of the process.
+Note that we build an <code class="docutils literal notranslate"><span class="pre">update</span></code> array as we progress through the skip
+list, so that we can update the pointers for the nodes that will
+precede the one being inserted.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="cm">/** Insert a key, element pair into the skip list */</span>
+  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">newLevel</span> <span class="o">=</span> <span class="n">randomLevel</span><span class="p">();</span> <span class="c1">// New node&#39;s level</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">newLevel</span> <span class="o">&gt;</span> <span class="n">level</span><span class="p">)</span> <span class="c1">// If new node is deeper</span>
+      <span class="n">adjustHead</span><span class="p">(</span><span class="n">newLevel</span><span class="p">);</span> <span class="c1">// adjust the header</span>
+    <span class="c1">// Track end of level</span>
+    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">update</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Start at header node</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Find insert position</span>
+      <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+      <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Track end at level i</span>
+    <span class="p">}</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">newLevel</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Splice into list</span>
+      <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Who x points to</span>
+      <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Who points to x</span>
+    <span class="p">}</span>
+    <span class="n">size</span><span class="o">++</span><span class="p">;</span> <span class="c1">// Increment dictionary size</span>
+  <span class="p">}</span>
+
+  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">adjustHead</span><span class="p">(</span><span class="kt">int</span> <span class="n">newLevel</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+      <span class="n">head</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+    <span class="n">level</span> <span class="o">=</span> <span class="n">newLevel</span><span class="p">;</span>
+  <span class="p">}</span>
+</pre></div>
+</div>
+<div id="SkipListInsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SkipListInsertCON" data-long-name="SkipListInsertCON" data-exer-id="" alt="SkipListInsertCON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SkipListInsertCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SkipListInsertCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SkipListInsertCON_cm_error_msg" class="cm_error_msg">
+   <img id="SkipListInsertCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">remove</span></code> function is similar to insertion in that the <code class="docutils literal notranslate"><span class="pre">update</span></code>
+array is built as part of searching for the record to be deleted.
+Then those nodes specified by the update array have their forward
+pointers adjusted to point around the node being deleted.</p>
+<div id="SkipListRmvCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SkipListRmvCON" data-long-name="SkipListRmvCON" data-exer-id="" alt="SkipListRmvCON" tabIndex="-1">
+ <span class="jsavcounter"></span>
+ <a class="jsavsettings" href="#">Settings</a>
+ <div class="jsavcontrols"></div>
+ <p class="jsavoutput jsavline"></p>
+ <div class="jsavcanvas"></div>
+ <div class="prof_indicators">
+  <img id="SkipListRmvCON_check_mark" class="prof_check_mark" src="_static/Images/green_check.png" alt="Proficient" />
+  <span id="SkipListRmvCON_cm_saving_msg" class="cm_saving_msg">Saving...</span>
+  <span id="SkipListRmvCON_cm_error_msg" class="cm_error_msg">
+   <img id="SkipListRmvCON_cm_warning_icon" class="cm_warning_icon" src="_static/Images/warning.png" alt="Error Saving" /><br />
+   Server Error<br />
+   <a href="#" class="resubmit_link">Resubmit</a>
+  </span>
+ </div>
+</div>
+<p></p>
+<p>A newly inserted node could have a high level generated by
+<code class="docutils literal notranslate"><span class="pre">randomLevel</span></code>, or a low level.
+It is possible that many nodes in the skip list could have many
+pointers, leading to unnecessary insert cost and yielding poor
+(i.e., <span class="math notranslate nohighlight">\(\Theta(n)\)</span>) performance during search, because not many
+nodes will be skipped.
+Conversely, too many nodes could have a low level.
+In the worst case, all nodes could be at level 0, equivalent to a
+regular linked list.
+If so, search will again require <span class="math notranslate nohighlight">\(\Theta(n)\)</span> time.
+However, the probability that performance will be poor is quite low.
+There is only one chance in 1024 that ten nodes in a row will be at
+level 0.
+The motto of probabilistic data structures such as the skip list is
+“Don’t worry, be happy”.
+We simply accept the results of <code class="docutils literal notranslate"><span class="pre">randomLevel</span></code> and expect that
+probability will eventually work in our favor.
+The advantage of this approach is that the algorithms are simple,
+while requiring only <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span> time for all operations in
+the average case.
+For a skip list of size <span class="math notranslate nohighlight">\(n\)</span>, the expected
+memory usage is <span class="math notranslate nohighlight">\(2n\)</span>.
+This is because a level <span class="math notranslate nohighlight">\(l\)</span> node needs
+<span class="math notranslate nohighlight">\(l+1\)</span> forward pointers, but occurs with probability <span class="math notranslate nohighlight">\(2^{(l+1)}\)</span>.
+So a skip list is expected to have
+<span class="math notranslate nohighlight">\(\sum_{l=0}^{l=\infty} (l+1)/2^{(l+1)}\)</span> pointers, which is 2.
+Thus, the  number of pointers needed by both the BST and the skip list
+are expected to be the same.</p>
+<p>In practice, the skip list will probably have better
+performance than a BST storing the same data.
+The BST can have bad performance caused by the order in which data are
+inserted.
+For example, if <span class="math notranslate nohighlight">\(n\)</span> nodes are inserted into a BST in ascending
+order of their key values, then the BST will look like a linked list
+with the deepest node at depth <span class="math notranslate nohighlight">\(n-1\)</span>.
+If the data inserted over the life of the BST could be randomly
+ordered, then the probability distribution for the cost of the insert
+and search operations would be similar to that of the skip list.
+The problem for the BST is that this randomization does not happen in
+fact, but rather the BST is constrained by the actual order of inputs
+and searches.</p>
+<p>In contrast, the skip list’s performance does not depend on the order
+in which values are inserted into the list.
+In a sense, the data are “randomized” automatically as part of the
+skip list’s probabilistic behavior when the depths of the nodes are
+selected.
+As the number of nodes in the skip list increases, the probability of
+encountering the worst case decreases geometrically.
+Thus, the skip list illustrates a tension between the theoretical
+worst case (in this case, <span class="math notranslate nohighlight">\(\Theta(n)\)</span> for a skip list
+operation), and a rapidly increasing probability of average-case
+performance of <span class="math notranslate nohighlight">\(\Theta(\log n)\)</span>, that characterizes
+probabilistic data structures.</p>
+<script type="text/javascript" src="../../../DataStructures/SkipList.js"></script>
+<script type="text/javascript" src="../../../AV/SearchStruct/SkipListIntroCON.js"></script>
+<script type="text/javascript" src="../../../AV/SearchStruct/SkipListInsertCON.js"></script>
+<script type="text/javascript" src="../../../AV/SearchStruct/SkipListRmvCON.js"></script>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        «&#160;&#160;<a id="prevmod1" href="Splay.html">7.<span class="section-number">7. </span>The Splay Tree (optional)</a>
+        &#160;&#160;::&#160;&#160;
+        <a  class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a  id="nextmod1" href="BSTChapSumm.html">7.<span class="section-number">9. </span>Binary Search Tree Chapter Summary</a>&#160;&#160;»
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 24, 2021.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>
