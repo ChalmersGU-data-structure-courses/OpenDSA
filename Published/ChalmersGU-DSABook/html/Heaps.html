@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heaps-and-priority-queues', 'building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues', 'changing-the-priority-of-elements', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['heaps-and-priority-queues', 'building-a-heap', 'removing-from-the-heap-or-updating-an-object-s-priority', 'priority-queues', 'changing-the-priority-of-elements', 'practice-questions'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heaps";ODSA.SETTINGS.MODULE_LONG_NAME = "Heaps and Priority Queues (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 16:47:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/HeapBldChoiceCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/HeapsIndCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/heapbuildProofCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="heaps-and-priority-queues-work-in-progress">
@@ -254,7 +254,7 @@ uses an array.</p>
 <p>Here is an implementation for min heaps.
 The class uses records that support the Comparable interface to
 provide flexibility.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Min-heap implementation</span>
+<div id="MinHeap_MinHeap_code"><ul><li><a href="#MinHeap_MinHeap_code_Java_Generic">Java</a></li><li><a href="#MinHeap_MinHeap_code_Python">Python</a></li></ul><div id="MinHeap_MinHeap_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Min-heap implementation</span>
 <span class="kd">class</span> <span class="nc">MinHeap</span><span class="o">&lt;</span><span class="n">E</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;&gt;</span> <span class="kd">implements</span> <span class="n">PriorityQueue</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kd">private</span> <span class="n">E</span><span class="o">[]</span> <span class="n">heap</span><span class="p">;</span>       <span class="c1">// The heap array</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="n">heapSize</span><span class="p">;</span>   <span class="c1">// Size of heap, and index of the next free slot</span>
@@ -348,7 +348,7 @@ provide flexibility.</p>
         <span class="n">heap</span> <span class="o">=</span> <span class="n">newHeap</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// Return true if pos a leaf position, false otherwise</span>
+    <span class="c1">// Return true if pos is a leaf position, false otherwise.</span>
     <span class="kd">private</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">heapSize</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
     <span class="p">}</span>
@@ -363,7 +363,7 @@ provide flexibility.</p>
         <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="c1">// Return the position for the parent. Returns -1 if we&#39;re already at the root.</span>
+    <span class="c1">// Return the position for the parent. Returns 0 if we&#39;re already at the root.</span>
     <span class="kd">private</span> <span class="kt">int</span> <span class="nf">getParent</span><span class="p">(</span><span class="kt">int</span> <span class="n">pos</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">;</span>
     <span class="p">}</span>
@@ -415,7 +415,150 @@ provide flexibility.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<blockquote>
+</div><div id="MinHeap_MinHeap_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MinHeap</span><span class="p">:</span>
+    <span class="n">_heap</span><span class="p">:</span> <span class="nb">list</span> <span class="c1"># The heap array</span>
+
+    <span class="c1"># Constructor supporting preloading of heap contents</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">h</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">h</span><span class="p">)</span> <span class="c1"># Make a copy of h</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_buildHeap</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">isEmpty</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if there are no elements.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">size</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return current size of the heap.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">getMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return smallest item into heap.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;getMin from empty heap&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Insert elem into heap.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">elem</span><span class="p">)</span>         <span class="c1"># New item starts at end of heap.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_siftUp</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Put the new value in its correct place.</span>
+
+    <span class="k">def</span> <span class="nf">removeMin</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Remove and return minimum value.&quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">IndexError</span><span class="p">(</span><span class="s2">&quot;removeMin from empty heap&quot;</span><span class="p">)</span>
+
+        <span class="n">removed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>     <span class="c1"># Find and remove last element</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">last</span>    <span class="c1"># Replace root with last element</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_siftDown</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>       <span class="c1"># Put the new root in its correct place.</span>
+
+        <span class="k">return</span> <span class="n">removed</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+
+    <span class="c1"># Private helper methods</span>
+
+    <span class="k">def</span> <span class="nf">_checkInvariant</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Check that the invariant holds.&quot;&quot;&quot;</span>
+
+        <span class="n">heapSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">heapSize</span><span class="p">):</span>
+            <span class="n">left</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getLeftChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getRightChild</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lessThan</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Parent (&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;) is smaller than its left child: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &lt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">left</span><span class="p">]);</span>
+
+            <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lessThan</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="s2">&quot;Parent (&quot;</span> <span class="o">+</span> <span class="n">i</span> <span class="o">+</span> <span class="s2">&quot;) is smaller than its right child: &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot; &lt; &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">right</span><span class="p">]);</span>
+
+    <span class="k">def</span> <span class="nf">_isLeaf</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return true if pos is a leaf position, false otherwise.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">_getLeftChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the position for the left child of the given node.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span><span class="o">+</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">_getRightChild</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the position for the right child of the given node.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="mi">2</span><span class="o">*</span><span class="n">pos</span><span class="o">+</span><span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">_getParent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return the position for the parent. Returns 0 if we&#39;re already at the root.&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="n">pos</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+
+    <span class="k">def</span> <span class="nf">_swap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos1</span><span class="p">,</span> <span class="n">pos2</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Swap the values in two positions.&quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">pos1</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">pos2</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">pos2</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">pos1</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">_buildHeap</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Heapify the contents of an array.&quot;&quot;&quot;</span>
+
+        <span class="n">heapSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+        <span class="c1"># Loop from heapSize/2-1 down to 0</span>
+        <span class="k">for</span> <span class="n">pos</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">heapSize</span><span class="o">//</span><span class="mi">2</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_siftDown</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_siftDown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sift a value down the tree, return its new position.&quot;&quot;&quot;</span>
+
+        <span class="n">heapSize</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_isLeaf</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+            <span class="n">child</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getLeftChild</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="n">right</span> <span class="o">=</span> <span class="n">child</span> <span class="o">+</span> <span class="mi">1</span>   <span class="c1"># or: self._getRightChild(pos)</span>
+            <span class="k">if</span> <span class="n">right</span> <span class="o">&lt;</span> <span class="n">heapSize</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lessThan</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+                <span class="n">child</span> <span class="o">=</span> <span class="n">right</span>   <span class="c1"># &#39;child&#39; is now the index of the child with smaller value</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lessThan</span><span class="p">(</span><span class="n">child</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">pos</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_swap</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">child</span><span class="p">)</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">child</span>   <span class="c1"># Move down one level in the tree.</span>
+
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="nf">_siftUp</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Sift a value up the tree, return its new position.&quot;&quot;&quot;</span>
+
+        <span class="k">while</span> <span class="n">pos</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">parent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_getParent</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_lessThan</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">parent</span><span class="p">):</span>
+                <span class="k">return</span> <span class="n">pos</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_swap</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">parent</span><span class="p">)</span>
+            <span class="n">pos</span> <span class="o">=</span> <span class="n">parent</span>   <span class="c1"># Move up one level in the tree.</span>
+
+        <span class="k">return</span> <span class="n">pos</span>
+
+    <span class="k">def</span> <span class="nf">_lessThan</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">):</span>
+        <span class="c1"># Compare the values in the given positions.</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_heap</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#MinHeap_MinHeap_code" ).tabs();});</script><blockquote>
 <div><p>This class definition makes two concessions to the fact that an
 array-based implementation is used.
 First, heap nodes are indicated by their logical position within the

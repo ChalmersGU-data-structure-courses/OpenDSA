@@ -98,7 +98,7 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         heap = newHeap;
     }
 
-    // Return true if pos a leaf position, false otherwise
+    // Return true if pos is a leaf position, false otherwise.
     private boolean isLeaf(int pos) {
         return pos >= heapSize / 2;
     }
@@ -113,7 +113,7 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
         return 2 * pos + 2;
     }
 
-    // Return the position for the parent. Returns -1 if we're already at the root.
+    // Return the position for the parent. Returns 0 if we're already at the root.
     private int getParent(int pos) {
         return (pos - 1) / 2;
     }
