@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['skip-lists'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SkipList";ODSA.SETTINGS.MODULE_LONG_NAME = "Skip Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 16:47:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/SkipList.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['skip-lists'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "SkipList";ODSA.SETTINGS.MODULE_LONG_NAME = "Skip Lists (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-25 22:43:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/SkipList.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SearchStruct/SkipListIntroCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SearchStruct/SkipListInsertCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/SearchStruct/SkipListRmvCON.css" rel="stylesheet" type="text/css" />
@@ -231,30 +231,30 @@ Position <code class="docutils literal notranslate"><span class="pre">forward[0]
 <code class="docutils literal notranslate"><span class="pre">forward[1]</span></code> stores a level 1 pointer, and so on. It also
 uses a KVPair to store the key and record for the node.
 The SkipNode class follows:</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span> <span class="kd">class</span> <span class="nc">SkipNode</span><span class="o">&lt;</span><span class="n">K</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">rec</span><span class="p">;</span>
-    <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">forward</span><span class="p">;</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">class</span> <span class="nc">SkipNode</span><span class="o">&lt;</span><span class="n">K</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
+        <span class="kd">private</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">rec</span><span class="p">;</span>
+        <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">forward</span><span class="p">;</span>
 
-    <span class="kd">public</span> <span class="n">E</span> <span class="nf">element</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span class="kd">public</span> <span class="n">E</span> <span class="nf">element</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">value</span><span class="p">();</span>
+        <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">K</span> <span class="nf">key</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">key</span><span class="p">();</span>
-    <span class="p">}</span>
+        <span class="kd">public</span> <span class="n">K</span> <span class="nf">key</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">key</span><span class="p">();</span>
+        <span class="p">}</span>
 
-    <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
-    <span class="kd">public</span> <span class="nf">SkipNode</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">rec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span>
-      <span class="n">forward</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="n">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-    <span class="p">}</span>
+        <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+        <span class="kd">public</span> <span class="nf">SkipNode</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">,</span> <span class="kt">int</span> <span class="n">level</span><span class="p">)</span> <span class="p">{</span>
+            <span class="n">rec</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">);</span>
+            <span class="n">forward</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+                <span class="n">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+        <span class="p">}</span>
 
-    <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+        <span class="kd">public</span> <span class="n">String</span> <span class="nf">toString</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">rec</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
 </pre></div>
 </div>
 <p>The skip list object includes data member <code class="docutils literal notranslate"><span class="pre">level</span></code> that
@@ -263,29 +263,29 @@ The skip list stores a header node named <code class="docutils literal notransla
 <code class="docutils literal notranslate"><span class="pre">level+1</span></code> pointers where the head level is initially 0 and the level
 is set to -1 for the empty list. The start of the SkipList class follows:</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SkipList</span><span class="o">&lt;</span><span class="n">K</span> <span class="kd">extends</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">K</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="kd">implements</span> <span class="n">Dictionary</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">head</span><span class="p">;</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">level</span><span class="p">;</span>
-  <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
-  <span class="kd">static</span> <span class="kd">private</span> <span class="n">Random</span> <span class="n">ran</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span> <span class="c1">// Hold the Random class object</span>
+    <span class="kd">private</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">head</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">level</span><span class="p">;</span>
+    <span class="kd">private</span> <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+    <span class="kd">static</span> <span class="kd">private</span> <span class="n">Random</span> <span class="n">ran</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Random</span><span class="p">();</span> <span class="c1">// Hold the Random class object</span>
 
-  <span class="kd">public</span> <span class="nf">SkipList</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-    <span class="n">level</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-    <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="p">}</span>
+    <span class="kd">public</span> <span class="nf">SkipList</span><span class="p">()</span> <span class="p">{</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">find</span></code> function works as follows.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Return the (first) matching matching element if one exists, null otherwise</span>
-  <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Dummy header node</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// For each level...</span>
-      <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// go forward</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Go one last step</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Move to actual record, if it exists</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="na">element</span><span class="p">();</span> <span class="c1">// Got it</span>
-    <span class="k">else</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Its not there</span>
-  <span class="p">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Return the (first) matching matching element if one exists, null otherwise</span>
+    <span class="kd">public</span> <span class="n">E</span> <span class="nf">find</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Dummy header node</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="c1">// For each level...</span>
+            <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">// go forward</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Go one last step</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Move to actual record, if it exists</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">x</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span> <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="na">element</span><span class="p">();</span> <span class="c1">// Got it</span>
+        <span class="k">else</span> <span class="k">return</span> <span class="kc">null</span><span class="p">;</span> <span class="c1">// Its not there</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 <p>The ideal skip list is organized so that (if the head node is not
@@ -303,13 +303,13 @@ a 50% probability that the node will have one pointer, a 25%
 probability that it will have two, and so on.
 The following function determines the level based on such a
 distribution.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Pick a level using a geometric distribution</span>
-  <span class="kt">int</span> <span class="nf">randomLevel</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">lev</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">lev</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">ran</span><span class="p">.</span><span class="na">nextInt</span><span class="p">())</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="n">lev</span><span class="o">++</span><span class="p">)</span> <span class="c1">// ran is random generator</span>
-      <span class="p">;</span> <span class="c1">// Do nothing</span>
-    <span class="k">return</span> <span class="n">lev</span><span class="p">;</span>
-  <span class="p">}</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Pick a level using a geometric distribution</span>
+    <span class="kt">int</span> <span class="nf">randomLevel</span><span class="p">()</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">lev</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">lev</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">Math</span><span class="p">.</span><span class="na">abs</span><span class="p">(</span><span class="n">ran</span><span class="p">.</span><span class="na">nextInt</span><span class="p">())</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">;</span> <span class="n">lev</span><span class="o">++</span><span class="p">)</span> <span class="c1">// ran is random generator</span>
+            <span class="p">;</span> <span class="c1">// Do nothing</span>
+        <span class="k">return</span> <span class="n">lev</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 <p>Once the proper level for the node has been determined, the next
@@ -321,34 +321,34 @@ a visualization of the process.
 Note that we build an <code class="docutils literal notranslate"><span class="pre">update</span></code> array as we progress through the skip
 list, so that we can update the pointers for the nodes that will
 precede the one being inserted.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>  <span class="cm">/** Insert a key, element pair into the skip list */</span>
-  <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">newLevel</span> <span class="o">=</span> <span class="n">randomLevel</span><span class="p">();</span> <span class="c1">// New node&#39;s level</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">newLevel</span> <span class="o">&gt;</span> <span class="n">level</span><span class="p">)</span> <span class="c1">// If new node is deeper</span>
-      <span class="n">adjustHead</span><span class="p">(</span><span class="n">newLevel</span><span class="p">);</span> <span class="c1">// adjust the header</span>
-    <span class="c1">// Track end of level</span>
-    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">update</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Start at header node</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Find insert position</span>
-      <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-      <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Track end at level i</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="cm">/** Insert a key, element pair into the skip list */</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">insert</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="n">E</span> <span class="n">elem</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kt">int</span> <span class="n">newLevel</span> <span class="o">=</span> <span class="n">randomLevel</span><span class="p">();</span> <span class="c1">// New node&#39;s level</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newLevel</span> <span class="o">&gt;</span> <span class="n">level</span><span class="p">)</span> <span class="c1">// If new node is deeper</span>
+            <span class="n">adjustHead</span><span class="p">(</span><span class="n">newLevel</span><span class="p">);</span> <span class="c1">// adjust the header</span>
+        <span class="c1">// Track end of level</span>
+        <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;[]</span> <span class="n">update</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">[</span><span class="n">level</span> <span class="o">+</span> <span class="mi">1</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span> <span class="c1">// Start at header node</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Find insert position</span>
+            <span class="k">while</span> <span class="p">((</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">key</span><span class="p">().</span><span class="na">compareTo</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">))</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+            <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Track end at level i</span>
+        <span class="p">}</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">newLevel</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Splice into list</span>
+            <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Who x points to</span>
+            <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Who points to x</span>
+        <span class="p">}</span>
+        <span class="n">size</span><span class="o">++</span><span class="p">;</span> <span class="c1">// Increment dictionary size</span>
     <span class="p">}</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">elem</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">newLevel</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Splice into list</span>
-      <span class="n">x</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span> <span class="c1">// Who x points to</span>
-      <span class="n">update</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Who points to x</span>
-    <span class="p">}</span>
-    <span class="n">size</span><span class="o">++</span><span class="p">;</span> <span class="c1">// Increment dictionary size</span>
-  <span class="p">}</span>
 
-  <span class="kd">private</span> <span class="kt">void</span> <span class="nf">adjustHead</span><span class="p">(</span><span class="kt">int</span> <span class="n">newLevel</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
-    <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
-      <span class="n">head</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
-    <span class="n">level</span> <span class="o">=</span> <span class="n">newLevel</span><span class="p">;</span>
-  <span class="p">}</span>
+    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">adjustHead</span><span class="p">(</span><span class="kt">int</span> <span class="n">newLevel</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">head</span><span class="p">;</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="k">new</span> <span class="n">SkipNode</span><span class="o">&lt;</span><span class="n">K</span><span class="p">,</span> <span class="n">E</span><span class="o">&gt;</span><span class="p">(</span><span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="n">newLevel</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">level</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">head</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="p">.</span><span class="na">forward</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">level</span> <span class="o">=</span> <span class="n">newLevel</span><span class="p">;</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 <div id="SkipListInsertCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="SkipListInsertCON" data-long-name="SkipListInsertCON" data-exer-id="" alt="SkipListInsertCON" tabIndex="-1">
@@ -473,7 +473,7 @@ probabilistic data structures.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 24, 2021.
+      Last updated on Nov 25, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

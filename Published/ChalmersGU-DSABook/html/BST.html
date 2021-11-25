@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 16:47:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['binary-search-tree-definition', 'bst-search', 'bst-insert', 'bst-remove', 'bst-analysis'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BST";ODSA.SETTINGS.MODULE_LONG_NAME = "Binary Search Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-25 22:43:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Binary/BSTShapeCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/BSTCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="binary-search-trees">
 <h1>7.<span class="section-number">2. </span>Binary Search Trees<a class="headerlink" href="#binary-search-trees" title="Permalink to this headline">¶</a></h1>
@@ -469,11 +469,11 @@ Our BST implementation will require that records implement the
 <span class="sd">        Returns the updated node, and the value previously associated with the key.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BSTMap</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BSTMap</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># node.key == key</span>
             <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
@@ -704,11 +704,11 @@ subroutine and is implemented as follows.</p>
 <span class="sd">        Returns the updated node, and the value previously associated with the key.&quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">Node</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="kc">None</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">&lt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&gt;</span> <span class="n">key</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BSTMap</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">key</span> <span class="o">&gt;</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
+        <span class="k">elif</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span> <span class="o">&lt;</span> <span class="n">key</span><span class="p">:</span>
             <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">old_value</span> <span class="o">=</span> <span class="n">BSTMap</span><span class="o">.</span><span class="n">put_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
+        <span class="k">else</span><span class="p">:</span> <span class="c1"># node.key == key</span>
             <span class="n">old_value</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">value</span>
             <span class="n">node</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
         <span class="k">return</span> <span class="n">node</span><span class="p">,</span> <span class="n">old_value</span>
@@ -791,7 +791,7 @@ individually.
 Before tackling the general node removal process,
 we need a useful companion method, <code class="docutils literal notranslate"><span class="pre">largestNode</span></code>, which returns a
 pointer to the node containing the maximum value in the subtree.</p>
-<div id="BST_largestNode_code"><ul><li><a href="#BST_largestNode_code_Java_Generic">Java</a></li><li><a href="#BST_largestNode_code_Python">Python</a></li></ul><div id="BST_largestNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Find the node having the largest key.</span>
+<div id="BSTMap_largestNode_code"><ul><li><a href="#BSTMap_largestNode_code_Java_Generic">Java</a></li><li><a href="#BSTMap_largestNode_code_Python">Python</a></li></ul><div id="BSTMap_largestNode_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="c1">// Find the node having the largest key.</span>
     <span class="n">Node</span> <span class="nf">largestNode</span><span class="p">(</span><span class="n">Node</span> <span class="n">node</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">while</span> <span class="p">(</span><span class="n">node</span><span class="p">.</span><span class="na">right</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="p">.</span><span class="na">right</span><span class="p">;</span>
@@ -799,110 +799,15 @@ pointer to the node containing the maximum value in the subtree.</p>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="BST_largestNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@staticmethod</span>
+</div><div id="BSTMap_largestNode_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">largestNode</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;Find the node having the largest key.&quot;&quot;&quot;</span>
-
         <span class="k">while</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">node</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span>
-
         <span class="k">return</span> <span class="n">node</span>
-
-    <span class="k">def</span> <span class="fm">__iter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Iterate through all keys.</span>
-
-<span class="sd">        This is called when the user writes &#39;for key in bst: ...&#39;.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">)</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;Helper method for &#39;__iter__&#39;.&quot;&quot;&quot;</span>
-
-        <span class="c1"># This method is a generator:</span>
-        <span class="c1"># https://docs.python.org/3/howto/functional.html#generators</span>
-        <span class="c1"># Generators are an easy way to make iterators</span>
-
-        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">BST</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">key</span>
-            <span class="k">yield</span> <span class="n">node</span><span class="o">.</span><span class="n">key</span>
-            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">BST</span><span class="o">.</span><span class="n">iter_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">):</span>
-                <span class="k">yield</span> <span class="n">key</span>
-
-    <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">print_helper</span><span class="p">(</span><span class="n">node</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;An example inorder traversal.</span>
-<span class="sd">        Prints all node keys, in sorted order.&quot;&quot;&quot;</span>
-
-        <span class="k">if</span> <span class="n">node</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span> <span class="k">return</span>
-        <span class="n">BST</span><span class="o">.</span><span class="n">print_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">key</span><span class="p">)</span>
-        <span class="n">BST</span><span class="o">.</span><span class="n">print_helper</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;x = bst[key]&#39;.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-    
-    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;bst[key] = value&#39;.&quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;key in bst&#39;.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">containsKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__delitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called when the user writes &#39;del bst[key]&#39;.&quot;&quot;&quot;</span>
-
-        <span class="bp">self</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called to show the BST as a string.&quot;&quot;&quot;</span>
-
-        <span class="c1"># Use a dict comprehension to convert the BST into a dict:</span>
-        <span class="c1"># https://docs.python.org/3/tutorial/datastructures.html#dictionaries</span>
-        <span class="c1"># Then show the dict as a string.</span>
-
-        <span class="k">return</span> <span class="nb">str</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">})</span>
-        <span class="c1"># This code is the same as:</span>
-        <span class="c1"># d = {}</span>
-        <span class="c1"># for key in self:</span>
-        <span class="c1">#   d[key] = self[key]</span>
-        <span class="c1"># return str(d)</span>
-        <span class="c1"># Note that &#39;for key in self&#39; calls self.__iter__ to produce</span>
-        <span class="c1"># the keys, and &#39;self[key]&#39; calls self.__getitem__.</span>
-
-    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;This is called to show the BST as a string.&quot;&quot;&quot;</span>
-
-        <span class="k">return</span> <span class="nb">repr</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="bp">self</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="p">})</span>
-
-<span class="c1"># Some code to check that the BST is working</span>
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">bst</span> <span class="o">=</span> <span class="n">BST</span><span class="p">()</span>
-    <span class="n">keys</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
-    <span class="n">values</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)))</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-        <span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">values</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bst</span><span class="p">)</span>
-        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]])</span>
-        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">keys</span><span class="p">)):</span>
-        <span class="k">del</span> <span class="n">bst</span><span class="p">[</span><span class="n">keys</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
-        <span class="nb">print</span><span class="p">(</span><span class="n">bst</span><span class="p">)</span>
-        <span class="n">bst</span><span class="o">.</span><span class="n">check_invariant</span><span class="p">()</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#BST_largestNode_code" ).tabs();});</script><p>Now we are ready for the <code class="docutils literal notranslate"><span class="pre">removeHelper</span></code> method.
+</div></div><script>$(function() {$( "#BSTMap_largestNode_code" ).tabs();});</script><p>Now we are ready for the <code class="docutils literal notranslate"><span class="pre">removeHelper</span></code> method.
 Removing a node with given key value <span class="math notranslate nohighlight">\(R\)</span> from the BST
 requires that we first find <span class="math notranslate nohighlight">\(R\)</span> and then remove it from the
 tree.
@@ -1185,7 +1090,7 @@ remain balanced, such as the <a class="reference internal" href="Glossary.html#t
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 24, 2021.
+      Last updated on Nov 25, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

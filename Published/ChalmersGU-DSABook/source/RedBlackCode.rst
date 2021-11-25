@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 16:47:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "RedBlackCode";ODSA.SETTINGS.MODULE_LONG_NAME = "Red-Black Trees (code only)";ODSA.SETTINGS.MODULE_CHAPTER = "Search Trees"; ODSA.SETTINGS.BUILD_DATE = "2021-11-25 22:43:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -34,6 +34,6 @@ For information about red-black trees, see the lecture handout
 
 Here is an implementation of red-black trees:
 
-.. codeinclude:: Binary/RedBlackTree
+.. codeinclude:: ChalmersGU/API/RedBlackMap
    :tag: RedBlackTree
 

@@ -5,8 +5,7 @@ import java.util.Iterator;
 // A dictionary implemented using an red-black tree.
 public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     Node root = null;   // The root of the red black tree.
-    int treeSize;       // The size of the tree.
-    V oldValue;         // Internal temporary variable for storing the old value of a key.
+    int treeSize = 0;   // The size of the tree.
 
     // A node in an red-black tree.
     class Node {
@@ -25,17 +24,21 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
         }
     }
 
-    // Check that the invariant holds.
-    void checkInvariant() {
-        if (isRed(root))
-            throw new AssertionError("red root");
-        checkInvariantHelper(root, null, null);
-    }
-
     // Check if a node is red. 'null' is always black.
     boolean isRed(Node node) {
         if (node == null) return false;
         return node.isRed;
+    }
+
+    // Check that the invariant holds.
+    void checkInvariant() {
+        if (isRed(root))
+            throw new AssertionError("red root");
+        ArrayList<K> keys = new ArrayList<>();
+        iteratorHelper(root, keys);
+        if (keys.size() != treeSize)
+            throw new AssertionError("wrong tree size");
+        checkInvariantHelper(root, null, null);
     }
 
     // Recursive helper method for 'check_invariant'.
@@ -44,22 +47,25 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     // if lo is None, and k < hi is skipped if hi is None.
     // Returns the "black height" of the tree.
     int checkInvariantHelper(Node node, K lo, K hi) {
-        if (node == null)
-            return 0;
-        if (isRed(node.right))
-            throw new AssertionError("red right child");
-        if (isRed(node) && isRed(node.left))
-            throw new AssertionError("red node with red left child");
+        if (node == null) return 0;
+
         if (lo != null && node.key.compareTo(lo) <= 0)
             throw new AssertionError("key too small");
         if (hi != null && node.key.compareTo(hi) >= 0)
             throw new AssertionError("key too big");
+
+        if (isRed(node.right))
+            throw new AssertionError("red right child");
+        if (isRed(node) && isRed(node.left))
+            throw new AssertionError("red node with red left child");
+
         // Keys in the left subtree should be < node.key
-        int h1 = checkInvariantHelper(node.left, lo, node.key);
         // Keys in the right subtree should be > node.key
+        int h1 = checkInvariantHelper(node.left, lo, node.key);
         int h2 = checkInvariantHelper(node.right, node.key, hi);
         if (h1 != h2)
             throw new AssertionError("unbalanced tree");
+
         return h1 + (isRed(node) ? 0 : 1);
     }
 
@@ -87,17 +93,18 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     V getHelper(Node node, K key) {
         if (node == null)
             return null;
-        else if (key.compareTo(node.key) < 0)
+        if (node.key.compareTo(key) > 0)
             return getHelper(node.left, key);
-        else if (key.compareTo(node.key) > 0)
+        else if (node.key.compareTo(key) < 0)
             return getHelper(node.right, key);
-        else
+        else // node.key == key
             return node.value;
     }
 
     // Add a key-value pair, or update the value associated with an existing key.
+    // Returns the previous value associated with the key,
+    // or null if the key wasn't previously present.
     public V put(K key, V value) {
-        oldValue = null;
         root = putHelper(root, key, value);
         if (isRed(root))
             root.isRed = false;
@@ -109,67 +116,40 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
     // Recursive helper method for 'put'.
     Node putHelper(Node node, K key, V value) {
         if (node == null) {
+            oldValue = null;
             return new Node(true, key, value, null, null);
-        } else if (key.compareTo(node.key) < 0) {
+        } else if (node.key.compareTo(key) > 0) {
             node.left = putHelper(node.left, key, value);
-        } else if (key.compareTo(node.key) > 0) {
+        } else if (node.key.compareTo(key) < 0) {
             node.right = putHelper(node.right, key, value);
-        } else {
+        } else { // node.key == key
             oldValue = node.value;
             node.value = value;
         }
         return rebalance(node);
     }
 
+    // Used by put, remove, putHelper and removeHelper,
+    // in order to return the value previously stored in the node.
+    private V oldValue;
+
     // Delete a key.
     public V remove(K key) {
-        oldValue = null;
-        // root = removeHelper(root, key);
-        if (oldValue != null)
-            treeSize--;
-        return oldValue;
+        throw new UnsupportedOperationException("remove is not implemented yet");
     }
-
-    // // Recursive helper method for 'remove'.
-    // Node removeHelper(Node node, K key) {
-    //     if (node == null)
-    //         return null;
-    //     else if (key.compareTo(node.key) < 0) {
-    //         node.left = removeHelper(node.left, key);
-    //         node.updateHeight();
-    //         return rebalance(node);
-    //     } else if (key.compareTo(node.key) > 0) {
-    //         node.right = removeHelper(node.right, key);
-    //         node.updateHeight();
-    //         return rebalance(node);
-    //     } else { // key == node.key
-    //         oldValue = node.value;
-    //         if (node.left == null)
-    //             return node.right;
-    //         else if (node.right == null)
-    //             return node.left;
-    //         else {
-    //             Node lastNode = lastNodeHelper(node.left);
-    //             K lastKey = lastNode.key;
-    //             V lastValue = lastNode.value;
-    //             node.left = removeHelper(node.left, lastKey);
-    //             node.key = lastKey;
-    //             node.value = lastValue;
-    //             node.updateHeight();
-    //             return rebalance(node);
-    //         }
-    //     }
-    // }
 
     // Repair the red-black invariant by rebalancing the node.
     Node rebalance(Node node) {
         if (node == null) return node;
+
         // Skew
         if (isRed(node.right))
             node = rotateLeft(node);
+
         // Split part 1
         if (isRed(node.left) && isRed(node.left.left))
             node = rotateRight(node);
+
         // Split part 2
         if (isRed(node.left) && isRed(node.right)) {
             node.left.isRed = false;
@@ -257,12 +237,12 @@ public class RedBlackMap<K extends Comparable<K>, V> implements Map<K, V> {
 
         for (int i = 0; i < keys.length; i++) {
             bst.put(keys[i], values[i]);
-            System.out.println(bst);
+            System.out.println(bst.size() + ": " + bst);
             bst.checkInvariant();
         }
 
         for (int i = 0; i < keys.length; i++) {
-            System.out.println(bst.get(keys[i]));
+            System.out.println(keys[i] + " -> " + bst.get(keys[i]));
             bst.checkInvariant();
         }
     }
