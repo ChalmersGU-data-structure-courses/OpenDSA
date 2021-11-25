@@ -148,7 +148,7 @@ Before tackling the general node removal process,
 we need a useful companion method, ``largestNode``, which returns a
 pointer to the node containing the maximum value in the subtree.
 
-.. codeinclude:: Binary/BST
+.. codeinclude:: ChalmersGU/API/BSTMap
    :tag: largestNode
 
 Now we are ready for the ``removeHelper`` method.
