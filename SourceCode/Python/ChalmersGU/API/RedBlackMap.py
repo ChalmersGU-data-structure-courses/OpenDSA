@@ -1,36 +1,32 @@
 
 from API import Map
 
-#/* *** ODSATag: AVLTree *** */
+#/* *** ODSATag: RedBlackTree *** */
 # Python does not have internal classes, so we have to make the tree node class standalone.
 class Node:
-    """A node in an AVL tree."""
+    """A node in a red-black tree."""
 
-    def __init__(self, key, value, left = None, right = None):
+    def __init__(self, is_red, key, value, left = None, right = None):
+        self._is_red = is_red
         self.key = key
         self.value = value
         self.left = left
         self.right = right
-        self.update_height()
 
-    def height(self):
-        """Return the height of a tree. Also works for None."""
+    def is_red(self):
         if self is None:
-            return 0
+            return False
         else:
-            return self._height
+            return self._is_red
+#/* *** ODSAendTag: RedBlackTree *** */
 
-    def update_height(self):
-        """Recompute the value of the height field.
-        Must be called every time the height of the tree could change."""
-        self._height = 1 + max(Node.height(self.left), Node.height(self.right))
-
-    def height_diff(self):
-        """Return the height difference, left height - right height."""
-        return Node.height(self.left) - Node.height(self.right)
+    def __str__(self):
+        return "Node(%s, %s, %s, %s, %s)" % \
+            (self._is_red, self.key, self.value, self.left, self.right)
+#/* *** ODSATag: RedBlackTree *** */
 
 
-class AVLMap(Map):
+class RedBlackMap(Map):
     """A dictionary implemented using a binary search tree."""
 
     def __init__(self):
@@ -39,29 +35,35 @@ class AVLMap(Map):
 
     def check_invariant(self):
         """Check that the invariant holds."""
-        size = self.check_invariant_helper(self.root, None, None)
-        assert size == self.treeSize, "wrong tree size"
+        assert not Node.is_red(self.root), "red root"
+        keys = list(self)
+        assert len(keys) == self.treeSize, "wrong tree size"
+        self.check_invariant_helper(self.root, None, None)
 
     @staticmethod
     def check_invariant_helper(node, lo, hi):
-        """Helper method for 'check_invariant'.
-        Checks that the node is the root of a valid AVL tree, and that
+        """Recurive helper method for 'check_invariant'.
+        Checks that the node is the root of a valid red-black tree, and that
         all keys k satisfy lo < k < hi. The test lo < k is skipped
-        if lo is None, and k < hi is skipped if hi is None."""
+        if lo is None, and k < hi is skipped if hi is None.
+        Returns the "black height" of the tree."""
 
         if node is None: return 0
 
         assert lo is None or node.key > lo, "key too small"
         assert hi is None or node.key < hi, "key too big"
 
-        assert node.height_diff() <= 1, "too left-leaning"
-        assert node.height_diff() >= -1, "too right-leaning"
+        assert not Node.is_red(node.right), "red right child"
+
+        assert not (Node.is_red(node) and Node.is_red(node.left)), "red node with red left child"
 
         # Keys in the left subtree should be < node.key
         # Keys in the right subtree should be > node.key
-        return (1 + 
-                AVLMap.check_invariant_helper(node.left, lo, node.key) +
-                AVLMap.check_invariant_helper(node.right, node.key, hi))
+        h1 = RedBlackMap.check_invariant_helper(node.left, lo, node.key)
+        h2 = RedBlackMap.check_invariant_helper(node.right, node.key, hi)
+        assert h1 == h2, "unbalanced tree"
+
+        return h1 + (0 if Node.is_red(node) else 1)
 
     def isEmpty(self):
         """Return true if there are no keys."""
@@ -85,9 +87,9 @@ class AVLMap(Map):
         if node is None:
             return None
         elif node.key > key:
-            return AVLMap.get_helper(node.left, key)
+            return RedBlackMap.get_helper(node.left, key)
         elif node.key < key:
-            return AVLMap.get_helper(node.right, key)
+            return RedBlackMap.get_helper(node.right, key)
         else:
             return node.value
 
@@ -96,6 +98,8 @@ class AVLMap(Map):
         Returns the value previously associated with the key, 
         or None if the key was not present."""
         self.root, old_value = self.put_helper(self.root, key, value)
+        if Node.is_red(self.root):
+            self.root._is_red = False
         if old_value is None:
             self.treeSize += 1
         return old_value
@@ -105,94 +109,46 @@ class AVLMap(Map):
         """Recursive helper method for 'put'.
         Returns the updated node, and the value previously associated with the key."""
         if node is None:
-            return Node(key, value, None, None), None
+            return Node(True, key, value, None, None), None
         elif node.key > key:
-            node.left, old_value = AVLMap.put_helper(node.left, key, value)
-            node.update_height()
+            node.left, old_value = RedBlackMap.put_helper(node.left, key, value)
         elif node.key < key:
-            node.right, old_value = AVLMap.put_helper(node.right, key, value)
-            node.update_height()
+            node.right, old_value = RedBlackMap.put_helper(node.right, key, value)
         else: # node.key == key
             old_value = node.value
             node.value = value
-        return AVLMap.rebalance(node), old_value
+        return RedBlackMap.rebalance(node), old_value
 
     def remove(self, key):
-        """Delete a key.
-        Returns the value previously associated with the key, 
-        or None if the key was not present."""
-        self.root, old_value = self.remove_helper(self.root, key)
-        if old_value is not None:
-            self.treeSize -= 1
-        return old_value
-
-    @staticmethod
-    def remove_helper(node, key):
-        """Helper method for 'remove'.
-        Returns the updated node, and the value previously associated with the key."""
-        if node is None:
-            return None, None
-        elif node.key > key:
-            node.left, old_value = AVLMap.remove_helper(node.left, key)
-            node.update_height()
-            return AVLMap.rebalance(node), old_value
-        elif node.key < key:
-            node.right, old_value = AVLMap.remove_helper(node.right, key)
-            node.update_height()
-            return AVLMap.rebalance(node), old_value
-        else: # node.key == key
-            if node.left is None:
-                return node.right, node.value
-            elif node.right is None:
-                return node.left, node.value
-            else:
-                predecessor = AVLMap.largestNode(node.left)
-                old_value = node.value
-                node.key = predecessor.key
-                node.value = predecessor.value
-                node.left, _ = AVLMap.remove_helper(node.left, predecessor.key)
-                node.update_height()
-                return AVLMap.rebalance(node), old_value
-
-    def lastKey(self):
-        """Find the largest key."""
-        if self.root is None:
-            return None
-        else:
-            return self.largestNode(self.root).key
-
-    @staticmethod
-    def largestNode(node):
-        """Find the node having the largest key."""
-        while node.right is not None:
-            node = node.right
-        return node
+        """Delete a key. 
+        Not implemented yet!"""
+        raise NotImplementedError("remove is not implemented yet")
 
     @staticmethod
     def rebalance(node):
         if node is None: return None
-        diff = node.height_diff()
+        
+        # Skew
+        if Node.is_red(node.right):
+            node = RedBlackMap.rotate_left(node)
 
-        if diff == 2:  # Left-leaning
-            left_diff = node.left.height_diff()
-            if left_diff == -1:  # Left-right - convert to left-left
-                node.left = AVLMap.rotate_left(node.left)
-                node.update_height()
-            return AVLMap.rotate_right(node)
-        elif diff == -2:  # Right-leaning
-            right_diff = node.right.height_diff()
-            if right_diff == 1:  # Right-left - convert to right-right
-                node.right = AVLMap.rotate_right(node.right)
-                node.update_height()
-            return AVLMap.rotate_left(node)
-        else:
-            return node
+        # Split part 1
+        if Node.is_red(node.left) and Node.is_red(node.left.left):
+            node = RedBlackMap.rotate_right(node)
+
+        # Split part 2
+        if Node.is_red(node.left) and Node.is_red(node.right):
+            node.left._is_red = False
+            node.right._is_red = False
+            node._is_red = True
+
+        return node
 
     @staticmethod
     def rotate_left(node):
         """
         Left rotation.
-        
+
            x                 y
           / \               / \
          A   y     ===>    x   C
@@ -205,9 +161,12 @@ class AVLMap(Map):
         y = x.right
         B = y.left
         C = y.right
-        return Node(key = y.key, value = y.value,
+
+        # We also swap x's and y's colours
+        # (e.g. if x was black before, then y will be black afterwards).
+        return Node(is_red = x.is_red(), key = y.key, value = y.value,
                     left =
-                        Node(key = x.key, value = x.value,
+                        Node(is_red = y.is_red(), key = x.key, value = x.value,
                              left = A, right = B),
                     right = C)
 
@@ -228,10 +187,13 @@ class AVLMap(Map):
         A = y.left
         B = y.right
         C = x.right
-        return Node(key = y.key, value = y.value,
+
+        # We also swap x's and y's colours
+        # (e.g. if x was black before, then y will be black afterwards).
+        return Node(is_red = x.is_red(), key = y.key, value = y.value,
                     left = A,
                     right =
-                        Node(key = x.key, value = x.value,
+                        Node(is_red = y.is_red(), key = x.key, value = x.value,
                              left = B, right = C))
 
     def __iter__(self):
@@ -249,10 +211,10 @@ class AVLMap(Map):
         if node is None:
             return
         else:
-            for key in AVLMap.iter_helper(node.left):
+            for key in RedBlackMap.iter_helper(node.left):
                 yield key
             yield node.key
-            for key in AVLMap.iter_helper(node.right):
+            for key in RedBlackMap.iter_helper(node.right):
                 yield key
 
     def __getitem__(self, key):
@@ -270,12 +232,12 @@ class AVLMap(Map):
     def __delitem__(self, key):
         """This is called when the user writes 'del bst[key]'."""
         self.remove(key)
-#/* *** ODSAendTag: AVLTree *** */
+#/* *** ODSAendTag: RedBlackTree *** */
 
     def __str__(self):
-        """This is called to show the AVL as a string."""
+        """This is called to show the red-black tree as a string."""
 
-        # Use a dict comprehension to convert the AVL into a dict:
+        # Use a dict comprehension to convert the red-black tree into a dict:
         # https://docs.python.org/3/tutorial/datastructures.html#dictionaries
         # Then show the dict as a string.
 
@@ -289,23 +251,19 @@ class AVLMap(Map):
         # the keys, and 'self[key]' calls self.__getitem__.
 
     def __repr__(self):
-        """This is called to show the AVL as a string."""
+        """This is called to show the red-black tree as a string."""
         return repr({key: self[key] for key in self})
 
-# Some code to test that the AVL tree is working
+# Some code to test that the tree is working
 if __name__ == '__main__':
-    bst = AVLMap()
+    bst = RedBlackMap()
     keys = [3,1,4,1,5,9,2,6,5,3,5,8,9,7,9,3,2,3,8,4,6]
     values = list(range(len(keys)))
 
     for i in range(len(keys)):
         bst[keys[i]] = values[i]
-        print(Node.height(bst.root), bst)
+        print(bst.root)
         bst.check_invariant()
     for i in range(len(keys)):
         print(bst[keys[i]])
-        bst.check_invariant()
-    for i in range(len(keys)):
-        del bst[keys[i]]
-        print(Node.height(bst.root), bst)
         bst.check_invariant()

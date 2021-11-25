@@ -97,11 +97,11 @@ class BSTMap(Map):
         Returns the updated node, and the value previously associated with the key."""
         if node is None:
             return Node(key, value, None, None), None
-        elif key < node.key:
+        elif node.key > key:
             node.left, old_value = BSTMap.put_helper(node.left, key, value)
-        elif key > node.key:
+        elif node.key < key:
             node.right, old_value = BSTMap.put_helper(node.right, key, value)
-        else:
+        else: # node.key == key
             old_value = node.value
             node.value = value
         return node, old_value

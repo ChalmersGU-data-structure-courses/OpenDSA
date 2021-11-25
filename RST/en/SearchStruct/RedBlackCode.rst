@@ -17,5 +17,5 @@ For information about red-black trees, see the lecture handout
 
 Here is an implementation of red-black trees:
 
-.. codeinclude:: Binary/RedBlackTree
+.. codeinclude:: ChalmersGU/API/RedBlackMap
    :tag: RedBlackTree
