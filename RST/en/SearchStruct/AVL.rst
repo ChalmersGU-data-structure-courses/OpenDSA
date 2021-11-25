@@ -187,7 +187,7 @@ To try out AVL insertion yourself and see how it works, see
 
 Here is an implementation of AVL trees:
 
-.. codeinclude:: Binary/AVL
+.. codeinclude:: ChalmersGU/API/AVLMap
    :tag: AVLTree
 
 .. _AVL Tree Visualization: https://www.cs.usfca.edu/~galles/visualization/AVLtree.html
