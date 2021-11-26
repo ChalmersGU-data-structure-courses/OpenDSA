@@ -41,7 +41,7 @@ class Util {
         case "heapsort": HeapSort.heapSort(array); break;
         }
         System.out.println("After sorting:  " + Arrays.toString(array));
-        SortUtil.checkOrder(array);
+        Util.checkOrder(array);
     }
 }
 

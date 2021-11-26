@@ -6,8 +6,7 @@ import java.util.Arrays;
 
 class PQSort {
 
-/* *** ODSATag: PQsort *** */
-@SuppressWarnings("unchecked")
+/* *** ODSATag: PQSort *** */
 public static <E extends Comparable<E>> void pqSort(E[] array) {
     // MinHeap is a class that implements the priority queue ADT;
     // we will see how it works in the next section.
@@ -17,6 +16,6 @@ public static <E extends Comparable<E>> void pqSort(E[] array) {
     for (int i = 0; i < array.length; i++)
         array[i] = pq.removeMin();
 }
-/* *** ODSAendTag: PQsort *** */
+/* *** ODSAendTag: PQSort *** */
 
 }

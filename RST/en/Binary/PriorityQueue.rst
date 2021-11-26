@@ -70,8 +70,8 @@ sort a list of items:
 
 Here is an implementation of this algorithm in code:
 
-.. codeinclude:: ChalmersGU/Sorting/PQsort
-   :tag: PQsort
+.. codeinclude:: ChalmersGU/Sorting/PQSort
+   :tag: PQSort
 
 What is the time complexity of this algorithm? Well, for an input list
 of size :math:`n`, the algorithm calls ``add`` :math:`n` times and
