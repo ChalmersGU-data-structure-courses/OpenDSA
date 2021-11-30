@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-25 22:43:15"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "PriorityQueue";ODSA.SETTINGS.MODULE_LONG_NAME = "Priority queues";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -87,8 +87,8 @@ sort a list of items:
 
 Here is an implementation of this algorithm in code:
 
-.. codeinclude:: ChalmersGU/Sorting/PQsort
-   :tag: PQsort
+.. codeinclude:: ChalmersGU/Sorting/PQSort
+   :tag: PQSort
 
 What is the time complexity of this algorithm? Well, for an input list
 of size :math:`n`, the algorithm calls ``add`` :math:`n` times and

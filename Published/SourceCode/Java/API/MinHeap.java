@@ -21,7 +21,7 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     }
 
     MinHeap(E[] h) {
-        heap = Arrays.copyOf(h);
+        heap = Arrays.copyOf(h, h.length);
         heapSize = heap.length;
         buildHeap();
         if (heapSize < MinCapacity)
@@ -55,13 +55,13 @@ class MinHeap<E extends Comparable<E>> implements PriorityQueue<E> {
     // Remove and return minimum value
     public E removeMin() {
         if (!(heapSize > 0)) throw new NoSuchElementException("removeMin from empty heap");
+        E removed = heap[0];
         heapSize--;
         swap(0, heapSize);  // Swap the root with the current last value.
         if (heapSize > 0) 
             siftDown(0);    // Put the new heap root val in its correct place.
         if (heapSize <= heap.length * MinLoadFactor)
             resizeHeap((int) (heap.length / CapacityMultiplier));
-        E removed = heap[heapSize];
         heap[heapSize] = null;   // Remove the old root value, for garbage collection.
         return removed;
     }
