@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-api', 'adjacency-matrix', 'adjacency-list'];</script>
 
 .. _GraphImpl:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,11 @@
    :satisfies: graph implementation
    :topic: Graphs
 
-Graph Implementations (WORK IN PROGRESS)
-============================================
+Graph Implementations
+=====================
+
+Graph API
+---------
 
 We next turn to the problem of implementing a general-purpose
 :term:`graph` class.
@@ -37,63 +40,40 @@ In this module we will show actual implementations for each approach.
 We will begin with an interface defining an ADT for graphs that a
 given implementation must meet.
 
-.. codeinclude:: Graphs/Graph
+.. codeinclude:: ChalmersGU/API/API
    :tag: GraphADT
 
-This ADT assumes that the number of vertices is fixed
-when the graph is created, but that edges can be added and removed.
-The ``init`` method sets (or resets) the number of nodes in the graph,
-and creates necessary space for the adjacency matrix or adjacency list.
+Note that this API is quite generic, and perhaps not suited for all
+kinds of implementations. For example, the adjacency matrix implementation
+works best if the vertices are integers in the range :math:`0\ldots |\mathbf{V}|-1`
+where :math:`|\mathbf{V}|` is the number of vertices.
 
-Vertices are defined by an integer index value.
-In other words, there is a Vertex 0, Vertex 1, and so on through
-Vertex :math:`n-1`.
-We can assume that the graph's client application stores any additional
-information of interest about a given vertex elsewhere, such as a name
-or application-dependent value.
-Note that in a language like Java or C++, this ADT would not be
-implemented using a language feature like a generic or template,
-because it is the ``Graph`` class users' responsibility to maintain
-information related to the vertices themselves.
-The ``Graph`` class need have no knowledge of the type or content
-of the information associated with a vertex, only the index number for
-that vertex.
+The interface ``Graph`` has methods to return the number of vertices and
+edges (methods ``vertexCount`` and ``edgeCount``, respectively).
+You can add vertices and edges by the methods ``addVertex`` and ``addEdge``.
+Normally you don't have to add vertices explicitly, because ``addEdge`` should do
+that for you if necessary.
 
-Interface ``Graph`` has methods to return the number of vertices and
-edges (methods ``n`` and ``e``, respectively).
-Function ``weight`` returns the weight of a given edge, with that
-edge identified by its two incident vertices.
-For example, calling ``weight(0, 4)`` on the graph of
-Figure :num:`Figure #GraphTerms` (c) would return 4.
-If no such edge exists, the weight is defined to be 0.
-So calling ``weight(0, 2)`` on the graph of
-Figure :num:`Figure #GraphTerms` (c) would return 0.
-
-Functions ``addEdge`` and ``removeEdge`` add an edge (setting its
-weight) and removes an edge from the graph, respectively.
-Again, an edge is identified by its two incident vertices.
-``addEdge`` does not permit the user to set the weight to be 0,
-because this value is used to indicate a non-existent edge, nor are
-negative edge weights permitted.
-Functions ``getValue`` and ``setValue`` get and set, respectively,
-a requested value for Vertex :math:`v`.
-In our example applications the most frequent use of these methods
-will be to indicate whether a given node has previously been visited
-in the process of the algorithm
+Given an edge, we can use the attributes `start` and `end`
+to know the adjacent vertices, and `weight` to know the weight.
+Note that these attributes are **final**, which means that they cannot be changed
+after initialisation.
 
 Nearly every graph algorithm presented in this chapter will require
 visits to all neighbors of a given vertex.
-The ``neighbors`` method returns an array containing the indices for
-the neighboring vertices, in ascending order.
-The following lines appear in many graph algorithms.
+The ``outgoingEdges`` method returns a collection containing the
+edges that originate in the given vertex. To get the neighbors
+you can simply call ``e.end`` for each outgoing edge ``e``.
+The following lines appear in many graph algorithms::
 
-.. codeinclude:: Graphs/GraphDummy
-   :tag: GraphNeighbor
+  for each edge e in G.outgoingEdges(v):
+      w = e.end
+      if w is not in visitedVertices:
+          add w to visitedVertices
+          ...do something with v, w, or e...
 
-First, an array is generated that contains the indices of the nodes
-that can be directly reached from node ``v``.
-The ``for`` loop then iterates through this neighbor array to execute
-some function on each.
+Here, ``visitedVertices`` is a set of vertices to keep track that we
+don't visit a vertex twice.
 
 It is reasonably straightforward to implement our graph ADT
 using either the adjacency list or adjacency matrix.
@@ -104,13 +84,14 @@ this purpose, perhaps reading the graph description from a file.
 The graph can be built up by using the ``addEdge`` function
 provided by the ADT.
 
+Adjacency Matrix
+-----------------
+
 Here is an implementation for the adjacency matrix.
 
-.. codeinclude:: Graphs/GraphM
-   :tag: GraphM
+.. codeinclude:: ChalmersGU/API/MatrixGraph
+   :tag: MatrixGraph
 
-Array ``nodeValues`` stores the information manipulated by the
-``setValue`` and ``getValue`` functions.
 The edge matrix is implemented as an integer array of size
 :math:`n \times n` for a graph of :math:`n` vertices.
 Position :math:`(i, j)` in the matrix stores the weight for edge
@@ -118,40 +99,43 @@ Position :math:`(i, j)` in the matrix stores the weight for edge
 A weight of zero for edge :math:`(i, j)` is used to indicate that no
 edge connects Vertices :math:`i` and :math:`j`.
 
-Given a vertex :math:`v`, the ``neighbors`` method scans through row
+This means that this simple implementation of an adjacency matrix
+does not work for all kinds of vertex types, but only for integer
+vertices. In addition, the vertices must be numbered :math:`0\ldots |\mathbf{V}|-1`.
+Therefore, the ``addVertex`` method is not used in this implementation,
+and instead the user has to specify the number of vertices from the start.
+The ``vertices`` method returns a collection of all vertices,
+which in this case is just the numbers :math:`0\ldots |\mathbf{V}|-1`.
+
+Given a vertex :math:`v`, the ``outgoingEdges`` method scans through row
 ``v`` of the matix to locate the positions of the various neighbors.
-If no edge is incident on :math:`v`, then returned neighbor array will
-have length 0.
-Functions ``addEdge`` and ``removeEdge`` adjust the
-appropriate value in the array.
-Function ``weight`` returns the value stored in the
-appropriate position in the array.
+It creates an edge for each neighbour and adds it to a queue.
+(There is no special reason why we use a queue, we could use a stack
+or a list too).
 
-Here is an implementation of the adjacency list representation for
-graphs.
-Its main data structure is an array of linked lists, one linked list
-for each vertex.
-These linked lists store objects of type ``Edge``, which merely
-stores the index for the vertex pointed to by the edge, along with the
-weight of the edge.
+Adjacency List
+---------------
 
-.. codeinclude:: Graphs/GraphL 
-   :tag: GraphL
+Here is an implementation of the adjacency list representation for graphs.
+This implementation uses a generic type for vertices, so that you can
+use strings or anything else.
 
-Implementation for ``GraphL`` member functions is straightforward
-in principle, with the key functions being ``addEdge``,
-``removeEdge``, and ``weight``.
-They simply start at the beginning of the adjacency list and move
-along it until the desired vertex has been found.
-Private method find is a utility for finding the last edge preceding
-the one that holds vertex :math:`v` if that exists.
+Its main data structure is a map from vertices to sets of edges.
+Exactly which kind of map or set we use can depend on our needs,
+but in this implementation we use a :ref:`separate chaining hash map  <OpenHash>`,
+backed with a set implemented as a :ref:`linked list <ListMap>`.
 
-.. raw:: html
+So, for each vertex, we store a linked list of all the edges originating
+from that vertex.
+This makes the method ``outgoingEdges`` very efficient, because the only
+thing we have to do is to look up the given vertex in the internal map.
+To make the methods ``vertexCount`` and ``vertices`` efficient,
+we in addition store the vertices separately in the set ``verticesSet``.
 
-   <a id="todo0"></a>
+The implementations of the API methods are quite straightforward,
+as can be seen here:
 
-.. TODO::
-  type: Exercise
-   Add a battery of questions to test knowledge of the
-   implementations.
+.. codeinclude:: ChalmersGU/API/AdjacencyGraph
+   :tag: AdjacencyGraph
+
 

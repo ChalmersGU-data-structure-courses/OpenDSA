@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -245,7 +245,7 @@ A simpler approach is to add the new (always smaller) distance value
 for a given vertex as a new record in the heap.
 The smallest value for a given vertex currently in the heap will be
 found first, and greater distance values found later will be ignored
-because the vertex will already be marked as ``VISITED``.
+because the vertex will already be marked as **visited**.
 The only disadvantage to repeatedly inserting distance values in this
 way is that it will raise the number of elements in the heap from
 :math:`\Theta(|\mathbf{V}|)` to :math:`\Theta(|\mathbf{E}|)`

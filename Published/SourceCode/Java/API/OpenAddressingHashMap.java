@@ -22,11 +22,6 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
         numDeleted = 0;
     }
 
-    private int probe(K key, int i) {
-        return i;        // Linear probing
-        // return i*i;   // Quadratic probing
-    }
-
     private int hashAndProbe(K key) {
         int home = key.hashCode() & 0x7fffffff;   // Turn the hash code into a positive integer
         for (int i = 0; i < internalTable.length; i++) {
@@ -36,6 +31,11 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
                 return pos;
         }
         throw new IllegalStateException("Hash table full");
+    }
+
+    private int probe(K key, int i) {
+        return i;        // Linear probing
+        // return i*i;   // Quadratic probing
     }
 
     public V put(K key, V value) {

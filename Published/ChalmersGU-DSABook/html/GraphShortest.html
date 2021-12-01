@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['shortest-paths-problems', 'single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['shortest-paths-problems', 'single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="shortest-paths-problems-work-in-progress">
 <h1>10.<span class="section-number">5. </span>Shortest-Paths Problems (WORK IN PROGRESS)<a class="headerlink" href="#shortest-paths-problems-work-in-progress" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="shortest-paths-problems">
@@ -425,7 +425,7 @@ A simpler approach is to add the new (always smaller) distance value
 for a given vertex as a new record in the heap.
 The smallest value for a given vertex currently in the heap will be
 found first, and greater distance values found later will be ignored
-because the vertex will already be marked as <code class="docutils literal notranslate"><span class="pre">VISITED</span></code>.
+because the vertex will already be marked as <strong>visited</strong>.
 The only disadvantage to repeatedly inserting distance values in this
 way is that it will raise the number of elements in the heap from
 <span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|)\)</span> to <span class="math notranslate nohighlight">\(\Theta(|\mathbf{E}|)\)</span>
@@ -597,7 +597,7 @@ However, when the graph is dense, this cost can become as great as
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 30, 2021.
+      Last updated on Dec 01, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

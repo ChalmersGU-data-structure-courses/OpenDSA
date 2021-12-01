@@ -104,7 +104,7 @@ interface Graph<V> {
     boolean addVertex(V v);                      // Adds the vertex v to the graph. Returns true if it wasn't already in the graph.
     boolean addEdge(Edge<V> e);                  // Adds the edge e to the graph. Returns true if it wasn't already in the graph.
     Collection<V> vertices();                    // Returns a Collection of all vertices in the graph.
-    Collection<Edge<V>> outgoingEdges(V from);   // Returns a Collection of the edges that originates in vertex v. Returns null if there are no edges.
+    Collection<Edge<V>> outgoingEdges(V from);   // Returns a Collection of the edges that originates in vertex v.
     int vertexCount();                           // Returns the number of vertices in the graph.
     int edgeCount();                             // Returns the number of edges in the graph.
 }

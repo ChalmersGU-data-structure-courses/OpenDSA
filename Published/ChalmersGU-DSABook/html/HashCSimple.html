@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['hash-tables-without-bins', 'collision-resolution', 'implementing-methods-of-the-hash-map', 'linear-probing', 'the-problem-with-linear-probing'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "HashCSimple";ODSA.SETTINGS.MODULE_LONG_NAME = "Open Addressing";ODSA.SETTINGS.MODULE_CHAPTER = "Hash Tables"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Hashing/linProbeCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="open-addressing">
 <span id="index-0"></span><h1>9.<span class="section-number">7. </span>Open Addressing<a class="headerlink" href="#open-addressing" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="hash-tables-without-bins">
@@ -266,16 +266,15 @@ Probing works as follows.</p>
         <span class="p">}</span>
         <span class="k">throw</span> <span class="k">new</span> <span class="n">IllegalStateException</span><span class="p">(</span><span class="s">&quot;Hash table full&quot;</span><span class="p">);</span>
     <span class="p">}</span>
+
+    <span class="kd">private</span> <span class="kt">int</span> <span class="nf">probe</span><span class="p">(</span><span class="n">K</span> <span class="n">key</span><span class="p">,</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">i</span><span class="p">;</span>        <span class="c1">// Linear probing</span>
+        <span class="c1">// return i*i;   // Quadratic probing</span>
+    <span class="p">}</span>
 </pre></div>
 </div>
 </div><div id="OpenAddressingHashMap_HashIndex_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_hashAndProbe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-        <span class="n">home</span> <span class="o">=</span> <span class="nb">hash</span><span class="p">(</span><span class="n">key</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0x7fffffff</span>   <span class="c1"># Turn the hash code into a positive integer</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)):</span>
-            <span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">home</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_probe</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">))</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span>
-            <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">pos</span><span class="p">]</span>
-            <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">key</span> <span class="o">==</span> <span class="n">elem</span><span class="o">.</span><span class="n">key</span><span class="p">:</span>
-                <span class="k">return</span> <span class="n">pos</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Hash table full&quot;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Left as exercise for the Python hacker&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#OpenAddressingHashMap_HashIndex_code" ).tabs();});</script><p>The method <code class="docutils literal notranslate"><span class="pre">hashAndProbe</span></code> first calculates the <em>home slot</em>,
@@ -342,18 +341,7 @@ and make sure to resize the array when it becomes too full.</p>
 </pre></div>
 </div>
 </div><div id="OpenAddressingHashMap_Put_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="n">i</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_hashAndProbe</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
-        <span class="n">elem</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-        <span class="n">old</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="k">if</span> <span class="n">elem</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_mapSize</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">old</span> <span class="o">=</span> <span class="n">elem</span><span class="o">.</span><span class="n">value</span>
-            <span class="n">elem</span><span class="o">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">loadFactor</span><span class="p">()</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_maxLoadFactor</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeTable</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalTable</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">old</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="s2">&quot;Left as exercise for the Python hacker&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#OpenAddressingHashMap_Put_code" ).tabs();});</script><p>First we the next available slot for the given key.
@@ -493,7 +481,7 @@ because it is so simple and can be implemented efficiently.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Nov 30, 2021.
+      Last updated on Dec 01, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

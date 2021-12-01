@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-11-30 08:45:50"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -115,27 +115,6 @@ TODO List
   type: Exercise
 
    Battery of MCQs for content.
-
-.. raw:: html
-
-   <h2><a href="GraphImpl.html#todo0">source: GraphImpl</a></h2>
-
-.. TODO::
-
-  type: Exercise
-
-   Add a battery of questions to test knowledge of the
-   implementations.
-
-.. raw:: html
-
-   <h2><a href="GraphTraversal.html#todo0">source: GraphTraversal</a></h2>
-
-.. TODO::
-
-  type: Exercise
-
-   Summary exercise for graph traversals.
 
 .. raw:: html
 
