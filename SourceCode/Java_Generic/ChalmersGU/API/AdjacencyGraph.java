@@ -3,6 +3,7 @@ import java.util.stream.Collectors;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+/* *** ODSATag: AdjacencyGraph *** */
 class AdjacencyGraph<V> implements Graph<V> {
     private Map<V, Set<Edge<V>>> edgesMap;
     private Set<V> verticesSet;
@@ -47,6 +48,7 @@ class AdjacencyGraph<V> implements Graph<V> {
     public Collection<Edge<V>> outgoingEdges(V from) {
         return edgesMap.get(from);
     }
+/* *** ODSAendTag: AdjacencyGraph *** */
 
     @Override
     public String toString() {
@@ -85,4 +87,6 @@ class AdjacencyGraph<V> implements Graph<V> {
         System.out.println(graph);
     }
 
+/* *** ODSATag: AdjacencyGraph *** */
 }
+/* *** ODSAendTag: AdjacencyGraph *** */
