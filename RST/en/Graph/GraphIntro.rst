@@ -8,8 +8,8 @@
    :satisfies: graph terminology
    :topic: Graphs
 
-Chapter Introduction: Graphs (WORK IN PROGRESS)
-==================================================
+Chapter Introduction: Graphs
+============================
 
 Graph Terminology and Implementation
 ------------------------------------
@@ -72,7 +72,7 @@ of edges is written :math:`|\mathbf{E}|`.
        However, the applications discussed here do not require
        either of these special cases.
        To simplify our graph API, we will assume that there are no
-       dupicate edges, and no edges that connect a node to itself.
+       duplicate edges.
 
 A graph whose edges are not directed is called an
 :term:`undirected graph`, as shown in part (a) of the following figure.
@@ -158,7 +158,7 @@ A :term:`subgraph` :math:`\mathbf{S}` is formed from graph
 edge :math:`e  \in \mathbf{E}_s`,
 both vertices of :math:`e` are in :math:`\mathbf{V}_s`.
 Any subgraph of :math:`V` where all vertices in the graph connect to
-all other vertices in the subgraph is called a :term:`clique`.
+all other vertices in the subgraph is called a :term:`clique`.n 
 
 .. inlineav:: GsparseDefCON dgm
    :links: AV/Graph/GraphDefCON.css
