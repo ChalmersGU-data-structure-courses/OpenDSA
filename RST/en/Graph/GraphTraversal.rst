@@ -9,7 +9,7 @@
    :satisfies: graph traversal
    :topic: Graphs
 
-Graph Traversals (WORK IN PROGRESS)
+Graph Traversals
 ======================================
 
 Graph Traversals
@@ -49,29 +49,29 @@ Second, the graph might contain cycles, and we must make sure that
 cycles do not cause the algorithm to go into an infinite loop.
 
 Graph traversal algorithms can solve both of these problems
-by flagging vertices as ``VISITED`` when appropriate.
-At the beginning of the algorithm, no vertex is flagged as ``VISITED``.
-The flag for a vertex is set when the vertex is first visited
-during the traversal.
-If a flagged vertex is encountered during traversal, it is not visited
-a second time.
+by keeping track of the vertices that have been visited,
+in a set ``visitedVertices``.
+At the beginning of the algorithm, this set is empty.
+When a vertex is first visited during the traversal, we add it to ``visitedVertices``.
+If a vertex is encountered during traversal that already is in
+the set, we will not visit it a second time.
 This keeps the program from going into an infinite loop when it
 encounters a cycle.
 
 Once the traversal algorithm completes, we can check to see if all
-vertices have been processed by checking whether they have the
-``VISITED`` flag set.
-If not all vertices are flagged,
+vertices have been processed by checking whether they are in the
+set ``visitedVertices``.
+If not all vertices are in this set,
 we can continue the traversal from another unvisited vertex.
 Note that this process works regardless of whether the graph is
 directed or undirected.
 To ensure visiting all vertices, ``graphTraverse`` could be called
 as follows on a graph :math:`\mathbf{G}`:
 
-.. codeinclude:: Graphs/GraphTrav
-   :tag: GraphTrav
+.. codeinclude:: ChalmersGU/Graphs/GraphTraversal
+   :tag: Traverse
 
-Function ``doTraversal`` might be implemented by using
+The function ``doTraversal`` might be implemented by using
 one of the graph traversals described next.
 
 Depth-First Search
@@ -105,7 +105,7 @@ it, resulting in a depth-first search tree.
 
 Here is an implementation for the DFS algorithm.
 
-.. codeinclude:: Graphs/DFS
+.. codeinclude:: ChalmersGU/Graphs/GraphTraversal
    :tag: DFS
 
 This implementation contains calls to functions ``PreVisit`` and
@@ -165,7 +165,7 @@ it, resulting in a breadth-first search tree.
 
 Here is an implementation for BFS.
 
-.. codeinclude:: Graphs/BFS
+.. codeinclude:: ChalmersGU/Graphs/GraphTraversal
    :tag: BFS
 
 The following visualization shows a random graph each time that you
@@ -180,8 +180,3 @@ Here is an exercise for you to practice BFS.
 
 .. avembed:: AV/Graph/BFSPE.html pe
    :long_name: BFS Proficiency Exercise
-
-.. TODO::
-   :type: Exercise
-
-   Summary exercise for graph traversals.
