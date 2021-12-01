@@ -23,37 +23,14 @@ class OpenAddressingHashMap(Map):
         self._numDeleted = 0
 #/* *** ODSAendTag: Header *** */
 
-#/* *** ODSATag: Probe *** */
-    def _probe(self, key, i):
-        return i       # Linear probing
-        # return i*i   # Quadratic probing
-#/* *** ODSAendTag: Probe *** */
-
 #/* *** ODSATag: HashIndex *** */
     def _hashAndProbe(self, key):
-        home = hash(key) & 0x7fffffff   # Turn the hash code into a positive integer
-        for i in range(len(self._internalTable)):
-            pos = (home + self._probe(key, i)) % len(self._internalTable)
-            elem = self._internalTable[pos]
-            if elem is None or key == elem.key:
-                return pos
-        raise ValueError("Hash table full")
+        raise NotImplementedError("Left as exercise for the Python hacker")
 #/* *** ODSAendTag: HashIndex *** */
 
 #/* *** ODSATag: Put *** */
     def put(self, key, value):
-        i = self._hashAndProbe(key)
-        elem = self._internalTable[i]
-        old = None
-        if elem is None:
-            self._internalTable[i] = KVPair(key, value)
-            self._mapSize += 1
-        else:
-            old = elem.value
-            elem.value = value
-        if self.loadFactor() > self._maxLoadFactor:
-            self._resizeTable(len(self._internalTable) * self._capacityMultiplier)
-        return old
+        raise NotImplementedError("Left as exercise for the Python hacker")
 #/* *** ODSAendTag: Put *** */
 
 #/* *** ODSATag: Get *** */

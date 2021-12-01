@@ -29,13 +29,6 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
     }
 /* *** ODSAendTag: Header *** */
 
-/* *** ODSATag: Probe *** */
-    private int probe(K key, int i) {
-        return i;        // Linear probing
-        // return i*i;   // Quadratic probing
-    }
-/* *** ODSAendTag: Probe *** */
-
 /* *** ODSATag: HashIndex *** */
     private int hashAndProbe(K key) {
         int home = key.hashCode() & 0x7fffffff;   // Turn the hash code into a positive integer
@@ -46,6 +39,11 @@ class OpenAddressingHashMap<K, V> implements Map<K, V> {
                 return pos;
         }
         throw new IllegalStateException("Hash table full");
+    }
+
+    private int probe(K key, int i) {
+        return i;        // Linear probing
+        // return i*i;   // Quadratic probing
     }
 /* *** ODSAendTag: HashIndex *** */
 

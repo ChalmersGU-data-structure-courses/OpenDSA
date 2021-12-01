@@ -1,6 +1,6 @@
 
 from API import Map
-from LinkedListMap import LinkedListMap
+from LinkedMap import LinkedMap
 
 #/* *** ODSATag: SeparateChainingHashMap *** */
 #/* *** ODSATag: Header *** */
@@ -21,7 +21,7 @@ class SeparateChainingHashMap(Map):
         capacity = int(capacity)
         self._internalTable = [None] * capacity
         for i in range(capacity):
-            self._internalTable[i] = LinkedListMap()
+            self._internalTable[i] = LinkedMap()
         self._mapSize = 0
 #/* *** ODSAendTag: Constructor *** */
 
@@ -84,7 +84,7 @@ class SeparateChainingHashMap(Map):
 #/* *** ODSAendTag: LoadFactor *** */
 
     def __iter__(self):
-        for bin in self._table:
+        for bin in self._internalTable:
             for key in bin:
                 yield key
 # #/* *** ODSAendTag: SeparateChainingHashMap *** */
