@@ -8,8 +8,8 @@
    :requires: graph traversal
    :topic: Graphs
 
-Topological Sort (WORK IN PROGRESS)
-====================================
+Topological Sort
+================
 
 Topological Sort
 ----------------
@@ -38,12 +38,6 @@ meet the prerequisite rules is called a :term:`topological sort`.
    An example graph for topological sort. Seven tasks have
    dependencies as shown by the directed graph.
 
-.. TODO::
-   :type: Slideshow
-
-   Replace the above figure with a slideshow that incorporates the
-   following paragraph.
-
 Figure :num:`Figure #TopSort` illustrates the problem.
 An acceptable topological sort for this example is J1,
 J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
@@ -51,31 +45,33 @@ such as J1, J3, J2, J6, J4, J5, J7.
 
 
 Depth-first solution
-~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 A topological sort may be found by performing a DFS on the graph.
 When a vertex is visited, no action is taken (i.e., function
 ``PreVisit`` does nothing).
 When the recursion pops back to that vertex, function
-``PostVisit`` prints the vertex.
-This yields a topological sort in reverse order.
+``PostVisit`` adds the vertex to a stack.
+In the end, the stack is returned to the caller.
+
+The reason that we use a stack is that this algorithm produces the
+vertices in reverse topological order.
+And if we pop the elements in the stack, they will be popped in
+topological order.
+
+So the DFS algorithm yieods a topological sort in reverse order.
 It does not matter where the sort starts, as long as all vertices
 are visited in the end.
 Here is implementation for the DFS-based algorithm.
 
-.. codeinclude:: Graphs/TopsortDFS
+.. codeinclude:: ChalmersGU/Graphs/Topsort
    :tag: TopsortDFS
-
-.. TODO::
-   :type: Slideshow
-
-   Replace the following paragraph with a slideshow.
 
 Using this algorithm starting at J1 and visiting adjacent
 neighbors in alphabetic order, vertices of the graph in
-Figure :num:`Figure #TopSort` are printed out in the order J7,
+Figure :num:`Figure #TopSort` are pushed to the stack in the order J7,
 J5, J4, J6, J2, J3, J1.
-Reversing this yields the topological sort
+Popping them one by one yields the topological sort
 J1, J3, J2, J6, J4, J5, J7.
 
 Here is another example.
@@ -88,36 +84,32 @@ Here is another example.
 
 
 Queue-based Solution
-~~~~~~~~~~~~~~~~~~~~
+---------------------
 
 We can implement topological sort using a queue
 instead of recursion, as follows.
-
-.. TODO::
-   :type: Slideshow
-
-   Incorporate the following into a slideshow.
 
 First visit all edges, counting the number of
 edges that lead to each vertex (i.e., count the number of
 prerequisites for each vertex).
 All vertices with no prerequisites are placed on the queue.
 We then begin processing the queue.
-When Vertex :math:`v` is taken off of the queue, it is printed, and all
+When vertex :math:`v` is taken off of the queue, it is added to
+a list containing the topological order, and all
 neighbors of :math:`v` (that is, all vertices that have :math:`v` as a
 prerequisite) have their counts decremented by one.
 Place on the queue any neighbor whose count becomes zero.
-If the queue becomes empty without printing all of the vertices, then
+If the queue becomes empty without having added all vertices to the final list, then
 the graph contains a cycle (i.e., there is no possible ordering
 for the tasks that does not violate some prerequisite).
-The printed order for the vertices of the graph in
+The order in which the vertices are added to the final list is
+the correct one, so if traverse the final list
+we will get the elements in topological order.
 Applying the queue version of topological sort to the graph of
 Figure :num:`Figure #TopSort` produces J1, J2, J3, J6, J4, J5, J7.
 Here is an implementation for the algorithm.
 
-Here is the code to implement the queue-based topological sort:
-
-.. codeinclude:: Graphs/TopsortBFS
+.. codeinclude:: ChalmersGU/Graphs/Topsort
    :tag: TopsortBFS
 
 .. inlineav:: topSortQCON ss
@@ -125,26 +117,3 @@ Here is the code to implement the queue-based topological sort:
    :links: AV/Graph/topSortQCON.css
    :scripts: AV/Graph/topSortQCON.js
    :output: show
-
-.. TODO::
-   :type: Proficiency Exercise
-
-   Provide a proficiency exercise that randomly alternates between
-   proficiency for DFS-based and queue-based Topsort.
-   The bare beginnings of an exercise can be found in
-   ``AV/Development/TopSort/topSortDFSPE.*``
-
-.. TODO::
-   :type: AV
-
-   Provide a unified AV that can allow the user to pick which topsort
-   (DFS or Queue), with or without cycles in the graph. The start of
-   this is in ``AV/Development/TopSort/topSortAV*`` (for just random DFS),
-   ``AV/Development/TopSort/qTopSortAV.*`` (for just random queue-based
-   topsort), and ``AV/Development/TopSort/topSortAVs*`` (tries to unify).
-
-
-.. TODO::
-   :type: Summary Questions
-
-   Provide a summary battery of questions.

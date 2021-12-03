@@ -16,12 +16,11 @@ static V minVertex(Graph G<V>, Map<V,Double> D, Set<V> visited) {
 /* *** ODSAendTag: MinVertex *** */
 
 
-/* *** ODSATag: Prims *** */
-// Compute shortest distances to the MCST, store them in D.
-// Parent[i] will hold the index for the vertex that is i's parent in the MCST
-static void <V> Prim(Graph<V> G, V s, Map<V,Double> D, Map<V,V> Parent) {
+/* *** ODSATag: GraphDijk1 *** */
+// Compute shortest path distances from s, store them in D
+static void <V> Dijkstra(Graph<V> G, V s, Map<V,Double> D) {
     Set<V> visited = new Set<>();
-    for (V v : G.vertices())     // Initialize
+    for (V v : G.vertices())
         D.put(v, Double.POSITIVE_INFINITY);
     D.put(s, 0);
     for (int i=0; i < G.vertexCount(); i++) {   // Process the vertices
@@ -29,15 +28,11 @@ static void <V> Prim(Graph<V> G, V s, Map<V,Double> D, Map<V,V> Parent) {
         visited.add(v);
         if (D.get(v) == Double.POSITIVE_INFINITY)
             return;              // Unreachable
-        if (!v.equals(s))
-            AddEdgetoMST(Parent.get(v), v);
         for (Edge<V> e : G.outgoingEdges(v)) {
             V w = e.end;
-            if (D.get(w) > e.weight) {
-                D.put(w, e.weight);
-                Parent.put(w, v);
-            }
+            if (D.get(w) > D.get(v) + e.weight)
+                D.put(w, D.get(v) + e.weight);
         }
     }
 }
-/* *** ODSAendTag: Prims *** */
+/* *** ODSAendTag: GraphDijk1 *** */

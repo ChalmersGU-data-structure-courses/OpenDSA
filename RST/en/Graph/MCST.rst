@@ -9,8 +9,8 @@
    :requires: graph shortest path
    :topic: Graphs
 
-Minimal Cost Spanning Trees (WORK IN PROGRESS)
-===============================================
+Minimal Cost Spanning Trees
+===========================
 
 Minimal Cost Spanning Trees
 ---------------------------
@@ -52,12 +52,6 @@ Figure :num:`Figure #MCSTdgm` shows the MCST for an example graph.
    Note that edge :math:`(C, F)` could be replaced with edge
    :math:`(D, F)` to form a different MCST with equal cost.
 
-.. TODO::
-   :type: Slideshow
-
-   Replace the previous diagram with a slideshow illustrating the
-   concept of MCST.
-
 
 Prim's Algorithm
 ~~~~~~~~~~~~~~~~
@@ -85,20 +79,20 @@ vertex to the start vertex, but rather the next closest vertex to any
 vertex currently in the MCST.
 Thus we replace the lines::
 
-   if (D[w] > (D[v] + G.weight(v, w)))
-     D[w] = D[v] + G.weight(v, w);
+    if (D.get(w) > D.get(v) + e.weight) {
+        D.put(w, D.get(v) + e.weight);
 
 in Djikstra's algorithm with the lines::
 
-    if (D[w] > G.weight(v, w))
-      D[w] = G.weight(v, w);
+    if (D.get(w) > e.weight) {
+        D.put(w, e.weight);
 
 in Prim's algorithm.
 
 The following code shows an implementation for Prim's algorithm
 that searches the distance matrix for the next closest vertex.
 
-.. codeinclude:: Graphs/Prim
+.. codeinclude:: ChalmersGU/Graphs/Prim
    :tag: Prims
 
 For each vertex :math:`I`, when :math:`I` is processed by Prim's
@@ -128,14 +122,8 @@ shown next.
 As with the priority queue version of Dijkstra's algorithm,
 the :term:`heap` stores ``DijkElem`` objects.
 
-.. codeinclude:: Graphs/PrimPQ
+.. codeinclude:: ChalmersGU/Graphs/PrimPQ
    :tag: PrimsPQ
-
-.. TODO::
-   :type: Slideshow
-
-   Implement a slideshow demonstrating the Priority Queue version of
-   Prim's algorithm
 
 Prim's algorithm is an example of a greedy
 algorithm.
@@ -207,8 +195,3 @@ cost?
 .. avembed:: AV/Graph/PrimPE.html pe
    :long_name: Prim's Algorithm Proficiency Exercise
 
-
-.. TODO::
-   :type: Exercise
-
-   Proficiency exercise for Prim's algorithm.

@@ -1,7 +1,7 @@
 
-/* *** ODSATag: PrimsPQ *** */
-// Prims MCST algorithm: priority queue version
-static void <V> PrimPQ(Graph G, V s, Map<V,Double> D, Map<V,V> Parent) {
+/* *** ODSATag: DijkstraPQ *** */
+// Dijkstra's shortest-paths: priority queue version
+static void <V> DijkstraPQ(Graph G, V s, Map<V,Double> D) {
     MinHeap H = new MinHeap();
     H.add(new KVPair(0, s));   // Initial vertex
 
@@ -17,17 +17,14 @@ static void <V> PrimPQ(Graph G, V s, Map<V,Double> D, Map<V,V> Parent) {
             visited.add(v);
             if (D.get(v) == Double.POSITIVE_INFINITY)
                 return;     // Unreachable
-            if (!v.equals(s))
-                AddEdgetoMST(Parent.get(v), v);
             for (Edge<V> e : G.outgoingEdges) {
                 V w = e.end;
-                if (D.get(w) > e.weight) { // Update D
-                    D.put(w, e.weight);
-                    Parent.put(w, v);
+                if (D.get(w) > D.get(v) + e.weight) { // Update D
+                    D.put(w, D.get(v) + e.weight);
                     H.add(new KVPair(D.get(W), w));
                 }
             }
         }
     }
 }
-/* *** ODSAendTag: PrimsPQ *** */
+/* *** ODSAendTag: DijkstraPQ *** */

@@ -9,8 +9,8 @@
    :satisfies: graph shortest path
    :topic: Graphs
 
-Shortest-Paths Problems (WORK IN PROGRESS)
-============================================
+Shortest-Paths Problems
+=======================
 
 Shortest-Paths Problems
 -----------------------
@@ -29,12 +29,6 @@ length of the shortest path between two specified vertices.
 This is not a trivial problem, because the shortest path may not be
 along the edge (if any) connecting two vertices, but rather may be
 along a path involving one or more intermediate vertices.
-
-.. TODO::
-   :type: Slideshow
-
-   Incorporate the following paragraph into a slideshow with the
-   figure below it.
 
 For example, in Figure :num:`Figure #DistExamp`,
 the cost of the path from :math:`A` to :math:`B` to :math:`D` is 15.
@@ -99,11 +93,6 @@ single-source shortest paths can be found using a simple breadth-first
 search.
 When weights are added, BFS will not give the correct answer.
 
-.. TODO::
-   :type: Slideshow
-
-   Provide a slideshow to demonstrate the following example.
-
 One approach to solving this problem when the edges have
 differing weights might be to process the
 vertices in a fixed order.
@@ -153,7 +142,7 @@ Here is an implementation for Dijkstra's
 algorithm.
 At the end, array ``D`` will contain the shortest distance values.
 
-.. codeinclude:: Graphs/Dijkstra
+.. codeinclude:: ChalmersGU/Graphs/Dijkstra
    :tag: GraphDijk1
 
 .. inlineav:: DijkstraCON ss
@@ -161,12 +150,6 @@ At the end, array ``D`` will contain the shortest distance values.
    :links: AV/Graph/DijkstraCON.css
    :scripts: AV/Graph/DijkstraCON.js
    :output: show
-
-.. TODO::
-   :type: AV
-
-   Provide an AV that runs on a random graph. An initial version is in 
-   ``AV/Development/TopSort/dijkstraAV.*``.
    
 There are two reasonable solutions to the key issue of finding the
 unvisited vertex with minimum distance value during each pass through
@@ -175,14 +158,8 @@ The first method is simply to scan through the list of
 :math:`|\mathbf{V}|` vertices searching for the minimum value, as
 follows:
 
-.. codeinclude:: Graphs/Dijkstra
+.. codeinclude:: ChalmersGU/Graphs/Dijkstra
    :tag: MinVertex
-
-.. TODO::
-   :type: Code
-
-   Why does the code look for an unvisited value first?
-   Is there an easier way?
 
 Because this scan is done :math:`|\mathbf{V}|` times,
 and because each edge requires a constant-time update to ``D``,
@@ -190,11 +167,6 @@ the total cost for this approach
 is :math:`\Theta(|\mathbf{V}|^2 + |\mathbf{E}|) =
 \Theta(|\mathbf{V}|^2)`,
 because :math:`|\mathbf{E}|` is in :math:`O(|\mathbf{V}|^2)`.
-
-.. TODO::
-   :type: AV
-
-   AV here to demonstrate the minVertex implementation.
 
 An alternative approach is to store unprocessed vertices in a
 min-heap ordered by their distance from the processed vertices.
@@ -212,7 +184,7 @@ A simpler approach is to add the new (always smaller) distance value
 for a given vertex as a new record in the heap.
 The smallest value for a given vertex currently in the heap will be
 found first, and greater distance values found later will be ignored
-because the vertex will already be marked as ``VISITED``.
+because the vertex will already be marked as **visited**.
 The only disadvantage to repeatedly inserting distance values in this
 way is that it will raise the number of elements in the heap from
 :math:`\Theta(|\mathbf{V}|)` to :math:`\Theta(|\mathbf{E}|)`
@@ -226,23 +198,8 @@ We use the ``KVPair`` class to store key-value pairs in the heap, with
 the edge weight as the key and the target vertex as the value.
 here is the implementation for Dijkstra's algorithm using a heap.
 
-.. codeinclude:: Graphs/DijkstraPQ
+.. codeinclude:: ChalmersGU/Graphs/DijkstraPQ
    :tag: DijkstraPQ
-
-.. TODO::
-   :type: Slideshow
-
-   This slideshow illustrates Dijkstra's algorithm using the heap.
-   The start vertex is A.
-   All vertices except A have an initial value of :math:`\infty`.
-   After processing Vertex A, its neighbors have their D estimates
-   updated to be the direct distance from A.
-   After processing C (the closest vertex to A),
-   Vertices B and E are updated to reflect the shortest
-   path through C.
-   The remaining vertices are processed in order B, D,
-   and E.
-   Changes in the D array should be shown along with this.
 
 Using ``MinVertex`` to scan the vertex list for the minimum value
 is more efficient when the graph is dense, that is, when
@@ -253,17 +210,7 @@ because its cost is
 However, when the graph is dense, this cost can become as great as
 :math:`\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|V|^2 \log |V|)`.
 
-.. TODO::
-   :type: Slideshow
-
-   Slideshow to demonstrate the relative costs of the two algorithms.
-
 Now you can practice using Dijkstra's algorithm.
 
 .. avembed:: AV/Graph/DijkstraPE.html pe
    :long_name: Dijkstra's Algorithm Proficiency Exercise
-
-.. TODO::
-   :type: Exercise
-
-   Summary battery of questions for Dijkstra's algorithm
