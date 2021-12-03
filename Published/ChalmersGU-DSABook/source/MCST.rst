@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['minimal-cost-spanning-trees', 'prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script>
 
 .. _MCST:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -28,8 +28,8 @@
    :requires: graph shortest path
    :topic: Graphs
 
-Minimal Cost Spanning Trees (WORK IN PROGRESS)
-===============================================
+Minimal Cost Spanning Trees
+===========================
 
 Minimal Cost Spanning Trees
 ---------------------------
@@ -69,15 +69,6 @@ Figure :num:`Figure #MCSTdgm` shows the MCST for an example graph.
    Note that edge :math:`(C, F)` could be replaced with edge
    :math:`(D, F)` to form a different MCST with equal cost.
 
-.. raw:: html
-
-   <a id="todo0"></a>
-
-.. TODO::
-  type: Slideshow
-   Replace the previous diagram with a slideshow illustrating the
-   concept of MCST.
-
 
 Prim's Algorithm
 ~~~~~~~~~~~~~~~~
@@ -105,20 +96,20 @@ vertex to the start vertex, but rather the next closest vertex to any
 vertex currently in the MCST.
 Thus we replace the lines::
 
-   if (D[w] > (D[v] + G.weight(v, w)))
-     D[w] = D[v] + G.weight(v, w);
+    if (D.get(w) > D.get(v) + e.weight) {
+        D.put(w, D.get(v) + e.weight);
 
 in Djikstra's algorithm with the lines::
 
-    if (D[w] > G.weight(v, w))
-      D[w] = G.weight(v, w);
+    if (D.get(w) > e.weight) {
+        D.put(w, e.weight);
 
 in Prim's algorithm.
 
 The following code shows an implementation for Prim's algorithm
 that searches the distance matrix for the next closest vertex.
 
-.. codeinclude:: Graphs/Prim
+.. codeinclude:: ChalmersGU/Graphs/Prim
    :tag: Prims
 
 For each vertex :math:`I`, when :math:`I` is processed by Prim's
@@ -149,17 +140,8 @@ shown next.
 As with the priority queue version of Dijkstra's algorithm,
 the :term:`heap` stores ``DijkElem`` objects.
 
-.. codeinclude:: Graphs/PrimPQ
+.. codeinclude:: ChalmersGU/Graphs/PrimPQ
    :tag: PrimsPQ
-
-.. raw:: html
-
-   <a id="todo1"></a>
-
-.. TODO::
-  type: Slideshow
-   Implement a slideshow demonstrating the Priority Queue version of
-   Prim's algorithm
 
 Prim's algorithm is an example of a greedy
 algorithm.
@@ -236,14 +218,6 @@ cost?
    :exer_opts: JXOP-debug=true&amp;JOP-lang=en&amp;JXOP-code=pseudo
    :long_name: Prim's Algorithm Proficiency Exercise
 
-
-.. raw:: html
-
-   <a id="todo2"></a>
-
-.. TODO::
-  type: Exercise
-   Proficiency exercise for Prim's algorithm.
 
 .. odsascript:: AV/Graph/MCSTCON.js
 .. odsascript:: AV/Graph/primCON.js

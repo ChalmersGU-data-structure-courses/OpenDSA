@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-01 22:04:53"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -71,9 +71,9 @@ cycles do not cause the algorithm to go into an infinite loop.
 
 Graph traversal algorithms can solve both of these problems
 by keeping track of the vertices that have been visited,
-in a set ``visitedVertices``.
+in a set ``Visited``.
 At the beginning of the algorithm, this set is empty.
-When a vertex is first visited during the traversal, we add it to ``visitedVertices``.
+When a vertex is first visited during the traversal, we add it to ``Visited``.
 If a vertex is encountered during traversal that already is in
 the set, we will not visit it a second time.
 This keeps the program from going into an infinite loop when it
@@ -81,7 +81,7 @@ encounters a cycle.
 
 Once the traversal algorithm completes, we can check to see if all
 vertices have been processed by checking whether they are in the
-set ``visitedVertices``.
+set ``Visited``.
 If not all vertices are in this set,
 we can continue the traversal from another unvisited vertex.
 Note that this process works regardless of whether the graph is

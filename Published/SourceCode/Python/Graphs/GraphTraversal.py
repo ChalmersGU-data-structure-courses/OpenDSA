@@ -1,31 +1,31 @@
 
 from API import Graph, Edge, Set
 
-def traverseDFS(G, v, visitedVertices):
+def traverseDFS(G, v, Visited):
     PreVisit(G, v)
-    visitedVertices.add(v)
+    Visited.add(v)
     for each edge e in G.outgoingEdges(v)
         w = e.end
-        if not visitedVertices.contains(w)
-            traverseDFS(G, w, visitedVertices)
+        if not Visited.contains(w)
+            traverseDFS(G, w, Visited)
     PostVisit(G, v)
 
-def traverseBFS(G, v, visitedVertices):
+def traverseBFS(G, v, Visited):
     Q = Queue()
     Q.enqueue(v)
-    visitedVertices.add(v)
+    Visited.add(v)
     while not Q.isEmpty()  # Process each vertex on Q
         v = Q.dequeue()
         PreVisit(G, v)
         for each edge e in G.outgoingEdges(v):
             w = e.end
-            if not visitedVertices.contains(w):  # Put neighbors on Q
-                visitedVertices.add(w)
+            if not Visited.contains(w):  # Put neighbors on Q
+                Visited.add(w)
                 Q.enqueue(w)
         PostVisit(G, v)
 
 def graphTraverse(G):
-    visitedVertices = Set()
+    Visited = Set()
     for each vertex v in G.vertices():
-        if not visitedVertices.contains(v):
-            doTraversal(G, v, visitedVertices)
+        if not Visited.contains(v):
+            doTraversal(G, v, Visited)

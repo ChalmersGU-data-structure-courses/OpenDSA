@@ -1,37 +1,39 @@
+
 // Find the unvisited vertex with the smalled distance
-int minVertex(Graph G, int[] D) {
-  int v = 0;  // Initialize v to any unvisited vertex;
-  for (int i=0; i<G.nodeCount(); i++) {
-    if (G.getValue(i) != VISITED) { v = i; break; }
-  }
-  for (int i=0; i<G.nodeCount(); i++) {  // Now find smallest value
-    if ((G.getValue(i) != VISITED) && (D[i] < D[v])) {
-      v = i;
+static V minVertex(Graph G<V>, Map<V,Double> D, Set<V> visited) {
+    V minV = null;
+    for (v : G.vertices()) {
+        if (!visited.contains(v)) {
+            if (minV == null)
+                minV = v;
+            else if (D.get(v) < D.get(minV))
+                minV = v;
+        }
     }
-  }
-  return v;
+    return minV;
 }
 
 
 // Compute shortest distances to the MCST, store them in D.
-// V[i] will hold the index for the vertex that is i's parent in the MCST
-void Prim(Graph G, int s, int[] D, int[] V) {
-  for (int i=0; i<G.nodeCount(); i++) {    // Initialize
-    D[i] = INFINITY;
-  }
-  D[s] = 0;
-  for (int i=0; i<G.nodeCount(); i++) {  // Process the vertices
-    int v = minVertex(G, D);     // Find next-closest vertex
-    G.setValue(v, VISITED);
-    if (D[v] == INFINITY) { return; } // Unreachable
-    if (v != s) { AddEdgetoMST(V[v], v); }
-    int[] nList = G.neighbors(v);
-    for (int j=0; j<nList.length; j++) {
-      int w = nList[j];
-      if (D[w] > G.weight(v, w)) {
-        D[w] = G.weight(v, w);
-        V[w] = v;
-      }
+// Parent[i] will hold the index for the vertex that is i's parent in the MCST
+static void <V> Prim(Graph<V> G, V s, Map<V,Double> D, Map<V,V> Parent) {
+    Set<V> visited = new Set<>();
+    for (V v : G.vertices())     // Initialize
+        D.put(v, Double.POSITIVE_INFINITY);
+    D.put(s, 0);
+    for (int i=0; i < G.vertexCount(); i++) {   // Process the vertices
+        V v = minVertex(G, D);   // Find next-closest vertex
+        visited.add(v);
+        if (D.get(v) == Double.POSITIVE_INFINITY)
+            return;              // Unreachable
+        if (!v.equals(s))
+            AddEdgetoMST(Parent.get(v), v);
+        for (Edge<V> e : G.outgoingEdges(v)) {
+            V w = e.end;
+            if (D.get(w) > e.weight) {
+                D.put(w, e.weight);
+                Parent.put(w, v);
+            }
+        }
     }
-  }
 }
