@@ -7,8 +7,8 @@
    :author: Cliff Shaffer
    :topic:
 
-All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)
-=======================================================
+All-Pairs Shortest Paths (optional)
+====================================
 
 We next consider the problem of finding the shortest distance
 between all pairs of vertices in the graph, called
@@ -76,7 +76,7 @@ Here is the implementation for Floyd's algorithm.
 At the end of the algorithm, array ``D`` stores the all-pairs shortest
 distances.
 
-.. codeinclude:: Graphs/Floyd 
+.. codeinclude:: ChalmersGU/Graphs/Floyd 
    :tag: Floyd
 
 Clearly this algorithm requires :math:`\Theta(|\mathbf{V}|^3)` running

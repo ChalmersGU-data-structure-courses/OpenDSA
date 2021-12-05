@@ -9,11 +9,11 @@
    :satisfies:
    :topic: Concept Maps
 
-Graph Concepts Summary (WORK IN PROGRESS)
-============================================
+Graph Concepts Summary
+======================
 
 Graph Concepts Summary
-----------------------
+-----------------------
 
 .. avembed:: Exercises/CMP/CMgraphSumm.html ka
    :long_name: Concept map graph exercises
