@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="7. Kruskal’s Algorithm (WORK IN PROGRESS)" href="Kruskal.html" />
+    <link rel="next" title="7. Kruskal’s Algorithm" href="Kruskal.html" />
     <link rel="prev" title="5. Shortest-Paths Problems" href="GraphShortest.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="Kruskal.html">10.<span class="section-number">7. </span>Kruskal’s Algorithm (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="Kruskal.html">10.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
 
 
         </p>
@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-alternative-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['prim-s-algorithm', 'prim-s-algorithm-priority-queue-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "MCST";ODSA.SETTINGS.MODULE_LONG_NAME = "Minimal Cost Spanning Trees";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/primCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="minimal-cost-spanning-trees">
 <h1>10.<span class="section-number">6. </span>Minimal Cost Spanning Trees<a class="headerlink" href="#minimal-cost-spanning-trees" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -171,7 +171,8 @@
 problem takes as input a connected, undirected graph
 <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>, where each edge has a distance or weight measure
 attached.
-The MCST is the graph containing the vertices of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>
+The MCST is also called <em>minimum spanning tree</em> (MST).</p>
+<p>The MCST is the graph containing the vertices of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>
 along with the subset of <span class="math notranslate nohighlight">\(\mathbf{G}\)</span> ‘s edges that
 (1) has minimum total cost as measured by summing the values for all
 of the edges in the subset, and
@@ -198,8 +199,9 @@ the subset making up the MCST.
 Note that edge <span class="math notranslate nohighlight">\((C, F)\)</span> could be replaced with edge
 <span class="math notranslate nohighlight">\((D, F)\)</span> to form a different MCST with equal cost.</span></p>
 </div>
+</div>
 <div class="section" id="prim-s-algorithm">
-<h3>10.<span class="section-number">6.1.1. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h3>
+<h2>10.<span class="section-number">6.2. </span>Prim’s Algorithm<a class="headerlink" href="#prim-s-algorithm" title="Permalink to this headline">¶</a></h2>
 <p>The first of our two algorithms for finding MCSTs is commonly
 referred to as <a class="reference internal" href="Glossary.html#term-prim-s-algorithm"><span class="xref std std-term">Prim’s algorithm</span></a>.
 Prim’s algorithm is very simple.
@@ -220,17 +222,16 @@ paths.
 The primary difference is that we are seeking not the next closest
 vertex to the start vertex, but rather the next closest vertex to any
 vertex currently in the MCST.
-Thus we replace the lines:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D.get(w) &gt; D.get(v) + e.weight) {
-    D.put(w, D.get(v) + e.weight);
+Thus the following lines in Djikstra’s algorithm:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D.get(w) &gt; D.get(v) + e.weight)
+    D.put(w, D.get(v) + e.weight)
 </pre></div>
 </div>
-<p>in Djikstra’s algorithm with the lines:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D.get(w) &gt; e.weight) {
-    D.put(w, e.weight);
+<p>are replaced with the following lines in Prim’s algorithm:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (D.get(w) &gt; e.weight)
+    D.put(w, e.weight)
 </pre></div>
 </div>
-<p>in Prim’s algorithm.</p>
 <p>The following code shows an implementation for Prim’s algorithm
 that searches the distance matrix for the next closest vertex.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Compute shortest distances to the MCST, store them in D.</span>
@@ -286,14 +287,14 @@ MCST.</p>
 </div>
 <p></p>
 </div>
-<div class="section" id="prim-s-algorithm-alternative-implementation">
-<h3>10.<span class="section-number">6.1.2. </span>Prim’s Algorithm Alternative Implementation<a class="headerlink" href="#prim-s-algorithm-alternative-implementation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="prim-s-algorithm-priority-queue-implementation">
+<h2>10.<span class="section-number">6.3. </span>Prim’s Algorithm, Priority Queue Implementation<a class="headerlink" href="#prim-s-algorithm-priority-queue-implementation" title="Permalink to this headline">¶</a></h2>
 <p>Alternatively, we can implement Prim’s algorithm using a
 <a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queue</span></a> to find the next closest vertex, as
 shown next.
 As with the priority queue version of Dijkstra’s algorithm,
 the <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> stores <code class="docutils literal notranslate"><span class="pre">DijkElem</span></code> objects.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Dijkstra&#39;s shortest-paths: priority queue version</span>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Prims MCST algorithm: priority queue version</span>
 <span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">PrimPQ</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">s</span><span class="p">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">D</span><span class="p">,</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Parent</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">MinHeap</span> <span class="n">H</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="p">();</span>
     <span class="n">H</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">s</span><span class="p">));</span>   <span class="c1">// Initial vertex</span>
@@ -409,7 +410,6 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
 <script type="text/javascript" src="../../../AV/Graph/primCON.js"></script>
 </div>
 </div>
-</div>
 
 
       </div>
@@ -420,7 +420,7 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="Kruskal.html">10.<span class="section-number">7. </span>Kruskal’s Algorithm (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="Kruskal.html">10.<span class="section-number">7. </span>Kruskal’s Algorithm</a>&#160;&#160;»
 
 </p>
       </div>
@@ -435,7 +435,7 @@ would form a cycle.</span><a class="headerlink" href="#id2" title="Permalink to 
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 03, 2021.
+      Last updated on Dec 05, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

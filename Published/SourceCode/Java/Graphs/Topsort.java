@@ -2,26 +2,24 @@
 class Topsort {
 
 static <V> Stack<V> topsortDFS(Graph<V> G) {
-    Set<V> Visited = new MapSet<V>();
+    Set<V> visited = new MapSet<V>();
     Stack<V> sortedVertices = new LinkedStack<V>();
     for (V v : G.vertices()) {
-        if (!Visited.contains(v))
-            topsortHelperDFS(G, v, sortedVertices, Visited);
+        if (!visited.contains(v))
+            topsortHelperDFS(G, v, sortedVertices, visited);
     }
     return sortedVertices;
 }
 
-static <V> void topsortHelperDFS(Graph<V> G, V v, Stack<V> sortedVertices, Set<V> Visited) {
-    Visited.add(v);
-    Collection<Edge<V>> outgoing = G.outgoingEdges(v);
-    if (outgoing != null) {
-        for (Edge<V> e : outgoing) {
-            V w = e.end;
-            if (!Visited.contains(w))
-                topsortHelperDFS(G, w, sortedVertices, Visited);
+static <V> void topsortHelperDFS(Graph<V> G, V v, Stack<V> sortedVertices, Set<V> visited) {
+    if (!visited.contains(v)) {
+        visited.add(v);
+        for (Edge<V> edge : G.outgoingEdges(v)) {
+            V w = edge.end;
+            topsortHelperDFS(G, w, sortedVertices, visited);
         }
+        sortedVertices.push(v); // PostVisit
     }
-    sortedVertices.push(v);
 }
 
 
@@ -31,13 +29,9 @@ static <V> Queue<V> topsortBFS(Graph<V> G) {
     for (V v : G.vertices())
         Count.put(v, 0);
     for (V v : G.vertices()) {
-        Collection<Edge<V>> outgoing = G.outgoingEdges(v);
-        if (outgoing != null) {
-            for (Edge<V> e : outgoing) {
-                // Add one to v's prereq count
-                Count.put(e.end, Count.get(e.end) + 1);
-            }
-        }
+        for (Edge<V> edge : G.outgoingEdges(v))
+            // Add one to v's prereq count
+            Count.put(edge.end, Count.get(edge.end) + 1);
     }
 
     // Initialize the queue
@@ -54,13 +48,10 @@ static <V> Queue<V> topsortBFS(Graph<V> G) {
         V v = Q.dequeue();
         // PreVisit for vertex v
         sortedVertices.enqueue(v);
-        Collection<Edge<V>> outgoing = G.outgoingEdges(v);
-        if (outgoing != null) {
-            for (Edge<V> e : outgoing) {
-                Count.put(e.end, Count.get(e.end) - 1);
-                if (Count.get(e.end) == 0)
-                    Q.enqueue(e.end);
-            }
+        for (Edge<V> edge : G.outgoingEdges(v)) {
+            Count.put(edge.end, Count.get(edge.end) - 1);
+            if (Count.get(edge.end) == 0)
+                Q.enqueue(edge.end);
         }
     }
     return sortedVertices;

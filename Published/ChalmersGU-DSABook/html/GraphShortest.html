@@ -162,11 +162,20 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['shortest-paths-on-unweighted-graphs', 'shortest-paths-on-weighted-graphs', 'single-source-shortest-paths'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphShortest";ODSA.SETTINGS.MODULE_LONG_NAME = "Shortest-Paths Problems";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DijkstraCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="shortest-paths-problems">
 <h1>10.<span class="section-number">5. </span>Shortest-Paths Problems<a class="headerlink" href="#shortest-paths-problems" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="id1">
-<h2>10.<span class="section-number">5.1. </span>Shortest-Paths Problems<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="shortest-paths-on-unweighted-graphs">
+<h2>10.<span class="section-number">5.1. </span>Shortest-Paths on Unweighted Graphs<a class="headerlink" href="#shortest-paths-on-unweighted-graphs" title="Permalink to this headline">¶</a></h2>
+<p>If you have an unweighted graph, the <a class="reference internal" href="Glossary.html#term-shortest-path"><span class="xref std std-term">shortest path</span></a> between two vertices
+is the smallest number of edges you have to pass to get from one of the vertices to the other.</p>
+<p>If you agument the <a class="reference internal" href="GraphTraversal.html#graphtraversal"><span class="std std-ref">breadth-first search</span></a> algorithm
+to remember which vertex a visited vertex came from, if will give you the
+shortest path between the start vertex and any other vertex.
+However, things become sligthly more complicated if the graph is weighted.</p>
+</div>
+<div class="section" id="shortest-paths-on-weighted-graphs">
+<h2>10.<span class="section-number">5.2. </span>Shortest-Paths on Weighted Graphs<a class="headerlink" href="#shortest-paths-on-weighted-graphs" title="Permalink to this headline">¶</a></h2>
 <p>On a road map, a road connecting two towns is typically
 labeled with its distance.
 We can model a road network as a directed graph whose edges are
@@ -205,8 +214,9 @@ We assume that all weights are positive.</p>
 </div>
 <p class="caption"><span class="caption-text"> Figure 10.6.1: Example graph for shortest-path definitions.</span></p>
 </div>
+</div>
 <div class="section" id="single-source-shortest-paths">
-<h3>10.<span class="section-number">5.1.1. </span>Single-Source Shortest Paths<a class="headerlink" href="#single-source-shortest-paths" title="Permalink to this headline">¶</a></h3>
+<h2>10.<span class="section-number">5.3. </span>Single-Source Shortest Paths<a class="headerlink" href="#single-source-shortest-paths" title="Permalink to this headline">¶</a></h2>
 <p>We will now present an algorithm to solve the
 <a class="reference internal" href="Glossary.html#term-single-source-shortest-paths-problem"><span class="xref std std-term">single-source shortest paths problem</span></a>.
 Given Vertex <span class="math notranslate nohighlight">\(S\)</span> in Graph <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>,
@@ -407,7 +417,7 @@ Using a heap is more efficient when the graph is sparse
 because its cost is
 <span class="math notranslate nohighlight">\(\Theta((|\mathbf{V}| + |\mathbf{E}|) \log |\mathbf{E}|)\)</span>.
 However, when the graph is dense, this cost can become as great as
-<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|V|^2 \log |V|)\)</span>.</p>
+<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|\mathbf{V}|^2 \log |\mathbf{V}|)\)</span>.</p>
 <p>Now you can practice using Dijkstra’s algorithm.</p>
 <div
     id="DijkstraPE"
@@ -435,7 +445,6 @@ However, when the graph is dense, this cost can become as great as
 <script type="text/javascript" src="../../../AV/Graph/DijkstraCON.js"></script>
 </div>
 </div>
-</div>
 
 
       </div>
@@ -461,7 +470,7 @@ However, when the graph is dense, this cost can become as great as
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 03, 2021.
+      Last updated on Dec 05, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

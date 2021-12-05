@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.7. Kruskal’s Algorithm (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>10.7. Kruskal’s Algorithm &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -162,11 +162,11 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['kruskal-s-algorithm'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/kruskalCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="kruskal-s-algorithm-work-in-progress">
-<h1>10.<span class="section-number">7. </span>Kruskal’s Algorithm (WORK IN PROGRESS)<a class="headerlink" href="#kruskal-s-algorithm-work-in-progress" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Kruskal";ODSA.SETTINGS.MODULE_LONG_NAME = "Kruskal's Algorithm";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/kruskalCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="kruskal-s-algorithm">
-<h2>10.<span class="section-number">7.1. </span>Kruskal’s Algorithm<a class="headerlink" href="#kruskal-s-algorithm" title="Permalink to this headline">¶</a></h2>
+<h1>10.<span class="section-number">7. </span>Kruskal’s Algorithm<a class="headerlink" href="#kruskal-s-algorithm" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>10.<span class="section-number">7.1. </span>Kruskal’s Algorithm<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Our next MCST algorithm is commonly referred to as
 <a class="reference internal" href="Glossary.html#term-kruskal-s-algorithm"><span class="xref std std-term">Kruskal’s algorithm</span></a>.
 Kruskal’s algorithm is also a simple, greedy algorithm.
@@ -194,83 +194,57 @@ This process is repeated until only one disjoint set remains.</p>
  </div>
 </div>
 <p></p>
-<p>The edges can be processed in order of weight by using a
-min-heap.
-This is generally faster than sorting the edges first, because in
-practice we need only visit a small fraction of the edges before
-completing the MCST.
-This is an example of finding only a
-<a class="reference internal" href="Heapsort.html#heapsort"><span class="std std-ref">few smallest elements</span></a> in a list.</p>
+<p>The edges can be processed in order of weight by
+putting them in an array and then sorting the array.
+Another possibility is to use a
+<a class="reference internal" href="Heaps.html#heaps"><span class="std std-ref">minimum priority queue</span></a>,
+similar to what we did in
+<a class="reference internal" href="MCST.html#mcst"><span class="std std-ref">Prim’s algorithm</span></a>.</p>
 <p>The only tricky part to this algorithm is determining if two vertices
 belong to the same equivalence class.
 Fortunately, the ideal algorithm is available for the purpose –
 the <a class="reference internal" href="UnionFind.html#unionfind"><span class="std std-ref">UNION/FIND</span></a>.
 Here is an implementation for Kruskal’s algorithm.
-Class <code class="docutils literal notranslate"><span class="pre">KruskalElem</span></code> is used to store the edges on the min-heap.</p>
-<div id="Kruskal_Kruskal_code"><ul><li><a href="#Kruskal_Kruskal_code_Java_Generic">Java</a></li><li><a href="#Kruskal_Kruskal_code_Python">Python</a></li></ul><div id="Kruskal_Kruskal_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Kruskal&#39;s MST algorithm</span>
-<span class="kt">void</span> <span class="nf">Kruskal</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
-  <span class="n">ParPtrTree</span> <span class="n">A</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ParPtrTree</span><span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">());</span> <span class="c1">// Equivalence array</span>
-  <span class="n">KVPair</span><span class="o">[]</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="o">[</span><span class="n">G</span><span class="p">.</span><span class="na">edgeCount</span><span class="p">()</span><span class="o">]</span><span class="p">;</span>       <span class="c1">// Minheap array</span>
-  <span class="kt">int</span> <span class="n">edgecnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// Count of edges</span>
+Note that since the MCST will never have more than <span class="math notranslate nohighlight">\(|\mathbf{V}|-1\)</span>
+edges, we can return as soon as the MCST contains enough edges.</p>
+<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Kruskal&#39;s MST algorithm</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">Kruskal</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">ParPtrTree</span> <span class="n">A</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ParPtrTree</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span>
+        <span class="n">A</span><span class="p">.</span><span class="na">MAKE_SET</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>   <span class="c1">// Create one singleton set for each vertex</span>
 
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>         <span class="c1">// Put edges in the array</span>
-    <span class="kt">int</span><span class="o">[]</span> <span class="n">nList</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">w</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">w</span><span class="o">&lt;</span><span class="n">nList</span><span class="p">.</span><span class="na">length</span><span class="p">;</span> <span class="n">w</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">E</span><span class="o">[</span><span class="n">edgecnt</span><span class="o">++]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">KVPair</span><span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">nList</span><span class="o">[</span><span class="n">w</span><span class="o">]</span><span class="p">),</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[]</span><span class="p">{</span> <span class="n">i</span><span class="p">,</span><span class="n">nList</span><span class="o">[</span><span class="n">w</span><span class="o">]</span> <span class="p">}</span> <span class="p">);</span>
+    <span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;[]</span> <span class="n">E</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Edge</span><span class="o">&lt;&gt;[</span><span class="n">edgeCount</span><span class="o">]</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="n">E</span><span class="p">.</span><span class="na">append</span><span class="p">(</span><span class="n">edge</span><span class="p">);</span>
+    <span class="n">Arrays</span><span class="p">.</span><span class="na">sort</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">weightComparator</span><span class="p">);</span>       <span class="c1">// Sort the edges by increasing weight</span>
+
+    <span class="kt">int</span> <span class="n">numEdgesInMST</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">E</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="na">FIND</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">start</span><span class="p">)</span> <span class="o">!=</span> <span class="n">A</span><span class="p">.</span><span class="na">FIND</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">))</span> <span class="p">{</span>  <span class="c1">// If the vertices are not connected</span>
+            <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">edge</span><span class="p">);</span>             <span class="c1">// Add this edge to the MCST</span>
+            <span class="n">numEdgesInMST</span><span class="o">++</span><span class="p">;</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">numEdgesInMST</span> <span class="o">&gt;=</span> <span class="n">G</span><span class="p">.</span><span class="na">vertexCount</span><span class="p">()</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+                <span class="k">return</span><span class="p">;</span>                     <span class="c1">// Stop when the MST has |V|-1 edges</span>
+            <span class="n">A</span><span class="p">.</span><span class="na">UNION</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">start</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">);</span>  <span class="c1">// Connect the two vertices</span>
+        <span class="p">}</span>
     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="n">MinHeap</span> <span class="n">H</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">edgecnt</span><span class="p">,</span> <span class="n">edgecnt</span><span class="p">);</span>
-  <span class="kt">int</span> <span class="n">numMST</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">nodeCount</span><span class="p">();</span>                   <span class="c1">// Initially n disjoint classes</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">numMST</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>        <span class="c1">// Combine equivalence classes</span>
-    <span class="n">KVPair</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="p">.</span><span class="na">removemin</span><span class="p">();</span>        <span class="c1">// Next cheapest edge</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">temp</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span><span class="p">;</span> <span class="p">}</span>           <span class="c1">// Must have disconnected vertices</span>
-    <span class="kt">int</span> <span class="n">v</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="o">[]</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">())</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span><span class="p">;</span>
-    <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="p">((</span><span class="kt">int</span><span class="o">[]</span><span class="p">)</span><span class="n">temp</span><span class="p">.</span><span class="na">value</span><span class="p">())</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="na">differ</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span> <span class="p">{</span>               <span class="c1">// If in different classes</span>
-      <span class="n">A</span><span class="p">.</span><span class="na">UNION</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>                    <span class="c1">// Combine equiv classes</span>
-      <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">);</span>               <span class="c1">// Add this edge to MST</span>
-      <span class="n">numMST</span><span class="o">--</span><span class="p">;</span>                         <span class="c1">// One less MST</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Kruskal_Kruskal_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Kruskal&#39;s MST algorithm</span>
-<span class="k">def</span> <span class="nf">Kruskal</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">ParPtrTree</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">())</span>   <span class="c1"># Equivalence array</span>
-    <span class="n">E</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="n">G</span><span class="o">.</span><span class="n">edgeCount</span><span class="p">()</span>      <span class="c1"># Minheap array</span>
-    <span class="n">edgecnt</span> <span class="o">=</span> <span class="mi">0</span>                     <span class="c1"># Count of edges</span>
-
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()):</span>  <span class="c1"># Put edges in the array</span>
-        <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
-            <span class="n">E</span><span class="p">[</span><span class="n">edgecnt</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">w</span><span class="p">),</span> <span class="n">i</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
-            <span class="n">edgecnt</span> <span class="o">+=</span> <span class="mi">1</span>
-
-    <span class="n">H</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">edgecnt</span><span class="p">,</span> <span class="n">edgecnt</span><span class="p">)</span>
-    <span class="n">numMST</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">nodeCount</span><span class="p">()</span>         <span class="c1"># Initially n disjoint classes</span>
-    <span class="k">while</span> <span class="n">numMST</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>                <span class="c1"># Combine equivalence classes</span>
-        <span class="n">temp</span> <span class="o">=</span> <span class="n">H</span><span class="o">.</span><span class="n">removemin</span><span class="p">()</span>       <span class="c1"># Next cheapest edge</span>
-        <span class="k">if</span> <span class="n">temp</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>                 <span class="c1"># Must have disconnected vertices</span>
-        <span class="n">_w</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="n">temp</span>
-        <span class="k">if</span> <span class="n">A</span><span class="o">.</span><span class="n">differ</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>         <span class="c1"># If in different classes</span>
-            <span class="n">A</span><span class="o">.</span><span class="n">UNION</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>          <span class="c1"># Combine equiv classes</span>
-            <span class="n">AddEdgetoMST</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span>     <span class="c1"># Add this edge to MST</span>
-            <span class="n">numMST</span> <span class="o">-=</span> <span class="mi">1</span>            <span class="c1"># One less MST</span>
-</pre></div>
-</div>
-</div></div><script>$(function() {$( "#Kruskal_Kruskal_code" ).tabs();});</script><p>Kruskal’s algorithm is dominated by the time required to
+<p>Kruskal’s algorithm is dominated by the time required to
 process the edges.
-The <code class="docutils literal notranslate"><span class="pre">differ</span></code> and <code class="docutils literal notranslate"><span class="pre">UNION</span></code> functions are nearly
+The <code class="docutils literal notranslate"><span class="pre">FIND</span></code> and <code class="docutils literal notranslate"><span class="pre">UNION</span></code> functions are nearly
 constant in time if path compression and weighted union is used.
 Thus, the total cost of the algorithm is
 <span class="math notranslate nohighlight">\(\Theta(|\mathbf{E}| \log |\mathbf{E}|)\)</span> in the worst case,
 when nearly all edges must be processed before all the edges of the
 spanning tree are found and the algorithm can stop.
-More often the edges of the spanning tree are the shorter ones,and
+More often the edges of the spanning tree are the shorter ones, and
 only about <span class="math notranslate nohighlight">\(|\mathbf{V}|\)</span> edges must be processed.
 If so, the cost is often close to
-<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}| \log |\mathbf{E}|)\)</span> in the average case.</p>
+<span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}| \log |\mathbf{E}|)\)</span> in the average case
+(provided we use a priority queue instead of sorting all edges in advance).</p>
 <div
     id="KruskalPE"
     class="embedContainer"
@@ -292,13 +266,6 @@ If so, the cost is often close to
   <div class="center">
     <div id="KruskalPE_iframe"></div>
   </div>
-</div>
-<a id="todo0"></a><div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<dl class="simple">
-<dt>type: Exercise</dt><dd><p>Summary battery of questions for Prim’s and Kruskal’s algorithms.</p>
-</dd>
-</dl>
 </div>
 <script type="text/javascript" src="../../../AV/Graph/kruskalCON.js"></script>
 </div>
@@ -328,7 +295,7 @@ If so, the cost is often close to
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 03, 2021.
+      Last updated on Dec 05, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-search', 'breadth-first-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DFSCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-search', 'breadth-first-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DFSCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Graph/BFSCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="graph-traversals">
 <h1>10.<span class="section-number">3. </span>Graph Traversals<a class="headerlink" href="#graph-traversals" title="Permalink to this headline">¶</a></h1>
@@ -201,9 +201,9 @@ Second, the graph might contain cycles, and we must make sure that
 cycles do not cause the algorithm to go into an infinite loop.</p>
 <p>Graph traversal algorithms can solve both of these problems
 by keeping track of the vertices that have been visited,
-in a set <code class="docutils literal notranslate"><span class="pre">Visited</span></code>.
+in a set <code class="docutils literal notranslate"><span class="pre">visited</span></code>.
 At the beginning of the algorithm, this set is empty.
-When a vertex is first visited during the traversal, we add it to <code class="docutils literal notranslate"><span class="pre">Visited</span></code>.
+When a vertex is first visited during the traversal, we add it to <code class="docutils literal notranslate"><span class="pre">visited</span></code>.
 If a vertex is encountered during traversal that already is in
 the set, we will not visit it a second time.
 This keeps the program from going into an infinite loop when it
@@ -218,10 +218,10 @@ directed or undirected.
 To ensure visiting all vertices, <code class="docutils literal notranslate"><span class="pre">graphTraverse</span></code> could be called
 as follows on a graph <span class="math notranslate nohighlight">\(\mathbf{G}\)</span>:</p>
 <div id="GraphTraversal_Traverse_code"><ul><li><a href="#GraphTraversal_Traverse_code_Java_Generic">Java</a></li><li><a href="#GraphTraversal_Traverse_code_Python">Python</a></li></ul><div id="GraphTraversal_Traverse_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">graphTraverse</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">();</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-            <span class="n">doTraversal</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">Visited</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="n">doTraversal</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
 </pre></div>
 </div>
 </div><div id="GraphTraversal_Traverse_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">graphTraverse</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
@@ -233,8 +233,9 @@ as follows on a graph <span class="math notranslate nohighlight">\(\mathbf{G}\)<
 </div>
 </div></div><script>$(function() {$( "#GraphTraversal_Traverse_code" ).tabs();});</script><p>The function <code class="docutils literal notranslate"><span class="pre">doTraversal</span></code> might be implemented by using
 one of the graph traversals described next.</p>
+</div>
 <div class="section" id="depth-first-search">
-<h3>10.<span class="section-number">3.1.1. </span>Depth-First Search<a class="headerlink" href="#depth-first-search" title="Permalink to this headline">¶</a></h3>
+<h2>10.<span class="section-number">3.2. </span>Depth-First Search<a class="headerlink" href="#depth-first-search" title="Permalink to this headline">¶</a></h2>
 <p>Our first method for organized graph traversal is called
 <a class="reference internal" href="Glossary.html#term-depth-first-search"><span class="xref std std-term">depth-first search</span></a> (DFS).
 Whenever a vertex <span class="math notranslate nohighlight">\(v\)</span> is visited during the search,
@@ -251,6 +252,13 @@ This tree is composed of the edges that were followed to any new
 (unvisited) vertex during the traversal, and leaves out the edges that
 lead to already visited vertices.
 DFS can be applied to directed or undirected graphs.</p>
+<p>The recursive DFS algorithm can be described as simply as this:</p>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>visit(v):
+    if v is unvisited:
+        mark v as visited
+        recursively visit all adjacent vertices
+</pre></div>
+</div>
 <p>This visualization shows a graph and the result of performing a DFS on
 it, resulting in a depth-first search tree.</p>
 <div id="DFSCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="DFSCON" data-long-name="Depth-First Search Slideshow" data-exer-id="" alt="Depth-First Search Slideshow" tabIndex="-1">
@@ -271,26 +279,24 @@ it, resulting in a depth-first search tree.</p>
 </div>
 <p></p>
 <p>Here is an implementation for the DFS algorithm.</p>
-<div id="GraphTraversal_DFS_code"><ul><li><a href="#GraphTraversal_DFS_code_Java_Generic">Java</a></li><li><a href="#GraphTraversal_DFS_code_Python">Python</a></li></ul><div id="GraphTraversal_DFS_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">traverseDFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">v</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Visited</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-    <span class="n">Visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
-        <span class="n">V</span> <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
-            <span class="n">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">Visited</span><span class="p">);</span>
+<div id="GraphTraversal_DFS_code"><ul><li><a href="#GraphTraversal_DFS_code_Java_Generic">Java</a></li><li><a href="#GraphTraversal_DFS_code_Python">Python</a></li></ul><div id="GraphTraversal_DFS_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">traverseDFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">v</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+        <span class="n">visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="n">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
+        <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="GraphTraversal_DFS_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">Visited</span><span class="p">):</span>
-    <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-    <span class="n">Visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">each</span> <span class="n">edge</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">end</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">Visited</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-            <span class="n">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">Visited</span><span class="p">)</span>
-    <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</div><div id="GraphTraversal_DFS_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+        <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+        <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="n">traverseDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">edge</span><span class="o">.</span><span class="n">end</span><span class="p">,</span> <span class="n">visited</span><span class="p">)</span>
+        <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#GraphTraversal_DFS_code" ).tabs();});</script><p>This implementation contains calls to functions <code class="docutils literal notranslate"><span class="pre">PreVisit</span></code> and
@@ -362,9 +368,8 @@ Each vertex must be visited, but only once, so the total cost is
   </div>
 </div>
 </div>
-</div>
 <div class="section" id="breadth-first-search">
-<h2>10.<span class="section-number">3.2. </span>Breadth-First Search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline">¶</a></h2>
+<h2>10.<span class="section-number">3.3. </span>Breadth-First Search<a class="headerlink" href="#breadth-first-search" title="Permalink to this headline">¶</a></h2>
 <p>Our second graph traversal algorithm is known as a
 <a class="reference internal" href="Glossary.html#term-breadth-first-search"><span class="xref std std-term">breadth-first search</span></a> (BFS).
 BFS examines all vertices connected to the start vertex
@@ -393,42 +398,46 @@ it, resulting in a breadth-first search tree.</p>
  </div>
 </div>
 <p></p>
-<p>Here is an implementation for BFS.</p>
-<div id="GraphTraversal_BFS_code"><ul><li><a href="#GraphTraversal_BFS_code_Java_Generic">Java</a></li><li><a href="#GraphTraversal_BFS_code_Python">Python</a></li></ul><div id="GraphTraversal_BFS_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">traverseBFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">v</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Visited</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Queue</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Q</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-    <span class="n">Q</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="n">Visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">Q</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span> <span class="c1">// Process each vertex on Q</span>
-        <span class="n">V</span> <span class="n">v</span> <span class="o">=</span> <span class="n">Q</span><span class="p">.</span><span class="na">dequeue</span><span class="p">();</span>
-        <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
-            <span class="n">V</span> <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">w</span><span class="p">))</span> <span class="p">{</span> <span class="c1">// Put neighbors on Q</span>
-                <span class="n">Visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
-                <span class="n">Q</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">w</span><span class="p">);</span>
-            <span class="p">}</span>
+<p>Here is an implementation for BFS.
+Note that it’s not possible to call <code class="docutils literal notranslate"><span class="pre">PostVisit</span></code> in BFS traversal,
+because you cannot know when the adjacent edges (the “children”)
+have been traversed.</p>
+<div id="GraphTraversal_BFS_code"><ul><li><a href="#GraphTraversal_BFS_code_Java_Generic">Java</a></li><li><a href="#GraphTraversal_BFS_code_Python">Python</a></li></ul><div id="GraphTraversal_BFS_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="kt">void</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">traverseBFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">start</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Queue</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">agenda</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Queue</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="n">agenda</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">start</span><span class="p">);</span>
+    <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">agenda</span><span class="p">.</span><span class="na">isEmpty</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">V</span> <span class="n">v</span> <span class="o">=</span> <span class="n">agenda</span><span class="p">.</span><span class="na">dequeue</span><span class="p">();</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+            <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+                <span class="n">agenda</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">);</span>
+            <span class="c1">// PostVisit is not possible in a stack/queue based version!</span>
         <span class="p">}</span>
-        <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="GraphTraversal_BFS_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverseBFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">Visited</span><span class="p">):</span>
-    <span class="n">Q</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
-    <span class="n">Q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="n">Visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
-    <span class="k">while</span> <span class="ow">not</span> <span class="n">Q</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()</span>  <span class="c1"># Process each vertex on Q</span>
-        <span class="n">v</span> <span class="o">=</span> <span class="n">Q</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
-        <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">each</span> <span class="n">edge</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
-            <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="o">.</span><span class="n">end</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">Visited</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>  <span class="c1"># Put neighbors on Q</span>
-                <span class="n">Visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-                <span class="n">Q</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
-        <span class="n">PostVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</div><div id="GraphTraversal_BFS_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">traverseBFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">visited</span><span class="p">):</span>
+    <span class="n">agenda</span> <span class="o">=</span> <span class="n">Queue</span><span class="p">()</span>
+    <span class="n">agenda</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">agenda</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">()</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">agenda</span><span class="o">.</span><span class="n">dequeue</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">visited</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+            <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">PreVisit</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">):</span>
+                <span class="n">agenda</span><span class="o">.</span><span class="n">enqueue</span><span class="p">(</span><span class="n">edge</span><span class="o">.</span><span class="n">end</span><span class="p">)</span>
+            <span class="c1"># PostVisit is not possible in a stack/queue based version!</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#GraphTraversal_BFS_code" ).tabs();});</script><p>The following visualization shows a random graph each time that you
+</div></div><script>$(function() {$( "#GraphTraversal_BFS_code" ).tabs();});</script><p><em>Fun fact</em>:
+If you replace the queue with a stack
+(and the enqueing/dequeueing operations with push/pop),
+you will get depth-first search!
+This is because the recursive version of DFS implicitly uses
+the call stack to remember which vertices to visit.</p>
+<p>The following visualization shows a random graph each time that you
 start it, so that you can see the behavior on different examples.
 It can show you BFS run on a directed graph or an undirected graph.
 Be sure to look at an example for each type of graph.</p>
@@ -507,7 +516,7 @@ Be sure to look at an example for each type of graph.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 03, 2021.
+      Last updated on Dec 05, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

@@ -1,26 +1,33 @@
 // Kruskal's MST algorithm
-void Kruskal(Graph G) {
-    ParPtrTree A = new ParPtrTree(G.nodeCount()); // Equivalence array
-    KVPair[] E = new KVPair[G.edgeCount()];       // Minheap array
-    int edgecnt = 0; // Count of edges
+static void <V> Kruskal(Graph<V> G) {
+    ParPtrTree A = new ParPtrTree();
+    for (V v : G.vertices())
+        A.MAKE_SET(v);   // Create one singleton set for each vertex
 
-    for (int i=0; i<G.nodeCount(); i++) {         // Put edges in the array
-        int[] nList = G.neighbors(i);
-        for (int w=0; w<nList.length; w++) {
-            E[edgecnt++] = new KVPair(G.weight(i, nList[w]), new int[]{ i,nList[w] } );
-        }
-    }
-    MinHeap H = new MinHeap(E, edgecnt, edgecnt);
-    int numMST = G.nodeCount();                   // Initially n disjoint classes
-    for (int i=0; numMST>1; i++) {        // Combine equivalence classes
-        KVPair temp = H.removemin();        // Next cheapest edge
-        if (temp == null) { return; }           // Must have disconnected vertices
-        int v = ((int[])temp.value())[0];
-        int u = ((int[])temp.value())[1];
-        if (A.differ(v, u)) {               // If in different classes
-            A.UNION(v, u);                    // Combine equiv classes
-            AddEdgetoMST(v, u);               // Add this edge to MST
-            numMST--;                         // One less MST
+    Edge<V>[] E = new Edge<>[edgeCount];
+    for (V v : G.vertices())
+        for (Edge<V> edge : G.outgoingEdges(v))
+            E.append(edge);
+    Arrays.sort(E, weightComparator);       // Sort the edges by increasing weight
+
+    int numEdgesInMST = 0;
+    for (Edge<V> edge : E) {
+        if (A.FIND(edge.start) != A.FIND(edge.end)) {  // If the vertices are not connected
+            AddEdgetoMST(edge);             // Add this edge to the MCST
+            numEdgesInMST++;
+            if (numEdgesInMST >= G.vertexCount()-1)
+                return;                     // Stop when the MST has |V|-1 edges
+            A.UNION(edge.start, edge.end);  // Connect the two vertices
         }
     }
 }
+
+// KRUSKAL(G):
+// A = ∅
+// For each vertex v ∈ G.V:
+//     MAKE-SET(v)
+// For each edge (u, v) ∈ G.E ordered by increasing order by weight(u, v):
+//     if FIND-SET(u) ≠ FIND-SET(v):       
+//     A = A ∪ {(u, v)}
+//     UNION(u, v)
+// return A

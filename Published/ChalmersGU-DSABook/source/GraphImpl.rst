@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -68,11 +68,11 @@ The following lines appear in many graph algorithms::
 
   for each edge e in G.outgoingEdges(v):
       w = e.end
-      if w is not in Visited:
-          add w to Visited
+      if w is not in visited:
+          add w to visited
           ...do something with v, w, or e...
 
-Here, ``Visited`` is a set of vertices to keep track that we
+Here, ``visited`` is a set of vertices to keep track that we
 don't visit a vertex twice.
 
 It is reasonably straightforward to implement our graph ADT

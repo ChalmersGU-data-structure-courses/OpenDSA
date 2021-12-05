@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Heapsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Heapsort";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -145,7 +145,7 @@ other sorting methods described earlier (many of which would require
 sorting all of the array first).
 One situation where we are able to take advantage of this concept is
 in the implementation of 
-:ref:`Kruskal's algorithm  <MCST>` for
+:ref:`Kruskal's algorithm  <Kruskal>` for
 :term:`minimal-cost spanning trees <minimal-cost spanning tree>`.
 That algorithm requires that edges be visited in ascending
 order (so, use a min-heap), but this process stops as soon as the MST

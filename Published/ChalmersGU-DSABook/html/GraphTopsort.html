@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-03 17:29:11"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-solution', 'queue-based-solution-optional'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTopsort";ODSA.SETTINGS.MODULE_LONG_NAME = "Topological Sort";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/topSortDFSCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Graph/topSortQCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="topological-sort">
 <h1>10.<span class="section-number">4. </span>Topological Sort<a class="headerlink" href="#topological-sort" title="Permalink to this headline">¶</a></h1>
@@ -181,16 +181,16 @@ prerequisites that could not be completed without violating at least
 one prerequisite.
 The process of laying out the vertices of a DAG in a linear order to
 meet the prerequisite rules is called a <a class="reference internal" href="Glossary.html#term-topological-sort"><span class="xref std std-term">topological sort</span></a>.</p>
+<p>Figure <a href="GraphTopsort.html#topsort">10.5.1</a> illustrates the problem.
+An acceptable topological sort for this example is J1,
+J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
+such as J1, J3, J2, J6, J4, J5, J7.</p>
 <div class="divdgm" id="topsort">
 <div id="topSortCON">
 </div>
 <p class="caption"><span class="caption-text"> Figure 10.5.1: An example graph for topological sort. Seven tasks have
 dependencies as shown by the directed graph.</span></p>
 </div>
-<p>Figure <a href="GraphTopsort.html#topsort">10.5.1</a> illustrates the problem.
-An acceptable topological sort for this example is J1,
-J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
-such as J1, J3, J2, J6, J4, J5, J7.</p>
 </div>
 <div class="section" id="depth-first-solution">
 <h2>10.<span class="section-number">4.2. </span>Depth-first solution<a class="headerlink" href="#depth-first-solution" title="Permalink to this headline">¶</a></h2>
@@ -204,31 +204,29 @@ In the end, the stack is returned to the caller.</p>
 vertices in reverse topological order.
 And if we pop the elements in the stack, they will be popped in
 topological order.</p>
-<p>So the DFS algorithm yieods a topological sort in reverse order.
+<p>So the DFS algorithm yields a topological sort in reverse order.
 It does not matter where the sort starts, as long as all vertices
 are visited in the end.
 Here is implementation for the DFS-based algorithm.</p>
 <div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="nf">topsortDFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapSet</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">visited</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MapSet</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">();</span>
     <span class="n">Stack</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">sortedVertices</span> <span class="o">=</span> <span class="k">new</span> <span class="n">LinkedStack</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span><span class="p">();</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
-            <span class="n">topsortHelperDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">Visited</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="n">topsortHelperDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">sortedVertices</span><span class="p">;</span>
 <span class="p">}</span>
 
-<span class="kd">static</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">topsortHelperDFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">v</span><span class="p">,</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">Visited</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">Visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">outgoing</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">outgoing</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span> <span class="p">:</span> <span class="n">outgoing</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">V</span> <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">;</span>
-            <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">Visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">w</span><span class="p">))</span>
-                <span class="n">topsortHelperDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">Visited</span><span class="p">);</span>
+<span class="kd">static</span> <span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="nf">topsortHelperDFS</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">,</span> <span class="n">V</span> <span class="n">v</span><span class="p">,</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">visited</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">visited</span><span class="p">.</span><span class="na">contains</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+        <span class="n">visited</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">V</span> <span class="n">w</span> <span class="o">=</span> <span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">;</span>
+            <span class="n">topsortHelperDFS</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">sortedVertices</span><span class="p">,</span> <span class="n">visited</span><span class="p">);</span>
         <span class="p">}</span>
+        <span class="n">sortedVertices</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span> <span class="c1">// PostVisit</span>
     <span class="p">}</span>
-    <span class="n">sortedVertices</span><span class="p">.</span><span class="na">push</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -257,8 +255,8 @@ J1, J3, J2, J6, J4, J5, J7.</p>
 </div>
 <p></p>
 </div>
-<div class="section" id="queue-based-solution">
-<h2>10.<span class="section-number">4.3. </span>Queue-based Solution<a class="headerlink" href="#queue-based-solution" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="queue-based-solution-optional">
+<h2>10.<span class="section-number">4.3. </span>Queue-based Solution (optional)<a class="headerlink" href="#queue-based-solution-optional" title="Permalink to this headline">¶</a></h2>
 <p>We can implement topological sort using a queue
 instead of recursion, as follows.</p>
 <p>First visit all edges, counting the number of
@@ -286,13 +284,9 @@ Here is an implementation for the algorithm.</p>
     <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span>
         <span class="n">Count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
     <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">v</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
-        <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">outgoing</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">outgoing</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span> <span class="p">:</span> <span class="n">outgoing</span><span class="p">)</span> <span class="p">{</span>
-                <span class="c1">// Add one to v&#39;s prereq count</span>
-                <span class="n">Count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
-            <span class="p">}</span>
-        <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+            <span class="c1">// Add one to v&#39;s prereq count</span>
+            <span class="n">Count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
 
     <span class="c1">// Initialize the queue</span>
@@ -309,13 +303,10 @@ Here is an implementation for the algorithm.</p>
         <span class="n">V</span> <span class="n">v</span> <span class="o">=</span> <span class="n">Q</span><span class="p">.</span><span class="na">dequeue</span><span class="p">();</span>
         <span class="c1">// PreVisit for vertex v</span>
         <span class="n">sortedVertices</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-        <span class="n">Collection</span><span class="o">&lt;</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;&gt;</span> <span class="n">outgoing</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">outgoing</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">e</span> <span class="p">:</span> <span class="n">outgoing</span><span class="p">)</span> <span class="p">{</span>
-                <span class="n">Count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
-                    <span class="n">Q</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="na">end</span><span class="p">);</span>
-            <span class="p">}</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">Edge</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">Count</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">Count</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+                <span class="n">Q</span><span class="p">.</span><span class="na">enqueue</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">);</span>
         <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="n">sortedVertices</span><span class="p">;</span>
@@ -369,7 +360,7 @@ Here is an implementation for the algorithm.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 03, 2021.
+      Last updated on Dec 05, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

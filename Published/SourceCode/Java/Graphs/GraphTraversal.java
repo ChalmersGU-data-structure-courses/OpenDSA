@@ -1,35 +1,49 @@
 
-static void <V> traverseDFS(Graph<V> G, V v, Set<V> Visited) {
-    PreVisit(G, v);
-    Visited.add(v);
-    for (Edge<V> e : G.outgoingEdges(v)) {
-        V w = e.end;
-        if (!Visited.contains(w))
-            traverseDFS(G, w, Visited);
-    }
-    PostVisit(G, v);
-}
-
-static void <V> traverseBFS(Graph<V> G, V v, Set<V> Visited) {
-    Queue<V> Q = new Queue<>();
-    Q.enqueue(v);
-    Visited.add(v);
-    while (!Q.isEmpty()) { // Process each vertex on Q
-        V v = Q.dequeue();
+static void <V> traverseDFS(Graph<V> G, V v, Set<V> visited) {
+    if (!visited.contains(v)) {
         PreVisit(G, v);
-        for (Edge<V> e : G.outgoingEdges(v)) {
-            V w = e.end;
-            if (!Visited.contains(w)) { // Put neighbors on Q
-                Visited.add(w);
-                Q.enqueue(w);
-            }
-        }
+        visited.add(v);
+        for (Edge<V> edge : G.outgoingEdges(v))
+            traverseDFS(G, edge.end, visited);
         PostVisit(G, v);
     }
 }
 
+
+static void <V> traverseDFS(Graph<V> G, V start, Set<V> visited) {
+    Stack<V> agenda = new Stack<>();
+    agenda.push(start);
+    while (!agenda.isEmpty()) {
+        V v = agenda.pop();
+        if (!visited.contains(v)) {
+            visited.add(v);
+            PreVisit(G, v);
+            for (Edge<V> edge : G.outgoingEdges(v))
+                agenda.push(edge.end);
+            // PostVisit is not possible in a stack/queue based version!
+        }
+    }
+}
+
+
+static void <V> traverseBFS(Graph<V> G, V start, Set<V> visited) {
+    Queue<V> agenda = new Queue<>();
+    agenda.enqueue(start);
+    while (!agenda.isEmpty()) {
+        V v = agenda.dequeue();
+        if (!visited.contains(v)) {
+            visited.add(v);
+            PreVisit(G, v);
+            for (Edge<V> edge : G.outgoingEdges(v))
+                agenda.enqueue(edge.end);
+            // PostVisit is not possible in a stack/queue based version!
+        }
+    }
+}
+
+
 static void <V> graphTraverse(Graph<V> G) {
-    Set<V> Visited = new Set<V>();
+    Set<V> visited = new Set<V>();
     for (V v : G.vertices())
-        if (!Visited.contains(v))
-            doTraversal(G, v, Visited);
+        if (!visited.contains(v))
+            doTraversal(G, v, visited);
