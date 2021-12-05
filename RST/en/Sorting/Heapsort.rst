@@ -114,7 +114,7 @@ other sorting methods described earlier (many of which would require
 sorting all of the array first).
 One situation where we are able to take advantage of this concept is
 in the implementation of 
-:ref:`Kruskal's algorithm <Kruskal's algorithm> <MCST>` for
+:ref:`Kruskal's algorithm <Kruskal's algorithm> <Kruskal>` for
 :term:`minimal-cost spanning trees <minimal-cost spanning tree>`.
 That algorithm requires that edges be visited in ascending
 order (so, use a min-heap), but this process stops as soon as the MST

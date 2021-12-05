@@ -50,9 +50,9 @@ cycles do not cause the algorithm to go into an infinite loop.
 
 Graph traversal algorithms can solve both of these problems
 by keeping track of the vertices that have been visited,
-in a set ``Visited``.
+in a set ``visited``.
 At the beginning of the algorithm, this set is empty.
-When a vertex is first visited during the traversal, we add it to ``Visited``.
+When a vertex is first visited during the traversal, we add it to ``visited``.
 If a vertex is encountered during traversal that already is in
 the set, we will not visit it a second time.
 This keeps the program from going into an infinite loop when it
@@ -75,7 +75,7 @@ The function ``doTraversal`` might be implemented by using
 one of the graph traversals described next.
 
 Depth-First Search
-~~~~~~~~~~~~~~~~~~
+--------------------
 
 Our first method for organized graph traversal is called
 :term:`depth-first search` (DFS).
@@ -93,6 +93,13 @@ This tree is composed of the edges that were followed to any new
 (unvisited) vertex during the traversal, and leaves out the edges that
 lead to already visited vertices.
 DFS can be applied to directed or undirected graphs.
+
+The recursive DFS algorithm can be described as simply as this::
+
+    visit(v):
+        if v is unvisited:
+            mark v as visited
+            recursively visit all adjacent vertices
 
 This visualization shows a graph and the result of performing a DFS on
 it, resulting in a depth-first search tree.
@@ -164,9 +171,19 @@ it, resulting in a breadth-first search tree.
    :output: show
 
 Here is an implementation for BFS.
+Note that it's not possible to call ``PostVisit`` in BFS traversal,
+because you cannot know when the adjacent edges (the "children")
+have been traversed.
 
 .. codeinclude:: ChalmersGU/Graphs/GraphTraversal
    :tag: BFS
+
+*Fun fact*:
+If you replace the queue with a stack
+(and the enqueing/dequeueing operations with push/pop),
+you will get depth-first search!
+This is because the recursive version of DFS implicitly uses
+the call stack to remember which vertices to visit.
 
 The following visualization shows a random graph each time that you
 start it, so that you can see the behavior on different examples.

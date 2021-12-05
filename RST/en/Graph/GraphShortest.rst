@@ -12,8 +12,21 @@
 Shortest-Paths Problems
 =======================
 
-Shortest-Paths Problems
------------------------
+
+Shortest-Paths on Unweighted Graphs
+-----------------------------------
+
+If you have an unweighted graph, the :term:`shortest path` between two vertices
+is the smallest number of edges you have to pass to get from one of the vertices to the other.
+
+If you agument the :ref:`breadth-first search <breadth-first search> <GraphTraversal>` algorithm
+to remember which vertex a visited vertex came from, if will give you the
+shortest path between the start vertex and any other vertex.
+However, things become sligthly more complicated if the graph is weighted.
+
+
+Shortest-Paths on Weighted Graphs
+----------------------------------
 
 On a road map, a road connecting two towns is typically
 labeled with its distance.
@@ -61,7 +74,7 @@ We assume that all weights are positive.
 
 
 Single-Source Shortest Paths
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------
 
 We will now present an algorithm to solve the
 :term:`single-source shortest paths problem`.
@@ -208,7 +221,7 @@ Using a heap is more efficient when the graph is sparse
 because its cost is
 :math:`\Theta((|\mathbf{V}| + |\mathbf{E}|) \log |\mathbf{E}|)`.
 However, when the graph is dense, this cost can become as great as
-:math:`\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|V|^2 \log |V|)`.
+:math:`\Theta(|\mathbf{V}|^2 \log |\mathbf{E}|) = \Theta(|\mathbf{V}|^2 \log |\mathbf{V}|)`.
 
 Now you can practice using Dijkstra's algorithm.
 

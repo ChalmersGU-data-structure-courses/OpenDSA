@@ -51,11 +51,11 @@ The following lines appear in many graph algorithms::
 
   for each edge e in G.outgoingEdges(v):
       w = e.end
-      if w is not in Visited:
-          add w to Visited
+      if w is not in visited:
+          add w to visited
           ...do something with v, w, or e...
 
-Here, ``Visited`` is a set of vertices to keep track that we
+Here, ``visited`` is a set of vertices to keep track that we
 don't visit a vertex twice.
 
 It is reasonably straightforward to implement our graph ADT

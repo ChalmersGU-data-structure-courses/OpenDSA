@@ -19,6 +19,8 @@ The :term:`minimal-cost spanning tree` (MCST)
 problem takes as input a connected, undirected graph
 :math:`\mathbf{G}`, where each edge has a distance or weight measure
 attached.
+The MCST is also called *minimum spanning tree* (MST).
+
 The MCST is the graph containing the vertices of :math:`\mathbf{G}`
 along with the subset of :math:`\mathbf{G}` 's edges that
 (1) has minimum total cost as measured by summing the values for all
@@ -54,7 +56,7 @@ Figure :num:`Figure #MCSTdgm` shows the MCST for an example graph.
 
 
 Prim's Algorithm
-~~~~~~~~~~~~~~~~
+-----------------
 
 The first of our two algorithms for finding MCSTs is commonly
 referred to as :term:`Prim's algorithm`.
@@ -77,17 +79,15 @@ paths.
 The primary difference is that we are seeking not the next closest
 vertex to the start vertex, but rather the next closest vertex to any
 vertex currently in the MCST.
-Thus we replace the lines::
+Thus the following lines in Djikstra's algorithm::
 
-    if (D.get(w) > D.get(v) + e.weight) {
-        D.put(w, D.get(v) + e.weight);
+    if (D.get(w) > D.get(v) + e.weight)
+        D.put(w, D.get(v) + e.weight)
 
-in Djikstra's algorithm with the lines::
+are replaced with the following lines in Prim's algorithm::
 
-    if (D.get(w) > e.weight) {
-        D.put(w, e.weight);
-
-in Prim's algorithm.
+    if (D.get(w) > e.weight)
+        D.put(w, e.weight)
 
 The following code shows an implementation for Prim's algorithm
 that searches the distance matrix for the next closest vertex.
@@ -113,8 +113,8 @@ MCST.
    :output: show
 
 
-Prim's Algorithm Alternative Implementation
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Prim's Algorithm, Priority Queue Implementation
+----------------------------------------------------
 
 Alternatively, we can implement Prim's algorithm using a
 :term:`priority queue` to find the next closest vertex, as

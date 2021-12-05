@@ -28,6 +28,11 @@ one prerequisite.
 The process of laying out the vertices of a DAG in a linear order to
 meet the prerequisite rules is called a :term:`topological sort`.
 
+Figure :num:`Figure #TopSort` illustrates the problem.
+An acceptable topological sort for this example is J1,
+J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
+such as J1, J3, J2, J6, J4, J5, J7.
+
 .. _TopSort:
 
 .. inlineav:: topSortCON dgm
@@ -37,11 +42,6 @@ meet the prerequisite rules is called a :term:`topological sort`.
 
    An example graph for topological sort. Seven tasks have
    dependencies as shown by the directed graph.
-
-Figure :num:`Figure #TopSort` illustrates the problem.
-An acceptable topological sort for this example is J1,
-J2, J3, J4, J5, J6, J7. However, other orders are also acceptable,
-such as J1, J3, J2, J6, J4, J5, J7.
 
 
 Depth-first solution
@@ -59,7 +59,7 @@ vertices in reverse topological order.
 And if we pop the elements in the stack, they will be popped in
 topological order.
 
-So the DFS algorithm yieods a topological sort in reverse order.
+So the DFS algorithm yields a topological sort in reverse order.
 It does not matter where the sort starts, as long as all vertices
 are visited in the end.
 Here is implementation for the DFS-based algorithm.
@@ -83,8 +83,8 @@ Here is another example.
    :output: show
 
 
-Queue-based Solution
----------------------
+Queue-based Solution (optional)
+--------------------------------
 
 We can implement topological sort using a queue
 instead of recursion, as follows.

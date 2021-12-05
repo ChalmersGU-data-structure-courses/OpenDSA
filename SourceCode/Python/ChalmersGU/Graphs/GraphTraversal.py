@@ -2,31 +2,45 @@
 from API import Graph, Edge, Set
 
 #/* *** ODSATag: DFS *** */
-def traverseDFS(G, v, Visited):
-    PreVisit(G, v)
-    Visited.add(v)
-    for each edge e in G.outgoingEdges(v)
-        w = e.end
-        if not Visited.contains(w)
-            traverseDFS(G, w, Visited)
-    PostVisit(G, v)
+def traverseDFS(G, v, visited):
+    if v not in visited:
+        visited.add(v)
+        PreVisit(G, v)
+        for edge in G.outgoingEdges(v):
+            traverseDFS(G, edge.end, visited)
+        PostVisit(G, v)
 #/* *** ODSAendTag: DFS *** */
 
+
+#/* *** ODSATag: DFSStack *** */
+def traverseDFS(G, v, visited):
+    agenda = Stack()
+    agenda.push(v)
+    while not agenda.isEmpty()
+        v = agenda.pop()
+        if not visited.contains(v):
+            visited.add(v)
+            PreVisit(G, v)
+            for edge in G.outgoingEdges(v):
+                agenda.push(edge.end)
+            # PostVisit is not possible in a stack/queue based version!
+#/* *** ODSAendTag: DFSStack *** */
+
+
 #/* *** ODSATag: BFS *** */
-def traverseBFS(G, v, Visited):
-    Q = Queue()
-    Q.enqueue(v)
-    Visited.add(v)
-    while not Q.isEmpty()  # Process each vertex on Q
-        v = Q.dequeue()
-        PreVisit(G, v)
-        for each edge e in G.outgoingEdges(v):
-            w = e.end
-            if not Visited.contains(w):  # Put neighbors on Q
-                Visited.add(w)
-                Q.enqueue(w)
-        PostVisit(G, v)
+def traverseBFS(G, v, visited):
+    agenda = Queue()
+    agenda.enqueue(v)
+    while not agenda.isEmpty()
+        v = agenda.dequeue()
+        if not visited.contains(v):
+            visited.add(v)
+            PreVisit(G, v)
+            for edge in G.outgoingEdges(v):
+                agenda.enqueue(edge.end)
+            # PostVisit is not possible in a stack/queue based version!
 #/* *** ODSAendTag: BFS *** */
+
 
 #/* *** ODSATag: Traverse *** */
 def graphTraverse(G):
