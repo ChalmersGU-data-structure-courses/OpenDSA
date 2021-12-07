@@ -1,20 +1,28 @@
 /** Compute all-pairs shortest paths */
-static void Floyd(Graph G, int[][] D) {
-  for (int i=0; i<G.n(); i++) { // Initialize D with weights
-    for (int j=0; j<G.n(); j++) {
-      if (G.weight(i, j) != 0) { D[i][j] = G.weight(i, j); }
+static void Map<V,Map<V,Double>> Floyd(Graph<V> G) {
+    // Initialize D with weights
+    Map<V,Map<V,Double>> D = new Map<>();
+    for (V i : G.vertices()) {
+        Map<V,Double> imap = new Map<>();
+        D.put(i, imap);
+        for (V j : G.vertices())
+            imap.put(j, i.equals(j) ? 0 : Double.POSITIVE_INFINITY);
+        for (edge : G.outgoingEdges(i))
+            imap.put(edge.end, edge.weight);
     }
-  }
-  for (int k=0; k<G.n(); k++) { // Compute all k paths
-    for (int i=0; i<G.n(); i++) {
-      for (int j=0; j<G.n(); j++) {
-        if ((D[i][k] != Integer.MAX_VALUE) &&
-            (D[k][j] != Integer.MAX_VALUE) &&
-            (D[i][j] > (D[i][k] + D[k][j])))
-            {
-          D[i][j] = D[i][k] + D[k][j];
+
+    // Compute all k-paths
+    for (V k : G.vertices()) {
+        Map<V,Double> kmap = D.get(k);
+        for (V i : G.vertices()) {
+            Map<V,Double> imap = D.get(i);
+            for (V j : G.vertices()) {
+                double dist = imap.get(k) + kmap.get(j);
+                if (imap.get(j) > dist)
+                    imap.put(j, dist);
             }
-          }
         }
-      }
+    }
+
+    return D;
 }

@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>10.8. All-Pairs Shortest Paths (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>10.8. All-Pairs Shortest Paths (optional) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="9. Graph Concepts Summary (WORK IN PROGRESS)" href="GraphCM.html" />
+    <link rel="next" title="9. Graph Concepts Summary" href="GraphCM.html" />
     <link rel="prev" title="7. Kruskal’s Algorithm" href="Kruskal.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="GraphCM.html">10.<span class="section-number">9. </span>Graph Concepts Summary (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="GraphCM.html">10.<span class="section-number">9. </span>Graph Concepts Summary</a>&#160;&#160;»
 
 
         </p>
@@ -162,9 +162,9 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Floyd";ODSA.SETTINGS.MODULE_LONG_NAME = "All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/FloydCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="all-pairs-shortest-paths-optional-work-in-progress">
-<h1>10.<span class="section-number">8. </span>All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)<a class="headerlink" href="#all-pairs-shortest-paths-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = [];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Floyd";ODSA.SETTINGS.MODULE_LONG_NAME = "All-Pairs Shortest Paths (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 15:41:43"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/FloydCON.css" rel="stylesheet" type="text/css" />
+<div class="section" id="all-pairs-shortest-paths-optional">
+<h1>10.<span class="section-number">8. </span>All-Pairs Shortest Paths (optional)<a class="headerlink" href="#all-pairs-shortest-paths-optional" title="Permalink to this headline">¶</a></h1>
 <p>We next consider the problem of finding the shortest distance
 between all pairs of vertices in the graph, called
 the <a class="reference internal" href="Glossary.html#term-all-pairs-shortest-paths-problem"><span class="xref std std-term">all-pairs shortest paths problem</span></a>.
@@ -225,41 +225,54 @@ Here is the implementation for Floyd’s algorithm.
 At the end of the algorithm, array <code class="docutils literal notranslate"><span class="pre">D</span></code> stores the all-pairs shortest
 distances.</p>
 <div id="Floyd_Floyd_code"><ul><li><a href="#Floyd_Floyd_code_Java_Generic">Java</a></li><li><a href="#Floyd_Floyd_code_Python">Python</a></li></ul><div id="Floyd_Floyd_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** Compute all-pairs shortest paths */</span>
-<span class="kd">static</span> <span class="kt">void</span> <span class="nf">Floyd</span><span class="p">(</span><span class="n">Graph</span> <span class="n">G</span><span class="p">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">D</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">n</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Initialize D with weights</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">n</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">G</span><span class="p">.</span><span class="na">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">);</span> <span class="p">}</span>
+<span class="kd">static</span> <span class="kt">void</span> <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="nf">Floyd</span><span class="p">(</span><span class="n">Graph</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="n">G</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// Initialize D with weights</span>
+    <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;&gt;</span> <span class="n">D</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Map</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">i</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">imap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Map</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+        <span class="n">D</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">imap</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">j</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span>
+            <span class="n">imap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">.</span><span class="na">equals</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="p">:</span> <span class="n">Double</span><span class="p">.</span><span class="na">POSITIVE_INFINITY</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">edge</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">outgoingEdges</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">imap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">edge</span><span class="p">.</span><span class="na">end</span><span class="p">,</span> <span class="n">edge</span><span class="p">.</span><span class="na">weight</span><span class="p">);</span>
     <span class="p">}</span>
-  <span class="p">}</span>
-  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">k</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">k</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">n</span><span class="p">();</span> <span class="n">k</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Compute all k paths</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">n</span><span class="p">();</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="n">G</span><span class="p">.</span><span class="na">n</span><span class="p">();</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">((</span><span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">!=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
-            <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">!=</span> <span class="n">Integer</span><span class="p">.</span><span class="na">MAX_VALUE</span><span class="p">)</span> <span class="o">&amp;&amp;</span>
-            <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">D</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">)))</span>
-            <span class="p">{</span>
-          <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">D</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">D</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span><span class="p">;</span>
+
+    <span class="c1">// Compute all k-paths</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">k</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
+        <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">kmap</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">i</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
+            <span class="n">Map</span><span class="o">&lt;</span><span class="n">V</span><span class="p">,</span><span class="n">Double</span><span class="o">&gt;</span> <span class="n">imap</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">V</span> <span class="n">j</span> <span class="p">:</span> <span class="n">G</span><span class="p">.</span><span class="na">vertices</span><span class="p">())</span> <span class="p">{</span>
+                <span class="kt">double</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">imap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="o">+</span> <span class="n">kmap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="p">);</span>
+                <span class="k">if</span> <span class="p">(</span><span class="n">imap</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">)</span>
+                    <span class="n">imap</span><span class="p">.</span><span class="na">put</span><span class="p">(</span><span class="n">j</span><span class="p">,</span> <span class="n">dist</span><span class="p">);</span>
             <span class="p">}</span>
-          <span class="p">}</span>
         <span class="p">}</span>
-      <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="n">D</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="Floyd_Floyd_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute all-pairs shortest paths </span>
-<span class="k">def</span> <span class="nf">Floyd</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">D</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">n</span><span class="p">()):</span>  <span class="c1"># Initialize D with weights</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">n</span><span class="p">()):</span>
-            <span class="k">if</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">G</span><span class="o">.</span><span class="n">weight</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">n</span><span class="p">()):</span>  <span class="c1"># Compute all k paths</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">n</span><span class="p">()):</span>
-            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">G</span><span class="o">.</span><span class="n">n</span><span class="p">()):</span>
-                <span class="k">if</span> <span class="p">(</span><span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">!=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="ow">and</span>
-                    <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">!=</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span> <span class="ow">and</span>
-                    <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
-                    <span class="p">):</span>
-                    <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+</div><div id="Floyd_Floyd_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Compute all-pairs shortest paths</span>
+<span class="k">def</span> <span class="nf">floyd</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+    <span class="c1"># Initialize D with weights</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">vertices</span><span class="p">():</span>
+        <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="n">j</span> <span class="p">:</span> <span class="mi">0</span> <span class="k">if</span> <span class="n">i</span><span class="o">==</span><span class="n">j</span> <span class="k">else</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">vertices</span><span class="p">()}</span>
+        <span class="k">for</span> <span class="n">edge</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">outgoingEdges</span><span class="p">(</span><span class="n">i</span><span class="p">):</span>
+            <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">edge</span><span class="o">.</span><span class="n">end</span><span class="p">]</span> <span class="o">=</span> <span class="n">edge</span><span class="o">.</span><span class="n">weight</span>
+
+    <span class="c1"># Compute all k-paths</span>
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">vertices</span><span class="p">():</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">vertices</span><span class="p">():</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">vertices</span><span class="p">():</span>
+                <span class="n">dist</span> <span class="o">=</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">D</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">:</span>
+                    <span class="n">D</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span>
+
+    <span class="k">return</span> <span class="n">D</span>
 </pre></div>
 </div>
 </div></div><script>$(function() {$( "#Floyd_Floyd_code" ).tabs();});</script><p>Clearly this algorithm requires <span class="math notranslate nohighlight">\(\Theta(|\mathbf{V}|^3)\)</span> running
@@ -277,7 +290,7 @@ time, and it is the best choice for dense graphs because it is
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="GraphCM.html">10.<span class="section-number">9. </span>Graph Concepts Summary (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="GraphCM.html">10.<span class="section-number">9. </span>Graph Concepts Summary</a>&#160;&#160;»
 
 </p>
       </div>

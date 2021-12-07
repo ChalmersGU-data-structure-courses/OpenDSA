@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Floyd";ODSA.SETTINGS.MODULE_LONG_NAME = "All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 12:47:14"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Floyd";ODSA.SETTINGS.MODULE_LONG_NAME = "All-Pairs Shortest Paths (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 15:41:43"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -26,8 +26,8 @@
    :author: Cliff Shaffer
    :topic:
 
-All-Pairs Shortest Paths (optional) (WORK IN PROGRESS)
-=======================================================
+All-Pairs Shortest Paths (optional)
+====================================
 
 We next consider the problem of finding the shortest distance
 between all pairs of vertices in the graph, called
@@ -93,7 +93,7 @@ Here is the implementation for Floyd's algorithm.
 At the end of the algorithm, array ``D`` stores the all-pairs shortest
 distances.
 
-.. codeinclude:: Graphs/Floyd 
+.. codeinclude:: ChalmersGU/Graphs/Floyd 
    :tag: Floyd
 
 Clearly this algorithm requires :math:`\Theta(|\mathbf{V}|^3)` running
