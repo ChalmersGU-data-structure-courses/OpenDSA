@@ -15,4 +15,4 @@ clean:
 ${TARGETS}: 
 	rm -rf build && mkdir build
 	cp ${API}/*.py $@.py build/
-	( cd build/ ; python3 $@ )
+	( cd build/ ; python3 $@.py )

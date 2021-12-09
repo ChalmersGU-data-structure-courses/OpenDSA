@@ -9,8 +9,8 @@
    :satisfies: Huffman proof
    :topic: Huffman Coding Trees
 
-Proof of Optimality for Huffman Coding (optional) (WORK IN PROGRESS)
-========================================================================
+Proof of Optimality for Huffman Coding (optional)
+=================================================
 
 Proof of Optimality for Huffman Coding
 --------------------------------------
@@ -108,7 +108,4 @@ Here is the proof.
    Thus by mathematical induction, function ``buildHuff`` creates
    the Huffman tree with minimum external path length.
 
-.. TODO::
-   :type: Exercise
 
-   Battery of MCQs for content.
