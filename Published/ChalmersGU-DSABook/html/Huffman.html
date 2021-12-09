@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8.5. Huffman Coding Trees (optional) (WORK IN PROGRESS) &mdash; Data Structures and Algorithms</title>
+    <title>8.5. Huffman Coding Trees (optional) &mdash; Data Structures and Algorithms</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -44,7 +44,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="index" title="Data Structures and Algorithms" href="index.html" />
-    <link rel="next" title="6. Trees versus Tries (optional) (WORK IN PROGRESS)" href="TreeTrie.html" />
+    <link rel="next" title="6. Trees versus Tries (optional)" href="TreeTrie.html" />
     <link rel="prev" title="4. Heapsort" href="Heapsort.html" />
 
   </head>
@@ -154,7 +154,7 @@
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional)</a>&#160;&#160;»
 
 
         </p>
@@ -162,10 +162,10 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 15:41:43"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'assigning-and-using-huffman-codes', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-09 10:30:09"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/huffmanCON.css" rel="stylesheet" type="text/css" />
-<div class="section" id="huffman-coding-trees-optional-work-in-progress">
-<span id="index-0"></span><h1>8.<span class="section-number">5. </span>Huffman Coding Trees (optional) (WORK IN PROGRESS)<a class="headerlink" href="#huffman-coding-trees-optional-work-in-progress" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="huffman-coding-trees-optional">
+<span id="index-0"></span><h1>8.<span class="section-number">5. </span>Huffman Coding Trees (optional)<a class="headerlink" href="#huffman-coding-trees-optional" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="huffman-coding-trees">
 <h2>8.<span class="section-number">5.1. </span>Huffman Coding Trees<a class="headerlink" href="#huffman-coding-trees" title="Permalink to this headline">¶</a></h2>
 <p>One can often gain an improvement in space requirements in exchange
@@ -183,7 +183,7 @@ It takes a certain minimum number of bits to provide enough unique
 codes so that we have a different one for each character.
 For example, it takes <span class="math notranslate nohighlight">\(\left\lceil log\ 128\right\rceil\)</span>
 or seven bits to provide the 128 unique codes needed
-to represent the 128 symbols of the ASCII character set. <a class="footnote-reference brackets" href="#id2" id="id1">1</a></p>
+to represent the 128 symbols of the ASCII character set.</p>
 <p>The requirement for <span class="math notranslate nohighlight">\(\left \lceil log\ n \right\rceil\)</span> bits to
 represent <span class="math notranslate nohighlight">\(n\)</span> unique code values assumes that all codes will be
 the same length, as are ASCII codes.
@@ -242,17 +242,14 @@ flavor of such coding schemes.
 One motivation for studying Huffman coding is because it provides our
 first opportunity to see a type of tree structure referred to as a
 <a class="reference internal" href="Glossary.html#term-search-trie"><span class="xref std std-term">search trie</span></a>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id2"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
-<dd><p>To keep things simple, these examples for building Huffman
+<p>To keep things simple, the following examples for building Huffman
 trees uses a <a class="reference internal" href="Glossary.html#term-sorted-list"><span class="xref std std-term">sorted list</span></a> to keep the partial Huffman trees
 ordered by frequency.
-But a real implementation would use a <a class="reference internal" href="Glossary.html#term-heap"><span class="xref std std-term">heap</span></a> to implement a
+But a real implementation would use a
 <a class="reference internal" href="Glossary.html#term-priority-queue"><span class="xref std std-term">priority queue</span></a> keyed by the frequencies.</p>
-</dd>
-</dl>
+</div>
 <div class="section" id="building-huffman-coding-trees">
-<h3>8.<span class="section-number">5.1.1. </span>Building Huffman Coding Trees<a class="headerlink" href="#building-huffman-coding-trees" title="Permalink to this headline">¶</a></h3>
+<h2>8.<span class="section-number">5.2. </span>Building Huffman Coding Trees<a class="headerlink" href="#building-huffman-coding-trees" title="Permalink to this headline">¶</a></h2>
 <p>Huffman coding assigns codes to characters such that the length of the
 code depends on the relative frequency or <a class="reference internal" href="Glossary.html#term-weight"><span class="xref std std-term">weight</span></a> of the
 corresponding character.
@@ -303,7 +300,7 @@ been combined into one.</p>
 </div>
 <p>The following slideshow illustrates the Huffman tree
 construction process for the eight letters of
-Table <a href="Huffman.html#freqexamp">8.6.2</a>. <a class="footnote-reference brackets" href="#id4" id="id3">2</a></p>
+Table <a href="Huffman.html#freqexamp">8.6.2</a>.</p>
 <div id="huffmanBuildCON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="huffmanBuildCON" data-long-name="Huffman Coding Tree Slideshow: Build" data-exer-id="" alt="Huffman Coding Tree Slideshow: Build" tabIndex="-1">
  <span class="jsavcounter"></span>
  <a class="jsavsettings" href="#">Settings</a>
@@ -321,137 +318,96 @@ Table <a href="Huffman.html#freqexamp">8.6.2</a>. <a class="footnote-reference b
  </div>
 </div>
 <p></p>
-<p>Here is the implementation for Huffman tree nodes.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** Huffman tree node implementation: Base class */</span>
-<span class="kd">interface</span> <span class="nc">HuffBaseNode</span> <span class="p">{</span>
-    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">();</span> 
-    <span class="kt">int</span> <span class="nf">weight</span><span class="p">();</span>
-<span class="p">}</span>
+<p>Here is the implementation for the Huffman Tree class.</p>
+<div id="Huffman_HuffTree_code"><ul><li><a href="#Huffman_HuffTree_code_Java_Generic">Java</a></li><li><a href="#Huffman_HuffTree_code_Python">Python</a></li></ul><div id="Huffman_HuffTree_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">HuffTree</span> <span class="kd">implements</span> <span class="n">Comparable</span><span class="o">&lt;</span><span class="n">HuffTree</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="kd">public</span> <span class="kt">char</span> <span class="n">element</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="n">HuffTree</span> <span class="n">left</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="n">HuffTree</span> <span class="n">right</span><span class="p">;</span>
 
-
-<span class="cm">/** Huffman tree node: Leaf class */</span>
-<span class="kd">class</span> <span class="nc">HuffLeafNode</span> <span class="kd">implements</span> <span class="n">HuffBaseNode</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kt">char</span> <span class="n">element</span><span class="p">;</span>   <span class="c1">// Element for this node</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>     <span class="c1">// Weight for this node</span>
-
-    <span class="n">HuffLeafNode</span><span class="p">(</span><span class="kt">char</span> <span class="n">el</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HuffTree</span><span class="p">(</span><span class="kt">char</span> <span class="n">el</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">element</span> <span class="o">=</span> <span class="n">el</span><span class="p">;</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">wt</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="kt">char</span> <span class="nf">value</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">element</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">weight</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-
-<span class="cm">/** Huffman tree node: Internal class */</span>
-<span class="kd">class</span> <span class="nc">HuffInternalNode</span> <span class="kd">implements</span> <span class="n">HuffBaseNode</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="kt">int</span> <span class="n">weight</span><span class="p">;</span>          <span class="c1">// Weight for this node</span>
-    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">left</span><span class="p">;</span>   <span class="c1">// Left child</span>
-    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">right</span><span class="p">;</span>  <span class="c1">// Right child</span>
-
-    <span class="n">HuffInternalNode</span><span class="p">(</span><span class="n">HuffBaseNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">HuffBaseNode</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">HuffTree</span><span class="p">(</span><span class="n">HuffTree</span> <span class="n">l</span><span class="p">,</span> <span class="n">HuffTree</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">left</span> <span class="o">=</span> <span class="n">l</span><span class="p">;</span> <span class="n">right</span> <span class="o">=</span> <span class="n">r</span><span class="p">;</span> <span class="n">weight</span> <span class="o">=</span> <span class="n">wt</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="n">HuffBaseNode</span> <span class="nf">left</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">left</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">left</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">right</span> <span class="o">==</span> <span class="kc">null</span><span class="p">;</span>
     <span class="p">}</span>
 
-    <span class="n">HuffBaseNode</span> <span class="nf">right</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">right</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">weight</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="kt">boolean</span> <span class="nf">isLeaf</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">HuffTree</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">Integer</span><span class="p">.</span><span class="na">compare</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="na">weight</span><span class="p">,</span> <span class="n">other</span><span class="p">.</span><span class="na">weight</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This implementation is similar to
-a typical <a class="reference internal" href="BinaryTreeImpl.html#binarytreeimpl"><span class="std std-ref">class hierarchy</span></a>
-for implementing full binary trees.
-There is an abstract <a class="reference internal" href="Glossary.html#term-base-class"><span class="xref std std-term">base class</span></a>, named <code class="docutils literal notranslate"><span class="pre">HuffNode</span></code>, and two
-<a class="reference internal" href="Glossary.html#term-subclass"><span class="xref std std-term">subclasses</span></a>, named <code class="docutils literal notranslate"><span class="pre">LeafNode</span></code> and <code class="docutils literal notranslate"><span class="pre">IntlNode</span></code>.
-This implementation reflects the fact that leaf and
-internal nodes contain distinctly different information.</p>
-<p>Here is the implementation for the Huffman Tree class.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="cm">/** A Huffman coding tree */</span>
-<span class="kd">class</span> <span class="nc">HuffTree</span> <span class="kd">implements</span> <span class="n">Comparable</span> <span class="p">{</span>
-    <span class="kd">private</span> <span class="n">HuffBaseNode</span> <span class="n">root</span><span class="p">;</span>  
+</div><div id="Huffman_HuffTree_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@total_ordering</span>
+<span class="k">class</span> <span class="nc">HuffTree</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">elem</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">elem</span> <span class="o">=</span> <span class="n">elem</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">=</span> <span class="n">weight</span>
 
-    <span class="n">HuffTree</span><span class="p">(</span><span class="kt">char</span> <span class="n">el</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffLeafNode</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">wt</span><span class="p">);</span>
-    <span class="p">}</span>
-    <span class="n">HuffTree</span><span class="p">(</span><span class="n">HuffBaseNode</span> <span class="n">l</span><span class="p">,</span> <span class="n">HuffBaseNode</span> <span class="n">r</span><span class="p">,</span> <span class="kt">int</span> <span class="n">wt</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">root</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffInternalNode</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">wt</span><span class="p">);</span>
-    <span class="p">}</span>
+    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span>
 
-    <span class="n">HuffBaseNode</span> <span class="nf">root</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">root</span><span class="p">;</span>
-    <span class="p">}</span>
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">weight</span>
 
-    <span class="kt">int</span> <span class="nf">weight</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">();</span>  <span class="c1">// Weight of tree is weight of root</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">weight</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">weight</span>
+</pre></div>
+</div>
+</div></div><script>$(function() {$( "#Huffman_HuffTree_code" ).tabs();});</script><p>Here is the implementation for the tree-building process.</p>
+<div id="Huffman_HuffTreeBuild_code"><ul><li><a href="#Huffman_HuffTreeBuild_code_Java_Generic">Java</a></li><li><a href="#Huffman_HuffTreeBuild_code_Python">Python</a></li></ul><div id="Huffman_HuffTreeBuild_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">public</span> <span class="kd">static</span> <span class="n">HuffTree</span> <span class="nf">buildHuffTree</span><span class="p">(</span><span class="n">Map</span><span class="o">&lt;</span><span class="n">Character</span><span class="p">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">frequencies</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">MinHeap</span><span class="o">&lt;</span><span class="n">HuffTree</span><span class="o">&gt;</span> <span class="n">huffHeap</span> <span class="o">=</span> <span class="k">new</span> <span class="n">MinHeap</span><span class="o">&lt;&gt;</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">char</span> <span class="n">ch</span> <span class="p">:</span> <span class="n">frequencies</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Initialise the heap with singleton Huffman trees</span>
+        <span class="kt">int</span> <span class="n">freq</span> <span class="o">=</span> <span class="n">frequencies</span><span class="p">.</span><span class="na">get</span><span class="p">(</span><span class="n">ch</span><span class="p">);</span>
+        <span class="n">huffHeap</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span> <span class="n">HuffTree</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">freq</span><span class="p">));</span>
     <span class="p">}</span>
-
-    <span class="kt">int</span> <span class="nf">compareTo</span><span class="p">(</span><span class="n">Object</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">HuffTree</span> <span class="n">that</span> <span class="o">=</span> <span class="p">(</span><span class="n">HuffTree</span><span class="p">)</span><span class="n">t</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">that</span><span class="p">.</span><span class="na">weight</span><span class="p">())</span>
-            <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
-        <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">root</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">==</span> <span class="n">that</span><span class="p">.</span><span class="na">weight</span><span class="p">())</span>
-            <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-        <span class="k">else</span>
-            <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">huffHeap</span><span class="p">.</span><span class="na">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// While at least two trees left on heap</span>
+        <span class="n">HuffTree</span> <span class="n">t1</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
+        <span class="n">HuffTree</span> <span class="n">t2</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
+        <span class="n">HuffTree</span> <span class="n">t3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffTree</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span> <span class="n">t2</span><span class="p">,</span> <span class="n">t1</span><span class="p">.</span><span class="na">weight</span> <span class="o">+</span> <span class="n">t2</span><span class="p">.</span><span class="na">weight</span><span class="p">);</span>
+        <span class="n">huffHeap</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">t3</span><span class="p">);</span>         <span class="c1">// Return new tree to heap</span>
     <span class="p">}</span>
+    <span class="k">return</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>  <span class="c1">// Return the final Huffman tree</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Here is the implementation for the tree-building process.</p>
-<div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="kd">static</span> <span class="n">HuffTree</span> <span class="nf">buildTree</span><span class="p">(</span><span class="n">MinHeap</span><span class="o">&lt;</span><span class="n">HuffTree</span><span class="o">&gt;</span> <span class="n">huffHeap</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">huffHeap</span><span class="p">.</span><span class="na">heapsize</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// While two items left</span>
-        <span class="n">HuffTree</span> <span class="n">tmp1</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
-        <span class="n">HuffTree</span> <span class="n">tmp2</span> <span class="o">=</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">removeMin</span><span class="p">();</span>
-        <span class="n">HuffTree</span> <span class="n">tmp3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HuffTree</span><span class="p">(</span><span class="n">tmp1</span><span class="p">.</span><span class="na">root</span><span class="p">(),</span> <span class="n">tmp2</span><span class="p">.</span><span class="na">root</span><span class="p">(),</span>
-                                     <span class="n">tmp1</span><span class="p">.</span><span class="na">weight</span><span class="p">()</span> <span class="o">+</span> <span class="n">tmp2</span><span class="p">.</span><span class="na">weight</span><span class="p">());</span>
-        <span class="n">huffHeap</span><span class="p">.</span><span class="na">insert</span><span class="p">(</span><span class="n">tmp3</span><span class="p">);</span>   <span class="c1">// Return new tree to heap</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">huffHeap</span><span class="p">.</span><span class="na">getmin</span><span class="p">();</span>    <span class="c1">// Return the tree</span>
-<span class="p">}</span>
+</div><div id="Huffman_HuffTreeBuild_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">build_huff_tree</span><span class="p">(</span><span class="n">frequencies</span><span class="p">):</span>
+    <span class="n">huff_heap</span> <span class="o">=</span> <span class="n">MinHeap</span><span class="p">()</span>
+    <span class="c1"># Initialise the heap with singleton Huffman trees</span>
+    <span class="k">for</span> <span class="n">ch</span><span class="p">,</span> <span class="n">freq</span> <span class="ow">in</span> <span class="n">frequencies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">huff_heap</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">HuffTree</span><span class="p">(</span><span class="n">elem</span><span class="o">=</span><span class="n">ch</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">freq</span><span class="p">))</span>
+
+    <span class="c1"># While at least two trees left on heap</span>
+    <span class="k">while</span> <span class="n">huff_heap</span><span class="o">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">huff_heap</span><span class="o">.</span><span class="n">removeMin</span><span class="p">()</span>
+        <span class="n">t2</span> <span class="o">=</span> <span class="n">huff_heap</span><span class="o">.</span><span class="n">removeMin</span><span class="p">()</span>
+        <span class="n">t3</span> <span class="o">=</span> <span class="n">HuffTree</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">t1</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="n">t2</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">t1</span><span class="o">.</span><span class="n">weight</span> <span class="o">+</span> <span class="n">t2</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="c1"># Return new tree to the heap</span>
+        <span class="n">huff_heap</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">t3</span><span class="p">)</span>
+
+    <span class="c1"># Return the final Huffman tree</span>
+    <span class="k">return</span> <span class="n">huff_heap</span><span class="o">.</span><span class="n">removeMin</span><span class="p">()</span> 
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">buildHuff</span></code> takes as input <code class="docutils literal notranslate"><span class="pre">fl</span></code>, the min-heap of partial
-Huffman trees, which initially are single leaf nodes as shown in Step
-1 of the slideshow above.
-The body of function <code class="docutils literal notranslate"><span class="pre">buildTree</span></code> consists mainly of a <code class="docutils literal notranslate"><span class="pre">for</span></code>
-loop. On each iteration of the <code class="docutils literal notranslate"><span class="pre">for</span></code> loop, the first two partial
-trees are taken off the heap and placed in variables <code class="docutils literal notranslate"><span class="pre">temp1</span></code> and
-<code class="docutils literal notranslate"><span class="pre">temp2</span></code>.
-A tree is created (<code class="docutils literal notranslate"><span class="pre">temp3</span></code>) such that the left and right subtrees
-are <code class="docutils literal notranslate"><span class="pre">temp1</span></code> and <code class="docutils literal notranslate"><span class="pre">temp2</span></code>, respectively.
-Finally, <code class="docutils literal notranslate"><span class="pre">temp3</span></code> is returned to <code class="docutils literal notranslate"><span class="pre">fl</span></code>.</p>
-<dl class="footnote brackets">
-<dt class="label" id="id4"><span class="brackets"><a class="fn-backref" href="#id3">2</a></span></dt>
-<dd><p>ASCII coding actually uses 8 bits per character.
-Seven bits are used to represent the 128 codes of the ASCII
-character set.
-The eigth bit as a <a class="reference internal" href="Glossary.html#term-parity"><span class="xref std std-term">parity</span></a> bit, that can be used to
-check if there is a transmission error for the character.</p>
-</dd>
-</dl>
-<p>Assigning and Using Huffman Codes</p>
+</div></div><script>$(function() {$( "#Huffman_HuffTreeBuild_code" ).tabs();});</script><p><code class="docutils literal notranslate"><span class="pre">buildHuffTree</span></code> takes as input <code class="docutils literal notranslate"><span class="pre">frequencies</span></code>,
+a map that tells how many times each character occurs in the text to be compressed.
+It first initialises a min-heap of Huffman trees, creating one
+singleton Huffman tree from each character.</p>
+<p>The main body of <code class="docutils literal notranslate"><span class="pre">buildHuffTree</span></code> consists of a while loop
+that does the following: It takes the first two trees off the heap,
+and creates a new tree by making them subtrees.
+The weight of the new tree is the sum of the two children trees.
+Finally, it adds the new tree to the min-heap.</p>
+</div>
+<div class="section" id="assigning-and-using-huffman-codes">
+<h2>8.<span class="section-number">5.3. </span>Assigning and Using Huffman Codes<a class="headerlink" href="#assigning-and-using-huffman-codes" title="Permalink to this headline">¶</a></h2>
 <p>Once the Huffman tree has been constructed, it is an easy matter to
 assign codes to individual letters.
 Beginning at the root, we assign either a ‘0’ or a ‘1’ to each edge in
@@ -501,7 +457,7 @@ message with its binary code.
 A lookup table can be used for this purpose.</p>
 </div>
 <div class="section" id="decoding">
-<h3>8.<span class="section-number">5.1.2. </span>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h3>
+<h2>8.<span class="section-number">5.4. </span>Decoding<a class="headerlink" href="#decoding" title="Permalink to this headline">¶</a></h2>
 <p>A set of codes is said to meet the <a class="reference internal" href="Glossary.html#term-prefix-property"><span class="xref std std-term">prefix property</span></a> if no
 code in the set is the prefix of another.
 The prefix property guarantees that there will be no ambiguity in how
@@ -558,7 +514,7 @@ by traversing the tree appropriately.</p>
 </div>
 </div>
 <div class="section" id="how-efficient-is-huffman-coding">
-<h3>8.<span class="section-number">5.1.3. </span>How efficient is Huffman coding?<a class="headerlink" href="#how-efficient-is-huffman-coding" title="Permalink to this headline">¶</a></h3>
+<h2>8.<span class="section-number">5.5. </span>How efficient is Huffman coding?<a class="headerlink" href="#how-efficient-is-huffman-coding" title="Permalink to this headline">¶</a></h2>
 <p>In theory, Huffman coding is an optimal coding method whenever the
 true frequencies are known, and the frequency of a letter is
 independent of the context of that letter in the message.
@@ -666,7 +622,6 @@ your own set of letters and frequencies.</p>
 <script type="text/javascript" src="../../../AV/Binary/huffmanDecodeCON.js"></script>
 </div>
 </div>
-</div>
 
 
       </div>
@@ -677,7 +632,7 @@ your own set of letters and frequencies.</p>
         &#160;&#160;::&#160;&#160;
         <a  class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a  id="nextmod1" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional) (WORK IN PROGRESS)</a>&#160;&#160;»
+        <a  id="nextmod1" href="TreeTrie.html">8.<span class="section-number">6. </span>Trees versus Tries (optional)</a>&#160;&#160;»
 
 </p>
       </div>
@@ -692,7 +647,7 @@ your own set of letters and frequencies.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 05, 2021.
+      Last updated on Dec 09, 2021.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

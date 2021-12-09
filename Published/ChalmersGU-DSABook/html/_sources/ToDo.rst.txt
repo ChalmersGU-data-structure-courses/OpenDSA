@@ -4,7 +4,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 15:41:43"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = False;ODSA.SETTINGS.MODULE_NAME = "ToDo";ODSA.SETTINGS.MODULE_LONG_NAME = "ToDo";ODSA.SETTINGS.MODULE_CHAPTER = ""; ODSA.SETTINGS.BUILD_DATE = "2021-12-09 10:30:09"; ODSA.SETTINGS.BUILD_CMAP = true;</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -55,16 +55,6 @@ TODO List
 .. raw:: html
 
    <hr /><h1>Exercise</h1><hr />
-
-.. raw:: html
-
-   <h2><a href="HuffProof.html#todo0">source: HuffProof</a></h2>
-
-.. TODO::
-
-  type: Exercise
-
-   Battery of MCQs for content.
 
 .. raw:: html
 

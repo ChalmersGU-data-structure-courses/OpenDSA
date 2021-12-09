@@ -1,13 +1,13 @@
 .. raw:: html
 
-   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'decoding', 'how-efficient-is-huffman-coding'];</script>
+   <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'assigning-and-using-huffman-codes', 'decoding', 'how-efficient-is-huffman-coding'];</script>
 
 .. _Huffman:
 
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional) (WORK IN PROGRESS)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-05 15:41:43"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2021-12-09 10:30:09"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -32,8 +32,8 @@
 
 .. index:: ! Huffman
 
-Huffman Coding Trees (optional) (WORK IN PROGRESS)
-===================================================
+Huffman Coding Trees (optional)
+===============================
 
 Huffman Coding Trees
 --------------------
@@ -54,7 +54,7 @@ It takes a certain minimum number of bits to provide enough unique
 codes so that we have a different one for each character.
 For example, it takes :math:`\left\lceil log\ 128\right\rceil`
 or seven bits to provide the 128 unique codes needed
-to represent the 128 symbols of the ASCII character set. [#]_
+to represent the 128 symbols of the ASCII character set.
 
 The requirement for :math:`\left \lceil log\ n \right\rceil` bits to
 represent :math:`n` unique code values assumes that all codes will be
@@ -121,15 +121,15 @@ One motivation for studying Huffman coding is because it provides our
 first opportunity to see a type of tree structure referred to as a
 :term:`search trie`.
 
-.. [#] To keep things simple, these examples for building Huffman
-       trees uses a :term:`sorted list` to keep the partial Huffman trees
-       ordered by frequency.
-       But a real implementation would use a :term:`heap` to implement a
-       :term:`priority queue` keyed by the frequencies.
+To keep things simple, the following examples for building Huffman
+trees uses a :term:`sorted list` to keep the partial Huffman trees
+ordered by frequency.
+But a real implementation would use a
+:term:`priority queue` keyed by the frequencies.
 
 
 Building Huffman Coding Trees
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------------
 
 Huffman coding assigns codes to characters such that the length of the
 code depends on the relative frequency or :term:`weight` of the
@@ -187,7 +187,7 @@ been combined into one.
 
 The following slideshow illustrates the Huffman tree
 construction process for the eight letters of
-Table :num:`Table #FreqExamp`. [#]_
+Table :num:`Table #FreqExamp`. 
 
 .. inlineav:: huffmanBuildCON ss
    :points: 0.0
@@ -196,48 +196,30 @@ Table :num:`Table #FreqExamp`. [#]_
    :long_name: Huffman Coding Tree Slideshow: Build
    :output: show
 
-Here is the implementation for Huffman tree nodes.
-
-.. codeinclude:: ChalmersGU/Other/Huffman
-   :tag: HuffmanNode
-
-This implementation is similar to
-a typical :ref:`class hierarchy  <BinaryTreeImpl>`
-for implementing full binary trees.
-There is an abstract :term:`base class`, named ``HuffNode``, and two
-:term:`subclasses <subclass>`, named ``LeafNode`` and ``IntlNode``.
-This implementation reflects the fact that leaf and
-internal nodes contain distinctly different information.
-
 Here is the implementation for the Huffman Tree class.
 
 .. codeinclude:: ChalmersGU/Other/Huffman
-   :tag: HuffmanTree
+   :tag: HuffTree
 
 Here is the implementation for the tree-building process.
 
 .. codeinclude:: ChalmersGU/Other/Huffman
-   :tag: HuffmanTreeBuild
+   :tag: HuffTreeBuild
 
-``buildHuff`` takes as input ``fl``, the min-heap of partial
-Huffman trees, which initially are single leaf nodes as shown in Step
-1 of the slideshow above.
-The body of function ``buildTree`` consists mainly of a ``for``
-loop. On each iteration of the ``for`` loop, the first two partial
-trees are taken off the heap and placed in variables ``temp1`` and
-``temp2``.
-A tree is created (``temp3``) such that the left and right subtrees
-are ``temp1`` and ``temp2``, respectively.
-Finally, ``temp3`` is returned to ``fl``.
+``buildHuffTree`` takes as input ``frequencies``,
+a map that tells how many times each character occurs in the text to be compressed.
+It first initialises a min-heap of Huffman trees, creating one
+singleton Huffman tree from each character.
 
-.. [#] ASCII coding actually uses 8 bits per character.
-       Seven bits are used to represent the 128 codes of the ASCII
-       character set.
-       The eigth bit as a :term:`parity` bit, that can be used to
-       check if there is a transmission error for the character.
+The main body of ``buildHuffTree`` consists of a while loop
+that does the following: It takes the first two trees off the heap,
+and creates a new tree by making them subtrees.
+The weight of the new tree is the sum of the two children trees.
+Finally, it adds the new tree to the min-heap.
 
 
 Assigning and Using Huffman Codes
+-----------------------------------
 
 Once the Huffman tree has been constructed, it is an easy matter to
 assign codes to individual letters.
@@ -271,7 +253,7 @@ A lookup table can be used for this purpose.
 
 
 Decoding
-~~~~~~~~
+---------
 
 A set of codes is said to meet the :term:`prefix property` if no
 code in the set is the prefix of another.
@@ -307,7 +289,7 @@ by traversing the tree appropriately.
 
 
 How efficient is Huffman coding?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------------
 
 In theory, Huffman coding is an optimal coding method whenever the
 true frequencies are known, and the frequency of a letter is

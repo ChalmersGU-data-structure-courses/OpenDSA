@@ -1,97 +1,78 @@
-/** Huffman tree node implementation: Base class */
-interface HuffBaseNode {
-    boolean isLeaf(); 
-    int weight();
-}
 
+class HuffTree implements Comparable<HuffTree> {
+    public char element;
+    public int weight;
+    public HuffTree left;
+    public HuffTree right;
 
-/** Huffman tree node: Leaf class */
-class HuffLeafNode implements HuffBaseNode {
-    private char element;   // Element for this node
-    private int weight;     // Weight for this node
-
-    HuffLeafNode(char el, int wt) {
+    HuffTree(char el, int wt) {
         element = el; weight = wt;
     }
 
-    char value() {
-        return element;
-    }
-
-    int weight() {
-        return weight;
-    }
-
-    boolean isLeaf() {
-        return true;
-    }
-}
-
-
-/** Huffman tree node: Internal class */
-class HuffInternalNode implements HuffBaseNode {
-    private int weight;          // Weight for this node
-    private HuffBaseNode left;   // Left child
-    private HuffBaseNode right;  // Right child
-
-    HuffInternalNode(HuffBaseNode l, HuffBaseNode r, int wt) {
+    HuffTree(HuffTree l, HuffTree r, int wt) {
         left = l; right = r; weight = wt;
     }
 
-    HuffBaseNode left() {
-        return left;
+    public boolean isLeaf() {
+        return left == null || right == null;
     }
 
-    HuffBaseNode right() {
-        return right;
+    public int compareTo(HuffTree other) {
+        return Integer.compare(this.weight, other.weight);
     }
 
-    int weight() {
-        return weight;
+    public Map<Character, String> encodingMap() {
+        Map<Character, String> result = new SeparateChainingHashMap<>();
+        if (isLeaf()) {
+            result.put(element, "");
+            return result;
+        }
+
+        Map<Character, String> leftEncoding = left.encodingMap();
+        for (char ch : leftEncoding)
+            result.put(ch, "0" + leftEncoding.get(ch));
+        Map<Character, String> rightEncoding = right.encodingMap();
+        for (char ch : rightEncoding)
+            result.put(ch, "1" + rightEncoding.get(ch));
+        return result;
     }
 
-    boolean isLeaf() {
-        return false;
+    public String toString() {
+        Map<Character, String> enc = encodingMap();
+        String s = weight + "\n";
+        for (char c : enc) {
+            s += "  " + c + ": <" + enc.get(c) + ">\n";
+        }
+        return s;
     }
 }
 
-/** A Huffman coding tree */
-class HuffTree implements Comparable {
-    private HuffBaseNode root;  
-
-    HuffTree(char el, int wt) {
-        root = new HuffLeafNode(el, wt);
+class Huffman {
+public static HuffTree buildHuffTree(Map<Character, Integer> frequencies) {
+    MinHeap<HuffTree> huffHeap = new MinHeap<>();
+    for (char ch : frequencies) { // Initialise the heap with singleton Huffman trees
+        int freq = frequencies.get(ch);
+        huffHeap.add(new HuffTree(ch, freq));
     }
-    HuffTree(HuffBaseNode l, HuffBaseNode r, int wt) {
-        root = new HuffInternalNode(l, r, wt);
+    while (huffHeap.size() > 1) { // While at least two trees left on heap
+        HuffTree t1 = huffHeap.removeMin();
+        HuffTree t2 = huffHeap.removeMin();
+        HuffTree t3 = new HuffTree(t1, t2, t1.weight + t2.weight);
+        huffHeap.add(t3);         // Return new tree to heap
     }
-
-    HuffBaseNode root() {
-        return root;
-    }
-
-    int weight() {
-        return root.weight();  // Weight of tree is weight of root
-    }
-
-    int compareTo(Object t) {
-        HuffTree that = (HuffTree)t;
-        if (root.weight() < that.weight())
-            return -1;
-        else if (root.weight() == that.weight())
-            return 0;
-        else
-            return 1;
-    }
+    return huffHeap.removeMin();  // Return the final Huffman tree
 }
 
-static HuffTree buildTree(MinHeap<HuffTree> huffHeap) {
-    while (huffHeap.heapsize() > 1) { // While two items left
-        HuffTree tmp1 = huffHeap.removeMin();
-        HuffTree tmp2 = huffHeap.removeMin();
-        HuffTree tmp3 = new HuffTree(tmp1.root(), tmp2.root(),
-                                     tmp1.weight() + tmp2.weight());
-        huffHeap.insert(tmp3);   // Return new tree to heap
-    }
-    return huffHeap.getmin();    // Return the tree
+public static void main(String[] args) {
+    Map<Character, Integer> freqs = new SeparateChainingHashMap<>();
+    freqs.put('a', 5);
+    freqs.put('b', 2);
+    freqs.put('c', 1);
+    freqs.put('d', 1);
+    freqs.put('r', 2);
+    freqs.put('!', 1);
+    HuffTree tree = buildHuffTree(freqs);
+    System.out.println(tree);
 }
+}
+
