@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-12-09 10:30:09"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['internal-variables', 'getting-and-setting-values', 'adding-elements', 'add-practice-exericse', 'removing-elements', 'remove-practice-exericise', 'static-array-based-list-summary-questions', 'static-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="static-array-based-lists">
 <h1>4.<span class="section-number">3. </span>Static Array-Based Lists<a class="headerlink" href="#static-array-based-lists" title="Permalink to this headline">¶</a></h1>
 <p>First we give a static implementation for array-based lists,
@@ -176,9 +176,9 @@ are added or removed. So instead we will use an underlying array which is larger
 <div class="section" id="internal-variables">
 <h2>4.<span class="section-number">3.1. </span>Internal variables<a class="headerlink" href="#internal-variables" title="Permalink to this headline">¶</a></h2>
 <p>Because of that will need two internal variables:
-the underlying array, and a counter telling how much of the array is actually used.
-When we create a new array-list we have to decide the largest possible capacity.
-Then the underlying array is initialised, and the counter is set to 0 because there are
+the underlying array, and a <em>size</em> counter telling how much of the array is actually used.
+When we create a new array-list we have to decide the <em>capacity</em>, the largest possible size.
+Then the underlying array is initialised, and the size counter is set to 0 because there are
 no elements yet.</p>
 <div id="StaticArrayList-Vars-CON" class="ssAV" data-points="0.0" data-threshold="1.0" data-type="ss" data-required="False" data-short-name="StaticArrayList-Vars-CON" data-long-name="Static Array-based List Variables Slideshow" data-exer-id="" alt="Static Array-based List Variables Slideshow" tabIndex="-1">
  <span class="jsavcounter"></span>
@@ -589,7 +589,7 @@ following slideshow.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Dec 09, 2021.
+      Last updated on Jan 24, 2022.
       Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     

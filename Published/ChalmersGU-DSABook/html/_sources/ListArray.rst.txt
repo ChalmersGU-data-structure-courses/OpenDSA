@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2021-12-09 10:30:09"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Static Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -45,9 +45,9 @@ Internal variables
 --------------------
 
 Because of that will need two internal variables:
-the underlying array, and a counter telling how much of the array is actually used.
-When we create a new array-list we have to decide the largest possible capacity.
-Then the underlying array is initialised, and the counter is set to 0 because there are
+the underlying array, and a *size* counter telling how much of the array is actually used.
+When we create a new array-list we have to decide the *capacity*, the largest possible size.
+Then the underlying array is initialised, and the size counter is set to 0 because there are
 no elements yet.
 
 .. inlineav:: StaticArrayList-Vars-CON ss
@@ -187,7 +187,6 @@ Finally, here is the full source code for the class ``StaticArrayList``.
 
 .. codeinclude:: ChalmersGU/API/StaticArrayList
    :tag: StaticArrayList
-
 
 .. odsascript:: AV/ChalmersGU/StaticArrayList-Vars-CON.js
 .. odsascript:: AV/ChalmersGU/StaticArrayList-Intro-CON.js
