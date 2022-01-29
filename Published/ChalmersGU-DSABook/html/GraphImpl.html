@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-api', 'adjacency-matrix', 'adjacency-list'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="graph-implementations">
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['graph-api', 'adjacency-matrix', 'adjacency-list'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphImpl";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Implementations";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><div class="section" id="graph-implementations">
 <h1>10.<span class="section-number">2. </span>Graph Implementations<a class="headerlink" href="#graph-implementations" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="graph-api">
 <h2>10.<span class="section-number">2.1. </span>Graph API<a class="headerlink" href="#graph-api" title="Permalink to this headline">¶</a></h2>
@@ -228,11 +228,11 @@ The <code class="docutils literal notranslate"><span class="pre">outgoingEdges</
 edges that originate in the given vertex. To get the neighbors
 you can simply call <code class="docutils literal notranslate"><span class="pre">e.end</span></code> for each outgoing edge <code class="docutils literal notranslate"><span class="pre">e</span></code>.
 The following lines appear in many graph algorithms:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>for each edge e in G.outgoingEdges(v):
-    w = e.end
-    if w is not in visited:
-        add w to visited
-        ...do something with v, w, or e...
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="nv">each</span> <span class="nv">edge</span> <span class="nv">e</span> <span class="nv">in</span> <span class="nv">G</span>.<span class="nv">outgoingEdges</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span>:
+    <span class="nv">w</span> <span class="o">=</span> <span class="nv">e</span>.<span class="k">end</span>
+    <span class="k">if</span> <span class="nv">w</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">in</span> <span class="nv">visited</span>:
+        <span class="nv">add</span> <span class="nv">w</span> <span class="nv">to</span> <span class="nv">visited</span>
+        ...<span class="k">do</span> <span class="nv">something</span> <span class="nv">with</span> <span class="nv">v</span>, <span class="nv">w</span>, <span class="nv">or</span> <span class="nv">e</span>...
 </pre></div>
 </div>
 <p>Here, <code class="docutils literal notranslate"><span class="pre">visited</span></code> is a set of vertices to keep track that we
@@ -502,8 +502,8 @@ as can be seen here:</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 24, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Last updated on Jan 29, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

@@ -7,7 +7,7 @@
 
 .. raw:: html
 
-   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
+   <script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script>
 
 
 .. |--| unicode:: U+2013   .. en dash
@@ -237,16 +237,13 @@ In fact, **growing the array by any constant factor** works, because
 the same geometric progression reasoning applies. We can calculate
 the exact performance overhead of growing the array by any given factor:
 
-**Theorem:** If we grow the array by a factor of :math:`k` when
-resizing it, then the overhead is at most :math:`1+1/k` elements
-copied per ``add``. For example, when growing by 20% (k=0.2), the
-overhead is 6 elements copied per ``add``.
+**Theorem:**
+If we grow the array by a factor of :math:`k > 1` when resizing it, then the overhead is at most :math:`1+1/(k-1)` elements copied per ``add``.
+For example, when growing by 20% (k = 1.2), the overhead is 6 elements copied per ``add``.
 
-In short, when resizing a dynamic array list, we should **grow the
-array size by a factor**, because this gives only a constant factor
-performance overhead compared to using a static array list. We can choose
-a large factor (such as 2) if we want fast performance, or a low
-factor (such as 20%) if we want to save memory.
+In short, when resizing a dynamic array list, we should **grow the array size by a constant factor**.
+when adding many elements, this guarantees that we only have a constant factor of performance overhead due to occasional resizing.
+We can choose a large factor (such as 2) if we want fast performance, or a low factor (such as 1.2) if we want to save memory.
 
 Constant amount vs constant factor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -262,10 +259,8 @@ to the list.
 .. inlineav:: ListArrayDynamicZoomCON dgm
     :align: center
 
-Notice that although growing by 10000 seems pretty good at first, for
-largest lists it's worse than growing by 10%. We can see this more
-clearly if we zoom out the graph, making the *x*-axis go up to
-:math:`10,000,000` instead of :math:`1,000,000`:
+Notice that although growing by 10000 seems pretty good at first, for largest lists it's worse than growing by 10% (a factor of 1.1).
+We can see this more clearly if we zoom out the graph, making the *x*-axis go up to :math:`10,000,000` instead of :math:`1,000,000`:
 
 .. inlineav:: ListArrayDynamicCON dgm
     :align: center

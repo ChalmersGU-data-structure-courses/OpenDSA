@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-search', 'breadth-first-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DFSCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['depth-first-search', 'breadth-first-search'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "GraphTraversal";ODSA.SETTINGS.MODULE_LONG_NAME = "Graph Traversals";ODSA.SETTINGS.MODULE_CHAPTER = "Graphs"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Graph/DFSCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Graph/BFSCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="graph-traversals">
 <h1>10.<span class="section-number">3. </span>Graph Traversals<a class="headerlink" href="#graph-traversals" title="Permalink to this headline">¶</a></h1>
@@ -253,10 +253,10 @@ This tree is composed of the edges that were followed to any new
 lead to already visited vertices.
 DFS can be applied to directed or undirected graphs.</p>
 <p>The recursive DFS algorithm can be described as simply as this:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>visit(v):
-    if v is unvisited:
-        mark v as visited
-        recursively visit all adjacent vertices
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nv">visit</span><span class="ss">(</span><span class="nv">v</span><span class="ss">)</span>:
+    <span class="k">if</span> <span class="nv">v</span> <span class="nv">is</span> <span class="nv">unvisited</span>:
+        <span class="nv">mark</span> <span class="nv">v</span> <span class="nv">as</span> <span class="nv">visited</span>
+        <span class="nv">recursively</span> <span class="nv">visit</span> <span class="nv">all</span> <span class="nv">adjacent</span> <span class="nv">vertices</span>
 </pre></div>
 </div>
 <p>This visualization shows a graph and the result of performing a DFS on
@@ -516,8 +516,8 @@ Be sure to look at an example for each type of graph.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 24, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Last updated on Jan 29, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

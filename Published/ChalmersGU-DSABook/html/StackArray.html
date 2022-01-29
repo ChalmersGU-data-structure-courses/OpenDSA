@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['stack-terminology-and-implementation', 'pushing-to-the-stack', 'popping-from-the-stack', 'array-based-stacks:-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "StackArray";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Stacks";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-stacks">
 <h1>4.<span class="section-number">9. </span>Dynamic Array-Based Stacks<a class="headerlink" href="#dynamic-array-based-stacks" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="stack-terminology-and-implementation">
@@ -179,7 +179,7 @@ structure rather than the generic list.</p>
 <p>Despite their restrictions, stacks have many uses.
 Thus, a special vocabulary for stacks has developed.
 Accountants used stacks long before the invention of the computer.
-They called the stack a “<a class="reference internal" href="Glossary.html#term-lifo"><span class="xref std std-term">LIFO</span></a>” list,
+They called the stack a “<a class="reference internal" href="Glossary.html#term-LIFO"><span class="xref std std-term">LIFO</span></a>” list,
 which stands for “Last-In, First-Out.”
 Note that one implication of the LIFO policy is that stacks
 remove elements in reverse order of their arrival.</p>
@@ -188,7 +188,7 @@ Elements are not said to be inserted, they are <a class="reference internal" hre
 onto the stack.
 When removed, an element is said to be <a class="reference internal" href="Glossary.html#term-pop"><span class="xref std std-term">popped</span></a> from the
 stack.
-Here is our <a class="reference internal" href="Glossary.html#term-adt"><span class="xref std std-term">ADT</span></a> for stacks:</p>
+Here is our <a class="reference internal" href="Glossary.html#term-ADT"><span class="xref std std-term">ADT</span></a> for stacks:</p>
 <div id="API_StackADT_code"><ul><li><a href="#API_StackADT_code_Java_Generic">Java</a></li><li><a href="#API_StackADT_code_Python">Python</a></li></ul><div id="API_StackADT_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span><span class="c1">// Note: This is an interface, while java.util.Stack is a class!</span>
 <span class="kd">interface</span> <span class="nc">Stack</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="kd">extends</span> <span class="n">Collection</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="p">{</span>
     <span class="kt">void</span> <span class="nf">push</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">);</span>  <span class="c1">// Pushes x on top of the stack.</span>
@@ -525,8 +525,8 @@ the (dynamic) array-based stack class.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 24, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Last updated on Jan 29, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

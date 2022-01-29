@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['the-unionfind-problem', 'parent-pointer-trees', 'equivalence-classes', 'weighted-union', 'path-compression'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2022-01-24 00:21:12"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/UFCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['the-unionfind-problem', 'parent-pointer-trees', 'equivalence-classes', 'weighted-union', 'path-compression'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "UnionFind";ODSA.SETTINGS.MODULE_LONG_NAME = "The Union/Find Algorithm (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "General Trees and Union-Find (optional)"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/General/UFCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="the-union-find-algorithm-optional">
 <h1>6.<span class="section-number">2. </span>The Union/Find Algorithm (optional)<a class="headerlink" href="#the-union-find-algorithm-optional" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-union-find-problem">
@@ -197,7 +197,7 @@ If both nodes reach the same root, then they must be in the same tree.
 If the roots are different, then the two nodes are not in the same
 tree.
 The process of finding the ultimate root for a given node we will call
-<a class="reference internal" href="Glossary.html#term-find"><span class="xref std std-term">FIND</span></a>.</p>
+<a class="reference internal" href="Glossary.html#term-FIND"><span class="xref std std-term">FIND</span></a>.</p>
 <div class="section" id="parent-pointer-trees">
 <h3>6.<span class="section-number">2.1.1. </span>Parent Pointer Trees<a class="headerlink" href="#parent-pointer-trees" title="Permalink to this headline">¶</a></h3>
 <p>The parent pointer representation is most often used to maintain a
@@ -212,9 +212,9 @@ There are two basic operations that we wish to support:</p>
 <li><p>Merge two sets together.</p></li>
 </ol>
 <p>Because two merged sets are united, the merging operation is
-called <a class="reference internal" href="Glossary.html#term-union"><span class="xref std std-term">UNION</span></a> and the whole process of determining if two
+called <a class="reference internal" href="Glossary.html#term-UNION"><span class="xref std std-term">UNION</span></a> and the whole process of determining if two
 objects are in the same set and then merging the sets goes by the name
-<a class="reference internal" href="Glossary.html#term-union-find"><span class="xref std std-term">UNION/FIND</span></a>.</p>
+<a class="reference internal" href="Glossary.html#term-UNION-FIND"><span class="xref std std-term">UNION/FIND</span></a>.</p>
 <p>To implement UNION/FIND, we represent each disjoint set with a
 separate general tree.
 Two objects are in the same disjoint set if they are in the same tree.
@@ -352,7 +352,7 @@ A subset of equivalent (connected) edges in a graph is called a
 <a class="reference internal" href="Glossary.html#term-connected-component"><span class="xref std std-term">connected component</span></a>.
 The goal is to quickly classify the objects
 into disjoint sets that correspond to the connected components.</p>
-<p>Another use for UNION/FIND occurs in <a class="reference internal" href="Glossary.html#term-kruskal-s-algorithm"><span class="xref std std-term">Kruskal’s algorithm</span></a> for
+<p>Another use for UNION/FIND occurs in <a class="reference internal" href="Glossary.html#term-Kruskal-s-algorithm"><span class="xref std std-term">Kruskal’s algorithm</span></a> for
 computing the
 <a class="reference internal" href="MCST.html#mcst"><span class="std std-ref">minimal-cost spanning tree</span></a>
 for a <a class="reference internal" href="Glossary.html#term-graph"><span class="xref std std-term">graph</span></a>.
@@ -614,8 +614,8 @@ covers many aspects of the equivalence class problem.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 24, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+      Last updated on Jan 29, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">
