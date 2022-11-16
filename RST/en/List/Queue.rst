@@ -159,7 +159,7 @@ queue element to position 0 of the new array, the second to position 1, etc.
 Apart from that, the implementation is similar to the one for lists and queues.
 
 .. codeinclude:: ChalmersGU/API/DynamicArrayQueue
-   :tag: DynamicArrayQueueEnqueue
+   :tag: DynamicArrayQueueResize
 
 
 Array-based Queue Practice Exercises
