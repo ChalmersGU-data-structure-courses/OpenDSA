@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sharing', 'shallow-and-deep-copying', 'what-does-it-mean-to-copy', 'shallow-and-deep-comparing', 'bad-references', 'why-are-bad-reference-bugs-so-common'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers2";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 2";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:59"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/shallowdeepCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['sharing', 'shallow-and-deep-copying', 'what-does-it-mean-to-copy', 'shallow-and-deep-comparing', 'bad-references', 'why-are-bad-reference-bugs-so-common'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "BasicPointers2";ODSA.SETTINGS.MODULE_LONG_NAME = "Basic References Part 2";ODSA.SETTINGS.MODULE_CHAPTER = "References, repetition"; ODSA.SETTINGS.BUILD_DATE = "2022-11-16 09:58:44"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><link href="../../../AV/Pointers/shallowdeepCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/shallowdeepExampleCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/empRefnullCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Pointers/badPointerPowCON.css" rel="stylesheet" type="text/css" />
@@ -292,7 +292,7 @@ One possibility is that we just want to know if two reference
 variables are referencing the same object.
 We could do this with code like the following to see if <code class="docutils literal notranslate"><span class="pre">ref1</span></code> and
 <code class="docutils literal notranslate"><span class="pre">ref2</span></code> are referring to the same object:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ss">(</span><span class="nv">ref1</span> <span class="o">==</span> <span class="nv">ref2</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1 == ref2)
 </pre></div>
 </div>
 <p>So here, we are comparing the value of the arrows, that both are
@@ -315,7 +315,7 @@ characters in the strings themselves.
 Most languages have methods to do this for you.
 In Java, we can see if two strings are the same with the <code class="docutils literal notranslate"><span class="pre">.equals()</span></code>
 method of the <code class="docutils literal notranslate"><span class="pre">String</span></code> class, like this:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ss">(</span><span class="nv">ref1</span>.<span class="nv">equals</span><span class="ss">(</span><span class="nv">ref2</span><span class="ss">))</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1.equals(ref2))
 </pre></div>
 </div>
 <p>In Java, another option for comparing the values of two string
@@ -324,7 +324,7 @@ This will return -1 if the first is less than the second in
 alphabetical order, 0 if they are the same, and 1 if the first is
 greater than the second.
 The following is equivalent to the use of <code class="docutils literal notranslate"><span class="pre">.equals()</span></code> shown above:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ss">(</span><span class="nv">ref1</span>.<span class="nv">compareTo</span><span class="ss">(</span><span class="nv">ref2</span><span class="ss">)</span> <span class="o">==</span> <span class="mi">0</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if (ref1.compareTo(ref2) == 0)
 </pre></div>
 </div>
 </div>
@@ -479,8 +479,8 @@ But don’t be surprised when it happens, and your program breaks.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 29, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

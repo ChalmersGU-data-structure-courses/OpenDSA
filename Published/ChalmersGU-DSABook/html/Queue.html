@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'enqueueing-an-element', 'dequeueing-an-element', 'resizing-the-internal-array', 'array-based-queue-practice-exercises', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['queue-terminology-and-implementation', 'the-circular-queue', 'array-based-queue-implementation', 'enqueueing-an-element', 'dequeueing-an-element', 'resizing-the-internal-array', 'array-based-queue-practice-exercises', 'array-based-queues-full-implementation'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Queue";ODSA.SETTINGS.MODULE_LONG_NAME = "Array-Based Queues";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-11-16 09:58:48"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/List/aqueueCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="array-based-queues">
 <h1>4.<span class="section-number">12. </span>Array-Based Queues<a class="headerlink" href="#array-based-queues" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="queue-terminology-and-implementation">
@@ -310,7 +310,7 @@ values for <code class="docutils literal notranslate"><span class="pre">rear</sp
 states.
 However, there are only <span class="math notranslate nohighlight">\(n\)</span> possible values for <code class="docutils literal notranslate"><span class="pre">rear</span></code> unless
 we invent a special case for, say, empty queues.
-This is an example of the <a class="reference internal" href="Glossary.html#term-Pigeonhole-Principle"><span class="xref std std-term">Pigeonhole Principle</span></a>.
+This is an example of the <a class="reference internal" href="Glossary.html#term-pigeonhole-principle"><span class="xref std std-term">Pigeonhole Principle</span></a>.
 The Pigeonhole Principle states that, given <span class="math notranslate nohighlight">\(n\)</span> pigeonholes
 and <span class="math notranslate nohighlight">\(n+1\)</span> pigeons, when all of the pigeons go into the holes we
 can be sure that at least one hole contains more than one pigeon.
@@ -428,24 +428,29 @@ we might end up in a large gap in the middle of the queue.</p>
 <p>Instead we reset the <code class="docutils literal notranslate"><span class="pre">front</span></code> and <code class="docutils literal notranslate"><span class="pre">rear</span></code> pointers so that we copy the first
 queue element to position 0 of the new array, the second to position 1, etc.
 Apart from that, the implementation is similar to the one for lists and queues.</p>
-<div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">enqueue</span><span class="p">(</span><span class="n">E</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">queueSize</span> <span class="o">&gt;=</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">)</span>
-            <span class="n">resizeArray</span><span class="p">((</span><span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="n">internalArray</span><span class="p">.</span><span class="na">length</span> <span class="o">*</span> <span class="n">CapacityMultiplier</span><span class="p">));</span>
-        <span class="n">rear</span> <span class="o">=</span> <span class="p">(</span><span class="n">rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="p">;</span>   <span class="c1">// Circular increment</span>
-        <span class="n">internalArray</span><span class="o">[</span><span class="n">rear</span><span class="o">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
-        <span class="n">queueSize</span><span class="o">++</span><span class="p">;</span>
+<div id="DynamicArrayQueue_DynamicArrayQueueResize_code"><ul><li><a href="#DynamicArrayQueue_DynamicArrayQueueResize_code_Java_Generic">Java</a></li><li><a href="#DynamicArrayQueue_DynamicArrayQueueResize_code_Python">Python</a></li></ul><div id="DynamicArrayQueue_DynamicArrayQueueResize_code_Java_Generic"><div class="highlight-java notranslate"><div class="highlight"><pre><span></span>    <span class="kd">private</span> <span class="kt">void</span> <span class="nf">resizeArray</span><span class="p">(</span><span class="kt">int</span> <span class="n">newCapacity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="n">MinCapacity</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+        <span class="nd">@SuppressWarnings</span><span class="p">(</span><span class="s">&quot;unchecked&quot;</span><span class="p">)</span>
+        <span class="n">E</span><span class="o">[]</span> <span class="n">newArray</span> <span class="o">=</span> <span class="p">(</span><span class="n">E</span><span class="o">[]</span><span class="p">)</span> <span class="k">new</span> <span class="n">Object</span><span class="o">[</span><span class="n">newCapacity</span><span class="o">]</span><span class="p">;</span>
+        <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">queueSize</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+            <span class="n">newArray</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">internalArray</span><span class="o">[</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">front</span><span class="p">)</span> <span class="o">%</span> <span class="n">internalArray</span><span class="p">.</span><span class="na">length</span><span class="o">]</span><span class="p">;</span>
+        <span class="n">internalArray</span> <span class="o">=</span> <span class="n">newArray</span><span class="p">;</span>
+        <span class="n">front</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="n">rear</span> <span class="o">=</span> <span class="n">queueSize</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
     <span class="p">}</span>
 </pre></div>
 </div>
-</div><div id="DynamicArrayQueue_DynamicArrayQueueEnqueue_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">enqueue</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">&gt;=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_resizeArray</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_capacityMultiplier</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)</span>   <span class="c1"># Circular increment</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_rear</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span> <span class="o">+=</span> <span class="mi">1</span>
+</div><div id="DynamicArrayQueue_DynamicArrayQueueResize_code_Python"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">_resizeArray</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">newCapacity</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">newCapacity</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_minCapacity</span><span class="p">:</span> <span class="k">return</span>
+        <span class="n">newArray</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="nb">int</span><span class="p">(</span><span class="n">newCapacity</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span><span class="p">):</span>
+            <span class="n">newArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">[(</span><span class="n">i</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_front</span><span class="p">)</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span><span class="p">)]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_internalArray</span> <span class="o">=</span> <span class="n">newArray</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_front</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_rear</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_queueSize</span><span class="o">-</span><span class="mi">1</span>
 </pre></div>
 </div>
-</div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueueEnqueue_code" ).tabs();});</script></div>
+</div></div><script>$(function() {$( "#DynamicArrayQueue_DynamicArrayQueueResize_code" ).tabs();});</script></div>
 </div>
 <div class="section" id="array-based-queue-practice-exercises">
 <h2>4.<span class="section-number">12.5. </span>Array-based Queue Practice Exercises<a class="headerlink" href="#array-based-queue-practice-exercises" title="Permalink to this headline">¶</a></h2>
@@ -653,8 +658,8 @@ Apart from that, the implementation is similar to the one for lists and queues.<
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 29, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

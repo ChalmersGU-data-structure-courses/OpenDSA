@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['resizing-the-internal-array', 'how-much-to-increase-the-array-size', 'growing-by-a-constant-amount', 'growing-by-a-constant-factor', 'constant-amount-vs-constant-factor', 'shrinking-the-internal-array', 'dynamic-array-based-list:-full-code'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "ListArrayDynamic";ODSA.SETTINGS.MODULE_LONG_NAME = "Dynamic Array-Based Lists";ODSA.SETTINGS.MODULE_CHAPTER = "Linear Structures"; ODSA.SETTINGS.BUILD_DATE = "2022-11-16 09:58:48"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/ChalmersGU/CGU-Styles.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicZoomCON.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/List/ListArrayDynamicCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="dynamic-array-based-lists">
@@ -196,8 +196,8 @@ and copy over all elements to the new one.</p>
 </div></div><script>$(function() {$( "#DynamicArrayList_DynamicArrayListResize_code" ).tabs();});</script><p>So, how large should the new internal array be? For now, let’s
 <strong>double the size of the internal array</strong> when we need to resize,
 which means that we add the following if-clause to the <code class="docutils literal notranslate"><span class="pre">add</span></code> method:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">listSize</span> <span class="o">&gt;=</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span>
-    <span class="nv">resizeArray</span><span class="ss">(</span><span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span> <span class="o">*</span> <span class="mi">2</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
+    resizeArray(size of internalArray * 2)
 </pre></div>
 </div>
 <p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">add</span></code> method from <strong>StaticArrayList</strong>.
@@ -262,9 +262,9 @@ On the other hand, if we grow the array by a small amount, we need to
 resize it more often.</p>
 <p>We will explore these tradeoffs by looking at the performance of the
 following small program under different resizing strategies:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nv">list</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">dynamic</span> <span class="nv">array</span> <span class="nv">list</span>
-<span class="k">for</span> <span class="nv">i</span> <span class="nv">in</span> <span class="mi">1</span>...<span class="nv">n</span>:
-    <span class="nv">list</span>.<span class="nv">add</span><span class="ss">(</span><span class="nv">i</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>list = new dynamic array list
+for i in 1...n:
+    list.add(i)
 </pre></div>
 </div>
 <p>The program builds a list of length <cite>n</cite> by repeatedly calling <span class="math notranslate nohighlight">\(add\)</span>.
@@ -275,8 +275,8 @@ the program ought to take <cite>linear time</cite>.</p>
 <div class="section" id="growing-by-a-constant-amount">
 <h3>4.<span class="section-number">4.2.1. </span>Growing by a constant amount<a class="headerlink" href="#growing-by-a-constant-amount" title="Permalink to this headline">¶</a></h3>
 <p>What happens if we only grow the internal array by 1 element when we resize it?</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">listSize</span> <span class="o">&gt;=</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span>
-    <span class="nv">resizeArray</span><span class="ss">(</span><span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span> <span class="o">+</span> <span class="mi">1</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &gt;= size of internalArray
+    resizeArray(size of internalArray + 1)
 </pre></div>
 </div>
 <p>Every time we call <code class="docutils literal notranslate"><span class="pre">add</span></code>, the internal array will be resized.
@@ -441,8 +441,8 @@ the final complexity will be linear (per operation). Which is not what we want.<
 The solution is to wait even longer until we shrink the internal array!
 E.g., we can shrink the array (i.e., halve it), when it is only 1/3 full.
 So we can add the following lines to the end of the <code class="docutils literal notranslate"><span class="pre">remove</span></code> method:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nv">listSize</span> <span class="o">&lt;=</span> <span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
-    <span class="nv">resizeArray</span><span class="ss">(</span><span class="nv">size</span> <span class="nv">of</span> <span class="nv">internalArray</span> <span class="o">*</span> <span class="mi">1</span><span class="o">/</span><span class="mi">2</span><span class="ss">)</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>if listSize &lt;= size of internalArray * 1/3
+    resizeArray(size of internalArray * 1/2)
 </pre></div>
 </div>
 <p>That’s the only difference from the <code class="docutils literal notranslate"><span class="pre">StaticArrayList.remove</span></code> method.</p>
@@ -672,8 +672,8 @@ All these constants can be changed at will.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 29, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

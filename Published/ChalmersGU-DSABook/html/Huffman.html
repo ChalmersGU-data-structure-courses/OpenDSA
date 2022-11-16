@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'assigning-and-using-huffman-codes', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['huffman-coding-trees', 'building-huffman-coding-trees', 'assigning-and-using-huffman-codes', 'decoding', 'how-efficient-is-huffman-coding'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Huffman";ODSA.SETTINGS.MODULE_LONG_NAME = "Huffman Coding Trees (optional)";ODSA.SETTINGS.MODULE_CHAPTER = "Priority Queues"; ODSA.SETTINGS.BUILD_DATE = "2022-11-16 09:58:48"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../DataStructures/huffman.css" rel="stylesheet" type="text/css" />
 <link href="../../../AV/Binary/huffmanCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="huffman-coding-trees-optional">
 <span id="index-0"></span><h1>8.<span class="section-number">5. </span>Huffman Coding Trees (optional)<a class="headerlink" href="#huffman-coding-trees-optional" title="Permalink to this headline">¶</a></h1>
@@ -177,7 +177,7 @@ them to save space. Later, they can be uncompressed for use, which
 costs some time, but only once.</p>
 <p>We often represent a set of items in a computer program by assigning a
 unique code to each item.
-For example, the standard <a class="reference internal" href="Glossary.html#term-ASCII-character-coding"><span class="xref std std-term">ASCII coding</span></a>
+For example, the standard <a class="reference internal" href="Glossary.html#term-ascii-character-coding"><span class="xref std std-term">ASCII coding</span></a>
 scheme assigns a unique eight-bit value to each character.
 It takes a certain minimum number of bits to provide enough unique
 codes so that we have a different one for each character.
@@ -235,7 +235,7 @@ This concept is at the heart of file compression techniques in
 common use today.
 The next section presents one such approach to assigning
 <a class="reference internal" href="Glossary.html#term-variable-length-coding"><span class="xref std std-term">variable-length codes</span></a>,
-called <a class="reference internal" href="Glossary.html#term-Huffman-codes"><span class="xref std std-term">Huffman coding</span></a>.
+called <a class="reference internal" href="Glossary.html#term-huffman-codes"><span class="xref std std-term">Huffman coding</span></a>.
 While it is not commonly used in its simplest form for file
 compression (there are better methods), Huffman coding gives the
 flavor of such coding schemes.
@@ -258,8 +258,8 @@ If the estimated frequencies for letters match the actual frequency
 found in an encoded message, then the length of that message will
 typically be less than if a fixed-length code had been used.
 The Huffman code for each letter is derived from a full binary tree
-called the <a class="reference internal" href="Glossary.html#term-Huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, or simply the
-<a class="reference internal" href="Glossary.html#term-Huffman-tree"><span class="xref std std-term">Huffman tree</span></a>.
+called the <a class="reference internal" href="Glossary.html#term-huffman-coding-tree"><span class="xref std std-term">Huffman coding tree</span></a>, or simply the
+<a class="reference internal" href="Glossary.html#term-huffman-tree"><span class="xref std std-term">Huffman tree</span></a>.
 Each leaf of the Huffman tree corresponds to a letter, and we
 define the weight of the leaf node to be the weight (frequency) of its
 associated letter.
@@ -647,8 +647,8 @@ your own set of letters and frequencies.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 29, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">

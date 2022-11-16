@@ -1,0 +1,296 @@
+
+<!DOCTYPE html>
+
+
+
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>JUnit Testing And You &mdash; Programming Basics: Background and Repetition</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/normalize.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/JSAV.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaMOD-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/jquery.ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/odsaStyle-min.css" type="text/css" />
+    <link rel="stylesheet" href="../../../lib/accessibility.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT:    './',
+      VERSION:     '0.4.1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE:  true
+    };
+  </script>
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+        processEscapes: true
+      },
+      "HTML-CSS": {
+        scale: "80"
+      }
+    });
+  </script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="index" title="Programming Basics: Background and Repetition" href="index.html" />
+
+  </head>
+
+  <body>
+
+
+      <div class="header">
+        
+  
+      <script type="text/javascript" src="../../../lib/jquery.min.js"></script>
+      <script type="text/javascript" src="../../../lib/jquery.migrate.min.js"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/localforage/1.9.0/localforage.min.js"></script>
+      <script type="text/javascript" src="../../../lib/accessibility.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.ui.min.js"></script>
+    <script type="text/javascript" src="../../../lib/jquery.transit.js"></script>
+    <script type="text/javascript" src="../../../lib/raphael.js"></script>
+    <script type="text/javascript" src="../../../lib/JSAV-min.js"></script>
+    <script type="text/javascript" src="_static/config.js"></script>
+    <script type="text/javascript" src="../../../lib/timeme-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaUtils-min.js"></script>
+    <script type="text/javascript" src="../../../lib/odsaMOD-min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+    <script type="text/javascript" src="https://d3js.org/d3-selection-multi.v1.min.js"></script>
+    <script type="text/javascript" src="../../../lib/dataStructures.js"></script>
+    <script type="text/javascript" src="../../../lib/conceptMap.js"></script>
+
+        
+<a id="username-link" style="float:right;color:red;margin:10px 20px auto; display: none" class="username-link" href="Gradebook.html"></a>
+<a id="login-link" style="float:right;color:red;margin:10px 20px auto" class="login-link" href="#"><Macro 'login'></a>
+<div id="login-box" class="login-popup">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <label class="username">
+        <span>Username</span>
+        <input id="username" value="" type="text" autocomplete="on" placeholder="Username" tabindex="1">
+      </label>
+      <label class="password">
+        <span>Password</span>
+        <input id="password" value="" type="password" placeholder="Password" tabindex="2">
+        <span><a id="forgot" href="#">Forgot your password?</a></span>
+      </label>
+
+      <p>
+        <input type="submit" id="login-submit-button" value="Sign in" tabindex="3" />
+      </p>
+      <p>
+        <input type="button" id="register-button" value="Register" tabindex="4" />
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+        
+<a id="registration-link" style="float:right;color:red;margin:10px 20px auto" class="registration-link" href="#">Register</a>
+<div id="registration-box" class="registration-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="signin" action="https://#">
+    <fieldset class="textbox">
+      <div id="register_error" class="error"></div>
+      <label class="username">
+        <span>Username:</span>
+        <input type="text" id="user" placeholder="Username" />
+      </label>
+
+      <label class="password">
+        <span>Password</span>
+        <input id="pass" type="password" placeholder="Password" />
+      </label>
+
+      <label class="password">
+        <span>Confirm Password</span>
+        <input id="rpass" type="password" placeholder="Confirm Password" />
+      </label>
+
+      <label class="email">
+        <span>Email:</span>
+        <input type="text" id="email" placeholder="Email">
+      </label>
+
+      <p>
+        <input type="submit" id="register-submit-button" value="Register &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+<img class="leftlogo" src="_static/OpenDSALogoT64.png" alt="Logo"/><div class="title-wrapper">
+          <div class="title-inbetween" style="display: table-cell; vertical-align: middle;">
+            <div class="title-content">
+              <h1 class="heading" ><a href="index.html">
+                <span>Programming Basics: Background and Repetition</span></a></h1>
+              <h2 class="heading" ><span></span></h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="topnav">
+        <p>
+            <a style="float:left;color:blue;" href="../source/junitstart.rst.rst"
+              target="_blank" rel="nofollow">Show Source | </a>&#160;&#160;
+            <a class="abt" style="float:left;color:blue;" href="#" rel="nofollow">| About</a>&#160;&#160;
+
+          
+        <a  class="uplink" href="index.html">Contents</a>
+
+
+        </p>
+      </div>
+       
+      <div class="content">
+        
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['getting-started', 'design-considerations', 'meaningful-tests', 'more-information'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "junitstart";ODSA.SETTINGS.MODULE_LONG_NAME = "JUnit Testing And You";ODSA.SETTINGS.MODULE_CHAPTER = "Java Programming, repetition"; ODSA.SETTINGS.BUILD_DATE = "2021-11-24 14:11:56"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='java';</script><div class="section" id="junit-testing-and-you">
+<h1>JUnit Testing And You<a class="headerlink" href="#junit-testing-and-you" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="getting-started">
+<h2>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p><em>To err is human, to correct is divine.</em></p>
+<p>When writing code we often make mistakes.
+So it is important that we test our code frequently in order
+to spot, fix and remove bugs.
+Thankfully Java comes with a wonderful suite of tools to help test
+our code.
+In addition to this, various 3rd parties develop and release extensions on
+the standard JUnit suite and release them for students to make use of.
+One such example is <a href="http://web-cat.org/eclstats/junit-quickstart/" target = "_blank">here</a>.</p>
+<div class="section" id="design-considerations">
+<h3>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline">¶</a></h3>
+<p>There are a few different approaches to testing code.
+One is to focus on code coverage.
+The code coverage approach to testing is fairly easy to understand.
+If our test cases hit every line of code and
+produce the expected results then we have a good indication that our code is
+relatively bug free.
+For this design we should try to keep our test cases as modular as
+possible.
+As such it is generally recommended that for every method in your
+class you design a test method corresponding to it.</p>
+<p>Consider a <code class="docutils literal notranslate"><span class="pre">Human</span></code> class with the methods
+<code class="docutils literal notranslate"><span class="pre">setName,</span> <span class="pre">getName,</span> <span class="pre">setWeight,</span> <span class="pre">getWeight,</span> <span class="pre">walk,</span> <span class="pre">jump</span></code>.
+There are two sets of getters and setters and two independent methods.
+Thus it would be wise to create a test method called <code class="docutils literal notranslate"><span class="pre">testName()</span></code> which tests the
+getter/setter for name, and a test method called <code class="docutils literal notranslate"><span class="pre">testWeight()</span></code> which tests the
+getter/setter for weight.
+Things a coder might wish to consider when testing these methods could
+include what happens when you cast a data type to fit inside a setter
+(i.e. if your weight is represented as integers, will the system
+round as expected or should you regear your data choice).
+Additionally, be sure to consider any issues that arise from abusing
+the  setter
+(i.e. negative weight, or giving NULL for the name).
+As you test your code, try to consider any way in which you can break
+your program.
+Finally, we have two methods left untested: The <code class="docutils literal notranslate"><span class="pre">walk</span></code> and <code class="docutils literal notranslate"><span class="pre">jump</span></code> methods.
+In order to keep them modular, simply create two separate test methods:
+<code class="docutils literal notranslate"><span class="pre">testJump</span></code> and <code class="docutils literal notranslate"><span class="pre">testWalk</span></code>.</p>
+</div>
+<div class="section" id="meaningful-tests">
+<h3>Meaningful Tests<a class="headerlink" href="#meaningful-tests" title="Permalink to this headline">¶</a></h3>
+<p>When writing your test cases it is important not to just run the code with
+random tests. All the tests should be designed to test common runtime conditions,
+as well as possible edge conditions that may change the behavior. Additionally
+try to develop test cases that are independent of each other. If a segment of
+code has already been properly tested, testing the same chunks of code over
+again will not add anything and will slow down the overall runtime of tests.
+Remember quality over quantity!</p>
+</div>
+<div class="section" id="more-information">
+<h3>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h3>
+<p>For more information <a href="http://openmymind.net/2011/2/23/Foundations-of-Programming-2-Chapter-5-Effective-T/" target = "_blank">this blog</a>
+is an excellent resource to read and learn from.</p>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      <p><span class="email_div" style="display:inline;"><a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a><a style="float:left;color:blue;" rel="nofollow" href="../../../lib/Privacy.html" target="_blank">| Privacy |</a> <a style="float:left;color:blue;" rel="nofollow" href="../../../lib/license.html" target="_blank">| License</a></span>&#160;&#160;
+      
+        <a  class="uplink" href="index.html">Contents</a>
+
+</p>
+      </div>
+      <img style="float:right;" src="_static/nsf1.gif" height="62" width="62" alt="nsf"/>
+
+
+    <div class="footer">
+      <p>
+        <span class="email_div" style="display:inline;">
+          <a id="contact_us" class="contact" style="float:left;color:blue;" rel="nofollow" href="mailto:">Contact Us |</a>
+          <a id="bugreport-link" style="float:left;color:blue;" class="bugreport-link" href="#">| Report a bug</a>
+        </span>
+      </p>
+        &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
+    </div>
+    
+<div id="bugreport-box" class="bugreport-popup ">
+  <a href="#" class="close"><img src="_static/Images/close_pop.png" class="btn_close" title="Close Window" alt="Close Window" /></a>
+  <form method="post" class="report" action="https://#">
+    <fieldset class="textbox">
+      <div id="bug_error" class="error"></div>
+      <label>
+        <span>Summary*:</span>
+        <input type="text" id="b_title" placeholder="Summary" />
+      </label>
+
+      <label class="os">
+        <span>Operating system*:</span>
+        <select id="b_os">
+          <option value="windows">Windows</option>
+          <option value="macos">Mac OS</option>
+          <option value="linux">Linux</option>
+          <option value="ios">iOS</option>
+          <option value="android">Android</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="browser">
+        <span>Browser*:</span>
+        <select id="b_browser">
+          <option value="chrome">Chrome</option>
+          <option value="safari">Safari</option>
+          <option value="internetexplorer">Internet Explorer</option>
+          <option value="opera">Opera</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+      <label class="description">
+        <span>Description*:</span><br>
+        <textarea id="b_description" rows="5" cols="25" placeholder="***BUG** Please enter: (1) a consice description of the problem. (2) steps to reproduce bug. (3) the version of your browser and operating system."></textarea>
+      </label>
+
+      <label class="screenshot">
+        <span>Attach a screenshot (optional):</span>
+        <input type="file" id="b_screenshot" accept="image/*" placeholder="Attach a screenshot (optional)">
+      </label>
+
+      <p>
+        <input type="submit" id="bug-submit-button" value="Submit &rarr;"/>
+      </p>
+    </fieldset>
+  </form>
+</div>
+
+  </body>
+</html>

@@ -162,7 +162,7 @@
        
       <div class="content">
         
-  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2022-01-29 13:39:16"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
+  <script>ODSA.SETTINGS.MODULE_SECTIONS = ['mergesort-practice-exercise'];</script><script>ODSA.SETTINGS.DISP_MOD_COMP = true;ODSA.SETTINGS.MODULE_NAME = "Mergesort";ODSA.SETTINGS.MODULE_LONG_NAME = "Mergesort Concepts";ODSA.SETTINGS.MODULE_CHAPTER = "Arrays: Searching and Sorting"; ODSA.SETTINGS.BUILD_DATE = "2022-11-16 09:58:48"; ODSA.SETTINGS.BUILD_CMAP = true;JSAV_OPTIONS['lang']='en';JSAV_EXERCISE_OPTIONS['code']='pseudo';</script><link href="../../../AV/Sorting/MergeSortAnalysisCON.css" rel="stylesheet" type="text/css" />
 <div class="section" id="mergesort-concepts">
 <span id="index-0"></span><h1>2.<span class="section-number">10. </span>Mergesort Concepts<a class="headerlink" href="#mergesort-concepts" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
@@ -173,19 +173,19 @@ list to be sorted into pieces, process the pieces, and then put them
 back together somehow.
 A simple way to do this would be to split the list in half, sort
 the halves, and then merge the sorted halves together.
-This is the idea behind <a class="reference internal" href="Glossary.html#term-Mergesort"><span class="xref std std-term">Mergesort</span></a>.</p>
+This is the idea behind <a class="reference internal" href="Glossary.html#term-mergesort"><span class="xref std std-term">Mergesort</span></a>.</p>
 <p>Mergesort is one of the simplest sorting algorithms conceptually,
 and has good performance both in the asymptotic
 sense and in empirical running time.
 Unfortunately, even though it is based on a simple concept,
 it is relatively difficult to implement in practice.
 Here is a pseudocode sketch of Mergesort:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nv">mergeSort</span><span class="ss">(</span><span class="nv">inlist</span><span class="ss">)</span>
-    <span class="k">if</span> <span class="nv">length</span> <span class="nv">of</span> <span class="nv">inlist</span> <span class="o">&lt;=</span> <span class="mi">1</span>:
-        <span class="k">return</span> <span class="nv">inlist</span>
-    <span class="nv">L1</span> <span class="o">=</span> <span class="nv">half</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">items</span> <span class="nv">from</span> <span class="nv">inlist</span>
-    <span class="nv">L2</span> <span class="o">=</span> <span class="nv">other</span> <span class="nv">half</span> <span class="nv">of</span> <span class="nv">the</span> <span class="nv">items</span> <span class="nv">from</span> <span class="nv">inlist</span>
-    <span class="k">return</span> <span class="nv">merge</span><span class="ss">(</span><span class="nv">mergeSort</span><span class="ss">(</span><span class="nv">L1</span><span class="ss">)</span>, <span class="nv">mergeSort</span><span class="ss">(</span><span class="nv">L2</span><span class="ss">))</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>mergeSort(inlist)
+    if length of inlist &lt;= 1:
+        return inlist
+    L1 = half of the items from inlist
+    L2 = other half of the items from inlist
+    return merge(mergeSort(L1), mergeSort(L2))
 </pre></div>
 </div>
 <p>Here is a visualization that illustrates how Mergesort works.</p>
@@ -220,21 +220,21 @@ Merging continues in this way, comparing the front
 records of the sublists and continually appending the smaller to the
 output list until no more input records remain.</p>
 <p>Here is pseudocode for merge on lists:</p>
-<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span><span class="nv">merge</span><span class="ss">(</span><span class="nv">L1</span>, <span class="nv">L2</span><span class="ss">)</span>
-    <span class="nv">answer</span> <span class="o">=</span> <span class="nv">new</span> <span class="nv">empty</span> <span class="nv">list</span>
-    <span class="k">while</span> <span class="nv">L1</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">empty</span> <span class="nv">and</span> <span class="nv">L2</span> <span class="nv">is</span> <span class="nv">not</span> <span class="nv">empty</span>
-        <span class="nv">x</span> <span class="o">=</span> <span class="nv">first</span> <span class="nv">element</span> <span class="nv">of</span> <span class="nv">L1</span>
-        <span class="nv">y</span> <span class="o">=</span> <span class="nv">first</span> <span class="nv">element</span> <span class="nv">of</span> <span class="nv">L2</span>
-        <span class="k">if</span> <span class="nv">x</span> <span class="o">&lt;=</span> <span class="nv">y</span>
-            <span class="nv">append</span> <span class="nv">x</span> <span class="nv">to</span> <span class="nv">answer</span>
-            <span class="nv">remove</span> <span class="nv">first</span> <span class="nv">element</span> <span class="nv">from</span> <span class="nv">L1</span>
-        <span class="k">else</span>
-            <span class="nv">append</span> <span class="nv">y</span> <span class="nv">to</span> <span class="nv">answer</span>
-            <span class="nv">remove</span> <span class="nv">first</span> <span class="nv">element</span> <span class="nv">from</span> <span class="nv">L2</span>
-    <span class="o">//</span> <span class="nv">Now</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">L1</span> <span class="nv">and</span> <span class="nv">L2</span> <span class="nv">is</span> <span class="nv">empty</span>, <span class="nv">so</span> <span class="nv">append</span> <span class="nv">all</span> <span class="nv">remaining</span> <span class="nv">elements</span>
-    <span class="nv">append</span> <span class="nv">all</span> <span class="nv">elements</span> <span class="nv">of</span> <span class="nv">L1</span> <span class="nv">to</span> <span class="nv">answer</span>
-    <span class="nv">append</span> <span class="nv">all</span> <span class="nv">elements</span> <span class="nv">of</span> <span class="nv">L2</span> <span class="nv">to</span> <span class="nv">answer</span>
-    <span class="k">return</span> <span class="nv">answer</span>
+<div class="highlight-guess notranslate"><div class="highlight"><pre><span></span>merge(L1, L2)
+    answer = new empty list
+    while L1 is not empty and L2 is not empty
+        x = first element of L1
+        y = first element of L2
+        if x &lt;= y
+            append x to answer
+            remove first element from L1
+        else
+            append y to answer
+            remove first element from L2
+    // Now one of L1 and L2 is empty, so append all remaining elements
+    append all elements of L1 to answer
+    append all elements of L2 to answer
+    return answer
 </pre></div>
 </div>
 <p>Here is a visualization for the merge operation.</p>
@@ -351,8 +351,8 @@ output list until no more input records remain.</p>
         </span>
       </p>
         &copy; Copyright 2016 by OpenDSA Project Contributors and distributed under an MIT license.
-      Last updated on Jan 29, 2022.
-      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 4.4.0.
+      Last updated on Nov 16, 2022.
+      Created using <a target="_blank" href="http://sphinx.pocoo.org/">Sphinx</a> 2.4.4.
     </div>
     
 <div id="bugreport-box" class="bugreport-popup ">
